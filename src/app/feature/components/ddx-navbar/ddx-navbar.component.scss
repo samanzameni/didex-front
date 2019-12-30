@@ -1,0 +1,20 @@
+@import '../../../../styles.scss';
+
+:host {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  width: 100%;
+  height: $navbar-height;
+  box-sizing: border-box;
+  padding: 5px 40px;
+
+  background: lightgrey;
+
+  .logo_container {
+  }
+
+  .navbar-items__container {
+  }
+}

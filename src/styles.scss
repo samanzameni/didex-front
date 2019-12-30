@@ -1,1 +1,11 @@
-/* You can add global styles to this file, and also import other style files */
+@import './assets/styles/reset';
+@import './assets/styles/colors';
+@import './assets/styles/constants';
+@import './assets/styles/overpass';
+
+html,
+body {
+  font-family: 'overpass';
+  width: 100%;
+  overflow-x: hidden;
+}

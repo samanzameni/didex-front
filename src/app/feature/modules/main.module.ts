@@ -7,12 +7,24 @@ import {
   NavbarComponent,
   FooterComponent,
 } from '@feature/components';
+import { HomePageComponent } from '@feature/pages';
 import { WidgetModule } from '@widget/widget.module';
 
-const routes: Routes = [{ path: '', component: MainComponent }];
+const routes: Routes = [
+  {
+    path: '',
+    component: MainComponent,
+    children: [{ path: '', component: HomePageComponent }],
+  },
+];
 
 @NgModule({
-  declarations: [MainComponent, NavbarComponent, FooterComponent],
+  declarations: [
+    MainComponent,
+    NavbarComponent,
+    FooterComponent,
+    HomePageComponent,
+  ],
   imports: [CommonModule, RouterModule.forChild(routes), WidgetModule],
   exports: [],
   providers: [],

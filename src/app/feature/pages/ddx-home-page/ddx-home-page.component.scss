@@ -1,0 +1,81 @@
+@import '../../../../styles.scss';
+
+:host {
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: repeat(6, minmax(auto, 250px));
+  grid-template-areas:
+    'chart-section'
+    'instruments-section'
+    'order-book-section'
+    'market-section'
+    'my-orders-section'
+    'sale-section';
+
+  & > section {
+    padding: 15px;
+    box-sizing: border-box;
+  }
+
+  section.chart-section {
+    grid-area: chart-section;
+    background: red;
+  }
+  section.instruments-section {
+    grid-area: instruments-section;
+    background: blue;
+  }
+  section.order-book-section {
+    grid-area: order-book-section;
+    background: green;
+  }
+  section.market-section {
+    grid-area: market-section;
+    background: yellow;
+  }
+  section.my-orders-section {
+    grid-area: my-orders-section;
+    background: orange;
+  }
+  section.sale-section {
+    grid-area: sale-section;
+    background: purple;
+  }
+}
+
+@media screen and (min-width: $break-narrow-tablet) {
+  :host {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: repeat(3, minmax(auto, 250px));
+    grid-template-areas:
+      'chart-section instruments-section'
+      'order-book-section market-section'
+      'my-orders-section sale-section';
+  }
+}
+
+@media screen and (min-width: $break-narrow-desktop) {
+  :host {
+    grid-template-columns: repeat(12, 1fr);
+    section.chart-section {
+      grid-column: 1 / 9;
+    }
+    section.instruments-section {
+      grid-column: 9 / 13;
+    }
+
+    section.order-book-section {
+      grid-column: 1 / 7;
+    }
+    section.market-section {
+      grid-column: 7 / 13;
+    }
+
+    section.my-orders-section {
+      grid-column: 1 / 8;
+    }
+    section.sale-section {
+      grid-column: 8 / 13;
+    }
+  }
+}

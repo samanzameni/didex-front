@@ -17,3 +17,7 @@ Run `npm run test` to execute the unit tests via [Karma](https://karma-runner.gi
 ## Running end-to-end tests
 
 Run `npm run e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+
+## API Docs
+
+Go to this [page](http://47.105.197.176/swagger/index.html) for full API docs.

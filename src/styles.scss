@@ -3,9 +3,12 @@
 @import './assets/styles/constants';
 @import './assets/styles/overpass';
 
+@import './assets/styles/kit';
+
 html,
 body {
   font-family: 'overpass';
   width: 100%;
   overflow-x: hidden;
+  line-height: 1.2 !important;
 }

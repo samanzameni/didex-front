@@ -15,31 +15,26 @@
   & > section {
     padding: 15px;
     box-sizing: border-box;
+    border: 1px solid grey;
   }
 
   section.chart-section {
     grid-area: chart-section;
-    background: red;
   }
   section.instruments-section {
     grid-area: instruments-section;
-    background: blue;
   }
   section.order-book-section {
     grid-area: order-book-section;
-    background: green;
   }
   section.market-section {
     grid-area: market-section;
-    background: yellow;
   }
   section.my-orders-section {
     grid-area: my-orders-section;
-    background: orange;
   }
   section.sale-section {
     grid-area: sale-section;
-    background: purple;
   }
 }
 

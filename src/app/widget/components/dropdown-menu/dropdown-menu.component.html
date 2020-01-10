@@ -8,8 +8,13 @@
   <i>^</i>
 </button>
 
-<ul arrangeStack class="dropdown-menu" [ngClass]="{ active: isOpen }">
-  <li class="dropdown-item">blah</li>
-  <li class="dropdown-item">blah2</li>
-  <li class="dropdown-item">blah3</li>
+<ul
+  *ngIf="!!menuItems && menuItems.length > 0"
+  arrangeStack
+  class="dropdown-menu"
+  [ngClass]="{ active: isOpen }"
+>
+  <li *ngFor="let menuItem of menuItems" class="dropdown-item">
+    <a [routerLink]="menuItem.url">{{ menuItem.caption }}</a>
+  </li>
 </ul>

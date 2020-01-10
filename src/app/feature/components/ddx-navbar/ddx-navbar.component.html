@@ -4,5 +4,8 @@
 <div arrangeInline class="navbar-items__container">
   <button class="button-secondary">$</button>
   <button class="button-secondary">Add Funds +</button>
-  <dropdown-menu caption="My Account"></dropdown-menu>
+  <dropdown-menu
+    caption="My Account"
+    [menuItems]="myAccountItems"
+  ></dropdown-menu>
 </div>

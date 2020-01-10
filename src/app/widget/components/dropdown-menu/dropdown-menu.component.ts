@@ -8,6 +8,7 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
 } from '@angular/core';
+import { DropdownMenuItem } from '@widget/models';
 
 @Component({
   selector: 'dropdown-menu',
@@ -17,6 +18,8 @@ import {
 })
 export class DropdownMenuComponent implements OnInit, AfterViewInit {
   @Input() caption: string;
+  @Input() menuItems: DropdownMenuItem[];
+
   @ViewChild('dropdownToggle', { static: false }) dropdownToggle: ElementRef;
 
   private isOpenState: boolean;
@@ -28,6 +31,10 @@ export class DropdownMenuComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     if (!this.caption) {
       this.caption = 'Menu';
+    }
+
+    if (!this.menuItems) {
+      this.menuItems = [];
     }
   }
 

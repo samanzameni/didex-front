@@ -11,6 +11,7 @@ import {
   DropdownSelectComponent,
   ToggleButtonComponent,
 } from './components';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,7 @@ import {
     DropdownSelectComponent,
     ToggleButtonComponent,
   ],
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   exports: [
     ArrangeCenterDirective,
     ArrangeInlineDirective,

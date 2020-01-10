@@ -61,12 +61,20 @@
     }
 
     .dropdown-item {
-      color: $ddx-primary-darker;
-      padding: 5px 15px;
       margin: 0;
 
-      &:hover {
-        color: $ddx-primary;
+      & > a {
+        padding: 5px 15px;
+        color: $ddx-primary-darker;
+        text-decoration: none;
+        display: flex;
+
+        &:hover,
+        &:active,
+        &:focus {
+          color: $ddx-primary;
+          text-decoration: none;
+        }
       }
     }
   }

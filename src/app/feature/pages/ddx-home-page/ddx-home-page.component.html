@@ -17,9 +17,13 @@
   <hr />
   <button class="button-short">Short</button>
 </section>
-<section class="order-book-section">
+<section arrangeInline class="order-book-section">
   <dropdown-menu [menuItems]="[{ caption: 'blah', url: '/' }]"></dropdown-menu>
-  <dropdown-select></dropdown-select>
+  <dropdown-select
+    caption="Choose wisely"
+    [items]="['pwa', 'spa', 'btc']"
+    [hasMultiselect]="true"
+  ></dropdown-select>
   <toggle-button></toggle-button>
 </section>
 <section class="market-section"></section>

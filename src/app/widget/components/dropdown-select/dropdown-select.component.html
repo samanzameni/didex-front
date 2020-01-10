@@ -1,1 +1,24 @@
-<p>dropdown-select works!</p>
+<button
+  class="button-secondary select-toggle"
+  [ngClass]="{ active: isOpen }"
+  (click)="toggleDropdown()"
+>
+  <span>{{ value ? value : caption }}</span>
+  <i>^</i>
+</button>
+
+<ul
+  *ngIf="!!items"
+  arrangeStack
+  class="options-menu"
+  [ngClass]="{ active: isOpen }"
+>
+  <li
+    *ngFor="let item of items; let i = index"
+    class="option-item"
+    (click)="setValue($event, i)"
+  >
+    <input *ngIf="hasMultiselect" type="checkbox" />
+    <span>{{ item }}</span>
+  </li>
+</ul>

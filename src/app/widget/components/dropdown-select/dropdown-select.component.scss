@@ -1,0 +1,71 @@
+@import '../../../../styles.scss';
+
+:host {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
+  width: $input-width;
+  height: fit-content;
+  margin: 3px;
+  box-sizing: border-box;
+
+  .select-toggle {
+    justify-content: space-between;
+    margin: 0;
+    width: 100%;
+
+    color: $ddx-primary-darker;
+    border-color: $ddx-primary-darker;
+
+    &:hover {
+      background: $ddx-light;
+      color: $ddx-primary;
+      border-color: $ddx-primary;
+    }
+  }
+
+  .options-menu {
+    background: $ddx-light;
+    width: 100%;
+    box-sizing: border-box;
+    list-style: none;
+    border: 1px solid $ddx-primary;
+    border-radius: $button-border-radius;
+    position: absolute;
+    top: calc(100% + 3px);
+    left: 0;
+
+    padding: 0;
+    margin: 0;
+    border-width: 0;
+    opacity: 0;
+    visibility: hidden;
+    max-height: 0;
+    max-width: 0;
+
+    &.active {
+      padding: 10px 0;
+      border-width: 1px;
+      opacity: 1;
+      visibility: visible;
+      max-height: unset;
+      max-width: 100%;
+    }
+
+    .option-item {
+      margin: 0;
+      padding: 5px 15px;
+      color: $ddx-primary-darker;
+      text-decoration: none;
+      display: flex;
+
+      &:hover,
+      &:active,
+      &:focus {
+        color: $ddx-primary;
+        text-decoration: none;
+      }
+    }
+  }
+}

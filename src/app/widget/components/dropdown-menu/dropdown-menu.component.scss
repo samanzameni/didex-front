@@ -6,8 +6,9 @@
   position: relative;
 
   width: fit-content;
-  margin: 3px;
   min-width: calc(#{$button-min-width} * 1.2);
+  height: fit-content;
+  margin: 3px;
   box-sizing: border-box;
 
   .dropdown-toggle {

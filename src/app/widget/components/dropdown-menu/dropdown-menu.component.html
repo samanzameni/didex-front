@@ -1,0 +1,15 @@
+<button
+  class="button-secondary dropdown-toggle"
+  [ngClass]="{ active: isOpen }"
+  #dropdownToggle
+  (click)="toggleDropdown()"
+>
+  <span>{{ caption }}</span>
+  <i>^</i>
+</button>
+
+<ul arrangeStack class="dropdown-menu" [ngClass]="{ active: isOpen }">
+  <li class="dropdown-item">blah</li>
+  <li class="dropdown-item">blah2</li>
+  <li class="dropdown-item">blah3</li>
+</ul>

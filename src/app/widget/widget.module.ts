@@ -6,6 +6,11 @@ import {
   ArrangeInlineWrapDirective,
   ArrangeStackDirective,
 } from './directives';
+import {
+  DropdownMenuComponent,
+  DropdownSelectComponent,
+  ToggleButtonComponent,
+} from './components';
 
 @NgModule({
   declarations: [
@@ -13,6 +18,10 @@ import {
     ArrangeInlineDirective,
     ArrangeInlineWrapDirective,
     ArrangeStackDirective,
+    //
+    DropdownMenuComponent,
+    DropdownSelectComponent,
+    ToggleButtonComponent,
   ],
   imports: [CommonModule],
   exports: [
@@ -20,6 +29,10 @@ import {
     ArrangeInlineDirective,
     ArrangeInlineWrapDirective,
     ArrangeStackDirective,
+    //
+    DropdownMenuComponent,
+    DropdownSelectComponent,
+    ToggleButtonComponent,
   ],
 })
 export class WidgetModule {}

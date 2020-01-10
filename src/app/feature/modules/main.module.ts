@@ -2,25 +2,22 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 
-import {
-  MainComponent,
-  NavbarComponent,
-  FooterComponent,
-} from '@feature/components';
+import { NavbarComponent, FooterComponent } from '@feature/components';
 import { HomePageComponent } from '@feature/pages';
+import { MainLayoutComponent } from '@feature/layouts';
 import { WidgetModule } from '@widget/widget.module';
 
 const routes: Routes = [
   {
     path: '',
-    component: MainComponent,
+    component: MainLayoutComponent,
     children: [{ path: '', component: HomePageComponent }],
   },
 ];
 
 @NgModule({
   declarations: [
-    MainComponent,
+    MainLayoutComponent,
     NavbarComponent,
     FooterComponent,
     HomePageComponent,

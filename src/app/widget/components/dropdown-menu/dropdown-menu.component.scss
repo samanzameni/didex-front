@@ -1,0 +1,73 @@
+@import '../../../../styles.scss';
+
+:host {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
+  width: fit-content;
+  margin: 3px;
+  min-width: calc(#{$button-min-width} * 1.2);
+  box-sizing: border-box;
+
+  .dropdown-toggle {
+    justify-content: space-between;
+    margin: 0;
+    width: 100%;
+
+    color: $ddx-primary-darker;
+    border-color: $ddx-primary-darker;
+
+    &.active {
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+
+    &:hover {
+      background: $ddx-light;
+      color: $ddx-primary;
+      border-color: $ddx-primary;
+    }
+  }
+
+  .dropdown-menu {
+    background: $ddx-light;
+    width: 100%;
+    box-sizing: border-box;
+    list-style: none;
+    border: 1px solid $ddx-primary;
+    border-bottom-left-radius: $button-border-radius;
+    border-bottom-right-radius: $button-border-radius;
+    border-top: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+
+    padding: 0;
+    margin: 0;
+    border-width: 0;
+    opacity: 0;
+    visibility: hidden;
+    max-height: 0;
+    max-width: 0;
+
+    &.active {
+      padding: 10px 0;
+      border-width: 1px;
+      opacity: 1;
+      visibility: visible;
+      max-height: unset;
+      max-width: 100%;
+    }
+
+    .dropdown-item {
+      color: $ddx-primary-darker;
+      padding: 5px 15px;
+      margin: 0;
+
+      &:hover {
+        color: $ddx-primary;
+      }
+    }
+  }
+}

@@ -10,6 +10,9 @@ import {
   DropdownMenuComponent,
   DropdownSelectComponent,
   ToggleButtonComponent,
+  CheckboxComponent,
+  RadioButtonComponent,
+  RadioGroupComponent,
 } from './components';
 import { RouterModule } from '@angular/router';
 
@@ -23,6 +26,9 @@ import { RouterModule } from '@angular/router';
     DropdownMenuComponent,
     DropdownSelectComponent,
     ToggleButtonComponent,
+    CheckboxComponent,
+    RadioButtonComponent,
+    RadioGroupComponent,
   ],
   imports: [CommonModule, RouterModule],
   exports: [
@@ -34,6 +40,9 @@ import { RouterModule } from '@angular/router';
     DropdownMenuComponent,
     DropdownSelectComponent,
     ToggleButtonComponent,
+    CheckboxComponent,
+    RadioButtonComponent,
+    RadioGroupComponent,
   ],
 })
 export class WidgetModule {}

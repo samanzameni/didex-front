@@ -8,6 +8,7 @@ import {
   ChangeDetectorRef,
   AfterViewInit,
 } from '@angular/core';
+import { DataEntry } from '@widget/templates';
 
 @Component({
   selector: 'dropdown-select',
@@ -15,25 +16,24 @@ import {
   templateUrl: './dropdown-select.component.html',
   styleUrls: ['./dropdown-select.component.scss'],
 })
-export class DropdownSelectComponent implements OnInit, AfterViewInit {
+export class DropdownSelectComponent extends DataEntry<string>
+  implements OnInit, AfterViewInit {
   @Input() hasMultiselect: boolean;
   @Input() hasDefaultValue: boolean;
-  @Input() isRequired: boolean;
 
   @Input() items: string[];
   @Input() caption: string;
 
-  private currentValue: string;
   private isOpenState: boolean;
 
-  @Output() valueChange: EventEmitter<string>;
-
   constructor(private cdRef: ChangeDetectorRef) {
+    super();
     this.valueChange = new EventEmitter();
     this.isOpenState = false;
   }
 
   ngOnInit(): void {
+    super.ngOnInit();
     if (!this.items) {
       this.items = [];
     }
@@ -45,10 +45,6 @@ export class DropdownSelectComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     this.cdRef.detach();
-  }
-
-  get value(): string {
-    return this.currentValue;
   }
 
   get isValid(): boolean {
@@ -69,13 +65,13 @@ export class DropdownSelectComponent implements OnInit, AfterViewInit {
 
     // TODO: remove value
     if (this.hasMultiselect) {
-      if (!this.currentValue || this.currentValue.length < 1) {
-        this.currentValue = selectedValue;
+      if (!this.data || this.data.length < 1) {
+        this.data = selectedValue;
       } else {
-        this.currentValue = `${this.currentValue},${selectedValue}`;
+        this.data = `${this.data},${selectedValue}`;
       }
     } else {
-      this.currentValue = selectedValue;
+      this.data = selectedValue;
       this.isOpenState = false;
     }
 

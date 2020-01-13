@@ -1,0 +1,53 @@
+@import '../../../../styles.scss';
+
+:host {
+  display: flex;
+  margin-bottom: 5px;
+
+  label {
+    cursor: pointer;
+  }
+
+  input[type='radio'] {
+    position: absolute;
+    opacity: 0;
+    cursor: none;
+    height: 0;
+    width: 0;
+    margin: 0;
+    padding: 0;
+    visibility: hidden;
+  }
+
+  span.actual-label {
+    @extend .body;
+
+    margin-left: 5px;
+    user-select: none;
+  }
+
+  div.radio-container {
+    width: 15px;
+    height: 15px;
+    background-color: $ddx-light;
+
+    border: 1px solid $ddx-primary;
+    border-radius: 100%;
+  }
+
+  &:hover,
+  &:focus {
+    span.actual-label {
+      color: $ddx-primary-darker;
+    }
+
+    div.radio-container {
+      border-color: $ddx-primary-darker;
+    }
+  }
+
+  div.radio-container.checked {
+    background-color: $ddx-primary-darker;
+    box-shadow: 0 0 0 1px white, 0 0 0 2px $ddx-primary-darker;
+  }
+}

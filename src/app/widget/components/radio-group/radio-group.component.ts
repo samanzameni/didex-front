@@ -1,15 +1,19 @@
 import { Component, OnInit } from '@angular/core';
+import { DataEntry } from '@widget/templates';
 
 @Component({
-  selector: 'app-radio-group',
+  selector: 'radio-group',
   templateUrl: './radio-group.component.html',
-  styleUrls: ['./radio-group.component.scss']
+  styleUrls: ['./radio-group.component.scss'],
 })
-export class RadioGroupComponent implements OnInit {
+export class RadioGroupComponent extends DataEntry<string> implements OnInit {
+  constructor() {
+    super();
+  } // TODO template
 
-  constructor() { }
+  ngOnInit() {}
 
-  ngOnInit() {
+  get isValid(): boolean {
+    return this.isRequired && this.data !== undefined;
   }
-
 }

@@ -1,32 +1,34 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { DataEntry } from '@widget/templates';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'radio-button',
   templateUrl: './radio-button.component.html',
   styleUrls: ['./radio-button.component.scss'],
 })
-export class RadioButtonComponent extends DataEntry<string> implements OnInit {
-  @Input() actualValue: string;
+export class RadioButtonComponent implements OnInit {
+  @Input() value: string;
+  @Input() label: string;
+
+  private isChecked: boolean;
+
+  @Output() valueChange: EventEmitter<string>;
 
   constructor() {
-    super();
+    this.isChecked = false;
+    this.valueChange = new EventEmitter();
   }
 
-  ngOnInit() {
-    super.ngOnInit();
-  }
+  ngOnInit() {}
 
   get isValid(): boolean {
     return true;
   }
 
   onPush($event): void {
-    if ($event.target.checked) {
-      this.data = $event.target.value;
-      this.valueChange.emit(this.value);
-    } else {
-      this.data = undefined;
+    this.isChecked = $event.target.checked;
+
+    if (this.isChecked) {
+      this.valueChange.emit($event.target.value);
     }
   }
 }

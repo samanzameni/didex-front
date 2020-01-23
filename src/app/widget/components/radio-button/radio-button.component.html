@@ -1,5 +1,10 @@
 <label arrangeInline>
   <div class="radio-container" [ngClass]="{ checked: isChecked }"></div>
   <span *ngIf="!!label" class="actual-label">{{ label }}</span>
-  <input type="radio" [value]="value" (change)="onPush($event)" />
+  <input
+    type="radio"
+    [value]="value"
+    (change)="onPush($event)"
+    #buttonElement
+  />
 </label>

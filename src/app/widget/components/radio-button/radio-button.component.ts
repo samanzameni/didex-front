@@ -1,4 +1,12 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  Output,
+  EventEmitter,
+  ViewChild,
+  ElementRef,
+} from '@angular/core';
 
 @Component({
   selector: 'radio-button',
@@ -9,12 +17,14 @@ export class RadioButtonComponent implements OnInit {
   @Input() value: string;
   @Input() label: string;
 
-  private isChecked: boolean;
+  private isCheckedState: boolean;
 
   @Output() valueChange: EventEmitter<string>;
 
+  @ViewChild('buttonElement', { static: false }) buttonElement: ElementRef;
+
   constructor() {
-    this.isChecked = false;
+    this.isCheckedState = false;
     this.valueChange = new EventEmitter();
   }
 
@@ -24,11 +34,25 @@ export class RadioButtonComponent implements OnInit {
     return true;
   }
 
+  get isChecked(): boolean {
+    return this.isCheckedState;
+  }
+
   onPush($event): void {
-    this.isChecked = $event.target.checked;
+    this.isCheckedState = $event.target.checked;
 
     if (this.isChecked) {
       this.valueChange.emit($event.target.value);
+    }
+  }
+
+  clearSelect(): void {
+    this.isCheckedState = false;
+    if (this.buttonElement) {
+      this.buttonElement.nativeElement.checked = false;
+    }
+    if (this.isChecked) {
+      this.valueChange.emit(undefined);
     }
   }
 }

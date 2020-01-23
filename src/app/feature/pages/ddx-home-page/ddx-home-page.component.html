@@ -30,7 +30,10 @@
   <form>
     <checkbox [label]="'label for check'"></checkbox>
 
-    <radio-button [label]="'male'" [value]="'male'"></radio-button>
+    <radio-group>
+      <radio-button [label]="'male'" [value]="'male'"></radio-button>
+      <radio-button [label]="'female'" [value]="'female'"></radio-button>
+    </radio-group>
   </form>
 </section>
 <section class="my-orders-section"></section>

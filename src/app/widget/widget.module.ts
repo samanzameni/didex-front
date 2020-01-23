@@ -13,6 +13,7 @@ import {
   CheckboxComponent,
   RadioButtonComponent,
   RadioGroupComponent,
+  TradingViewChartWrapperComponent,
 } from './components';
 import { RouterModule } from '@angular/router';
 
@@ -29,6 +30,8 @@ import { RouterModule } from '@angular/router';
     CheckboxComponent,
     RadioButtonComponent,
     RadioGroupComponent,
+    //
+    TradingViewChartWrapperComponent,
   ],
   imports: [CommonModule, RouterModule],
   exports: [
@@ -43,6 +46,8 @@ import { RouterModule } from '@angular/router';
     CheckboxComponent,
     RadioButtonComponent,
     RadioGroupComponent,
+    //
+    TradingViewChartWrapperComponent,
   ],
 })
 export class WidgetModule {}

@@ -6,6 +6,7 @@
       "@core/*": ["app/core/*"],
       "@feature/*": ["app/feature/*"],
       "@widget/*": ["app/widget/*"],
+      "@assets/*": ["assets/*"],
       "@environments/*": ["environments/*"]
     },
     "outDir": "./dist/out-tsc",

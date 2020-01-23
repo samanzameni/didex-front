@@ -3,7 +3,7 @@
 :host {
   display: grid;
   grid-template-columns: auto;
-  grid-template-rows: repeat(6, minmax(auto, 250px));
+  grid-template-rows: repeat(6, fit-content);
   grid-template-areas:
     'chart-section'
     'instruments-section'
@@ -41,7 +41,7 @@
 @media screen and (min-width: $break-narrow-tablet) {
   :host {
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: repeat(3, minmax(auto, 250px));
+    grid-template-rows: repeat(3, fit-content);
     grid-template-areas:
       'chart-section instruments-section'
       'order-book-section market-section'

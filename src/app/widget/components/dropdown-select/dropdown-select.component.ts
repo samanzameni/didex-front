@@ -7,8 +7,11 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   AfterViewInit,
+  ViewChildren,
+  QueryList,
 } from '@angular/core';
 import { DataEntry } from '@widget/templates';
+import { CheckboxComponent } from '../checkbox/checkbox.component';
 
 @Component({
   selector: 'dropdown-select',
@@ -25,6 +28,8 @@ export class DropdownSelectComponent extends DataEntry<string>
   @Input() caption: string;
 
   private isOpenState: boolean;
+
+  @ViewChildren(CheckboxComponent) checkboxes: QueryList<CheckboxComponent>;
 
   constructor(private cdRef: ChangeDetectorRef) {
     super();
@@ -63,12 +68,30 @@ export class DropdownSelectComponent extends DataEntry<string>
   setValue($event, index: number): void {
     const selectedValue = this.items[index];
 
-    // TODO: remove value
     if (this.hasMultiselect) {
       if (!this.data || this.data.length < 1) {
         this.data = selectedValue;
+        if (this.checkboxes) {
+          this.checkboxes.toArray()[index].setState(true);
+        }
       } else {
-        this.data = `${this.data},${selectedValue}`;
+        if (this.data.indexOf(selectedValue) >= 0) {
+          // Already selected
+          // Removing the value from selected ones
+          this.data = this.data
+            .split(',')
+            .filter(v => v !== selectedValue)
+            .join(',');
+
+          if (this.checkboxes) {
+            this.checkboxes.toArray()[index].setState(false);
+          }
+        } else {
+          this.data = `${this.data},${selectedValue}`;
+          if (this.checkboxes) {
+            this.checkboxes.toArray()[index].setState(true);
+          }
+        }
       }
     } else {
       this.data = selectedValue;

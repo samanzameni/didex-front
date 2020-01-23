@@ -5,5 +5,5 @@
     [ngClass]="{ checked: value }"
   ></div>
   <span *ngIf="!!label" class="actual-label">{{ label }}</span>
-  <input type="checkbox" (change)="onCheck($event)" />
+  <input type="checkbox" (change)="onCheck($event)" #checkboxElement />
 </label>

@@ -32,7 +32,6 @@ export class RadioGroupComponent extends DataEntry<string>
   ngAfterViewInit(): void {
     this.radioButtons.forEach(button => {
       button.valueChange.subscribe(value => {
-        console.log(value);
         if (value !== undefined) {
           this.data = value;
           this.valueChange.emit(value);

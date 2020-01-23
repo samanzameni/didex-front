@@ -18,7 +18,11 @@
     class="option-item"
     (click)="setValue($event, i)"
   >
-    <input *ngIf="hasMultiselect" type="checkbox" />
-    <span>{{ item }}</span>
+    <ng-template [ngIf]="hasMultiselect">
+      <checkbox [label]="item"></checkbox>
+    </ng-template>
+    <ng-template [ngIf]="!hasMultiselect">
+      <span>{{ item }}</span>
+    </ng-template>
   </li>
 </ul>

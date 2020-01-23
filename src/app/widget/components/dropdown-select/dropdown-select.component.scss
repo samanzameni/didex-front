@@ -59,12 +59,20 @@
       color: $ddx-primary-darker;
       text-decoration: none;
       display: flex;
+      cursor: pointer;
 
       &:hover,
       &:active,
       &:focus {
         color: $ddx-primary;
         text-decoration: none;
+      }
+
+      checkbox,
+      ::ng-deep checkbox {
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
       }
     }
   }

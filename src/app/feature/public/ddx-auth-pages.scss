@@ -1,0 +1,34 @@
+@import '../../../styles.scss';
+
+:host {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+
+  background: $ddx-blue;
+  background: linear-gradient(to top right, $ddx-blue, $ddx-blue-darker);
+
+  form {
+    color: $ddx-light;
+
+    button[type='submit'] {
+      background-color: $ddx-yellow;
+      color: $ddx-light;
+      border: none;
+      width: 100%;
+
+      &:hover,
+      &:focus {
+        background-color: darken($ddx-yellow, 5);
+        color: $ddx-light;
+      }
+    }
+
+    label.form-control {
+      // background: $ddx-blue;
+      background: transparent;
+    }
+  }
+}

@@ -1,0 +1,28 @@
+<form arrangeStack autocomplete="off" (ngSubmit)="onSubmit()" #form>
+  <h1 class="title">Sign in to <b>DidEx</b></h1>
+  <hr class="title-seperator" />
+
+  <label class="form-control" for="username">
+    <input type="text" name="username" id="username" placeholder=" " />
+    <span class="actual-label">Username</span>
+  </label>
+
+  <label class="form-control" for="password">
+    <input type="password" name="password" id="password" placeholder=" " />
+    <span class="actual-label">Password</span>
+  </label>
+
+  <button class="button-short" type="submit">Sign In</button>
+
+  <p class="message">{{ message }}</p>
+  <div class="description">
+    <p class="footnote captcha">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex, autem?
+    </p>
+
+    <p class="footnote message">
+      Not a member?
+      <a routerLink="/auth/signup">Sign up</a>
+    </p>
+  </div>
+</form>

@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'ddx-signup-page',
-  templateUrl: './ddx-signup-page.component.html',
+  selector: 'ddx-forgot-password-page',
+  templateUrl: './ddx-forgot-password-page.component.html',
   styleUrls: [
     '../../public/ddx-auth-pages.scss',
-    './ddx-signup-page.component.scss',
+    './ddx-forgot-password-page.component.scss',
   ],
 })
-export class SignUpPageComponent implements OnInit {
+export class ForgotPasswordPageComponent implements OnInit {
   private feedbackMessage: string;
 
   constructor() {}

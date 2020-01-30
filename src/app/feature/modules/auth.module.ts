@@ -4,7 +4,11 @@ import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 
 import { WidgetModule } from '@widget/widget.module';
-import { SignInPageComponent, SignUpPageComponent } from '@feature/pages';
+import {
+  SignInPageComponent,
+  SignUpPageComponent,
+  ForgotPasswordPageComponent,
+} from '@feature/pages';
 
 const routes: Routes = [
   {
@@ -20,10 +24,18 @@ const routes: Routes = [
     path: 'signup',
     component: SignUpPageComponent,
   },
+  {
+    path: 'forgot-password',
+    component: ForgotPasswordPageComponent,
+  },
 ];
 
 @NgModule({
-  declarations: [SignInPageComponent, SignUpPageComponent],
+  declarations: [
+    SignInPageComponent,
+    SignUpPageComponent,
+    ForgotPasswordPageComponent,
+  ],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),

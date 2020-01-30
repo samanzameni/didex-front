@@ -1,1 +1,52 @@
-<p>ddx-signup-page works!</p>
+<form arrangeStack autocomplete="off" (ngSubmit)="onSubmit()" #form>
+  <h1 class="title">Sign up for <b>DidEx</b></h1>
+  <hr class="title-seperator" />
+
+  <label class="form-control" for="username">
+    <input type="text" name="username" id="username" placeholder=" " required />
+    <span class="actual-label">Username</span>
+  </label>
+
+  <label class="form-control" for="password">
+    <input
+      type="password"
+      name="password"
+      id="password"
+      placeholder=" "
+      required
+    />
+    <span class="actual-label">Password</span>
+  </label>
+
+  <label class="form-control" for="confirm-password">
+    <input
+      type="password"
+      name="confirm-password"
+      id="confirm-password"
+      placeholder=" "
+    />
+    <span class="actual-label">Confirm Password</span>
+  </label>
+
+  <checkbox
+    [label]="
+      'By checking this Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex, autem.'
+    "
+    [isRequired]="true"
+    [hasDarkTheme]="true"
+  ></checkbox>
+
+  <button class="button-short" type="submit">Sign Up</button>
+
+  <p class="message">{{ message }}</p>
+  <div class="description">
+    <p class="footnote captcha">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex, autem?
+    </p>
+
+    <p class="footnote message">
+      Already a member?
+      <a routerLink="/auth/signin">Sign in</a>
+    </p>
+  </div>
+</form>

@@ -30,5 +30,10 @@
       // background: $ddx-blue;
       background: transparent;
     }
+
+    checkbox,
+    ::ng-deep checkbox {
+      margin: 10px 0;
+    }
   }
 }

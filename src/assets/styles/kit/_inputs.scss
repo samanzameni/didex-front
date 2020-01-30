@@ -122,28 +122,33 @@ form {
     align-items: flex-start;
     justify-content: space-evenly;
     margin-top: 15px;
+  }
 
-    p {
-      width: 50%;
-      flex-shrink: 0;
-      color: $ddx-light-darker;
-      font-weight: lighter;
+  p {
+    width: 50%;
+    flex-shrink: 0;
+    color: $ddx-light-darker;
+    font-weight: lighter;
 
-      a,
-      a:hover,
-      a:active {
-        color: $ddx-blue-lighter;
-        text-decoration: none;
-        font-weight: normal;
-      }
+    a,
+    a:hover,
+    a:active {
+      color: $ddx-blue-lighter;
+      text-decoration: none;
+      font-weight: normal;
     }
+  }
 
-    p.captcha {
-      text-align: left;
-    }
+  p.captcha {
+    text-align: left;
+  }
 
-    p.message {
-      text-align: right;
-    }
+  p.message {
+    text-align: right;
+  }
+
+  p.forgot-password {
+    width: 100%;
+    text-align: right;
   }
 }

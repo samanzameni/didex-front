@@ -27,6 +27,16 @@
           background-color: darken($ddx-yellow, 5);
           color: $ddx-light;
         }
+
+        &.is-loading {
+          color: transparent;
+
+          &:after {
+            border: 0.15em solid $ddx-light-darker;
+            border-top-color: transparent;
+            border-right-color: transparent;
+          }
+        }
       }
     }
 

@@ -87,7 +87,12 @@
     #checkbox
   ></checkbox>
 
-  <button class="button-secondary" type="submit" [disabled]="!isFormValid">
+  <button
+    class="button-secondary"
+    type="submit"
+    [disabled]="!isFormValid"
+    #submitButton
+  >
     Sign Up
   </button>
 

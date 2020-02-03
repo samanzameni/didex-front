@@ -1,4 +1,10 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ViewChild,
+  ElementRef,
+  Renderer2,
+} from '@angular/core';
 import {
   FormGroup,
   FormBuilder,
@@ -8,6 +14,8 @@ import {
 } from '@angular/forms';
 import { CheckboxComponent } from '@widget/components';
 import { mustMatch, isStrong } from '@core/util/validators';
+import { AuthRESTService } from '@core/services/REST';
+import { AuthFormData } from '@core/models';
 
 @Component({
   selector: 'ddx-signup-page',
@@ -22,8 +30,13 @@ export class SignUpPageComponent implements OnInit {
   private registerForm: FormGroup;
 
   @ViewChild(CheckboxComponent, { static: false }) checkbox: CheckboxComponent;
+  @ViewChild('submitButton', { static: false }) submitButton: ElementRef;
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private restService: AuthRESTService,
+    private renderer: Renderer2
+  ) {}
 
   get message(): string {
     return this.feedbackMessage;
@@ -53,9 +66,7 @@ export class SignUpPageComponent implements OnInit {
     return this.registerForm;
   }
 
-  get registerFormControls(): {
-    [key: string]: AbstractControl;
-  } {
+  get registerFormControls() {
     return this.registerForm.controls;
   }
 
@@ -64,6 +75,25 @@ export class SignUpPageComponent implements OnInit {
   }
 
   onSubmit(): void {
+    this.renderer.addClass(this.submitButton.nativeElement, 'is-loading');
+    this.feedbackMessage = '';
+
     const { confirmPassword, ...formData } = this.registerForm.value;
+    this.restService.requestRegister(formData as AuthFormData).subscribe(
+      response => {
+        console.log(response);
+        this.renderer.removeClass(
+          this.submitButton.nativeElement,
+          'is-loading'
+        );
+      },
+      errorResponse => {
+        console.log(errorResponse);
+        this.renderer.removeClass(
+          this.submitButton.nativeElement,
+          'is-loading'
+        );
+      }
+    );
   }
 }

@@ -49,6 +49,31 @@ export abstract class AbstractRESTService {
   }
 
   /**
+   * Sends a custom request to the url + base WITHOUT custom headers,
+   * so be careful using this.
+   *
+   */
+  protected httpPureRequest(
+    url: string,
+    method: string,
+    body?: object
+  ): Observable<object> {
+    url = this.baseURL + url;
+    switch (method) {
+      case 'GET':
+        return this.http.get(url);
+      case 'POST':
+        return this.http.post(url, body);
+      case 'PUT':
+        return this.http.put(url, body);
+      case 'DELETE':
+        return this.http.delete(url);
+      default:
+        return undefined;
+    }
+  }
+
+  /**
    * Sends a GET request with custom headers
    *
    */

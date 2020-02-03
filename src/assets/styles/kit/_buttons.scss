@@ -1,5 +1,6 @@
 @import '../colors';
 @import './typography';
+@import './animations';
 
 $button-height: 45px;
 $button-height-secondary: 40px;
@@ -16,6 +17,7 @@ button,
   background: $ddx-primary;
   color: $ddx-light-darker;
 
+  position: relative;
   box-sizing: border-box;
   display: flex;
   align-items: center;
@@ -51,11 +53,44 @@ button,
     pointer-events: none;
     cursor: not-allowed;
 
+    &.is-loading {
+      &:after {
+        border: 0.15em solid $ddx-disabled-text;
+        border-top-color: transparent;
+        border-right-color: transparent;
+      }
+    }
+
     &:hover,
     &:focus,
     &:active {
       background: $ddx-disabled-background;
       color: $ddx-disabled-text;
+    }
+  }
+
+  &.is-loading {
+    color: transparent;
+    user-select: none;
+    pointer-events: none;
+
+    &:after {
+      content: '';
+      display: block;
+
+      border: 0.15em solid $ddx-light-darker;
+      border-top-color: transparent;
+      border-right-color: transparent;
+      border-radius: 50%;
+
+      width: 1em;
+      height: 1em;
+      box-sizing: border-box;
+
+      position: absolute;
+      top: calc(50% - (1em / 2));
+      left: calc(50% - (1em / 2));
+      animation: spin 1s linear infinite;
     }
   }
 }
@@ -69,10 +104,26 @@ button,
   height: 40px;
   padding: 8px 15px;
 
+  &.is-loading {
+    &:after {
+      border: 0.15em solid $ddx-primary;
+      border-top-color: transparent;
+      border-right-color: transparent;
+    }
+  }
+
   &:hover,
   &:focus {
     color: $ddx-light-darker;
     border: 1px solid $ddx-primary-darker;
+
+    &.is-loading {
+      &:after {
+        border: 0.15em solid $ddx-light-darker;
+        border-top-color: transparent;
+        border-right-color: transparent;
+      }
+    }
   }
 
   &:active {

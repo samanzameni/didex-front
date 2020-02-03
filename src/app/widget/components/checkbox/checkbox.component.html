@@ -2,8 +2,14 @@
   <div
     arrangeCenter
     class="checkbox-container"
+    tabindex="0"
     [ngClass]="{ checked: value }"
   ></div>
   <span *ngIf="!!label" class="actual-label">{{ label }}</span>
-  <input type="checkbox" (change)="onCheck($event)" #checkboxElement />
+  <input
+    type="checkbox"
+    (change)="onCheck($event)"
+    tabindex="-1"
+    #checkboxElement
+  />
 </label>

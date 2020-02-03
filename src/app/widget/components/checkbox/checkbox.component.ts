@@ -6,6 +6,7 @@ import {
   ViewChild,
   ElementRef,
   Input,
+  HostListener,
 } from '@angular/core';
 import { DataEntry } from '@widget/templates';
 
@@ -44,5 +45,13 @@ export class CheckboxComponent extends DataEntry<boolean> implements OnInit {
     this.checkboxElement.nativeElement.checked = checked;
     this.valueChange.emit(this.value);
     this.cdRef.detectChanges();
+  }
+
+  @HostListener('keydown', ['$event'])
+  handleSpace($event: KeyboardEvent) {
+    if ($event.code === 'Space') {
+      // space
+      this.setState(!this.data);
+    }
   }
 }

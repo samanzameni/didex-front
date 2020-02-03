@@ -14,16 +14,19 @@
     color: $ddx-light;
 
     button[type='submit'] {
-      background-color: $ddx-yellow;
-      color: $ddx-light;
       border: none;
       width: 100%;
       margin-top: 10px;
 
-      &:hover,
-      &:focus {
-        background-color: darken($ddx-yellow, 5);
+      &:not(:disabled) {
+        background-color: $ddx-yellow;
         color: $ddx-light;
+
+        &:hover,
+        &:focus {
+          background-color: darken($ddx-yellow, 5);
+          color: $ddx-light;
+        }
       }
     }
 
@@ -35,6 +38,55 @@
     checkbox,
     ::ng-deep checkbox {
       margin: 10px 0;
+    }
+
+    .description {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-evenly;
+      margin-top: 15px;
+
+      p {
+        width: 50%;
+        flex-shrink: 0;
+        color: $ddx-light-darker;
+        font-weight: lighter;
+
+        a,
+        a:hover,
+        a:active {
+          color: $ddx-blue-lighter;
+          text-decoration: none;
+          font-weight: normal;
+        }
+      }
+
+      p.captcha {
+        text-align: left;
+      }
+
+      p.message {
+        text-align: right;
+      }
+
+      p.forgot-password {
+        width: 100%;
+        text-align: right;
+      }
+    }
+
+    .forgot-password {
+      width: 100%;
+      font-weight: lighter;
+      text-align: right;
+
+      a,
+      a:hover,
+      a:active {
+        color: $ddx-blue-lighter;
+        text-decoration: none;
+        font-weight: normal;
+      }
     }
   }
 }

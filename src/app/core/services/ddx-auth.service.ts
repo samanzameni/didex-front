@@ -1,6 +1,10 @@
 import { Injectable } from '@angular/core';
 import { AuthRESTService } from './REST';
-import { AuthFormData, AuthFormResponse } from '@core/models';
+import {
+  AuthFormData,
+  AuthFormResponse,
+  AuthResetPasswordFormData,
+} from '@core/models';
 import { StorageService } from './ddx-storage.service';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
@@ -44,7 +48,13 @@ export class AuthService {
     );
   }
 
-  public requestSingOut(): void {
+  public requestResetPassword(
+    formData: AuthResetPasswordFormData
+  ): Observable<any> {
+    return this.restService.requestResetPassword(formData);
+  }
+
+  public requestSignOut(): void {
     this.storageService.clearUserToken();
     this.router.navigateByUrl('/');
   }

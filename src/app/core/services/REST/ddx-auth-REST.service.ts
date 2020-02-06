@@ -2,7 +2,11 @@ import { Injectable } from '@angular/core';
 import { AbstractRESTService } from '@core/templates';
 import { StorageService } from '../ddx-storage.service';
 import { HttpClient } from '@angular/common/http';
-import { AuthFormData, AuthFormResponse } from '@core/models';
+import {
+  AuthFormData,
+  AuthFormResponse,
+  AuthResetPasswordFormData,
+} from '@core/models';
 import { Observable } from 'rxjs';
 
 @Injectable()
@@ -28,5 +32,23 @@ export class AuthRESTService extends AbstractRESTService {
       'POST',
       data
     ) as Observable<AuthFormResponse>;
+  }
+
+  public requestResetPassword(
+    data: AuthResetPasswordFormData
+  ): Observable<any> {
+    return this.httpPureRequest(
+      `api/Account/requestResetPassword`,
+      'POST',
+      data
+    ) as Observable<any>;
+  }
+
+  public requestNewPassword(data: AuthResetPasswordFormData): Observable<any> {
+    return this.httpPureRequest(
+      `api/Account/resetPassword`,
+      'POST',
+      data
+    ) as Observable<any>;
   }
 }

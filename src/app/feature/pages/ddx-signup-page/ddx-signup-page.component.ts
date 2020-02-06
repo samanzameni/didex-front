@@ -16,6 +16,7 @@ import { mustMatch, isStrong } from '@core/util/validators';
 import { AuthFormData } from '@core/models';
 import { AuthService } from '@core/services';
 import { Router } from '@angular/router';
+import { AuthPage } from '@feature/templates/ddx-auth-page.template';
 
 @Component({
   selector: 'ddx-signup-page',
@@ -25,21 +26,20 @@ import { Router } from '@angular/router';
     './ddx-signup-page.component.scss',
   ],
 })
-export class SignUpPageComponent implements OnInit {
-  private registerForm: FormGroup;
-
+export class SignUpPageComponent extends AuthPage implements OnInit {
   @ViewChild(CheckboxComponent, { static: false }) checkbox: CheckboxComponent;
-  @ViewChild('submitButton', { static: false }) submitButton: ElementRef;
 
   constructor(
-    private formBuilder: FormBuilder,
-    private authService: AuthService,
-    private renderer: Renderer2,
-    private router: Router
-  ) {}
+    protected formBuilder: FormBuilder,
+    protected renderer: Renderer2,
+    protected router: Router,
+    protected authService: AuthService
+  ) {
+    super(formBuilder, renderer, router, authService);
+  }
 
   ngOnInit() {
-    this.registerForm = this.formBuilder.group(
+    this.authForm = this.formBuilder.group(
       {
         email: ['', [Validators.required, Validators.email]],
         password: ['', [Validators.required, Validators.minLength(8)]],
@@ -54,40 +54,21 @@ export class SignUpPageComponent implements OnInit {
     );
   }
 
-  shouldShowErrors(control: FormControl): boolean {
-    return !!control.errors && (control.dirty || control.touched);
-  }
-
-  get registerFormGroup(): FormGroup {
-    return this.registerForm;
-  }
-
-  get registerFormControls() {
-    return this.registerForm.controls;
-  }
-
   get isFormValid(): boolean {
-    return this.registerForm.valid && !!this.checkbox && this.checkbox.isValid;
+    return this.authForm.valid && !!this.checkbox && this.checkbox.isValid;
   }
 
   onSubmit(): void {
-    this.renderer.addClass(this.submitButton.nativeElement, 'is-loading');
+    this.setLoadingOn();
 
-    const { confirmPassword, ...formData } = this.registerForm.value;
+    const { confirmPassword, ...formData } = this.authForm.value;
     this.authService.requestSignUp(formData as AuthFormData).subscribe(
       response => {
-        this.renderer.removeClass(
-          this.submitButton.nativeElement,
-          'is-loading'
-        );
-
+        this.setLoadingOff();
         this.router.navigateByUrl('/');
       },
       errorResponse => {
-        this.renderer.removeClass(
-          this.submitButton.nativeElement,
-          'is-loading'
-        );
+        this.setLoadingOff();
       }
     );
   }

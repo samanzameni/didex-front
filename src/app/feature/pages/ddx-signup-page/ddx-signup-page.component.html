@@ -1,7 +1,7 @@
 <form
   arrangeStack
   autocomplete="off"
-  [formGroup]="registerFormGroup"
+  [formGroup]="authFormGroup"
   (ngSubmit)="onSubmit()"
   #form
 >
@@ -19,11 +19,11 @@
     <span class="actual-label">Email</span>
   </label>
   <div
-    *ngIf="shouldShowErrors(registerFormControls.email)"
+    *ngIf="shouldShowErrors(authFormControls.email)"
     class="invalid-feedback"
   >
-    <p *ngIf="registerFormControls.email.errors.required">Email is required</p>
-    <p *ngIf="registerFormControls.email.errors.email">
+    <p *ngIf="authFormControls.email.errors.required">Email is required</p>
+    <p *ngIf="authFormControls.email.errors.email">
       Email must be a valid address
     </p>
   </div>
@@ -39,16 +39,16 @@
     <span class="actual-label">Password</span>
   </label>
   <div
-    *ngIf="shouldShowErrors(registerFormControls.password)"
+    *ngIf="shouldShowErrors(authFormControls.password)"
     class="invalid-feedback"
   >
-    <p *ngIf="registerFormControls.password.errors.required">
+    <p *ngIf="authFormControls.password.errors.required">
       Password is required
     </p>
-    <p *ngIf="registerFormControls.password.errors.minlength">
+    <p *ngIf="authFormControls.password.errors.minlength">
       Password must be at least 8 characters
     </p>
-    <p *ngIf="registerFormControls.password.errors.isStrong">
+    <p *ngIf="authFormControls.password.errors.isStrong">
       Password must contain a lower case, upper case, a number and a sign
     </p>
   </div>
@@ -64,16 +64,16 @@
     <span class="actual-label">Confirm Password</span>
   </label>
   <div
-    *ngIf="shouldShowErrors(registerFormControls.confirmPassword)"
+    *ngIf="shouldShowErrors(authFormControls.confirmPassword)"
     class="invalid-feedback"
   >
-    <p *ngIf="registerFormControls.confirmPassword.errors.required">
+    <p *ngIf="authFormControls.confirmPassword.errors.required">
       Password must be confirmed
     </p>
-    <p *ngIf="registerFormControls.confirmPassword.errors.minlength">
+    <p *ngIf="authFormControls.confirmPassword.errors.minlength">
       Password must be at least 8 characters
     </p>
-    <p *ngIf="registerFormControls.confirmPassword.errors.mustMatch">
+    <p *ngIf="authFormControls.confirmPassword.errors.mustMatch">
       Passwords must match
     </p>
   </div>

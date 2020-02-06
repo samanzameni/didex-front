@@ -9,13 +9,13 @@ import {
   FormGroup,
   FormBuilder,
   Validators,
-  AbstractControl,
   FormControl,
 } from '@angular/forms';
 import { CheckboxComponent } from '@widget/components';
 import { mustMatch, isStrong } from '@core/util/validators';
-import { AuthRESTService } from '@core/services/REST';
 import { AuthFormData } from '@core/models';
+import { AuthService } from '@core/services';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'ddx-signup-page',
@@ -26,7 +26,6 @@ import { AuthFormData } from '@core/models';
   ],
 })
 export class SignUpPageComponent implements OnInit {
-  private feedbackMessage: string;
   private registerForm: FormGroup;
 
   @ViewChild(CheckboxComponent, { static: false }) checkbox: CheckboxComponent;
@@ -34,13 +33,10 @@ export class SignUpPageComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private restService: AuthRESTService,
-    private renderer: Renderer2
+    private authService: AuthService,
+    private renderer: Renderer2,
+    private router: Router
   ) {}
-
-  get message(): string {
-    return this.feedbackMessage;
-  }
 
   ngOnInit() {
     this.registerForm = this.formBuilder.group(
@@ -76,19 +72,18 @@ export class SignUpPageComponent implements OnInit {
 
   onSubmit(): void {
     this.renderer.addClass(this.submitButton.nativeElement, 'is-loading');
-    this.feedbackMessage = '';
 
     const { confirmPassword, ...formData } = this.registerForm.value;
-    this.restService.requestRegister(formData as AuthFormData).subscribe(
+    this.authService.requestSignUp(formData as AuthFormData).subscribe(
       response => {
-        console.log(response);
         this.renderer.removeClass(
           this.submitButton.nativeElement,
           'is-loading'
         );
+
+        this.router.navigateByUrl('/');
       },
       errorResponse => {
-        console.log(errorResponse);
         this.renderer.removeClass(
           this.submitButton.nativeElement,
           'is-loading'

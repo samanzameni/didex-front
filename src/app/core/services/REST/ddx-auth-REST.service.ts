@@ -21,4 +21,12 @@ export class AuthRESTService extends AbstractRESTService {
       data
     ) as Observable<AuthFormResponse>;
   }
+
+  public requestLogin(data: AuthFormData): Observable<AuthFormResponse> {
+    return this.httpPureRequest(
+      `api/Account/login`,
+      'POST',
+      data
+    ) as Observable<AuthFormResponse>;
+  }
 }

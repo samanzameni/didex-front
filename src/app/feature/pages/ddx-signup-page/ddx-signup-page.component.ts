@@ -1,16 +1,5 @@
-import {
-  Component,
-  OnInit,
-  ViewChild,
-  ElementRef,
-  Renderer2,
-} from '@angular/core';
-import {
-  FormGroup,
-  FormBuilder,
-  Validators,
-  FormControl,
-} from '@angular/forms';
+import { Component, OnInit, ViewChild, Renderer2 } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 import { CheckboxComponent } from '@widget/components';
 import { mustMatch, isStrong } from '@core/util/validators';
 import { AuthFormData } from '@core/models';

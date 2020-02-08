@@ -1,8 +1,12 @@
-import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  FormControl,
+  AbstractControl,
+} from '@angular/forms';
 import { Renderer2, ViewChild, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '@core/services';
-import { CheckboxComponent } from '@widget/components';
 
 export abstract class AuthPage {
   protected authForm: FormGroup;
@@ -16,7 +20,7 @@ export abstract class AuthPage {
     protected authService: AuthService
   ) {}
 
-  protected shouldShowErrors(control: FormControl): boolean {
+  public shouldShowErrors(control: AbstractControl): boolean {
     return !!control.errors && (control.dirty || control.touched);
   }
 

@@ -9,6 +9,11 @@ import {
   ChangeDetectorRef,
 } from '@angular/core';
 import { DropdownMenuItem } from '@widget/models';
+import {
+  IconDefinition,
+  faAngleDown,
+  faAngleUp,
+} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'dropdown-menu',
@@ -48,6 +53,10 @@ export class DropdownMenuComponent implements OnInit, AfterViewInit {
 
   get isOpen(): boolean {
     return this.isOpenState;
+  }
+
+  get caretIcon(): IconDefinition {
+    return this.isOpen ? faAngleUp : faAngleDown;
   }
 
   toggleDropdown(): void {

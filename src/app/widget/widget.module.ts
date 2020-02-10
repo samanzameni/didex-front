@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {
   ArrangeCenterDirective,
   ArrangeInlineDirective,
@@ -33,7 +34,7 @@ import { RouterModule } from '@angular/router';
     //
     TradingViewChartWrapperComponent,
   ],
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, FontAwesomeModule],
   exports: [
     ArrangeCenterDirective,
     ArrangeInlineDirective,

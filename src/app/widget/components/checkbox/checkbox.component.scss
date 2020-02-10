@@ -35,6 +35,19 @@
 
       border: 1px solid $ddx-primary;
       border-radius: 2px;
+
+      fa-icon,
+      ::ng-deep fa-icon {
+        svg {
+          fill: $ddx-light;
+          width: 11px;
+          height: 11px;
+
+          path {
+            fill: $ddx-light;
+          }
+        }
+      }
     }
 
     &:hover,

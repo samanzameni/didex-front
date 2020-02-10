@@ -12,6 +12,11 @@ import {
 } from '@angular/core';
 import { DataEntry } from '@widget/templates';
 import { CheckboxComponent } from '../checkbox/checkbox.component';
+import {
+  IconDefinition,
+  faAngleUp,
+  faAngleDown,
+} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'dropdown-select',
@@ -58,6 +63,10 @@ export class DropdownSelectComponent extends DataEntry<string>
 
   get isOpen(): boolean {
     return this.isOpenState;
+  }
+
+  get caretIcon(): IconDefinition {
+    return this.isOpen ? faAngleUp : faAngleDown;
   }
 
   toggleDropdown(): void {

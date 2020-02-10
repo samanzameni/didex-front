@@ -11,7 +11,10 @@ const routes: Routes = [
   {
     path: '',
     component: MainLayoutComponent,
-    children: [{ path: '', component: HomePageComponent }],
+    children: [
+      { path: '', component: HomePageComponent, pathMatch: 'full' },
+      { path: 'user', loadChildren: '@feature/modules/user.module#UserModule' },
+    ],
   },
 ];
 

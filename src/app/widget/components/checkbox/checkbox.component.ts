@@ -9,6 +9,7 @@ import {
   HostListener,
 } from '@angular/core';
 import { DataEntry } from '@widget/templates';
+import { IconDefinition, faCheck } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'checkbox',
@@ -32,6 +33,10 @@ export class CheckboxComponent extends DataEntry<boolean> implements OnInit {
 
   get isValid(): boolean {
     return this.isRequired ? this.isRequired && this.value : true;
+  }
+
+  get checkIcon(): IconDefinition {
+    return faCheck;
   }
 
   onCheck($event): void {

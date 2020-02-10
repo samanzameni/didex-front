@@ -4,7 +4,9 @@
     class="checkbox-container"
     tabindex="0"
     [ngClass]="{ checked: value }"
-  ></div>
+  >
+    <fa-icon *ngIf="value" [icon]="checkIcon"></fa-icon>
+  </div>
   <span *ngIf="!!label" class="actual-label">{{ label }}</span>
   <input
     type="checkbox"

@@ -7,7 +7,7 @@ import { DropdownMenuItem } from '@widget/models';
   styleUrls: ['./ddx-navbar.component.scss'],
 })
 export class NavbarComponent implements OnInit {
-  private myAccountDropdownItems: DropdownMenuItem[];
+  private accountDropdownItems: DropdownMenuItem[];
 
   constructor() {
     this.initMenuItems();
@@ -16,13 +16,14 @@ export class NavbarComponent implements OnInit {
   ngOnInit() {}
 
   initMenuItems(): void {
-    this.myAccountDropdownItems = [
+    this.accountDropdownItems = [
       { caption: 'Sign in', url: '/auth/signin' },
       { caption: 'Sign up', url: '/auth/signup' },
+      { caption: 'Settings', url: '/user/settings' },
     ];
   }
 
-  get myAccountItems(): DropdownMenuItem[] {
-    return this.myAccountDropdownItems;
+  get accountItems(): DropdownMenuItem[] {
+    return this.accountDropdownItems;
   }
 }

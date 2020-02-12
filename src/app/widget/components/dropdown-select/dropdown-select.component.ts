@@ -17,6 +17,7 @@ import {
   faAngleUp,
   faAngleDown,
 } from '@fortawesome/free-solid-svg-icons';
+import { DropdownSelectItem } from '@widget/models';
 
 @Component({
   selector: 'dropdown-select',
@@ -29,7 +30,7 @@ export class DropdownSelectComponent extends DataEntry<string>
   @Input() hasMultiselect: boolean;
   @Input() hasDefaultValue: boolean;
 
-  @Input() items: string[];
+  @Input() items: DropdownSelectItem[];
   @Input() caption: string;
 
   private isOpenState: boolean;
@@ -75,7 +76,7 @@ export class DropdownSelectComponent extends DataEntry<string>
   }
 
   setValue($event, index: number): void {
-    const selectedValue = this.items[index];
+    const selectedValue = this.items[index].value;
 
     if (this.hasMultiselect) {
       if (!this.data || this.data.length < 1) {

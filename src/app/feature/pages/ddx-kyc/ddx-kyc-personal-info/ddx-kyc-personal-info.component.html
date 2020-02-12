@@ -1,1 +1,65 @@
-<p>ddx-kyc-personal-info works!</p>
+<header>
+  <div class="step-counter">Step 1</div>
+  <h2>Personal Information</h2>
+</header>
+
+<section>
+  <form autocomplete="off" (ngSubmit)="onSubmit()" #form>
+    <p class="description">
+      Please fill in your personal information the way it is stated in the proof
+      of identity document.
+    </p>
+    <label for="firstName" class="form-control">
+      <input type="text" placeholder=" " id="firstName" name="firstName" />
+      <span class="actual-label">First Name</span>
+    </label>
+
+    <label for="lastName" class="form-control"
+      ><input type="text" placeholder=" " id="lastName" name="lastName" />
+      <span class="actual-label">Last Name</span>
+    </label>
+
+    <label for="dateOfBirth" class="form-control">
+      <input type="text" placeholder=" " id="dateOfBirth" name="dateOfBirth" />
+      <span class="actual-label">Date of Birth</span>
+    </label>
+
+    <label for="zipCode" class="form-control">
+      <input type="text" placeholder=" " id="zipCode" name="zipCode" />
+      <span class="actual-label">Zip Code</span>
+    </label>
+
+    <dropdown-select
+      caption="Choose a country"
+      [items]="countriesList"
+      for="country"
+    ></dropdown-select>
+
+    <label for="city" class="form-control">
+      <input type="text" placeholder=" " id="city" name="city" />
+      <span class="actual-label">City</span>
+    </label>
+
+    <label for="addressLine1" class="form-control">
+      <input
+        type="text"
+        placeholder=" "
+        id="addressLine1"
+        name="addressLine1"
+      />
+      <span class="actual-label">Address (Line 1)</span>
+    </label>
+
+    <label for="addressLine2" class="form-control">
+      <input
+        type="text"
+        placeholder=" "
+        id="addressLine2"
+        name="addressLine2"
+      />
+      <span class="actual-label">Address (Line 2)</span>
+    </label>
+
+    <button type="submit">Next</button>
+  </form>
+</section>

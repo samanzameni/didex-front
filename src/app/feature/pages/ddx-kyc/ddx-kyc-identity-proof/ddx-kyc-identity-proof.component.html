@@ -1,0 +1,39 @@
+<header>
+  <div class="step-counter">Step 3</div>
+  <h2>Identity Proof</h2>
+</header>
+
+<section>
+  <form autocomplete="off" (ngSubmit)="onSubmit()" #form>
+    <div arrangeStack class="description">
+      <p>Please provide a picture of any of the following:</p>
+      <ul arrangeStack class="documents">
+        <li class="document">Passport (the main double-page spread)</li>
+        <li class="document">Driver's license (both sides)</li>
+        <li class="document">National identity document (both sides).</li>
+      </ul>
+      <p>Photo/scan must be clear, in color and display the entire ID.</p>
+      <p>
+        Your full legal name and date of birth entered in form "Personal
+        information" must exactly match the information in your document.
+      </p>
+      <p>
+        Documents in non-latin characters cannot be accepted without certified
+        translation.
+      </p>
+      <p>Min size 500 Kb. Max size 10 Mb.</p>
+    </div>
+
+    <div arrangeStack class="guide">
+      <div arrangeCenter class="image-frame">
+        <img src="/assets/images/kyc-id-1.svg" alt="guide-1" />
+      </div>
+      <span>or</span>
+      <div arrangeCenter class="image-frame">
+        <img src="/assets/images/kyc-id-2.svg" alt="guide-2" />
+      </div>
+    </div>
+
+    <button type="submit">Next</button>
+  </form>
+</section>

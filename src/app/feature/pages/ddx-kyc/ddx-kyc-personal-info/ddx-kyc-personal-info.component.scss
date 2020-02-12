@@ -1,0 +1,60 @@
+@import '../../../../../styles.scss';
+
+:host {
+  form {
+    grid-template-rows: auto;
+    grid-template-columns: 100%;
+    grid-template-areas:
+      'description'
+      'firstName'
+      'lastName'
+      'dateOfBirth'
+      'zipCode'
+      'country'
+      'city'
+      'addressLine1'
+      'addressLine2'
+      'actions';
+
+    label[for='firstName'] {
+      grid-area: firstName;
+    }
+    label[for='lastName'] {
+      grid-area: lastName;
+    }
+    label[for='dateOfBirth'] {
+      grid-area: dateOfBirth;
+    }
+    label[for='zipCode'] {
+      grid-area: zipCode;
+    }
+    label[for='country'] {
+      grid-area: country;
+    }
+    label[for='city'] {
+      grid-area: city;
+    }
+    label[for='addressLine1'] {
+      grid-area: addressLine1;
+    }
+    label[for='addressLine2'] {
+      grid-area: addressLine2;
+    }
+  }
+}
+
+@media screen and (min-width: $break-narrow-tablet) {
+  :host {
+    form {
+      grid-template-columns: 50% 50%;
+      grid-template-areas:
+        'description description'
+        'firstName lastName'
+        'dateOfBirth zipCode'
+        'country city'
+        'addressLine1 addressLine1'
+        'addressLine2 addressLine2'
+        '. submit';
+    }
+  }
+}

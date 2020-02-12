@@ -1,0 +1,79 @@
+@import '../../../../../styles.scss';
+
+:host {
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: repeat(2, fit-content);
+  grid-template-areas: 'sidebar', 'main';
+
+  aside {
+    display: flex;
+    grid-area: 'sidebar';
+
+    ol.kyc-steps {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      width: 100%;
+
+      li.kyc-step {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+
+        color: $ddx-grey;
+
+        &.active {
+          border-color: $ddx-cyan;
+
+          .step-counter {
+            color: $ddx-light;
+          }
+
+          .step-title {
+            color: $ddx-cyan;
+          }
+        }
+      }
+    }
+  }
+
+  main {
+    grid-area: 'main';
+  }
+}
+
+@media screen and (min-width: $break-narrow-desktop) {
+  :host {
+    grid-template-columns: 1fr 3fr;
+    grid-template-rows: auto;
+    grid-template-areas: 'sidebar main';
+
+    aside {
+      padding: 70px;
+      box-sizing: border-box;
+
+      ol.kyc-steps {
+        flex-direction: column;
+        justify-content: center;
+
+        li.kyc-step {
+          border: none;
+          border-left: 2px solid rgba($ddx-cyan, 0.3);
+          box-sizing: border-box;
+          padding: 5px 5px 75px 40px;
+
+          .step-counter {
+            margin-bottom: 20px;
+          }
+        }
+      }
+    }
+
+    main {
+      padding: 70px;
+      box-sizing: border-box;
+    }
+  }
+}

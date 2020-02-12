@@ -1,0 +1,42 @@
+<header>
+  <div class="step-counter">Step 4</div>
+  <h2>Selfie</h2>
+</header>
+
+<section>
+  <form autocomplete="off" (ngSubmit)="onSubmit()" #form>
+    <div arrangeStack class="description">
+      <p>
+        Please submit a selfie in which you are holding your government-issued
+        ID and a paper note. On the note you should handwrite your email
+        address, the current date, and the words "for Didex Make sure the selfie
+        you are submitting meets the following requirements:
+      </p>
+      <ul arrangeStack class="documents">
+        <li class="document">It is taken in good light</li>
+        <li class="document">
+          The photo is clear, high-resolution, and in color
+        </li>
+        <li class="document">Your face must be clearly visible</li>
+        <li class="document">
+          The text in the note must be handwritten by you and not typed
+        </li>
+        <li class="document">
+          The document you are holding must be the same you are submitting for
+          your identity verification
+        </li>
+        <li class="document">
+          Neither the photos nor the documents have been edited or manipulated
+        </li>
+      </ul>
+    </div>
+
+    <div arrangeStack class="guide">
+      <div arrangeCenter class="image-frame">
+        <img src="/assets/images/kyc-selfie-1.svg" alt="guide-1" />
+      </div>
+    </div>
+
+    <button type="submit">Next</button>
+  </form>
+</section>

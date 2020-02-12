@@ -5,8 +5,12 @@ import { Routes, RouterModule } from '@angular/router';
 import {
   KYCWrapperPageComponent,
   KYCPersonalInfoPageComponent,
+  KYCPhoneVerificationPageComponent,
+  KYCIdentityProofPageComponent,
+  KYCSelfiePageComponent,
 } from '@feature/pages';
 import { WidgetModule } from '@widget/widget.module';
+import { FormsModule } from '@angular/forms';
 
 const routes: Routes = [
   {
@@ -15,13 +19,36 @@ const routes: Routes = [
     children: [
       { path: '', pathMatch: 'full', redirectTo: 'personal-info' },
       { path: 'personal-info', component: KYCPersonalInfoPageComponent },
+      {
+        path: 'phone-verification',
+        component: KYCPhoneVerificationPageComponent,
+      },
+      {
+        path: 'identity-proof',
+        component: KYCIdentityProofPageComponent,
+      },
+      {
+        path: 'selfie',
+        component: KYCSelfiePageComponent,
+      },
     ],
   },
 ];
 
 @NgModule({
-  declarations: [KYCWrapperPageComponent, KYCPersonalInfoPageComponent],
-  imports: [CommonModule, RouterModule.forChild(routes), WidgetModule],
+  declarations: [
+    KYCWrapperPageComponent,
+    KYCPersonalInfoPageComponent,
+    KYCPhoneVerificationPageComponent,
+    KYCIdentityProofPageComponent,
+    KYCSelfiePageComponent,
+  ],
+  imports: [
+    CommonModule,
+    RouterModule.forChild(routes),
+    WidgetModule,
+    FormsModule,
+  ],
   exports: [],
   providers: [],
 })

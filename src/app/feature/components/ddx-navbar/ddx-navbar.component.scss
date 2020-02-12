@@ -5,12 +5,13 @@
   justify-content: space-between;
   align-items: center;
 
+  background: $ddx-blue-darkest;
+  color: white;
+
   width: 100%;
   height: $navbar-height;
   box-sizing: border-box;
   padding: 5px 40px;
-
-  background: lightgrey;
 
   .logo_container {
   }

@@ -1,0 +1,57 @@
+@import '../../../../../styles.scss';
+
+:host {
+  form {
+    grid-template-rows: auto;
+    grid-template-columns: 3fr 1fr;
+    grid-template-areas:
+      'description guide'
+      'uploader actions';
+
+    div.description {
+      p {
+        line-height: 18px;
+        margin-bottom: 5px;
+      }
+      ul.documents {
+        list-style: none;
+        padding-left: 10px;
+        margin-bottom: 5px;
+
+        li.document {
+          @extend .body;
+
+          line-height: 18px;
+          position: relative;
+
+          &:before {
+            content: '-';
+            display: flex;
+            position: absolute;
+            top: 0;
+            left: -10px;
+          }
+        }
+      }
+    }
+
+    div.guide {
+      grid-area: guide;
+      align-items: flex-end;
+
+      .image-frame {
+        padding: 15px;
+        border: 1px dashed $ddx-primary;
+        width: 161px;
+        height: 112px;
+        box-sizing: border-box;
+      }
+
+      span {
+        margin: 5px 0;
+        width: 161px;
+        text-align: center;
+      }
+    }
+  }
+}

@@ -1,0 +1,35 @@
+<header>
+  <div class="step-counter">Step 2</div>
+  <h2>Phone Verification</h2>
+</header>
+
+<section>
+  <form autocomplete="off" (ngSubmit)="onSubmit()" #form>
+    <p class="description">
+      Please write down your valid phone number. A text message wil be sent for
+      verification.
+    </p>
+
+    <label for="countryTelephoneCode" class="form-control">
+      <input
+        type="text"
+        placeholder=" "
+        id="countryTelephoneCode"
+        name="countryTelephoneCode"
+      />
+      <span class="actual-label">Country Code</span>
+    </label>
+
+    <label for="mobileNumber" class="form-control">
+      <input
+        type="text"
+        placeholder=" "
+        id="mobileNumber"
+        name="mobileNumber"
+      />
+      <span class="actual-label">Mobile Number</span>
+    </label>
+
+    <button type="submit">Next</button>
+  </form>
+</section>

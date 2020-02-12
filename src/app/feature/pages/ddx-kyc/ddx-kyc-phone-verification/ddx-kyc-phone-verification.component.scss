@@ -1,0 +1,19 @@
+@import '../../../../../styles.scss';
+
+:host {
+  form {
+    grid-template-rows: auto;
+    grid-template-columns: 1fr 5fr;
+    grid-template-areas:
+      'description description'
+      'countryTelephoneCode mobileNumber'
+      '. actions';
+
+    label[for='countryTelephoneCode'] {
+      grid-area: countryTelephoneCode;
+    }
+    label[for='mobileNumber'] {
+      grid-area: mobileNumber;
+    }
+  }
+}

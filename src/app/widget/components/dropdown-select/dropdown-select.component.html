@@ -1,5 +1,6 @@
 <button
   class="button-secondary select-toggle"
+  type="button"
   [ngClass]="{ active: isOpen }"
   (click)="toggleDropdown()"
 >
@@ -19,10 +20,10 @@
     (click)="setValue($event, i)"
   >
     <ng-template [ngIf]="hasMultiselect">
-      <checkbox [label]="item"></checkbox>
+      <checkbox [label]="item.title"></checkbox>
     </ng-template>
     <ng-template [ngIf]="!hasMultiselect">
-      <span>{{ item }}</span>
+      <span>{{ item.title }}</span>
     </ng-template>
   </li>
 </ul>

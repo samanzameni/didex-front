@@ -1,7 +1,8 @@
 @import '../../../styles.scss';
 
 :host {
-  display: block;
+  display: flex;
+  flex-direction: column;
   background-color: $ddx-blue-darkest;
 
   header {
@@ -27,24 +28,51 @@
     }
   }
 
+  section {
+    height: 100%;
+  }
+
   form {
     color: $ddx-light;
     padding: 20px;
     box-sizing: border-box;
     max-width: unset;
     width: 100%;
+    height: 100%;
     display: grid;
-    gap: 20px 5px;
+    gap: 0 10px;
 
     .description {
       grid-area: description;
     }
 
+    .actions {
+      grid-area: actions;
+      justify-self: flex-end;
+      align-self: flex-end;
+
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+
+      margin-top: 10px;
+
+      .back-button {
+        @extend .caption;
+
+        margin-right: 50px;
+        text-decoration: none;
+
+        &,
+        &:active,
+        &:hover {
+          color: $ddx-light-darker;
+        }
+      }
+    }
+
     button[type='submit'] {
       border: none;
-      margin-top: 10px;
-      grid-area: actions;
-      justify-self: end;
 
       &:not(:disabled) {
         background-color: $ddx-yellow;

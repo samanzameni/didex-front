@@ -2,12 +2,12 @@
 
 :host {
   form {
-    grid-template-rows: auto;
-    grid-template-columns: 1fr 5fr;
+    grid-template-rows: auto max-content auto;
+    grid-template-columns: 1fr 1fr 2fr 1fr;
     grid-template-areas:
-      'description description'
-      'countryTelephoneCode mobileNumber'
-      '. actions';
+      'description description description description'
+      '. countryTelephoneCode mobileNumber .'
+      '. . actions actions';
 
     label[for='countryTelephoneCode'] {
       grid-area: countryTelephoneCode;

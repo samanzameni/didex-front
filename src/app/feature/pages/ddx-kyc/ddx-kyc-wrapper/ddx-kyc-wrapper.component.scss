@@ -24,6 +24,15 @@
 
         color: $ddx-grey;
 
+        border: none;
+        border-bottom: 2px solid rgba($ddx-cyan, 0.3);
+        box-sizing: border-box;
+        padding: 15px 0;
+
+        .step-title {
+          display: none;
+        }
+
         &.active {
           border-color: $ddx-cyan;
 
@@ -35,12 +44,41 @@
             color: $ddx-cyan;
           }
         }
+
+        &.passed {
+          .step-counter {
+            color: rgba($ddx-cyan, 0.3);
+          }
+
+          .step-title {
+            color: rgba($ddx-cyan, 0.3);
+          }
+        }
       }
     }
   }
 
   main {
     grid-area: 'main';
+
+    ::ng-deep .kyc-form,
+    .kyc-form {
+      height: fit-content;
+    }
+  }
+}
+
+@media screen and (min-width: $break-mobile) {
+  :host {
+    aside {
+      ol.kyc-steps {
+        li.kyc-step {
+          .step-title {
+            display: block;
+          }
+        }
+      }
+    }
   }
 }
 
@@ -67,6 +105,10 @@
           .step-counter {
             margin-bottom: 20px;
           }
+
+          .step-title {
+            white-space: nowrap;
+          }
         }
       }
     }
@@ -74,6 +116,11 @@
     main {
       padding: 70px;
       box-sizing: border-box;
+
+      ::ng-deep .kyc-form,
+      .kyc-form {
+        height: 560px;
+      }
     }
   }
 }

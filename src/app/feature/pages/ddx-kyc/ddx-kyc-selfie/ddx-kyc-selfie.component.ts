@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, Renderer2 } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'ddx-kyc-selfie',
@@ -9,7 +10,13 @@ import { Component, OnInit } from '@angular/core';
   ],
 })
 export class KYCSelfiePageComponent implements OnInit {
-  constructor() {}
+  constructor(
+    private router: Router,
+    private el: ElementRef,
+    private renderer: Renderer2
+  ) {
+    this.renderer.addClass(this.el.nativeElement, 'kyc-form');
+  }
 
   ngOnInit() {}
 

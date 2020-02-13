@@ -2,7 +2,7 @@
 
 :host {
   form {
-    grid-template-rows: auto;
+    grid-template-rows: repeat(8, max-content) auto;
     grid-template-columns: 100%;
     grid-template-areas:
       'description'
@@ -28,7 +28,7 @@
     label[for='zipCode'] {
       grid-area: zipCode;
     }
-    label[for='country'] {
+    #country {
       grid-area: country;
     }
     label[for='city'] {
@@ -46,7 +46,8 @@
 @media screen and (min-width: $break-narrow-tablet) {
   :host {
     form {
-      grid-template-columns: 50% 50%;
+      grid-template-rows: repeat(6, max-content) auto;
+      grid-template-columns: 1fr 1fr;
       grid-template-areas:
         'description description'
         'firstName lastName'
@@ -54,7 +55,7 @@
         'country city'
         'addressLine1 addressLine1'
         'addressLine2 addressLine2'
-        '. submit';
+        '. actions';
     }
   }
 }

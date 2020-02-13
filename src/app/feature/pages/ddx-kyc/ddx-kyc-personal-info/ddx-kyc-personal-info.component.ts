@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, Renderer2 } from '@angular/core';
 import { COUNTRIES } from '@core/util/constants';
 import { Router } from '@angular/router';
 import { DropdownSelectItem } from '@widget/models';
 
 @Component({
-  selector: 'app-ddx-kyc-personal-info',
+  selector: 'ddx-kyc-personal-info',
   templateUrl: './ddx-kyc-personal-info.component.html',
   styleUrls: [
     '../../../public/ddx-kyc-pages.scss',
@@ -12,7 +12,13 @@ import { DropdownSelectItem } from '@widget/models';
   ],
 })
 export class KYCPersonalInfoPageComponent implements OnInit {
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private el: ElementRef,
+    private renderer: Renderer2
+  ) {
+    this.renderer.addClass(this.el.nativeElement, 'kyc-form');
+  }
 
   ngOnInit() {}
 

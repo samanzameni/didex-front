@@ -2,7 +2,7 @@
 
 :host {
   form {
-    grid-template-rows: auto;
+    grid-template-rows: max-content auto;
     grid-template-columns: 3fr 1fr;
     grid-template-areas:
       'description guide'

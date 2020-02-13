@@ -32,7 +32,7 @@
     <dropdown-select
       caption="Choose a country"
       [items]="countriesList"
-      for="country"
+      id="country"
     ></dropdown-select>
 
     <label for="city" class="form-control">
@@ -60,6 +60,8 @@
       <span class="actual-label">Address (Line 2)</span>
     </label>
 
-    <button type="submit">Next</button>
+    <div class="actions">
+      <button type="submit">Next</button>
+    </div>
   </form>
 </section>

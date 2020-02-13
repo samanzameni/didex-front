@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, Renderer2 } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -10,7 +10,13 @@ import { Router } from '@angular/router';
   ],
 })
 export class KYCPhoneVerificationPageComponent implements OnInit {
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private el: ElementRef,
+    private renderer: Renderer2
+  ) {
+    this.renderer.addClass(this.el.nativeElement, 'kyc-form');
+  }
 
   ngOnInit() {}
 

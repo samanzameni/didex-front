@@ -1,0 +1,119 @@
+@import './typography';
+@import './animations';
+
+$input-width: 420px;
+
+form {
+  width: 100%;
+  max-width: $input-width;
+  box-sizing: border-box;
+
+  h1.title {
+    font-weight: lighter;
+    width: 100%;
+    text-align: left;
+
+    b {
+      font-weight: bold;
+    }
+  }
+
+  hr.title-seperator {
+    width: 30%;
+    margin-right: auto;
+    margin-left: 0;
+    margin-bottom: 20px;
+    border: 1px solid $ddx-blue-lighter;
+  }
+
+  label.form-control {
+    background: $ddx-light;
+    position: relative;
+
+    max-width: $input-width;
+    width: $input-width;
+
+    margin: 5px 0;
+    box-sizing: border-box;
+
+    input[type='text'],
+    input[type='email'],
+    input[type='password'],
+    input[type='number'],
+    textarea {
+      @extend .body;
+
+      transition: border-top-color $transition-time;
+      background: transparent;
+      border: 1px solid $ddx-primary;
+      border-top-color: transparent;
+      border-radius: 5px;
+      outline: none;
+      width: 100%;
+      padding: 15px;
+      margin: 0;
+      box-sizing: border-box;
+      z-index: 1;
+      color: $ddx-light;
+    }
+
+    span.actual-label {
+      @extend .caption-small;
+      @extend .has-transition;
+
+      display: flex;
+      position: absolute;
+      width: calc(100% - 2px);
+      user-select: none;
+      cursor: text;
+      z-index: 0;
+      left: 1px;
+      top: -5px;
+      color: $ddx-light-darker;
+      line-height: 14px;
+
+      &::before,
+      &::after {
+        content: '';
+        display: block;
+        box-sizing: border-box;
+        border-top: solid 1px;
+        border-top-color: $ddx-primary;
+        border-radius: 5px;
+        min-width: 10px;
+        margin-top: 5px;
+        // height: 10px;
+        pointer-events: none;
+        box-shadow: inset 0 1px transparent;
+      }
+
+      &::before {
+        margin-right: 4px;
+        border-left: solid 1px transparent;
+        border-radius: 4px 0;
+      }
+
+      &::after {
+        flex-grow: 1;
+        margin-left: 4px;
+        border-right: solid 1px transparent;
+        border-radius: 0 4px;
+      }
+    }
+
+    input[type='text']:not(:focus):placeholder-shown,
+    input[type='email']:not(:focus):placeholder-shown,
+    input[type='password']:not(:focus):placeholder-shown,
+    input[type='number']:not(:focus):placeholder-shown,
+    textarea:not(:focus):placeholder-shown {
+      border-top-color: $ddx-primary;
+
+      & + span.actual-label {
+        @extend .caption;
+
+        font-weight: lighter;
+        line-height: 60px;
+      }
+    }
+  }
+}

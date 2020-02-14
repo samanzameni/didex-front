@@ -1,0 +1,140 @@
+@import '../colors';
+@import './typography';
+@import './animations';
+
+$button-height: 45px;
+$button-height-secondary: 40px;
+$button-height-short: 30px;
+
+$button-min-width: 115px;
+
+$button-border-radius: 5px;
+
+button,
+.button-primary {
+  @extend .callout;
+
+  background: $ddx-primary;
+  color: $ddx-light-darker;
+
+  position: relative;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: none;
+  border-radius: $button-border-radius;
+  outline: none;
+  cursor: pointer;
+
+  margin: 3px;
+  padding: 10px 15px;
+  height: $button-height;
+  width: fit-content;
+  min-width: $button-min-width;
+
+  &:hover,
+  &:focus {
+    background: $ddx-primary-darker;
+  }
+
+  &:active {
+    background: $ddx-primary-darkest;
+  }
+
+  &[disabled],
+  &[disabled='true'],
+  &[disabled='true'],
+  &.disabled {
+    background: $ddx-disabled-background;
+    color: $ddx-disabled-text;
+
+    pointer-events: none;
+    cursor: not-allowed;
+
+    &.is-loading {
+      &:after {
+        border: 0.15em solid $ddx-disabled-text;
+        border-top-color: transparent;
+        border-right-color: transparent;
+      }
+    }
+
+    &:hover,
+    &:focus,
+    &:active {
+      background: $ddx-disabled-background;
+      color: $ddx-disabled-text;
+    }
+  }
+
+  &.is-loading {
+    color: transparent;
+    user-select: none;
+    pointer-events: none;
+
+    &:after {
+      content: '';
+      display: block;
+
+      border: 0.15em solid $ddx-light-darker;
+      border-top-color: transparent;
+      border-right-color: transparent;
+      border-radius: 50%;
+
+      width: 1em;
+      height: 1em;
+      box-sizing: border-box;
+
+      position: absolute;
+      top: calc(50% - (1em / 2));
+      left: calc(50% - (1em / 2));
+      animation: spin 1s linear infinite;
+    }
+  }
+}
+
+.button-secondary {
+  color: $ddx-primary;
+  background: $ddx-light;
+
+  border: 1px solid $ddx-primary;
+
+  height: 40px;
+  padding: 8px 15px;
+
+  &.is-loading {
+    &:after {
+      border: 0.15em solid $ddx-primary;
+      border-top-color: transparent;
+      border-right-color: transparent;
+    }
+  }
+
+  &:hover,
+  &:focus {
+    color: $ddx-light-darker;
+    border: 1px solid $ddx-primary-darker;
+
+    &.is-loading {
+      &:after {
+        border: 0.15em solid $ddx-light-darker;
+        border-top-color: transparent;
+        border-right-color: transparent;
+      }
+    }
+  }
+
+  &:active {
+    color: $ddx-light-darker;
+    border: 1px solid $ddx-primary-darkest;
+  }
+}
+
+.button-short {
+  @extend .button-secondary;
+
+  height: 30px;
+  padding: 3px 15px;
+}

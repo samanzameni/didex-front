@@ -4,7 +4,12 @@
 </header>
 
 <section>
-  <form autocomplete="off" (ngSubmit)="onSubmit()" #form>
+  <form
+    autocomplete="off"
+    [formGroup]="kycFormGroup"
+    (ngSubmit)="onSubmit()"
+    #form
+  >
     <div arrangeStack class="description">
       <p>
         Please submit a selfie in which you are holding your government-issued
@@ -12,23 +17,27 @@
         address, the current date, and the words "for Didex Make sure the selfie
         you are submitting meets the following requirements:
       </p>
-      <ul arrangeStack class="documents">
-        <li class="document">It is taken in good light</li>
-        <li class="document">
+      <ul arrangeStack class="restricts">
+        <li class="restrict">It is taken in good light</li>
+        <li class="restrict">
           The photo is clear, high-resolution, and in color
         </li>
-        <li class="document">Your face must be clearly visible</li>
-        <li class="document">
+        <li class="restrict">Your face must be clearly visible</li>
+        <li class="restrict">
           The text in the note must be handwritten by you and not typed
         </li>
-        <li class="document">
+        <li class="restrict">
           The document you are holding must be the same you are submitting for
           your identity verification
         </li>
-        <li class="document">
+        <li class="restrict">
           Neither the photos nor the documents have been edited or manipulated
         </li>
       </ul>
+    </div>
+
+    <div class="uploader-section">
+      <image-uploader [base64Control]="kycFormControls.image"></image-uploader>
     </div>
 
     <div arrangeStack class="guide">
@@ -44,7 +53,7 @@
         rel="noopener noreferrer"
         >Back</a
       >
-      <button type="submit">Next</button>
+      <button type="submit" #submitButton>Next</button>
     </div>
   </form>
 </section>

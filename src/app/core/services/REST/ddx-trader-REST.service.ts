@@ -15,4 +15,18 @@ export class TraderRESTService extends AbstractRESTService {
   public requestUpdateMobileNumber(data: any): Observable<any> {
     return this.httpPUT('api/Trader/MobileNumber', data);
   }
+
+  public requestUpdateIdentityImage(data: any): Observable<any> {
+    return this.httpPUT(
+      'api/Trader/KycImage',
+      Object.assign(data, { imageType: 1 })
+    );
+  }
+
+  public requestUpdateSelfieImage(data: any): Observable<any> {
+    return this.httpPUT(
+      'api/Trader/KycImage',
+      Object.assign(data, { imageType: 2 })
+    );
+  }
 }

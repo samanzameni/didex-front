@@ -4,7 +4,12 @@
 </header>
 
 <section>
-  <form autocomplete="off" (ngSubmit)="onSubmit()" #form>
+  <form
+    autocomplete="off"
+    [formGroup]="kycFormGroup"
+    (ngSubmit)="onSubmit()"
+    #form
+  >
     <div arrangeStack class="description">
       <p>Please provide a picture of any of the following:</p>
       <ul arrangeStack class="documents">
@@ -21,7 +26,7 @@
         Documents in non-latin characters cannot be accepted without certified
         translation.
       </p>
-      <p>Min size 500 Kb. Max size 10 Mb.</p>
+      <p>Max size 10 Mb.</p>
     </div>
 
     <div arrangeStack class="guide">
@@ -34,6 +39,10 @@
       </div>
     </div>
 
+    <div class="uploader-section">
+      <image-uploader [base64Control]="kycFormControls.image"></image-uploader>
+    </div>
+
     <div class="actions">
       <a
         class="back-button"
@@ -41,7 +50,7 @@
         rel="noopener noreferrer"
         >Back</a
       >
-      <button type="submit">Next</button>
+      <button type="submit" #submitButton>Next</button>
     </div>
   </form>
 </section>

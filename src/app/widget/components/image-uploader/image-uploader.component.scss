@@ -1,0 +1,53 @@
+@import '../../../../styles.scss';
+
+:host {
+  width: 100%;
+  max-width: 280px;
+  min-height: 150px;
+  max-height: 280px;
+  position: relative;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  box-sizing: border-box;
+  border: 1px dashed $ddx-primary;
+
+  .preview {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+
+    z-index: 1;
+
+    &[src=''] {
+      opacity: 0;
+    }
+  }
+
+  label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+
+    z-index: 2;
+
+    .caption {
+      color: $ddx-primary;
+    }
+
+    input {
+      visibility: hidden;
+      opacity: 0;
+      max-width: 0;
+      max-height: 0;
+    }
+  }
+}

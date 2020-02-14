@@ -35,6 +35,11 @@
       }
     }
 
+    div.uploader-section {
+      grid-area: uploader;
+      align-self: flex-end;
+    }
+
     div.guide {
       grid-area: guide;
       align-items: flex-end;

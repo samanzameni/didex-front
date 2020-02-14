@@ -6,4 +6,6 @@ export * from './radio-button/radio-button.component';
 export * from './radio-group/radio-group.component';
 export * from './toggle-button/toggle-button.component';
 
+export * from './image-uploader/image-uploader.component';
+
 export * from './tv-chart-wrapper/tv-chart-wrapper.component';

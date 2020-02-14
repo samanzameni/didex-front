@@ -1,0 +1,17 @@
+<img [src]="previewImageSrc" alt="" class="preview" #preview />
+
+<label arrangeCenter arrangeStack for="imageInput">
+  <span
+    *ngIf="!previewImageSrc || previewImageSrc.length === 0"
+    class="caption"
+  >
+    Select Image
+  </span>
+  <input
+    #imageInput
+    type="file"
+    accept="image/*"
+    id="imageInput"
+    (change)="processFile(imageInput)"
+  />
+</label>

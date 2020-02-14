@@ -15,6 +15,7 @@ import {
   RadioButtonComponent,
   RadioGroupComponent,
   TradingViewChartWrapperComponent,
+  ImageUploaderComponent,
 } from './components';
 import { RouterModule } from '@angular/router';
 
@@ -31,6 +32,7 @@ import { RouterModule } from '@angular/router';
     CheckboxComponent,
     RadioButtonComponent,
     RadioGroupComponent,
+    ImageUploaderComponent,
     //
     TradingViewChartWrapperComponent,
   ],
@@ -47,6 +49,7 @@ import { RouterModule } from '@angular/router';
     CheckboxComponent,
     RadioButtonComponent,
     RadioGroupComponent,
+    ImageUploaderComponent,
     //
     TradingViewChartWrapperComponent,
   ],

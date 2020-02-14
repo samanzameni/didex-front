@@ -13,12 +13,12 @@
         line-height: 18px;
         margin-bottom: 5px;
       }
-      ul.documents {
+      ul.restricts {
         list-style: none;
         padding-left: 10px;
         margin-bottom: 5px;
 
-        li.document {
+        li.restrict {
           @extend .body;
 
           line-height: 18px;
@@ -33,6 +33,11 @@
           }
         }
       }
+    }
+
+    div.uploader-section {
+      grid-area: uploader;
+      align-self: flex-end;
     }
 
     div.guide {

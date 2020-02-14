@@ -17,5 +17,12 @@
   }
 
   .navbar-items__container {
+    dropdown-menu {
+      ::ng-deep button {
+        color: $ddx-light;
+        border-color: $ddx-light;
+        background-color: transparent;
+      }
+    }
   }
 }

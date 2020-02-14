@@ -1,0 +1,33 @@
+@import '../../../../styles.scss';
+
+:host {
+  section.container {
+    width: 100%;
+    max-width: $break-narrow-desktop;
+    margin: 0px auto;
+    padding: 30px 10px;
+    box-sizing: border-box;
+
+    .section__title {
+      font-weight: bold;
+    }
+
+    .section__seperator {
+      width: 100%;
+      border-color: $ddx-primary;
+    }
+
+    .validate-button {
+      @extend .button-primary;
+
+      text-decoration: none;
+      margin: 20px 0;
+      color: $ddx-light-darker;
+
+      &:hover,
+      &:active {
+        color: $ddx-light;
+      }
+    }
+  }
+}

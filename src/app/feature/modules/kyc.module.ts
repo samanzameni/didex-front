@@ -10,7 +10,7 @@ import {
   KYCSelfiePageComponent,
 } from '@feature/pages';
 import { WidgetModule } from '@widget/widget.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 const routes: Routes = [
   {
@@ -48,6 +48,7 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     WidgetModule,
     FormsModule,
+    ReactiveFormsModule,
   ],
   exports: [],
   providers: [],

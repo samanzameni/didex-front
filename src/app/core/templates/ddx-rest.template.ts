@@ -114,6 +114,16 @@ export abstract class AbstractRESTService {
   }
 
   /**
+   * Sends a PATCH request with custom headers
+   *
+   */
+  public httpPATCH(url: string, body: object): Observable<object> {
+    return this.http.patch(this.baseURL + url, body, {
+      headers: this.getFullHeaders(),
+    });
+  }
+
+  /**
    * Sends a DELETE request with custom headers
    *
    */

@@ -4,7 +4,12 @@
 </header>
 
 <section>
-  <form autocomplete="off" (ngSubmit)="onSubmit()" #form>
+  <form
+    autocomplete="off"
+    [formGroup]="kycFormGroup"
+    (ngSubmit)="onSubmit()"
+    #form
+  >
     <p class="description">
       Please write down your valid phone number. A text message wil be sent for
       verification.
@@ -16,6 +21,7 @@
         placeholder=" "
         id="countryTelephoneCode"
         name="countryTelephoneCode"
+        formControlName="countryTelephoneCode"
       />
       <span class="actual-label">Country Code</span>
     </label>
@@ -26,8 +32,37 @@
         placeholder=" "
         id="mobileNumber"
         name="mobileNumber"
+        formControlName="mobileNumber"
       />
       <span class="actual-label">Mobile Number</span>
+    </label>
+
+    <button
+      class="button-secondary submit-number-button"
+      type="button"
+      [disabled]="
+        !kycFormControls.countryTelephoneCode.valid ||
+        !kycFormControls.mobileNumber.valid
+      "
+      (click)="onSubmitNumber()"
+      #submitNumberButton
+    >
+      Submit
+    </button>
+
+    <label
+      for="code"
+      class="form-control"
+      [ngClass]="{ hidden: !hasSubmittedNumber }"
+    >
+      <input
+        type="text"
+        placeholder=" "
+        id="code"
+        name="code"
+        formControlName="code"
+      />
+      <span class="actual-label">Verification Code</span>
     </label>
 
     <div class="actions">
@@ -37,7 +72,13 @@
         rel="noopener noreferrer"
         >Back</a
       >
-      <button type="submit">Next</button>
+      <button
+        type="submit"
+        #submitButton
+        [ngClass]="{ hidden: !hasSubmittedNumber }"
+      >
+        Next
+      </button>
     </div>
   </form>
 </section>

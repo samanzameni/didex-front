@@ -9,6 +9,7 @@
       'firstName'
       'lastName'
       'dateOfBirth'
+      'birthCountry'
       'zipCode'
       'country'
       'city'
@@ -24,6 +25,9 @@
     }
     label[for='dateOfBirth'] {
       grid-area: dateOfBirth;
+    }
+    #birthCountry {
+      grid-area: birthCountry;
     }
     label[for='zipCode'] {
       grid-area: zipCode;
@@ -51,10 +55,10 @@
       grid-template-areas:
         'description description'
         'firstName lastName'
-        'dateOfBirth zipCode'
+        'dateOfBirth birthCountry'
         'country city'
         'addressLine1 addressLine1'
-        'addressLine2 addressLine2'
+        'zipCode addressLine2'
         '. actions';
     }
   }

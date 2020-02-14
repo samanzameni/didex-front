@@ -4,39 +4,82 @@
 </header>
 
 <section>
-  <form autocomplete="off" (ngSubmit)="onSubmit()" #form>
+  <form
+    autocomplete="off"
+    [formGroup]="kycFormGroup"
+    (ngSubmit)="onSubmit()"
+    #form
+  >
     <p class="description">
       Please fill in your personal information the way it is stated in the proof
-      of identity document.
+      of identity document. {{ kycFormGroup.valid }}
     </p>
     <label for="firstName" class="form-control">
-      <input type="text" placeholder=" " id="firstName" name="firstName" />
+      <input
+        type="text"
+        placeholder=" "
+        id="firstName"
+        name="firstName"
+        formControlName="firstName"
+      />
       <span class="actual-label">First Name</span>
     </label>
 
     <label for="lastName" class="form-control"
-      ><input type="text" placeholder=" " id="lastName" name="lastName" />
+      ><input
+        type="text"
+        placeholder=" "
+        id="lastName"
+        name="lastName"
+        formControlName="lastName"
+      />
       <span class="actual-label">Last Name</span>
     </label>
 
     <label for="dateOfBirth" class="form-control">
-      <input type="text" placeholder=" " id="dateOfBirth" name="dateOfBirth" />
-      <span class="actual-label">Date of Birth</span>
+      <input
+        type="text"
+        placeholder=" "
+        id="dateOfBirth"
+        name="dateOfBirth"
+        formControlName="dateOfBirth"
+      />
+      <span class="actual-label">Date of Birth (YYYY-MM-DD)</span>
     </label>
 
+    <dropdown-select
+      caption="Country of Birth"
+      id="birthCountry"
+      [control]="kycFormControls.birthCountryCode"
+      [items]="countriesList"
+    ></dropdown-select>
+
     <label for="zipCode" class="form-control">
-      <input type="text" placeholder=" " id="zipCode" name="zipCode" />
+      <input
+        type="text"
+        placeholder=" "
+        id="zipCode"
+        name="zipCode"
+        formControlName="zipCode"
+      />
       <span class="actual-label">Zip Code</span>
     </label>
 
     <dropdown-select
-      caption="Choose a country"
-      [items]="countriesList"
+      caption="Living in"
       id="country"
+      [control]="kycFormControls.countryCode"
+      [items]="countriesList"
     ></dropdown-select>
 
     <label for="city" class="form-control">
-      <input type="text" placeholder=" " id="city" name="city" />
+      <input
+        type="text"
+        placeholder=" "
+        id="city"
+        name="city"
+        formControlName="city"
+      />
       <span class="actual-label">City</span>
     </label>
 
@@ -46,6 +89,7 @@
         placeholder=" "
         id="addressLine1"
         name="addressLine1"
+        formControlName="addressLine1"
       />
       <span class="actual-label">Address (Line 1)</span>
     </label>
@@ -56,12 +100,13 @@
         placeholder=" "
         id="addressLine2"
         name="addressLine2"
+        formControlName="addressLine2"
       />
       <span class="actual-label">Address (Line 2)</span>
     </label>
 
     <div class="actions">
-      <button type="submit">Next</button>
+      <button type="submit" #submitButton>Next</button>
     </div>
   </form>
 </section>

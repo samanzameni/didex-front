@@ -2,18 +2,58 @@
 
 :host {
   form {
-    grid-template-rows: auto max-content auto;
-    grid-template-columns: 1fr 1fr 2fr 1fr;
+    grid-template-rows: auto max-content auto max-content auto;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     grid-template-areas:
-      'description description description description'
-      '. countryTelephoneCode mobileNumber .'
-      '. . actions actions';
+      'description description description description description'
+      '. countryTelephoneCode mobileNumber mobileNumber .'
+      '. . submitNumber . .'
+      '. . verification . .'
+      '. . actions actions actions';
 
     label[for='countryTelephoneCode'] {
       grid-area: countryTelephoneCode;
     }
+
     label[for='mobileNumber'] {
       grid-area: mobileNumber;
+    }
+
+    button.submit-number-button {
+      grid-area: submitNumber;
+
+      width: 100%;
+      border: none;
+      align-self: center;
+
+      &:not([disabled]) {
+        color: $ddx-light;
+        background-color: $ddx-blue-lighter;
+
+        &:hover {
+          color: $ddx-light;
+          background-color: darken($ddx-blue-lighter, 5);
+        }
+
+        &.is-loading {
+          color: transparent;
+
+          &:after {
+            border: 0.15em solid $ddx-light-darker;
+            border-top-color: transparent;
+            border-right-color: transparent;
+          }
+        }
+      }
+    }
+
+    label[for='code'] {
+      grid-area: verification;
+    }
+
+    .hidden {
+      visibility: hidden;
+      opacity: 0;
     }
   }
 }

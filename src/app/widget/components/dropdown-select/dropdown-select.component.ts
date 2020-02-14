@@ -18,6 +18,7 @@ import {
   faAngleDown,
 } from '@fortawesome/free-solid-svg-icons';
 import { DropdownSelectItem } from '@widget/models';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'dropdown-select',
@@ -32,6 +33,7 @@ export class DropdownSelectComponent extends DataEntry<string>
 
   @Input() items: DropdownSelectItem[];
   @Input() caption: string;
+  @Input() control: FormControl;
 
   private isOpenState: boolean;
 
@@ -110,5 +112,6 @@ export class DropdownSelectComponent extends DataEntry<string>
 
     this.cdRef.detectChanges();
     this.valueChange.emit(this.value);
+    this.control.setValue(this.value);
   }
 }

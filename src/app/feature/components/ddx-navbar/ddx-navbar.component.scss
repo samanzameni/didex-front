@@ -21,7 +21,16 @@
       ::ng-deep button {
         color: $ddx-light;
         border-color: $ddx-light;
-        background-color: transparent;
+        background-color: $ddx-blue-darkest;
+      }
+
+      ::ng-deep .dropdown-menu {
+        border-color: $ddx-light;
+        background-color: $ddx-blue-darkest;
+
+        .dropdown-item a {
+          color: $ddx-light-darker;
+        }
       }
     }
   }

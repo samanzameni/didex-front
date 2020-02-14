@@ -1,6 +1,8 @@
 @import '../../../../styles.scss';
 
 :host {
+  background-color: $ddx-light;
+  color: $ddx-primary-darkest;
   display: grid;
   grid-template-columns: auto;
   grid-template-rows: repeat(6, fit-content);

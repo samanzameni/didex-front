@@ -20,7 +20,10 @@
   <dropdown-menu [menuItems]="[{ caption: 'blah', url: '/' }]"></dropdown-menu>
   <dropdown-select
     caption="Choose wisely"
-    [items]="['pwa', 'spa', 'btc']"
+    [items]="[
+      { title: 'BitCoin', value: 'btc' },
+      { title: 'Iranian Rials', value: 'irr' }
+    ]"
     [hasMultiselect]="true"
   ></dropdown-select>
 </section>

@@ -23,23 +23,21 @@ export class TradingViewChartWrapperComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     const widgetOptions: any = {
-      debug: false,
       symbol: 'Coinbase:BTC/USD',
       datafeed: this.datafeedConfig,
       interval: '1',
       container_id: 'tv_chart_container',
       library_path: 'assets/charting_library/',
-      chartsStorageUrl: 'https://saveload.tradingview.com',
-      chartsStorageApiVersion: '1.1',
-      clientId: 'tradingview.com',
       locale: 'en',
       disabled_features: ['use_localstorage_for_settings'],
       enabled_features: ['study_templates'],
+      charts_storage_url: 'https://saveload.tradingview.com',
+      charts_storage_api_version: '1.1',
       client_id: 'test',
       user_id: 'public_user_id',
       fullscreen: false,
       autosize: true,
-      studiesOverrides: {},
+      debug: false,
     };
 
     const overrides = {
@@ -57,7 +55,6 @@ export class TradingViewChartWrapperComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     if (this.tvWidget !== null) {
-      this.tvWidget.remove();
       this.tvWidget = null;
     }
   }

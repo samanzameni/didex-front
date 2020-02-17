@@ -60,7 +60,7 @@ export class TradingViewChartWrapperComponent
       autosize: true,
       debug: false,
       overrides: {
-        'paneProperties.background': '#021E49',
+        'paneProperties.background': '#000e24',
 
         'paneProperties.vertGridProperties.color': 'rgba(0, 0, 0, 0)',
         'paneProperties.vertGridProperties.style': LINESTYLE_SOLID,

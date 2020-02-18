@@ -2,7 +2,11 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 
-import { NavbarComponent, FooterComponent } from '@feature/components';
+import {
+  NavbarComponent,
+  FooterComponent,
+  InstrumentsComponent,
+} from '@feature/components';
 import { HomePageComponent } from '@feature/pages';
 import { MainLayoutComponent } from '@feature/layouts';
 import { WidgetModule } from '@widget/widget.module';
@@ -24,6 +28,8 @@ const routes: Routes = [
     NavbarComponent,
     FooterComponent,
     HomePageComponent,
+    //
+    InstrumentsComponent,
   ],
   imports: [CommonModule, RouterModule.forChild(routes), WidgetModule],
   exports: [],

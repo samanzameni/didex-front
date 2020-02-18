@@ -1,0 +1,24 @@
+:host {
+  width: 100%;
+  max-width: 450px;
+  min-width: 320px;
+  display: flex;
+  flex-direction: column;
+
+  .instruments__header {
+    padding: 10px;
+
+    .instruments-header__base-currencies {
+      align-items: center;
+
+      .instruments-header__currency {
+        margin-right: 3px;
+        display: flex;
+
+        .currency-button {
+          min-width: unset;
+        }
+      }
+    }
+  }
+}

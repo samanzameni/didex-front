@@ -94,8 +94,12 @@ export class TradingViewChartWrapperComponent
         'scalesProperties.showSymbolLabels': false,
 
         'symbolWatermarkProperties.transparency': 0,
-        'mainSeriesProperties.candleStyle.wickUpColor': '#336854',
-        'mainSeriesProperties.candleStyle.wickDownColor': '#7f323f',
+        // 'mainSeriesProperties.candleStyle.borderUpColor': '#8ed23f',
+        // 'mainSeriesProperties.candleStyle.wickUpColor': '#8ed23f',
+        // 'mainSeriesProperties.candleStyle.upColor': '#8ed23f',
+        // 'mainSeriesProperties.candleStyle.borderDownColor': '#ff2d2d',
+        // 'mainSeriesProperties.candleStyle.wickDownColor': '#ff2d2d',
+        // 'mainSeriesProperties.candleStyle.downColor': '#ff2d2d',
       },
     };
 

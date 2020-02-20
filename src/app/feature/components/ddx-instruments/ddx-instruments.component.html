@@ -3,28 +3,34 @@
 
   <div arrangeInline class="instruments-header__controls">
     <ul arrangeInline class="instruments-header__base-currencies">
-      <li class="instruments-header__currency">
-        <button class="button-short currency-button">
-          BTC
-        </button>
-      </li>
-      <li class="instruments-header__currency">
-        <button class="button-short currency-button">
-          ETH
-        </button>
-      </li>
-      <li class="instruments-header__currency">
-        <button class="button-short currency-button">
-          USDT
-        </button>
+      <li
+        *ngFor="let currency of baseCurrencies"
+        class="instruments-header__currency"
+        [ngClass]="{ active: activeBaseCurrency === currency }"
+        (click)="activateBaseCurrency(currency)"
+      >
+        {{ currency }}
       </li>
     </ul>
 
-    <button class="button-short">Favorites</button>
+    <!-- <button class="button-short">Favorites</button> -->
   </div>
 </div>
 
-<table class="instruments__table">
-  <thead class="instruments-table__head"></thead>
-  <thead class="instruments-table__head"></thead>
+<table arrangeStack class="instruments__table">
+  <thead arrangeStack class="instruments-table__head"></thead>
+  <tbody arrangeStack class="instruments-table__body">
+    <tr arrangeInline *ngFor="let symbolRow of mockTableData; let i = index">
+      <td class="row-index">{{ i + 1 }}</td>
+      <td class="row-small">
+        {{ symbolRow.baseCurrencyShortName }} /
+        {{ symbolRow.quoteCurrencyShortName }}
+      </td>
+      <td class="row-big">0.0013234050</td>
+      <td class="row-big">0.0013234050</td>
+      <td class="row-index" [ngClass]="(i * 4 + 1) % 3 ? 'up' : 'down'">
+        {{ (i * 4 + 1) % 3 ? 5 : -4 }}%
+      </td>
+    </tr>
+  </tbody>
 </table>

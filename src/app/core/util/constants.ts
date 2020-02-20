@@ -2,7 +2,8 @@ import { Country } from '@core/models/ddx-country.model';
 
 export const CONSTANTS = {
   SERVER_URL: '/',
-  MOCK_SERVER_URL: 'https://118.190.58.246/',
+  // MOCK_SERVER_URL: 'https://118.190.58.246/',
+  MOCK_SERVER_URL: 'https://didex.com/',
   PHONE_VERIFICATION_CODE_LENGTH: 6,
 };
 

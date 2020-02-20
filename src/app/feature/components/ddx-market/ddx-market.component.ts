@@ -9,7 +9,21 @@ import { TradeSymbol } from '@core/models';
 export class MarketComponent implements OnInit {
   @Input() activeSymbol: TradeSymbol;
 
-  constructor() {}
+  private currentActiveType: string;
+
+  constructor() {
+    this.currentActiveType = 'market';
+  }
 
   ngOnInit() {}
+
+  get activeType(): string {
+    return this.currentActiveType;
+  }
+
+  activateType(newType: string): void {
+    this.currentActiveType = newType;
+  }
+  onSubmitBuy(): void {}
+  onSubmitSell(): void {}
 }

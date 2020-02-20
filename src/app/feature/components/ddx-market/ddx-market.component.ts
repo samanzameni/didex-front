@@ -24,6 +24,7 @@ export class MarketComponent implements OnInit {
   activateType(newType: string): void {
     this.currentActiveType = newType;
   }
+
   onSubmitBuy(): void {}
   onSubmitSell(): void {}
 }

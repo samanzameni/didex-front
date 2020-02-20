@@ -4,7 +4,7 @@ import { PublicRESTService } from '@core/services/REST';
 import { TradeSymbol } from '@core/models';
 
 // TODO
-export class SymbolDATAService extends AbstractDATAService<TradeSymbol> {
+export class SymbolDATAService extends AbstractDATAService<TradeSymbol[]> {
   constructor(
     protected authService: AuthService,
     protected restService: PublicRESTService

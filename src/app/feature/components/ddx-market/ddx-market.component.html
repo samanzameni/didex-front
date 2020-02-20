@@ -1,0 +1,126 @@
+<span class="market__type" id="market">Market</span>
+<span class="market__type" id="limit">Limit</span>
+
+<div class="market__actions" id="buyActions">
+  <h2 class="market__action-title"></h2>
+  <hr class="market__title-seperator" />
+  <table class="market__balance">
+    <tbody>
+      <tr>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <form class="market__form">
+    <label class="form-control" for="buy_amount">
+      <input
+        type="text"
+        formControlName="buy_amount"
+        name="buy_amount"
+        id="buy_amount"
+        placeholder=" "
+      />
+      <span class="actual-label">Amount</span>
+    </label>
+    <label class="form-control" for="buy_total">
+      <input
+        type="text"
+        formControlName="buy_total"
+        name="buy_total"
+        id="buy_total"
+        placeholder=" "
+      />
+      <span class="actual-label">Total</span>
+    </label>
+
+    <div class="market__approximations">
+      <p>You will approximately pay</p>
+      <strong>0.0000897234 BTC</strong>
+    </div>
+
+    <table class="market__estimations">
+      <thead>
+        <tr>
+          <th>Estimated</th>
+          <th>Taker fee 0.2%</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>0.00004123 BTC</td>
+          <td>0.00000038 BTC</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <button type="submit" class="market__submit-button buy-button">BUY</button>
+  </form>
+</div>
+
+<div class="market__actions" id="sellActions">
+  <h2 class="market__action-title"></h2>
+  <hr class="market__title-seperator" />
+  <table class="market__balance">
+    <tbody>
+      <tr>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <form class="market__form">
+    <label class="form-control" for="sell_amount">
+      <input
+        type="text"
+        formControlName="sell_amount"
+        name="sell_amount"
+        id="sell_amount"
+        placeholder=" "
+      />
+      <span class="actual-label">Amount</span>
+    </label>
+    <label class="form-control" for="sell_total">
+      <input
+        type="text"
+        formControlName="sell_total"
+        name="sell_total"
+        id="sell_total"
+        placeholder=" "
+      />
+      <span class="actual-label">Total</span>
+    </label>
+
+    <div class="market__approximations">
+      <p>You will approximately get</p>
+      <strong>0.0000897234 BTC</strong>
+    </div>
+
+    <table class="market__estimations">
+      <thead>
+        <tr>
+          <th>Estimated</th>
+          <th>Taker fee 0.2%</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>0.00004123 BTC</td>
+          <td>0.00000038 BTC</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <button type="submit" class="market__submit-button sell-button">
+      SELL
+    </button>
+  </form>
+</div>

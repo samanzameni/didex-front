@@ -8,22 +8,28 @@ import { TradeSymbol } from '@core/models';
   styleUrls: ['./ddx-instruments.component.scss'],
 })
 export class InstrumentsComponent implements OnInit {
-  private baseCurrencyList: string[];
   private currentActiveBaseCurrency: string;
+  private symbolsData: TradeSymbol[];
 
   @Output() baseCurrencyChange: EventEmitter<string>;
+  @Output() symbolChange: EventEmitter<TradeSymbol>;
 
   constructor(private dataService: SymbolDATAService) {
-    this.baseCurrencyList = ['BTC', 'ETH', 'USDT']; // TODO
-    this.currentActiveBaseCurrency = 'BTC';
     this.baseCurrencyChange = new EventEmitter();
+    this.symbolChange = new EventEmitter();
+    this.symbolsData = [];
+    this.initMockData(); // TODO
   }
 
   ngOnInit() {
-    this.baseCurrencyChange.emit(this.currentActiveBaseCurrency);
     this.dataService.updateData();
     this.dataService.dataStream$.subscribe(data => {
-      console.log(data);
+      // this.symbolsData = Array.from(data);
+      if (this.symbolsData && this.symbolsData.length > 0) {
+        this.currentActiveBaseCurrency = this.symbolsData[0].baseCurrencyShortName;
+        this.baseCurrencyChange.emit(this.currentActiveBaseCurrency);
+        this.symbolChange.emit(this.symbolsData[0]);
+      }
     });
   }
 
@@ -33,19 +39,23 @@ export class InstrumentsComponent implements OnInit {
 
   get baseCurrencies(): string[] {
     // return this.baseCurrencyList;
-    return this.mockData
+    return this.data
       .map(item => item.baseCurrencyShortName)
       .filter((currency, i, self) => self.indexOf(currency) === i);
   }
 
-  get mockTableData(): TradeSymbol[] {
-    return this.mockData.filter(
+  get tableData(): TradeSymbol[] {
+    return this.data.filter(
       item => item.baseCurrencyShortName === this.currentActiveBaseCurrency
     );
   }
 
-  get mockData(): TradeSymbol[] {
-    return [
+  get data(): TradeSymbol[] {
+    return this.symbolsData;
+  }
+
+  private initMockData(): void {
+    this.symbolsData = [
       {
         baseCurrencyShortName: 'BTC',
         quoteCurrencyShortName: 'ETH',
@@ -101,10 +111,15 @@ export class InstrumentsComponent implements OnInit {
         feeSide: 50,
       },
     ];
+    this.currentActiveBaseCurrency = this.symbolsData[0].baseCurrencyShortName;
   }
 
   activateBaseCurrency(newBaseCurrency: string): void {
     this.currentActiveBaseCurrency = newBaseCurrency;
     this.baseCurrencyChange.emit(this.currentActiveBaseCurrency);
+  }
+
+  activateSymbol(newSymbol: TradeSymbol): void {
+    this.symbolChange.emit(newSymbol);
   }
 }

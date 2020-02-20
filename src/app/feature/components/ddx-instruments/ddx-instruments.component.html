@@ -20,7 +20,11 @@
 <table arrangeStack class="instruments__table">
   <thead arrangeStack class="instruments-table__head"></thead>
   <tbody arrangeStack class="instruments-table__body">
-    <tr arrangeInline *ngFor="let symbolRow of mockTableData; let i = index">
+    <tr
+      arrangeInline
+      *ngFor="let symbolRow of tableData; let i = index"
+      (click)="activateSymbol(symbolRow)"
+    >
       <td class="row-index">{{ i + 1 }}</td>
       <td class="row-small">
         {{ symbolRow.baseCurrencyShortName }} /

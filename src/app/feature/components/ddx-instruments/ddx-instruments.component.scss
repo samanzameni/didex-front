@@ -57,9 +57,14 @@
       tr {
         justify-content: space-between;
         padding: 5px;
+        cursor: pointer;
 
         &:nth-child(odd) {
           background: rgba($ddx-light, 0.1);
+        }
+
+        &:hover {
+          background: rgba($ddx-yellow, 0.2);
         }
 
         td {

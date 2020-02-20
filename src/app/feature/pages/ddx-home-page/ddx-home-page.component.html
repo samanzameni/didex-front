@@ -2,9 +2,13 @@
   <tv-chart-wrapper></tv-chart-wrapper>
 </section>
 <section class="instruments-section">
-  <ddx-instruments></ddx-instruments>
+  <ddx-instruments
+    (symbolChange)="handleSymbolChange($event)"
+  ></ddx-instruments>
 </section>
-<section class="order-book-section"></section>
-<section class="market-section"></section>
-<section class="my-orders-section"></section>
-<section class="sale-section"></section>
+<!-- <section class="order-book-section"></section> -->
+<section class="market-section">
+  <ddx-market [activeSymbol]="activeSymbol"></ddx-market>
+</section>
+<!-- <section class="my-orders-section"></section> -->
+<!-- <section class="sale-section"></section> -->

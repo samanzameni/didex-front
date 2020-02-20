@@ -5,21 +5,15 @@
   // color: $ddx-primary-darkest;
   display: grid;
   grid-template-columns: auto;
-  grid-template-rows: repeat(6, fit-content);
+  grid-template-rows: repeat(3, fit-content);
   grid-template-areas:
     'chart-section'
     'instruments-section'
-    'order-book-section'
-    'market-section'
-    'my-orders-section'
-    'sale-section';
+    'market-section';
   gap: 15px;
-  padding: 15px;
-  box-sizing: border-box;
 
   & > section {
-    box-sizing: border-box;
-    border: 1px solid red;
+    border: none;
   }
 
   section.chart-section {
@@ -45,11 +39,10 @@
 @media screen and (min-width: $break-narrow-tablet) {
   :host {
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: repeat(3, fit-content);
+    grid-template-rows: repeat(2, fit-content);
     grid-template-areas:
       'chart-section instruments-section'
-      'order-book-section market-section'
-      'my-orders-section sale-section';
+      'market-section market-section';
   }
 }
 
@@ -63,18 +56,8 @@
       grid-column: 9 / 13;
     }
 
-    section.order-book-section {
-      grid-column: 1 / 7;
-    }
     section.market-section {
-      grid-column: 7 / 13;
-    }
-
-    section.my-orders-section {
-      grid-column: 1 / 8;
-    }
-    section.sale-section {
-      grid-column: 8 / 13;
+      grid-column: 1 / 13;
     }
   }
 }

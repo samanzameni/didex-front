@@ -76,6 +76,7 @@
         type="submit"
         #submitButton
         [ngClass]="{ hidden: !hasSubmittedNumber }"
+        [disabled]="!kycFormGroup.valid"
       >
         Next
       </button>

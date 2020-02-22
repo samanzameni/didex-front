@@ -13,7 +13,15 @@
   box-sizing: border-box;
   padding: 5px 40px;
 
-  .logo_container {
+  .logo__container {
+    a {
+      text-decoration: none;
+      color: $ddx-light;
+
+      &:active {
+        color: $ddx-light;
+      }
+    }
   }
 
   .navbar-items__container {

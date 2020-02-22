@@ -1,51 +1,14 @@
 <section class="chart-section">
-  <!-- <tv-chart-wrapper></tv-chart-wrapper> -->
+  <tv-chart-wrapper></tv-chart-wrapper>
 </section>
 <section class="instruments-section">
-  <button>Normal</button>
-  <button disabled>Normal</button>
-  <hr />
-  <button class="button-secondary">Secondary</button>
-  <hr />
-  <button class="button-short">Short</button>
-
-  <button class="is-loading">Normal</button>
-  <button class="is-loading" disabled>Normal</button>
-  <hr />
-  <button class="button-secondary is-loading">Secondary</button>
-  <hr />
-  <button class="button-short is-loading">Short</button>
+  <ddx-instruments
+    (symbolChange)="handleSymbolChange($event)"
+  ></ddx-instruments>
 </section>
-<section arrangeInline class="order-book-section">
-  <dropdown-menu [menuItems]="[{ caption: 'blah', url: '/' }]"></dropdown-menu>
-  <dropdown-select
-    caption="Choose wisely"
-    [items]="[
-      { title: 'BitCoin', value: 'btc' },
-      { title: 'Iranian Rials', value: 'irr' }
-    ]"
-    [hasMultiselect]="true"
-  ></dropdown-select>
-</section>
+<!-- <section class="order-book-section"></section> -->
 <section class="market-section">
-  <form>
-    <checkbox [label]="'label for check'"></checkbox>
-
-    <radio-group>
-      <radio-button [label]="'male'" [value]="'male'"></radio-button>
-      <radio-button [label]="'female'" [value]="'female'"></radio-button>
-    </radio-group>
-  </form>
+  <ddx-market [activeSymbol]="activeSymbol"></ddx-market>
 </section>
-<section class="my-orders-section">
-  <h1>Title</h1>
-  <h2>Headline</h2>
-  <p class="body">Body</p>
-  <p class="callout">Callout</p>
-  <p class="callout-small">Callout small</p>
-  <h3>Subhead</h3>
-  <p class="footnote">Footnote</p>
-  <p class="caption">Caption</p>
-  <p class="caption-small">Caption small</p>
-</section>
-<section class="sale-section"></section>
+<!-- <section class="my-orders-section"></section> -->
+<!-- <section class="sale-section"></section> -->

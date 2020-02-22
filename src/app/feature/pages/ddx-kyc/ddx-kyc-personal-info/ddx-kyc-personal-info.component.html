@@ -106,7 +106,9 @@
     </label>
 
     <div class="actions">
-      <button type="submit" #submitButton>Next</button>
+      <button type="submit" #submitButton [disabled]="!kycFormGroup.valid">
+        Next
+      </button>
     </div>
   </form>
 </section>

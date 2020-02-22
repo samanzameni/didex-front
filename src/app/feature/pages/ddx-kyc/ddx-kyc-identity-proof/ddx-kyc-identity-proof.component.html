@@ -29,7 +29,7 @@
       <p>Max size 10 Mb.</p>
     </div>
 
-    <div arrangeStack class="guide">
+    <div arrangeInline class="guide">
       <div arrangeCenter class="image-frame">
         <img src="/assets/images/kyc-id-1.svg" alt="guide-1" />
       </div>
@@ -50,7 +50,9 @@
         rel="noopener noreferrer"
         >Back</a
       >
-      <button type="submit" #submitButton>Next</button>
+      <button type="submit" #submitButton [disabled]="!kycFormGroup.valid">
+        Next
+      </button>
     </div>
   </form>
 </section>

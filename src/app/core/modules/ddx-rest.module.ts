@@ -1,9 +1,13 @@
 import { NgModule } from '@angular/core';
-import { AuthRESTService, TraderRESTService } from '@core/services/REST';
+import {
+  AuthRESTService,
+  TraderRESTService,
+  PublicRESTService,
+} from '@core/services/REST';
 
 @NgModule({
   declarations: [],
   imports: [],
-  providers: [AuthRESTService, TraderRESTService],
+  providers: [AuthRESTService, TraderRESTService, PublicRESTService],
 })
 export class RESTModule {}

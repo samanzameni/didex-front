@@ -2,11 +2,13 @@
 
 :host {
   form {
-    grid-template-rows: max-content auto;
-    grid-template-columns: 3fr 1fr;
+    grid-template-rows: max-content max-content max-content auto;
+    grid-template-columns: auto;
     grid-template-areas:
-      'description guide'
-      'uploader actions';
+      'description'
+      'guide'
+      'uploader'
+      'actions';
 
     div.description {
       p {
@@ -37,25 +39,78 @@
 
     div.uploader-section {
       grid-area: uploader;
-      align-self: flex-end;
+      // align-self: flex-end;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     div.guide {
       grid-area: guide;
-      align-items: flex-end;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 15px;
 
       .image-frame {
-        padding: 15px;
+        padding: 5px;
         border: 1px dashed $ddx-primary;
-        width: 161px;
-        height: 112px;
+        width: 141px;
+        height: 92px;
         box-sizing: border-box;
       }
 
       span {
-        margin: 5px 0;
-        width: 161px;
+        margin: 5px;
         text-align: center;
+        display: none;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: $break-narrow-mobile) {
+  :host {
+    form {
+      div.guide {
+        .image-frame {
+          padding: 15px;
+          width: 161px;
+          height: 112px;
+        }
+
+        span {
+          display: block;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: $break-mobile) {
+  :host {
+    form {
+      grid-template-rows: max-content auto;
+      grid-template-columns: 3fr 1fr;
+      grid-template-areas:
+        'description guide'
+        'uploader actions';
+
+      div.uploader-section {
+        align-self: flex-end;
+        align-items: flex-end;
+        justify-content: flex-start;
+      }
+
+      div.guide {
+        align-items: flex-end;
+        flex-direction: column;
+
+        span {
+          margin: 5px 0;
+          width: 161px;
+          text-align: center;
+        }
       }
     }
   }

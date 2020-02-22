@@ -1,0 +1,192 @@
+<ng-container *ngIf="!!activeSymbol">
+  <span
+    arrangeCenter
+    class="market__type"
+    id="market"
+    [ngClass]="{ active: activeType === 'market' }"
+    (click)="activateType('market')"
+    >Market</span
+  >
+  <span
+    arrangeCenter
+    class="market__type"
+    id="limit"
+    [ngClass]="{ active: activeType === 'limit' }"
+    (click)="activateType('limit')"
+    >Limit</span
+  >
+
+  <div class="market__actions" id="buyActions">
+    <h2 class="market__action-title">
+      Buy {{ activeSymbol.quoteCurrencyShortName }}
+    </h2>
+    <hr class="market__title-seperator" />
+    <table arrangeCenter class="market__balance">
+      <tbody arrangeStack>
+        <tr arrangeInline>
+          <td>Balance:</td>
+          <td>0.000000005 BTC</td>
+          <td>Total:</td>
+          <td>0.000000005 BTC</td>
+        </tr>
+        <tr arrangeInline>
+          <td>In Orders:</td>
+          <td>0.0012305 BTC</td>
+          <td>Best Task:</td>
+          <td>0 BTC</td>
+        </tr>
+      </tbody>
+    </table>
+    <form
+      autocomplete="off"
+      (ngSubmit)="onSubmitSell()"
+      arrangeStack
+      autocomplete="off"
+      (ngSubmit)="onSubmitBuy()"
+      class="market__form"
+    >
+      <label class="form-control" for="buy_amount">
+        <input
+          type="text"
+          formControlName="buy_amount"
+          name="buy_amount"
+          id="buy_amount"
+          placeholder=" "
+        />
+        <span class="actual-label">Amount</span>
+      </label>
+      <label class="form-control" for="buy_total">
+        <input
+          type="text"
+          formControlName="buy_total"
+          name="buy_total"
+          id="buy_total"
+          placeholder=" "
+        />
+        <span class="actual-label">Total</span>
+      </label>
+      <label
+        *ngIf="activeType === 'limit'"
+        class="form-control"
+        for="buy_limit"
+      >
+        <input
+          type="text"
+          formControlName="buy_limit"
+          name="buy_limit"
+          id="buy_limit"
+          placeholder=" "
+        />
+        <span class="actual-label">Limit</span>
+      </label>
+
+      <div arrangeStack arrangeCenter class="market__approximations">
+        <p>You will approximately pay</p>
+        <strong>0.0000897234 BTC</strong>
+      </div>
+
+      <table arrangeCenter class="market__estimations">
+        <tbody arrangeStack>
+          <tr arrangeInline>
+            <td>Estimated</td>
+            <td>0.00004123 BTC</td>
+          </tr>
+          <tr arrangeInline>
+            <td>Taker fee 0.2%</td>
+            <td>0.00000038 BTC</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <button type="submit" class="market__submit-button buy-button">
+        Buy
+      </button>
+    </form>
+  </div>
+
+  <div class="market__actions" id="sellActions">
+    <h2 class="market__action-title">
+      Sell {{ activeSymbol.quoteCurrencyShortName }}
+    </h2>
+    <hr class="market__title-seperator" />
+    <table arrangeCenter class="market__balance">
+      <tbody arrangeStack>
+        <tr arrangeInline>
+          <td>Balance:</td>
+          <td>0.000000005 BTC</td>
+          <td>Total:</td>
+          <td>0.000000005 BTC</td>
+        </tr>
+        <tr arrangeInline>
+          <td>In Orders:</td>
+          <td>0.0012305 BTC</td>
+          <td>Best Task:</td>
+          <td>0 BTC</td>
+        </tr>
+      </tbody>
+    </table>
+    <form
+      autocomplete="off"
+      (ngSubmit)="onSubmitSell()"
+      arrangeStack
+      class="market__form"
+    >
+      <label class="form-control" for="sell_amount">
+        <input
+          type="text"
+          formControlName="sell_amount"
+          name="sell_amount"
+          id="sell_amount"
+          placeholder=" "
+        />
+        <span class="actual-label">Amount</span>
+      </label>
+      <label class="form-control" for="sell_total">
+        <input
+          type="text"
+          formControlName="sell_total"
+          name="sell_total"
+          id="sell_total"
+          placeholder=" "
+        />
+        <span class="actual-label">Total</span>
+      </label>
+      <label
+        *ngIf="activeType === 'limit'"
+        class="form-control"
+        for="sell_limit"
+      >
+        <input
+          type="text"
+          formControlName="sell_limit"
+          name="sell_limit"
+          id="sell_limit"
+          placeholder=" "
+        />
+        <span class="actual-label">Limit</span>
+      </label>
+
+      <div arrangeStack arrangeCenter class="market__approximations">
+        <p>You will approximately get</p>
+        <strong>0.0000897234 BTC</strong>
+      </div>
+
+      <table arrangeCenter class="market__estimations">
+        <tbody arrangeStack>
+          <tr arrangeInline>
+            <td>Estimated</td>
+            <td>0.00004123 BTC</td>
+          </tr>
+          <tr arrangeInline>
+            <td>Taker fee 0.2%</td>
+            <td>0.00000038 BTC</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <button type="submit" class="market__submit-button sell-button">
+        Sell
+      </button>
+    </form>
+  </div>
+</ng-container>

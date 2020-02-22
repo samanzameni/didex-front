@@ -1,0 +1,213 @@
+@import '../../../../styles.scss';
+
+:host {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: repeat(3, fit-content);
+  grid-template-areas:
+    'marketLabel limitLabel'
+    'buyActions buyActions'
+    'sellActions sellActions';
+  background: $ddx-blue-darkest;
+
+  span#market {
+    grid-area: marketLabel;
+  }
+
+  span#limit {
+    grid-area: limitLabel;
+  }
+
+  div#buyActions {
+    grid-area: buyActions;
+  }
+
+  div#sellActions {
+    grid-area: sellActions;
+  }
+
+  span.market__type {
+    padding: 20px 0;
+    cursor: pointer;
+
+    &:hover {
+      background: rgba($ddx-yellow, 0.2);
+    }
+
+    &.active {
+      background: rgba($ddx-light, 0.1);
+    }
+  }
+
+  div.market__actions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    box-sizing: border-box;
+    padding: 20px 40px;
+    max-width: 100%;
+
+    hr.market__title-seperator {
+      width: 80px;
+      height: 0;
+      margin: 10px 0;
+      border: 1px solid $ddx-light;
+      border-radius: 2px;
+      background: transparent;
+    }
+
+    &#buyActions {
+      .market__action-title {
+        color: $ddx-green;
+      }
+      .market__title-seperator {
+        border-color: $ddx-green;
+      }
+    }
+
+    &#sellActions {
+      .market__action-title {
+        color: $ddx-red;
+      }
+      .market__title-seperator {
+        border-color: $ddx-red;
+      }
+    }
+
+    table.market__balance,
+    table.market__estimations {
+      width: 100%;
+
+      tbody {
+        width: 100%;
+
+        tr {
+          width: 100%;
+          justify-content: space-evenly;
+          flex-wrap: wrap;
+          padding: 7px 0;
+
+          td {
+            @extend .caption-small;
+
+            width: 50%;
+            text-align: left;
+          }
+        }
+      }
+    }
+
+    form.market__form {
+      width: 100%;
+      margin: 10px auto;
+
+      label.form-control {
+        background: transparent;
+        max-width: $input-width;
+        width: 100%;
+        margin: 5px auto;
+      }
+
+      .market__approximations {
+        padding: 40px 0;
+
+        p {
+          @extend .body;
+        }
+
+        strong {
+          @extend .headline;
+
+          font-weight: bold;
+          color: $ddx-cyan;
+          text-align: center;
+        }
+      }
+
+      table.market__estimations {
+        width: 50%;
+        margin: 10px auto;
+
+        tr {
+          justify-content: space-between;
+
+          td {
+            flex: unset;
+          }
+        }
+      }
+
+      .market__submit-button {
+        width: 100%;
+
+        background: transparent;
+        border: 2px solid $ddx-light;
+
+        &.buy-button {
+          border-color: $ddx-green;
+          color: $ddx-green;
+
+          &:hover {
+            border-color: $ddx-green;
+            background-color: $ddx-green;
+            color: $ddx-light;
+          }
+        }
+
+        &.sell-button {
+          border-color: $ddx-red;
+          color: $ddx-red;
+
+          &:hover {
+            border-color: $ddx-red;
+            background-color: $ddx-red;
+            color: $ddx-light;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: $break-mobile) {
+  :host {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: repeat(2, fit-content);
+    grid-template-areas:
+      'marketLabel limitLabel'
+      'buyActions sellActions';
+
+    div.market__actions {
+      form.market__form {
+        max-width: 420px;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: $break-narrow-desktop) {
+  :host {
+    div.market__actions {
+      form.market__form {
+        max-width: unset;
+      }
+
+      table.market__balance,
+      table.market__estimations {
+        width: 100%;
+
+        tbody {
+          tr {
+            td {
+              @extend .caption-small;
+
+              width: unset;
+              flex: 1;
+            }
+          }
+        }
+      }
+    }
+  }
+}

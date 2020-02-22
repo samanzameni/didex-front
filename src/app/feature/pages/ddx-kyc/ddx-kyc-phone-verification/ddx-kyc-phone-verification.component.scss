@@ -2,14 +2,15 @@
 
 :host {
   form {
-    grid-template-rows: auto max-content auto max-content auto;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: auto max-content max-content auto max-content auto;
+    grid-template-columns: auto;
     grid-template-areas:
-      'description description description description description'
-      '. countryTelephoneCode mobileNumber mobileNumber .'
-      '. . submitNumber . .'
-      '. . verification . .'
-      '. . actions actions actions';
+      'description'
+      'countryTelephoneCode'
+      'mobileNumber'
+      'submitNumber'
+      'verification'
+      'actions';
 
     label[for='countryTelephoneCode'] {
       grid-area: countryTelephoneCode;
@@ -24,6 +25,7 @@
 
       width: 100%;
       border: none;
+      margin: 5px 0;
       align-self: center;
 
       &:not([disabled]) {
@@ -54,6 +56,36 @@
     .hidden {
       visibility: hidden;
       opacity: 0;
+    }
+  }
+}
+
+@media screen and (min-width: $break-mobile) {
+  :host {
+    form {
+      grid-template-rows: auto max-content auto max-content auto;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-areas:
+        'description description description'
+        'countryTelephoneCode mobileNumber mobileNumber'
+        '. submitNumber .'
+        '. verification .'
+        'actions actions actions';
+    }
+  }
+}
+
+@media screen and (min-width: $break-narrow-tablet) {
+  :host {
+    form {
+      grid-template-rows: auto max-content auto max-content auto;
+      grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+      grid-template-areas:
+        'description description description description description'
+        '. countryTelephoneCode mobileNumber mobileNumber .'
+        '. . submitNumber . .'
+        '. . verification . .'
+        '. . actions actions actions';
     }
   }
 }

@@ -38,6 +38,9 @@ MIT
 @angular/router
 MIT
 
+@aspnet/signalr
+Apache-2.0
+
 @fortawesome/angular-fontawesome
 MIT
 MIT License

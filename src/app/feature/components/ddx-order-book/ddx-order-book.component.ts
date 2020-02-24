@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { TradeSymbol } from '@core/models';
+import { BalanceDATAService } from '@core/services/DATA';
 
 @Component({
   selector: 'ddx-order-book',
@@ -9,9 +10,14 @@ import { TradeSymbol } from '@core/models';
 export class OrderBookComponent implements OnInit {
   @Input() activeSymbol: TradeSymbol;
 
-  constructor() {}
+  constructor(private dataService: BalanceDATAService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.dataService.updateData();
+    this.dataService.dataStream$.subscribe(data => {
+      console.log(data);
+    });
+  }
 
   get tableData(): TradeSymbol[] {
     return this.activeSymbol ? [this.activeSymbol] : [];

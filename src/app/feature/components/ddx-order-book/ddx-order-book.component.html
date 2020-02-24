@@ -8,7 +8,7 @@
 
 <table arrangeStack class="order-book__table">
   <thead arrangeStack class="order-book-table__head">
-    <tr arrangeInline>
+    <tr arrangeInline *ngIf="!!activeSymbol">
       <th class="row-index">#</th>
       <th class="row-big">Sum {{ activeSymbol.quoteCurrencyShortName }}</th>
       <th class="row-big">Amount</th>

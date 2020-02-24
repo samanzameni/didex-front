@@ -12,11 +12,13 @@
 
   form {
     color: $ddx-light;
+    box-sizing: border-box;
+    padding: 5px;
 
     button[type='submit'] {
       border: none;
       width: 100%;
-      margin-top: 10px;
+      margin: 10px 0;
 
       &:not(:disabled) {
         background-color: $ddx-yellow;
@@ -48,6 +50,11 @@
     checkbox,
     ::ng-deep checkbox {
       margin: 10px 0;
+
+      span.actual-label,
+      ::ng-deep span.actual-label {
+        @extend .caption-small;
+      }
     }
 
     .description {

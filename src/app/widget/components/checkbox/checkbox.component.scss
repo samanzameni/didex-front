@@ -3,6 +3,7 @@
 :host {
   display: flex;
   margin-bottom: 5px;
+  outline: none;
 
   label {
     cursor: pointer;
@@ -34,14 +35,18 @@
       background-color: $ddx-light;
 
       border: 1px solid $ddx-primary;
+      outline: none;
       border-radius: 2px;
 
       fa-icon,
       ::ng-deep fa-icon {
+        user-select: none;
+
         svg {
           fill: $ddx-light;
           width: 11px;
           height: 11px;
+          user-select: none;
 
           path {
             fill: $ddx-light;
@@ -88,6 +93,7 @@
 
     div.checkbox-container.checked {
       background-color: $ddx-blue-lighter;
+      border-color: $ddx-blue-lighter;
     }
   }
 }

@@ -55,16 +55,6 @@
         />
         <span class="actual-label">Amount</span>
       </label>
-      <label class="form-control" for="buy_total">
-        <input
-          type="text"
-          formControlName="buy_total"
-          name="buy_total"
-          id="buy_total"
-          placeholder=" "
-        />
-        <span class="actual-label">Total</span>
-      </label>
       <label
         *ngIf="activeType === 'limit'"
         class="form-control"
@@ -78,6 +68,16 @@
           placeholder=" "
         />
         <span class="actual-label">Limit</span>
+      </label>
+      <label class="form-control" for="buy_total">
+        <input
+          type="text"
+          formControlName="buy_total"
+          name="buy_total"
+          id="buy_total"
+          placeholder=" "
+        />
+        <span class="actual-label">Total</span>
       </label>
 
       <div arrangeStack arrangeCenter class="market__approximations">
@@ -141,16 +141,6 @@
         />
         <span class="actual-label">Amount</span>
       </label>
-      <label class="form-control" for="sell_total">
-        <input
-          type="text"
-          formControlName="sell_total"
-          name="sell_total"
-          id="sell_total"
-          placeholder=" "
-        />
-        <span class="actual-label">Total</span>
-      </label>
       <label
         *ngIf="activeType === 'limit'"
         class="form-control"
@@ -164,6 +154,16 @@
           placeholder=" "
         />
         <span class="actual-label">Limit</span>
+      </label>
+      <label class="form-control" for="sell_total">
+        <input
+          type="text"
+          formControlName="sell_total"
+          name="sell_total"
+          id="sell_total"
+          placeholder=" "
+        />
+        <span class="actual-label">Total</span>
       </label>
 
       <div arrangeStack arrangeCenter class="market__approximations">

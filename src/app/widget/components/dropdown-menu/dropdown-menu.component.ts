@@ -25,7 +25,7 @@ export class DropdownMenuComponent implements OnInit, AfterViewInit {
   @Input() caption: string;
   @Input() menuItems: DropdownMenuItem[];
 
-  @ViewChild('dropdownToggle', { static: false }) dropdownToggle: ElementRef;
+  @ViewChild('dropdownToggle') dropdownToggle: ElementRef;
 
   private isOpenState: boolean;
 

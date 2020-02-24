@@ -2,7 +2,7 @@ import { Component, OnInit, ElementRef, Renderer2 } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, Validators } from '@angular/forms';
 import { TraderRESTService } from '@core/services/REST';
-import { KYCPage } from '@feature/templates';
+import { KYCPageDirective } from '@feature/templates';
 
 @Component({
   selector: 'ddx-kyc-selfie',
@@ -12,7 +12,7 @@ import { KYCPage } from '@feature/templates';
     './ddx-kyc-selfie.component.scss',
   ],
 })
-export class KYCSelfiePageComponent extends KYCPage implements OnInit {
+export class KYCSelfiePageComponent extends KYCPageDirective implements OnInit {
   constructor(
     protected router: Router,
     protected el: ElementRef,

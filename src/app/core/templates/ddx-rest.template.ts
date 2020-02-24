@@ -4,7 +4,9 @@ import { Observable } from 'rxjs';
 import { StorageService } from '@core/services/ddx-storage.service';
 import { CONSTANTS } from '@core/util/constants';
 import { environment } from '@environments/environment';
+import { Injectable } from '@angular/core';
 
+@Injectable()
 export abstract class AbstractRESTService {
   private userAccessToken: string;
   protected baseURL: string;

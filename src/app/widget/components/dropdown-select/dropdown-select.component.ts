@@ -10,7 +10,7 @@ import {
   ViewChildren,
   QueryList,
 } from '@angular/core';
-import { DataEntry } from '@widget/templates';
+import { DataEntryDirective } from '@widget/templates';
 import { CheckboxComponent } from '../checkbox/checkbox.component';
 import {
   IconDefinition,
@@ -26,7 +26,7 @@ import { FormControl } from '@angular/forms';
   templateUrl: './dropdown-select.component.html',
   styleUrls: ['./dropdown-select.component.scss'],
 })
-export class DropdownSelectComponent extends DataEntry<string>
+export class DropdownSelectComponent extends DataEntryDirective<string>
   implements OnInit, AfterViewInit {
   @Input() hasMultiselect: boolean;
   @Input() hasDefaultValue: boolean;

@@ -6,7 +6,7 @@ import {
   ViewChild,
 } from '@angular/core';
 import { Router } from '@angular/router';
-import { KYCPage } from '@feature/templates';
+import { KYCPageDirective } from '@feature/templates';
 import { FormBuilder, Validators } from '@angular/forms';
 import { TraderRESTService } from '@core/services/REST';
 import { CONSTANTS } from '@core/util/constants';
@@ -19,11 +19,11 @@ import { CONSTANTS } from '@core/util/constants';
     './ddx-kyc-phone-verification.component.scss',
   ],
 })
-export class KYCPhoneVerificationPageComponent extends KYCPage
+export class KYCPhoneVerificationPageComponent extends KYCPageDirective
   implements OnInit {
   private hasSubmittedMobileNumber: boolean;
 
-  @ViewChild('submitNumberButton', { static: false })
+  @ViewChild('submitNumberButton')
   submitNumberButton: ElementRef;
 
   constructor(

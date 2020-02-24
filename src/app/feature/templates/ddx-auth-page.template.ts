@@ -4,14 +4,15 @@ import {
   FormControl,
   AbstractControl,
 } from '@angular/forms';
-import { Renderer2, ViewChild, ElementRef } from '@angular/core';
+import { Renderer2, ViewChild, ElementRef, Directive } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '@core/services';
 
-export abstract class AuthPage {
+@Directive()
+export abstract class AuthPageDirective {
   protected authForm: FormGroup;
 
-  @ViewChild('submitButton', { static: false }) submitButton: ElementRef;
+  @ViewChild('submitButton') submitButton: ElementRef;
 
   constructor(
     protected formBuilder: FormBuilder,

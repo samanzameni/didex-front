@@ -1,5 +1,5 @@
 import { Component, OnInit, Renderer2 } from '@angular/core';
-import { AuthPage } from '@feature/templates/ddx-auth-page.template';
+import { AuthPageDirective } from '@feature/templates/ddx-auth-page.template';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '@core/services';
@@ -13,7 +13,8 @@ import { AuthResetPasswordFormData } from '@core/models';
     './ddx-forgot-password-page.component.scss',
   ],
 })
-export class ForgotPasswordPageComponent extends AuthPage implements OnInit {
+export class ForgotPasswordPageComponent extends AuthPageDirective
+  implements OnInit {
   submittedEmail: string;
 
   constructor(

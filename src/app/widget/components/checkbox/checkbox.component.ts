@@ -8,7 +8,7 @@ import {
   Input,
   HostListener,
 } from '@angular/core';
-import { DataEntry } from '@widget/templates';
+import { DataEntryDirective } from '@widget/templates';
 import { IconDefinition, faCheck } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -17,8 +17,9 @@ import { IconDefinition, faCheck } from '@fortawesome/free-solid-svg-icons';
   templateUrl: './checkbox.component.html',
   styleUrls: ['./checkbox.component.scss'],
 })
-export class CheckboxComponent extends DataEntry<boolean> implements OnInit {
-  @ViewChild('checkboxElement', { static: false }) checkboxElement: ElementRef;
+export class CheckboxComponent extends DataEntryDirective<boolean>
+  implements OnInit {
+  @ViewChild('checkboxElement') checkboxElement: ElementRef;
 
   @Input() hasDarkTheme: boolean;
 

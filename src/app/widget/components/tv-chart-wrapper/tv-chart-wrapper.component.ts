@@ -32,7 +32,7 @@ export class TradingViewChartWrapperComponent
   tvWidget: IChartingLibraryWidget;
   datafeedConfig: any;
 
-  @ViewChild('loadingSpinner', { static: false }) loadingSpinner: ElementRef;
+  @ViewChild('loadingSpinner') loadingSpinner: ElementRef;
 
   constructor(private renderer: Renderer2, private cdRef: ChangeDetectorRef) {
     this.datafeedConfig = datafeedConfig;

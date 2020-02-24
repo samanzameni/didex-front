@@ -3,7 +3,7 @@ import { COUNTRIES } from '@core/util/constants';
 import { Router } from '@angular/router';
 import { DropdownSelectItem } from '@widget/models';
 import { FormBuilder, Validators } from '@angular/forms';
-import { KYCPage } from '@feature/templates';
+import { KYCPageDirective } from '@feature/templates';
 import { TraderRESTService } from '@core/services/REST';
 
 @Component({
@@ -14,7 +14,8 @@ import { TraderRESTService } from '@core/services/REST';
     './ddx-kyc-personal-info.component.scss',
   ],
 })
-export class KYCPersonalInfoPageComponent extends KYCPage implements OnInit {
+export class KYCPersonalInfoPageComponent extends KYCPageDirective
+  implements OnInit {
   constructor(
     protected router: Router,
     protected el: ElementRef,

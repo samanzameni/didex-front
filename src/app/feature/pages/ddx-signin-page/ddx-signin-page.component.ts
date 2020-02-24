@@ -1,5 +1,5 @@
 import { Component, OnInit, Renderer2 } from '@angular/core';
-import { AuthPage } from '@feature/templates/ddx-auth-page.template';
+import { AuthPageDirective } from '@feature/templates/ddx-auth-page.template';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '@core/services';
@@ -13,7 +13,7 @@ import { AuthFormData } from '@core/models';
     './ddx-signin-page.component.scss',
   ],
 })
-export class SignInPageComponent extends AuthPage implements OnInit {
+export class SignInPageComponent extends AuthPageDirective implements OnInit {
   constructor(
     protected formBuilder: FormBuilder,
     protected renderer: Renderer2,

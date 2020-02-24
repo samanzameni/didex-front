@@ -1,11 +1,12 @@
 import { FormBuilder, FormGroup, AbstractControl } from '@angular/forms';
-import { ViewChild, ElementRef, Renderer2 } from '@angular/core';
+import { ViewChild, ElementRef, Renderer2, Directive } from '@angular/core';
 import { Router } from '@angular/router';
 
-export abstract class KYCPage {
+@Directive()
+export abstract class KYCPageDirective {
   protected kycForm: FormGroup;
 
-  @ViewChild('submitButton', { static: false }) submitButton: ElementRef;
+  @ViewChild('submitButton') submitButton: ElementRef;
 
   constructor(
     protected router: Router,

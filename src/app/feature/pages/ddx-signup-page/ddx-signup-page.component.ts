@@ -5,7 +5,7 @@ import { mustMatch, isStrong } from '@core/util/validators';
 import { AuthFormData } from '@core/models';
 import { AuthService } from '@core/services';
 import { Router } from '@angular/router';
-import { AuthPage } from '@feature/templates/ddx-auth-page.template';
+import { AuthPageDirective } from '@feature/templates/ddx-auth-page.template';
 
 @Component({
   selector: 'ddx-signup-page',
@@ -15,8 +15,8 @@ import { AuthPage } from '@feature/templates/ddx-auth-page.template';
     './ddx-signup-page.component.scss',
   ],
 })
-export class SignUpPageComponent extends AuthPage implements OnInit {
-  @ViewChild(CheckboxComponent, { static: false }) checkbox: CheckboxComponent;
+export class SignUpPageComponent extends AuthPageDirective implements OnInit {
+  @ViewChild(CheckboxComponent) checkbox: CheckboxComponent;
 
   constructor(
     protected formBuilder: FormBuilder,

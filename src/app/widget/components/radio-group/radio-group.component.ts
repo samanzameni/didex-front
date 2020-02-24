@@ -5,7 +5,7 @@ import {
   QueryList,
   AfterViewInit,
 } from '@angular/core';
-import { DataEntry } from '@widget/templates';
+import { DataEntryDirective } from '@widget/templates';
 import { RadioButtonComponent } from '../radio-button/radio-button.component';
 
 @Component({
@@ -13,7 +13,7 @@ import { RadioButtonComponent } from '../radio-button/radio-button.component';
   templateUrl: './radio-group.component.html',
   styleUrls: ['./radio-group.component.scss'],
 })
-export class RadioGroupComponent extends DataEntry<string>
+export class RadioGroupComponent extends DataEntryDirective<string>
   implements OnInit, AfterViewInit {
   @ContentChildren(RadioButtonComponent) radioButtons: QueryList<
     RadioButtonComponent

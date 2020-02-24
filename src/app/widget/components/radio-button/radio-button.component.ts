@@ -21,7 +21,7 @@ export class RadioButtonComponent implements OnInit {
 
   @Output() valueChange: EventEmitter<string>;
 
-  @ViewChild('buttonElement', { static: false }) buttonElement: ElementRef;
+  @ViewChild('buttonElement') buttonElement: ElementRef;
 
   constructor() {
     this.isCheckedState = false;

@@ -1,6 +1,6 @@
 import { Component, OnInit, ElementRef, Renderer2 } from '@angular/core';
 import { Router } from '@angular/router';
-import { KYCPage } from '@feature/templates';
+import { KYCPageDirective } from '@feature/templates';
 import { FormBuilder, Validators } from '@angular/forms';
 import { TraderRESTService } from '@core/services/REST';
 
@@ -12,7 +12,8 @@ import { TraderRESTService } from '@core/services/REST';
     './ddx-kyc-identity-proof.component.scss',
   ],
 })
-export class KYCIdentityProofPageComponent extends KYCPage implements OnInit {
+export class KYCIdentityProofPageComponent extends KYCPageDirective
+  implements OnInit {
   constructor(
     protected router: Router,
     protected el: ElementRef,

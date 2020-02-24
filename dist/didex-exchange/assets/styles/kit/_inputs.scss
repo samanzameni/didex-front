@@ -31,7 +31,7 @@ form {
     position: relative;
 
     max-width: $input-width;
-    width: $input-width;
+    width: 100%;
 
     margin: 5px 0;
     box-sizing: border-box;
@@ -50,6 +50,7 @@ form {
       border-radius: 5px;
       outline: none;
       width: 100%;
+      height: 48px;
       padding: 15px;
       margin: 0;
       box-sizing: border-box;
@@ -64,7 +65,10 @@ form {
       display: flex;
       position: absolute;
       width: calc(100% - 2px);
+      max-width: calc(100% - 2px);
+      overflow: hidden;
       user-select: none;
+      white-space: nowrap;
       cursor: text;
       z-index: 0;
       left: 1px;

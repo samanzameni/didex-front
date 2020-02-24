@@ -1,0 +1,35 @@
+<div arrangeStack class="order-book__header">
+  <h2 class="order-book-header__title" *ngIf="!!activeSymbol">
+    Order Book {{ activeSymbol.baseCurrencyShortName }}
+  </h2>
+
+  <div arrangeInline class="order-book-header__controls"></div>
+</div>
+
+<table arrangeStack class="order-book__table">
+  <thead arrangeStack class="order-book-table__head">
+    <tr arrangeInline>
+      <th class="row-index">#</th>
+      <th class="row-big">Sum {{ activeSymbol.quoteCurrencyShortName }}</th>
+      <th class="row-big">Amount</th>
+      <th class="row-big">Bid</th>
+
+      <th class="row-big">Ask</th>
+      <th class="row-big">Amount</th>
+      <th class="row-big">Sum {{ activeSymbol.quoteCurrencyShortName }}</th>
+      <th class="row-index">#</th>
+    </tr>
+  </thead>
+  <tbody arrangeStack class="order-book-table__body">
+    <tr arrangeInline *ngFor="let symbolRow of tableData; let i = index">
+      <td class="row-index">{{ i + 1 }}</td>
+      <td class="row-big">0.0013234050</td>
+      <td class="row-big">0.0013234050</td>
+      <td class="row-big">0.0013234050</td>
+      <td class="row-big">0.0013234050</td>
+      <td class="row-big">0.0013234050</td>
+      <td class="row-big">0.0013234050</td>
+      <td class="row-index">{{ i + 1 }}</td>
+    </tr>
+  </tbody>
+</table>

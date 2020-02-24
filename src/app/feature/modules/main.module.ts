@@ -7,6 +7,7 @@ import {
   FooterComponent,
   InstrumentsComponent,
   MarketComponent,
+  OrderBookComponent,
 } from '@feature/components';
 import { HomePageComponent } from '@feature/pages';
 import { MainLayoutComponent } from '@feature/layouts';
@@ -38,6 +39,7 @@ const routes: Routes = [
     //
     InstrumentsComponent,
     MarketComponent,
+    OrderBookComponent,
   ],
   imports: [CommonModule, RouterModule.forChild(routes), WidgetModule],
   exports: [],

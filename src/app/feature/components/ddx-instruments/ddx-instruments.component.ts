@@ -60,64 +60,15 @@ export class InstrumentsComponent implements OnInit {
     return this.symbolsData;
   }
 
-  private initMockData(): void {
-    this.symbolsData = [
-      {
-        baseCurrencyShortName: 'BTC',
-        quoteCurrencyShortName: 'ETH',
-        quantityIncrement: 10,
-        tickSize: 20,
-        takeLiquidityRate: 30,
-        provideLiquidityRate: 40,
-        feeSide: 50,
-      },
-      {
-        baseCurrencyShortName: 'BTC',
-        quoteCurrencyShortName: 'USDT',
-        quantityIncrement: 10,
-        tickSize: 20,
-        takeLiquidityRate: 30,
-        provideLiquidityRate: 40,
-        feeSide: 50,
-      },
-      {
-        baseCurrencyShortName: 'BTC',
-        quoteCurrencyShortName: 'IRR',
-        quantityIncrement: 10,
-        tickSize: 20,
-        takeLiquidityRate: 30,
-        provideLiquidityRate: 40,
-        feeSide: 50,
-      },
-      {
-        baseCurrencyShortName: 'ETH',
-        quoteCurrencyShortName: 'BTC',
-        quantityIncrement: 10,
-        tickSize: 20,
-        takeLiquidityRate: 30,
-        provideLiquidityRate: 40,
-        feeSide: 50,
-      },
-      {
-        baseCurrencyShortName: 'ETH',
-        quoteCurrencyShortName: 'IRR',
-        quantityIncrement: 10,
-        tickSize: 20,
-        takeLiquidityRate: 30,
-        provideLiquidityRate: 40,
-        feeSide: 50,
-      },
-      {
-        baseCurrencyShortName: 'IRR',
-        quoteCurrencyShortName: 'USDT',
-        quantityIncrement: 10,
-        tickSize: 20,
-        takeLiquidityRate: 30,
-        provideLiquidityRate: 40,
-        feeSide: 50,
-      },
-    ];
-    this.currentActiveBaseCurrency = this.symbolsData[0].baseCurrencyShortName;
+  getTickerDataFromSymbol(symbol: TradeSymbol): TradeTicker {
+    const filtered: TradeTicker[] = this.tickersData.filter(
+      sData => sData.symbol === symbol.symbol
+    );
+    if (filtered.length < 1) {
+      return null;
+    }
+
+    return filtered[0];
   }
 
   activateBaseCurrency(newBaseCurrency: string): void {

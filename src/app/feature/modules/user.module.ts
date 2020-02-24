@@ -10,7 +10,11 @@ const routes: Routes = [
     path: 'settings',
     component: SettingsPageComponent,
   },
-  { path: 'kyc', loadChildren: '@feature/modules/kyc.module#KYCModule' },
+  {
+    path: 'kyc',
+    loadChildren: () =>
+      import('@feature/modules/kyc.module').then(module => module.KYCModule),
+  },
 ];
 
 @NgModule({

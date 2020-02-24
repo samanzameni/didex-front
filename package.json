@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve --aot --port 4000",
-    "build": "ng build --prod",
+    "build": "ng build --aot --prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
@@ -25,11 +25,8 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.27",
     "@fortawesome/free-solid-svg-icons": "^5.12.1",
     "@types/jquery": "^3.3.31",
-    "fs": "0.0.1-security",
     "jquery": "^3.4.1",
     "net": "^1.0.2",
-    "request": "^2.88.0",
-    "request-promise": "^4.2.5",
     "rxjs": "~6.4.0",
     "socket.io-client": "^2.3.0",
     "tls": "0.0.1",
@@ -38,7 +35,7 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^0.803.23",
-    "@angular/cli": "~8.3.21",
+    "@angular/cli": "^8.3.25",
     "@angular/compiler-cli": "~8.2.14",
     "@angular/language-service": "~8.2.14",
     "@types/jasmine": "~3.3.8",

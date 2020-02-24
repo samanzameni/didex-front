@@ -18,7 +18,13 @@ const routes: Routes = [
     component: MainLayoutComponent,
     children: [
       { path: '', component: HomePageComponent, pathMatch: 'full' },
-      { path: 'user', loadChildren: '@feature/modules/user.module#UserModule' },
+      {
+        path: 'user',
+        loadChildren: () =>
+          import('@feature/modules/user.module').then(
+            module => module.UserModule
+          ),
+      },
     ],
   },
 ];

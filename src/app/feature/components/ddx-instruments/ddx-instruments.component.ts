@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { SymbolDATAService } from '@core/services/DATA';
-import { TradeSymbol } from '@core/models';
+import { TradeSymbol, SymbolTickerData, TradeTicker } from '@core/models';
 
 @Component({
   selector: 'ddx-instruments',
@@ -10,6 +10,8 @@ import { TradeSymbol } from '@core/models';
 export class InstrumentsComponent implements OnInit {
   private currentActiveBaseCurrency: string;
   private symbolsData: TradeSymbol[];
+  private tickersData: TradeTicker[];
+  private instrumentsData: SymbolTickerData;
 
   @Output() baseCurrencyChange: EventEmitter<string>;
   @Output() symbolChange: EventEmitter<TradeSymbol>;
@@ -18,13 +20,17 @@ export class InstrumentsComponent implements OnInit {
     this.baseCurrencyChange = new EventEmitter();
     this.symbolChange = new EventEmitter();
     this.symbolsData = [];
-    this.initMockData(); // TODO
+    this.tickersData = [];
+    // this.initMockData(); // TODO
   }
 
   ngOnInit() {
     this.dataService.updateData();
     this.dataService.dataStream$.subscribe(data => {
       // this.symbolsData = Array.from(data);
+      this.instrumentsData = data;
+      this.symbolsData = data.symbol;
+      this.tickersData = data.ticker;
       if (this.symbolsData && this.symbolsData.length > 0) {
         this.currentActiveBaseCurrency = this.symbolsData[0].baseCurrencyShortName;
         this.baseCurrencyChange.emit(this.currentActiveBaseCurrency);

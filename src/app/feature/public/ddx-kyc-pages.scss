@@ -1,5 +1,7 @@
 @import '../../../styles.scss';
 
+$ddx-kyc-header-height: 80px;
+
 :host {
   display: flex;
   flex-direction: column;
@@ -7,7 +9,7 @@
 
   header {
     display: flex;
-    height: 80px;
+    height: $ddx-kyc-header-height;
     margin-bottom: 15px;
 
     div.step-counter {
@@ -29,7 +31,7 @@
   }
 
   section {
-    height: 100%;
+    height: calc(100% - #{$ddx-kyc-header-height});
   }
 
   form {

@@ -3,11 +3,17 @@ import {
   AuthRESTService,
   TraderRESTService,
   PublicRESTService,
+  TradingRESTService,
 } from '@core/services/REST';
 
 @NgModule({
   declarations: [],
   imports: [],
-  providers: [AuthRESTService, TraderRESTService, PublicRESTService],
+  providers: [
+    AuthRESTService,
+    TraderRESTService,
+    PublicRESTService,
+    TradingRESTService,
+  ],
 })
 export class RESTModule {}

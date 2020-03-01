@@ -30,65 +30,16 @@
     }
   }
 
-  .order-book__table {
-    width: 100%;
-    height: 100%;
+  .ddx__table {
     table-layout: fixed;
 
-    tbody.order-book-table__body {
-      overflow-y: auto;
-      overflow-x: auto;
-      height: 100%;
-
+    thead.ddx-table__head,
+    tbody.ddx-table__body {
       tr {
-        cursor: pointer;
-
-        &:nth-child(odd) {
-          background: rgba($ddx-light, 0.1);
-        }
-
-        &:hover {
-          background: rgba($ddx-yellow, 0.2);
-        }
-      }
-    }
-
-    thead.order-book-table__head {
-      width: 100%;
-    }
-
-    thead.order-book-table__head,
-    tbody.order-book-table__body {
-      tr {
-        width: 100%;
-        justify-content: space-between;
-        box-sizing: border-box;
-
         th,
         td {
-          @extend .caption-small;
-
-          padding: 5px 2px;
-          box-sizing: border-box;
-
-          flex: 1;
-          min-width: 0;
-          white-space: nowrap;
-          overflow: hidden;
-          text-overflow: ellipsis;
-
           &.row-index {
-            flex: 1;
-            text-align: center;
             display: none;
-          }
-
-          &.row-small {
-            flex: 4;
-          }
-
-          &.row-big {
-            flex: 7;
           }
 
           &:nth-child(-n + 4) {
@@ -112,7 +63,7 @@
   :host {
     min-width: 320px;
 
-    .order-book__table {
+    .ddx__table {
       overflow-x: hidden;
       min-width: unset;
     }
@@ -121,9 +72,9 @@
 
 @media screen and (min-width: $break-mobile) {
   :host {
-    .order-book__table {
-      thead.order-book-table__head,
-      tbody.order-book-table__body {
+    .ddx__table {
+      thead.ddx-table__head,
+      tbody.ddx-table__body {
         tr {
           th,
           td {

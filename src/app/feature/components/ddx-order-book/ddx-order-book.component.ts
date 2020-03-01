@@ -5,7 +5,10 @@ import { BalanceDATAService } from '@core/services/DATA';
 @Component({
   selector: 'ddx-order-book',
   templateUrl: './ddx-order-book.component.html',
-  styleUrls: ['./ddx-order-book.component.scss'],
+  styleUrls: [
+    '../../public/ddx-homepage-tables.scss',
+    './ddx-order-book.component.scss',
+  ],
 })
 export class OrderBookComponent implements OnInit {
   @Input() activeSymbol: TradeSymbol;

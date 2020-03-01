@@ -5,7 +5,10 @@ import { TradeSymbol, SymbolTickerData, TradeTicker } from '@core/models';
 @Component({
   selector: 'ddx-instruments',
   templateUrl: './ddx-instruments.component.html',
-  styleUrls: ['./ddx-instruments.component.scss'],
+  styleUrls: [
+    '../../public/ddx-homepage-tables.scss',
+    './ddx-instruments.component.scss',
+  ],
 })
 export class InstrumentsComponent implements OnInit {
   private currentActiveBaseCurrency: string;

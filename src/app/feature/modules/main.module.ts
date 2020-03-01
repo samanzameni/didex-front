@@ -8,6 +8,8 @@ import {
   InstrumentsComponent,
   MarketComponent,
   OrderBookComponent,
+  TradesComponent,
+  SaleComponent,
 } from '@feature/components';
 import { HomePageComponent } from '@feature/pages';
 import { MainLayoutComponent } from '@feature/layouts';
@@ -40,6 +42,8 @@ const routes: Routes = [
     InstrumentsComponent,
     MarketComponent,
     OrderBookComponent,
+    TradesComponent,
+    SaleComponent,
   ],
   imports: [CommonModule, RouterModule.forChild(routes), WidgetModule],
   exports: [],

@@ -1,0 +1,30 @@
+<div arrangeStack class="sale__header">
+  <h2 class="sale-header__title" *ngIf="!!activeSymbol">
+    Time & Sales {{ activeSymbol.baseCurrencyShortName }}
+  </h2>
+
+  <table class="ddx__table">
+    <thead arrangeStack class="ddx-table__head">
+      <tr arrangeInline *ngIf="!!activeSymbol">
+        <th class="row-index">#</th>
+        <th class="row-big">Time</th>
+        <th class="row-big">TradeID</th>
+        <th class="row-big">Side</th>
+        <th class="row-big">Price</th>
+        <th class="row-big">Total</th>
+        <th class="row-big">Amount</th>
+      </tr>
+    </thead>
+    <tbody arrangeStack class="ddx-table__body">
+      <tr arrangeInline>
+        <td class="row-index">1</td>
+        <td class="row-big" title="0.0013234050">0.0013234050</td>
+        <td class="row-big" title="0.0013234050">0.0013234050</td>
+        <td class="row-big" title="0.0013234050">0.0013234050</td>
+        <td class="row-big" title="0.0013234050">0.0013234050</td>
+        <td class="row-big" title="0.0013234050">0.0013234050</td>
+        <td class="row-big" title="0.0013234050">0.0013234050</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

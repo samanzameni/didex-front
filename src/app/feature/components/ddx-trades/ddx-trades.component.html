@@ -1,0 +1,56 @@
+<div arrangeStack class="trades__header">
+  <h2 class="trades-header__title" *ngIf="!!activeSymbol">
+    My Orders and Trades {{ activeSymbol.baseCurrencyShortName }}
+  </h2>
+
+  <div arrangeInline class="trades-header__controls">
+    <ul arrangeInline class="trades-header__trade-panes">
+      <li
+        class="trades-header__pane"
+        [ngClass]="{ active: activePane === 'active' }"
+        (click)="activatePane('active')"
+      >
+        Active
+      </li>
+      <li
+        class="trades-header__pane"
+        [ngClass]="{ active: activePane === 'filled' }"
+        (click)="activatePane('filled')"
+      >
+        Filled
+      </li>
+      <li
+        class="trades-header__pane"
+        [ngClass]="{ active: activePane === 'all' }"
+        (click)="activatePane('all')"
+      >
+        All
+      </li>
+    </ul>
+
+    <!-- <button class="button-short">Edit</button> -->
+  </div>
+
+  <table class="ddx__table">
+    <thead arrangeStack class="ddx-table__head">
+      <tr arrangeInline *ngIf="!!activeSymbol">
+        <th class="row-index">#</th>
+        <th class="row-big">Time</th>
+        <th class="row-big">Price</th>
+        <th class="row-big">Exec</th>
+        <th class="row-big">Avg. Prce</th>
+        <th class="row-big">Total</th>
+      </tr>
+    </thead>
+    <tbody arrangeStack class="ddx-table__body">
+      <tr arrangeInline>
+        <td class="row-index">1</td>
+        <td class="row-big" title="0.0013234050">0.0013234050</td>
+        <td class="row-big" title="0.0013234050">0.0013234050</td>
+        <td class="row-big" title="0.0013234050">0.0013234050</td>
+        <td class="row-big" title="0.0013234050">0.0013234050</td>
+        <td class="row-big" title="0.0013234050">0.0013234050</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

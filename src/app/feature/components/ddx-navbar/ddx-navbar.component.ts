@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DropdownMenuItem } from '@widget/models';
+import { AuthService } from '@core/services';
 
 @Component({
   selector: 'ddx-navbar',
@@ -9,21 +10,25 @@ import { DropdownMenuItem } from '@widget/models';
 export class NavbarComponent implements OnInit {
   private accountDropdownItems: DropdownMenuItem[];
 
-  constructor() {
+  constructor(private authService: AuthService) {
     this.initMenuItems();
   }
 
   ngOnInit() {}
 
   initMenuItems(): void {
-    this.accountDropdownItems = [
-      { caption: 'Sign in', url: '/auth/signin' },
-      { caption: 'Sign up', url: '/auth/signup' },
-      { caption: 'Settings', url: '/user/settings' },
-    ];
+    this.accountDropdownItems = [];
   }
 
   get accountItems(): DropdownMenuItem[] {
     return this.accountDropdownItems;
+  }
+
+  get isAuthorized(): boolean {
+    return this.authService.isAuthorized;
+  }
+
+  requestSignOut(): void {
+    this.authService.requestSignOut();
   }
 }

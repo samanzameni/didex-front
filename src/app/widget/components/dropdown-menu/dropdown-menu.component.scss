@@ -61,19 +61,23 @@
       max-width: 100%;
     }
 
+    dropdown-item,
+    ::ng-deep dropdown-item,
     .dropdown-item {
       margin: 0;
 
-      & > a {
+      & > * {
         padding: 5px 15px;
-        color: $ddx-primary-darker;
+        color: $ddx-light-darker;
         text-decoration: none;
         display: flex;
+        cursor: pointer;
+        user-select: none;
 
         &:hover,
         &:active,
         &:focus {
-          color: $ddx-primary;
+          color: $ddx-light;
           text-decoration: none;
         }
       }

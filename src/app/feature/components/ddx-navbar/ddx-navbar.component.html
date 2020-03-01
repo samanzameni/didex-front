@@ -2,5 +2,18 @@
   <a routerLink="/"><h1>DidEx</h1></a>
 </div>
 <div arrangeInline class="navbar-items__container">
-  <dropdown-menu caption="Account" [menuItems]="accountItems"></dropdown-menu>
+  <dropdown-menu caption="Account">
+    <dropdown-item>
+      <a routerLink="/auth/signin">Sign In</a>
+    </dropdown-item>
+    <dropdown-item>
+      <a routerLink="/auth/signup">Sign Up</a>
+    </dropdown-item>
+    <dropdown-item>
+      <a routerLink="/user/settings">Settings</a>
+    </dropdown-item>
+    <dropdown-item>
+      <span (click)="requestSignOut()">Sign Out</span>
+    </dropdown-item>
+  </dropdown-menu>
 </div>

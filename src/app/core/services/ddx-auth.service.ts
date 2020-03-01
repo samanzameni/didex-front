@@ -19,9 +19,7 @@ export class AuthService {
     private storageService: StorageService,
     private router: Router
   ) {
-    this.storageService.getUserAccessToken().subscribe(token => {
-      this.isUserAuthorized = !token;
-    });
+    this.isUserAuthorized = !!this.storageService.getUserAccessToken();
   }
 
   get isAuthorized(): boolean {
@@ -34,6 +32,7 @@ export class AuthService {
         this.storageService.setUserAccessToken({
           didexAccessToken: response.token,
         });
+        this.isUserAuthorized = true;
       })
     );
   }
@@ -44,6 +43,7 @@ export class AuthService {
         this.storageService.setUserAccessToken({
           didexAccessToken: response.token,
         });
+        this.isUserAuthorized = true;
       })
     );
   }
@@ -56,11 +56,13 @@ export class AuthService {
 
   public requestSignOut(): void {
     this.storageService.clearUserToken();
+    this.isUserAuthorized = false;
     this.router.navigateByUrl('/');
   }
 
   public handleAuthError(): void {
     this.storageService.clearUserToken();
+    this.isUserAuthorized = false;
     this.router.navigateByUrl('/auth/signin');
   }
 }

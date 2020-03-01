@@ -3,28 +3,16 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { AuthTokenData } from '@core/models/ddx-token-data.model';
 
-/**
- * StorageService handles all the things about reading from and
- * and writing on the local storage.
- *
- * @author Azad Kavian
- */
 @Injectable()
 export class StorageService {
-  private accessTokenStream$: BehaviorSubject<string>;
-
-  constructor() {
-    this.accessTokenStream$ = new BehaviorSubject(
-      localStorage.getItem('didexAccessToken') as string
-    );
-  }
+  constructor() {}
 
   /**
    * Gets the access token stream.
    *
    */
-  public getUserAccessToken(): BehaviorSubject<string> {
-    return this.accessTokenStream$;
+  public getUserAccessToken(): string {
+    return localStorage.getItem('didexAccessToken');
   }
 
   /**
@@ -34,7 +22,6 @@ export class StorageService {
    */
   public setUserAccessToken(tokenData: AuthTokenData): void {
     localStorage.setItem('didexAccessToken', tokenData.didexAccessToken);
-    this.accessTokenStream$.next(tokenData.didexAccessToken);
   }
 
   /**
@@ -44,6 +31,5 @@ export class StorageService {
    */
   public clearUserToken(): void {
     localStorage.removeItem('didexAccessToken');
-    this.accessTokenStream$.next(undefined);
   }
 }

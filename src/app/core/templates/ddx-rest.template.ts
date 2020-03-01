@@ -19,11 +19,7 @@ export abstract class AbstractRESTService {
       ? CONSTANTS.SERVER_URL
       : CONSTANTS.MOCK_SERVER_URL;
 
-    this.storageService.getUserAccessToken().subscribe(token => {
-      if (token) {
-        this.userAccessToken = token;
-      }
-    });
+    this.userAccessToken = this.storageService.getUserAccessToken();
   }
 
   /**

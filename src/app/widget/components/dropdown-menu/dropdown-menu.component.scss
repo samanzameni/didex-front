@@ -52,6 +52,8 @@
     max-height: 0;
     max-width: 0;
 
+    z-index: 1;
+
     &.active {
       padding: 10px 0;
       border-width: 1px;

@@ -5,6 +5,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { SettingsPageComponent } from '@feature/pages';
 import { WidgetModule } from '@widget/widget.module';
 import { AuthGuard } from '@core/guards/auth.guard';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 const routes: Routes = [
   {
@@ -21,7 +22,13 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [SettingsPageComponent],
-  imports: [CommonModule, RouterModule.forChild(routes), WidgetModule],
+  imports: [
+    CommonModule,
+    RouterModule.forChild(routes),
+    WidgetModule,
+    FormsModule,
+    ReactiveFormsModule,
+  ],
   exports: [],
   providers: [],
 })

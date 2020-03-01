@@ -7,20 +7,26 @@
 
   width: $input-width;
   height: fit-content;
-  margin: 3px;
+  margin: 3px 0;
   box-sizing: border-box;
 
   .select-toggle {
+    @extend .body;
+
     justify-content: space-between;
     margin: 0;
+    height: 48px;
+    padding-top: 12px;
+    padding-bottom: 12px;
     width: 100%;
 
-    color: $ddx-primary-darker;
-    border-color: $ddx-primary-darker;
+    color: $ddx-light-darker;
+    border-color: $ddx-primary;
+    background: transparent;
 
     &:hover {
-      background: $ddx-light;
-      color: $ddx-primary;
+      background: transparent;
+      color: $ddx-light;
       border-color: $ddx-primary;
     }
   }
@@ -48,6 +54,8 @@
     max-width: 0;
 
     .option-item {
+      @extend .body;
+
       margin: 0;
       padding: 0;
       color: $ddx-primary-darker;

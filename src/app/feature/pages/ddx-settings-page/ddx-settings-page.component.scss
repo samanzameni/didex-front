@@ -1,33 +1,124 @@
 @import '../../../../styles.scss';
 
 :host {
-  section.container {
+  display: block;
+  width: 100%;
+  max-width: $break-narrow-desktop;
+  margin: 0px auto;
+  padding: 10px;
+  box-sizing: border-box;
+
+  .container {
+    background: $ddx-blue-darkest;
     width: 100%;
-    max-width: $break-narrow-desktop;
-    margin: 0px auto;
-    padding: 30px 10px;
+    height: calc(100vh - 80px);
+    margin: 0px;
+    padding: 30px;
     box-sizing: border-box;
 
-    .section__title {
-      font-weight: bold;
+    .settings-page__header {
+      justify-content: space-between;
+
+      .settings-page__sections {
+        align-items: center;
+
+        .settings-page__section-tab {
+          @extend .button-primary;
+          @extend .button-short;
+          @extend .caption-small;
+
+          margin-right: 3px;
+          display: flex;
+          min-width: unset;
+
+          color: $ddx-light-darker;
+          border-color: $ddx-light-darker;
+          background: transparent;
+
+          &:hover {
+            color: $ddx-light;
+            border-color: $ddx-light;
+          }
+
+          &.active {
+            color: $ddx-blue-lighter;
+            border-color: $ddx-blue-lighter;
+
+            &:hover {
+              border-color: $ddx-blue-lighter;
+            }
+          }
+        }
+      }
+      .settings-page__section-title {
+        font-weight: bold;
+      }
     }
 
-    .section__seperator {
+    .settings-page__seperator {
       width: 100%;
       border-color: $ddx-primary;
     }
 
-    .validate-button {
-      @extend .button-primary;
+    .settings-page__content {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      height: 100%;
+      width: 100%;
+      flex: 1;
 
-      text-decoration: none;
-      margin: 20px 0;
-      color: $ddx-light-darker;
+      .validate-button {
+        @extend .button-primary;
 
-      &:hover,
-      &:active {
-        color: $ddx-light;
+        text-decoration: none;
+        margin: 20px 0;
+        color: $ddx-light-darker;
+
+        &:hover,
+        &:active {
+          color: $ddx-light;
+        }
       }
+
+      button[type='submit'] {
+        border: none;
+        width: 100%;
+        margin: 10px 0;
+
+        &:not(:disabled) {
+          background-color: $ddx-yellow;
+          color: $ddx-light;
+
+          &:hover,
+          &:focus {
+            background-color: darken($ddx-yellow, 5);
+            color: $ddx-light;
+          }
+
+          &.is-loading {
+            color: transparent;
+
+            &:after {
+              border: 0.15em solid $ddx-light-darker;
+              border-top-color: transparent;
+              border-right-color: transparent;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: $break-mobile) {
+  :host {
+    padding: 30px 10px;
+
+    section.container {
+      height: fit-content;
+      min-height: 550px;
     }
   }
 }

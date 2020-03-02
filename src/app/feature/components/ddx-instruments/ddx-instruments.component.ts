@@ -74,6 +74,13 @@ export class InstrumentsComponent implements OnInit {
     return filtered[0];
   }
 
+  getTickerChange(symbol: TradeSymbol): number {
+    const close = this.getTickerDataFromSymbol(symbol).close;
+    const open = this.getTickerDataFromSymbol(symbol).open;
+
+    return open === 0 ? 0 : ((close - open) / open) * 100;
+  }
+
   activateBaseCurrency(newBaseCurrency: string): void {
     this.currentActiveBaseCurrency = newBaseCurrency;
     this.baseCurrencyChange.emit(this.currentActiveBaseCurrency);

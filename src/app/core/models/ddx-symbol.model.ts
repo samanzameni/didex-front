@@ -13,7 +13,7 @@ export interface TradeTicker {
   symbol: string;
   ask: number;
   bid: number;
-  last: number; // price
+  close: number; // price
   low: number;
   high: number;
   open: number;
@@ -23,6 +23,7 @@ export interface TradeTicker {
 }
 
 // balanceBuy: quote Sell: base
+// change: close / open
 
 export interface SymbolTickerData {
   symbol: TradeSymbol[];

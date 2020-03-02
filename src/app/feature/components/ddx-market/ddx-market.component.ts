@@ -175,14 +175,12 @@ export class MarketComponent implements OnInit {
       };
     }
 
-    console.log(dataToSend);
-
     this.orderService.requestOrder(dataToSend).subscribe(
       response => {
-        console.log(response);
+        // TODO
       },
       errorResponse => {
-        console.log('blah');
+        // TODO
       }
     );
   }
@@ -207,14 +205,12 @@ export class MarketComponent implements OnInit {
       };
     }
 
-    console.log(dataToSend);
-
     this.orderService.requestOrder(dataToSend).subscribe(
       response => {
-        console.log(response);
+        // TODO
       },
       errorResponse => {
-        console.log('blah');
+        // TODO
       }
     );
   }

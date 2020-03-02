@@ -12,11 +12,13 @@ import {
 } from '@feature/pages';
 import { WidgetModule } from '@widget/widget.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { KYCGuard } from '@core/guards/kyc.guard';
 
 const routes: Routes = [
   {
     path: '',
     component: KYCWrapperPageComponent,
+    canActivateChild: [KYCGuard],
     children: [
       { path: '', pathMatch: 'full', redirectTo: 'personal-info' },
       { path: 'personal-info', component: KYCPersonalInfoPageComponent },

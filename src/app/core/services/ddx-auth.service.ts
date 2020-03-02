@@ -61,6 +61,9 @@ export class AuthService {
   }
 
   public handleAuthError(): void {
+    alert(
+      'Your token is expired or is not valid. You will get redirected to the sign in page.'
+    );
     this.storageService.clearUserToken();
     this.isUserAuthorized = false;
     this.router.navigateByUrl('/auth/signin');

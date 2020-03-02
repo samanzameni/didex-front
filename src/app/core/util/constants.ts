@@ -4,7 +4,7 @@ import { TimeZone } from '@core/models';
 export const CONSTANTS = {
   SERVER_URL: '/',
   // MOCK_SERVER_URL: 'https://118.190.58.246/',
-  MOCK_SERVER_URL: 'https://didex.com/',
+  MOCK_SERVER_URL: 'https://trade.didex.com/',
   PHONE_VERIFICATION_CODE_LENGTH: 6,
 };
 

@@ -135,12 +135,11 @@
     *ngSwitchCase="'kyc'"
     [ngSwitch]="currentTraderStatus"
   >
-    <p>
-      As a user, you must validate your identity in order to do transactions in
-      DidEx
-    </p>
-
     <ng-container *ngSwitchCase="'newbie'">
+      <p>
+        As a user, you must validate your identity in order to do transactions
+        in DidEx
+      </p>
       <a routerLink="/user/kyc" class="validate-button">Validate identity</a>
     </ng-container>
     <ng-container *ngSwitchCase="'sent'">

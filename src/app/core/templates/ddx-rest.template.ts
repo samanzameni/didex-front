@@ -136,6 +136,7 @@ export abstract class AbstractRESTService {
    *
    */
   private getFullHeaders(): HttpHeaders {
+    this.userAccessToken = this.storageService.getUserAccessToken();
     const headers = new HttpHeaders({
       Authorization: 'Bearer ' + this.userAccessToken,
       'Content-Type': 'application/json; charset=utf-8',
@@ -144,6 +145,7 @@ export abstract class AbstractRESTService {
   }
 
   private getAuthHeaders(): HttpHeaders {
+    this.userAccessToken = this.storageService.getUserAccessToken();
     const headers = new HttpHeaders({
       Authorization: 'Bearer ' + this.userAccessToken,
     });

@@ -1,12 +1,18 @@
 import { Injectable } from '@angular/core';
 import { AuthService } from './ddx-auth.service';
 import { Trader, TraderStatus } from '@core/models';
+import { Observable } from 'rxjs';
+import { TraderRESTService } from './REST';
+import { tap } from 'rxjs/operators';
 
 @Injectable()
 export class TraderService {
   private trader: Trader;
 
-  constructor(private authService: AuthService) {}
+  constructor(
+    private authService: AuthService,
+    private restService: TraderRESTService
+  ) {}
 
   get currentTrader(): Trader {
     return this.trader;
@@ -35,6 +41,14 @@ export class TraderService {
       this.trader.kycImages.length > 0 &&
       !!this.trader.mobileNumber &&
       !!this.trader.personalInformation
+    );
+  }
+
+  public updateCurrentTrader(): Observable<Trader> {
+    return this.restService.requestGetTraderInfo().pipe(
+      tap(trader => {
+        this.trader = trader;
+      })
     );
   }
 }

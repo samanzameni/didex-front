@@ -6,12 +6,14 @@ import { SettingsPageComponent } from '@feature/pages';
 import { WidgetModule } from '@widget/widget.module';
 import { AuthGuard } from '@core/guards/auth.guard';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { TraderResolver } from '@core/resolvers/trader.resolver';
 
 const routes: Routes = [
   {
     path: 'settings',
     component: SettingsPageComponent,
     canActivate: [AuthGuard],
+    resolve: { trader: TraderResolver },
   },
   {
     path: 'kyc',

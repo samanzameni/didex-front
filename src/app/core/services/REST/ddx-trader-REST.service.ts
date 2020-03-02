@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { AbstractRESTService } from '@core/templates';
 import { Observable } from 'rxjs';
+import { Trader } from '@core/models';
 
 @Injectable()
 export class TraderRESTService extends AbstractRESTService {
-  public requestGetTraderInfo(): Observable<any> {
-    return this.httpGET('api/Trader');
+  public requestGetTraderInfo(): Observable<Trader> {
+    return this.httpGET('api/Trader') as Observable<Trader>;
   }
 
   public requestUpdatePersonalInfo(data: any): Observable<any> {

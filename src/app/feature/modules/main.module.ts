@@ -28,6 +28,13 @@ const routes: Routes = [
             module => module.UserModule
           ),
       },
+      {
+        path: 'account',
+        loadChildren: () =>
+          import('@feature/modules/account.module').then(
+            module => module.AccountModule
+          ),
+      },
     ],
   },
 ];

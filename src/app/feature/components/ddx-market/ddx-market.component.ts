@@ -3,6 +3,8 @@ import { TradeSymbol, TradeBalance, TradeTicker } from '@core/models';
 import { getTickerFromSymbol } from '@core/util/ticker';
 
 import { Decimal } from 'decimal.js';
+import { OrderRESTService } from '@core/services/REST';
+import { OrderData, OrderSide, OrderType } from '@core/models/ddx-order.model';
 
 @Component({
   selector: 'ddx-market',
@@ -22,7 +24,7 @@ export class MarketComponent implements OnInit {
   sellAmount: number;
   @ViewChild('sellTotalInput') sellTotalInput: ElementRef;
 
-  constructor() {
+  constructor(private orderService: OrderRESTService) {
     this.currentActiveType = 'market';
 
     this.buyAmount = 0;
@@ -107,6 +109,30 @@ export class MarketComponent implements OnInit {
     this.currentActiveType = newType;
   }
 
-  onSubmitBuy(): void {}
+  onSubmitBuy(): void {
+    let dataToSend: OrderData = {
+      marketSymbol: this.activeSymbol.symbol,
+      side: OrderSide.Buy,
+      type: OrderType.Market,
+      quantity: this.buyAmount,
+    };
+
+    if (this.activeType === 'limit') {
+      dataToSend = {
+        ...dataToSend,
+        type: OrderType.Market,
+      };
+    }
+
+    this.orderService.requestOrder(dataToSend).subscribe(
+      response => {
+        console.log(response);
+      },
+      errorResponse => {
+        console.log('blah');
+      }
+    );
+  }
+
   onSubmitSell(): void {}
 }

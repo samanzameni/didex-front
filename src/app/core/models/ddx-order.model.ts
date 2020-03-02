@@ -2,11 +2,11 @@ export interface OrderData {
   marketSymbol: string;
   side: OrderSide;
   type: OrderType;
-  timeInForce: OrderTimeInForce; // limit (dropdown)
   quantity: number; // amount
+  timeInForce?: OrderTimeInForce; // limit (dropdown)
   price?: number; // limit (limit input)
   stopPrice?: number; // NO NEED
-  postOnly: boolean; // limit (check)
+  postOnly?: boolean; // limit (check)
   expireTime?: string; // if TmieInFor === 5 then show (NO NEED FOR NOW)
 }
 

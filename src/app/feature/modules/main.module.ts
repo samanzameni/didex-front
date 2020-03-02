@@ -14,6 +14,7 @@ import {
 import { HomePageComponent } from '@feature/pages';
 import { MainLayoutComponent } from '@feature/layouts';
 import { WidgetModule } from '@widget/widget.module';
+import { FormsModule } from '@angular/forms';
 
 const routes: Routes = [
   {
@@ -52,7 +53,12 @@ const routes: Routes = [
     TradesComponent,
     SaleComponent,
   ],
-  imports: [CommonModule, RouterModule.forChild(routes), WidgetModule],
+  imports: [
+    CommonModule,
+    RouterModule.forChild(routes),
+    WidgetModule,
+    FormsModule,
+  ],
   exports: [],
   providers: [],
 })

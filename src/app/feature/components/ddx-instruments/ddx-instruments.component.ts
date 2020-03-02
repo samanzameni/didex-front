@@ -1,6 +1,12 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { SymbolDATAService } from '@core/services/DATA';
-import { TradeSymbol, SymbolTickerData, TradeTicker } from '@core/models';
+import {
+  Component,
+  Output,
+  EventEmitter,
+  Input,
+  OnChanges,
+} from '@angular/core';
+import { TradeSymbol, TradeTicker } from '@core/models';
+import { getTickerFromSymbol } from '@core/util/ticker';
 
 @Component({
   selector: 'ddx-instruments',
@@ -10,36 +16,28 @@ import { TradeSymbol, SymbolTickerData, TradeTicker } from '@core/models';
     './ddx-instruments.component.scss',
   ],
 })
-export class InstrumentsComponent implements OnInit {
+export class InstrumentsComponent implements OnChanges {
   private currentActiveBaseCurrency: string;
-  private symbolsData: TradeSymbol[];
-  private tickersData: TradeTicker[];
-  private instrumentsData: SymbolTickerData;
+
+  @Input() symbolsData: TradeSymbol[];
+  @Input() tickerData: TradeTicker[];
 
   @Output() baseCurrencyChange: EventEmitter<string>;
   @Output() symbolChange: EventEmitter<TradeSymbol>;
 
-  constructor(private dataService: SymbolDATAService) {
+  constructor() {
     this.baseCurrencyChange = new EventEmitter();
     this.symbolChange = new EventEmitter();
     this.symbolsData = [];
-    this.tickersData = [];
-    // this.initMockData(); // TODO
+    this.tickerData = [];
   }
 
-  ngOnInit() {
-    this.dataService.updateData();
-    this.dataService.dataStream$.subscribe(data => {
-      // this.symbolsData = Array.from(data);
-      this.instrumentsData = data;
-      this.symbolsData = data.symbol;
-      this.tickersData = data.ticker;
-      if (this.symbolsData && this.symbolsData.length > 0) {
-        this.currentActiveBaseCurrency = this.symbolsData[0].baseCurrencyShortName;
-        this.baseCurrencyChange.emit(this.currentActiveBaseCurrency);
-        this.symbolChange.emit(this.symbolsData[0]);
-      }
-    });
+  ngOnChanges() {
+    if (this.symbolsData && this.symbolsData.length > 0) {
+      this.currentActiveBaseCurrency = this.symbolsData[0].baseCurrencyShortName;
+      this.baseCurrencyChange.emit(this.currentActiveBaseCurrency);
+      this.symbolChange.emit(this.symbolsData[0]);
+    }
   }
 
   get activeBaseCurrency(): string {
@@ -47,7 +45,6 @@ export class InstrumentsComponent implements OnInit {
   }
 
   get baseCurrencies(): string[] {
-    // return this.baseCurrencyList;
     return this.data
       .map(item => item.baseCurrencyShortName)
       .filter((currency, i, self) => self.indexOf(currency) === i);
@@ -64,14 +61,7 @@ export class InstrumentsComponent implements OnInit {
   }
 
   getTickerDataFromSymbol(symbol: TradeSymbol): TradeTicker {
-    const filtered: TradeTicker[] = this.tickersData.filter(
-      sData => sData.symbol === symbol.symbol
-    );
-    if (filtered.length < 1) {
-      return null;
-    }
-
-    return filtered[0];
+    return getTickerFromSymbol(this.tickerData, symbol);
   }
 
   getTickerChange(symbol: TradeSymbol): number {

@@ -3,6 +3,8 @@
 </section>
 <section class="instruments-section">
   <ddx-instruments
+    [symbolsData]="symbolsData"
+    [tickerData]="tickerData"
     (symbolChange)="handleSymbolChange($event)"
   ></ddx-instruments>
 </section>
@@ -10,7 +12,11 @@
   <ddx-order-book [activeSymbol]="activeSymbol"></ddx-order-book>
 </section>
 <section class="market-section">
-  <ddx-market [activeSymbol]="activeSymbol"></ddx-market>
+  <ddx-market
+    [activeSymbol]="activeSymbol"
+    [tickerData]="tickerData"
+    [balanceData]="balanceData"
+  ></ddx-market>
 </section>
 <section class="my-orders-section">
   <ddx-trades [activeSymbol]="activeSymbol"></ddx-trades>

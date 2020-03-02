@@ -1,6 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { TradeSymbol, TradeBalance } from '@core/models';
-import { BalanceDATAService } from '@core/services/DATA';
+import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
+import { TradeSymbol, TradeBalance, TradeTicker } from '@core/models';
+import { getTickerFromSymbol } from '@core/util/ticker';
+
+import { Decimal } from 'decimal.js';
 
 @Component({
   selector: 'ddx-market',
@@ -9,20 +11,25 @@ import { BalanceDATAService } from '@core/services/DATA';
 })
 export class MarketComponent implements OnInit {
   @Input() activeSymbol: TradeSymbol;
+  @Input() tickerData: TradeTicker[];
+  @Input() balanceData: TradeBalance[];
 
   private currentActiveType: string;
-  private balanceData: TradeBalance[];
 
-  constructor(private dataService: BalanceDATAService) {
+  buyAmount: number;
+  @ViewChild('buyTotalInput') buyTotalInput: ElementRef;
+
+  sellAmount: number;
+  @ViewChild('sellTotalInput') sellTotalInput: ElementRef;
+
+  constructor() {
     this.currentActiveType = 'market';
+
+    this.buyAmount = 0;
+    this.sellAmount = 0;
   }
 
-  ngOnInit() {
-    this.dataService.updateData();
-    this.dataService.dataStream$.subscribe(data => {
-      this.balanceData = data || [];
-    });
-  }
+  ngOnInit() {}
 
   get activeType(): string {
     return this.currentActiveType;
@@ -54,6 +61,46 @@ export class MarketComponent implements OnInit {
     }
 
     return null;
+  }
+
+  get bestBid(): Decimal {
+    return new Decimal(this.getTickerDataFromSymbol().bid);
+  }
+
+  get bestAsk(): Decimal {
+    return new Decimal(this.getTickerDataFromSymbol().ask);
+  }
+
+  get buyTotal(): Decimal {
+    return this.bestBid.mul(this.buyAmount);
+  }
+
+  get buyTakerFee(): Decimal {
+    return this.activeSymbol.feeSide === 0
+      ? new Decimal(this.buyAmount).mul(this.activeSymbol.takeLiquidityRate)
+      : this.buyTotal.mul(this.activeSymbol.takeLiquidityRate);
+  }
+
+  get buyApproxPay(): Decimal {
+    return this.buyTotal.minus(this.buyTakerFee);
+  }
+
+  get sellTotal(): Decimal {
+    return this.bestAsk.mul(this.sellAmount);
+  }
+
+  get sellTakerFee(): Decimal {
+    return this.activeSymbol.feeSide === 0
+      ? new Decimal(this.sellAmount).mul(this.activeSymbol.takeLiquidityRate)
+      : this.sellTotal.mul(this.activeSymbol.takeLiquidityRate);
+  }
+
+  get sellApproxPay(): Decimal {
+    return this.sellTotal.minus(this.sellTakerFee);
+  }
+
+  getTickerDataFromSymbol(): TradeTicker {
+    return getTickerFromSymbol(this.tickerData, this.activeSymbol);
   }
 
   activateType(newType: string): void {

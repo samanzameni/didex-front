@@ -6,6 +6,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { WidgetModule } from '@widget/widget.module';
 import { FundsPageComponent, ReportsPageComponent } from '@feature/pages';
 import { AuthGuard } from '@core/guards';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 const routes: Routes = [
   {
@@ -33,6 +34,7 @@ const routes: Routes = [
     WidgetModule,
     FormsModule,
     ReactiveFormsModule,
+    FontAwesomeModule,
   ],
   exports: [],
   providers: [],

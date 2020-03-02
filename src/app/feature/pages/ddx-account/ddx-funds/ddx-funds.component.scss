@@ -1,0 +1,26 @@
+:host {
+  .page-content {
+    .account-table {
+      .account-table__header-cell,
+      .account-table__cell {
+        &:last-child {
+          // TODO
+        }
+      }
+    }
+  }
+
+  .funds__actions {
+    justify-content: center;
+
+    .funds__action-button {
+      border: none;
+      background: transparent;
+
+      min-width: unset;
+      height: unset;
+      padding: 3px;
+      border-radius: 100%;
+    }
+  }
+}

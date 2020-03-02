@@ -41,7 +41,6 @@ export class DropdownSelectComponent extends DataEntryDirective<string>
 
   constructor(private cdRef: ChangeDetectorRef) {
     super();
-    this.valueChange = new EventEmitter();
     this.isOpenState = false;
   }
 
@@ -112,6 +111,8 @@ export class DropdownSelectComponent extends DataEntryDirective<string>
 
     this.cdRef.detectChanges();
     this.valueChange.emit(this.value);
-    this.control.setValue(this.value);
+    if (this.control) {
+      this.control.setValue(this.value);
+    }
   }
 }

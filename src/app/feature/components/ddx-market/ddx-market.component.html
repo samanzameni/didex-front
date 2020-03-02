@@ -21,6 +21,19 @@
       Buy {{ activeSymbol.baseCurrencyShortName }}
     </h2>
     <hr class="market__title-seperator" />
+    <dropdown-select
+      *ngIf="activeType === 'limit'"
+      caption="Time in Force"
+      [items]="timeInForceDropdownItems"
+      [hasDefaultValue]="true"
+      (valueChange)="onSelectBuyTimeInForce($event)"
+    ></dropdown-select>
+    <checkbox
+      *ngIf="activeType === 'limit'"
+      [hasDarkTheme]="true"
+      label="Post only"
+      (valueChange)="onBuyPostOnlyCheck($event)"
+    ></checkbox>
     <table arrangeCenter class="market__balance" *ngIf="!!quoteBalanceData">
       <tbody arrangeStack>
         <tr arrangeInline>
@@ -79,6 +92,7 @@
           placeholder=" "
           min="0"
           [step]="activeSymbol.tickSize"
+          [(ngModel)]="buyLimit"
         />
         <span class="actual-label">Limit</span>
       </label>
@@ -141,6 +155,19 @@
       Sell {{ activeSymbol.baseCurrencyShortName }}
     </h2>
     <hr class="market__title-seperator" />
+    <dropdown-select
+      *ngIf="activeType === 'limit'"
+      caption="Time in Force"
+      [items]="timeInForceDropdownItems"
+      [hasDefaultValue]="true"
+      (valueChange)="onSelectSellTimeInForce($event)"
+    ></dropdown-select>
+    <checkbox
+      *ngIf="activeType === 'limit'"
+      [hasDarkTheme]="true"
+      label="Post only"
+      (valueChange)="onSellPostOnlyCheck($event)"
+    ></checkbox>
     <table arrangeCenter class="market__balance" *ngIf="!!baseBalanceData">
       <tbody arrangeStack>
         <tr arrangeInline>
@@ -196,6 +223,7 @@
           placeholder=" "
           min="0"
           [step]="activeSymbol.tickSize"
+          [(ngModel)]="sellLimit"
         />
         <span class="actual-label">Limit</span>
       </label>

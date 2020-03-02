@@ -5,7 +5,8 @@
   flex-direction: column;
   position: relative;
 
-  width: $input-width;
+  width: 100%;
+  max-width: $input-width;
   height: fit-content;
   margin: 3px 0;
   box-sizing: border-box;

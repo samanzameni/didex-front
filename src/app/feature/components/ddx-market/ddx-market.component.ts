@@ -4,7 +4,13 @@ import { getTickerFromSymbol } from '@core/util/ticker';
 
 import { Decimal } from 'decimal.js';
 import { OrderRESTService } from '@core/services/REST';
-import { OrderData, OrderSide, OrderType } from '@core/models/ddx-order.model';
+import {
+  OrderData,
+  OrderSide,
+  OrderType,
+  OrderTimeInForce,
+} from '@core/models/ddx-order.model';
+import { DropdownSelectItem } from '@widget/models';
 
 @Component({
   selector: 'ddx-market',
@@ -19,16 +25,24 @@ export class MarketComponent implements OnInit {
   private currentActiveType: string;
 
   buyAmount: number;
+  buyLimit: number;
+  buyTimeInForce: OrderTimeInForce;
+  buyPostOnly: boolean;
   @ViewChild('buyTotalInput') buyTotalInput: ElementRef;
 
   sellAmount: number;
+  sellLimit: number;
+  sellTimeInForce: OrderTimeInForce;
+  sellPostOnly: boolean;
   @ViewChild('sellTotalInput') sellTotalInput: ElementRef;
 
   constructor(private orderService: OrderRESTService) {
     this.currentActiveType = 'market';
 
     this.buyAmount = 0;
+    this.buyLimit = 0;
     this.sellAmount = 0;
+    this.sellLimit = 0;
   }
 
   ngOnInit() {}
@@ -65,6 +79,18 @@ export class MarketComponent implements OnInit {
     return null;
   }
 
+  get timeInForceDropdownItems(): DropdownSelectItem[] {
+    const keys = Object.keys(OrderTimeInForce);
+    const names = keys.slice(keys.length / 2);
+
+    return names.map(name => {
+      return {
+        title: name,
+        value: OrderTimeInForce[name],
+      };
+    });
+  }
+
   get bestBid(): Decimal {
     return new Decimal(this.getTickerDataFromSymbol().bid);
   }
@@ -74,12 +100,14 @@ export class MarketComponent implements OnInit {
   }
 
   get buyTotal(): Decimal {
-    return this.bestBid.mul(this.buyAmount);
+    return this.bestBid.mul(this.buyAmount || 0);
   }
 
   get buyTakerFee(): Decimal {
     return this.activeSymbol.feeSide === 0
-      ? new Decimal(this.buyAmount).mul(this.activeSymbol.takeLiquidityRate)
+      ? new Decimal(this.buyAmount || 0).mul(
+          this.activeSymbol.takeLiquidityRate
+        )
       : this.buyTotal.mul(this.activeSymbol.takeLiquidityRate);
   }
 
@@ -88,12 +116,14 @@ export class MarketComponent implements OnInit {
   }
 
   get sellTotal(): Decimal {
-    return this.bestAsk.mul(this.sellAmount);
+    return this.bestAsk.mul(this.sellAmount || 0);
   }
 
   get sellTakerFee(): Decimal {
     return this.activeSymbol.feeSide === 0
-      ? new Decimal(this.sellAmount).mul(this.activeSymbol.takeLiquidityRate)
+      ? new Decimal(this.sellAmount || 0).mul(
+          this.activeSymbol.takeLiquidityRate
+        )
       : this.sellTotal.mul(this.activeSymbol.takeLiquidityRate);
   }
 
@@ -109,20 +139,43 @@ export class MarketComponent implements OnInit {
     this.currentActiveType = newType;
   }
 
+  onSelectBuyTimeInForce(selectedValue: number): void {
+    this.buyTimeInForce = selectedValue;
+  }
+
+  onSelectSellTimeInForce(selectedValue: number): void {
+    this.sellTimeInForce = selectedValue;
+  }
+
+  onSellPostOnlyCheck(checked: boolean): void {
+    this.sellPostOnly = checked;
+  }
+
+  onBuyPostOnlyCheck(checked: boolean): void {
+    this.buyPostOnly = checked;
+  }
+
   onSubmitBuy(): void {
     let dataToSend: OrderData = {
       marketSymbol: this.activeSymbol.symbol,
       side: OrderSide.Buy,
       type: OrderType.Market,
       quantity: this.buyAmount,
+      price: 1,
+      postOnly: false,
     };
 
     if (this.activeType === 'limit') {
       dataToSend = {
         ...dataToSend,
-        type: OrderType.Market,
+        type: OrderType.Limit,
+        timeInForce: this.buyTimeInForce,
+        price: this.buyLimit,
+        postOnly: this.buyPostOnly,
       };
     }
+
+    console.log(dataToSend);
 
     this.orderService.requestOrder(dataToSend).subscribe(
       response => {
@@ -134,5 +187,35 @@ export class MarketComponent implements OnInit {
     );
   }
 
-  onSubmitSell(): void {}
+  onSubmitSell(): void {
+    let dataToSend: OrderData = {
+      marketSymbol: this.activeSymbol.symbol,
+      side: OrderSide.Sell,
+      type: OrderType.Market,
+      quantity: this.sellAmount,
+      price: 1,
+      postOnly: false,
+    };
+
+    if (this.activeType === 'limit') {
+      dataToSend = {
+        ...dataToSend,
+        type: OrderType.Limit,
+        timeInForce: this.sellTimeInForce,
+        price: this.sellLimit,
+        postOnly: this.sellPostOnly,
+      };
+    }
+
+    console.log(dataToSend);
+
+    this.orderService.requestOrder(dataToSend).subscribe(
+      response => {
+        console.log(response);
+      },
+      errorResponse => {
+        console.log('blah');
+      }
+    );
+  }
 }

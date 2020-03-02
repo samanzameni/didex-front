@@ -36,6 +36,7 @@ export class DropdownSelectComponent extends DataEntryDirective<string>
   @Input() control: FormControl;
 
   private isOpenState: boolean;
+  private selectedTitle: string;
 
   @ViewChildren(CheckboxComponent) checkboxes: QueryList<CheckboxComponent>;
 
@@ -52,6 +53,10 @@ export class DropdownSelectComponent extends DataEntryDirective<string>
 
     if (!this.caption) {
       this.caption = 'Choose ...';
+    }
+
+    if (this.hasDefaultValue && this.items.length > 0) {
+      this.setValue(this.items[0], 0);
     }
   }
 
@@ -71,6 +76,10 @@ export class DropdownSelectComponent extends DataEntryDirective<string>
     return this.isOpen ? faAngleUp : faAngleDown;
   }
 
+  get selected(): string {
+    return this.selectedTitle || '';
+  }
+
   toggleDropdown(): void {
     this.isOpenState = !this.isOpenState;
     this.cdRef.detectChanges();
@@ -78,6 +87,7 @@ export class DropdownSelectComponent extends DataEntryDirective<string>
 
   setValue($event, index: number): void {
     const selectedValue = this.items[index].value;
+    this.selectedTitle = this.items[index].title;
 
     if (this.hasMultiselect) {
       if (!this.data || this.data.length < 1) {

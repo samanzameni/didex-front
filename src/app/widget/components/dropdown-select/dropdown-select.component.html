@@ -4,7 +4,9 @@
   [ngClass]="{ active: isOpen }"
   (click)="toggleDropdown()"
 >
-  <span>{{ value ? value : caption }}</span>
+  <span>{{
+    hasMultiselect ? (value ? value : caption) : value ? selected : caption
+  }}</span>
   <fa-icon [icon]="caretIcon"></fa-icon>
 </button>
 

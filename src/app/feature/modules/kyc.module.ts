@@ -8,6 +8,7 @@ import {
   KYCPhoneVerificationPageComponent,
   KYCIdentityProofPageComponent,
   KYCSelfiePageComponent,
+  KYCDonePageComponent,
 } from '@feature/pages';
 import { WidgetModule } from '@widget/widget.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -31,6 +32,10 @@ const routes: Routes = [
         path: 'selfie',
         component: KYCSelfiePageComponent,
       },
+      {
+        path: 'done',
+        component: KYCDonePageComponent,
+      },
     ],
   },
 ];
@@ -42,6 +47,7 @@ const routes: Routes = [
     KYCPhoneVerificationPageComponent,
     KYCIdentityProofPageComponent,
     KYCSelfiePageComponent,
+    KYCDonePageComponent,
   ],
   imports: [
     CommonModule,

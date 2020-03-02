@@ -38,7 +38,7 @@ export class KYCSelfiePageComponent extends KYCPageDirective implements OnInit {
     this.restService.requestUpdateSelfieImage(dataToSend).subscribe(
       response => {
         this.setLoadingOff();
-        this.router.navigateByUrl('/user/settings');
+        this.router.navigateByUrl('/user/kyc/done');
       },
       errorResponse => {
         this.setLoadingOff();

@@ -4,6 +4,10 @@ import { Observable } from 'rxjs';
 
 @Injectable()
 export class TraderRESTService extends AbstractRESTService {
+  public requestGetTraderInfo(): Observable<any> {
+    return this.httpGET('api/Trader');
+  }
+
   public requestUpdatePersonalInfo(data: any): Observable<any> {
     return this.httpPUT('api/Trader/PersonalInformation', data);
   }
@@ -28,5 +32,9 @@ export class TraderRESTService extends AbstractRESTService {
       'api/Trader/KycImage',
       Object.assign(data, { imageType: 2 })
     );
+  }
+
+  public requestKYCApproval(): Observable<any> {
+    return this.httpGET('api/Trader/RequestApproval');
   }
 }

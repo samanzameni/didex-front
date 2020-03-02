@@ -8,21 +8,9 @@ import { AuthService } from '@core/services';
   styleUrls: ['./ddx-navbar.component.scss'],
 })
 export class NavbarComponent implements OnInit {
-  private accountDropdownItems: DropdownMenuItem[];
-
-  constructor(private authService: AuthService) {
-    this.initMenuItems();
-  }
+  constructor(private authService: AuthService) {}
 
   ngOnInit() {}
-
-  initMenuItems(): void {
-    this.accountDropdownItems = [];
-  }
-
-  get accountItems(): DropdownMenuItem[] {
-    return this.accountDropdownItems;
-  }
 
   get isAuthorized(): boolean {
     return this.authService.isAuthorized;

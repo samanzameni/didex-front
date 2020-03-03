@@ -112,7 +112,7 @@ export class MarketComponent implements OnInit {
   }
 
   get buyApproxPay(): Decimal {
-    return this.buyTotal.minus(this.buyTakerFee);
+    return this.buyTotal.plus(this.buyTakerFee);
   }
 
   get sellTotal(): Decimal {

@@ -6,7 +6,7 @@ export abstract class AbstractDATAService<T> {
   private isLoading: Subject<boolean>;
 
   private dataStream: Subject<T>;
-  protected queryEngine: () => Observable<T>;
+  protected queryEngine: (...params) => Observable<T>;
 
   constructor(protected authService: AuthService) {
     this.isLoading = new Subject();
@@ -29,9 +29,9 @@ export abstract class AbstractDATAService<T> {
     this.dataStream = new Subject();
   }
 
-  public updateData() {
+  public updateData(...params) {
     this.turnOnLoading();
-    this.queryEngine().subscribe(
+    this.queryEngine(...params).subscribe(
       response => {
         if (response === null && response === undefined) {
           // this.turnOffViewMore();

@@ -1,3 +1,20 @@
+export interface TradeOrder {
+  id: number;
+  marketSymbol: string;
+  side: OrderSide;
+  status: OrderStatus;
+  type: OrderType;
+  timeInForce: OrderTimeInForce;
+  quantity: number;
+  price: number;
+  executedQuantity: number;
+  createdAt: string;
+  updatedAt: string;
+  stopPrice: number;
+  postOnly: boolean;
+  expireTime: string;
+}
+
 export interface OrderData {
   marketSymbol: string;
   side: OrderSide;

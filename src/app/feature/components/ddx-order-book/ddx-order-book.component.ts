@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { TradeSymbol } from '@core/models';
+import { TradeSymbol, TradeOrder } from '@core/models';
 
 @Component({
   selector: 'ddx-order-book',
@@ -11,12 +11,13 @@ import { TradeSymbol } from '@core/models';
 })
 export class OrderBookComponent implements OnInit {
   @Input() activeSymbol: TradeSymbol;
+  @Input() orderData: TradeOrder[];
 
   constructor() {}
 
   ngOnInit(): void {}
 
-  get tableData(): TradeSymbol[] {
-    return this.activeSymbol ? [this.activeSymbol] : [];
+  get tableData(): TradeOrder[] {
+    return [];
   }
 }

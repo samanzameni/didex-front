@@ -9,7 +9,10 @@
   ></ddx-instruments>
 </section>
 <section class="order-book-section">
-  <ddx-order-book [activeSymbol]="activeSymbol"></ddx-order-book>
+  <ddx-order-book
+    [activeSymbol]="activeSymbol"
+    [orderData]="orderData"
+  ></ddx-order-book>
 </section>
 <section class="market-section">
   <ddx-market

@@ -47,7 +47,13 @@
     align-items: flex-start;
     box-sizing: border-box;
     padding: 20px 40px;
-    max-width: 100%;
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+
+    checkbox {
+      margin: 7px 0;
+    }
 
     hr.market__title-seperator {
       width: 80px;
@@ -94,6 +100,10 @@
 
             width: 50%;
             text-align: left;
+
+            &:last-child {
+              text-align: right;
+            }
           }
         }
       }

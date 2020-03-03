@@ -134,11 +134,7 @@
             </td>
             <td>
               {{ buyTakerFee }}
-              {{
-                activeSymbol.feeSide === 0
-                  ? activeSymbol.baseCurrencyShortName
-                  : activeSymbol.quoteCurrencyShortName
-              }}
+              {{ activeSymbol.quoteCurrencyShortName }}
             </td>
           </tr>
         </tbody>
@@ -264,11 +260,7 @@
             </td>
             <td>
               {{ sellTakerFee }}
-              {{
-                activeSymbol.feeSide === 0
-                  ? activeSymbol.baseCurrencyShortName
-                  : activeSymbol.quoteCurrencyShortName
-              }}
+              {{ activeSymbol.quoteCurrencyShortName }}
             </td>
           </tr>
         </tbody>

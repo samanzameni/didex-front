@@ -21,9 +21,9 @@
   </div>
 </div>
 
-<table class="ddx__table">
+<table class="ddx__table" *ngIf="!!activeSymbol">
   <thead arrangeStack class="ddx-table__head">
-    <tr arrangeInline *ngIf="!!activeSymbol">
+    <tr arrangeInline>
       <th class="row-index">#</th>
       <th class="row-big">Sum {{ activeSymbol.quoteCurrencyShortName }}</th>
       <th class="row-big">Amount</th>
@@ -36,7 +36,7 @@
     </tr>
   </thead>
   <tbody arrangeStack class="ddx-table__body">
-    <tr arrangeInline *ngFor="let symbolRow of tableData; let i = index">
+    <tr arrangeInline *ngFor="let row of tableData; let i = index">
       <td class="row-index">{{ i + 1 }}</td>
       <td class="row-big" title="0.0013234050">0.0013234050</td>
       <td class="row-big" title="0.0013234050">0.0013234050</td>

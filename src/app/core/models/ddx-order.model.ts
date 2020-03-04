@@ -15,6 +15,17 @@ export interface TradeOrder {
   expireTime: string;
 }
 
+export interface OrderBookRecord {
+  id: number;
+  price: number;
+  volume: number;
+}
+
+export interface OrderBookResponse {
+  bid: OrderBookRecord[];
+  ask: OrderBookRecord[];
+}
+
 export interface OrderData {
   marketSymbol: string;
   side: OrderSide;

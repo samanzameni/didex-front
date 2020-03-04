@@ -4,6 +4,7 @@ import {
   TradeTicker,
   TradeBalance,
   TradeOrder,
+  OrderBookResponse,
 } from '@core/models';
 import {
   SymbolDATAService,
@@ -22,7 +23,7 @@ export class HomePageComponent implements OnInit {
   private symbols: TradeSymbol[];
   private ticker: TradeTicker[];
   private balance: TradeBalance[];
-  private order: TradeOrder[];
+  private orderBook: OrderBookResponse;
 
   constructor(
     private symbolDataService: SymbolDATAService,
@@ -31,24 +32,24 @@ export class HomePageComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.symbolDataService.updateData();
     this.symbolDataService.dataStream$.subscribe(data => {
       this.symbols = data.symbol;
       this.ticker = data.ticker;
     });
+    this.symbolDataService.updateData();
 
-    this.balanceDataService.updateData();
     this.balanceDataService.dataStream$.subscribe(data => {
       this.balance = data;
     });
+    this.balanceDataService.updateData();
   }
 
   handleSymbolChange(symbol: TradeSymbol): void {
     this.currentActiveSymbol = symbol;
-    // this.orderDataService.updateData(symbol.symbol);
-    // this.orderDataService.dataStream$.subscribe(data => {
-    //   this.order = data;
-    // });
+    this.orderDataService.dataStream$.subscribe(data => {
+      this.orderBook = data;
+    });
+    this.orderDataService.updateData(symbol.symbol);
   }
 
   get activeSymbol(): TradeSymbol {
@@ -67,7 +68,7 @@ export class HomePageComponent implements OnInit {
     return this.balance || [];
   }
 
-  get orderData(): TradeOrder[] {
-    return this.order || [];
+  get orderBookData(): OrderBookResponse {
+    return this.orderBook || { bid: [], ask: [] };
   }
 }

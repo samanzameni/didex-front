@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AbstractRESTService } from '@core/templates';
 import { Observable } from 'rxjs';
-import { TradeSymbol, TradeTicker, TradeOrder } from '@core/models';
+import { TradeSymbol, TradeTicker, OrderBookResponse } from '@core/models';
 
 @Injectable()
 export class PublicRESTService extends AbstractRESTService {
@@ -17,10 +17,10 @@ export class PublicRESTService extends AbstractRESTService {
     >;
   }
 
-  public requestOrder(activeSymbol: string): Observable<TradeOrder[]> {
+  public requestOrderBook(activeSymbol: string): Observable<OrderBookResponse> {
     return this.httpPureRequest(
       `api/Public/OrderBook/${activeSymbol}`,
       'GET'
-    ) as Observable<TradeOrder[]>;
+    ) as Observable<OrderBookResponse>;
   }
 }

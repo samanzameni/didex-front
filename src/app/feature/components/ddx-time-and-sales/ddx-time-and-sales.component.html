@@ -8,10 +8,10 @@
       <tr arrangeInline *ngIf="!!activeSymbol">
         <th class="row-index">#</th>
         <th class="row-big">Time</th>
-        <th class="row-big">
+        <th class="row-small">
           Price ({{ activeSymbol.baseCurrencyShortName }})
         </th>
-        <th class="row-big">
+        <th class="row-small">
           Amount ({{ activeSymbol.baseCurrencyShortName }})
         </th>
       </tr>
@@ -19,15 +19,15 @@
     <tbody arrangeStack class="ddx-table__body">
       <tr arrangeInline *ngFor="let row of tableData; let i = index">
         <td class="row-index">{{ i + 1 }}</td>
-        <td class="row-big" title="{{ row.timeStamp }}">{{ row.timeStamp }}</td>
+        <td class="row-big">{{ row.timeStamp }}</td>
         <td
-          class="row-big"
+          class="row-small"
           [ngClass]="getPriceCellCSSClass(row)"
           title="{{ row.price }}"
         >
           {{ row.price }}
         </td>
-        <td class="row-big" title="{{ row.volume }}">{{ row.volume }}</td>
+        <td class="row-small" title="{{ row.volume }}">{{ row.volume }}</td>
       </tr>
     </tbody>
   </table>

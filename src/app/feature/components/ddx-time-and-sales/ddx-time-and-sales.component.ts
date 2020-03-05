@@ -23,7 +23,7 @@ export class TimeAndSalesComponent implements OnInit {
 
   get tableData(): Trade[] {
     return (this.tradeData || []).map(tradeItem => {
-      tradeItem.timeStamp = new Date(tradeItem.timeStamp).toDateString();
+      tradeItem.timeStamp = tradeItem.timeStamp.replace('T', ' ').substr(0, 19);
       return tradeItem;
     });
   }

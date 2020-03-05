@@ -14,3 +14,28 @@ body {
   background: $ddx-blue-deep;
   color: $ddx-light;
 }
+
+* {
+  scrollbar-color: rgba($ddx-light, 0.2) rgba($ddx-light, 0.1); /* thumb and track color */
+  scrollbar-width: 5px;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: rgba($ddx-light, 0.1);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgba($ddx-light, 0.2);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgba($ddx-light, 0.3);
+}

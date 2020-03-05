@@ -2,11 +2,11 @@ import { Injectable } from '@angular/core';
 import { AbstractDATAService } from '@core/templates';
 import { AuthService } from '@core/services';
 import { PublicRESTService } from '@core/services/REST';
-import { TradeTicker } from '@core/models';
+import { Ticker } from '@core/models';
 import { SignalRService } from '../ddx-signalr.service';
 
 @Injectable()
-export class TickerDATAService extends AbstractDATAService<TradeTicker[]> {
+export class TickerDATAService extends AbstractDATAService<Ticker[]> {
   constructor(
     protected authService: AuthService,
     protected restService: PublicRESTService,
@@ -19,9 +19,9 @@ export class TickerDATAService extends AbstractDATAService<TradeTicker[]> {
 
   public updateFeed(): void {
     this.signalrService.removeDataListener('on-ticker');
-    this.signalrService.addDataListener('on-ticker', (feed: TradeTicker) => {
-      const currentValue: TradeTicker[] = this.dataStream$.value;
-      const newValue: TradeTicker[] = Array.from(currentValue);
+    this.signalrService.addDataListener('on-ticker', (feed: Ticker) => {
+      const currentValue: Ticker[] = this.dataStream$.value;
+      const newValue: Ticker[] = Array.from(currentValue);
 
       if (newValue && newValue.length > 0) {
         newValue.forEach((ticker, index) => {
@@ -37,7 +37,7 @@ export class TickerDATAService extends AbstractDATAService<TradeTicker[]> {
     });
   }
 
-  private areSameTickers(a: TradeTicker, b: TradeTicker): boolean {
+  private areSameTickers(a: Ticker, b: Ticker): boolean {
     if (!!a) {
       if (!b) {
         return false;

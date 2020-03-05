@@ -9,7 +9,7 @@ import {
   MarketComponent,
   OrderBookComponent,
   TradesComponent,
-  SaleComponent,
+  TimeAndSalesComponent,
 } from '@feature/components';
 import { HomePageComponent } from '@feature/pages';
 import { MainLayoutComponent } from '@feature/layouts';
@@ -51,7 +51,7 @@ const routes: Routes = [
     MarketComponent,
     OrderBookComponent,
     TradesComponent,
-    SaleComponent,
+    TimeAndSalesComponent,
   ],
   imports: [
     CommonModule,

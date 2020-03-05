@@ -5,7 +5,7 @@ import {
   Input,
   OnChanges,
 } from '@angular/core';
-import { TradeSymbol, TradeTicker } from '@core/models';
+import { TradeSymbol, Ticker } from '@core/models';
 import { getTickerFromSymbol } from '@core/util/ticker';
 
 @Component({
@@ -20,7 +20,7 @@ export class InstrumentsComponent implements OnChanges {
   private currentActiveBaseCurrency: string;
 
   @Input() symbolsData: TradeSymbol[];
-  @Input() tickerData: TradeTicker[];
+  @Input() tickerData: Ticker[];
 
   @Output() baseCurrencyChange: EventEmitter<string>;
   @Output() symbolChange: EventEmitter<TradeSymbol>;
@@ -60,7 +60,7 @@ export class InstrumentsComponent implements OnChanges {
     return this.symbolsData;
   }
 
-  getTickerDataFromSymbol(symbol: TradeSymbol): TradeTicker {
+  getTickerDataFromSymbol(symbol: TradeSymbol): Ticker {
     return getTickerFromSymbol(this.tickerData, symbol);
   }
 

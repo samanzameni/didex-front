@@ -3,7 +3,7 @@ import { AbstractRESTService } from '@core/templates';
 import { StorageService } from '../ddx-storage.service';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { TradeBalance } from '@core/models';
+import { Balance } from '@core/models';
 
 @Injectable()
 export class TradingRESTService extends AbstractRESTService {
@@ -14,7 +14,7 @@ export class TradingRESTService extends AbstractRESTService {
     super(storageService, http);
   }
 
-  public requestBalance(): Observable<TradeBalance[]> {
-    return this.httpGET('api/Trading/Balance') as Observable<TradeBalance[]>;
+  public requestBalance(): Observable<Balance[]> {
+    return this.httpGET('api/Trading/Balance') as Observable<Balance[]>;
   }
 }

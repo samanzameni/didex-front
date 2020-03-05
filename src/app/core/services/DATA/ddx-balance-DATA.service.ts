@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 import { AbstractDATAService } from '@core/templates';
 import { AuthService } from '@core/services';
 import { TradingRESTService } from '@core/services/REST';
-import { TradeBalance } from '@core/models';
+import { Balance } from '@core/models';
 
 @Injectable()
-export class BalanceDATAService extends AbstractDATAService<TradeBalance[]> {
+export class BalanceDATAService extends AbstractDATAService<Balance[]> {
   constructor(
     protected authService: AuthService,
     protected restService: TradingRESTService

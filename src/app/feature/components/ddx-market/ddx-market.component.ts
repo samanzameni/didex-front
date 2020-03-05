@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
-import { TradeSymbol, TradeBalance, TradeTicker } from '@core/models';
+import { TradeSymbol, Balance, Ticker } from '@core/models';
 import { getTickerFromSymbol } from '@core/util/ticker';
 
 import { Decimal } from 'decimal.js';
@@ -19,8 +19,8 @@ import { DropdownSelectItem } from '@widget/models';
 })
 export class MarketComponent implements OnInit {
   @Input() activeSymbol: TradeSymbol;
-  @Input() tickerData: TradeTicker[];
-  @Input() balanceData: TradeBalance[];
+  @Input() tickerData: Ticker[];
+  @Input() balanceData: Balance[];
 
   private currentActiveType: string;
 
@@ -51,7 +51,7 @@ export class MarketComponent implements OnInit {
     return this.currentActiveType;
   }
 
-  get baseBalanceData(): TradeBalance {
+  get baseBalanceData(): Balance {
     if (!this.activateType || !this.balanceData) {
       return null;
     }
@@ -65,7 +65,7 @@ export class MarketComponent implements OnInit {
     return null;
   }
 
-  get quoteBalanceData(): TradeBalance {
+  get quoteBalanceData(): Balance {
     if (!this.activateType || !this.balanceData) {
       return null;
     }
@@ -151,7 +151,7 @@ export class MarketComponent implements OnInit {
     return this.sellTotal.minus(this.sellTakerFee);
   }
 
-  getTickerDataFromSymbol(): TradeTicker {
+  getTickerDataFromSymbol(): Ticker {
     return getTickerFromSymbol(this.tickerData, this.activeSymbol);
   }
 

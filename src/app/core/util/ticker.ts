@@ -1,10 +1,10 @@
-import { TradeTicker, TradeSymbol } from '@core/models';
+import { Ticker, TradeSymbol } from '@core/models';
 
 export function getTickerFromSymbol(
-  tickerData: TradeTicker[],
+  tickerData: Ticker[],
   symbol: TradeSymbol
-): TradeTicker {
-  const filtered: TradeTicker[] = tickerData.filter(
+): Ticker {
+  const filtered: Ticker[] = tickerData.filter(
     sData => sData.symbol === symbol.symbol
   );
   if (filtered.length < 1) {

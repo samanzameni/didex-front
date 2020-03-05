@@ -1,16 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import {
   TradeSymbol,
-  TradeTicker,
-  TradeBalance,
+  Ticker,
+  Balance,
   TradeOrder,
   OrderBookResponse,
+  Trade,
 } from '@core/models';
 import {
   SymbolDATAService,
   BalanceDATAService,
   OrderBookDATAService,
   TickerDATAService,
+  TradeDATAService,
 } from '@core/services/DATA';
 
 @Component({
@@ -22,15 +24,17 @@ export class HomePageComponent implements OnInit {
   private currentActiveSymbol: TradeSymbol;
 
   private symbols: TradeSymbol[];
-  private ticker: TradeTicker[];
-  private balance: TradeBalance[];
+  private ticker: Ticker[];
+  private balance: Balance[];
   private orderBook: OrderBookResponse;
+  private trade: Trade[];
 
   constructor(
     private symbolDataService: SymbolDATAService,
     private tickerDataService: TickerDATAService,
     private balanceDataService: BalanceDATAService,
-    private orderBookDataService: OrderBookDATAService
+    private orderBookDataService: OrderBookDATAService,
+    private tradeDataService: TradeDATAService
   ) {}
 
   ngOnInit() {
@@ -53,6 +57,10 @@ export class HomePageComponent implements OnInit {
     this.orderBookDataService.dataStream$.subscribe(data => {
       this.orderBook = data || { bid: [], ask: [] };
     });
+
+    this.tradeDataService.dataStream$.subscribe(data => {
+      this.trade = data || [];
+    });
   }
 
   handleSymbolChange(symbol: TradeSymbol): void {
@@ -60,6 +68,9 @@ export class HomePageComponent implements OnInit {
 
     this.orderBookDataService.updateData(symbol.symbol);
     this.orderBookDataService.updateFeed(symbol.symbol);
+
+    this.tradeDataService.updateData(symbol.symbol);
+    this.tradeDataService.updateFeed(symbol.symbol);
   }
 
   get activeSymbol(): TradeSymbol {
@@ -70,15 +81,19 @@ export class HomePageComponent implements OnInit {
     return this.symbols || [];
   }
 
-  get tickerData(): TradeTicker[] {
+  get tickerData(): Ticker[] {
     return this.ticker || [];
   }
 
-  get balanceData(): TradeBalance[] {
+  get balanceData(): Balance[] {
     return this.balance || [];
   }
 
   get orderBookData(): OrderBookResponse {
     return this.orderBook || { bid: [], ask: [] };
+  }
+
+  get tradeData(): Trade[] {
+    return this.trade || [];
   }
 }

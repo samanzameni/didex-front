@@ -9,27 +9,6 @@ export interface TradeSymbol {
   feeSide: SymbolFeeSide;
 }
 
-export interface TradeTicker {
-  symbol: string;
-  ask: number;
-  bid: number;
-  close: number; // price
-  low: number;
-  high: number;
-  open: number;
-  volume: number; // volume
-  volumeInQuote: number;
-  timeStamp: string;
-}
-
-// balanceBuy: quote Sell: base
-// change: close - open / open
-
-export interface SymbolTickerData {
-  symbol: TradeSymbol[];
-  ticker: TradeTicker[];
-}
-
 export enum SymbolFeeSide {
   Base = 0,
   Quote = 1,

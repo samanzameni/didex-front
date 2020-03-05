@@ -1,19 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SaleComponent } from './ddx-sale.component';
+import { TimeAndSalesComponent } from './ddx-time-and-sales.component';
 
 describe('DdxSaleComponent', () => {
-  let component: SaleComponent;
-  let fixture: ComponentFixture<SaleComponent>;
+  let component: TimeAndSalesComponent;
+  let fixture: ComponentFixture<TimeAndSalesComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [SaleComponent],
+      declarations: [TimeAndSalesComponent],
     }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SaleComponent);
+    fixture = TestBed.createComponent(TimeAndSalesComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

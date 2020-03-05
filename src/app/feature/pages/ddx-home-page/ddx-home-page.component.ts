@@ -43,6 +43,7 @@ export class HomePageComponent implements OnInit {
       this.ticker = data || [];
     });
     this.tickerDataService.updateData();
+    this.tickerDataService.updateFeed();
 
     this.balanceDataService.dataStream$.subscribe(data => {
       this.balance = data || [];

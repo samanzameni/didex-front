@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import * as signalR from '@aspnet/signalr';
+import * as signalR from '@microsoft/signalr';
 import { environment } from '@environments/environment';
 import { CONSTANTS } from '@core/util/constants';
 import { StorageService } from './ddx-storage.service';
@@ -28,6 +28,7 @@ export class SignalRService {
   public startConnection(): void {
     this.hubConnection = new signalR.HubConnectionBuilder()
       .withUrl(this.apiURL, this.options)
+      .withAutomaticReconnect()
       .build();
 
     this.hubConnection

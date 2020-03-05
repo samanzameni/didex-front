@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import {
   TradeSymbol,
   Ticker,
@@ -30,6 +30,7 @@ export class HomePageComponent implements OnInit {
   private trade: Trade[];
 
   constructor(
+    private cdRef: ChangeDetectorRef,
     private symbolDataService: SymbolDATAService,
     private tickerDataService: TickerDATAService,
     private balanceDataService: BalanceDATAService,
@@ -65,6 +66,7 @@ export class HomePageComponent implements OnInit {
 
   handleSymbolChange(symbol: TradeSymbol): void {
     this.currentActiveSymbol = symbol;
+    this.cdRef.detectChanges();
 
     this.orderBookDataService.updateData(symbol.symbol);
     this.orderBookDataService.updateFeed(symbol.symbol);

@@ -62,11 +62,6 @@ export default {
         return [];
       }
       if (data['Data'].length) {
-        console.log(
-          `Actually returned: ${new Date(
-            data['TimeFrom'] * 1000
-          ).toISOString()} - ${new Date(data['TimeTo'] * 1000).toISOString()}`
-        );
         const bars = data['Data'].map(el => {
           return {
             time: el.time * 1000,

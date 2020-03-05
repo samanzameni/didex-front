@@ -3,6 +3,7 @@ import {
   SymbolDATAService,
   BalanceDATAService,
   OrderBookDATAService,
+  TickerDATAService,
 } from '@core/services/DATA';
 import { RESTModule } from './ddx-rest.module';
 import { SignalRService } from '@core/services';
@@ -15,6 +16,7 @@ import { SignalRService } from '@core/services';
     SymbolDATAService,
     BalanceDATAService,
     OrderBookDATAService,
+    TickerDATAService,
   ],
 })
 export class DATAModule {}

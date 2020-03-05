@@ -37,11 +37,16 @@
       <td class="row-small">
         {{ symbolRow.quoteCurrencyShortName }}
       </td>
-      <td class="row-big">{{ getTickerDataFromSymbol(symbolRow).close }}</td>
-      <td class="row-big">{{ getTickerDataFromSymbol(symbolRow).volume }}</td>
+      <td class="row-big" *ngIf="tickerData && tickerData.length > 0">
+        {{ getTickerDataFromSymbol(symbolRow).close }}
+      </td>
+      <td class="row-big" *ngIf="tickerData && tickerData.length > 0">
+        {{ getTickerDataFromSymbol(symbolRow).volume }}
+      </td>
       <td
         class="row-small"
         [ngClass]="getTickerChange(symbolRow) >= 0 ? 'up' : 'down'"
+        *ngIf="tickerData && tickerData.length > 0"
       >
         {{ getTickerChange(symbolRow) | number: '1.0-2' }}%
       </td>

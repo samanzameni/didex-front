@@ -92,11 +92,19 @@ export class MarketComponent implements OnInit {
   }
 
   get bestBid(): Decimal {
-    return new Decimal(this.getTickerDataFromSymbol().bid);
+    return new Decimal(
+      this.tickerData && this.tickerData.length > 0
+        ? this.getTickerDataFromSymbol().bid
+        : 0
+    );
   }
 
   get bestAsk(): Decimal {
-    return new Decimal(this.getTickerDataFromSymbol().ask);
+    return new Decimal(
+      this.tickerData && this.tickerData.length > 0
+        ? this.getTickerDataFromSymbol().ask
+        : 0
+    );
   }
 
   get buyTotal(): Decimal {

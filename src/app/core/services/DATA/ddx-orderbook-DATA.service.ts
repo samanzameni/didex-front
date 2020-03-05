@@ -28,15 +28,15 @@ export class OrderBookDATAService extends AbstractDATAService<
 
   updateFeed(symbol: string): void {
     if (symbol) {
-      const methodName: string = 'on-order-' + symbol;
-
       if (this.currentSymbol !== symbol) {
-        this.signalrService.removeDataListener(this.currentSymbol);
+        this.signalrService.removeDataListener(
+          'on-order-' + this.currentSymbol
+        );
       }
 
       this.currentSymbol = symbol;
       this.signalrService.addDataListener(
-        methodName,
+        'on-order-' + symbol,
         (feed: PublicOrderFeed) => {
           const currentData = this.dataStream$.value;
           if (currentData) {

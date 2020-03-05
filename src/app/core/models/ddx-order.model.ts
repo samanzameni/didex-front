@@ -26,6 +26,15 @@ export interface OrderBookResponse {
   ask: OrderBookRecord[];
 }
 
+export interface PublicOrderFeed {
+  id: number;
+  price: number;
+  quantity: number;
+  side: OrderSide;
+  status: OrderStatus;
+  timeStamp: string;
+}
+
 export interface OrderData {
   marketSymbol: string;
   side: OrderSide;
@@ -44,10 +53,10 @@ export enum OrderSide {
 }
 
 export enum OrderStatus {
-  New = 0,
-  PartiallyFilled = 1,
-  Filled = 2,
-  Canceled = 3,
+  New = 0, // ADD
+  PartiallyFilled = 1, // UPDATE or ADD
+  Filled = 2, // REMOVE or NOT ANYTHING
+  Canceled = 3, // REMOVE or NOT ANYTHING
   Expired = 4,
   Suspended = 5,
 }

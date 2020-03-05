@@ -9,7 +9,7 @@ import {
 import {
   SymbolDATAService,
   BalanceDATAService,
-  OrderDATAService,
+  OrderBookDATAService,
 } from '@core/services/DATA';
 
 @Component({
@@ -28,28 +28,29 @@ export class HomePageComponent implements OnInit {
   constructor(
     private symbolDataService: SymbolDATAService,
     private balanceDataService: BalanceDATAService,
-    private orderDataService: OrderDATAService
+    private orderBookDataService: OrderBookDATAService
   ) {}
 
   ngOnInit() {
     this.symbolDataService.dataStream$.subscribe(data => {
-      this.symbols = data.symbol;
-      this.ticker = data.ticker;
+      this.symbols = data ? data.symbol : [];
+      this.ticker = data ? data.ticker : [];
     });
     this.symbolDataService.updateData();
 
     this.balanceDataService.dataStream$.subscribe(data => {
-      this.balance = data;
+      this.balance = data || [];
     });
     this.balanceDataService.updateData();
   }
 
   handleSymbolChange(symbol: TradeSymbol): void {
     this.currentActiveSymbol = symbol;
-    this.orderDataService.dataStream$.subscribe(data => {
-      this.orderBook = data;
+    this.orderBookDataService.dataStream$.subscribe(data => {
+      this.orderBook = data || { bid: [], ask: [] };
     });
-    this.orderDataService.updateData(symbol.symbol);
+    this.orderBookDataService.updateData(symbol.symbol);
+    this.orderBookDataService.updateFeed(symbol.symbol);
   }
 
   get activeSymbol(): TradeSymbol {

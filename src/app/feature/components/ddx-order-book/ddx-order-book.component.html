@@ -45,7 +45,13 @@
         <td class="row-big" title="{{ row.price }}">{{ row.price }}</td>
         <div
           class="row-underlay"
-          [ngStyle]="{ width: (bidsSumArray[i] / bidsSum) * 100 + '%' }"
+          [ngStyle]="{
+            width:
+              bidsSumArray[i]
+                .div(bidsSum)
+                .mul(100)
+                .toString() + '%'
+          }"
         ></div>
       </tr>
     </tbody>
@@ -66,7 +72,13 @@
       <tr arrangeInline *ngFor="let row of asksTableData; let i = index">
         <div
           class="row-underlay"
-          [ngStyle]="{ width: (asksSumArray[i] / asksSum) * 100 + '%' }"
+          [ngStyle]="{
+            width:
+              asksSumArray[i]
+                .div(asksSum)
+                .mul(100)
+                .toString() + '%'
+          }"
         ></div>
         <td class="row-big" title="{{ row.price }}">{{ row.price }}</td>
         <td class="row-big" title="{{ row.volume }}">{{ row.volume }}</td>

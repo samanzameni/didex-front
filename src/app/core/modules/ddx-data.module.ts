@@ -2,13 +2,19 @@ import { NgModule } from '@angular/core';
 import {
   SymbolDATAService,
   BalanceDATAService,
-  OrderDATAService,
+  OrderBookDATAService,
 } from '@core/services/DATA';
 import { RESTModule } from './ddx-rest.module';
+import { SignalRService } from '@core/services';
 
 @NgModule({
   declarations: [],
   imports: [RESTModule],
-  providers: [SymbolDATAService, BalanceDATAService, OrderDATAService],
+  providers: [
+    SignalRService,
+    SymbolDATAService,
+    BalanceDATAService,
+    OrderBookDATAService,
+  ],
 })
 export class DATAModule {}

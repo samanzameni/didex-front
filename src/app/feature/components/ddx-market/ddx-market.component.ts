@@ -103,6 +103,18 @@ export class MarketComponent implements OnInit {
     return this.bestBid.mul(this.buyAmount || 0);
   }
 
+  get baseTotal(): Decimal {
+    return new Decimal(this.baseBalanceData.available).add(
+      this.baseBalanceData.reserved
+    );
+  }
+
+  get quoteTotal(): Decimal {
+    return new Decimal(this.quoteBalanceData.available).add(
+      this.quoteBalanceData.reserved
+    );
+  }
+
   get buyTakerFee(): Decimal {
     return this.activeSymbol.feeSide === 0
       ? new Decimal(this.buyAmount || 0).mul(

@@ -1,4 +1,4 @@
-export interface TradeOrder {
+export interface Order {
   id: number;
   marketSymbol: string;
   side: OrderSide;

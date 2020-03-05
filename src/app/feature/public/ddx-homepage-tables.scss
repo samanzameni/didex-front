@@ -68,11 +68,13 @@
             text-align: center;
           }
 
-          &.up {
+          &.up,
+          &.green {
             color: $ddx-green;
           }
 
-          &.down {
+          &.down,
+          &.red {
             color: $ddx-red;
           }
         }

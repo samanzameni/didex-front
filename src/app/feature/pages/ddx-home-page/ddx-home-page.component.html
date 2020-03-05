@@ -22,7 +22,12 @@
   ></ddx-market>
 </section>
 <section class="my-orders-section">
-  <ddx-trades [activeSymbol]="activeSymbol"></ddx-trades>
+  <ddx-trades
+    [activeSymbol]="activeSymbol"
+    [orderData]="orderData"
+    [filledOrderData]="filledOrderData"
+    [tradeData]="privateTradeData"
+  ></ddx-trades>
 </section>
 <section class="sale-section">
   <ddx-time-and-sales

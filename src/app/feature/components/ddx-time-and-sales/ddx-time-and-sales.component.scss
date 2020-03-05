@@ -15,24 +15,4 @@
       margin-bottom: 15px;
     }
   }
-
-  .ddx__table {
-    table-layout: fixed;
-
-    thead.ddx-table__head,
-    tbody.ddx-table__body {
-      tr {
-        th,
-        td {
-          &.green {
-            color: $ddx-green;
-          }
-
-          &.red {
-            color: $ddx-red;
-          }
-        }
-      }
-    }
-  }
 }

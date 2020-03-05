@@ -3,7 +3,7 @@ import {
   TradeSymbol,
   Ticker,
   Balance,
-  TradeOrder,
+  Order,
   OrderBookResponse,
   Trade,
 } from '@core/models';
@@ -13,6 +13,9 @@ import {
   OrderBookDATAService,
   TickerDATAService,
   TradeDATAService,
+  OrderDATAService,
+  PrivateTradeDATAService,
+  FilledOrderDATAService,
 } from '@core/services/DATA';
 
 @Component({
@@ -27,7 +30,10 @@ export class HomePageComponent implements OnInit {
   private ticker: Ticker[];
   private balance: Balance[];
   private orderBook: OrderBookResponse;
+  private order: Order[];
   private trade: Trade[];
+  private privateTrade: Trade[];
+  private filledOrder: Order[];
 
   constructor(
     private cdRef: ChangeDetectorRef,
@@ -35,7 +41,10 @@ export class HomePageComponent implements OnInit {
     private tickerDataService: TickerDATAService,
     private balanceDataService: BalanceDATAService,
     private orderBookDataService: OrderBookDATAService,
-    private tradeDataService: TradeDATAService
+    private orderDataService: OrderDATAService,
+    private tradeDataService: TradeDATAService,
+    private privateTradeDataService: PrivateTradeDATAService,
+    private filledOrderDataService: FilledOrderDATAService
   ) {}
 
   ngOnInit() {
@@ -59,8 +68,20 @@ export class HomePageComponent implements OnInit {
       this.orderBook = data || { bid: [], ask: [] };
     });
 
+    this.orderDataService.dataStream$.subscribe(data => {
+      this.order = data || [];
+    });
+
     this.tradeDataService.dataStream$.subscribe(data => {
       this.trade = data || [];
+    });
+
+    this.privateTradeDataService.dataStream$.subscribe(data => {
+      this.privateTrade = data || [];
+    });
+
+    this.filledOrderDataService.dataStream$.subscribe(data => {
+      this.filledOrder = data || [];
     });
   }
 
@@ -73,6 +94,15 @@ export class HomePageComponent implements OnInit {
 
     this.tradeDataService.updateData(symbol.symbol);
     this.tradeDataService.updateFeed(symbol.symbol);
+
+    this.orderDataService.updateData(symbol.symbol);
+    this.orderDataService.updateFeed(symbol.symbol);
+
+    this.privateTradeDataService.updateData(symbol.symbol);
+    this.privateTradeDataService.updateFeed(symbol.symbol);
+
+    this.filledOrderDataService.updateData(symbol.symbol);
+    this.filledOrderDataService.updateFeed(symbol.symbol);
   }
 
   get activeSymbol(): TradeSymbol {
@@ -97,5 +127,17 @@ export class HomePageComponent implements OnInit {
 
   get tradeData(): Trade[] {
     return this.trade || [];
+  }
+
+  get privateTradeData(): Trade[] {
+    return this.privateTrade || [];
+  }
+
+  get orderData(): Order[] {
+    return this.order || [];
+  }
+
+  get filledOrderData(): Order[] {
+    return this.filledOrder || [];
   }
 }

@@ -58,7 +58,7 @@ export default {
     }).then(data => {
       data = data['response'];
       if (data['Response'] && data['Response'] === 'Error') {
-        console.log('CryptoCompare API error:', data['Message']);
+        console.error('CryptoCompare API error:', data['Message']);
         return [];
       }
       if (data['Data'].length) {

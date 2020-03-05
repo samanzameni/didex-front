@@ -34,7 +34,7 @@ export default {
     // console.log('======resolveSymbol running');
     // console.log('resolveSymbol:',{symbolName})
     const split_data = symbolName.split(/[:/]/);
-    console.log(symbolName, split_data);
+    // console.log(symbolName, split_data);
 
     // console.log({split_data})
     const symbol_stub = {

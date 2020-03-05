@@ -24,6 +24,7 @@ const LINESTYLE_LARGE_DASHED = 3;
 import datafeedConfig from './datafeed';
 import { applyTheme } from './theme';
 import { TradeSymbol } from '@core/models';
+import { BehaviorSubject, Subscription } from 'rxjs';
 
 @Component({
   selector: 'tv-chart-wrapper',
@@ -32,6 +33,8 @@ import { TradeSymbol } from '@core/models';
 })
 export class TradingViewChartWrapperComponent
   implements OnChanges, OnDestroy, AfterViewInit {
+  private symbol$: BehaviorSubject<TradeSymbol>;
+
   tvWidget: IChartingLibraryWidget;
   datafeedConfig: any;
 
@@ -39,7 +42,10 @@ export class TradingViewChartWrapperComponent
 
   @ViewChild('loadingSpinner') loadingSpinner: ElementRef;
 
+  private symbolSubscription: Subscription;
+
   constructor(private renderer: Renderer2, private cdRef: ChangeDetectorRef) {
+    this.symbol$ = new BehaviorSubject(null);
     this.datafeedConfig = datafeedConfig;
   }
 
@@ -47,45 +53,46 @@ export class TradingViewChartWrapperComponent
     if (
       changes.activeSymbol.currentValue !== changes.activeSymbol.previousValue
     ) {
-      if (this.tvWidget) {
-        const renderer = this.renderer;
-        const spinner = this.loadingSpinner.nativeElement;
-        const cdRef = this.cdRef;
-
-        this.initTradingView(renderer, spinner, cdRef);
-      }
+      this.symbol$.next(changes.activeSymbol.currentValue);
     }
   }
 
   ngAfterViewInit() {
-    const renderer = this.renderer;
-    const spinner = this.loadingSpinner.nativeElement;
-    const cdRef = this.cdRef;
+    this.cdRef.detach();
 
-    cdRef.detach();
-
-    this.initTradingView(renderer, spinner, cdRef);
+    this.symbolSubscription = this.symbol$.subscribe(activeSymbol => {
+      this.initTradingView(activeSymbol);
+    });
   }
 
   ngOnDestroy() {
     if (this.tvWidget !== null) {
       this.tvWidget = null;
     }
+
+    if (this.symbolSubscription) {
+      this.symbolSubscription.unsubscribe();
+    }
   }
 
-  private initTradingView(renderer, spinner, cdRef): void {
+  private initTradingView(activeSymbol: TradeSymbol): void {
+    const renderer = this.renderer;
+    const spinner = this.loadingSpinner.nativeElement;
+    const cdRef = this.cdRef;
+
     renderer.removeClass(spinner, 'hidden');
+    cdRef.detectChanges();
 
     let symbol = 'Kraken:ETH/USDT';
-    if (this.activeSymbol) {
-      symbol = `Kraken:${this.activeSymbol.baseCurrencyShortName.trim()}/${this.activeSymbol.quoteCurrencyShortName.trim()}`;
+    if (activeSymbol) {
+      symbol = `Kraken:${activeSymbol.baseCurrencyShortName.trim()}/${activeSymbol.quoteCurrencyShortName.trim()}`;
     }
 
     setTimeout(() => {
       const widgetOptions: any = {
         symbol,
         datafeed: this.datafeedConfig,
-        interval: '1',
+        interval: 'D',
         container_id: 'tv_chart_container',
         library_path: 'assets/charting_library/',
         locale: 'en',
@@ -156,6 +163,6 @@ export class TradingViewChartWrapperComponent
           cdRef.detectChanges();
         }, 100);
       });
-    }, 1000);
+    }, 100);
   }
 }

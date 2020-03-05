@@ -4,6 +4,7 @@ import {
   EventEmitter,
   Input,
   OnChanges,
+  SimpleChanges,
 } from '@angular/core';
 import { TradeSymbol, Ticker } from '@core/models';
 import { getTickerFromSymbol } from '@core/util/ticker';
@@ -32,12 +33,63 @@ export class InstrumentsComponent implements OnChanges {
     this.tickerData = [];
   }
 
-  ngOnChanges() {
-    if (this.symbolsData && this.symbolsData.length > 0) {
-      this.currentActiveBaseCurrency = this.symbolsData[0].baseCurrencyShortName;
-      this.baseCurrencyChange.emit(this.currentActiveBaseCurrency);
-      this.symbolChange.emit(this.symbolsData[0]);
+  ngOnChanges(changes: SimpleChanges) {
+    if (
+      changes.symbolsData &&
+      this.symbolsData &&
+      this.symbolsData.length > 0
+    ) {
+      if (
+        !this.isSameSymbolData(
+          changes.symbolsData.currentValue,
+          changes.symbolsData.previousValue
+        )
+      ) {
+        this.currentActiveBaseCurrency = this.symbolsData[0].baseCurrencyShortName;
+        this.baseCurrencyChange.emit(this.currentActiveBaseCurrency);
+        this.symbolChange.emit(this.symbolsData[0]);
+      }
     }
+  }
+
+  private isSameSymbolData(a: TradeSymbol[], b: TradeSymbol[]): boolean {
+    if (!!a) {
+      if (!b) {
+        return false;
+      }
+
+      if (a.length !== b.length) {
+        return false;
+      }
+
+      for (let i = 0; i < a.length; i++) {
+        if (!this.isSameSymbol(a[i], b[i])) {
+          return false;
+        }
+      }
+
+      return true;
+    }
+
+    return !b;
+  }
+
+  private isSameSymbol(a: TradeSymbol, b: TradeSymbol): boolean {
+    if (!!a) {
+      if (!b) {
+        return false;
+      }
+
+      for (const key of Object.keys(a)) {
+        if (a[key] !== b[key]) {
+          return false;
+        }
+      }
+
+      return true;
+    }
+
+    return !b;
   }
 
   get activeBaseCurrency(): string {

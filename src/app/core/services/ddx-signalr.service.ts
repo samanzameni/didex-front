@@ -33,13 +33,9 @@ export class SignalRService {
 
     this.hubConnection
       .start()
-      .then(() =>
-        console.log('-----------------------DidEx Connection started')
-      )
+      .then(() => console.log('---DidEx Connection started'))
       .catch(err =>
-        console.log(
-          '-----------------------DidEx Error while starting connection: ' + err
-        )
+        console.log('---DidEx Error while starting connection: ' + err)
       );
   }
 
@@ -48,7 +44,7 @@ export class SignalRService {
     callbackMethod: (...args: any[]) => void
   ) {
     this.hubConnection.on(methodName, callbackMethod);
-    console.log('-----------------------DidEx Listener started', methodName);
+    console.log('---DidEx Listener started', methodName);
   }
 
   public removeDataListener(methodName: string) {

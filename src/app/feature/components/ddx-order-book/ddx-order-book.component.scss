@@ -58,8 +58,24 @@
       tr {
         box-sizing: border-box;
         padding: 1px 5px;
+        position: relative;
+
+        .row-underlay {
+          position: absolute;
+          top: 0;
+
+          width: 100%;
+          height: 100%;
+          z-index: 0;
+          padding: 0;
+          margin: 0;
+          display: flex;
+          border: none;
+        }
+
         th,
         td {
+          z-index: 1;
           &.row-index {
             display: none;
           }
@@ -71,6 +87,13 @@
       thead.ddx-table__head,
       tbody.ddx-table__body {
         tr {
+          .row-underlay {
+            left: unset;
+            right: 0;
+            direction: rtl;
+            background: rgba($ddx-green, 0.2);
+          }
+
           th,
           td {
             text-align: right;
@@ -83,6 +106,13 @@
       thead.ddx-table__head,
       tbody.ddx-table__body {
         tr {
+          .row-underlay {
+            right: unset;
+            left: 0;
+            direction: ltr;
+            background: rgba($ddx-red, 0.2);
+          }
+
           th,
           td {
             text-align: left;

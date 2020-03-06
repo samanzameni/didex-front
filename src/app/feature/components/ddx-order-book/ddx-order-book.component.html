@@ -1,92 +1,99 @@
-<div arrangeStack class="order-book__header">
-  <h2 class="order-book-header__title" *ngIf="!!activeSymbol">
-    Order Book {{ activeSymbol.baseCurrencyShortName }}
-  </h2>
+<ng-template [ngIf]="!activeSymbol" [ngIfElse]="content">
+  <div class="loading-spinner"></div>
+</ng-template>
 
-  <div
-    arrangeInline
-    arrangeCenter
-    *ngIf="!!activeSymbol"
-    class="order-book-header__info"
-  >
-    <div arrangeStack arrangeCenter class="info-section">
-      <h3>Buying {{ activeSymbol.baseCurrencyShortName }}</h3>
-      <span
-        >Total: {{ bidsTotal }} {{ activeSymbol.quoteCurrencyShortName }}</span
-      >
-    </div>
+<ng-template #content>
+  <div arrangeStack class="order-book__header">
+    <h2 class="order-book-header__title" *ngIf="!!activeSymbol">
+      Order Book {{ activeSymbol.baseCurrencyShortName }}
+    </h2>
 
-    <div arrangeStack arrangeCenter class="info-section">
-      <h3>Selling {{ activeSymbol.baseCurrencyShortName }}</h3>
-      <span
-        >Total: {{ asksTotal }} {{ activeSymbol.baseCurrencyShortName }}</span
-      >
+    <div
+      arrangeInline
+      arrangeCenter
+      *ngIf="!!activeSymbol"
+      class="order-book-header__info"
+    >
+      <div arrangeStack arrangeCenter class="info-section">
+        <h3>Buying {{ activeSymbol.baseCurrencyShortName }}</h3>
+        <span
+          >Total: {{ bidsTotal }}
+          {{ activeSymbol.quoteCurrencyShortName }}</span
+        >
+      </div>
+
+      <div arrangeStack arrangeCenter class="info-section">
+        <h3>Selling {{ activeSymbol.baseCurrencyShortName }}</h3>
+        <span
+          >Total: {{ asksTotal }} {{ activeSymbol.baseCurrencyShortName }}</span
+        >
+      </div>
     </div>
   </div>
-</div>
 
-<div arrangeInline class="order-book__tables" *ngIf="!!activeSymbol">
-  <table class="ddx__table">
-    <thead arrangeStack class="ddx-table__head">
-      <tr arrangeInline>
-        <th class="row-index">#</th>
-        <th class="row-big">Sum {{ activeSymbol.baseCurrencyShortName }}</th>
-        <th class="row-big">Amount</th>
-        <th class="row-big">Bid</th>
-      </tr>
-    </thead>
-    <tbody arrangeStack class="ddx-table__body">
-      <tr arrangeInline *ngFor="let row of bidsTableData; let i = index">
-        <td class="row-index">{{ i + 1 }}</td>
-        <td class="row-big" title="{{ bidsSumArray[i] }}">
-          {{ bidsSumArray[i] }}
-        </td>
-        <td class="row-big" title="{{ row.volume }}">{{ row.volume }}</td>
-        <td class="row-big" title="{{ row.price }}">{{ row.price }}</td>
-        <div
-          class="row-underlay"
-          [ngStyle]="{
-            width:
-              bidsSumArray[i]
-                .div(bidsSum)
-                .mul(100)
-                .toString() + '%'
-          }"
-        ></div>
-      </tr>
-    </tbody>
-  </table>
+  <div arrangeInline class="order-book__tables" *ngIf="!!activeSymbol">
+    <table class="ddx__table">
+      <thead arrangeStack class="ddx-table__head">
+        <tr arrangeInline>
+          <th class="row-index">#</th>
+          <th class="row-big">Sum {{ activeSymbol.baseCurrencyShortName }}</th>
+          <th class="row-big">Amount</th>
+          <th class="row-big">Bid</th>
+        </tr>
+      </thead>
+      <tbody arrangeStack class="ddx-table__body">
+        <tr arrangeInline *ngFor="let row of bidsTableData; let i = index">
+          <td class="row-index">{{ i + 1 }}</td>
+          <td class="row-big" title="{{ bidsSumArray[i] }}">
+            {{ bidsSumArray[i] }}
+          </td>
+          <td class="row-big" title="{{ row.volume }}">{{ row.volume }}</td>
+          <td class="row-big" title="{{ row.price }}">{{ row.price }}</td>
+          <div
+            class="row-underlay"
+            [ngStyle]="{
+              width:
+                bidsSumArray[i]
+                  .div(bidsSum)
+                  .mul(100)
+                  .toString() + '%'
+            }"
+          ></div>
+        </tr>
+      </tbody>
+    </table>
 
-  <hr />
+    <hr />
 
-  <table class="ddx__table">
-    <thead arrangeStack class="ddx-table__head">
-      <tr arrangeInline>
-        <th class="row-big">Ask</th>
-        <th class="row-big">Amount</th>
-        <th class="row-big">Sum {{ activeSymbol.baseCurrencyShortName }}</th>
-        <th class="row-index">#</th>
-      </tr>
-    </thead>
-    <tbody arrangeStack class="ddx-table__body">
-      <tr arrangeInline *ngFor="let row of asksTableData; let i = index">
-        <div
-          class="row-underlay"
-          [ngStyle]="{
-            width:
-              asksSumArray[i]
-                .div(asksSum)
-                .mul(100)
-                .toString() + '%'
-          }"
-        ></div>
-        <td class="row-big" title="{{ row.price }}">{{ row.price }}</td>
-        <td class="row-big" title="{{ row.volume }}">{{ row.volume }}</td>
-        <td class="row-big" title="{{ asksSumArray[i] }}">
-          {{ asksSumArray[i] }}
-        </td>
-        <td class="row-index">{{ i + 1 }}</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+    <table class="ddx__table">
+      <thead arrangeStack class="ddx-table__head">
+        <tr arrangeInline>
+          <th class="row-big">Ask</th>
+          <th class="row-big">Amount</th>
+          <th class="row-big">Sum {{ activeSymbol.baseCurrencyShortName }}</th>
+          <th class="row-index">#</th>
+        </tr>
+      </thead>
+      <tbody arrangeStack class="ddx-table__body">
+        <tr arrangeInline *ngFor="let row of asksTableData; let i = index">
+          <div
+            class="row-underlay"
+            [ngStyle]="{
+              width:
+                asksSumArray[i]
+                  .div(asksSum)
+                  .mul(100)
+                  .toString() + '%'
+            }"
+          ></div>
+          <td class="row-big" title="{{ row.price }}">{{ row.price }}</td>
+          <td class="row-big" title="{{ row.volume }}">{{ row.volume }}</td>
+          <td class="row-big" title="{{ asksSumArray[i] }}">
+            {{ asksSumArray[i] }}
+          </td>
+          <td class="row-index">{{ i + 1 }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</ng-template>

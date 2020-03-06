@@ -4,6 +4,7 @@
   width: 100%;
   min-height: 350px;
   display: grid;
+  position: relative;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: repeat(3, fit-content);
   grid-template-areas:

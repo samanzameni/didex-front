@@ -1,4 +1,8 @@
-<ng-container *ngIf="!!activeSymbol">
+<ng-template [ngIf]="!activeSymbol" [ngIfElse]="content">
+  <div class="loading-spinner"></div>
+</ng-template>
+
+<ng-template #content>
   <span
     arrangeCenter
     class="market__type"
@@ -271,4 +275,4 @@
       </button>
     </form>
   </div>
-</ng-container>
+</ng-template>

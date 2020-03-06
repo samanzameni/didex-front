@@ -1,34 +1,40 @@
-<div arrangeStack class="sale__header">
-  <h2 class="sale-header__title" *ngIf="!!activeSymbol">
-    Time & Sales {{ activeSymbol.baseCurrencyShortName }}
-  </h2>
+<ng-template [ngIf]="!activeSymbol" [ngIfElse]="content">
+  <div class="loading-spinner"></div>
+</ng-template>
 
-  <table class="ddx__table">
-    <thead arrangeStack class="ddx-table__head">
-      <tr arrangeInline *ngIf="!!activeSymbol">
-        <th class="row-index">#</th>
-        <th class="row-big">Time</th>
-        <th class="row-small">
-          Price ({{ activeSymbol.baseCurrencyShortName }})
-        </th>
-        <th class="row-small">
-          Amount ({{ activeSymbol.baseCurrencyShortName }})
-        </th>
-      </tr>
-    </thead>
-    <tbody arrangeStack class="ddx-table__body">
-      <tr arrangeInline *ngFor="let row of tableData; let i = index">
-        <td class="row-index">{{ i + 1 }}</td>
-        <td class="row-big">{{ row.timeStamp }}</td>
-        <td
-          class="row-small"
-          [ngClass]="getPriceCellCSSClass(row)"
-          title="{{ row.price }}"
-        >
-          {{ row.price }}
-        </td>
-        <td class="row-small" title="{{ row.volume }}">{{ row.volume }}</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+<ng-template #content>
+  <div arrangeStack class="sale__header">
+    <h2 class="sale-header__title" *ngIf="!!activeSymbol">
+      Time & Sales {{ activeSymbol.baseCurrencyShortName }}
+    </h2>
+
+    <table class="ddx__table">
+      <thead arrangeStack class="ddx-table__head">
+        <tr arrangeInline *ngIf="!!activeSymbol">
+          <th class="row-index">#</th>
+          <th class="row-big">Time</th>
+          <th class="row-small">
+            Price ({{ activeSymbol.baseCurrencyShortName }})
+          </th>
+          <th class="row-small">
+            Amount ({{ activeSymbol.baseCurrencyShortName }})
+          </th>
+        </tr>
+      </thead>
+      <tbody arrangeStack class="ddx-table__body">
+        <tr arrangeInline *ngFor="let row of tableData; let i = index">
+          <td class="row-index">{{ i + 1 }}</td>
+          <td class="row-big">{{ row.timeStamp }}</td>
+          <td
+            class="row-small"
+            [ngClass]="getPriceCellCSSClass(row)"
+            title="{{ row.price }}"
+          >
+            {{ row.price }}
+          </td>
+          <td class="row-small" title="{{ row.volume }}">{{ row.volume }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</ng-template>

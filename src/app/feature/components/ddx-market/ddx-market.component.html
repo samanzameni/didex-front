@@ -78,7 +78,7 @@
           name="buy_amount"
           id="buy_amount"
           placeholder=" "
-          min="0"
+          [min]="activeSymbol.quantityIncrement"
           [step]="activeSymbol.quantityIncrement"
           [(ngModel)]="buyAmount"
         />
@@ -94,7 +94,7 @@
           name="buy_limit"
           id="buy_limit"
           placeholder=" "
-          min="0"
+          [min]="activeSymbol.tickSize"
           [step]="activeSymbol.tickSize"
           [(ngModel)]="buyLimit"
         />
@@ -144,7 +144,7 @@
         </tbody>
       </table>
 
-      <button type="submit" class="market__submit-button buy-button">
+      <button type="submit" class="market__submit-button buy-button" #buyButton>
         Buy
       </button>
     </form>
@@ -205,7 +205,7 @@
           name="sell_amount"
           id="sell_amount"
           placeholder=" "
-          min="0"
+          [min]="activeSymbol.quantityIncrement"
           [step]="activeSymbol.quantityIncrement"
           [(ngModel)]="sellAmount"
         />
@@ -221,7 +221,7 @@
           name="sell_limit"
           id="sell_limit"
           placeholder=" "
-          min="0"
+          [min]="activeSymbol.tickSize"
           [step]="activeSymbol.tickSize"
           [(ngModel)]="sellLimit"
         />
@@ -270,7 +270,11 @@
         </tbody>
       </table>
 
-      <button type="submit" class="market__submit-button sell-button">
+      <button
+        type="submit"
+        class="market__submit-button sell-button"
+        #sellButton
+      >
         Sell
       </button>
     </form>

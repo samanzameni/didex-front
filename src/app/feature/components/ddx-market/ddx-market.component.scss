@@ -163,8 +163,14 @@
 
           &:hover {
             border-color: $ddx-green;
-            background-color: $ddx-green;
+            background-color: rgba($ddx-green, 0.2);
             color: $ddx-light;
+          }
+
+          &.is-loading {
+            border-color: $ddx-green;
+            background-color: rgba($ddx-green, 0.2);
+            color: transparent;
           }
         }
 
@@ -174,8 +180,14 @@
 
           &:hover {
             border-color: $ddx-red;
-            background-color: $ddx-red;
+            background-color: rgba($ddx-red, 0.2);
             color: $ddx-light;
+          }
+
+          &.is-loading {
+            border-color: $ddx-red;
+            background-color: rgba($ddx-red, 0.2);
+            color: transparent;
           }
         }
       }

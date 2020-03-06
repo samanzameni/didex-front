@@ -1,4 +1,11 @@
-import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  ViewChild,
+  ElementRef,
+  Renderer2,
+} from '@angular/core';
 import { TradeSymbol, Balance, Ticker } from '@core/models';
 import { getTickerFromSymbol } from '@core/util/ticker';
 
@@ -29,20 +36,25 @@ export class MarketComponent implements OnInit {
   buyTimeInForce: OrderTimeInForce;
   buyPostOnly: boolean;
   @ViewChild('buyTotalInput') buyTotalInput: ElementRef;
+  @ViewChild('buyButton') buyButton: ElementRef;
 
   sellAmount: number;
   sellLimit: number;
   sellTimeInForce: OrderTimeInForce;
   sellPostOnly: boolean;
   @ViewChild('sellTotalInput') sellTotalInput: ElementRef;
+  @ViewChild('sellButton') sellButton: ElementRef;
 
-  constructor(private orderService: OrderRESTService) {
-    this.currentActiveType = 'market';
+  constructor(
+    private orderService: OrderRESTService,
+    private renderer: Renderer2
+  ) {
+    this.currentActiveType = 'limit';
 
-    this.buyAmount = 0;
-    this.buyLimit = 0;
-    this.sellAmount = 0;
-    this.sellLimit = 0;
+    // this.buyAmount = 0;
+    // this.buyLimit = 0;
+    // this.sellAmount = 0;
+    // this.sellLimit = 0;
   }
 
   ngOnInit() {}
@@ -176,6 +188,8 @@ export class MarketComponent implements OnInit {
   }
 
   onSubmitBuy(): void {
+    this.setLoadingOn(this.buyButton);
+
     let dataToSend: OrderData = {
       marketSymbol: this.activeSymbol.symbol,
       side: OrderSide.Buy,
@@ -198,14 +212,18 @@ export class MarketComponent implements OnInit {
     this.orderService.requestOrder(dataToSend).subscribe(
       response => {
         // TODO
+        this.setLoadingOff(this.buyButton);
       },
       errorResponse => {
         // TODO
+        this.setLoadingOff(this.buyButton);
       }
     );
   }
 
   onSubmitSell(): void {
+    this.setLoadingOn(this.sellButton);
+
     let dataToSend: OrderData = {
       marketSymbol: this.activeSymbol.symbol,
       side: OrderSide.Sell,
@@ -228,10 +246,20 @@ export class MarketComponent implements OnInit {
     this.orderService.requestOrder(dataToSend).subscribe(
       response => {
         // TODO
+        this.setLoadingOff(this.sellButton);
       },
       errorResponse => {
         // TODO
+        this.setLoadingOff(this.sellButton);
       }
     );
+  }
+
+  private setLoadingOn(button: ElementRef): void {
+    this.renderer.addClass(button.nativeElement, 'is-loading');
+  }
+
+  private setLoadingOff(button: ElementRef): void {
+    this.renderer.removeClass(button.nativeElement, 'is-loading');
   }
 }

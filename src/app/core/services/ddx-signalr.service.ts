@@ -7,27 +7,25 @@ import { StorageService } from './ddx-storage.service';
 @Injectable()
 export class SignalRService {
   private hubConnection: signalR.HubConnection;
-  private apiURL: string;
-  private options: signalR.IHttpConnectionOptions;
 
-  constructor(private storageService: StorageService) {
+  constructor(private storageService: StorageService) {}
+
+  public startConnection(): void {
     const baseURL = environment.production
       ? CONSTANTS.SERVER_URL
       : CONSTANTS.MOCK_SERVER_URL;
     const accessToken = this.storageService.getUserAccessToken();
-
-    this.apiURL = baseURL.concat('api/live');
-
-    this.options = {
-      accessTokenFactory: () => {
-        return accessToken;
-      },
+    const apiURL = baseURL.concat('api/live');
+    const options: signalR.IHttpConnectionOptions = {
+      accessTokenFactory: accessToken
+        ? () => {
+            return accessToken;
+          }
+        : undefined,
     };
-  }
 
-  public startConnection(): void {
     this.hubConnection = new signalR.HubConnectionBuilder()
-      .withUrl(this.apiURL, this.options)
+      .withUrl(apiURL, options)
       .withAutomaticReconnect()
       .build();
 
@@ -37,6 +35,19 @@ export class SignalRService {
       .catch(err =>
         console.log('---DidEx Error while starting connection: ' + err)
       );
+  }
+
+  public resetConnection(): void {
+    if (this.hubConnection) {
+      this.hubConnection
+        .stop()
+        .then(() => console.log('---DidEx Connection stopped'))
+        .catch(err =>
+          console.log('---DidEx Error while stopping connection: ' + err)
+        );
+    }
+
+    this.startConnection();
   }
 
   public addDataListener(

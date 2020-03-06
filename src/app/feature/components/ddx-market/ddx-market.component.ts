@@ -18,6 +18,7 @@ import {
   OrderTimeInForce,
 } from '@core/models/ddx-order.model';
 import { DropdownSelectItem } from '@widget/models';
+import { AuthService } from '@core/services';
 
 @Component({
   selector: 'ddx-market',
@@ -47,6 +48,7 @@ export class MarketComponent implements OnInit {
 
   constructor(
     private orderService: OrderRESTService,
+    private authService: AuthService,
     private renderer: Renderer2
   ) {
     this.currentActiveType = 'limit';
@@ -190,6 +192,10 @@ export class MarketComponent implements OnInit {
   onSubmitBuy(): void {
     this.setLoadingOn(this.buyButton);
 
+    if (!this.authService.isAuthorized) {
+      this.authService.handleAuthError();
+    }
+
     let dataToSend: OrderData = {
       marketSymbol: this.activeSymbol.symbol,
       side: OrderSide.Buy,
@@ -224,6 +230,10 @@ export class MarketComponent implements OnInit {
   onSubmitSell(): void {
     this.setLoadingOn(this.sellButton);
 
+    if (!this.authService.isAuthorized) {
+      this.authService.handleAuthError();
+    }
+
     let dataToSend: OrderData = {
       marketSymbol: this.activeSymbol.symbol,
       side: OrderSide.Sell,
@@ -256,10 +266,14 @@ export class MarketComponent implements OnInit {
   }
 
   private setLoadingOn(button: ElementRef): void {
-    this.renderer.addClass(button.nativeElement, 'is-loading');
+    if (this.renderer) {
+      this.renderer.addClass(button.nativeElement, 'is-loading');
+    }
   }
 
   private setLoadingOff(button: ElementRef): void {
-    this.renderer.removeClass(button.nativeElement, 'is-loading');
+    if (this.renderer) {
+      this.renderer.removeClass(button.nativeElement, 'is-loading');
+    }
   }
 }

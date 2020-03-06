@@ -9,6 +9,7 @@ import { StorageService } from './ddx-storage.service';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { SignalRService } from './ddx-signalr.service';
 
 @Injectable()
 export class AuthService {
@@ -17,6 +18,7 @@ export class AuthService {
   constructor(
     private restService: AuthRESTService,
     private storageService: StorageService,
+    private signalrService: SignalRService,
     private router: Router
   ) {
     this.isUserAuthorized = !!this.storageService.getUserAccessToken();
@@ -33,6 +35,7 @@ export class AuthService {
           didexAccessToken: response.token,
         });
         this.isUserAuthorized = true;
+        this.signalrService.resetConnection();
       })
     );
   }
@@ -44,6 +47,7 @@ export class AuthService {
           didexAccessToken: response.token,
         });
         this.isUserAuthorized = true;
+        this.signalrService.resetConnection();
       })
     );
   }
@@ -57,6 +61,7 @@ export class AuthService {
   public requestSignOut(): void {
     this.storageService.clearUserToken();
     this.isUserAuthorized = false;
+    this.signalrService.resetConnection();
     this.router.navigateByUrl('/');
   }
 
@@ -66,6 +71,7 @@ export class AuthService {
     );
     this.storageService.clearUserToken();
     this.isUserAuthorized = false;
+    this.signalrService.resetConnection();
     this.router.navigateByUrl('/auth/signin');
   }
 }

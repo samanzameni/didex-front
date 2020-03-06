@@ -8,7 +8,6 @@ import {
 } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthService } from '@core/services';
-import { TraderService } from '@core/services/ddx-trader.service';
 
 @Injectable({
   providedIn: 'root',

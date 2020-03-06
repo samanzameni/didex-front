@@ -34,7 +34,6 @@ export abstract class AbstractDATAService<T> {
     this.queryEngine(...params).subscribe(
       response => {
         if (response === null && response === undefined) {
-          // this.turnOffViewMore();
         } else {
           this.dataStream$.next(response);
         }
@@ -42,7 +41,7 @@ export abstract class AbstractDATAService<T> {
       },
       error => {
         if (error.status && error.status === 401) {
-          this.handleAuthError();
+          // this.handleAuthError(); TODO
         }
       }
     );

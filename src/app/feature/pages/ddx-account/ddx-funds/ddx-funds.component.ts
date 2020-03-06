@@ -6,6 +6,8 @@ import {
   faCoins,
   IconDefinition,
 } from '@fortawesome/free-solid-svg-icons';
+import { BankingRESTService } from '@core/services/REST';
+import { Balance } from '@core/models';
 
 @Component({
   selector: 'ddx-funds',
@@ -17,15 +19,20 @@ import {
 })
 export class FundsPageComponent implements OnInit {
   private sortOptions: DropdownSelectItem[];
+  private data: Balance[];
 
-  constructor() {
+  constructor(private restService: BankingRESTService) {
     this.sortOptions = [
       { title: 'Most Available', value: 'available-dsc' },
       { title: 'Least Available', value: 'available-asc' },
     ];
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.restService.requestBalance().subscribe(response => {
+      this.data = response || [];
+    });
+  }
 
   get sortSelectOptions(): DropdownSelectItem[] {
     return this.sortOptions;
@@ -43,8 +50,8 @@ export class FundsPageComponent implements OnInit {
     return faCoins;
   }
 
-  get tableRows(): any[] {
-    return [1, 2]; // TODO
+  get tableRows(): Balance[] {
+    return this.data || [];
   }
 
   onSortValueChange($event): void {

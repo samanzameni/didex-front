@@ -9,6 +9,7 @@ import {
 } from './directives';
 import {
   DropdownMenuComponent,
+  DropdownItemComponent,
   DropdownSelectComponent,
   ToggleButtonComponent,
   CheckboxComponent,
@@ -27,6 +28,7 @@ import { RouterModule } from '@angular/router';
     ArrangeStackDirective,
     //
     DropdownMenuComponent,
+    DropdownItemComponent,
     DropdownSelectComponent,
     ToggleButtonComponent,
     CheckboxComponent,
@@ -44,6 +46,7 @@ import { RouterModule } from '@angular/router';
     ArrangeStackDirective,
     //
     DropdownMenuComponent,
+    DropdownItemComponent,
     DropdownSelectComponent,
     ToggleButtonComponent,
     CheckboxComponent,

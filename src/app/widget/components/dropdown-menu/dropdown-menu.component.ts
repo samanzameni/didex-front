@@ -7,6 +7,7 @@ import {
   AfterViewInit,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
+  HostListener,
 } from '@angular/core';
 import { DropdownMenuItem } from '@widget/models';
 import {
@@ -23,13 +24,12 @@ import {
 })
 export class DropdownMenuComponent implements OnInit, AfterViewInit {
   @Input() caption: string;
-  @Input() menuItems: DropdownMenuItem[];
 
   @ViewChild('dropdownToggle') dropdownToggle: ElementRef;
 
   private isOpenState: boolean;
 
-  constructor(private cdRef: ChangeDetectorRef) {
+  constructor(private cdRef: ChangeDetectorRef, private el: ElementRef) {
     this.isOpenState = false;
   }
 
@@ -37,18 +37,26 @@ export class DropdownMenuComponent implements OnInit, AfterViewInit {
     if (!this.caption) {
       this.caption = 'Menu';
     }
-
-    if (!this.menuItems) {
-      this.menuItems = [];
-    }
   }
 
   ngAfterViewInit(): void {
     if (this.dropdownToggle) {
-      // TODO
+      this.dropdownToggle.nativeElement.addEventListener(
+        'click',
+        this.toggleDropdown.bind(this)
+      );
     }
 
     this.cdRef.detach();
+  }
+
+  @HostListener('window:click', ['$event'])
+  handleClickOnScreen($event: MouseEvent) {
+    if (!this.el.nativeElement.contains($event.target as HTMLElement)) {
+      this.isOpenState = false;
+
+      this.cdRef.detectChanges();
+    }
   }
 
   get isOpen(): boolean {

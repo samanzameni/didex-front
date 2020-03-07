@@ -1,9 +1,14 @@
 import { Injectable } from '@angular/core';
 import { AbstractRESTService } from '@core/templates';
 import { Observable } from 'rxjs';
+import { Trader } from '@core/models';
 
 @Injectable()
 export class TraderRESTService extends AbstractRESTService {
+  public requestGetTraderInfo(): Observable<Trader> {
+    return this.httpGET('api/Trader') as Observable<Trader>;
+  }
+
   public requestUpdatePersonalInfo(data: any): Observable<any> {
     return this.httpPUT('api/Trader/PersonalInformation', data);
   }
@@ -28,5 +33,9 @@ export class TraderRESTService extends AbstractRESTService {
       'api/Trader/KycImage',
       Object.assign(data, { imageType: 2 })
     );
+  }
+
+  public requestKYCApproval(): Observable<any> {
+    return this.httpGET('api/Trader/RequestApproval');
   }
 }

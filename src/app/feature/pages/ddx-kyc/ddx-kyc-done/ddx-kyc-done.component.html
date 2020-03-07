@@ -1,0 +1,16 @@
+<img src="/assets/images/kyc-done.svg" alt="done" />
+<p class="body">
+  Thanks! Now click on submit button to send your KYC application for approval.
+</p>
+
+<div class="actions">
+  <a
+    class="back-button"
+    routerLink="/user/kyc/personal-information"
+    rel="noopener noreferrer"
+    >Edit application</a
+  >
+  <button type="submit" (click)="onSubmit()" #submitButton>
+    Submit
+  </button>
+</div>

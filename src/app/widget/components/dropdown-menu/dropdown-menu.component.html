@@ -2,19 +2,11 @@
   class="button-secondary dropdown-toggle"
   [ngClass]="{ active: isOpen }"
   #dropdownToggle
-  (click)="toggleDropdown()"
 >
   <span>{{ caption }}</span>
   <fa-icon [icon]="caretIcon"></fa-icon>
 </button>
 
-<ul
-  *ngIf="!!menuItems && menuItems.length > 0"
-  arrangeStack
-  class="dropdown-menu"
-  [ngClass]="{ active: isOpen }"
->
-  <li *ngFor="let menuItem of menuItems" class="dropdown-item">
-    <a [routerLink]="menuItem.url">{{ menuItem.caption }}</a>
-  </li>
+<ul arrangeStack class="dropdown-menu" [ngClass]="{ active: isOpen }">
+  <ng-content select="dropdown-item"></ng-content>
 </ul>

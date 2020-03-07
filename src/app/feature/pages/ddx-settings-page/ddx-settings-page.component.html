@@ -1,10 +1,160 @@
-<section arrangeStack class="container">
-  <h2 class="section__title">KYC</h2>
-  <hr class="section__seperator" />
-  <p>
-    As a user, you must validate your identity in order to do transactions in
-    DidEx
-  </p>
+<section arrangeStack class="container" [ngSwitch]="currentActivePage">
+  <div arrangeInline class="settings-page__header">
+    <h2 class="settings-page__title">Settings</h2>
 
-  <a routerLink="/user/kyc" class="validate-button">Validate identity</a>
+    <ul arrangeInline class="settings-page__sections">
+      <li
+        class="settings-page__section-tab"
+        [ngClass]="{ active: currentActivePage === 'general' }"
+        (click)="activatePage('general')"
+      >
+        General
+      </li>
+      <li
+        class="settings-page__section-tab"
+        [ngClass]="{ active: currentActivePage === 'security' }"
+        (click)="activatePage('security')"
+      >
+        Security
+      </li>
+      <li
+        class="settings-page__section-tab"
+        [ngClass]="{ active: currentActivePage === 'kyc' }"
+        (click)="activatePage('kyc')"
+      >
+        KYC
+      </li>
+    </ul>
+  </div>
+  <hr class="settings-page__seperator" />
+
+  <div class="settings-page__content" *ngSwitchCase="'general'">
+    <p>
+      Here, you can change your general account information.
+    </p>
+
+    <form
+      arrangeStack
+      autocomplete="off"
+      [formGroup]="generalFormGroup"
+      (ngSubmit)="onSubmitGeneralForm()"
+      #generalForm
+    >
+      <label class="form-control" for="nickname">
+        <input
+          type="text"
+          formControlName="nickname"
+          name="nickname"
+          id="nickname"
+          placeholder=" "
+        />
+        <span class="actual-label">Nickname</span>
+      </label>
+
+      <dropdown-select
+        caption="Timezone"
+        id="timezone"
+        [control]="generalFormControls.timezone"
+        [items]="timezonesList"
+      ></dropdown-select>
+
+      <label class="form-control" for="password">
+        <input
+          type="password"
+          formControlName="password"
+          name="password"
+          id="password"
+          placeholder=" "
+        />
+        <span class="actual-label">Password</span>
+      </label>
+
+      <button
+        type="submit"
+        [disabled]="!generalFormGroup.valid"
+        #generalSubmitButton
+      >
+        Save Changes
+      </button>
+    </form>
+  </div>
+
+  <div class="settings-page__content" *ngSwitchCase="'security'">
+    <form
+      arrangeStack
+      autocomplete="off"
+      [formGroup]="securityFormGroup"
+      (ngSubmit)="onSubmitSecurityForm()"
+      #securityForm
+    >
+      <label class="form-control" for="oldPassword">
+        <input
+          type="password"
+          formControlName="oldPassword"
+          name="oldPassword"
+          id="oldPassword"
+          placeholder=" "
+        />
+        <span class="actual-label">Old Password</span>
+      </label>
+
+      <label class="form-control" for="password">
+        <input
+          type="password"
+          formControlName="password"
+          name="password"
+          id="password"
+          placeholder=" "
+        />
+        <span class="actual-label">Password</span>
+      </label>
+
+      <label class="form-control" for="confirm-password">
+        <input
+          type="password"
+          formControlName="confirmPassword"
+          name="confirm-password"
+          id="confirm-password"
+          placeholder=" "
+        />
+        <span class="actual-label">Confirm Password</span>
+      </label>
+
+      <button
+        type="submit"
+        [disabled]="!securityFormGroup.valid"
+        #securitySubmitButton
+      >
+        Save Changes
+      </button>
+    </form>
+  </div>
+
+  <div
+    class="settings-page__content"
+    *ngSwitchCase="'kyc'"
+    [ngSwitch]="currentTraderStatus"
+  >
+    <ng-container *ngSwitchCase="'newbie'">
+      <p>
+        As a user, you must validate your identity in order to do transactions
+        in DidEx
+      </p>
+      <a routerLink="/user/kyc" class="validate-button">Validate identity</a>
+    </ng-container>
+    <ng-container *ngSwitchCase="'sent'">
+      <p>
+        You have filled and sent your information and it is waiting for approval
+      </p>
+      <a routerLink="/user/kyc" class="validate-button">Update KYC Info</a>
+    </ng-container>
+    <ng-container *ngSwitchCase="'approved'">
+      <p>Your KYC Information is approved.</p>
+      <a routerLink="/user/kyc" class="validate-button">Update KYC Info</a>
+    </ng-container>
+    <ng-container *ngSwitchCase="'banned'">
+      <p>Your application for KYC is banned</p>
+      <a routerLink="/user/kyc" class="validate-button">Validate identity</a>
+    </ng-container>
+  </div>
 </section>

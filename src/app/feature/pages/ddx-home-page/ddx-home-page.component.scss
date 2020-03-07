@@ -1,8 +1,6 @@
 @import '../../../../styles.scss';
 
 :host {
-  // background-color: $ddx-light;
-  // color: $ddx-primary-darkest;
   display: grid;
   grid-template-columns: auto;
   grid-template-rows: repeat(6, fit-content);
@@ -55,11 +53,6 @@
   }
 }
 
-@media screen and (min-width: $break-narrow-desktop) {
-  :host {
-  }
-}
-
 @media screen and (min-width: $break-desktop) {
   :host {
     grid-template-columns: repeat(12, 1fr);
@@ -84,10 +77,10 @@
     }
 
     section.my-orders-section {
-      grid-column: 1 / 8;
+      grid-column: 1 / 7;
     }
     section.sale-section {
-      grid-column: 8 / 13;
+      grid-column: 7 / 13;
     }
   }
 }

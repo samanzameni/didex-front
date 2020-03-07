@@ -1,42 +1,95 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { SymbolDATAService } from '@core/services/DATA';
-import { TradeSymbol, SymbolTickerData, TradeTicker } from '@core/models';
+import {
+  Component,
+  Output,
+  EventEmitter,
+  Input,
+  OnChanges,
+  SimpleChanges,
+} from '@angular/core';
+import { TradeSymbol, Ticker } from '@core/models';
+import { getTickerFromSymbol } from '@core/util/ticker';
 
 @Component({
   selector: 'ddx-instruments',
   templateUrl: './ddx-instruments.component.html',
-  styleUrls: ['./ddx-instruments.component.scss'],
+  styleUrls: [
+    '../../public/ddx-homepage-tables.scss',
+    './ddx-instruments.component.scss',
+  ],
 })
-export class InstrumentsComponent implements OnInit {
+export class InstrumentsComponent implements OnChanges {
   private currentActiveBaseCurrency: string;
-  private symbolsData: TradeSymbol[];
-  private tickersData: TradeTicker[];
-  private instrumentsData: SymbolTickerData;
+
+  @Input() symbolsData: TradeSymbol[];
+  @Input() tickerData: Ticker[];
 
   @Output() baseCurrencyChange: EventEmitter<string>;
   @Output() symbolChange: EventEmitter<TradeSymbol>;
 
-  constructor(private dataService: SymbolDATAService) {
+  constructor() {
     this.baseCurrencyChange = new EventEmitter();
     this.symbolChange = new EventEmitter();
     this.symbolsData = [];
-    this.tickersData = [];
-    // this.initMockData(); // TODO
+    this.tickerData = [];
   }
 
-  ngOnInit() {
-    this.dataService.updateData();
-    this.dataService.dataStream$.subscribe(data => {
-      // this.symbolsData = Array.from(data);
-      this.instrumentsData = data;
-      this.symbolsData = data.symbol;
-      this.tickersData = data.ticker;
-      if (this.symbolsData && this.symbolsData.length > 0) {
+  ngOnChanges(changes: SimpleChanges) {
+    if (
+      changes.symbolsData &&
+      this.symbolsData &&
+      this.symbolsData.length > 0
+    ) {
+      if (
+        !this.isSameSymbolData(
+          changes.symbolsData.currentValue,
+          changes.symbolsData.previousValue
+        )
+      ) {
         this.currentActiveBaseCurrency = this.symbolsData[0].baseCurrencyShortName;
         this.baseCurrencyChange.emit(this.currentActiveBaseCurrency);
         this.symbolChange.emit(this.symbolsData[0]);
       }
-    });
+    }
+  }
+
+  private isSameSymbolData(a: TradeSymbol[], b: TradeSymbol[]): boolean {
+    if (!!a) {
+      if (!b) {
+        return false;
+      }
+
+      if (a.length !== b.length) {
+        return false;
+      }
+
+      for (let i = 0; i < a.length; i++) {
+        if (!this.isSameSymbol(a[i], b[i])) {
+          return false;
+        }
+      }
+
+      return true;
+    }
+
+    return !b;
+  }
+
+  private isSameSymbol(a: TradeSymbol, b: TradeSymbol): boolean {
+    if (!!a) {
+      if (!b) {
+        return false;
+      }
+
+      for (const key of Object.keys(a)) {
+        if (a[key] !== b[key]) {
+          return false;
+        }
+      }
+
+      return true;
+    }
+
+    return !b;
   }
 
   get activeBaseCurrency(): string {
@@ -44,7 +97,6 @@ export class InstrumentsComponent implements OnInit {
   }
 
   get baseCurrencies(): string[] {
-    // return this.baseCurrencyList;
     return this.data
       .map(item => item.baseCurrencyShortName)
       .filter((currency, i, self) => self.indexOf(currency) === i);
@@ -60,15 +112,15 @@ export class InstrumentsComponent implements OnInit {
     return this.symbolsData;
   }
 
-  getTickerDataFromSymbol(symbol: TradeSymbol): TradeTicker {
-    const filtered: TradeTicker[] = this.tickersData.filter(
-      sData => sData.symbol === symbol.symbol
-    );
-    if (filtered.length < 1) {
-      return null;
-    }
+  getTickerDataFromSymbol(symbol: TradeSymbol): Ticker {
+    return getTickerFromSymbol(this.tickerData, symbol);
+  }
 
-    return filtered[0];
+  getTickerChange(symbol: TradeSymbol): number {
+    const close = this.getTickerDataFromSymbol(symbol).close;
+    const open = this.getTickerDataFromSymbol(symbol).open;
+
+    return open === 0 ? 0 : ((close - open) / open) * 100;
   }
 
   activateBaseCurrency(newBaseCurrency: string): void {

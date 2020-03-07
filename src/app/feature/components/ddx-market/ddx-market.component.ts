@@ -1,6 +1,24 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { TradeSymbol, TradeBalance } from '@core/models';
-import { BalanceDATAService } from '@core/services/DATA';
+import {
+  Component,
+  OnInit,
+  Input,
+  ViewChild,
+  ElementRef,
+  Renderer2,
+} from '@angular/core';
+import { TradeSymbol, Balance, Ticker } from '@core/models';
+import { getTickerFromSymbol } from '@core/util/ticker';
+
+import { Decimal } from 'decimal.js';
+import { OrderRESTService } from '@core/services/REST';
+import {
+  OrderData,
+  OrderSide,
+  OrderType,
+  OrderTimeInForce,
+} from '@core/models/ddx-order.model';
+import { DropdownSelectItem } from '@widget/models';
+import { AuthService } from '@core/services';
 
 @Component({
   selector: 'ddx-market',
@@ -9,26 +27,45 @@ import { BalanceDATAService } from '@core/services/DATA';
 })
 export class MarketComponent implements OnInit {
   @Input() activeSymbol: TradeSymbol;
+  @Input() tickerData: Ticker[];
+  @Input() balanceData: Balance[];
 
   private currentActiveType: string;
-  private balanceData: TradeBalance[];
 
-  constructor(private dataService: BalanceDATAService) {
-    this.currentActiveType = 'market';
+  buyAmount: number;
+  buyLimit: number;
+  buyTimeInForce: OrderTimeInForce;
+  buyPostOnly: boolean;
+  @ViewChild('buyTotalInput') buyTotalInput: ElementRef;
+  @ViewChild('buyButton') buyButton: ElementRef;
+
+  sellAmount: number;
+  sellLimit: number;
+  sellTimeInForce: OrderTimeInForce;
+  sellPostOnly: boolean;
+  @ViewChild('sellTotalInput') sellTotalInput: ElementRef;
+  @ViewChild('sellButton') sellButton: ElementRef;
+
+  constructor(
+    private orderService: OrderRESTService,
+    private authService: AuthService,
+    private renderer: Renderer2
+  ) {
+    this.currentActiveType = 'limit';
+
+    // this.buyAmount = 0;
+    // this.buyLimit = 0;
+    // this.sellAmount = 0;
+    // this.sellLimit = 0;
   }
 
-  ngOnInit() {
-    this.dataService.updateData();
-    this.dataService.dataStream$.subscribe(data => {
-      this.balanceData = data || [];
-    });
-  }
+  ngOnInit() {}
 
   get activeType(): string {
     return this.currentActiveType;
   }
 
-  get baseBalanceData(): TradeBalance {
+  get baseBalanceData(): Balance {
     if (!this.activateType || !this.balanceData) {
       return null;
     }
@@ -42,7 +79,7 @@ export class MarketComponent implements OnInit {
     return null;
   }
 
-  get quoteBalanceData(): TradeBalance {
+  get quoteBalanceData(): Balance {
     if (!this.activateType || !this.balanceData) {
       return null;
     }
@@ -56,10 +93,187 @@ export class MarketComponent implements OnInit {
     return null;
   }
 
+  get timeInForceDropdownItems(): DropdownSelectItem[] {
+    const keys = Object.keys(OrderTimeInForce);
+    const names = keys.slice(keys.length / 2);
+
+    return names.map(name => {
+      return {
+        title: name,
+        value: OrderTimeInForce[name],
+      };
+    });
+  }
+
+  get bestBid(): Decimal {
+    return new Decimal(
+      this.tickerData && this.tickerData.length > 0
+        ? this.getTickerDataFromSymbol().bid
+        : 0
+    );
+  }
+
+  get bestAsk(): Decimal {
+    return new Decimal(
+      this.tickerData && this.tickerData.length > 0
+        ? this.getTickerDataFromSymbol().ask
+        : 0
+    );
+  }
+
+  get buyTotal(): Decimal {
+    return this.bestBid.mul(this.buyAmount || 0);
+  }
+
+  get baseTotal(): Decimal {
+    return new Decimal(this.baseBalanceData.available).add(
+      this.baseBalanceData.reserved
+    );
+  }
+
+  get quoteTotal(): Decimal {
+    return new Decimal(this.quoteBalanceData.available).add(
+      this.quoteBalanceData.reserved
+    );
+  }
+
+  get buyTakerFee(): Decimal {
+    return this.activeSymbol.feeSide === 0
+      ? new Decimal(this.buyAmount || 0).mul(
+          this.activeSymbol.takeLiquidityRate
+        )
+      : this.buyTotal.mul(this.activeSymbol.takeLiquidityRate);
+  }
+
+  get buyApproxPay(): Decimal {
+    return this.buyTotal.plus(this.buyTakerFee);
+  }
+
+  get sellTotal(): Decimal {
+    return this.bestAsk.mul(this.sellAmount || 0);
+  }
+
+  get sellTakerFee(): Decimal {
+    return this.activeSymbol.feeSide === 0
+      ? new Decimal(this.sellAmount || 0).mul(
+          this.activeSymbol.takeLiquidityRate
+        )
+      : this.sellTotal.mul(this.activeSymbol.takeLiquidityRate);
+  }
+
+  get sellApproxPay(): Decimal {
+    return this.sellTotal.minus(this.sellTakerFee);
+  }
+
+  getTickerDataFromSymbol(): Ticker {
+    return getTickerFromSymbol(this.tickerData, this.activeSymbol);
+  }
+
   activateType(newType: string): void {
     this.currentActiveType = newType;
   }
 
-  onSubmitBuy(): void {}
-  onSubmitSell(): void {}
+  onSelectBuyTimeInForce(selectedValue: number): void {
+    this.buyTimeInForce = selectedValue;
+  }
+
+  onSelectSellTimeInForce(selectedValue: number): void {
+    this.sellTimeInForce = selectedValue;
+  }
+
+  onSellPostOnlyCheck(checked: boolean): void {
+    this.sellPostOnly = checked;
+  }
+
+  onBuyPostOnlyCheck(checked: boolean): void {
+    this.buyPostOnly = checked;
+  }
+
+  onSubmitBuy(): void {
+    this.setLoadingOn(this.buyButton);
+
+    if (!this.authService.isAuthorized) {
+      this.authService.handleAuthError();
+    }
+
+    let dataToSend: OrderData = {
+      marketSymbol: this.activeSymbol.symbol,
+      side: OrderSide.Buy,
+      type: OrderType.Market,
+      quantity: this.buyAmount,
+      price: 1,
+      postOnly: false,
+    };
+
+    if (this.activeType === 'limit') {
+      dataToSend = {
+        ...dataToSend,
+        type: OrderType.Limit,
+        timeInForce: this.buyTimeInForce,
+        price: this.buyLimit,
+        postOnly: this.buyPostOnly,
+      };
+    }
+
+    this.orderService.requestOrder(dataToSend).subscribe(
+      response => {
+        // TODO
+        this.setLoadingOff(this.buyButton);
+      },
+      errorResponse => {
+        // TODO
+        this.setLoadingOff(this.buyButton);
+      }
+    );
+  }
+
+  onSubmitSell(): void {
+    this.setLoadingOn(this.sellButton);
+
+    if (!this.authService.isAuthorized) {
+      this.authService.handleAuthError();
+    }
+
+    let dataToSend: OrderData = {
+      marketSymbol: this.activeSymbol.symbol,
+      side: OrderSide.Sell,
+      type: OrderType.Market,
+      quantity: this.sellAmount,
+      price: 1,
+      postOnly: false,
+    };
+
+    if (this.activeType === 'limit') {
+      dataToSend = {
+        ...dataToSend,
+        type: OrderType.Limit,
+        timeInForce: this.sellTimeInForce,
+        price: this.sellLimit,
+        postOnly: this.sellPostOnly,
+      };
+    }
+
+    this.orderService.requestOrder(dataToSend).subscribe(
+      response => {
+        // TODO
+        this.setLoadingOff(this.sellButton);
+      },
+      errorResponse => {
+        // TODO
+        this.setLoadingOff(this.sellButton);
+      }
+    );
+  }
+
+  private setLoadingOn(button: ElementRef): void {
+    if (this.renderer) {
+      this.renderer.addClass(button.nativeElement, 'is-loading');
+    }
+  }
+
+  private setLoadingOff(button: ElementRef): void {
+    if (this.renderer) {
+      this.renderer.removeClass(button.nativeElement, 'is-loading');
+    }
+  }
 }

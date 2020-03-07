@@ -5,12 +5,97 @@
 
 @import './assets/styles/kit';
 
-html,
 body {
   font-family: 'overpass';
   width: 100%;
+  min-height: 100vh;
   overflow-x: hidden;
   line-height: 1.2 !important;
   background: $ddx-blue-deep;
   color: $ddx-light;
+}
+
+div.loading-spinner {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+
+  z-index: 2;
+  background: rgba($ddx-blue-darkest, 0.95);
+  color: $ddx-light;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &.hidden {
+    display: none;
+  }
+
+  &:before {
+    content: '';
+    display: block;
+
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    background: rgba($ddx-blue-darkest, 0.95);
+    filter: blur(5px);
+
+    z-index: 1;
+  }
+
+  &:after {
+    content: '';
+    display: block;
+
+    border: 0.15em solid $ddx-light-darker;
+    border-top-color: transparent;
+    border-right-color: transparent;
+    border-radius: 50%;
+
+    width: 2em;
+    height: 2em;
+    box-sizing: border-box;
+
+    position: absolute;
+    top: calc(50% - (2em / 2));
+    left: calc(50% - (2em / 2));
+    animation: spin 1s linear infinite;
+
+    z-index: 3;
+  }
+}
+
+* {
+  scrollbar-color: rgba($ddx-light, 0.2) rgba($ddx-light, 0.1); /* thumb and track color */
+  scrollbar-width: 5px;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: rgba($ddx-light, 0.1);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgba($ddx-light, 0.2);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgba($ddx-light, 0.3);
 }

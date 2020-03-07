@@ -44,7 +44,6 @@ export class ForgotPasswordPageComponent extends AuthPageDirective
         response => {
           this.setLoadingOff();
           this.submittedEmail = formData.email;
-          console.log(response);
         },
         errorResponse => {
           this.setLoadingOff();

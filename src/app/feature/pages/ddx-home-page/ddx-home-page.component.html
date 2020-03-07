@@ -1,16 +1,37 @@
 <section class="chart-section">
-  <tv-chart-wrapper></tv-chart-wrapper>
+  <tv-chart-wrapper [activeSymbol]="activeSymbol"></tv-chart-wrapper>
 </section>
 <section class="instruments-section">
   <ddx-instruments
+    [symbolsData]="symbolsData"
+    [tickerData]="tickerData"
     (symbolChange)="handleSymbolChange($event)"
   ></ddx-instruments>
 </section>
 <section class="order-book-section">
-  <ddx-order-book [activeSymbol]="activeSymbol"></ddx-order-book>
+  <ddx-order-book
+    [activeSymbol]="activeSymbol"
+    [orderBookData]="orderBookData"
+  ></ddx-order-book>
 </section>
 <section class="market-section">
-  <ddx-market [activeSymbol]="activeSymbol"></ddx-market>
+  <ddx-market
+    [activeSymbol]="activeSymbol"
+    [tickerData]="tickerData"
+    [balanceData]="balanceData"
+  ></ddx-market>
 </section>
-<!-- <section class="my-orders-section"></section> -->
-<!-- <section class="sale-section"></section> -->
+<section class="my-orders-section">
+  <ddx-trades
+    [activeSymbol]="activeSymbol"
+    [orderData]="orderData"
+    [filledOrderData]="filledOrderData"
+    [tradeData]="privateTradeData"
+  ></ddx-trades>
+</section>
+<section class="sale-section">
+  <ddx-time-and-sales
+    [activeSymbol]="activeSymbol"
+    [tradeData]="tradeData"
+  ></ddx-time-and-sales>
+</section>

@@ -1,16 +1,16 @@
-import { Observable, Subject } from 'rxjs';
+import { Observable, Subject, BehaviorSubject } from 'rxjs';
 
 import { AuthService } from '@core/services';
 
 export abstract class AbstractDATAService<T> {
   private isLoading: Subject<boolean>;
 
-  private dataStream: Subject<T>;
-  protected queryEngine: () => Observable<T>;
+  private dataStream: BehaviorSubject<T>;
+  protected queryEngine: (...params) => Observable<T>;
 
   constructor(protected authService: AuthService) {
     this.isLoading = new Subject();
-    this.dataStream = new Subject();
+    this.dataStream = new BehaviorSubject(null);
   }
 
   protected turnOnLoading() {
@@ -22,19 +22,18 @@ export abstract class AbstractDATAService<T> {
   }
 
   protected handleAuthError(): void {
-    this.authService.requestSignOut();
+    this.authService.handleAuthError();
   }
 
   public resetDataStream(): void {
-    this.dataStream = new Subject();
+    this.dataStream = new BehaviorSubject(null);
   }
 
-  public updateData() {
+  public updateData(...params) {
     this.turnOnLoading();
-    this.queryEngine().subscribe(
+    this.queryEngine(...params).subscribe(
       response => {
         if (response === null && response === undefined) {
-          // this.turnOffViewMore();
         } else {
           this.dataStream$.next(response);
         }
@@ -42,13 +41,15 @@ export abstract class AbstractDATAService<T> {
       },
       error => {
         if (error.status && error.status === 401) {
-          this.handleAuthError();
+          // this.handleAuthError(); TODO
         }
       }
     );
   }
 
-  get dataStream$(): Subject<T> {
+  public updateFeed(...params): void {}
+
+  get dataStream$(): BehaviorSubject<T> {
     return this.dataStream;
   }
 

@@ -71,6 +71,8 @@ export class KYCWrapperPageComponent implements OnInit, AfterViewChecked {
         return 2;
       case 'selfie':
         return 3;
+      case 'done':
+        return 4;
       default:
         return 0;
     }

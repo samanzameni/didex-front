@@ -3,7 +3,7 @@ import historyProvider from './historyProvider.js';
 // we use Socket.io client to connect to cryptocompare's socket.io stream
 const io = require('socket.io-client');
 // tslint:disable-next-line: variable-name
-const socket_url = 'wss://streamer.cryptocompare.com';
+const socket_url = 'https://streamer.cryptocompare.com';
 const socket = io(socket_url);
 // keep track of subscriptions
 let _subs = [];
@@ -26,7 +26,6 @@ export default {
   unsubscribeBars(uid) {
     const subIndex = _subs.findIndex(e => e.uid === uid);
     if (subIndex === -1) {
-      // console.log("No subscription found for ",uid)
       return;
     }
     const sub = _subs[subIndex];
@@ -42,9 +41,10 @@ socket.on('disconnect', e => {
   console.log('===Socket disconnected:', e);
 });
 socket.on('error', err => {
-  console.log('====socket error', err);
+  console.log('===Socket error', err);
 });
 socket.on('m', e => {
+  console.log('===Socket event');
   // here we get all events the CryptoCompare connection has subscribed to
   // we need to send this new data to our subscribed charts
   // tslint:disable-next-line: variable-name

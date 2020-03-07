@@ -1,40 +1,64 @@
 import { Injectable } from '@angular/core';
-import * as signalR from '@aspnet/signalr';
+import * as signalR from '@microsoft/signalr';
 import { environment } from '@environments/environment';
 import { CONSTANTS } from '@core/util/constants';
+import { StorageService } from './ddx-storage.service';
 
-/**
- * SignalRService handles all the things about web socket connections
- *
- * @author Azad Kavian
- */
 @Injectable()
 export class SignalRService {
   private hubConnection: signalR.HubConnection;
-  private apiURL: string;
 
-  constructor() {
+  constructor(private storageService: StorageService) {}
+
+  public startConnection(): void {
     const baseURL = environment.production
       ? CONSTANTS.SERVER_URL
       : CONSTANTS.MOCK_SERVER_URL;
-    this.apiURL = baseURL.concat('api/signalr');
-  }
+    const accessToken = this.storageService.getUserAccessToken();
+    const apiURL = baseURL.concat('api/live');
+    const options: signalR.IHttpConnectionOptions = {
+      accessTokenFactory: accessToken
+        ? () => {
+            return accessToken;
+          }
+        : undefined,
+    };
 
-  public startConnection(): void {
     this.hubConnection = new signalR.HubConnectionBuilder()
-      .withUrl(this.apiURL)
+      .withUrl(apiURL, options)
+      .withAutomaticReconnect()
       .build();
 
     this.hubConnection
       .start()
-      .then(() => console.log('Connection started'))
-      .catch(err => console.log('Error while starting connection: ' + err));
+      .then(() => console.log('---DidEx Connection started'))
+      .catch(err =>
+        console.log('---DidEx Error while starting connection: ' + err)
+      );
   }
 
-  private addDataListener(
+  public resetConnection(): void {
+    if (this.hubConnection) {
+      this.hubConnection
+        .stop()
+        .then(() => console.log('---DidEx Connection stopped'))
+        .catch(err =>
+          console.log('---DidEx Error while stopping connection: ' + err)
+        );
+    }
+
+    this.startConnection();
+  }
+
+  public addDataListener(
     methodName: string,
     callbackMethod: (...args: any[]) => void
   ) {
     this.hubConnection.on(methodName, callbackMethod);
+    console.log('---DidEx Listener started', methodName);
+  }
+
+  public removeDataListener(methodName: string) {
+    this.hubConnection.off(methodName);
   }
 }

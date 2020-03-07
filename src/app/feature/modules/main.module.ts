@@ -8,10 +8,13 @@ import {
   InstrumentsComponent,
   MarketComponent,
   OrderBookComponent,
+  TradesComponent,
+  TimeAndSalesComponent,
 } from '@feature/components';
 import { HomePageComponent } from '@feature/pages';
 import { MainLayoutComponent } from '@feature/layouts';
 import { WidgetModule } from '@widget/widget.module';
+import { FormsModule } from '@angular/forms';
 
 const routes: Routes = [
   {
@@ -24,6 +27,13 @@ const routes: Routes = [
         loadChildren: () =>
           import('@feature/modules/user.module').then(
             module => module.UserModule
+          ),
+      },
+      {
+        path: 'account',
+        loadChildren: () =>
+          import('@feature/modules/account.module').then(
+            module => module.AccountModule
           ),
       },
     ],
@@ -40,8 +50,15 @@ const routes: Routes = [
     InstrumentsComponent,
     MarketComponent,
     OrderBookComponent,
+    TradesComponent,
+    TimeAndSalesComponent,
   ],
-  imports: [CommonModule, RouterModule.forChild(routes), WidgetModule],
+  imports: [
+    CommonModule,
+    RouterModule.forChild(routes),
+    WidgetModule,
+    FormsModule,
+  ],
   exports: [],
   providers: [],
 })

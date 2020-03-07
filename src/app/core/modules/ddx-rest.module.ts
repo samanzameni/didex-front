@@ -4,6 +4,9 @@ import {
   TraderRESTService,
   PublicRESTService,
   TradingRESTService,
+  OrderRESTService,
+  HistoryRESTService,
+  BankingRESTService,
 } from '@core/services/REST';
 
 @NgModule({
@@ -14,6 +17,9 @@ import {
     TraderRESTService,
     PublicRESTService,
     TradingRESTService,
+    OrderRESTService,
+    HistoryRESTService,
+    BankingRESTService,
   ],
 })
 export class RESTModule {}

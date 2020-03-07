@@ -2,7 +2,9 @@
 
 :host {
   width: 100%;
+  min-height: 350px;
   display: grid;
+  position: relative;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: repeat(3, fit-content);
   grid-template-areas:
@@ -46,7 +48,13 @@
     align-items: flex-start;
     box-sizing: border-box;
     padding: 20px 40px;
-    max-width: 100%;
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+
+    checkbox {
+      margin: 7px 0;
+    }
 
     hr.market__title-seperator {
       width: 80px;
@@ -93,6 +101,10 @@
 
             width: 50%;
             text-align: left;
+
+            &:last-child {
+              text-align: right;
+            }
           }
         }
       }
@@ -151,8 +163,14 @@
 
           &:hover {
             border-color: $ddx-green;
-            background-color: $ddx-green;
+            background-color: rgba($ddx-green, 0.2);
             color: $ddx-light;
+          }
+
+          &.is-loading {
+            border-color: $ddx-green;
+            background-color: rgba($ddx-green, 0.2);
+            color: transparent;
           }
         }
 
@@ -162,8 +180,14 @@
 
           &:hover {
             border-color: $ddx-red;
-            background-color: $ddx-red;
+            background-color: rgba($ddx-red, 0.2);
             color: $ddx-light;
+          }
+
+          &.is-loading {
+            border-color: $ddx-red;
+            background-color: rgba($ddx-red, 0.2);
+            color: transparent;
           }
         }
       }

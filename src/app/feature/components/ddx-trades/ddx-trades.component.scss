@@ -1,0 +1,53 @@
+@import '.././../../../styles.scss';
+
+:host {
+  width: 100%;
+  height: 100%;
+  min-height: 350px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background-color: $ddx-blue-darkest;
+
+  .trades__header {
+    padding: 10px;
+
+    .trades-header__title {
+      margin-bottom: 15px;
+    }
+
+    .trades-header__trade-panes {
+      align-items: center;
+
+      .trades-header__pane {
+        @extend .button-primary;
+        @extend .button-short;
+        @extend .caption-small;
+
+        margin-right: 3px;
+        display: flex;
+        min-width: unset;
+
+        color: $ddx-light-darker;
+        border-color: $ddx-light-darker;
+        background: transparent;
+
+        &:hover {
+          color: $ddx-light;
+          border-color: $ddx-light;
+        }
+
+        &.active {
+          color: $ddx-light-darker;
+          border-color: $ddx-yellow;
+          background: $ddx-yellow;
+
+          &:hover {
+            border-color: $ddx-yellow;
+            background: $ddx-yellow;
+          }
+        }
+      }
+    }
+  }
+}

@@ -4,6 +4,7 @@ import {
   Input,
   EventEmitter,
   Directive,
+  Output,
 } from '@angular/core';
 
 @Directive()
@@ -13,7 +14,7 @@ export abstract class DataEntryDirective<T> implements OnInit, OnDestroy {
 
   protected data: T;
 
-  valueChange: EventEmitter<T>;
+  @Output() valueChange: EventEmitter<T>;
 
   constructor() {
     this.valueChange = new EventEmitter();

@@ -2,8 +2,7 @@ import { Country } from '@core/models/ddx-country.model';
 import { TimeZone } from '@core/models';
 
 export const CONSTANTS = {
-  SERVER_URL: '/',
-  // MOCK_SERVER_URL: 'https://118.190.58.246/',
+  SERVER_URL: 'https://api.didex.com/',
   MOCK_SERVER_URL: 'https://api.didex.com/',
   PHONE_VERIFICATION_CODE_LENGTH: 6,
 };

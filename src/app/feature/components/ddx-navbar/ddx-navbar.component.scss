@@ -14,12 +14,20 @@
   padding: 5px 40px;
 
   .logo__container {
+    height: 100%;
     a {
+      height: 100%;
       text-decoration: none;
       color: $ddx-light;
 
       &:active {
         color: $ddx-light;
+      }
+
+      img {
+        height: 100%;
+        object-fit: contain;
+        margin: 0 3px;
       }
     }
   }

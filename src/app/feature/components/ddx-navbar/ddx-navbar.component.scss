@@ -29,6 +29,10 @@
         object-fit: contain;
         margin: 0 3px;
       }
+
+      #didexLogoText {
+        display: none;
+      }
     }
   }
 
@@ -46,6 +50,18 @@
 
         .dropdown-item a {
           color: $ddx-light-darker;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: $break-narrow-tablet) {
+  :host {
+    .logo__container {
+      a {
+        #didexLogoText {
+          display: flex;
         }
       }
     }

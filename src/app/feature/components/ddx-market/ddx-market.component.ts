@@ -46,12 +46,17 @@ export class MarketComponent implements OnInit {
   @ViewChild('sellTotalInput') sellTotalInput: ElementRef;
   @ViewChild('sellButton') sellButton: ElementRef;
 
+  private buyFormErrors: any;
+  private sellFormErrors: any;
+
   constructor(
     private orderService: OrderRESTService,
     private authService: AuthService,
     private renderer: Renderer2
   ) {
     this.currentActiveType = 'limit';
+    this.buyFormErrors = {};
+    this.sellFormErrors = {};
 
     // this.buyAmount = 0;
     // this.buyLimit = 0;
@@ -165,6 +170,14 @@ export class MarketComponent implements OnInit {
     return this.sellTotal.minus(this.sellTakerFee);
   }
 
+  get buyErrors(): any {
+    return this.buyFormErrors || {};
+  }
+
+  get sellErrors(): any {
+    return this.sellFormErrors || {};
+  }
+
   getTickerDataFromSymbol(): Ticker {
     return getTickerFromSymbol(this.tickerData, this.activeSymbol);
   }
@@ -190,6 +203,10 @@ export class MarketComponent implements OnInit {
   }
 
   onSubmitBuy(): void {
+    if (this.buyAmount === undefined || this.buyAmount === 0) {
+      alert('Amount should be positive.');
+      return;
+    }
     this.setLoadingOn(this.buyButton);
 
     if (!this.authService.isAuthorized) {
@@ -206,6 +223,10 @@ export class MarketComponent implements OnInit {
     };
 
     if (this.activeType === 'limit') {
+      if (this.buyLimit === undefined || this.buyLimit === 0) {
+        alert('Limit should be positive.');
+        return;
+      }
       dataToSend = {
         ...dataToSend,
         type: OrderType.Limit,
@@ -217,17 +238,41 @@ export class MarketComponent implements OnInit {
 
     this.orderService.requestOrder(dataToSend).subscribe(
       response => {
-        // TODO
         this.setLoadingOff(this.buyButton);
       },
       errorResponse => {
-        // TODO
         this.setLoadingOff(this.buyButton);
+        if (errorResponse.status === 401) {
+          this.authService.handleAuthError();
+        }
+        if (errorResponse.status === 400) {
+          const errors = errorResponse.error.errors;
+
+          if (errors.Price) {
+            this.buyFormErrors.limit = errors.Price;
+          }
+          if (errors.Quantity) {
+            this.buyFormErrors.amount = errors.Quantity;
+          }
+          if (errors.MarketSymbol) {
+            this.buyFormErrors.symbol = errors.MarketSymbol;
+          }
+
+          for (const key of Object.keys(errors)) {
+            if (!['Price', 'Quantity', 'MarketSymbol'].includes(key)) {
+              alert(`An error occured: There is something wrong with ${key}`);
+            }
+          }
+        }
       }
     );
   }
 
   onSubmitSell(): void {
+    if (this.sellAmount === undefined || this.sellAmount === 0) {
+      alert('Amount should be positive.');
+      return;
+    }
     this.setLoadingOn(this.sellButton);
 
     if (!this.authService.isAuthorized) {
@@ -244,6 +289,10 @@ export class MarketComponent implements OnInit {
     };
 
     if (this.activeType === 'limit') {
+      if (this.sellLimit === undefined || this.sellLimit === 0) {
+        alert('Limit should be positive.');
+        return;
+      }
       dataToSend = {
         ...dataToSend,
         type: OrderType.Limit,
@@ -255,12 +304,32 @@ export class MarketComponent implements OnInit {
 
     this.orderService.requestOrder(dataToSend).subscribe(
       response => {
-        // TODO
         this.setLoadingOff(this.sellButton);
       },
       errorResponse => {
-        // TODO
         this.setLoadingOff(this.sellButton);
+        if (errorResponse.status === 401) {
+          this.authService.handleAuthError();
+        }
+        if (errorResponse.status === 400) {
+          const errors = errorResponse.error.errors;
+
+          if (errors.Price) {
+            this.sellFormErrors.limit = errors.Price;
+          }
+          if (errors.Quantity) {
+            this.sellFormErrors.amount = errors.Quantity;
+          }
+          if (errors.MarketSymbol) {
+            this.sellFormErrors.symbol = errors.MarketSymbol;
+          }
+
+          for (const key of Object.keys(errors)) {
+            if (!['Price', 'Quantity', 'MarketSymbol'].includes(key)) {
+              alert(`An error occured: There is something wrong with ${key}`);
+            }
+          }
+        }
       }
     );
   }

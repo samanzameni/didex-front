@@ -84,6 +84,10 @@
         />
         <span class="actual-label">Amount</span>
       </label>
+      <div *ngIf="!!buyErrors.amount" class="error-feedback">
+        <p *ngFor="let error of buyErrors.amount">{{ error }}</p>
+      </div>
+
       <label
         *ngIf="activeType === 'limit'"
         class="form-control"
@@ -100,6 +104,9 @@
         />
         <span class="actual-label">Limit</span>
       </label>
+      <div *ngIf="!!buyErrors.limit" class="error-feedback">
+        <p *ngFor="let error of buyErrors.limit">{{ error }}</p>
+      </div>
       <label class="form-control" for="buy_total">
         <input
           type="text"
@@ -112,6 +119,9 @@
         />
         <span class="actual-label">Total</span>
       </label>
+      <div *ngIf="!!buyErrors.symbol" class="error-feedback">
+        <p *ngFor="let error of buyErrors.symbol">{{ error }}</p>
+      </div>
 
       <div
         arrangeStack
@@ -211,6 +221,9 @@
         />
         <span class="actual-label">Amount</span>
       </label>
+      <div *ngIf="!!sellErrors.amount" class="error-feedback">
+        <p *ngFor="let error of sellErrors.amount">{{ error }}</p>
+      </div>
       <label
         *ngIf="activeType === 'limit'"
         class="form-control"
@@ -227,6 +240,9 @@
         />
         <span class="actual-label">Limit</span>
       </label>
+      <div *ngIf="!!sellErrors.limit" class="error-feedback">
+        <p *ngFor="let error of sellErrors.limit">{{ error }}</p>
+      </div>
       <label class="form-control" for="sell_total">
         <input
           type="text"
@@ -238,6 +254,9 @@
         />
         <span class="actual-label">Total</span>
       </label>
+      <div *ngIf="!!sellErrors.symbol" class="error-feedback">
+        <p *ngFor="let error of sellErrors.symbol">{{ error }}</p>
+      </div>
 
       <div
         arrangeStack

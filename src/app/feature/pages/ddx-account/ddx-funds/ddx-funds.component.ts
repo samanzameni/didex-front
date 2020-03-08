@@ -1,4 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ViewChild,
+  ElementRef,
+  Renderer2,
+} from '@angular/core';
 import { DropdownSelectItem } from '@widget/models';
 import {
   faHandHoldingUsd,
@@ -6,8 +12,15 @@ import {
   faCoins,
   IconDefinition,
 } from '@fortawesome/free-solid-svg-icons';
-import { BankingRESTService } from '@core/services/REST';
-import { Balance } from '@core/models';
+import {
+  BankingRESTService,
+  PublicRESTService,
+  TradingRESTService,
+} from '@core/services/REST';
+import { Balance, Currency, BalanceWithdrawData } from '@core/models';
+import { combineLatest } from 'rxjs';
+import Decimal from 'decimal.js';
+import { copyToClipboard } from '@core/util/clipboard';
 
 @Component({
   selector: 'ddx-funds',
@@ -19,18 +32,84 @@ import { Balance } from '@core/models';
 })
 export class FundsPageComponent implements OnInit {
   private sortOptions: DropdownSelectItem[];
-  private data: Balance[];
 
-  constructor(private restService: BankingRESTService) {
+  private bankingBalanceData: Balance[];
+  private tradingBalanceData: Balance[];
+  private currenciesData: Currency[];
+  private combinedData: any[]; // TODO: type
+
+  private currentActivePane: string;
+
+  @ViewChild('withdrawButton') withdrawButton: ElementRef;
+
+  constructor(
+    private restService: BankingRESTService,
+    private publicService: PublicRESTService,
+    private tradingService: TradingRESTService,
+    private renderer: Renderer2
+  ) {
+    this.currentActivePane = 'none';
     this.sortOptions = [
       { title: 'Most Available', value: 'available-dsc' },
       { title: 'Least Available', value: 'available-asc' },
     ];
+
+    this.bankingBalanceData = [];
+    this.tradingBalanceData = [];
+    this.currenciesData = [];
+    this.combinedData = [];
   }
 
   ngOnInit(): void {
-    this.restService.requestBalance().subscribe(response => {
-      this.data = response || [];
+    this.updateData();
+  }
+
+  private updateData(): void {
+    this.bankingBalanceData = [];
+    this.tradingBalanceData = [];
+    this.currenciesData = [];
+    this.combinedData = [];
+
+    const bankingBalance$ = this.restService.requestBalance();
+    const tradingBalance$ = this.tradingService.requestBalance();
+    const currency$ = this.publicService.requestCurrency();
+
+    const dataFetcher = combineLatest([
+      bankingBalance$,
+      tradingBalance$,
+      currency$,
+    ]);
+
+    dataFetcher.subscribe(([b, t, c]) => {
+      this.bankingBalanceData = b;
+      this.tradingBalanceData = t;
+      this.currenciesData = c;
+
+      this.combinedData = Array.from(this.currenciesData);
+      this.combinedData.forEach((currency, i) => {
+        this.combinedData[i].available = new Decimal(0);
+        this.combinedData[i].reserved = new Decimal(0);
+        this.combinedData[i].main = new Decimal(0);
+
+        this.bankingBalanceData.forEach(balance => {
+          if (currency.shortName.trim() === balance.currency.trim()) {
+            this.combinedData[i].main = new Decimal(balance.available);
+            return;
+          }
+        });
+
+        this.tradingBalanceData.forEach(balance => {
+          if (currency.shortName.trim() === balance.currency.trim()) {
+            this.combinedData[i].available = new Decimal(balance.available);
+            this.combinedData[i].reserved = new Decimal(balance.reserved);
+            return;
+          }
+        });
+
+        this.combinedData[i].total = this.combinedData[i].available
+          .add(this.combinedData[i].reserved)
+          .add(this.combinedData[i].main);
+      });
     });
   }
 
@@ -50,8 +129,12 @@ export class FundsPageComponent implements OnInit {
     return faCoins;
   }
 
-  get tableRows(): Balance[] {
-    return this.data || [];
+  get tableRows(): any[] {
+    return this.combinedData || [];
+  }
+
+  get activePane(): string {
+    return this.currentActivePane;
   }
 
   onSortValueChange($event): void {
@@ -59,6 +142,40 @@ export class FundsPageComponent implements OnInit {
   }
 
   handleClickOnAction(rowIndex: number, action: string): void {
-    console.log(rowIndex, action);
+    const actionID = `${rowIndex}-${action}`;
+
+    this.currentActivePane =
+      this.currentActivePane === actionID ? 'none' : actionID;
+  }
+
+  handleClickOnCopyAddress(address: string) {
+    copyToClipboard(address);
+  }
+
+  onSubmitWithdraw(index: number, submittedValue: BalanceWithdrawData): void {
+    if (this.withdrawButton) {
+      this.renderer.addClass(this.withdrawButton.nativeElement, 'is-loading');
+    }
+
+    this.restService.requestWithdraw(submittedValue).subscribe(
+      response => {
+        if (this.withdrawButton) {
+          this.renderer.removeClass(
+            this.withdrawButton.nativeElement,
+            'is-loading'
+          );
+        }
+        this.currentActivePane = 'none';
+        this.updateData();
+      },
+      errorResponse => {
+        if (this.withdrawButton) {
+          this.renderer.removeClass(
+            this.withdrawButton.nativeElement,
+            'is-loading'
+          );
+        }
+      }
+    );
   }
 }

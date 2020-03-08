@@ -25,10 +25,10 @@
     <thead class="account-table__header">
       <tr class="account-table__row">
         <th class="account-table__header-cell">Coin</th>
+        <th class="account-table__header-cell">Main Account</th>
         <th class="account-table__header-cell">Available</th>
         <th class="account-table__header-cell show-on-medium">On Orders</th>
-        <!-- <th class="account-table__header-cell">BTC Valuation</th> -->
-        <!-- <th class="account-table__header-cell">Lock</th> -->
+        <th class="account-table__header-cell show-on-medium">Total</th>
         <th class="account-table__header-cell">Actions</th>
       </tr>
     </thead>
@@ -37,17 +37,21 @@
         class="account-table__row"
         *ngFor="let row of tableRows; let i = index"
       >
-        <td class="account-table__cell" [title]="row.currency">
-          {{ row.currency }}
+        <td class="account-table__cell" [title]="row.shortName">
+          {{ row.shortName }}
+        </td>
+        <td class="account-table__cell" [title]="row.main">
+          {{ row.main }}
         </td>
         <td class="account-table__cell" [title]="row.available">
           {{ row.available }}
         </td>
-        <td class="account-table__cell" [title]="row.reserved">
+        <td class="account-table__cell show-on-medium" [title]="row.reserved">
           {{ row.reserved }}
         </td>
-        <!-- <td class="account-table__cell">0.0013234050</td> -->
-        <!-- <td class="account-table__cell">0.0013234050</td> -->
+        <td class="account-table__cell show-on-medium" [title]="row.total">
+          {{ row.total }}
+        </td>
         <td class="account-table__cell">
           <div arrangeInline class="funds__actions">
             <button
@@ -70,6 +74,158 @@
             </button>
           </div>
         </td>
+        <div
+          class="row-section deposit"
+          [ngClass]="{ hidden: this.activePane !== i + '-deposit' }"
+        >
+          <label class="form-control" for="address">
+            <input
+              type="text"
+              name="address"
+              id="address"
+              value="987124gusvbq2gayusd"
+              placeholder=" "
+              class="address-input"
+              readonly
+              #addressCode
+            />
+            <span class="actual-label">Deposit Address</span>
+          </label>
+          <button
+            class="button-primary button-short copy-button"
+            (click)="handleClickOnCopyAddress(addressCode.value)"
+          >
+            Copy
+          </button>
+          <ul class="tips">
+            <li>
+              • Please don’t deposit any other digital assets except
+              {{ row.shortName }} to the above address. Otherwise, you may lose
+              your assets permanently.
+            </li>
+            <li>
+              • Depositing to the above address requires confirmations of the
+              entire network. It will arrive after 12 confirmations, and it will
+              be available to withdraw after 12 confirmations.
+            </li>
+            <li>
+              • Your deposit address won’t change often. If there are any
+              changes, we will notify you via announcement or email.
+            </li>
+            <li>
+              • Please make sure that your computer and browser are secure and
+              your information is protected from being tampered or leaked.
+            </li>
+          </ul>
+        </div>
+        <div
+          class="row-section withdraw"
+          [ngClass]="{ hidden: this.activePane !== i + '-withdraw' }"
+        >
+          <form
+            autocomplete="off"
+            (ngSubmit)="onSubmitWithdraw(i, form.value)"
+            #form="ngForm"
+          >
+            <input
+              type="hidden"
+              name="currency"
+              [ngModel]="row.shortName"
+              required
+              [value]="row.shortName"
+            />
+            <input
+              type="hidden"
+              name="includeFee"
+              [ngModel]="true"
+              required
+              [value]="true"
+            />
+            <input
+              type="hidden"
+              name="autoCommit"
+              [ngModel]="true"
+              required
+              [value]="true"
+            />
+            <label class="form-control" for="address">
+              <input
+                type="text"
+                name="address"
+                id="address"
+                placeholder=" "
+                class="address-input"
+                ngModel
+                required
+                #address="ngModel"
+              />
+              <span class="actual-label">Address</span>
+            </label>
+            <label class="form-control" for="amount">
+              <input
+                type="number"
+                name="amount"
+                id="amount"
+                placeholder=" "
+                value="0"
+                min="0"
+                ngModel
+                required
+                #amount="ngModel"
+              />
+              <span class="actual-label">Amount</span>
+            </label>
+            <label class="form-control" for="fee">
+              <input
+                type="text"
+                name="fee"
+                id="fee"
+                placeholder=" "
+                [value]="row.payoutFee"
+                readonly
+              />
+              <span class="actual-label">Fee</span>
+            </label>
+            <label class="form-control" for="received">
+              <input
+                type="text"
+                name="received"
+                id="received"
+                placeholder=" "
+                [value]="
+                  form.value.amount - row.payoutFee > 0
+                    ? form.value.amount - row.payoutFee
+                    : 'Quantity should be higher'
+                "
+                readonly
+              />
+              <span class="actual-label">Received</span>
+            </label>
+            <button
+              type="submit"
+              [disabled]="
+                !form.valid ||
+                form.value.amount <= 0 ||
+                form.value.amount <= row.payoutFee
+              "
+              #withdrawButton
+            >
+              Withdraw
+            </button>
+          </form>
+          <ul class="tips">
+            <li>
+              • Please make sure that your computer and browser are secure and
+              your information is protected from being tampered or leaked.
+            </li>
+          </ul>
+        </div>
+        <div
+          class="row-section trade"
+          [ngClass]="{ hidden: this.activePane !== i + '-trade' }"
+        >
+          trade
+        </div>
       </tr>
     </tbody>
   </table>

@@ -45,6 +45,7 @@ label.form-control {
   textarea {
     @extend .body;
 
+    position: relative;
     transition: border-top-color $transition-time;
     background: transparent;
     border: 1px solid $ddx-primary;

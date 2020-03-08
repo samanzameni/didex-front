@@ -12,4 +12,8 @@ export class ReportsPageComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
+
+  get tableRows() {
+    return [1, 2, 3];
+  }
 }

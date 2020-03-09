@@ -35,11 +35,11 @@ export class KYCPersonalInfoPageComponent extends KYCPageDirective
     this.kycForm = this.formBuilder.group({
       firstName: [
         trader.personalInformation ? trader.personalInformation.firstName : '',
-        Validators.required,
+        [Validators.required, Validators.maxLength(50)],
       ],
       lastName: [
         trader.personalInformation ? trader.personalInformation.lastName : '',
-        Validators.required,
+        [Validators.required, Validators.maxLength(50)],
       ],
       dateOfBirth: [
         trader.personalInformation
@@ -55,7 +55,7 @@ export class KYCPersonalInfoPageComponent extends KYCPageDirective
       ],
       zipCode: [
         trader.personalInformation ? trader.personalInformation.zipCode : '',
-        Validators.required,
+        [Validators.required, Validators.maxLength(10)],
       ],
       countryCode: [
         trader.personalInformation
@@ -65,7 +65,7 @@ export class KYCPersonalInfoPageComponent extends KYCPageDirective
       ],
       city: [
         trader.personalInformation ? trader.personalInformation.city : '',
-        Validators.required,
+        [Validators.required, Validators.maxLength(50)],
       ],
       addressLine1: [
         trader.personalInformation

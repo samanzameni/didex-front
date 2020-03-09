@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { TraderService } from '@core/services';
 import { Trader } from '@core/models';
 import { ThrowStmt } from '@angular/compiler';
+import { shouldShowErrors } from '@core/util/forms';
 
 @Directive()
 export abstract class KYCPageDirective {
@@ -23,7 +24,7 @@ export abstract class KYCPageDirective {
   }
 
   public shouldShowErrors(control: AbstractControl): boolean {
-    return !!control.errors && (control.dirty || control.touched);
+    return shouldShowErrors(control);
   }
 
   protected setLoadingOn(): void {
@@ -44,6 +45,10 @@ export abstract class KYCPageDirective {
 
   get isFormValid(): boolean {
     return this.kycForm.valid;
+  }
+
+  getKeys(object: any): string[] {
+    return object ? Object.keys(object) : [];
   }
 
   abstract onSubmit(): void;

@@ -7,6 +7,7 @@ import {
 import { Renderer2, ViewChild, ElementRef, Directive } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '@core/services';
+import { shouldShowErrors } from '@core/util/forms';
 
 @Directive()
 export abstract class AuthPageDirective {
@@ -22,7 +23,7 @@ export abstract class AuthPageDirective {
   ) {}
 
   public shouldShowErrors(control: AbstractControl): boolean {
-    return !!control.errors && (control.dirty || control.touched);
+    return shouldShowErrors(control);
   }
 
   protected setLoadingOn(): void {

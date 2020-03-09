@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { KYCPageDirective } from '@feature/templates';
 import { FormBuilder, Validators } from '@angular/forms';
 import { TraderRESTService } from '@core/services/REST';
+import { TraderService } from '@core/services';
 
 @Component({
   selector: 'ddx-kyc-identity-proof',
@@ -19,9 +20,10 @@ export class KYCIdentityProofPageComponent extends KYCPageDirective
     protected el: ElementRef,
     protected renderer: Renderer2,
     protected formBuilder: FormBuilder,
+    protected traderService: TraderService,
     private restService: TraderRESTService
   ) {
-    super(router, el, renderer, formBuilder);
+    super(router, el, renderer, formBuilder, traderService);
     this.renderer.addClass(this.el.nativeElement, 'kyc-form');
   }
 

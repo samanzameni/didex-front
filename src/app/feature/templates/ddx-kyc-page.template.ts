@@ -1,10 +1,14 @@
 import { FormBuilder, FormGroup, AbstractControl } from '@angular/forms';
 import { ViewChild, ElementRef, Renderer2, Directive } from '@angular/core';
 import { Router } from '@angular/router';
+import { TraderService } from '@core/services';
+import { Trader } from '@core/models';
+import { ThrowStmt } from '@angular/compiler';
 
 @Directive()
 export abstract class KYCPageDirective {
   protected kycForm: FormGroup;
+  protected currentTrader: Trader;
 
   @ViewChild('submitButton') submitButton: ElementRef;
 
@@ -12,8 +16,11 @@ export abstract class KYCPageDirective {
     protected router: Router,
     protected el: ElementRef,
     protected renderer: Renderer2,
-    protected formBuilder: FormBuilder
-  ) {}
+    protected formBuilder: FormBuilder,
+    protected traderService: TraderService
+  ) {
+    this.currentTrader = this.traderService.currentTrader;
+  }
 
   public shouldShowErrors(control: AbstractControl): boolean {
     return !!control.errors && (control.dirty || control.touched);

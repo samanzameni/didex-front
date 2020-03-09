@@ -10,6 +10,7 @@ import { KYCPageDirective } from '@feature/templates';
 import { FormBuilder, Validators } from '@angular/forms';
 import { TraderRESTService } from '@core/services/REST';
 import { CONSTANTS } from '@core/util/constants';
+import { TraderService } from '@core/services';
 
 @Component({
   selector: 'ddx-kyc-phone-verification',
@@ -31,9 +32,10 @@ export class KYCPhoneVerificationPageComponent extends KYCPageDirective
     protected el: ElementRef,
     protected renderer: Renderer2,
     protected formBuilder: FormBuilder,
+    protected traderService: TraderService,
     private restService: TraderRESTService
   ) {
-    super(router, el, renderer, formBuilder);
+    super(router, el, renderer, formBuilder, traderService);
     this.renderer.addClass(this.el.nativeElement, 'kyc-form');
     this.hasSubmittedMobileNumber = false;
   }

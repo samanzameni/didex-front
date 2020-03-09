@@ -58,6 +58,16 @@ export class DropdownSelectComponent extends DataEntryDirective<string>
     if (this.hasDefaultValue && this.items.length > 0) {
       this.setValue(this.items[0], 0);
     }
+
+    if (this.control && this.control.value) {
+      for (const item of this.items) {
+        if (item.value === this.control.value) {
+          const index = this.items.indexOf(item);
+          this.setValue(this.control.value, index);
+          break;
+        }
+      }
+    }
   }
 
   ngAfterViewInit(): void {

@@ -69,6 +69,10 @@
       width: 100%;
       flex: 1;
 
+      .settings-page__info {
+        margin-bottom: 10px;
+      }
+
       .validate-button {
         @extend .button-primary;
 

@@ -41,11 +41,19 @@ export class KYCPhoneVerificationPageComponent extends KYCPageDirective
   }
 
   ngOnInit() {
+    const trader = this.currentTrader;
+
     this.kycForm = this.formBuilder.group({
-      countryTelephoneCode: ['', Validators.required],
-      mobileNumber: ['', Validators.required],
+      countryTelephoneCode: [
+        trader.mobileNumber ? trader.mobileNumber.countryTelephoneCode : '',
+        Validators.required,
+      ],
+      mobileNumber: [
+        trader.mobileNumber ? trader.mobileNumber.mobileNumber : '',
+        Validators.required,
+      ],
       code: [
-        '',
+        trader.mobileNumber ? trader.mobileNumber.code : '',
         [
           Validators.required,
           Validators.minLength(CONSTANTS.PHONE_VERIFICATION_CODE_LENGTH),

@@ -6,7 +6,6 @@ import {
   Renderer2,
   ChangeDetectorRef,
   AfterViewInit,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { DropdownSelectItem } from '@widget/models';
 import {
@@ -26,6 +25,7 @@ import {
   BalanceWithdrawData,
   BalanceTransferData,
   BalanceTransferType,
+  WalletAddress,
 } from '@core/models';
 import { combineLatest } from 'rxjs';
 import Decimal from 'decimal.js';
@@ -33,7 +33,6 @@ import { copyToClipboard } from '@core/util/clipboard';
 
 @Component({
   selector: 'ddx-funds',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './ddx-funds.component.html',
   styleUrls: [
     '../../../public/ddx-account-pages.scss',
@@ -50,6 +49,7 @@ export class FundsPageComponent implements OnInit, AfterViewInit {
 
   private currentActivePane: string;
   private currentTransferType: BalanceTransferType;
+  private currentWalletAddress: WalletAddress;
 
   @ViewChild('withdrawButton') withdrawButton: ElementRef;
   @ViewChild('transferButton') transferButton: ElementRef;
@@ -167,6 +167,10 @@ export class FundsPageComponent implements OnInit, AfterViewInit {
     return this.currentTransferType;
   }
 
+  get walletAddress(): WalletAddress {
+    return this.currentWalletAddress;
+  }
+
   onSortValueChange($event): void {
     console.log($event);
   }
@@ -176,7 +180,25 @@ export class FundsPageComponent implements OnInit, AfterViewInit {
 
     this.currentActivePane =
       this.currentActivePane === actionID ? 'none' : actionID;
+
     this.cdRef.detectChanges();
+
+    if (action === 'deposit') {
+      this.currentWalletAddress = null;
+      this.restService
+        .requestWalletAddress({
+          currencyShortName: this.tableRows[rowIndex].shortName,
+        })
+        .subscribe(
+          response => {
+            this.currentWalletAddress = response;
+            this.cdRef.detectChanges();
+          },
+          errorResponse => {
+            this.currentWalletAddress = { address: 'Error while fetching ...' };
+          }
+        );
+    }
   }
 
   handleClickOnCopyAddress(address: string) {
@@ -226,6 +248,9 @@ export class FundsPageComponent implements OnInit, AfterViewInit {
       this.renderer.addClass(this.withdrawButton.nativeElement, 'is-loading');
       this.cdRef.detectChanges();
     }
+
+    submittedValue.includeFee = true;
+    submittedValue.autoCommit = true;
 
     this.restService.requestWithdraw(submittedValue).subscribe(
       response => {

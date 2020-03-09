@@ -6,6 +6,8 @@ import {
   BalanceWithdrawData,
   BalanceTransferData,
   Transaction,
+  WalletAddressData,
+  WalletAddress,
 } from '@core/models';
 import { map } from 'rxjs/operators';
 
@@ -21,6 +23,13 @@ export class BankingRESTService extends AbstractRESTService {
 
   public requestTransfer(data: BalanceTransferData): Observable<any> {
     return this.httpPOST('api/Banking/transfer', data) as Observable<any>;
+  }
+  public requestWalletAddress(
+    data: WalletAddressData
+  ): Observable<WalletAddress> {
+    return this.httpPOST('api/Banking/getWallet', data) as Observable<
+      WalletAddress
+    >;
   }
 
   public requestTransactions(): Observable<Transaction[]> {

@@ -9,6 +9,8 @@ import {
   SignUpPageComponent,
   ForgotPasswordPageComponent,
   SignUpSuccessPageComponent,
+  ResetPasswordPageComponent,
+  ActivateEmailPageComponent,
 } from '@feature/pages';
 
 const routes: Routes = [
@@ -35,6 +37,14 @@ const routes: Routes = [
     path: 'forgot-password',
     component: ForgotPasswordPageComponent,
   },
+  {
+    path: 'reset-password',
+    component: ResetPasswordPageComponent,
+  },
+  {
+    path: 'activate-email',
+    component: ActivateEmailPageComponent,
+  },
 ];
 
 @NgModule({
@@ -43,6 +53,8 @@ const routes: Routes = [
     SignUpPageComponent,
     ForgotPasswordPageComponent,
     SignUpSuccessPageComponent,
+    ResetPasswordPageComponent,
+    ActivateEmailPageComponent,
   ],
   imports: [
     CommonModule,

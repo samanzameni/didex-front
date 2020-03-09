@@ -23,6 +23,7 @@ import { TraderService } from '@core/services';
 export class KYCPhoneVerificationPageComponent extends KYCPageDirective
   implements OnInit {
   private hasSubmittedMobileNumber: boolean;
+  private formErrors: any;
 
   @ViewChild('submitNumberButton')
   submitNumberButton: ElementRef;
@@ -76,6 +77,10 @@ export class KYCPhoneVerificationPageComponent extends KYCPageDirective
     return this.hasSubmittedMobileNumber;
   }
 
+  get errors(): any {
+    return this.formErrors || {};
+  }
+
   onSubmitNumber(): void {
     this.renderer.addClass(this.submitNumberButton.nativeElement, 'is-loading');
 
@@ -100,6 +105,7 @@ export class KYCPhoneVerificationPageComponent extends KYCPageDirective
 
   onSubmit(): void {
     this.setLoadingOn();
+    this.formErrors = {};
 
     const dataToSend = this.kycForm.value;
 
@@ -110,6 +116,14 @@ export class KYCPhoneVerificationPageComponent extends KYCPageDirective
       },
       errorResponse => {
         this.setLoadingOff();
+
+        if (errorResponse.status === 400) {
+          const errors = errorResponse.error.errors;
+
+          if (errors.Code) {
+            this.formErrors.code = errors.Code;
+          }
+        }
       }
     );
   }

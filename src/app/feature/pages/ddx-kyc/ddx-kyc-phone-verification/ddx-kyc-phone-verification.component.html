@@ -113,6 +113,11 @@
           Only digits are valid.
         </p>
       </div>
+      <div *ngIf="errors && errors.code" class="error-feedback">
+        <p *ngFor="let error of errors.code">
+          {{ error }}
+        </p>
+      </div>
     </label>
 
     <div class="actions">

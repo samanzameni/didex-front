@@ -15,14 +15,14 @@
           [ngClass]="{ active: activePane === 'active' }"
           (click)="activatePane('active')"
         >
-          Active Orders
+          <span class="show-on-medium"> Active </span> Orders
         </li>
         <li
           class="trades-header__pane"
           [ngClass]="{ active: activePane === 'filled' }"
           (click)="activatePane('filled')"
         >
-          Filled & Canceled
+          Filled <span class="show-on-medium"> & Canceled </span>
         </li>
         <li
           class="trades-header__pane"

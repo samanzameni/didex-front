@@ -5,6 +5,7 @@ import {
   AuthFormResponse,
   AuthResetPasswordFormData,
   AuthEmailActivationData,
+  AuthResetPasswordData,
 } from '@core/models';
 import { StorageService } from './ddx-storage.service';
 import { Observable } from 'rxjs';
@@ -31,6 +32,10 @@ export class AuthService {
 
   public requestSignUp(formData: AuthFormData): Observable<AuthFormResponse> {
     return this.restService.requestRegister(formData);
+  }
+
+  public requestNewPassword(formData: AuthResetPasswordData): Observable<any> {
+    return this.restService.requestNewPassword(formData);
   }
 
   public requestSignIn(formData: AuthFormData): Observable<AuthFormResponse> {

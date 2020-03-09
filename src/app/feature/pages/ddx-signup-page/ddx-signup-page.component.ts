@@ -6,7 +6,6 @@ import { AuthFormData } from '@core/models';
 import { AuthService } from '@core/services';
 import { Router } from '@angular/router';
 import { AuthPageDirective } from '@feature/templates/ddx-auth-page.template';
-import { ThrowStmt } from '@angular/compiler';
 
 @Component({
   selector: 'ddx-signup-page',
@@ -19,8 +18,6 @@ import { ThrowStmt } from '@angular/compiler';
 export class SignUpPageComponent extends AuthPageDirective implements OnInit {
   @ViewChild(CheckboxComponent) checkbox: CheckboxComponent;
 
-  private isSignupSuccessful: boolean;
-
   constructor(
     protected formBuilder: FormBuilder,
     protected renderer: Renderer2,
@@ -28,7 +25,6 @@ export class SignUpPageComponent extends AuthPageDirective implements OnInit {
     protected authService: AuthService
   ) {
     super(formBuilder, renderer, router, authService);
-    this.isSignupSuccessful = false;
   }
 
   ngOnInit() {
@@ -58,7 +54,6 @@ export class SignUpPageComponent extends AuthPageDirective implements OnInit {
     this.authService.requestSignUp(formData as AuthFormData).subscribe(
       response => {
         this.setLoadingOff();
-        this.isSignupSuccessful = true;
         this.router.navigateByUrl('/auth/signup/success');
       },
       errorResponse => {

@@ -46,10 +46,18 @@
           {{ symbolRow.quoteCurrencyShortName }}
         </td>
         <td class="row-big" *ngIf="tickerData && tickerData.length > 0">
-          {{ getTickerDataFromSymbol(symbolRow).close }}
+          {{
+            getTickerDataFromSymbol(symbolRow)
+              ? getTickerDataFromSymbol(symbolRow).close
+              : 0
+          }}
         </td>
         <td class="row-big" *ngIf="tickerData && tickerData.length > 0">
-          {{ getTickerDataFromSymbol(symbolRow).volume }}
+          {{
+            getTickerDataFromSymbol(symbolRow)
+              ? getTickerDataFromSymbol(symbolRow).volume
+              : 0
+          }}
         </td>
         <td
           class="row-small"

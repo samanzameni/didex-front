@@ -113,7 +113,9 @@ export class MarketComponent implements OnInit {
   get bestBid(): Decimal {
     return new Decimal(
       this.tickerData && this.tickerData.length > 0
-        ? this.getTickerDataFromSymbol().bid
+        ? this.getTickerDataFromSymbol()
+          ? this.getTickerDataFromSymbol().bid
+          : 0
         : 0
     );
   }
@@ -121,7 +123,9 @@ export class MarketComponent implements OnInit {
   get bestAsk(): Decimal {
     return new Decimal(
       this.tickerData && this.tickerData.length > 0
-        ? this.getTickerDataFromSymbol().ask
+        ? this.getTickerDataFromSymbol()
+          ? this.getTickerDataFromSymbol().ask
+          : 0
         : 0
     );
   }

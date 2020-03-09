@@ -14,12 +14,14 @@ import {
   styleUrls: ['./radio-button.component.scss'],
 })
 export class RadioButtonComponent implements OnInit {
-  @Input() value: string;
+  @Input() value: any;
   @Input() label: string;
+
+  @Input() isForceChecked: boolean; // TODO: WTF?
 
   private isCheckedState: boolean;
 
-  @Output() valueChange: EventEmitter<string>;
+  @Output() valueChange: EventEmitter<any>;
 
   @ViewChild('buttonElement') buttonElement: ElementRef;
 
@@ -35,7 +37,7 @@ export class RadioButtonComponent implements OnInit {
   }
 
   get isChecked(): boolean {
-    return this.isCheckedState;
+    return this.isForceChecked || this.isCheckedState;
   }
 
   onPush($event): void {
@@ -43,6 +45,13 @@ export class RadioButtonComponent implements OnInit {
 
     if (this.isChecked) {
       this.valueChange.emit($event.target.value);
+    }
+  }
+
+  forceSelect(): void {
+    this.isCheckedState = true;
+    if (this.buttonElement) {
+      this.buttonElement.nativeElement.checked = true;
     }
   }
 

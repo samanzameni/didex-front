@@ -1,1 +1,55 @@
-<p>ddx-reports works!</p>
+<div arrangeInline class="page-header">
+  <h2>Reports</h2>
+</div>
+
+<section class="page-content">
+  <table class="account-table">
+    <thead class="account-table__header">
+      <tr class="account-table__row">
+        <th class="account-table__header-cell row-index">#</th>
+        <th class="account-table__header-cell row-big">Time</th>
+        <th class="account-table__header-cell row-small">Market</th>
+        <th class="account-table__header-cell row-small">ID</th>
+        <th class="account-table__header-cell row-big">Amount</th>
+        <th class="account-table__header-cell row-big">Price</th>
+        <th class="account-table__header-cell row-big">Total</th>
+        <th class="account-table__header-cell row-big">Fee</th>
+        <th class="account-table__header-cell row-small">Status</th>
+      </tr>
+    </thead>
+    <tbody class="account-table__body">
+      <tr
+        class="account-table__row"
+        *ngFor="let row of tableRows; let i = index"
+      >
+        <td class="account-table__cell row-index">
+          1
+        </td>
+        <td class="account-table__cell row-big">
+          0.0090098098
+        </td>
+        <td class="account-table__cell row-small">
+          0.0090098098
+        </td>
+        <td class="account-table__cell row-small">
+          0.0090098098
+        </td>
+        <td class="account-table__cell row-big">
+          0.0090098098
+        </td>
+        <td class="account-table__cell row-big">
+          0.0090098098
+        </td>
+        <td class="account-table__cell row-big">
+          0.0090098098
+        </td>
+        <td class="account-table__cell row-big">
+          0.0090098098
+        </td>
+        <td class="account-table__cell row-small">
+          0.0090098098
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</section>

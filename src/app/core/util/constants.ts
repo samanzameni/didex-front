@@ -5,6 +5,9 @@ export const CONSTANTS = {
   SERVER_URL: 'https://api.didex.com/',
   MOCK_SERVER_URL: 'https://api.didex.com/',
   PHONE_VERIFICATION_CODE_LENGTH: 6,
+  PAGINATION_LIMIT_BIG: 100,
+  PAGINATION_LIMIT: 25,
+  PAGINATION_LIMIT_SMALL: 10,
 };
 
 export const COUNTRIES: Country[] = [

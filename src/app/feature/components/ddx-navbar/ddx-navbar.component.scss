@@ -15,10 +15,12 @@
 
   .logo__container {
     height: 100%;
+
     a {
       height: 100%;
       text-decoration: none;
       color: $ddx-light;
+      align-items: center;
 
       &:active {
         color: $ddx-light;
@@ -28,6 +30,11 @@
         height: 100%;
         object-fit: contain;
         margin: 0 3px;
+      }
+
+      #didexLogoText {
+        height: 60%;
+        display: none;
       }
     }
   }
@@ -46,6 +53,18 @@
 
         .dropdown-item a {
           color: $ddx-light-darker;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: $break-narrow-tablet) {
+  :host {
+    .logo__container {
+      a {
+        #didexLogoText {
+          display: flex;
         }
       }
     }

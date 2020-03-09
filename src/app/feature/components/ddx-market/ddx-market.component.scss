@@ -121,24 +121,6 @@
         margin: 5px auto;
       }
 
-      div.error-feedback {
-        width: 100%;
-
-        p {
-          @extend .caption-small;
-
-          color: $ddx-red;
-          margin-bottom: 2px;
-          display: flex;
-
-          &:before {
-            content: '-';
-            display: flex;
-            margin: 0 3px;
-          }
-        }
-      }
-
       .market__approximations {
         padding: 40px 0;
 

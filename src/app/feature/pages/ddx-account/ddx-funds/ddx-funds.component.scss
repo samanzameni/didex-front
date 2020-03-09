@@ -79,21 +79,9 @@
       }
 
       div.error-feedback {
-        width: 100%;
-
         p {
-          @extend .caption-small;
-
-          color: $ddx-red;
-          margin-bottom: 2px;
-          display: flex;
           justify-content: center;
 
-          &:before {
-            content: '-';
-            display: flex;
-            margin: 0 3px;
-          }
           &:after {
             content: '-';
             display: flex;

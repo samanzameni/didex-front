@@ -58,17 +58,6 @@
         [items]="timezonesList"
       ></dropdown-select>
 
-      <label class="form-control" for="password">
-        <input
-          type="password"
-          formControlName="password"
-          name="password"
-          id="password"
-          placeholder=" "
-        />
-        <span class="actual-label">Password</span>
-      </label>
-
       <button
         type="submit"
         [disabled]="!generalFormGroup.valid"
@@ -92,12 +81,12 @@
       (ngSubmit)="onSubmitSecurityForm()"
       #securityForm
     >
-      <label class="form-control" for="oldPassword">
+      <label class="form-control" for="currentPassword">
         <input
           type="password"
-          formControlName="oldPassword"
-          name="oldPassword"
-          id="oldPassword"
+          formControlName="currentPassword"
+          name="currentPassword"
+          id="currentPassword"
           placeholder=" "
         />
         <span class="actual-label">Old Password</span>
@@ -106,7 +95,7 @@
       <label class="form-control" for="password">
         <input
           type="password"
-          formControlName="password"
+          formControlName="newPassword"
           name="password"
           id="password"
           placeholder=" "

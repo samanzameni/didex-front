@@ -51,4 +51,8 @@ export class AuthRESTService extends AbstractRESTService {
       data
     ) as Observable<any>;
   }
+
+  public requestChangePassword(data: any): Observable<any> {
+    return this.httpPOST(`api/Account/changePassword`, data) as Observable<any>;
+  }
 }

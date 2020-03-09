@@ -12,7 +12,7 @@
   >
     <p class="description">
       Please fill in your personal information the way it is stated in the proof
-      of identity document. {{ kycFormGroup.valid }}
+      of identity document.
     </p>
     <label for="firstName" class="form-control">
       <input
@@ -23,6 +23,17 @@
         formControlName="firstName"
       />
       <span class="actual-label">First Name</span>
+      <div
+        *ngIf="shouldShowErrors(kycFormGroup.controls.firstName)"
+        class="warning-feedback"
+      >
+        <p *ngIf="kycFormGroup.controls.firstName.errors.required">
+          This field is required.
+        </p>
+        <p *ngIf="kycFormGroup.controls.firstName.errors.maxlength">
+          Max length should be 50.
+        </p>
+      </div>
     </label>
 
     <label for="lastName" class="form-control"
@@ -34,6 +45,17 @@
         formControlName="lastName"
       />
       <span class="actual-label">Last Name</span>
+      <div
+        *ngIf="shouldShowErrors(kycFormGroup.controls.lastName)"
+        class="warning-feedback"
+      >
+        <p *ngIf="kycFormGroup.controls.lastName.errors.required">
+          This field is required.
+        </p>
+        <p *ngIf="kycFormGroup.controls.lastName.errors.maxlength">
+          Max length should be 50.
+        </p>
+      </div>
     </label>
 
     <label for="dateOfBirth" class="form-control">
@@ -45,6 +67,17 @@
         formControlName="dateOfBirth"
       />
       <span class="actual-label">Date of Birth (YYYY-MM-DD)</span>
+      <div
+        *ngIf="shouldShowErrors(kycFormGroup.controls.dateOfBirth)"
+        class="warning-feedback"
+      >
+        <p *ngIf="kycFormGroup.controls.dateOfBirth.errors.required">
+          This field is required.
+        </p>
+        <p *ngIf="kycFormGroup.controls.dateOfBirth.errors.pattern">
+          Format: YYYY-MM-DD
+        </p>
+      </div>
     </label>
 
     <dropdown-select
@@ -63,6 +96,17 @@
         formControlName="zipCode"
       />
       <span class="actual-label">Zip Code</span>
+      <div
+        *ngIf="shouldShowErrors(kycFormGroup.controls.zipCode)"
+        class="warning-feedback"
+      >
+        <p *ngIf="kycFormGroup.controls.zipCode.errors.required">
+          This field is required.
+        </p>
+        <p *ngIf="kycFormGroup.controls.zipCode.errors.maxlength">
+          Max length should be 10.
+        </p>
+      </div>
     </label>
 
     <dropdown-select
@@ -81,6 +125,17 @@
         formControlName="city"
       />
       <span class="actual-label">City</span>
+      <div
+        *ngIf="shouldShowErrors(kycFormGroup.controls.city)"
+        class="warning-feedback"
+      >
+        <p *ngIf="kycFormGroup.controls.city.errors.required">
+          This field is required.
+        </p>
+        <p *ngIf="kycFormGroup.controls.city.errors.maxlength">
+          Max length should be 50.
+        </p>
+      </div>
     </label>
 
     <label for="addressLine1" class="form-control">
@@ -92,6 +147,14 @@
         formControlName="addressLine1"
       />
       <span class="actual-label">Address (Line 1)</span>
+      <div
+        *ngIf="shouldShowErrors(kycFormGroup.controls.addressLine1)"
+        class="warning-feedback"
+      >
+        <p *ngIf="kycFormGroup.controls.addressLine1.errors.required">
+          This field is required.
+        </p>
+      </div>
     </label>
 
     <label for="addressLine2" class="form-control">
@@ -106,7 +169,7 @@
     </label>
 
     <div class="actions">
-      <button type="submit" #submitButton [disabled]="!kycFormGroup.valid">
+      <button type="submit" [disabled]="!kycFormGroup.valid" #submitButton>
         Next
       </button>
     </div>

@@ -24,12 +24,14 @@
   <table class="account-table">
     <thead class="account-table__header">
       <tr class="account-table__row">
-        <th class="account-table__header-cell">Coin</th>
-        <th class="account-table__header-cell">Main Account</th>
-        <th class="account-table__header-cell">Available</th>
-        <th class="account-table__header-cell show-on-medium">On Orders</th>
-        <th class="account-table__header-cell show-on-medium">Total</th>
-        <th class="account-table__header-cell">Actions</th>
+        <th class="account-table__header-cell row-small">Coin</th>
+        <th class="account-table__header-cell row-big">Main Account</th>
+        <th class="account-table__header-cell row-big">Available</th>
+        <th class="account-table__header-cell row-big show-on-medium">
+          On Orders
+        </th>
+        <th class="account-table__header-cell row-big show-on-medium">Total</th>
+        <th class="account-table__header-cell row-big">Actions</th>
       </tr>
     </thead>
     <tbody class="account-table__body">
@@ -37,22 +39,28 @@
         class="account-table__row"
         *ngFor="let row of tableRows; let i = index"
       >
-        <td class="account-table__cell" [title]="row.shortName">
+        <td class="account-table__cell row-small" [title]="row.shortName">
           {{ row.shortName }}
         </td>
-        <td class="account-table__cell" [title]="row.main">
+        <td class="account-table__cell row-big" [title]="row.main">
           {{ row.main }}
         </td>
-        <td class="account-table__cell" [title]="row.available">
+        <td class="account-table__cell row-big" [title]="row.available">
           {{ row.available }}
         </td>
-        <td class="account-table__cell show-on-medium" [title]="row.reserved">
+        <td
+          class="account-table__cell row-big show-on-medium"
+          [title]="row.reserved"
+        >
           {{ row.reserved }}
         </td>
-        <td class="account-table__cell show-on-medium" [title]="row.total">
+        <td
+          class="account-table__cell row-big show-on-medium"
+          [title]="row.total"
+        >
           {{ row.total }}
         </td>
-        <td class="account-table__cell">
+        <td class="account-table__cell row-big">
           <div arrangeInline class="funds__actions">
             <button
               class="funds__action-button"
@@ -81,12 +89,12 @@
           class="row-section deposit"
           [ngClass]="{ hidden: this.activePane !== i + '-deposit' }"
         >
-          <label class="form-control" for="address">
+          <label class="form-control read-only" for="address">
             <input
               type="text"
               name="address"
               id="address"
-              value="987124gusvbq2gayusd"
+              [value]="walletAddress ? walletAddress.address : 'Fetching...'"
               placeholder=" "
               class="address-input"
               readonly
@@ -134,22 +142,7 @@
               type="hidden"
               name="currency"
               [ngModel]="row.shortName"
-              required
               [value]="row.shortName"
-            />
-            <input
-              type="hidden"
-              name="includeFee"
-              [ngModel]="true"
-              required
-              [value]="true"
-            />
-            <input
-              type="hidden"
-              name="autoCommit"
-              [ngModel]="true"
-              required
-              [value]="true"
             />
             <label class="form-control" for="address">
               <input
@@ -158,7 +151,7 @@
                 id="address"
                 placeholder=" "
                 class="address-input"
-                ngModel
+                [(ngModel)]="form.value.address"
                 required
                 #address="ngModel"
               />
@@ -170,15 +163,14 @@
                 name="amount"
                 id="amount"
                 placeholder=" "
-                value="0"
                 min="0"
-                ngModel
+                [(ngModel)]="form.value.amount"
                 required
                 #amount="ngModel"
               />
               <span class="actual-label">Amount</span>
             </label>
-            <label class="form-control" for="fee">
+            <label class="form-control read-only" for="fee">
               <input
                 type="text"
                 name="fee"
@@ -189,7 +181,7 @@
               />
               <span class="actual-label">Fee</span>
             </label>
-            <label class="form-control" for="received">
+            <label class="form-control read-only" for="received">
               <input
                 type="text"
                 name="received"
@@ -208,7 +200,8 @@
               type="submit"
               class="withdraw-button"
               [disabled]="
-                !form.valid ||
+                !form.value.address ||
+                form.value.address.length <= 0 ||
                 form.value.amount <= 0 ||
                 form.value.amount <= row.payoutFee
               "
@@ -216,6 +209,9 @@
             >
               Withdraw
             </button>
+            <div *ngIf="!!allErrors" class="error-feedback">
+              <p *ngFor="let error of allErrors">{{ error }}</p>
+            </div>
           </form>
           <ul class="tips">
             <li>
@@ -284,6 +280,9 @@
             >
               Transfer
             </button>
+            <div *ngIf="!!allErrors" class="error-feedback">
+              <p *ngFor="let error of allErrors">{{ error }}</p>
+            </div>
           </form>
           <ul class="tips">
             <li>

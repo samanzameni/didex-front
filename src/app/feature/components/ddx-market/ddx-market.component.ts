@@ -71,7 +71,7 @@ export class MarketComponent implements OnInit {
   }
 
   get baseBalanceData(): Balance {
-    if (!this.activateType || !this.balanceData) {
+    if (!this.activeType || !this.balanceData) {
       return null;
     }
 
@@ -85,7 +85,7 @@ export class MarketComponent implements OnInit {
   }
 
   get quoteBalanceData(): Balance {
-    if (!this.activateType || !this.balanceData) {
+    if (!this.activeType || !this.balanceData) {
       return null;
     }
 

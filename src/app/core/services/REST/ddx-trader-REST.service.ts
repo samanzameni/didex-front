@@ -38,4 +38,8 @@ export class TraderRESTService extends AbstractRESTService {
   public requestKYCApproval(): Observable<any> {
     return this.httpGET('api/Trader/RequestApproval');
   }
+
+  public requestUpdateGeneralInformation(data: any): Observable<any> {
+    return this.httpPUT('api/Trader/GeneralSettings', data);
+  }
 }

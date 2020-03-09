@@ -4,6 +4,8 @@ import {
   AuthFormData,
   AuthFormResponse,
   AuthResetPasswordFormData,
+  AuthEmailActivationData,
+  AuthResetPasswordData,
 } from '@core/models';
 import { StorageService } from './ddx-storage.service';
 import { Observable } from 'rxjs';
@@ -29,7 +31,15 @@ export class AuthService {
   }
 
   public requestSignUp(formData: AuthFormData): Observable<AuthFormResponse> {
-    return this.restService.requestRegister(formData).pipe(
+    return this.restService.requestRegister(formData);
+  }
+
+  public requestNewPassword(formData: AuthResetPasswordData): Observable<any> {
+    return this.restService.requestNewPassword(formData);
+  }
+
+  public requestSignIn(formData: AuthFormData): Observable<AuthFormResponse> {
+    return this.restService.requestLogin(formData).pipe(
       tap(response => {
         this.storageService.setUserAccessToken({
           didexAccessToken: response.token,
@@ -40,8 +50,10 @@ export class AuthService {
     );
   }
 
-  public requestSignIn(formData: AuthFormData): Observable<AuthFormResponse> {
-    return this.restService.requestLogin(formData).pipe(
+  public requestVerifyEmail(
+    data: AuthEmailActivationData
+  ): Observable<AuthFormResponse> {
+    return this.restService.requestVerifyEmail(data).pipe(
       tap(response => {
         this.storageService.setUserAccessToken({
           didexAccessToken: response.token,

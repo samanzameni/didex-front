@@ -17,7 +17,7 @@
     box-sizing: border-box;
 
     .settings-page__header {
-      justify-content: space-between;
+      flex-direction: column;
 
       .settings-page__sections {
         align-items: center;
@@ -123,6 +123,11 @@
     section.container {
       height: fit-content;
       min-height: 550px;
+
+      .settings-page__header {
+        flex-direction: row;
+        justify-content: space-between;
+      }
     }
   }
 }

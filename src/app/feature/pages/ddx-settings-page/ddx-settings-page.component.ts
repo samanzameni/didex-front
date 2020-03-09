@@ -16,6 +16,7 @@ import { TIMEZONES } from '@core/util/constants';
 import { mustMatch, isStrong } from '@core/util/validators';
 import { TraderService } from '@core/services';
 import { Trader } from '@core/models';
+import { TraderRESTService, AuthRESTService } from '@core/services/REST';
 
 @Component({
   selector: 'ddx-settings-page',
@@ -34,28 +35,35 @@ export class SettingsPageComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private renderer: Renderer2,
-    private traderService: TraderService
+    private traderService: TraderService,
+    private restService: TraderRESTService,
+    private authRestService: AuthRESTService
   ) {
     this.activePage = 'general';
   }
 
   ngOnInit() {
+    const trader: any = this.traderService.currentTrader;
+
     this.generalReactiveFormGroup = this.formBuilder.group({
-      nickname: [''],
-      timezone: [''],
-      password: ['', [Validators.required, Validators.minLength(8)]],
+      nickname: [
+        trader.generalInformation ? trader.generalInformation.nickName : '',
+      ],
+      timezone: [
+        trader.generalInformation ? trader.generalInformation.timeZone : '',
+      ],
     });
 
     this.securityReactiveFormGroup = this.formBuilder.group(
       {
-        oldPassword: ['', [Validators.required, Validators.minLength(8)]],
-        password: ['', [Validators.required, Validators.minLength(8)]],
+        currentPassword: ['', [Validators.required, Validators.minLength(8)]],
+        newPassword: ['', [Validators.required, Validators.minLength(8)]],
         confirmPassword: ['', [Validators.required, Validators.minLength(8)]],
       },
       {
         validators: [
-          mustMatch('password', 'confirmPassword'),
-          isStrong('password'),
+          mustMatch('newPassword', 'confirmPassword'),
+          isStrong('newPassword'),
         ],
       }
     );
@@ -113,7 +121,61 @@ export class SettingsPageComponent implements OnInit {
     this.activePage = newPage;
   }
 
-  onSubmitGeneralForm(): void {}
+  onSubmitGeneralForm(): void {
+    if (this.generalSubmitButton) {
+      this.renderer.addClass(
+        this.generalSubmitButton.nativeElement,
+        'is-loading'
+      );
+    }
+    this.restService
+      .requestUpdateGeneralInformation(this.generalReactiveFormGroup.value)
+      .subscribe(
+        response => {
+          if (this.generalSubmitButton) {
+            this.renderer.removeClass(
+              this.generalSubmitButton.nativeElement,
+              'is-loading'
+            );
+          }
+        },
+        errorResponse => {
+          if (this.generalSubmitButton) {
+            this.renderer.removeClass(
+              this.generalSubmitButton.nativeElement,
+              'is-loading'
+            );
+          }
+        }
+      );
+  }
 
-  onSubmitSecurityForm(): void {}
+  onSubmitSecurityForm(): void {
+    if (this.securitySubmitButton) {
+      this.renderer.addClass(
+        this.securitySubmitButton.nativeElement,
+        'is-loading'
+      );
+    }
+    this.authRestService
+      .requestChangePassword(this.securityReactiveFormGroup.value)
+      .subscribe(
+        response => {
+          if (this.securitySubmitButton) {
+            this.renderer.removeClass(
+              this.securitySubmitButton.nativeElement,
+              'is-loading'
+            );
+          }
+        },
+        errorResponse => {
+          if (this.securitySubmitButton) {
+            this.renderer.removeClass(
+              this.securitySubmitButton.nativeElement,
+              'is-loading'
+            );
+          }
+        }
+      );
+  }
 }

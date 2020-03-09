@@ -32,6 +32,11 @@
         border-color: $ddx-light-darker;
         background: transparent;
 
+        span.show-on-medium {
+          margin: 0 2px;
+          display: none;
+        }
+
         &:hover {
           color: $ddx-light;
           border-color: $ddx-light;
@@ -45,6 +50,20 @@
           &:hover {
             border-color: $ddx-yellow;
             background: $ddx-yellow;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: $break-narrow-mobile) {
+  :host {
+    .trades__header {
+      .trades-header__trade-panes {
+        .trades-header__pane {
+          span.show-on-medium {
+            display: flex;
           }
         }
       }

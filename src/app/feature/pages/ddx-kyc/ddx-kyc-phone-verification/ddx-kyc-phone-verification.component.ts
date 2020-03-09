@@ -10,6 +10,7 @@ import { KYCPageDirective } from '@feature/templates';
 import { FormBuilder, Validators } from '@angular/forms';
 import { TraderRESTService } from '@core/services/REST';
 import { CONSTANTS } from '@core/util/constants';
+import { TraderService } from '@core/services';
 
 @Component({
   selector: 'ddx-kyc-phone-verification',
@@ -22,6 +23,7 @@ import { CONSTANTS } from '@core/util/constants';
 export class KYCPhoneVerificationPageComponent extends KYCPageDirective
   implements OnInit {
   private hasSubmittedMobileNumber: boolean;
+  private formErrors: any;
 
   @ViewChild('submitNumberButton')
   submitNumberButton: ElementRef;
@@ -31,23 +33,41 @@ export class KYCPhoneVerificationPageComponent extends KYCPageDirective
     protected el: ElementRef,
     protected renderer: Renderer2,
     protected formBuilder: FormBuilder,
+    protected traderService: TraderService,
     private restService: TraderRESTService
   ) {
-    super(router, el, renderer, formBuilder);
+    super(router, el, renderer, formBuilder, traderService);
     this.renderer.addClass(this.el.nativeElement, 'kyc-form');
     this.hasSubmittedMobileNumber = false;
   }
 
   ngOnInit() {
+    const trader = this.currentTrader;
+
     this.kycForm = this.formBuilder.group({
-      countryTelephoneCode: ['', Validators.required],
-      mobileNumber: ['', Validators.required],
+      countryTelephoneCode: [
+        trader.mobileNumber ? trader.mobileNumber.countryTelephoneCode : '',
+        [
+          Validators.required,
+          Validators.maxLength(4),
+          Validators.pattern('[0-9]*'),
+        ],
+      ],
+      mobileNumber: [
+        trader.mobileNumber ? trader.mobileNumber.mobileNumber : '',
+        [
+          Validators.required,
+          Validators.maxLength(15),
+          Validators.pattern('[0-9]*'),
+        ],
+      ],
       code: [
-        '',
+        trader.mobileNumber ? trader.mobileNumber.code : '',
         [
           Validators.required,
           Validators.minLength(CONSTANTS.PHONE_VERIFICATION_CODE_LENGTH),
           Validators.maxLength(CONSTANTS.PHONE_VERIFICATION_CODE_LENGTH),
+          Validators.pattern('[0-9]*'),
         ],
       ],
     });
@@ -55,6 +75,10 @@ export class KYCPhoneVerificationPageComponent extends KYCPageDirective
 
   get hasSubmittedNumber(): boolean {
     return this.hasSubmittedMobileNumber;
+  }
+
+  get errors(): any {
+    return this.formErrors || {};
   }
 
   onSubmitNumber(): void {
@@ -81,6 +105,7 @@ export class KYCPhoneVerificationPageComponent extends KYCPageDirective
 
   onSubmit(): void {
     this.setLoadingOn();
+    this.formErrors = {};
 
     const dataToSend = this.kycForm.value;
 
@@ -91,6 +116,14 @@ export class KYCPhoneVerificationPageComponent extends KYCPageDirective
       },
       errorResponse => {
         this.setLoadingOff();
+
+        if (errorResponse.status === 400) {
+          const errors = errorResponse.error.errors;
+
+          if (errors.Code) {
+            this.formErrors.code = errors.Code;
+          }
+        }
       }
     );
   }

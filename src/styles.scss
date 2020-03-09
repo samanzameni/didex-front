@@ -15,6 +15,37 @@ body {
   color: $ddx-light;
 }
 
+div.warning-feedback,
+div.error-feedback {
+  padding-top: 2px;
+  width: 100%;
+
+  p {
+    @extend .caption-small;
+
+    margin-bottom: 2px;
+    display: flex;
+
+    &:before {
+      content: '-';
+      display: flex;
+      margin: 0 3px;
+    }
+  }
+}
+
+div.warning-feedback {
+  p {
+    color: $ddx-yellow;
+  }
+}
+
+div.error-feedback {
+  p {
+    color: $ddx-red;
+  }
+}
+
 div.loading-spinner {
   position: absolute;
   top: 0;

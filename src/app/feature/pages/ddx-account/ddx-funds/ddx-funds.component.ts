@@ -6,7 +6,6 @@ import {
   Renderer2,
   ChangeDetectorRef,
   AfterViewInit,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { DropdownSelectItem } from '@widget/models';
 import {
@@ -26,6 +25,7 @@ import {
   BalanceWithdrawData,
   BalanceTransferData,
   BalanceTransferType,
+  WalletAddress,
 } from '@core/models';
 import { combineLatest } from 'rxjs';
 import Decimal from 'decimal.js';
@@ -33,7 +33,6 @@ import { copyToClipboard } from '@core/util/clipboard';
 
 @Component({
   selector: 'ddx-funds',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './ddx-funds.component.html',
   styleUrls: [
     '../../../public/ddx-account-pages.scss',
@@ -50,6 +49,9 @@ export class FundsPageComponent implements OnInit, AfterViewInit {
 
   private currentActivePane: string;
   private currentTransferType: BalanceTransferType;
+  private currentWalletAddress: WalletAddress;
+
+  private formsAllErrors: string[];
 
   @ViewChild('withdrawButton') withdrawButton: ElementRef;
   @ViewChild('transferButton') transferButton: ElementRef;
@@ -73,6 +75,8 @@ export class FundsPageComponent implements OnInit, AfterViewInit {
     this.tradingBalanceData = [];
     this.currenciesData = [];
     this.combinedData = [];
+
+    this.formsAllErrors = [];
   }
 
   ngOnInit(): void {
@@ -167,16 +171,43 @@ export class FundsPageComponent implements OnInit, AfterViewInit {
     return this.currentTransferType;
   }
 
+  get walletAddress(): WalletAddress {
+    return this.currentWalletAddress;
+  }
+
+  get allErrors(): string[] {
+    return this.formsAllErrors || [];
+  }
+
   onSortValueChange($event): void {
     console.log($event);
   }
 
   handleClickOnAction(rowIndex: number, action: string): void {
+    this.formsAllErrors = [];
     const actionID = `${rowIndex}-${action}`;
 
     this.currentActivePane =
       this.currentActivePane === actionID ? 'none' : actionID;
+
     this.cdRef.detectChanges();
+
+    if (action === 'deposit') {
+      this.currentWalletAddress = null;
+      this.restService
+        .requestWalletAddress({
+          currencyShortName: this.tableRows[rowIndex].shortName,
+        })
+        .subscribe(
+          response => {
+            this.currentWalletAddress = response;
+            this.cdRef.detectChanges();
+          },
+          errorResponse => {
+            this.currentWalletAddress = { address: 'Error while fetching ...' };
+          }
+        );
+    }
   }
 
   handleClickOnCopyAddress(address: string) {
@@ -188,6 +219,7 @@ export class FundsPageComponent implements OnInit, AfterViewInit {
   }
 
   onSubmitTransfer(index: number, submittedValue: any): void {
+    this.formsAllErrors = [];
     if (this.transferButton) {
       this.renderer.addClass(this.transferButton.nativeElement, 'is-loading');
     }
@@ -217,15 +249,27 @@ export class FundsPageComponent implements OnInit, AfterViewInit {
             );
             this.cdRef.detectChanges();
           }
+
+          if (errorResponse.status === 400) {
+            const errors = errorResponse.error.errors;
+
+            for (const e of Object.keys(errors)) {
+              this.formsAllErrors.push(...errors[e]);
+            }
+          }
         }
       );
   }
 
   onSubmitWithdraw(index: number, submittedValue: BalanceWithdrawData): void {
+    this.formsAllErrors = [];
     if (this.withdrawButton) {
       this.renderer.addClass(this.withdrawButton.nativeElement, 'is-loading');
       this.cdRef.detectChanges();
     }
+
+    submittedValue.includeFee = true;
+    submittedValue.autoCommit = true;
 
     this.restService.requestWithdraw(submittedValue).subscribe(
       response => {
@@ -245,6 +289,14 @@ export class FundsPageComponent implements OnInit, AfterViewInit {
             'is-loading'
           );
           this.cdRef.detectChanges();
+        }
+
+        if (errorResponse.status === 400) {
+          const errors = errorResponse.error.errors;
+
+          for (const e of Object.keys(errors)) {
+            this.formsAllErrors.push(...errors[e]);
+          }
         }
       }
     );

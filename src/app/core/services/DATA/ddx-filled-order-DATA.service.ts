@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { AbstractDATAService } from '@core/templates';
 import { AuthService } from '@core/services';
-import { Trade, Order, OrderStatus } from '@core/models';
-import { PublicRESTService, HistoryRESTService } from '../REST';
+import { Order, OrderStatus } from '@core/models';
+import { HistoryRESTService } from '../REST';
 import { SignalRService } from '../ddx-signalr.service';
+import { BalanceINTERVALService } from '../INTERVALS';
 
 @Injectable()
 export class FilledOrderDATAService extends AbstractDATAService<Order[]> {
@@ -12,13 +13,17 @@ export class FilledOrderDATAService extends AbstractDATAService<Order[]> {
   constructor(
     protected authService: AuthService,
     protected restService: HistoryRESTService,
-    protected signalrService: SignalRService
+    protected signalrService: SignalRService,
+    protected balanceIntervalService: BalanceINTERVALService
   ) {
     super(authService);
 
     this.queryEngine = this.restService.requestListFilledOrders.bind(
       restService
     );
+
+    this.balanceIntervalService.startUpdater();
+    this.balanceIntervalService.setFlag(false);
   }
 
   public updateFeed(symbol: string): void {
@@ -46,6 +51,7 @@ export class FilledOrderDATAService extends AbstractDATAService<Order[]> {
             }
 
             this.dataStream$.next(currentData);
+            this.balanceIntervalService.setFlag(true);
           }
         }
       );

@@ -1,0 +1,15 @@
+<section arrangeStack arrangeCenter [ngSwitch]="currentState">
+  <ng-container *ngSwitchCase="'waiting'">
+    <div class="loading-spinner"></div>
+  </ng-container>
+
+  <ng-container *ngSwitchCase="'success'">
+    <h2>All set!</h2>
+    <p>You will be redirected to homepage soon ...</p>
+  </ng-container>
+
+  <ng-container *ngSwitchCase="'failed'">
+    <h2>Error!</h2>
+    <p>An error occured while activating your acount.</p>
+  </ng-container>
+</section>

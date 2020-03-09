@@ -11,7 +11,7 @@
   width: 100%;
   height: $navbar-height;
   box-sizing: border-box;
-  padding: 5px 40px;
+  padding: 5px 10px;
 
   .logo__container {
     height: 100%;
@@ -41,21 +41,35 @@
 
   .navbar-items__container {
     dropdown-menu {
+      min-width: unset;
+
       ::ng-deep button {
+        @extend .caption;
+
         color: $ddx-light;
         border-color: $ddx-light;
         background-color: $ddx-blue-darkest;
       }
 
       ::ng-deep .dropdown-menu {
+        @extend .caption;
+
         border-color: $ddx-light;
         background-color: $ddx-blue-darkest;
 
         .dropdown-item a {
+          @extend .caption;
+
           color: $ddx-light-darker;
         }
       }
     }
+  }
+}
+
+@media screen and (min-width: $break-mobile) {
+  :host {
+    padding: 5px 40px;
   }
 }
 

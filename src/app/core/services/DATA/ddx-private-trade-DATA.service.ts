@@ -4,6 +4,7 @@ import { AuthService } from '@core/services';
 import { Trade } from '@core/models';
 import { HistoryRESTService } from '../REST';
 import { SignalRService } from '../ddx-signalr.service';
+import { BalanceINTERVALService } from '../INTERVALS';
 
 @Injectable()
 export class PrivateTradeDATAService extends AbstractDATAService<Trade[]> {
@@ -12,13 +13,16 @@ export class PrivateTradeDATAService extends AbstractDATAService<Trade[]> {
   constructor(
     protected authService: AuthService,
     protected restService: HistoryRESTService,
-    protected signalrService: SignalRService
+    protected signalrService: SignalRService,
+    protected balanceIntervalService: BalanceINTERVALService
   ) {
     super(authService);
 
     this.queryEngine = this.restService.requestListPrivateTrades.bind(
       restService
     );
+    this.balanceIntervalService.startUpdater();
+    this.balanceIntervalService.setFlag(false);
   }
 
   public updateFeed(symbol: string): void {
@@ -40,6 +44,7 @@ export class PrivateTradeDATAService extends AbstractDATAService<Trade[]> {
             newValue.unshift(feed);
 
             this.dataStream$.next(newValue);
+            this.balanceIntervalService.setFlag(true);
           }
         }
       );

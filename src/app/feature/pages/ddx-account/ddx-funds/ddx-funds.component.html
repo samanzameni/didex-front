@@ -209,6 +209,9 @@
             >
               Withdraw
             </button>
+            <div *ngIf="!!allErrors" class="error-feedback">
+              <p *ngFor="let error of allErrors">{{ error }}</p>
+            </div>
           </form>
           <ul class="tips">
             <li>
@@ -277,6 +280,9 @@
             >
               Transfer
             </button>
+            <div *ngIf="!!allErrors" class="error-feedback">
+              <p *ngFor="let error of allErrors">{{ error }}</p>
+            </div>
           </form>
           <ul class="tips">
             <li>

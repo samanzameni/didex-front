@@ -15,6 +15,21 @@
     box-sizing: border-box;
     padding: 5px;
 
+    .title {
+      display: flex;
+      align-items: center;
+
+      img {
+        height: 30px;
+        object-fit: contain;
+        margin-right: 5px;
+      }
+
+      b {
+        margin-left: 5px;
+      }
+    }
+
     button[type='submit'] {
       border: none;
       width: 100%;

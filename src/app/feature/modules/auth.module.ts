@@ -8,6 +8,7 @@ import {
   SignInPageComponent,
   SignUpPageComponent,
   ForgotPasswordPageComponent,
+  SignUpSuccessPageComponent,
 } from '@feature/pages';
 
 const routes: Routes = [
@@ -22,7 +23,13 @@ const routes: Routes = [
   },
   {
     path: 'signup',
+    pathMatch: 'full',
     component: SignUpPageComponent,
+  },
+  {
+    path: 'signup/success',
+    pathMatch: 'full',
+    component: SignUpSuccessPageComponent,
   },
   {
     path: 'forgot-password',
@@ -35,6 +42,7 @@ const routes: Routes = [
     SignInPageComponent,
     SignUpPageComponent,
     ForgotPasswordPageComponent,
+    SignUpSuccessPageComponent,
   ],
   imports: [
     CommonModule,

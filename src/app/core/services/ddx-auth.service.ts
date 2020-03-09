@@ -31,11 +31,11 @@ export class AuthService {
   public requestSignUp(formData: AuthFormData): Observable<AuthFormResponse> {
     return this.restService.requestRegister(formData).pipe(
       tap(response => {
-        this.storageService.setUserAccessToken({
-          didexAccessToken: response.token,
-        });
-        this.isUserAuthorized = true;
-        this.signalrService.resetConnection();
+        // this.storageService.setUserAccessToken({
+        //   didexAccessToken: response.token,
+        // });
+        // this.isUserAuthorized = true;
+        // this.signalrService.resetConnection();
       })
     );
   }

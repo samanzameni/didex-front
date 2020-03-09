@@ -19,7 +19,14 @@ export class ImageUploaderComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    if (this.base64Control && this.base64Control.value) {
+      this.selectedFile = {
+        src: this.base64Control.value,
+        file: null,
+      };
+    }
+  }
 
   processFile(imageInput: any): void {
     const file: File = imageInput.files[0];

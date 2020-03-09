@@ -28,8 +28,19 @@ export class KYCIdentityProofPageComponent extends KYCPageDirective
   }
 
   ngOnInit() {
+    const trader = this.currentTrader;
+    let img = '';
+    if (trader.kycImages && trader.kycImages.length > 0) {
+      const identityImage = trader.kycImages.find(
+        image => image.imageType === 1
+      );
+      if (identityImage) {
+        img = identityImage.image;
+      }
+    }
+
     this.kycForm = this.formBuilder.group({
-      image: ['', Validators.required],
+      image: [img, Validators.required],
     });
   }
 

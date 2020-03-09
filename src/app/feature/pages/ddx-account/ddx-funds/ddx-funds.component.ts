@@ -188,6 +188,9 @@ export class FundsPageComponent implements OnInit, AfterViewInit {
   }
 
   onSubmitTransfer(index: number, submittedValue: any): void {
+    if (this.transferButton) {
+      this.renderer.addClass(this.transferButton.nativeElement, 'is-loading');
+    }
     submittedValue.type = parseInt(
       submittedValue.type,
       10

@@ -117,8 +117,12 @@ export class InstrumentsComponent implements OnChanges {
   }
 
   getTickerChange(symbol: TradeSymbol): number {
-    const close = this.getTickerDataFromSymbol(symbol).close;
-    const open = this.getTickerDataFromSymbol(symbol).open;
+    const close = this.getTickerDataFromSymbol(symbol)
+      ? this.getTickerDataFromSymbol(symbol).close
+      : 0;
+    const open = this.getTickerDataFromSymbol(symbol)
+      ? this.getTickerDataFromSymbol(symbol).open
+      : 0;
 
     return open === 0 ? 0 : ((close - open) / open) * 100;
   }

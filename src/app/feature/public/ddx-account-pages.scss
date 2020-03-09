@@ -80,6 +80,8 @@ $page-margin: 15px;
       }
 
       .account-table__row {
+        display: flex;
+
         &:nth-child(even) {
           background: rgba($ddx-light, 0.1);
         }
@@ -106,6 +108,18 @@ $page-margin: 15px;
 
         &.show-on-medium {
           display: none;
+        }
+
+        &.row-index {
+          flex: 1;
+        }
+
+        &.row-small {
+          flex: 4;
+        }
+
+        &.row-big {
+          flex: 7;
         }
       }
     }

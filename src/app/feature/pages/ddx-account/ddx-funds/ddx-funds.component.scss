@@ -4,13 +4,12 @@
   .page-content {
     .account-table {
       .account-table__row {
-        display: flex;
         flex-wrap: wrap;
       }
 
       .account-table__header-cell,
       .account-table__cell {
-        flex: 1;
+        // flex: 1;
       }
     }
   }

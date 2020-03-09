@@ -5,7 +5,7 @@ export function getTickerFromSymbol(
   symbol: TradeSymbol
 ): Ticker {
   const filtered: Ticker[] = tickerData.filter(
-    sData => sData.symbol === symbol.symbol
+    sData => sData.symbol.trim() === symbol.symbol.trim()
   );
   if (filtered.length < 1) {
     return null;

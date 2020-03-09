@@ -13,7 +13,7 @@ import { RadioButtonComponent } from '../radio-button/radio-button.component';
   templateUrl: './radio-group.component.html',
   styleUrls: ['./radio-group.component.scss'],
 })
-export class RadioGroupComponent extends DataEntryDirective<string>
+export class RadioGroupComponent extends DataEntryDirective<any>
   implements OnInit, AfterViewInit {
   @ContentChildren(RadioButtonComponent) radioButtons: QueryList<
     RadioButtonComponent
@@ -35,6 +35,7 @@ export class RadioGroupComponent extends DataEntryDirective<string>
         if (value !== undefined) {
           this.data = value;
           this.valueChange.emit(value);
+          button.forceSelect();
 
           this.radioButtons.forEach(otherButton => {
             if (otherButton.value !== value) {

@@ -57,20 +57,23 @@
             <button
               class="funds__action-button"
               (click)="handleClickOnAction(i, 'deposit')"
+              title="Deposit"
             >
               <fa-icon [icon]="depositIcon"></fa-icon>
             </button>
             <button
               class="funds__action-button"
               (click)="handleClickOnAction(i, 'withdraw')"
+              title="Withdraw"
             >
               <fa-icon [icon]="withdrawIcon"></fa-icon>
             </button>
             <button
               class="funds__action-button"
-              (click)="handleClickOnAction(i, 'trade')"
+              (click)="handleClickOnAction(i, 'transfer')"
+              title="Transfer"
             >
-              <fa-icon [icon]="tradeIcon"></fa-icon>
+              <fa-icon [icon]="transferIcon"></fa-icon>
             </button>
           </div>
         </td>
@@ -203,6 +206,7 @@
             </label>
             <button
               type="submit"
+              class="withdraw-button"
               [disabled]="
                 !form.valid ||
                 form.value.amount <= 0 ||
@@ -221,10 +225,72 @@
           </ul>
         </div>
         <div
-          class="row-section trade"
-          [ngClass]="{ hidden: this.activePane !== i + '-trade' }"
+          class="row-section transfer"
+          [ngClass]="{ hidden: this.activePane !== i + '-transfer' }"
         >
-          trade
+          <form
+            autocomplete="off"
+            (ngSubmit)="onSubmitTransfer(i, form.value)"
+            #form="ngForm"
+          >
+            <radio-group
+              arrangeStack
+              (valueChange)="handleRadioValueChanges($event)"
+            >
+              <radio-button
+                [value]="3"
+                [isForceChecked]="transferType == 3"
+                [label]="'Main Account to Trading'"
+              ></radio-button>
+              <radio-button
+                [value]="4"
+                [isForceChecked]="transferType == 4"
+                [label]="'Trading Account to Main'"
+              ></radio-button>
+            </radio-group>
+            <input
+              type="hidden"
+              name="currency"
+              [ngModel]="row.shortName"
+              required
+              [value]="row.shortName"
+            />
+            <input
+              type="hidden"
+              name="type"
+              [ngModel]="transferType"
+              required
+              #type="ngModel"
+            />
+            <label class="form-control" for="amount">
+              <input
+                type="number"
+                name="amount"
+                id="amount"
+                placeholder=" "
+                value="0"
+                min="0"
+                ngModel
+                required
+                #amount="ngModel"
+              />
+              <span class="actual-label">Amount</span>
+            </label>
+            <button
+              type="submit"
+              class="transfer-button"
+              [disabled]="!form.valid || form.value.amount <= 0"
+              #transferButton
+            >
+              Transfer
+            </button>
+          </form>
+          <ul class="tips">
+            <li>
+              • Please make sure that your computer and browser are secure and
+              your information is protected from being tampered or leaked.
+            </li>
+          </ul>
         </div>
       </tr>
     </tbody>

@@ -16,7 +16,7 @@
   }
 
   .funds__actions {
-    justify-content: center;
+    justify-content: space-evenly;
 
     .funds__action-button {
       border: none;
@@ -44,28 +44,60 @@
       display: flex;
       flex-direction: row;
       justify-content: center;
+      align-items: center;
       width: 100%;
       flex-wrap: wrap;
       max-width: unset;
 
-      label.form-control {
+      button[type='submit'] {
         margin: 5px;
-        width: auto;
+      }
 
-        input {
-          width: 100%;
+      ::ng-deep radio-group,
+      radio-group {
+        margin-top: 5px;
+        margin-right: 15px;
 
-          &.address-input {
-            font-family: 'Courier New', Courier, monospace;
-            text-align: center;
-            width: #{$input-width - 100px};
-            max-width: unset;
+        ::ng-deep radio-button,
+        radio-button {
+          div.radio-container {
+            background-color: transparent;
+
+            border: 1px solid $ddx-yellow;
           }
 
-          &:not(.address-input),
-          &:not(.address-input) + span.actual-label {
-            max-width: #{$input-width / 2};
+          &:hover,
+          &:focus {
+            span.actual-label {
+              color: $ddx-yellow;
+            }
           }
+
+          div.radio-container.checked {
+            background-color: $ddx-yellow;
+            box-shadow: 0 0 0 1px $ddx-blue-darkest, 0 0 0 2px $ddx-yellow;
+          }
+        }
+      }
+    }
+
+    label.form-control {
+      margin: 5px;
+      width: auto;
+
+      input {
+        width: 100%;
+
+        &.address-input {
+          font-family: 'Courier New', Courier, monospace;
+          text-align: center;
+          width: #{$input-width - 100px};
+          max-width: unset;
+        }
+
+        &:not(.address-input),
+        &:not(.address-input) + span.actual-label {
+          max-width: #{$input-width / 2};
         }
       }
     }

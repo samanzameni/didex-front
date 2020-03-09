@@ -1,6 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { Order, Trade } from '@core/models';
-import { OrderDATAService, TradeDATAService } from '@core/services/DATA';
+import { Order, Trade, OrderSide, Transaction } from '@core/models';
+import {
+  OrderDATAService,
+  TradeDATAService,
+  FilledOrderDATAService,
+  PrivateTradeDATAService,
+  TransactionsDATAService,
+} from '@core/services/DATA';
+import Decimal from 'decimal.js';
 
 @Component({
   selector: 'ddx-reports',
@@ -18,8 +25,9 @@ export class ReportsPageComponent implements OnInit {
   private currentActivePane: string;
 
   constructor(
-    private orderDataService: OrderDATAService,
-    private tradeDataService: TradeDATAService
+    private orderDataService: FilledOrderDATAService,
+    private tradeDataService: PrivateTradeDATAService,
+    private transactionsDataService: TransactionsDATAService
   ) {
     this.currentActivePane = 'orders';
   }
@@ -28,14 +36,17 @@ export class ReportsPageComponent implements OnInit {
     this.orderDataService.dataStream$.subscribe(data => {
       this.orders = data || [];
     });
+    this.orderDataService.updateData();
 
     this.tradeDataService.dataStream$.subscribe(data => {
       this.trades = data || [];
     });
-  }
+    this.tradeDataService.updateData();
 
-  get tableRows() {
-    return [1, 2, 3];
+    this.transactionsDataService.dataStream$.subscribe(data => {
+      this.transactions = data || [];
+    });
+    this.transactionsDataService.updateData();
   }
 
   get orderData(): Order[] {
@@ -52,11 +63,28 @@ export class ReportsPageComponent implements OnInit {
     });
   }
 
+  get transactionsData(): Transaction[] {
+    return (this.transactions || []).map(transaction => {
+      transaction.createdAt = transaction.createdAt
+        .replace('T', ' ')
+        .substr(0, 19);
+      return transaction;
+    });
+  }
+
   get activePane(): string {
     return this.currentActivePane;
   }
 
   activatePane(newPane: string): void {
     this.currentActivePane = newPane;
+  }
+
+  getPriceCellCSSClass(row: Trade): string {
+    return row.side === OrderSide.Buy ? 'green' : 'red';
+  }
+
+  getTotalPrice(order: Order): Decimal {
+    return new Decimal(order.price).mul(order.quantity);
   }
 }

@@ -7,7 +7,7 @@ import {
   Router,
 } from '@angular/router';
 import { Observable, of } from 'rxjs';
-import { TraderRESTService } from '@core/services/REST';
+import { TraderService } from '@core/services';
 import { catchError, map } from 'rxjs/operators';
 import { Trader } from '@core/models';
 
@@ -15,7 +15,7 @@ import { Trader } from '@core/models';
   providedIn: 'root',
 })
 export class KYCGuard implements CanActivateChild {
-  constructor(private restService: TraderRESTService, private router: Router) {}
+  constructor(private restService: TraderService, private router: Router) {}
 
   canActivateChild(
     next: ActivatedRouteSnapshot,
@@ -25,7 +25,7 @@ export class KYCGuard implements CanActivateChild {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    return this.restService.requestGetTraderInfo().pipe(
+    return this.restService.updateCurrentTrader().pipe(
       catchError(errorResponse => {
         return of(null);
       }),

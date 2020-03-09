@@ -121,6 +121,16 @@ $page-margin: 15px;
         &.row-big {
           flex: 7;
         }
+
+        &.up,
+        &.green {
+          color: $ddx-green;
+        }
+
+        &.down,
+        &.red {
+          color: $ddx-red;
+        }
       }
     }
   }

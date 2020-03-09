@@ -31,7 +31,7 @@ export abstract class AbstractRESTService {
     url: string,
     method: string,
     body?: object
-  ): Observable<object> {
+  ): Observable<any> {
     switch (method) {
       case 'GET':
         return this.http.get(url);
@@ -55,7 +55,7 @@ export abstract class AbstractRESTService {
     url: string,
     method: string,
     body?: object
-  ): Observable<object> {
+  ): Observable<any> {
     url = this.baseURL + url;
     switch (method) {
       case 'GET':
@@ -75,7 +75,7 @@ export abstract class AbstractRESTService {
    * Sends a GET request with custom headers
    *
    */
-  public httpGET(url: string): Observable<object> {
+  public httpGET(url: string): Observable<any> {
     return this.http.get(this.baseURL + url, {
       headers: this.getFullHeaders(),
     });
@@ -85,7 +85,7 @@ export abstract class AbstractRESTService {
    * Sends a POST request with custom headers
    *
    */
-  public httpPOST(url: string, body: object): Observable<object> {
+  public httpPOST(url: string, body: object): Observable<any> {
     return this.http.post(this.baseURL + url, body, {
       headers: this.getFullHeaders(),
     });
@@ -95,7 +95,7 @@ export abstract class AbstractRESTService {
    * Sends a POST request with formData body type and custom headers
    *
    */
-  public httpPOSTFormData(url: string, formData: FormData): Observable<object> {
+  public httpPOSTFormData(url: string, formData: FormData): Observable<any> {
     return this.http.post(this.baseURL + url, formData, {
       headers: this.getAuthHeaders(),
     });
@@ -105,7 +105,7 @@ export abstract class AbstractRESTService {
    * Sends a PUT request with custom headers
    *
    */
-  public httpPUT(url: string, body: object): Observable<object> {
+  public httpPUT(url: string, body: object): Observable<any> {
     return this.http.put(this.baseURL + url, body, {
       headers: this.getFullHeaders(),
     });
@@ -115,7 +115,7 @@ export abstract class AbstractRESTService {
    * Sends a PATCH request with custom headers
    *
    */
-  public httpPATCH(url: string, body: object): Observable<object> {
+  public httpPATCH(url: string, body: object): Observable<any> {
     return this.http.patch(this.baseURL + url, body, {
       headers: this.getFullHeaders(),
     });
@@ -125,7 +125,7 @@ export abstract class AbstractRESTService {
    * Sends a DELETE request with custom headers
    *
    */
-  public httpDELETE(url: string): Observable<object> {
+  public httpDELETE(url: string): Observable<any> {
     return this.http.delete(this.baseURL + url, {
       headers: this.getFullHeaders(),
     });

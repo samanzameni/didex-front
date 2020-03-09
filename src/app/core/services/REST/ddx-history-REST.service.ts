@@ -3,18 +3,21 @@ import { AbstractRESTService } from '@core/templates';
 import { Observable } from 'rxjs';
 import { Order } from '@core/models/ddx-order.model';
 import { Trade } from '@core/models';
+import { map } from 'rxjs/operators';
 
 @Injectable()
 export class HistoryRESTService extends AbstractRESTService {
   public requestListFilledOrders(activeSymbol: string): Observable<Order[]> {
-    return this.httpGET(`api/History/orders/${activeSymbol}`) as Observable<
-      Order[]
-    >;
+    const url = 'api/History/orders' + (activeSymbol ? `/${activeSymbol}` : '');
+    return this.httpGET(url).pipe(
+      map(response => response.records)
+    ) as Observable<Order[]>;
   }
 
   public requestListPrivateTrades(activeSymbol: string): Observable<Trade[]> {
-    return this.httpGET(`api/History/trades/${activeSymbol}`) as Observable<
-      Trade[]
-    >;
+    const url = 'api/History/trades' + (activeSymbol ? `/${activeSymbol}` : '');
+    return this.httpGET(url).pipe(
+      map(response => response.records)
+    ) as Observable<Trade[]>;
   }
 }

@@ -5,7 +5,9 @@ import {
   Balance,
   BalanceWithdrawData,
   BalanceTransferData,
+  Transaction,
 } from '@core/models';
+import { map } from 'rxjs/operators';
 
 @Injectable()
 export class BankingRESTService extends AbstractRESTService {
@@ -19,5 +21,11 @@ export class BankingRESTService extends AbstractRESTService {
 
   public requestTransfer(data: BalanceTransferData): Observable<any> {
     return this.httpPOST('api/Banking/transfer', data) as Observable<any>;
+  }
+
+  public requestTransactions(): Observable<Transaction[]> {
+    return this.httpGET('api/Banking/transactions?Desc=true').pipe(
+      map(response => response.records)
+    ) as Observable<Transaction[]>;
   }
 }

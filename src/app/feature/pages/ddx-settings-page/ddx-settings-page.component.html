@@ -29,7 +29,7 @@
   <hr class="settings-page__seperator" />
 
   <div class="settings-page__content" *ngSwitchCase="'general'">
-    <p>
+    <p class="settings-page__info">
       Here, you can change your general account information.
     </p>
 
@@ -80,6 +80,11 @@
   </div>
 
   <div class="settings-page__content" *ngSwitchCase="'security'">
+    <p class="settings-page__info">
+      Here, you can change your password for improving the security of your
+      account.
+    </p>
+
     <form
       arrangeStack
       autocomplete="off"
@@ -136,24 +141,24 @@
     [ngSwitch]="currentTraderStatus"
   >
     <ng-container *ngSwitchCase="'newbie'">
-      <p>
+      <p class="settings-page__info">
         As a user, you must validate your identity in order to do transactions
         in DidEx
       </p>
       <a routerLink="/user/kyc" class="validate-button">Validate identity</a>
     </ng-container>
     <ng-container *ngSwitchCase="'sent'">
-      <p>
+      <p class="settings-page__info">
         You have filled and sent your information and it is waiting for approval
       </p>
       <a routerLink="/user/kyc" class="validate-button">Update KYC Info</a>
     </ng-container>
     <ng-container *ngSwitchCase="'approved'">
-      <p>Your KYC Information is approved.</p>
+      <p class="settings-page__info">Your KYC Information is approved.</p>
       <a routerLink="/user/kyc" class="validate-button">Update KYC Info</a>
     </ng-container>
     <ng-container *ngSwitchCase="'banned'">
-      <p>Your application for KYC is banned</p>
+      <p class="settings-page__info">Your application for KYC is banned</p>
       <a routerLink="/user/kyc" class="validate-button">Validate identity</a>
     </ng-container>
   </div>

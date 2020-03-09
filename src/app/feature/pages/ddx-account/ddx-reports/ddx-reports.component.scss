@@ -1,0 +1,37 @@
+@import '../../../../../styles.scss';
+
+:host {
+  .page-header__panes {
+    align-items: center;
+
+    .page-header__pane {
+      @extend .button-primary;
+      @extend .button-short;
+      @extend .caption-small;
+
+      margin-right: 3px;
+      display: flex;
+      min-width: unset;
+
+      color: $ddx-light-darker;
+      border-color: $ddx-light-darker;
+      background: transparent;
+
+      &:hover {
+        color: $ddx-light;
+        border-color: $ddx-light;
+      }
+
+      &.active {
+        color: $ddx-light-darker;
+        border-color: $ddx-yellow;
+        background: $ddx-yellow;
+
+        &:hover {
+          border-color: $ddx-yellow;
+          background: $ddx-yellow;
+        }
+      }
+    }
+  }
+}

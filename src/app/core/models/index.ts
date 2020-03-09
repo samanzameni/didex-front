@@ -9,5 +9,6 @@ export * from './ddx-balance.model';
 export * from './ddx-order.model';
 export * from './ddx-trade.model';
 export * from './ddx-currency.model';
+export * from './ddx-transaction.model';
 
 export * from './ddx-trader.model';

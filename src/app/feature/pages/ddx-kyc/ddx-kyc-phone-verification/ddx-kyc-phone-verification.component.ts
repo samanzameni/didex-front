@@ -46,11 +46,19 @@ export class KYCPhoneVerificationPageComponent extends KYCPageDirective
     this.kycForm = this.formBuilder.group({
       countryTelephoneCode: [
         trader.mobileNumber ? trader.mobileNumber.countryTelephoneCode : '',
-        Validators.required,
+        [
+          Validators.required,
+          Validators.maxLength(4),
+          Validators.pattern('[0-9]*'),
+        ],
       ],
       mobileNumber: [
         trader.mobileNumber ? trader.mobileNumber.mobileNumber : '',
-        Validators.required,
+        [
+          Validators.required,
+          Validators.maxLength(15),
+          Validators.pattern('[0-9]*'),
+        ],
       ],
       code: [
         trader.mobileNumber ? trader.mobileNumber.code : '',
@@ -58,6 +66,7 @@ export class KYCPhoneVerificationPageComponent extends KYCPageDirective
           Validators.required,
           Validators.minLength(CONSTANTS.PHONE_VERIFICATION_CODE_LENGTH),
           Validators.maxLength(CONSTANTS.PHONE_VERIFICATION_CODE_LENGTH),
+          Validators.pattern('[0-9]*'),
         ],
       ],
     });

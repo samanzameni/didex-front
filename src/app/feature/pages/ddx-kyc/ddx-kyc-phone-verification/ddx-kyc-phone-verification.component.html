@@ -24,6 +24,20 @@
         formControlName="countryTelephoneCode"
       />
       <span class="actual-label">Country Code</span>
+      <div
+        *ngIf="shouldShowErrors(kycFormGroup.controls.countryTelephoneCode)"
+        class="warning-feedback"
+      >
+        <p *ngIf="kycFormGroup.controls.countryTelephoneCode.errors.required">
+          This field is required.
+        </p>
+        <p *ngIf="kycFormGroup.controls.countryTelephoneCode.errors.maxlength">
+          Max length should be 4.
+        </p>
+        <p *ngIf="kycFormGroup.controls.countryTelephoneCode.errors.pattern">
+          Only digits are valid.
+        </p>
+      </div>
     </label>
 
     <label for="mobileNumber" class="form-control">
@@ -35,6 +49,20 @@
         formControlName="mobileNumber"
       />
       <span class="actual-label">Mobile Number</span>
+      <div
+        *ngIf="shouldShowErrors(kycFormGroup.controls.mobileNumber)"
+        class="warning-feedback"
+      >
+        <p *ngIf="kycFormGroup.controls.mobileNumber.errors.required">
+          This field is required.
+        </p>
+        <p *ngIf="kycFormGroup.controls.mobileNumber.errors.maxlength">
+          Max length should be 15.
+        </p>
+        <p *ngIf="kycFormGroup.controls.mobileNumber.errors.pattern">
+          Only digits are valid.
+        </p>
+      </div>
     </label>
 
     <button
@@ -63,6 +91,28 @@
         formControlName="code"
       />
       <span class="actual-label">Verification Code</span>
+      <p style="font-size: 0.65em; margin-top: 5px">
+        A text message has been sent to +{{
+          kycFormGroup.controls.countryTelephoneCode.value
+        }}{{ kycFormGroup.controls.mobileNumber.value }}.
+      </p>
+      <div
+        *ngIf="shouldShowErrors(kycFormGroup.controls.code)"
+        class="warning-feedback"
+      >
+        <p *ngIf="kycFormGroup.controls.code.errors.required">
+          This field is required.
+        </p>
+        <p *ngIf="kycFormGroup.controls.code.errors.minlength">
+          Min length should be 6.
+        </p>
+        <p *ngIf="kycFormGroup.controls.code.errors.maxlength">
+          Max length should be 6.
+        </p>
+        <p *ngIf="kycFormGroup.controls.code.errors.pattern">
+          Only digits are valid.
+        </p>
+      </div>
     </label>
 
     <div class="actions">

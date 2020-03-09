@@ -1,9 +1,82 @@
 <div arrangeInline class="page-header">
   <h2>Reports</h2>
+
+  <ul arrangeInline class="page-header__panes">
+    <li
+      class="page-header__pane"
+      [ngClass]="{ active: activePane === 'orders' }"
+      (click)="activatePane('orders')"
+    >
+      Orders
+    </li>
+    <li
+      class="page-header__pane"
+      [ngClass]="{ active: activePane === 'trades' }"
+      (click)="activatePane('trades')"
+    >
+      Trades
+    </li>
+    <li
+      class="page-header__pane"
+      [ngClass]="{ active: activePane === 'transactions' }"
+      (click)="activatePane('transactions')"
+    >
+      Transactions
+    </li>
+  </ul>
 </div>
 
-<section class="page-content">
-  <table class="account-table">
+<section class="page-content" [ngSwitch]="activePane">
+  <table class="account-table" *ngSwitchCase="'orders'">
+    <thead class="account-table__header">
+      <tr class="account-table__row">
+        <th class="account-table__header-cell row-index">#</th>
+        <th class="account-table__header-cell row-big">Time</th>
+        <th class="account-table__header-cell row-small">Market</th>
+        <th class="account-table__header-cell row-small">ID</th>
+        <th class="account-table__header-cell row-big">Price</th>
+        <th class="account-table__header-cell row-big">Exec/Amount</th>
+        <th class="account-table__header-cell row-big">Total</th>
+      </tr>
+    </thead>
+    <tbody class="account-table__body">
+      <tr
+        class="account-table__row"
+        *ngFor="let row of orderData; let i = index"
+      >
+        <td class="account-table__cell row-index" [title]="i + 1">
+          {{ i + 1 }}
+        </td>
+        <td class="account-table__cell row-big" [title]="row.createdAt">
+          {{ row.createdAt }}
+        </td>
+        <td class="account-table__cell row-small" [title]="row.marketSymbol">
+          {{ row.marketSymbol }}
+        </td>
+        <td class="account-table__cell row-small" [title]="row.id">
+          {{ row.id }}
+        </td>
+        <td
+          class="account-table__cell row-big"
+          [ngClass]="getPriceCellCSSClass(row)"
+          [title]="row.price"
+        >
+          {{ row.price }}
+        </td>
+        <td
+          class="account-table__cell row-big"
+          [title]="row.executedQuantity + '/' + row.quantity"
+        >
+          {{ row.executedQuantity + '/' + row.quantity }}
+        </td>
+        <td class="account-table__cell row-big" [title]="getTotalPrice(row)">
+          {{ getTotalPrice(row) }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <table class="account-table" *ngSwitchCase="'trades'">
     <thead class="account-table__header">
       <tr class="account-table__row">
         <th class="account-table__header-cell row-index">#</th>
@@ -14,40 +87,85 @@
         <th class="account-table__header-cell row-big">Price</th>
         <th class="account-table__header-cell row-big">Total</th>
         <th class="account-table__header-cell row-big">Fee</th>
-        <th class="account-table__header-cell row-small">Status</th>
       </tr>
     </thead>
     <tbody class="account-table__body">
       <tr
         class="account-table__row"
-        *ngFor="let row of tableRows; let i = index"
+        *ngFor="let row of tradeData; let i = index"
       >
-        <td class="account-table__cell row-index">
-          1
+        <td class="account-table__cell row-index" [title]="i + 1">
+          {{ i + 1 }}
         </td>
-        <td class="account-table__cell row-big">
-          0.0090098098
+        <td class="account-table__cell row-big" [title]="row.timeStamp">
+          {{ row.timeStamp }}
         </td>
-        <td class="account-table__cell row-small">
-          0.0090098098
+        <td class="account-table__cell row-small" [title]="row.marketSymbol">
+          {{ row.marketSymbol }}
         </td>
-        <td class="account-table__cell row-small">
-          0.0090098098
+        <td class="account-table__cell row-small" [title]="row.id">
+          {{ row.id }}
         </td>
-        <td class="account-table__cell row-big">
-          0.0090098098
+        <td class="account-table__cell row-big" [title]="row.volume">
+          {{ row.volume }}
         </td>
-        <td class="account-table__cell row-big">
-          0.0090098098
+        <td
+          class="account-table__cell row-big"
+          [ngClass]="getPriceCellCSSClass(row)"
+          [title]="row.price"
+        >
+          {{ row.price }}
         </td>
-        <td class="account-table__cell row-big">
-          0.0090098098
+        <td class="account-table__cell row-big" [title]="row.volumeInQoute">
+          {{ row.volumeInQoute }}
         </td>
-        <td class="account-table__cell row-big">
-          0.0090098098
+        <td class="account-table__cell row-big" [title]="row.fee">
+          {{ row.fee }}
         </td>
-        <td class="account-table__cell row-small">
-          0.0090098098
+      </tr>
+    </tbody>
+  </table>
+
+  <table class="account-table" *ngSwitchCase="'transactions'">
+    <thead class="account-table__header">
+      <tr class="account-table__row">
+        <th class="account-table__header-cell row-index">#</th>
+        <th class="account-table__header-cell row-big">Time</th>
+        <th class="account-table__header-cell row-small">Currency</th>
+        <th class="account-table__header-cell row-small">ID</th>
+        <th class="account-table__header-cell row-big">Amount</th>
+        <th class="account-table__header-cell row-big">Fee</th>
+        <th class="account-table__header-cell row-big">Address</th>
+      </tr>
+    </thead>
+    <tbody class="account-table__body">
+      <tr
+        class="account-table__row"
+        *ngFor="let row of transactionsData; let i = index"
+      >
+        <td class="account-table__cell row-index" [title]="i + 1">
+          {{ i + 1 }}
+        </td>
+        <td class="account-table__cell row-big" [title]="row.createdAt">
+          {{ row.createdAt }}
+        </td>
+        <td
+          class="account-table__cell row-small"
+          [title]="row.currencyShortName"
+        >
+          {{ row.currencyShortName }}
+        </td>
+        <td class="account-table__cell row-small" [title]="row.id">
+          {{ row.id }}
+        </td>
+        <td class="account-table__cell row-big" [title]="row.amount">
+          {{ row.amount }}
+        </td>
+        <td class="account-table__cell row-big" [title]="row.fee">
+          {{ row.fee }}
+        </td>
+        <td class="account-table__cell row-big" [title]="row.address">
+          {{ row.address }}
         </td>
       </tr>
     </tbody>

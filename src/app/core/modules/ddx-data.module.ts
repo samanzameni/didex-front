@@ -8,6 +8,7 @@ import {
   OrderDATAService,
   PrivateTradeDATAService,
   FilledOrderDATAService,
+  TransactionsDATAService,
 } from '@core/services/DATA';
 import { RESTModule } from './ddx-rest.module';
 import { SignalRService } from '@core/services';
@@ -25,6 +26,7 @@ import { SignalRService } from '@core/services';
     OrderDATAService,
     PrivateTradeDATAService,
     FilledOrderDATAService,
+    TransactionsDATAService,
   ],
 })
 export class DATAModule {}

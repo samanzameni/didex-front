@@ -6,3 +6,4 @@ export * from './ddx-trade-DATA.service';
 export * from './ddx-order-DATA.service';
 export * from './ddx-private-trade-DATA.service';
 export * from './ddx-filled-order-DATA.service';
+export * from './ddx-transactions-DATA.service';

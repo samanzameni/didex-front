@@ -5,9 +5,17 @@
   position: relative;
 
   .app-tv-chart-container {
-    height: calc(60vh - 80px);
-    max-height: 1000px;
-    min-height: 550px;
+    height: 320px;
     width: 100%;
+  }
+}
+
+@media screen and (min-width: $break-mobile) {
+  :host {
+    .app-tv-chart-container {
+      height: calc(60vh - 80px);
+      min-height: 550px;
+      max-height: 1000px;
+    }
   }
 }

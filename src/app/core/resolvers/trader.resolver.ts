@@ -15,7 +15,7 @@ export class TraderResolver implements Resolve<any> {
   resolve() {
     return this.traderService.updateCurrentTrader().pipe(
       catchError(error => {
-        if (error.status === 401 || error.status === 0) {
+        if (error.status === 401) {
           this.authService.handleAuthError();
         }
 

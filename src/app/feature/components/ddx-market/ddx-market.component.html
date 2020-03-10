@@ -65,6 +65,26 @@
         </tr>
       </tbody>
     </table>
+    <table arrangeCenter class="market__balance" *ngIf="!quoteBalanceData">
+      <tbody arrangeStack>
+        <tr arrangeInline>
+          <td>Balance:</td>
+          <td>0 {{ activeSymbol.quoteCurrencyShortName }}</td>
+        </tr>
+        <tr arrangeInline>
+          <td>In Order:</td>
+          <td>0 {{ activeSymbol.quoteCurrencyShortName }}</td>
+        </tr>
+        <tr arrangeInline>
+          <td>Total:</td>
+          <td>0 {{ activeSymbol.quoteCurrencyShortName }}</td>
+        </tr>
+        <tr arrangeInline>
+          <td>Best Bid:</td>
+          <td>0 {{ activeSymbol.quoteCurrencyShortName }}</td>
+        </tr>
+      </tbody>
+    </table>
     <form
       autocomplete="off"
       arrangeStack
@@ -200,6 +220,26 @@
         <tr arrangeInline>
           <td>Best Ask:</td>
           <td>{{ bestAsk }} {{ baseBalanceData.currency }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <table arrangeCenter class="market__balance" *ngIf="!baseBalanceData">
+      <tbody arrangeStack>
+        <tr arrangeInline>
+          <td>Balance:</td>
+          <td>0 {{ activeSymbol.baseCurrencyShortName }}</td>
+        </tr>
+        <tr arrangeInline>
+          <td>In Order:</td>
+          <td>0 {{ activeSymbol.baseCurrencyShortName }}</td>
+        </tr>
+        <tr arrangeInline>
+          <td>Total:</td>
+          <td>0 {{ activeSymbol.baseCurrencyShortName }}</td>
+        </tr>
+        <tr arrangeInline>
+          <td>Best Ask:</td>
+          <td>0 {{ activeSymbol.baseCurrencyShortName }}</td>
         </tr>
       </tbody>
     </table>

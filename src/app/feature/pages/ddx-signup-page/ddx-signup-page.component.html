@@ -23,7 +23,7 @@
   </label>
   <div
     *ngIf="shouldShowErrors(authFormControls.email)"
-    class="invalid-feedback"
+    class="warning-feedback"
   >
     <p *ngIf="authFormControls.email.errors.required">Email is required</p>
     <p *ngIf="authFormControls.email.errors.email">
@@ -43,7 +43,7 @@
   </label>
   <div
     *ngIf="shouldShowErrors(authFormControls.password)"
-    class="invalid-feedback"
+    class="warning-feedback"
   >
     <p *ngIf="authFormControls.password.errors.required">
       Password is required
@@ -68,7 +68,7 @@
   </label>
   <div
     *ngIf="shouldShowErrors(authFormControls.confirmPassword)"
-    class="invalid-feedback"
+    class="warning-feedback"
   >
     <p *ngIf="authFormControls.confirmPassword.errors.required">
       Password must be confirmed

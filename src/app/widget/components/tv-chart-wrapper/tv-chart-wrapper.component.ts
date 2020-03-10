@@ -86,6 +86,7 @@ export class TradingViewChartWrapperComponent
     let symbol = 'Kraken:ETH/USDT';
     if (activeSymbol) {
       symbol = `Kraken:${activeSymbol.baseCurrencyShortName.trim()}/${activeSymbol.quoteCurrencyShortName.trim()}`;
+      // symbol = `Kraken:${activeSymbol.quoteCurrencyShortName.trim()}/${activeSymbol.baseCurrencyShortName.trim()}`;
     }
 
     setTimeout(() => {

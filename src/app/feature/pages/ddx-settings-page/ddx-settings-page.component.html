@@ -40,16 +40,17 @@
       (ngSubmit)="onSubmitGeneralForm()"
       #generalForm
     >
-      <label class="form-control" for="nickname">
+      <mat-form-field>
+        <mat-label>Nickname</mat-label>
         <input
+          matInput
           type="text"
           formControlName="nickname"
           name="nickname"
           id="nickname"
-          placeholder=" "
+          placeholder="Johnny Doe"
         />
-        <span class="actual-label">Nickname</span>
-      </label>
+      </mat-form-field>
 
       <dropdown-select
         caption="Timezone"

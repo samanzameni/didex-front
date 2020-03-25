@@ -3,7 +3,7 @@
 
 $input-width: 420px;
 
-form.old {
+form {
   width: 100%;
   max-width: $input-width;
   box-sizing: border-box;
@@ -27,7 +27,7 @@ form.old {
   }
 }
 
-label.form-control {
+label.form-control-old {
   background: transparent;
   position: relative;
 

@@ -1,31 +1,8 @@
-<button
-  class="button-secondary select-toggle"
-  type="button"
-  [ngClass]="{ active: isOpen }"
-  (click)="toggleDropdown()"
->
-  <span>{{
-    hasMultiselect ? (value ? value : caption) : value ? selected : caption
-  }}</span>
-  <fa-icon [icon]="caretIcon"></fa-icon>
-</button>
-
-<ul
-  *ngIf="!!items"
-  arrangeStack
-  class="options-menu"
-  [ngClass]="{ active: isOpen }"
->
-  <li
-    *ngFor="let item of items; let i = index"
-    class="option-item"
-    (click)="setValue($event, i)"
-  >
-    <ng-template [ngIf]="hasMultiselect">
-      <checkbox [label]="item.title"></checkbox>
-    </ng-template>
-    <ng-template [ngIf]="!hasMultiselect">
-      <span>{{ item.title }}</span>
-    </ng-template>
-  </li>
-</ul>
+<mat-form-field>
+  <mat-label>{{ caption }}</mat-label>
+  <mat-select [multiple]="hasMultiselect">
+    <mat-option *ngFor="let item of items" [value]="item.value">
+      {{ item.title }}
+    </mat-option>
+  </mat-select>
+</mat-form-field>

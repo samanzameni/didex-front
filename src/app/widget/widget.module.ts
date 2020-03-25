@@ -8,8 +8,8 @@ import {
   ArrangeStackDirective,
 } from './directives';
 import {
+  DropdownAutocompleteComponent,
   DropdownMenuComponent,
-  DropdownItemComponent,
   DropdownSelectComponent,
   ToggleButtonComponent,
   CheckboxComponent,
@@ -19,10 +19,15 @@ import {
   ImageUploaderComponent,
 } from './components';
 import { RouterModule } from '@angular/router';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -31,8 +36,8 @@ import { MatIconModule } from '@angular/material/icon';
     ArrangeInlineWrapDirective,
     ArrangeStackDirective,
     //
+    DropdownAutocompleteComponent,
     DropdownMenuComponent,
-    DropdownItemComponent,
     DropdownSelectComponent,
     ToggleButtonComponent,
     CheckboxComponent,
@@ -46,10 +51,16 @@ import { MatIconModule } from '@angular/material/icon';
     CommonModule,
     RouterModule,
     FontAwesomeModule,
+    FormsModule,
+    ReactiveFormsModule,
     //
     MatMenuModule,
     MatButtonModule,
     MatIconModule,
+    MatAutocompleteModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
   ],
   exports: [
     ArrangeCenterDirective,
@@ -57,8 +68,8 @@ import { MatIconModule } from '@angular/material/icon';
     ArrangeInlineWrapDirective,
     ArrangeStackDirective,
     //
+    DropdownAutocompleteComponent,
     DropdownMenuComponent,
-    DropdownItemComponent,
     DropdownSelectComponent,
     ToggleButtonComponent,
     CheckboxComponent,

@@ -1,12 +1,13 @@
 <button
-  class="button-secondary dropdown-toggle"
+  mat-raised-button
+  color="primary"
+  [matMenuTriggerFor]="theMenu"
   [ngClass]="{ active: isOpen }"
-  #dropdownToggle
 >
   <span>{{ caption }}</span>
-  <fa-icon [icon]="caretIcon"></fa-icon>
+  <mat-icon>more_vert</mat-icon>
 </button>
 
-<ul arrangeStack class="dropdown-menu" [ngClass]="{ active: isOpen }">
-  <ng-content select="dropdown-item"></ng-content>
-</ul>
+<mat-menu #theMenu="matMenu" class="dropdown-menu">
+  <ng-content></ng-content>
+</mat-menu>

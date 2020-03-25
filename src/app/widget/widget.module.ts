@@ -20,6 +20,10 @@ import {
 } from './components';
 import { RouterModule } from '@angular/router';
 
+import { MatMenuModule } from '@angular/material/menu';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+
 @NgModule({
   declarations: [
     ArrangeCenterDirective,
@@ -38,7 +42,15 @@ import { RouterModule } from '@angular/router';
     //
     TradingViewChartWrapperComponent,
   ],
-  imports: [CommonModule, RouterModule, FontAwesomeModule],
+  imports: [
+    CommonModule,
+    RouterModule,
+    FontAwesomeModule,
+    //
+    MatMenuModule,
+    MatButtonModule,
+    MatIconModule,
+  ],
   exports: [
     ArrangeCenterDirective,
     ArrangeInlineDirective,

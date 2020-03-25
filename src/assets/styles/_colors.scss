@@ -25,3 +25,100 @@ $ddx-cyan: #30acce;
 
 $ddx-red: #ff2d2d;
 $ddx-green: #8ed23f;
+
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@import '~@angular/material/theming';
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
+$mat-ddx-primary: (
+  50: #e8ecf0,
+  100: #c3cedb,
+  200: #9eafc3,
+  300: #7990aa,
+  400: #5b7799,
+  500: #3c608b,
+  600: #355982,
+  700: #2d4f76,
+  800: #274569,
+  900: #213450,
+  A100: #b3e5ff,
+  A200: #4ec3fd,
+  A400: #0ea8fb,
+  A700: #1387d7,
+  contrast: (
+    50: $black-87-opacity,
+    100: $black-87-opacity,
+    200: $black-87-opacity,
+    300: $black-87-opacity,
+    400: white,
+    500: white,
+    600: $white-87-opacity,
+    700: $white-87-opacity,
+    800: $white-87-opacity,
+    900: $white-87-opacity,
+    A100: $black-87-opacity,
+    A200: white,
+    A400: white,
+    A700: $white-87-opacity,
+  ),
+);
+
+$mat-ddx-secondary: (
+  50: #fefde7,
+  100: #fdf9c5,
+  200: #fcf69f,
+  300: #fbf178,
+  400: #f8ec59,
+  500: #f6e73b,
+  600: #f9d93a,
+  700: #f7c231,
+  800: #f5aa28,
+  900: #f18218,
+  A100: #9afce7,
+  A200: #00f4c5,
+  A400: #00e0a8,
+  A700: #00bd85,
+  contrast: (
+    50: $black-87-opacity,
+    100: $black-87-opacity,
+    200: $black-87-opacity,
+    300: $black-87-opacity,
+    400: white,
+    500: white,
+    600: $white-87-opacity,
+    700: $white-87-opacity,
+    800: $white-87-opacity,
+    900: $white-87-opacity,
+    A100: $black-87-opacity,
+    A200: white,
+    A400: white,
+    A700: $white-87-opacity,
+  ),
+);
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$didex-exchange-primary: mat-palette($mat-ddx-primary);
+$didex-exchange-accent: mat-palette($mat-ddx-secondary);
+
+// The warn palette is optional (defaults to red).
+$didex-exchange-warn: mat-palette($mat-red);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$didex-exchange-theme: mat-light-theme(
+  $didex-exchange-primary,
+  $didex-exchange-accent,
+  $didex-exchange-warn
+);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($didex-exchange-theme);

@@ -1,8 +1,13 @@
 <mat-form-field>
   <mat-label>{{ caption }}</mat-label>
-  <mat-select [multiple]="hasMultiselect">
-    <mat-option *ngFor="let item of items" [value]="item.value">
+  <select
+    matNativeControl
+    name="select"
+    [formControl]="control"
+    [multiple]="hasMultiselect"
+  >
+    <option *ngFor="let item of items" [value]="item.value">
       {{ item.title }}
-    </mat-option>
-  </mat-select>
+    </option>
+  </select>
 </mat-form-field>

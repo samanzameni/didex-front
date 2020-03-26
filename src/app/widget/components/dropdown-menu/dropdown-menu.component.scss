@@ -6,30 +6,9 @@
   position: relative;
 
   width: fit-content;
-  min-width: calc(#{$button-min-width} * 1.2);
   height: fit-content;
   margin: 3px;
   box-sizing: border-box;
-
-  .dropdown-toggle {
-    justify-content: space-between;
-    margin: 0;
-    width: 100%;
-
-    color: $ddx-primary-darker;
-    border-color: $ddx-primary-darker;
-
-    &.active {
-      border-bottom-left-radius: 0;
-      border-bottom-right-radius: 0;
-    }
-
-    &:hover {
-      background: $ddx-light;
-      color: $ddx-primary;
-      border-color: $ddx-primary;
-    }
-  }
 
   .dropdown-menu {
     background: $ddx-light;

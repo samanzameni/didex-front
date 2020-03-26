@@ -1,11 +1,6 @@
-<button
-  mat-raised-button
-  color="primary"
-  [matMenuTriggerFor]="theMenu"
-  [ngClass]="{ active: isOpen }"
->
+<button mat-stroked-button [matMenuTriggerFor]="theMenu">
   <span>{{ caption }}</span>
-  <mat-icon>more_vert</mat-icon>
+  <mat-icon>keyboard_arrow_down</mat-icon>
 </button>
 
 <mat-menu #theMenu="matMenu" class="dropdown-menu">

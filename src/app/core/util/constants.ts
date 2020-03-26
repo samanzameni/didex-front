@@ -290,7 +290,7 @@ export const TIMEZONES: TimeZone[] = [
   {
     value: 'Alaskan Standard Time',
     abbr: 'AKDT',
-    offset: -8,
+    offset: -9,
     isdst: true,
     text: '(UTC-09:00) Alaska',
     utc: [
@@ -302,9 +302,24 @@ export const TIMEZONES: TimeZone[] = [
     ],
   },
   {
+    value: 'Pacific Standard Time',
+    abbr: 'PST',
+    offset: -8,
+    isdst: false,
+    text: '(UTC-08:00) Pacific Time (US & Canada)',
+    utc: [
+      'America/Dawson',
+      'America/Los_Angeles',
+      'America/Tijuana',
+      'America/Vancouver',
+      'America/Whitehorse',
+      'PST8PDT',
+    ],
+  },
+  {
     value: 'Pacific Standard Time (Mexico)',
     abbr: 'PDT',
-    offset: -7,
+    offset: -8,
     isdst: true,
     text: '(UTC-08:00) Baja California',
     utc: ['America/Santa_Isabel'],
@@ -324,21 +339,6 @@ export const TIMEZONES: TimeZone[] = [
     ],
   },
   {
-    value: 'Pacific Standard Time',
-    abbr: 'PST',
-    offset: -8,
-    isdst: false,
-    text: '(UTC-08:00) Pacific Time (US & Canada)',
-    utc: [
-      'America/Dawson',
-      'America/Los_Angeles',
-      'America/Tijuana',
-      'America/Vancouver',
-      'America/Whitehorse',
-      'PST8PDT',
-    ],
-  },
-  {
     value: 'US Mountain Standard Time',
     abbr: 'UMST',
     offset: -7,
@@ -355,7 +355,7 @@ export const TIMEZONES: TimeZone[] = [
   {
     value: 'Mountain Standard Time (Mexico)',
     abbr: 'MDT',
-    offset: -6,
+    offset: -7,
     isdst: true,
     text: '(UTC-07:00) Chihuahua, La Paz, Mazatlan',
     utc: ['America/Chihuahua', 'America/Mazatlan'],
@@ -363,7 +363,7 @@ export const TIMEZONES: TimeZone[] = [
   {
     value: 'Mountain Standard Time',
     abbr: 'MDT',
-    offset: -6,
+    offset: -7,
     isdst: true,
     text: '(UTC-07:00) Mountain Time (US & Canada)',
     utc: [
@@ -397,7 +397,7 @@ export const TIMEZONES: TimeZone[] = [
   {
     value: 'Central Standard Time',
     abbr: 'CDT',
-    offset: -5,
+    offset: -6,
     isdst: true,
     text: '(UTC-06:00) Central Time (US & Canada)',
     utc: [
@@ -419,7 +419,7 @@ export const TIMEZONES: TimeZone[] = [
   {
     value: 'Central Standard Time (Mexico)',
     abbr: 'CDT',
-    offset: -5,
+    offset: -6,
     isdst: true,
     text: '(UTC-06:00) Guadalajara, Mexico City, Monterrey',
     utc: [
@@ -460,7 +460,7 @@ export const TIMEZONES: TimeZone[] = [
   {
     value: 'Eastern Standard Time',
     abbr: 'EDT',
-    offset: -4,
+    offset: -5,
     isdst: true,
     text: '(UTC-05:00) Eastern Time (US & Canada)',
     utc: [
@@ -486,7 +486,7 @@ export const TIMEZONES: TimeZone[] = [
   {
     value: 'US Eastern Standard Time',
     abbr: 'UEDT',
-    offset: -4,
+    offset: -5,
     isdst: true,
     text: '(UTC-05:00) Indiana (East)',
     utc: [
@@ -514,7 +514,7 @@ export const TIMEZONES: TimeZone[] = [
   {
     value: 'Atlantic Standard Time',
     abbr: 'ADT',
-    offset: -3,
+    offset: -4,
     isdst: true,
     text: '(UTC-04:00) Atlantic Time (Canada)',
     utc: [
@@ -584,7 +584,7 @@ export const TIMEZONES: TimeZone[] = [
   {
     value: 'Newfoundland Standard Time',
     abbr: 'NDT',
-    offset: -2.5,
+    offset: -3.5,
     isdst: true,
     text: '(UTC-03:30) Newfoundland',
     utc: ['America/St_Johns'],
@@ -673,7 +673,7 @@ export const TIMEZONES: TimeZone[] = [
   {
     value: 'Mid-Atlantic Standard Time',
     abbr: 'MDT',
-    offset: -1,
+    offset: -2,
     isdst: true,
     text: '(UTC-02:00) Mid-Atlantic - Old',
     utc: [],
@@ -681,7 +681,7 @@ export const TIMEZONES: TimeZone[] = [
   {
     value: 'Azores Standard Time',
     abbr: 'ADT',
-    offset: 0,
+    offset: -1,
     isdst: true,
     text: '(UTC-01:00) Azores',
     utc: ['America/Scoresbysund', 'Atlantic/Azores'],
@@ -697,7 +697,7 @@ export const TIMEZONES: TimeZone[] = [
   {
     value: 'Morocco Standard Time',
     abbr: 'MDT',
-    offset: 1,
+    offset: 0,
     isdst: true,
     text: '(UTC) Casablanca',
     utc: ['Africa/Casablanca', 'Africa/El_Aaiun'],
@@ -724,22 +724,9 @@ export const TIMEZONES: TimeZone[] = [
     ],
   },
   {
-    value: 'British Summer Time',
-    abbr: 'BST',
-    offset: 1,
-    isdst: true,
-    text: '(UTC+01:00) Edinburgh, London',
-    utc: [
-      'Europe/Isle_of_Man',
-      'Europe/Guernsey',
-      'Europe/Jersey',
-      'Europe/London',
-    ],
-  },
-  {
     value: 'GMT Standard Time',
     abbr: 'GDT',
-    offset: 1,
+    offset: 0,
     isdst: true,
     text: '(UTC) Dublin, Lisbon',
     utc: [
@@ -775,9 +762,22 @@ export const TIMEZONES: TimeZone[] = [
     ],
   },
   {
+    value: 'British Summer Time',
+    abbr: 'BST',
+    offset: 1,
+    isdst: true,
+    text: '(UTC+01:00) Edinburgh, London',
+    utc: [
+      'Europe/Isle_of_Man',
+      'Europe/Guernsey',
+      'Europe/Jersey',
+      'Europe/London',
+    ],
+  },
+  {
     value: 'W. Europe Standard Time',
     abbr: 'WEDT',
-    offset: 2,
+    offset: 1,
     isdst: true,
     text: '(UTC+01:00) Amsterdam, Berlin, Bern, Rome, Stockholm, Vienna',
     utc: [
@@ -803,7 +803,7 @@ export const TIMEZONES: TimeZone[] = [
   {
     value: 'Central Europe Standard Time',
     abbr: 'CEDT',
-    offset: 2,
+    offset: 1,
     isdst: true,
     text: '(UTC+01:00) Belgrade, Bratislava, Budapest, Ljubljana, Prague',
     utc: [
@@ -819,7 +819,7 @@ export const TIMEZONES: TimeZone[] = [
   {
     value: 'Romance Standard Time',
     abbr: 'RDT',
-    offset: 2,
+    offset: 1,
     isdst: true,
     text: '(UTC+01:00) Brussels, Copenhagen, Madrid, Paris',
     utc: [
@@ -833,7 +833,7 @@ export const TIMEZONES: TimeZone[] = [
   {
     value: 'Central European Standard Time',
     abbr: 'CEDT',
-    offset: 2,
+    offset: 1,
     isdst: true,
     text: '(UTC+01:00) Sarajevo, Skopje, Warsaw, Zagreb',
     utc: ['Europe/Sarajevo', 'Europe/Skopje', 'Europe/Warsaw', 'Europe/Zagreb'],
@@ -872,7 +872,7 @@ export const TIMEZONES: TimeZone[] = [
   {
     value: 'GTB Standard Time',
     abbr: 'GDT',
-    offset: 3,
+    offset: 2,
     isdst: true,
     text: '(UTC+02:00) Athens, Bucharest',
     utc: [
@@ -885,7 +885,7 @@ export const TIMEZONES: TimeZone[] = [
   {
     value: 'Middle East Standard Time',
     abbr: 'MEDT',
-    offset: 3,
+    offset: 2,
     isdst: true,
     text: '(UTC+02:00) Beirut',
     utc: ['Asia/Beirut'],
@@ -901,7 +901,7 @@ export const TIMEZONES: TimeZone[] = [
   {
     value: 'Syria Standard Time',
     abbr: 'SDT',
-    offset: 3,
+    offset: 2,
     isdst: true,
     text: '(UTC+02:00) Damascus',
     utc: ['Asia/Damascus'],
@@ -909,7 +909,7 @@ export const TIMEZONES: TimeZone[] = [
   {
     value: 'E. Europe Standard Time',
     abbr: 'EEDT',
-    offset: 3,
+    offset: 2,
     isdst: true,
     text: '(UTC+02:00) E. Europe',
     utc: [
@@ -953,7 +953,7 @@ export const TIMEZONES: TimeZone[] = [
   {
     value: 'FLE Standard Time',
     abbr: 'FDT',
-    offset: 3,
+    offset: 2,
     isdst: true,
     text: '(UTC+02:00) Helsinki, Kyiv, Riga, Sofia, Tallinn, Vilnius',
     utc: [
@@ -969,6 +969,14 @@ export const TIMEZONES: TimeZone[] = [
     ],
   },
   {
+    value: 'Israel Standard Time',
+    abbr: 'JDT',
+    offset: 2,
+    isdst: true,
+    text: '(UTC+02:00) Jerusalem',
+    utc: ['Asia/Jerusalem'],
+  },
+  {
     value: 'Turkey Standard Time',
     abbr: 'TDT',
     offset: 3,
@@ -976,14 +984,7 @@ export const TIMEZONES: TimeZone[] = [
     text: '(UTC+03:00) Istanbul',
     utc: ['Europe/Istanbul'],
   },
-  {
-    value: 'Israel Standard Time',
-    abbr: 'JDT',
-    offset: 3,
-    isdst: true,
-    text: '(UTC+02:00) Jerusalem',
-    utc: ['Asia/Jerusalem'],
-  },
+
   {
     value: 'Libya Standard Time',
     abbr: 'LST',
@@ -991,6 +992,14 @@ export const TIMEZONES: TimeZone[] = [
     isdst: false,
     text: '(UTC+02:00) Tripoli',
     utc: ['Africa/Tripoli'],
+  },
+  {
+    value: 'Kaliningrad Standard Time',
+    abbr: 'KST',
+    offset: 2,
+    isdst: false,
+    text: '(UTC+02:00) Kaliningrad',
+    utc: ['Europe/Kaliningrad'],
   },
   {
     value: 'Jordan Standard Time',
@@ -1008,14 +1017,7 @@ export const TIMEZONES: TimeZone[] = [
     text: '(UTC+03:00) Baghdad',
     utc: ['Asia/Baghdad'],
   },
-  {
-    value: 'Kaliningrad Standard Time',
-    abbr: 'KST',
-    offset: 3,
-    isdst: false,
-    text: '(UTC+02:00) Kaliningrad',
-    utc: ['Europe/Kaliningrad'],
-  },
+
   {
     value: 'Arab Standard Time',
     abbr: 'AST',
@@ -1068,6 +1070,14 @@ export const TIMEZONES: TimeZone[] = [
     ],
   },
   {
+    value: 'Iran Standard Time',
+    abbr: 'IDT',
+    offset: 3.5,
+    isdst: true,
+    text: '(UTC+03:30) Tehran',
+    utc: ['Asia/Tehran'],
+  },
+  {
     value: 'Samara Time',
     abbr: 'SAMT',
     offset: 4,
@@ -1075,14 +1085,7 @@ export const TIMEZONES: TimeZone[] = [
     text: '(UTC+04:00) Samara, Ulyanovsk, Saratov',
     utc: ['Europe/Astrakhan', 'Europe/Samara', 'Europe/Ulyanovsk'],
   },
-  {
-    value: 'Iran Standard Time',
-    abbr: 'IDT',
-    offset: 4.5,
-    isdst: true,
-    text: '(UTC+03:30) Tehran',
-    utc: ['Asia/Tehran'],
-  },
+
   {
     value: 'Arabian Standard Time',
     abbr: 'AST',
@@ -1094,7 +1097,7 @@ export const TIMEZONES: TimeZone[] = [
   {
     value: 'Azerbaijan Standard Time',
     abbr: 'ADT',
-    offset: 5,
+    offset: 4,
     isdst: true,
     text: '(UTC+04:00) Baku',
     utc: ['Asia/Baku'],
@@ -1337,6 +1340,14 @@ export const TIMEZONES: TimeZone[] = [
     utc: ['Asia/Pyongyang', 'Asia/Seoul'],
   },
   {
+    value: 'Yakutsk Standard Time',
+    abbr: 'YST',
+    offset: 9,
+    isdst: false,
+    text: '(UTC+09:00) Yakutsk',
+    utc: ['Asia/Chita', 'Asia/Khandyga', 'Asia/Yakutsk'],
+  },
+  {
     value: 'Cen. Australia Standard Time',
     abbr: 'CAST',
     offset: 9.5,
@@ -1390,14 +1401,6 @@ export const TIMEZONES: TimeZone[] = [
     isdst: false,
     text: '(UTC+10:00) Hobart',
     utc: ['Australia/Currie', 'Australia/Hobart'],
-  },
-  {
-    value: 'Yakutsk Standard Time',
-    abbr: 'YST',
-    offset: 9,
-    isdst: false,
-    text: '(UTC+09:00) Yakutsk',
-    utc: ['Asia/Chita', 'Asia/Khandyga', 'Asia/Yakutsk'],
   },
   {
     value: 'Central Pacific Standard Time',
@@ -1472,7 +1475,7 @@ export const TIMEZONES: TimeZone[] = [
   {
     value: 'Kamchatka Standard Time',
     abbr: 'KDT',
-    offset: 13,
+    offset: 12,
     isdst: true,
     text: '(UTC+12:00) Petropavlovsk-Kamchatsky - Old',
     utc: ['Asia/Kamchatka'],

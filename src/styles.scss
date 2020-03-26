@@ -7,10 +7,11 @@
 
 body {
   font-family: 'overpass';
+  font-size: 12px;
+  line-height: 14px !important;
   width: 100%;
   min-height: 100vh;
   overflow-x: hidden;
-  line-height: 1.2 !important;
   background: $ddx-blue-deep;
   color: $ddx-light;
 }

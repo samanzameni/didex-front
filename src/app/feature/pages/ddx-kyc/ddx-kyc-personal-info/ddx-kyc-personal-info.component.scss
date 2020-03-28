@@ -17,31 +17,31 @@
       'addressLine2'
       'actions';
 
-    label[for='firstName'] {
+    #firstName {
       grid-area: firstName;
     }
-    label[for='lastName'] {
+    #lastName {
       grid-area: lastName;
     }
-    label[for='dateOfBirth'] {
+    #dateOfBirth {
       grid-area: dateOfBirth;
     }
     #birthCountry {
       grid-area: birthCountry;
     }
-    label[for='zipCode'] {
+    #zipCode {
       grid-area: zipCode;
     }
     #country {
       grid-area: country;
     }
-    label[for='city'] {
+    #city {
       grid-area: city;
     }
-    label[for='addressLine1'] {
+    #addressLine1 {
       grid-area: addressLine1;
     }
-    label[for='addressLine2'] {
+    #addressLine2 {
       grid-area: addressLine2;
     }
   }

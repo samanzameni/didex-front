@@ -1,0 +1,12 @@
+@import '../../../../styles.scss';
+
+:host {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
+  width: 100%;
+  max-width: $input-width;
+  height: fit-content;
+  box-sizing: border-box;
+}

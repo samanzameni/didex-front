@@ -54,16 +54,11 @@
         />
       </mat-form-field>
 
-      <mat-form-field appearance="outline">
-        <mat-label>Timezone</mat-label>
-        <select matNativeControl name="timezone" formControlName="timezone">
-          <option *ngFor="let item of timezonesList" [value]="item.value">
-            {{ item.title }}
-          </option>
-        </select>
-      </mat-form-field>
-
-      <p>{{ generalForm.value | json }}</p>
+      <dropdown-select
+        caption="Timezone"
+        [control]="generalFormControls.timezone"
+        [items]="timezonesList"
+      ></dropdown-select>
 
       <button
         mat-raised-button

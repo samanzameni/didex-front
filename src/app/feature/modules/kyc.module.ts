@@ -13,6 +13,9 @@ import {
 import { WidgetModule } from '@widget/widget.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { KYCGuard } from '@core/guards/kyc.guard';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
 
 const routes: Routes = [
   {
@@ -57,6 +60,10 @@ const routes: Routes = [
     WidgetModule,
     FormsModule,
     ReactiveFormsModule,
+    //
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
   ],
   exports: [],
   providers: [],

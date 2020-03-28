@@ -3,6 +3,7 @@ import { DataEntryDirective } from '@widget/templates';
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { startWith, map } from 'rxjs/operators';
+import { DropdownSelectItem } from '@widget/models';
 
 @Component({
   selector: 'dropdown-autocomplete',
@@ -13,9 +14,9 @@ export class DropdownAutocompleteComponent extends DataEntryDirective<string>
   implements OnInit {
   @Input() caption: string;
   @Input() control: FormControl;
-  @Input() items: string[];
+  @Input() items: DropdownSelectItem[];
 
-  filteredOptions: Observable<string[]>;
+  filteredOptions: Observable<DropdownSelectItem[]>;
 
   constructor() {
     super();
@@ -34,11 +35,11 @@ export class DropdownAutocompleteComponent extends DataEntryDirective<string>
     }
   }
 
-  private _filter(value: string): string[] {
+  private _filter(value: string): DropdownSelectItem[] {
     const filterValue = value.toLowerCase();
 
     return this.items.filter(option =>
-      option.toLowerCase().includes(filterValue)
+      option.title.toLowerCase().includes(filterValue)
     );
   }
 

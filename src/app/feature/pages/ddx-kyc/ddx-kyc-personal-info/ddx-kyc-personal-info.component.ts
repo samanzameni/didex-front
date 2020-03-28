@@ -17,6 +17,7 @@ import { TraderService } from '@core/services';
 })
 export class KYCPersonalInfoPageComponent extends KYCPageDirective
   implements OnInit {
+  private countries: DropdownSelectItem[];
   constructor(
     protected router: Router,
     protected el: ElementRef,
@@ -27,6 +28,9 @@ export class KYCPersonalInfoPageComponent extends KYCPageDirective
   ) {
     super(router, el, renderer, formBuilder, traderService);
     this.renderer.addClass(this.el.nativeElement, 'kyc-form');
+    this.countries = COUNTRIES.map(country => {
+      return { title: country.name, value: country.code } as DropdownSelectItem;
+    });
   }
 
   ngOnInit() {
@@ -82,9 +86,7 @@ export class KYCPersonalInfoPageComponent extends KYCPageDirective
   }
 
   get countriesList(): DropdownSelectItem[] {
-    return COUNTRIES.map(country => {
-      return { title: country.name, value: country.code } as DropdownSelectItem;
-    });
+    return this.countries;
   }
 
   onSubmit(): void {

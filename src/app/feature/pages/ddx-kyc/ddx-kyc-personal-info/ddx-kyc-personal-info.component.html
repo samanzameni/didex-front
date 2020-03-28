@@ -14,162 +14,143 @@
       Please fill in your personal information the way it is stated in the proof
       of identity document.
     </p>
-    <label for="firstName" class="form-control">
+    <mat-form-field appearance="outline" id="firstName">
+      <mat-label>First Name</mat-label>
       <input
+        matInput
         type="text"
-        placeholder=" "
-        id="firstName"
+        placeholder="John"
         name="firstName"
         formControlName="firstName"
       />
-      <span class="actual-label">First Name</span>
-      <div
-        *ngIf="shouldShowErrors(kycFormGroup.controls.firstName)"
-        class="warning-feedback"
+      <mat-error *ngIf="kycFormGroup.controls.firstName.hasError('required')"
+        >This field is required.</mat-error
       >
-        <p *ngIf="kycFormGroup.controls.firstName.errors.required">
-          This field is required.
-        </p>
-        <p *ngIf="kycFormGroup.controls.firstName.errors.maxlength">
-          Max length should be 50.
-        </p>
-      </div>
-    </label>
+      <mat-error *ngIf="kycFormGroup.controls.firstName.hasError('maxlength')"
+        >Max length should be 50.</mat-error
+      >
+    </mat-form-field>
 
-    <label for="lastName" class="form-control"
-      ><input
+    <mat-form-field appearance="outline" id="lastName">
+      <mat-label>Last Name</mat-label>
+      <input
         type="text"
-        placeholder=" "
-        id="lastName"
+        placeholder="Doe"
+        matInput
         name="lastName"
         formControlName="lastName"
       />
-      <span class="actual-label">Last Name</span>
-      <div
-        *ngIf="shouldShowErrors(kycFormGroup.controls.lastName)"
-        class="warning-feedback"
-      >
-        <p *ngIf="kycFormGroup.controls.lastName.errors.required">
-          This field is required.
-        </p>
-        <p *ngIf="kycFormGroup.controls.lastName.errors.maxlength">
-          Max length should be 50.
-        </p>
-      </div>
-    </label>
+      <mat-error *ngIf="kycFormGroup.controls.lastName.hasError('required')">
+        This field is required.
+      </mat-error>
+      <mat-error *ngIf="kycFormGroup.controls.lastName.hasError('maxlength')">
+        Max length should be 50.
+      </mat-error>
+    </mat-form-field>
 
-    <label for="dateOfBirth" class="form-control">
+    <mat-form-field appearance="outline" id="dateOfBirth">
+      <mat-label>Date of Birth (YYYY-MM-DD)</mat-label>
       <input
         type="text"
-        placeholder=" "
-        id="dateOfBirth"
+        placeholder="1900-01-01"
+        matInput
         name="dateOfBirth"
         formControlName="dateOfBirth"
       />
-      <span class="actual-label">Date of Birth (YYYY-MM-DD)</span>
-      <div
-        *ngIf="shouldShowErrors(kycFormGroup.controls.dateOfBirth)"
-        class="warning-feedback"
-      >
-        <p *ngIf="kycFormGroup.controls.dateOfBirth.errors.required">
-          This field is required.
-        </p>
-        <p *ngIf="kycFormGroup.controls.dateOfBirth.errors.pattern">
-          Format: YYYY-MM-DD
-        </p>
-      </div>
-    </label>
 
-    <dropdown-select
+      <mat-error *ngIf="kycFormGroup.controls.dateOfBirth.hasError('required')">
+        This field is required.
+      </mat-error>
+      <mat-error *ngIf="kycFormGroup.controls.dateOfBirth.hasError('pattern')">
+        Format: YYYY-MM-DD
+      </mat-error>
+    </mat-form-field>
+
+    <dropdown-autocomplete
       caption="Country of Birth"
       id="birthCountry"
       [control]="kycFormControls.birthCountryCode"
       [items]="countriesList"
-    ></dropdown-select>
+    ></dropdown-autocomplete>
 
-    <label for="zipCode" class="form-control">
+    <mat-form-field id="zipCode" appearance="outline">
+      <mat-label>Zip Code</mat-label>
       <input
         type="text"
-        placeholder=" "
-        id="zipCode"
+        placeholder=""
+        matInput
         name="zipCode"
         formControlName="zipCode"
       />
-      <span class="actual-label">Zip Code</span>
-      <div
-        *ngIf="shouldShowErrors(kycFormGroup.controls.zipCode)"
-        class="warning-feedback"
-      >
-        <p *ngIf="kycFormGroup.controls.zipCode.errors.required">
-          This field is required.
-        </p>
-        <p *ngIf="kycFormGroup.controls.zipCode.errors.maxlength">
-          Max length should be 10.
-        </p>
-      </div>
-    </label>
 
-    <dropdown-select
+      <mat-error *ngIf="kycFormGroup.controls.zipCode.hasError('required')">
+        This field is required.
+      </mat-error>
+      <mat-error *ngIf="kycFormGroup.controls.zipCode.hasError('maxlength')">
+        Max length should be 10.
+      </mat-error>
+    </mat-form-field>
+
+    <dropdown-autocomplete
       caption="Living in"
       id="country"
       [control]="kycFormControls.countryCode"
       [items]="countriesList"
-    ></dropdown-select>
+    ></dropdown-autocomplete>
 
-    <label for="city" class="form-control">
+    <mat-form-field id="city" appearance="outline">
+      <mat-label>City</mat-label>
       <input
         type="text"
-        placeholder=" "
-        id="city"
+        placeholder=""
+        matInput
         name="city"
         formControlName="city"
       />
-      <span class="actual-label">City</span>
-      <div
-        *ngIf="shouldShowErrors(kycFormGroup.controls.city)"
-        class="warning-feedback"
-      >
-        <p *ngIf="kycFormGroup.controls.city.errors.required">
-          This field is required.
-        </p>
-        <p *ngIf="kycFormGroup.controls.city.errors.maxlength">
-          Max length should be 50.
-        </p>
-      </div>
-    </label>
 
-    <label for="addressLine1" class="form-control">
+      <mat-error *ngIf="kycFormGroup.controls.city.hasError('required')">
+        This field is required.
+      </mat-error>
+      <mat-error *ngIf="kycFormGroup.controls.city.hasError('maxlength')">
+        Max length should be 50.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field id="addressLine1" appearance="outline">
+      <mat-label>Address (Line 1)</mat-label>
       <input
         type="text"
-        placeholder=" "
-        id="addressLine1"
+        placeholder=""
+        matInput
         name="addressLine1"
         formControlName="addressLine1"
       />
-      <span class="actual-label">Address (Line 1)</span>
-      <div
-        *ngIf="shouldShowErrors(kycFormGroup.controls.addressLine1)"
-        class="warning-feedback"
+      <mat-error
+        *ngIf="kycFormGroup.controls.addressLine1.hasError('required')"
       >
-        <p *ngIf="kycFormGroup.controls.addressLine1.errors.required">
-          This field is required.
-        </p>
-      </div>
-    </label>
+        This field is required.
+      </mat-error>
+    </mat-form-field>
 
-    <label for="addressLine2" class="form-control">
+    <mat-form-field id="addressLine2" appearance="outline">
+      <mat-label>Address (Line 2)</mat-label>
       <input
         type="text"
-        placeholder=" "
-        id="addressLine2"
+        placeholder=""
+        matInput
         name="addressLine2"
         formControlName="addressLine2"
       />
-      <span class="actual-label">Address (Line 2)</span>
-    </label>
+    </mat-form-field>
 
     <div class="actions">
-      <button type="submit" [disabled]="!kycFormGroup.valid" #submitButton>
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        [disabled]="!kycFormGroup.valid"
+        #submitButton
+      >
         Next
       </button>
     </div>

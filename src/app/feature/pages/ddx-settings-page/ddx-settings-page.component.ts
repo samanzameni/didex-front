@@ -25,6 +25,7 @@ import { TraderRESTService, AuthRESTService } from '@core/services/REST';
 })
 export class SettingsPageComponent implements OnInit {
   private activePage: string;
+  private timezonesMapped: DropdownSelectItem[];
 
   private generalReactiveFormGroup: FormGroup;
   private securityReactiveFormGroup: FormGroup;
@@ -40,6 +41,12 @@ export class SettingsPageComponent implements OnInit {
     private authRestService: AuthRESTService
   ) {
     this.activePage = 'general';
+    this.timezonesMapped = TIMEZONES.map(timezone => {
+      return {
+        title: timezone.text,
+        value: timezone.text,
+      } as DropdownSelectItem;
+    });
   }
 
   ngOnInit() {
@@ -90,12 +97,7 @@ export class SettingsPageComponent implements OnInit {
   }
 
   get timezonesList(): DropdownSelectItem[] {
-    return TIMEZONES.map(timezone => {
-      return {
-        title: timezone.text,
-        value: timezone.text,
-      } as DropdownSelectItem;
-    });
+    return this.timezonesMapped;
   }
 
   get currentTrader(): Trader {

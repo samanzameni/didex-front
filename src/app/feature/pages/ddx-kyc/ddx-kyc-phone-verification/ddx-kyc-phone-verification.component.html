@@ -8,65 +8,67 @@
     autocomplete="off"
     [formGroup]="kycFormGroup"
     (ngSubmit)="onSubmit()"
-    #form
+    #form="ngForm"
   >
     <p class="description">
       Please write down your valid phone number. A text message wil be sent for
       verification.
     </p>
 
-    <label for="countryTelephoneCode" class="form-control">
+    <mat-form-field id="countryTelephoneCode" appearance="outline">
+      <mat-label>Country Code</mat-label>
       <input
         type="text"
-        placeholder=" "
-        id="countryTelephoneCode"
+        placeholder=""
+        matInput
         name="countryTelephoneCode"
         formControlName="countryTelephoneCode"
       />
-      <span class="actual-label">Country Code</span>
-      <div
-        *ngIf="shouldShowErrors(kycFormGroup.controls.countryTelephoneCode)"
-        class="warning-feedback"
+      <mat-error
+        *ngIf="kycFormGroup.controls.countryTelephoneCode.hasError('required')"
       >
-        <p *ngIf="kycFormGroup.controls.countryTelephoneCode.errors.required">
-          This field is required.
-        </p>
-        <p *ngIf="kycFormGroup.controls.countryTelephoneCode.errors.maxlength">
-          Max length should be 4.
-        </p>
-        <p *ngIf="kycFormGroup.controls.countryTelephoneCode.errors.pattern">
-          Only digits are valid.
-        </p>
-      </div>
-    </label>
+        This field is required.
+      </mat-error>
+      <mat-error
+        *ngIf="kycFormGroup.controls.countryTelephoneCode.hasError('maxlength')"
+      >
+        Max length should be 4.
+      </mat-error>
+      <mat-error
+        *ngIf="kycFormGroup.controls.countryTelephoneCode.hasError('pattern')"
+      >
+        Only digits are valid.
+      </mat-error>
+    </mat-form-field>
 
-    <label for="mobileNumber" class="form-control">
+    <mat-form-field id="mobileNumber" appearance="outline">
+      <mat-label>Mobile Number</mat-label>
       <input
         type="text"
-        placeholder=" "
-        id="mobileNumber"
+        placeholder=""
+        matInput
         name="mobileNumber"
         formControlName="mobileNumber"
       />
-      <span class="actual-label">Mobile Number</span>
-      <div
-        *ngIf="shouldShowErrors(kycFormGroup.controls.mobileNumber)"
-        class="warning-feedback"
+      <mat-error
+        *ngIf="kycFormGroup.controls.mobileNumber.hasError('required')"
       >
-        <p *ngIf="kycFormGroup.controls.mobileNumber.errors.required">
-          This field is required.
-        </p>
-        <p *ngIf="kycFormGroup.controls.mobileNumber.errors.maxlength">
-          Max length should be 15.
-        </p>
-        <p *ngIf="kycFormGroup.controls.mobileNumber.errors.pattern">
-          Only digits are valid.
-        </p>
-      </div>
-    </label>
+        This field is required.
+      </mat-error>
+      <mat-error
+        *ngIf="kycFormGroup.controls.mobileNumber.hasError('maxlength')"
+      >
+        Max length should be 15.
+      </mat-error>
+      <mat-error *ngIf="kycFormGroup.controls.mobileNumber.hasError('pattern')">
+        Only digits are valid.
+      </mat-error>
+    </mat-form-field>
 
     <button
-      class="button-secondary submit-number-button"
+      mat-flat-button
+      color="accent"
+      id="submitNumberButton"
       type="button"
       [disabled]="
         !kycFormControls.countryTelephoneCode.valid ||
@@ -78,56 +80,48 @@
       Submit
     </button>
 
-    <label
-      for="code"
-      class="form-control"
+    <mat-form-field
+      id="code"
+      appearance="outline"
       [ngClass]="{ hidden: !hasSubmittedNumber }"
     >
+      <mat-label>Verification Code</mat-label>
       <input
         type="text"
-        placeholder=" "
-        id="code"
+        placeholder="123456"
+        matInput
         name="code"
         formControlName="code"
       />
-      <span class="actual-label">Verification Code</span>
       <p style="font-size: 0.65em; margin-top: 5px">
-        A text message has been sent to +{{
-          kycFormGroup.controls.countryTelephoneCode.value
-        }}{{ kycFormGroup.controls.mobileNumber.value }}.
+        Verification code has been sent.
       </p>
-      <div
-        *ngIf="shouldShowErrors(kycFormGroup.controls.code)"
-        class="warning-feedback"
-      >
-        <p *ngIf="kycFormGroup.controls.code.errors.required">
-          This field is required.
-        </p>
-        <p *ngIf="kycFormGroup.controls.code.errors.minlength">
-          Min length should be 6.
-        </p>
-        <p *ngIf="kycFormGroup.controls.code.errors.maxlength">
-          Max length should be 6.
-        </p>
-        <p *ngIf="kycFormGroup.controls.code.errors.pattern">
-          Only digits are valid.
-        </p>
-      </div>
+      <mat-error *ngIf="kycFormGroup.controls.code.hasError('required')">
+        This field is required.
+      </mat-error>
+      <mat-error *ngIf="kycFormGroup.controls.code.hasError('minlength')">
+        Min length should be 6.
+      </mat-error>
+      <mat-error *ngIf="kycFormGroup.controls.code.hasError('maxlength')">
+        Max length should be 6.
+      </mat-error>
+      <mat-error *ngIf="kycFormGroup.controls.code.hasError('pattern')">
+        Only digits are valid.
+      </mat-error>
       <div *ngIf="errors && errors.code" class="error-feedback">
-        <p *ngFor="let error of errors.code">
+        <mat-error *ngFor="let error of errors.code">
           {{ error }}
-        </p>
+        </mat-error>
       </div>
-    </label>
+    </mat-form-field>
 
     <div class="actions">
-      <a
-        class="back-button"
-        routerLink="/user/kyc/personal-info"
-        rel="noopener noreferrer"
-        >Back</a
-      >
+      <a routerLink="/user/kyc/personal-info" rel="noopener noreferrer">
+        <button mat-stroked-button color="basic" type="button">Back</button>
+      </a>
       <button
+        mat-raised-button
+        color="primary"
         type="submit"
         #submitButton
         [ngClass]="{ hidden: !hasSubmittedNumber }"

@@ -12,44 +12,21 @@
       'verification'
       'actions';
 
-    label[for='countryTelephoneCode'] {
+    #countryTelephoneCode {
       grid-area: countryTelephoneCode;
     }
 
-    label[for='mobileNumber'] {
+    #mobileNumber {
       grid-area: mobileNumber;
     }
 
-    button.submit-number-button {
+    #submitNumberButton {
       grid-area: submitNumber;
 
-      width: 100%;
-      border: none;
       margin: 5px 0;
-      align-self: center;
-
-      &:not([disabled]) {
-        color: $ddx-light;
-        background-color: $ddx-blue-lighter;
-
-        &:hover {
-          color: $ddx-light;
-          background-color: darken($ddx-blue-lighter, 5);
-        }
-
-        &.is-loading {
-          color: transparent;
-
-          &:after {
-            border: 0.15em solid $ddx-light-darker;
-            border-top-color: transparent;
-            border-right-color: transparent;
-          }
-        }
-      }
     }
 
-    label[for='code'] {
+    #code {
       grid-area: verification;
     }
 

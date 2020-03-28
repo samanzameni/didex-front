@@ -82,23 +82,23 @@ export class KYCPhoneVerificationPageComponent extends KYCPageDirective
   }
 
   onSubmitNumber(): void {
-    this.renderer.addClass(this.submitNumberButton.nativeElement, 'is-loading');
+    // this.renderer.addClass(this.submitNumberButton.nativeElement, 'is-loading');
 
     const { code, ...dataToSend } = this.kycForm.value;
 
     this.restService.requestSendConfirmationMobileNumber(dataToSend).subscribe(
       response => {
-        this.renderer.removeClass(
-          this.submitNumberButton.nativeElement,
-          'is-loading'
-        );
+        // this.renderer.removeClass(
+        //   this.submitNumberButton.nativeElement,
+        //   'is-loading'
+        // );
         this.hasSubmittedMobileNumber = true;
       },
       errorResponse => {
-        this.renderer.removeClass(
-          this.submitNumberButton.nativeElement,
-          'is-loading'
-        );
+        // this.renderer.removeClass(
+        //   this.submitNumberButton.nativeElement,
+        //   'is-loading'
+        // );
       }
     );
   }

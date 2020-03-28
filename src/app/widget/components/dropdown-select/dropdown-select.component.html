@@ -1,11 +1,6 @@
 <mat-form-field appearance="outline">
   <mat-label>{{ caption }}</mat-label>
-  <select
-    matNativeControl
-    name="select"
-    [formControl]="control"
-    [multiple]="hasMultiselect"
-  >
+  <select matNativeControl name="select" [formControl]="control">
     <option *ngFor="let item of items" [value]="item.value">
       {{ item.title }}
     </option>

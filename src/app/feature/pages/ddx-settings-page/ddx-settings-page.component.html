@@ -41,7 +41,7 @@
       autocomplete="off"
       [formGroup]="generalFormGroup"
       (ngSubmit)="onSubmitGeneralForm()"
-      #generalForm
+      #generalForm="ngForm"
     >
       <mat-form-field appearance="outline">
         <mat-label>Nickname</mat-label>
@@ -50,17 +50,20 @@
           type="text"
           formControlName="nickname"
           name="nickname"
-          id="nickname"
           placeholder="Johnny Doe"
         />
       </mat-form-field>
 
-      <dropdown-select
-        caption="Timezone"
-        id="timezone"
-        [control]="generalFormControls.timezone"
-        [items]="timezonesList"
-      ></dropdown-select>
+      <mat-form-field appearance="outline">
+        <mat-label>Timezone</mat-label>
+        <select matNativeControl name="timezone" formControlName="timezone">
+          <option *ngFor="let item of timezonesList" [value]="item.value">
+            {{ item.title }}
+          </option>
+        </select>
+      </mat-form-field>
+
+      <p>{{ generalForm.value | json }}</p>
 
       <button
         mat-raised-button

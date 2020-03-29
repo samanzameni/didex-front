@@ -1,8 +1,3 @@
-export interface Country {
-  name: string;
-  code: string;
-}
-
 export interface CountryData {
   code: string;
   emoji: string;

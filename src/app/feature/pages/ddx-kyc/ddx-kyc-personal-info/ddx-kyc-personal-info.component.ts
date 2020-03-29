@@ -29,7 +29,10 @@ export class KYCPersonalInfoPageComponent extends KYCPageDirective
     super(router, el, renderer, formBuilder, traderService);
     this.renderer.addClass(this.el.nativeElement, 'kyc-form');
     this.countries = COUNTRIES.map(country => {
-      return { title: country.name, value: country.code } as DropdownSelectItem;
+      return {
+        title: `${country.emoji} ${country.name}`,
+        value: country.code,
+      } as DropdownSelectItem;
     });
   }
 

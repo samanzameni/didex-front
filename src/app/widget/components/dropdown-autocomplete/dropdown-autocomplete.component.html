@@ -5,7 +5,9 @@
     matInput
     [formControl]="control"
     [matAutocomplete]="auto"
+    #input
   />
+  <span matSuffix>{{ getTitleFromValue(input.value) }}</span>
   <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
     <mat-option
       *ngFor="let option of filteredOptions | async"

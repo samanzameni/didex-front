@@ -46,4 +46,17 @@ export class DropdownAutocompleteComponent extends DataEntryDirective<string>
   get isValid(): boolean {
     return !!this.data && this.data.length > 0;
   }
+
+  getTitleFromValue(value: string): string {
+    if (!this.items || !value) {
+      return '';
+    }
+
+    const result = this.items.find(item => item.value === value);
+    if (!result) {
+      return '';
+    }
+
+    return `(${result.title}) `;
+  }
 }

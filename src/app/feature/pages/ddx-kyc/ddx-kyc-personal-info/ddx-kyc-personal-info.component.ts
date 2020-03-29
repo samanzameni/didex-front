@@ -52,7 +52,7 @@ export class KYCPersonalInfoPageComponent extends KYCPageDirective
         trader.personalInformation
           ? trader.personalInformation.dateOfBirth.substr(0, 10)
           : '',
-        [Validators.required, Validators.pattern(/^\d{4}-\d{2}-\d{2}$/)],
+        [],
       ],
       birthCountryCode: [
         trader.personalInformation
@@ -93,12 +93,12 @@ export class KYCPersonalInfoPageComponent extends KYCPageDirective
   }
 
   onSubmit(): void {
-    this.setLoadingOn();
     const { dateOfBirth, ...formValue } = this.kycForm.value;
     const isoBirthdate = new Date(Date.parse(dateOfBirth)).toISOString();
 
     const dataToSend = Object.assign(formValue, { dateOfBirth: isoBirthdate });
-
+    console.log(dataToSend);
+    this.setLoadingOn();
     this.restService.requestUpdatePersonalInfo(dataToSend).subscribe(
       response => {
         this.setLoadingOff();

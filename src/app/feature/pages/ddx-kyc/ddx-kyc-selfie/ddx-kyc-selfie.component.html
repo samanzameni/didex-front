@@ -53,15 +53,14 @@
         rel="noopener noreferrer"
         ><button mat-stroked-button color="basic" type="button">Back</button></a
       >
-      <button
-        mat-raised-button
+      <pro-button
         color="primary"
         type="submit"
-        #submitButton
         [disabled]="!kycFormGroup.valid"
+        #submitButton
       >
         Next
-      </button>
+      </pro-button>
     </div>
   </form>
 </section>

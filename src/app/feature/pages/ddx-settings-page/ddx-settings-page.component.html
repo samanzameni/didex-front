@@ -60,15 +60,14 @@
         [items]="timezonesList"
       ></dropdown-select>
 
-      <button
-        mat-raised-button
+      <pro-button
         color="primary"
         type="submit"
         [disabled]="!generalFormGroup.valid"
         #generalSubmitButton
       >
         Save Changes
-      </button>
+      </pro-button>
     </form>
   </div>
 
@@ -118,15 +117,14 @@
         />
       </mat-form-field>
 
-      <button
-        mat-raised-button
+      <pro-button
         color="primary"
         type="submit"
         [disabled]="!securityFormGroup.valid"
         #securitySubmitButton
       >
         Save Changes
-      </button>
+      </pro-button>
     </form>
   </div>
 

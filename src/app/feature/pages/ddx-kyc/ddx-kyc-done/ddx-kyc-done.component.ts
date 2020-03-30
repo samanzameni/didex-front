@@ -8,6 +8,7 @@ import {
 import { TraderRESTService } from '@core/services/REST';
 import { Router } from '@angular/router';
 import { TraderService } from '@core/services';
+import { ProButtonComponent } from '@widget/components';
 
 @Component({
   selector: 'ddx-kyc-done',
@@ -15,7 +16,7 @@ import { TraderService } from '@core/services';
   styleUrls: ['./ddx-kyc-done.component.scss'],
 })
 export class KYCDonePageComponent {
-  @ViewChild('submitButton') submitButton: ElementRef;
+  @ViewChild('submitButton') submitButton: ProButtonComponent;
 
   constructor(
     private renderer: Renderer2,
@@ -25,31 +26,22 @@ export class KYCDonePageComponent {
   ) {}
 
   onSubmit(): void {
-    this.renderer.addClass(this.submitButton.nativeElement, 'is-loading');
+    this.submitButton.setLoadingOn();
 
     this.restService.requestKYCApproval().subscribe(
       response => {
         this.traderService.updateCurrentTrader().subscribe(
           trader => {
-            this.renderer.removeClass(
-              this.submitButton.nativeElement,
-              'is-loading'
-            );
+            this.submitButton.setLoadingOff();
             this.router.navigateByUrl('/user/settings');
           },
           error => {
-            this.renderer.removeClass(
-              this.submitButton.nativeElement,
-              'is-loading'
-            );
+            this.submitButton.setLoadingOff();
           }
         );
       },
       errorResponse => {
-        this.renderer.removeClass(
-          this.submitButton.nativeElement,
-          'is-loading'
-        );
+        this.submitButton.setLoadingOff();
       }
     );
   }

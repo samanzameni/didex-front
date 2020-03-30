@@ -17,6 +17,7 @@ import {
   RadioGroupComponent,
   TradingViewChartWrapperComponent,
   ImageUploaderComponent,
+  ProButtonComponent,
 } from './components';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -40,6 +41,7 @@ import { MatSelectModule } from '@angular/material/select';
     DropdownMenuComponent,
     DropdownSelectComponent,
     ToggleButtonComponent,
+    ProButtonComponent,
     CheckboxComponent,
     RadioButtonComponent,
     RadioGroupComponent,
@@ -72,6 +74,7 @@ import { MatSelectModule } from '@angular/material/select';
     DropdownMenuComponent,
     DropdownSelectComponent,
     ToggleButtonComponent,
+    ProButtonComponent,
     CheckboxComponent,
     RadioButtonComponent,
     RadioGroupComponent,

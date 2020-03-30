@@ -28,7 +28,7 @@ export class KYCPhoneVerificationPageComponent extends KYCPageDirective
   private countries: DropdownSelectItem[];
 
   @ViewChild('submitNumberButton')
-  submitNumberButton: ElementRef;
+  submitNumberButton: any;
 
   constructor(
     protected router: Router,
@@ -94,23 +94,21 @@ export class KYCPhoneVerificationPageComponent extends KYCPageDirective
   }
 
   onSubmitNumber(): void {
-    // this.renderer.addClass(this.submitNumberButton.nativeElement, 'is-loading');
+    const numbetButton =
+      this.submitNumberButton.nativeElement ||
+      this.submitNumberButton._elementRef.nativeElement;
+
+    this.renderer.addClass(numbetButton, 'is-loading');
 
     const { code, ...dataToSend } = this.kycForm.value;
 
     this.restService.requestSendConfirmationMobileNumber(dataToSend).subscribe(
       response => {
-        // this.renderer.removeClass(
-        //   this.submitNumberButton.nativeElement,
-        //   'is-loading'
-        // );
+        this.renderer.removeClass(numbetButton, 'is-loading');
         this.hasSubmittedMobileNumber = true;
       },
       errorResponse => {
-        // this.renderer.removeClass(
-        //   this.submitNumberButton.nativeElement,
-        //   'is-loading'
-        // );
+        this.renderer.removeClass(numbetButton, 'is-loading');
       }
     );
   }

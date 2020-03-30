@@ -97,8 +97,8 @@ export class KYCPersonalInfoPageComponent extends KYCPageDirective
     const isoBirthdate = new Date(Date.parse(dateOfBirth)).toISOString();
 
     const dataToSend = Object.assign(formValue, { dateOfBirth: isoBirthdate });
-    console.log(dataToSend);
     this.setLoadingOn();
+
     this.restService.requestUpdatePersonalInfo(dataToSend).subscribe(
       response => {
         this.setLoadingOff();

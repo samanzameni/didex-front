@@ -10,6 +10,60 @@ $button-min-width: 115px;
 
 $button-border-radius: 5px;
 
+button,
+.mat-flat-button.mat-primary,
+.mat-raised-button.mat-primary,
+.mat-fab.mat-primary,
+.mat-mini-fab.mat-primary,
+.mat-flat-button.mat-accent,
+.mat-raised-button.mat-accent,
+.mat-fab.mat-accent,
+.mat-mini-fab.mat-accent,
+.mat-flat-button.mat-warn,
+.mat-raised-button.mat-warn,
+.mat-fab.mat-warn,
+.mat-mini-fab.mat-warn {
+  &.is-loading {
+    color: transparent;
+    user-select: none;
+    pointer-events: none;
+
+    &:after {
+      content: '';
+      display: block;
+
+      border: 0.15em solid $ddx-light;
+      border-top-color: transparent;
+      border-right-color: transparent;
+      border-radius: 50%;
+
+      width: 1em;
+      height: 1em;
+      box-sizing: border-box;
+
+      position: absolute;
+      top: calc(50% - (1em / 2));
+      left: calc(50% - (1em / 2));
+      animation: spin 1s linear infinite;
+    }
+  }
+
+  &[disabled],
+  &[disabled='true'],
+  &.disabled {
+    pointer-events: none;
+    cursor: not-allowed;
+
+    &.is-loading {
+      &:after {
+        border: 0.15em solid $ddx-light-darker;
+        border-top-color: transparent;
+        border-right-color: transparent;
+      }
+    }
+  }
+}
+
 .button-primary {
   @extend .callout;
 
@@ -43,7 +97,6 @@ $button-border-radius: 5px;
   }
 
   &[disabled],
-  &[disabled='true'],
   &[disabled='true'],
   &.disabled {
     background: $ddx-disabled-background;

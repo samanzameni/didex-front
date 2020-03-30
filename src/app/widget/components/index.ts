@@ -6,6 +6,7 @@ export * from './checkbox/checkbox.component';
 export * from './radio-button/radio-button.component';
 export * from './radio-group/radio-group.component';
 export * from './toggle-button/toggle-button.component';
+export * from './pro-button/pro-button.component';
 
 export * from './image-uploader/image-uploader.component';
 

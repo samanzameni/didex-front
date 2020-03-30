@@ -11,93 +11,87 @@
   </h1>
   <hr class="title-seperator" />
 
-  <label class="form-control" for="email">
+  <mat-form-field appearance="outline">
+    <mat-label>Email</mat-label>
     <input
       type="email"
       formControlName="email"
+      matInput
       name="email"
       id="email"
-      placeholder=" "
+      placeholder="abc@example.com"
     />
-    <span class="actual-label">Email</span>
-  </label>
-  <div
-    *ngIf="shouldShowErrors(authFormControls.email)"
-    class="warning-feedback"
-  >
-    <p *ngIf="authFormControls.email.errors.required">Email is required</p>
-    <p *ngIf="authFormControls.email.errors.email">
-      Email must be a valid address
-    </p>
-  </div>
 
-  <label class="form-control" for="password">
+    <mat-error *ngIf="authFormGroup.controls.email.hasError('required')"
+      >Email is required</mat-error
+    >
+    <mat-error *ngIf="authFormGroup.controls.email.hasError('email')">
+      Email must be a valid address
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Password</mat-label>
     <input
       type="password"
       formControlName="password"
+      matInput
       name="password"
       id="password"
-      placeholder=" "
     />
-    <span class="actual-label">Password</span>
-  </label>
-  <div
-    *ngIf="shouldShowErrors(authFormControls.password)"
-    class="warning-feedback"
-  >
-    <p *ngIf="authFormControls.password.errors.required">
-      Password is required
-    </p>
-    <p *ngIf="authFormControls.password.errors.minlength">
-      Password must be at least 8 characters
-    </p>
-    <p *ngIf="authFormControls.password.errors.isStrong">
-      Password must contain a lower case, upper case, a number and a sign
-    </p>
-  </div>
+  </mat-form-field>
+  <ul arrangeStack class="password-hints-container">
+    <li [ngClass]="{ approved: isAtLeastEightCharacters() }">
+      Must be at least 8 characters
+    </li>
+    <li [ngClass]="{ approved: hasLower() }">
+      Must contain a lower case character
+    </li>
+    <li [ngClass]="{ approved: hasUpper() }">
+      Must contain a upper case character
+    </li>
+    <li [ngClass]="{ approved: hasNumber() }">
+      Must contain a number
+    </li>
+    <li [ngClass]="{ approved: hasSpecial() }">
+      Must contain a sign
+    </li>
+  </ul>
 
-  <label class="form-control" for="confirm-password">
+  <mat-form-field appearance="outline">
+    <mat-label>Confirm Password</mat-label>
     <input
       type="password"
       formControlName="confirmPassword"
+      matInput
       name="confirm-password"
       id="confirm-password"
-      placeholder=" "
     />
-    <span class="actual-label">Confirm Password</span>
-  </label>
-  <div
-    *ngIf="shouldShowErrors(authFormControls.confirmPassword)"
-    class="warning-feedback"
-  >
-    <p *ngIf="authFormControls.confirmPassword.errors.required">
+    <mat-error
+      *ngIf="authFormGroup.controls.confirmPassword.hasError('required')"
+    >
       Password must be confirmed
-    </p>
-    <p *ngIf="authFormControls.confirmPassword.errors.minlength">
-      Password must be at least 8 characters
-    </p>
-    <p *ngIf="authFormControls.confirmPassword.errors.mustMatch">
+    </mat-error>
+    <mat-error
+      *ngIf="authFormGroup.controls.confirmPassword.hasError('mustMatch')"
+    >
       Passwords must match
-    </p>
-  </div>
+    </mat-error>
+  </mat-form-field>
 
-  <checkbox
-    [label]="
-      'Creating an account means you’re okay with our Terms of Service, Privacy Policy, and our default Notification Settings.'
-    "
-    [isRequired]="true"
-    [hasDarkTheme]="true"
-    #checkbox
-  ></checkbox>
+  <mat-checkbox formControlName="acceptedTerms" required #checkbox
+    >Creating an account means you’re okay with our Terms of Service, Privacy
+    Policy, and our default Notification Settings.
+  </mat-checkbox>
 
-  <button
-    class="button-secondary"
+  <pro-button
+    color="primary"
     type="submit"
     [disabled]="!isFormValid"
     #submitButton
   >
     Sign Up
-  </button>
+  </pro-button>
 
   <div class="description">
     <p class="footnote captcha"></p>

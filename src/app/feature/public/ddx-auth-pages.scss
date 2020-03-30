@@ -7,8 +7,8 @@
   width: 100vw;
   height: 100vh;
 
-  background: $ddx-blue;
-  background: linear-gradient(to top right, $ddx-blue, $ddx-blue-darker);
+  background: $ddx-blue-deep;
+  background: linear-gradient(to top right, $ddx-blue-deep, $ddx-blue-darkest);
 
   form {
     color: $ddx-light;
@@ -30,45 +30,48 @@
       }
     }
 
-    button[type='submit'] {
-      border: none;
-      width: 100%;
-      margin: 10px 0;
+    .password-hints-container {
+      margin: -10px 0 10px 0;
 
-      &:not(:disabled) {
-        background-color: $ddx-yellow;
-        color: $ddx-light;
+      li {
+        position: relative;
+        font-size: 10px;
+        margin: 0 2px;
+        padding-left: 15px;
+        transition: cubic-bezier(0.4, 0, 0.2, 1);
 
-        &:hover,
-        &:focus {
-          background-color: darken($ddx-yellow, 5);
+        &:before {
+          content: '\2022';
+          display: flex;
+          width: 10px;
+          height: 10px;
+          position: absolute;
+          top: 3px;
+          left: 0;
           color: $ddx-light;
+          font-size: 20px;
+          align-items: center;
+          justify-content: center;
         }
 
-        &.is-loading {
-          color: transparent;
+        &.approved {
+          color: $ddx-green;
 
-          &:after {
-            border: 0.15em solid $ddx-light-darker;
-            border-top-color: transparent;
-            border-right-color: transparent;
+          &:before {
+            color: $ddx-green;
           }
         }
       }
     }
 
-    label.form-control {
-      // background: $ddx-blue;
-      background: transparent;
-    }
+    ::ng-deep mat-checkbox,
+    mat-checkbox {
+      margin-bottom: 10px;
 
-    checkbox,
-    ::ng-deep checkbox {
-      margin: 10px 0;
-
-      span.actual-label,
-      ::ng-deep span.actual-label {
-        @extend .caption-small;
+      ::ng-deep .mat-checkbox-label,
+      .mat-checkbox-label {
+        line-height: 15px;
+        white-space: normal;
       }
     }
 

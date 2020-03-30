@@ -20,10 +20,14 @@
       grid-area: mobileNumber;
     }
 
-    #submitNumberButton {
+    #submitNumberButtonContainer {
       grid-area: submitNumber;
 
       margin: 5px 0;
+
+      button {
+        width: 100%;
+      }
     }
 
     #code {

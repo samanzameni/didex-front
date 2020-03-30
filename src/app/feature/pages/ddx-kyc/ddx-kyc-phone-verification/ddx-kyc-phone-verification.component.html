@@ -15,34 +15,16 @@
       verification.
     </p>
 
-    <mat-form-field id="countryTelephoneCode" appearance="outline">
-      <mat-label>Country Code</mat-label>
-      <input
-        type="text"
-        placeholder=""
-        matInput
-        name="countryTelephoneCode"
-        formControlName="countryTelephoneCode"
-      />
-      <mat-error
-        *ngIf="kycFormGroup.controls.countryTelephoneCode.hasError('required')"
-      >
-        This field is required.
-      </mat-error>
-      <mat-error
-        *ngIf="kycFormGroup.controls.countryTelephoneCode.hasError('maxlength')"
-      >
-        Max length should be 4.
-      </mat-error>
-      <mat-error
-        *ngIf="kycFormGroup.controls.countryTelephoneCode.hasError('pattern')"
-      >
-        Only digits are valid.
-      </mat-error>
-    </mat-form-field>
+    <dropdown-select
+      id="countryTelephoneCode"
+      caption="Country Code"
+      [items]="countriesList"
+      [control]="kycFormControls.countryTelephoneCode"
+    ></dropdown-select>
 
     <mat-form-field id="mobileNumber" appearance="outline">
       <mat-label>Mobile Number</mat-label>
+      <span matPrefix>+{{ kycFormControls.countryTelephoneCode.value }}</span>
       <input
         type="text"
         placeholder=""
@@ -65,20 +47,21 @@
       </mat-error>
     </mat-form-field>
 
-    <button
-      mat-flat-button
-      color="accent"
-      id="submitNumberButton"
-      type="button"
-      [disabled]="
-        !kycFormControls.countryTelephoneCode.valid ||
-        !kycFormControls.mobileNumber.valid
-      "
-      (click)="onSubmitNumber()"
-      #submitNumberButton
-    >
-      Submit
-    </button>
+    <div arrangeStack id="submitNumberButtonContainer">
+      <button
+        mat-flat-button
+        color="accent"
+        type="button"
+        [disabled]="
+          !kycFormControls.countryTelephoneCode.valid ||
+          !kycFormControls.mobileNumber.valid
+        "
+        (click)="onSubmitNumber()"
+        #submitNumberButton
+      >
+        Submit
+      </button>
+    </div>
 
     <mat-form-field
       id="code"
@@ -93,9 +76,6 @@
         name="code"
         formControlName="code"
       />
-      <p style="font-size: 0.65em; margin-top: 5px">
-        Verification code has been sent.
-      </p>
       <mat-error *ngIf="kycFormGroup.controls.code.hasError('required')">
         This field is required.
       </mat-error>

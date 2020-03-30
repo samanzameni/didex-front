@@ -25,6 +25,17 @@ form {
     margin-bottom: 20px;
     border: 1px solid $ddx-blue-lighter;
   }
+
+  .mat-form-field-appearance-outline .mat-form-field-suffix {
+    top: 0em;
+  }
+
+  .mat-form-field-appearance-outline
+    .mat-form-field-suffix
+    .mat-datepicker-toggle
+    .mat-icon-button {
+    top: 0.75em;
+  }
 }
 
 label.form-control-old {

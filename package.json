@@ -5,6 +5,7 @@
     "ng": "ng",
     "start": "ng serve --aot --port 4000",
     "build": "ng build --aot --prod",
+    "build-dev": "ng build --aot",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"

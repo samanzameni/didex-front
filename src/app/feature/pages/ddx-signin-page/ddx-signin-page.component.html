@@ -15,53 +15,47 @@
     <a routerLink="/auth/forgot-password">Forgot password?</a>
   </p>
 
-  <label class="form-control" for="email">
+  <mat-form-field appearance="outline" for="email">
+    <mat-label>Email</mat-label>
     <input
       type="email"
       formControlName="email"
+      matInput
       name="email"
       id="email"
-      placeholder=" "
+      placeholder="abc@example.com"
+      autofocus
     />
-    <span class="actual-label">Email</span>
-  </label>
-  <div
-    *ngIf="shouldShowErrors(authFormControls.email)"
-    class="warning-feedback"
-  >
-    <p *ngIf="authFormControls.email.errors.required">Email is required</p>
-    <p *ngIf="authFormControls.email.errors.email">
+    <mat-error *ngIf="authFormControls.email.hasError('required')">
+      Email is required
+    </mat-error>
+    <mat-error *ngIf="authFormControls.email.hasError('email')">
       Email must be a valid address
-    </p>
-  </div>
+    </mat-error>
+  </mat-form-field>
 
-  <label class="form-control" for="password">
+  <mat-form-field appearance="outline" for="password">
+    <mat-label>Password</mat-label>
     <input
       type="password"
       formControlName="password"
+      matInput
       name="password"
       id="password"
-      placeholder=" "
     />
-    <span class="actual-label">Password</span>
-  </label>
-  <div
-    *ngIf="shouldShowErrors(authFormControls.password)"
-    class="warning-feedback"
-  >
-    <p *ngIf="authFormControls.password.errors.required">
+    <mat-error *ngIf="authFormControls.password.hasError('required')">
       Password is required
-    </p>
-  </div>
+    </mat-error>
+  </mat-form-field>
 
-  <button
-    class="button-secondary"
+  <pro-button
+    color="primary"
     type="submit"
     [disabled]="!isFormValid"
     #submitButton
   >
     Sign In
-  </button>
+  </pro-button>
 
   <div class="description">
     <p class="footnote captcha"></p>

@@ -2,9 +2,9 @@
 
 :host {
   display: block;
-  width: 100%;
-  max-width: $break-narrow-desktop;
-  margin: 0px auto;
+  background: $ddx-blue-darkest;
+  width: calc(100% - 20px);
+  margin: 10px;
   padding: 10px;
   box-sizing: border-box;
 
@@ -12,42 +12,24 @@
     background: $ddx-blue-darkest;
     width: 100%;
     height: calc(100vh - 80px);
-    margin: 0px;
+    max-width: $break-narrow-desktop;
+    margin: 0px auto;
     padding: 30px;
     box-sizing: border-box;
 
     .settings-page__header {
       flex-direction: column;
 
+      .settings-page__title {
+        line-height: 40px;
+      }
+
       .settings-page__sections {
         align-items: center;
+        padding-bottom: 3px;
 
-        .settings-page__section-tab {
-          @extend .button-primary;
-          @extend .button-short;
-          @extend .caption-small;
-
+        .settings-page__section-tab:not(:last-child) {
           margin-right: 3px;
-          display: flex;
-          min-width: unset;
-
-          color: $ddx-light-darker;
-          border-color: $ddx-light-darker;
-          background: transparent;
-
-          &:hover {
-            color: $ddx-light;
-            border-color: $ddx-light;
-          }
-
-          &.active {
-            color: $ddx-blue-lighter;
-            border-color: $ddx-blue-lighter;
-
-            &:hover {
-              border-color: $ddx-blue-lighter;
-            }
-          }
         }
       }
       .settings-page__section-title {
@@ -72,52 +54,14 @@
       .settings-page__info {
         margin-bottom: 10px;
       }
-
-      .validate-button {
-        @extend .button-primary;
-
-        text-decoration: none;
-        margin: 20px 0;
-        color: $ddx-light-darker;
-
-        &:hover,
-        &:active {
-          color: $ddx-light;
-        }
-      }
-
-      button[type='submit'] {
-        border: none;
-        width: 100%;
-        margin: 10px 0;
-
-        &:not(:disabled) {
-          background-color: $ddx-yellow;
-          color: $ddx-light;
-
-          &:hover,
-          &:focus {
-            background-color: darken($ddx-yellow, 5);
-            color: $ddx-light;
-          }
-
-          &.is-loading {
-            color: transparent;
-
-            &:after {
-              border: 0.15em solid $ddx-light-darker;
-              border-top-color: transparent;
-              border-right-color: transparent;
-            }
-          }
-        }
-      }
     }
   }
 }
 
 @media screen and (min-width: $break-mobile) {
   :host {
+    width: calc(100% - 80px);
+    margin: 40px;
     padding: 30px 10px;
 
     section.container {

@@ -8,6 +8,13 @@ import { AuthGuard } from '@core/guards/auth.guard';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TraderResolver } from '@core/resolvers/trader.resolver';
 
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSelectModule } from '@angular/material/select';
+import { MatDividerModule } from '@angular/material/divider';
+
 const routes: Routes = [
   {
     path: 'settings',
@@ -30,6 +37,13 @@ const routes: Routes = [
     WidgetModule,
     FormsModule,
     ReactiveFormsModule,
+    //
+    MatFormFieldModule,
+    MatInputModule,
+    MatIconModule,
+    MatButtonModule,
+    MatSelectModule,
+    MatDividerModule,
   ],
   exports: [],
   providers: [],

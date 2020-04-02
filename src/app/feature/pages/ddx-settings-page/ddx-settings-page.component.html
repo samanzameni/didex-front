@@ -3,30 +3,33 @@
     <h2 class="settings-page__title">Settings</h2>
 
     <ul arrangeInline class="settings-page__sections">
-      <li
+      <button
+        mat-stroked-button
         class="settings-page__section-tab"
-        [ngClass]="{ active: currentActivePage === 'general' }"
+        [ngClass]="{ 'mat-accent': currentActivePage === 'general' }"
         (click)="activatePage('general')"
       >
         General
-      </li>
-      <li
+      </button>
+      <button
+        mat-stroked-button
         class="settings-page__section-tab"
-        [ngClass]="{ active: currentActivePage === 'security' }"
+        [ngClass]="{ 'mat-accent': currentActivePage === 'security' }"
         (click)="activatePage('security')"
       >
         Security
-      </li>
-      <li
+      </button>
+      <button
+        mat-stroked-button
         class="settings-page__section-tab"
-        [ngClass]="{ active: currentActivePage === 'kyc' }"
+        [ngClass]="{ 'mat-accent': currentActivePage === 'kyc' }"
         (click)="activatePage('kyc')"
       >
         KYC
-      </li>
+      </button>
     </ul>
   </div>
-  <hr class="settings-page__seperator" />
+  <mat-divider></mat-divider>
 
   <div class="settings-page__content" *ngSwitchCase="'general'">
     <p class="settings-page__info">
@@ -38,33 +41,33 @@
       autocomplete="off"
       [formGroup]="generalFormGroup"
       (ngSubmit)="onSubmitGeneralForm()"
-      #generalForm
+      #generalForm="ngForm"
     >
-      <label class="form-control" for="nickname">
+      <mat-form-field appearance="outline">
+        <mat-label>Nickname</mat-label>
         <input
+          matInput
           type="text"
           formControlName="nickname"
           name="nickname"
-          id="nickname"
-          placeholder=" "
+          placeholder="Johnny Doe"
         />
-        <span class="actual-label">Nickname</span>
-      </label>
+      </mat-form-field>
 
       <dropdown-select
         caption="Timezone"
-        id="timezone"
         [control]="generalFormControls.timezone"
         [items]="timezonesList"
       ></dropdown-select>
 
-      <button
+      <pro-button
+        color="primary"
         type="submit"
         [disabled]="!generalFormGroup.valid"
         #generalSubmitButton
       >
         Save Changes
-      </button>
+      </pro-button>
     </form>
   </div>
 
@@ -81,46 +84,47 @@
       (ngSubmit)="onSubmitSecurityForm()"
       #securityForm
     >
-      <label class="form-control" for="currentPassword">
+      <mat-form-field appearance="outline">
+        <mat-label>Old Password</mat-label>
         <input
+          matInput
           type="password"
           formControlName="currentPassword"
           name="currentPassword"
           id="currentPassword"
-          placeholder=" "
         />
-        <span class="actual-label">Old Password</span>
-      </label>
+      </mat-form-field>
 
-      <label class="form-control" for="password">
+      <mat-form-field appearance="outline">
+        <mat-label>Password</mat-label>
         <input
+          matInput
           type="password"
           formControlName="newPassword"
           name="password"
           id="password"
-          placeholder=" "
         />
-        <span class="actual-label">Password</span>
-      </label>
+      </mat-form-field>
 
-      <label class="form-control" for="confirm-password">
+      <mat-form-field appearance="outline">
+        <mat-label>Confirm Password</mat-label>
         <input
+          matInput
           type="password"
           formControlName="confirmPassword"
           name="confirm-password"
           id="confirm-password"
-          placeholder=" "
         />
-        <span class="actual-label">Confirm Password</span>
-      </label>
+      </mat-form-field>
 
-      <button
+      <pro-button
+        color="primary"
         type="submit"
         [disabled]="!securityFormGroup.valid"
         #securitySubmitButton
       >
         Save Changes
-      </button>
+      </pro-button>
     </form>
   </div>
 
@@ -134,21 +138,33 @@
         As a user, you must validate your identity in order to do transactions
         in DidEx
       </p>
-      <a routerLink="/user/kyc" class="validate-button">Validate identity</a>
+      <a routerLink="/user/kyc"
+        ><button mat-stroked-button color="accent">
+          Validate identity
+        </button></a
+      >
     </ng-container>
     <ng-container *ngSwitchCase="'sent'">
       <p class="settings-page__info">
         You have filled and sent your information and it is waiting for approval
       </p>
-      <a routerLink="/user/kyc" class="validate-button">Update KYC Info</a>
+      <a routerLink="/user/kyc"
+        ><button mat-stroked-button color="accent">Update KYC Info</button></a
+      >
     </ng-container>
     <ng-container *ngSwitchCase="'approved'">
       <p class="settings-page__info">Your KYC Information is approved.</p>
-      <a routerLink="/user/kyc" class="validate-button">Update KYC Info</a>
+      <a routerLink="/user/kyc"
+        ><button mat-stroked-button color="accent">Update KYC Info</button></a
+      >
     </ng-container>
     <ng-container *ngSwitchCase="'banned'">
       <p class="settings-page__info">Your application for KYC is banned</p>
-      <a routerLink="/user/kyc" class="validate-button">Validate identity</a>
+      <a routerLink="/user/kyc"
+        ><button mat-stroked-button color="accent">
+          Validate identity
+        </button></a
+      >
     </ng-container>
   </div>
 </section>

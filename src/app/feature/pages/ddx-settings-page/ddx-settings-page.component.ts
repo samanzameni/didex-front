@@ -17,6 +17,7 @@ import { mustMatch, isStrong } from '@core/util/validators';
 import { TraderService } from '@core/services';
 import { Trader } from '@core/models';
 import { TraderRESTService, AuthRESTService } from '@core/services/REST';
+import { ProButtonComponent } from '@widget/components';
 
 @Component({
   selector: 'ddx-settings-page',
@@ -25,12 +26,13 @@ import { TraderRESTService, AuthRESTService } from '@core/services/REST';
 })
 export class SettingsPageComponent implements OnInit {
   private activePage: string;
+  private timezonesMapped: DropdownSelectItem[];
 
   private generalReactiveFormGroup: FormGroup;
   private securityReactiveFormGroup: FormGroup;
 
-  @ViewChild('generalSubmitButton') generalSubmitButton: ElementRef;
-  @ViewChild('securitySubmitButton') securitySubmitButton: ElementRef;
+  @ViewChild('generalSubmitButton') generalSubmitButton: ProButtonComponent;
+  @ViewChild('securitySubmitButton') securitySubmitButton: ProButtonComponent;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -40,6 +42,12 @@ export class SettingsPageComponent implements OnInit {
     private authRestService: AuthRESTService
   ) {
     this.activePage = 'general';
+    this.timezonesMapped = TIMEZONES.map(timezone => {
+      return {
+        title: timezone.text,
+        value: timezone.text,
+      } as DropdownSelectItem;
+    });
   }
 
   ngOnInit() {
@@ -90,12 +98,7 @@ export class SettingsPageComponent implements OnInit {
   }
 
   get timezonesList(): DropdownSelectItem[] {
-    return TIMEZONES.map(timezone => {
-      return {
-        title: timezone.text,
-        value: timezone.text,
-      } as DropdownSelectItem;
-    });
+    return this.timezonesMapped;
   }
 
   get currentTrader(): Trader {
@@ -123,28 +126,19 @@ export class SettingsPageComponent implements OnInit {
 
   onSubmitGeneralForm(): void {
     if (this.generalSubmitButton) {
-      this.renderer.addClass(
-        this.generalSubmitButton.nativeElement,
-        'is-loading'
-      );
+      this.generalSubmitButton.setLoadingOn();
     }
     this.restService
       .requestUpdateGeneralInformation(this.generalReactiveFormGroup.value)
       .subscribe(
         response => {
           if (this.generalSubmitButton) {
-            this.renderer.removeClass(
-              this.generalSubmitButton.nativeElement,
-              'is-loading'
-            );
+            this.generalSubmitButton.setLoadingOff();
           }
         },
         errorResponse => {
           if (this.generalSubmitButton) {
-            this.renderer.removeClass(
-              this.generalSubmitButton.nativeElement,
-              'is-loading'
-            );
+            this.generalSubmitButton.setLoadingOff();
           }
         }
       );
@@ -152,28 +146,19 @@ export class SettingsPageComponent implements OnInit {
 
   onSubmitSecurityForm(): void {
     if (this.securitySubmitButton) {
-      this.renderer.addClass(
-        this.securitySubmitButton.nativeElement,
-        'is-loading'
-      );
+      this.securitySubmitButton.setLoadingOn();
     }
     this.authRestService
       .requestChangePassword(this.securityReactiveFormGroup.value)
       .subscribe(
         response => {
           if (this.securitySubmitButton) {
-            this.renderer.removeClass(
-              this.securitySubmitButton.nativeElement,
-              'is-loading'
-            );
+            this.securitySubmitButton.setLoadingOff();
           }
         },
         errorResponse => {
           if (this.securitySubmitButton) {
-            this.renderer.removeClass(
-              this.securitySubmitButton.nativeElement,
-              'is-loading'
-            );
+            this.securitySubmitButton.setLoadingOff();
           }
         }
       );

@@ -16,6 +16,9 @@ import { MainLayoutComponent } from '@feature/layouts';
 import { WidgetModule } from '@widget/widget.module';
 import { FormsModule } from '@angular/forms';
 
+import { MatMenuModule } from '@angular/material/menu';
+import { MatIconModule } from '@angular/material/icon';
+
 const routes: Routes = [
   {
     path: '',
@@ -58,6 +61,9 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     WidgetModule,
     FormsModule,
+    //
+    MatMenuModule,
+    MatIconModule,
   ],
   exports: [],
   providers: [],

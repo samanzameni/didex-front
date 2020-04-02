@@ -6,10 +6,15 @@
   <ng-container *ngSwitchCase="'success'">
     <h2>All set!</h2>
     <p>You will be redirected to homepage soon ...</p>
+    <mat-hint [ngStyle]="{ 'margin-top': '10px' }">
+      You will be redirected to homepage soon ...
+    </mat-hint>
   </ng-container>
 
   <ng-container *ngSwitchCase="'failed'">
     <h2>Error!</h2>
-    <p>An error occured while activating your acount.</p>
+    <mat-error [ngStyle]="{ 'margin-top': '10px' }">
+      An error occured while activating your acount
+    </mat-error>
   </ng-container>
 </section>

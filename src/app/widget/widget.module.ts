@@ -8,8 +8,8 @@ import {
   ArrangeStackDirective,
 } from './directives';
 import {
+  DropdownAutocompleteComponent,
   DropdownMenuComponent,
-  DropdownItemComponent,
   DropdownSelectComponent,
   ToggleButtonComponent,
   CheckboxComponent,
@@ -17,8 +17,18 @@ import {
   RadioGroupComponent,
   TradingViewChartWrapperComponent,
   ImageUploaderComponent,
+  ProButtonComponent,
 } from './components';
 import { RouterModule } from '@angular/router';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+import { MatMenuModule } from '@angular/material/menu';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -27,10 +37,11 @@ import { RouterModule } from '@angular/router';
     ArrangeInlineWrapDirective,
     ArrangeStackDirective,
     //
+    DropdownAutocompleteComponent,
     DropdownMenuComponent,
-    DropdownItemComponent,
     DropdownSelectComponent,
     ToggleButtonComponent,
+    ProButtonComponent,
     CheckboxComponent,
     RadioButtonComponent,
     RadioGroupComponent,
@@ -38,17 +49,32 @@ import { RouterModule } from '@angular/router';
     //
     TradingViewChartWrapperComponent,
   ],
-  imports: [CommonModule, RouterModule, FontAwesomeModule],
+  imports: [
+    CommonModule,
+    RouterModule,
+    FontAwesomeModule,
+    FormsModule,
+    ReactiveFormsModule,
+    //
+    MatMenuModule,
+    MatButtonModule,
+    MatIconModule,
+    MatAutocompleteModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+  ],
   exports: [
     ArrangeCenterDirective,
     ArrangeInlineDirective,
     ArrangeInlineWrapDirective,
     ArrangeStackDirective,
     //
+    DropdownAutocompleteComponent,
     DropdownMenuComponent,
-    DropdownItemComponent,
     DropdownSelectComponent,
     ToggleButtonComponent,
+    ProButtonComponent,
     CheckboxComponent,
     RadioButtonComponent,
     RadioGroupComponent,

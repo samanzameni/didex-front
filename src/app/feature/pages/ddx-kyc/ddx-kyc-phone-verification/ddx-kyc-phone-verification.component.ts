@@ -9,8 +9,9 @@ import { Router } from '@angular/router';
 import { KYCPageDirective } from '@feature/templates';
 import { FormBuilder, Validators } from '@angular/forms';
 import { TraderRESTService } from '@core/services/REST';
-import { CONSTANTS } from '@core/util/constants';
+import { CONSTANTS, COUNTRIES } from '@core/util/constants';
 import { TraderService } from '@core/services';
+import { DropdownSelectItem } from '@widget/models';
 
 @Component({
   selector: 'ddx-kyc-phone-verification',
@@ -24,9 +25,10 @@ export class KYCPhoneVerificationPageComponent extends KYCPageDirective
   implements OnInit {
   private hasSubmittedMobileNumber: boolean;
   private formErrors: any;
+  private countries: DropdownSelectItem[];
 
   @ViewChild('submitNumberButton')
-  submitNumberButton: ElementRef;
+  submitNumberButton: any;
 
   constructor(
     protected router: Router,
@@ -39,6 +41,12 @@ export class KYCPhoneVerificationPageComponent extends KYCPageDirective
     super(router, el, renderer, formBuilder, traderService);
     this.renderer.addClass(this.el.nativeElement, 'kyc-form');
     this.hasSubmittedMobileNumber = false;
+    this.countries = COUNTRIES.map(country => {
+      return {
+        title: `${country.emoji} ${country.name}`,
+        value: country.phoneCode,
+      };
+    });
   }
 
   ngOnInit() {
@@ -73,6 +81,10 @@ export class KYCPhoneVerificationPageComponent extends KYCPageDirective
     });
   }
 
+  get countriesList(): DropdownSelectItem[] {
+    return this.countries;
+  }
+
   get hasSubmittedNumber(): boolean {
     return this.hasSubmittedMobileNumber;
   }
@@ -82,23 +94,21 @@ export class KYCPhoneVerificationPageComponent extends KYCPageDirective
   }
 
   onSubmitNumber(): void {
-    this.renderer.addClass(this.submitNumberButton.nativeElement, 'is-loading');
+    const numbetButton =
+      this.submitNumberButton.nativeElement ||
+      this.submitNumberButton._elementRef.nativeElement;
+
+    this.renderer.addClass(numbetButton, 'is-loading');
 
     const { code, ...dataToSend } = this.kycForm.value;
 
     this.restService.requestSendConfirmationMobileNumber(dataToSend).subscribe(
       response => {
-        this.renderer.removeClass(
-          this.submitNumberButton.nativeElement,
-          'is-loading'
-        );
+        this.renderer.removeClass(numbetButton, 'is-loading');
         this.hasSubmittedMobileNumber = true;
       },
       errorResponse => {
-        this.renderer.removeClass(
-          this.submitNumberButton.nativeElement,
-          'is-loading'
-        );
+        this.renderer.removeClass(numbetButton, 'is-loading');
       }
     );
   }

@@ -14,6 +14,12 @@ import { WidgetModule } from '@widget/widget.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { KYCGuard } from '@core/guards/kyc.guard';
 
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { NativeDateModule, MatNativeDateModule } from '@angular/material/core';
+
 const routes: Routes = [
   {
     path: '',
@@ -57,8 +63,15 @@ const routes: Routes = [
     WidgetModule,
     FormsModule,
     ReactiveFormsModule,
+    //
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    NativeDateModule,
   ],
   exports: [],
-  providers: [],
+  providers: [MatNativeDateModule],
 })
 export class KYCModule {}

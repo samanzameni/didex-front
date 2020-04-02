@@ -8,9 +8,11 @@
     class="back-button"
     routerLink="/user/kyc/personal-information"
     rel="noopener noreferrer"
-    >Edit application</a
+    ><button mat-stroked-button color="basic" type="button">
+      Edit application
+    </button></a
   >
-  <button type="submit" (click)="onSubmit()" #submitButton>
+  <pro-button color="primary" type="submit" (click)="onSubmit()" #submitButton>
     Submit
-  </button>
+  </pro-button>
 </div>

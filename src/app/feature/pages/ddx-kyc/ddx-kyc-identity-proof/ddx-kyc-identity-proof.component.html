@@ -48,11 +48,16 @@
         class="back-button"
         routerLink="/user/kyc/phone-verification"
         rel="noopener noreferrer"
-        >Back</a
+        ><button mat-stroked-button color="basic" type="button">Back</button></a
       >
-      <button type="submit" #submitButton [disabled]="!kycFormGroup.valid">
+      <pro-button
+        color="primary"
+        type="submit"
+        [disabled]="!kycFormGroup.valid"
+        #submitButton
+      >
         Next
-      </button>
+      </pro-button>
     </div>
   </form>
 </section>

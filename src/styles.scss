@@ -7,43 +7,18 @@
 
 body {
   font-family: 'overpass';
+  font-size: 12px;
+  line-height: 14px !important;
   width: 100%;
   min-height: 100vh;
   overflow-x: hidden;
-  line-height: 1.2 !important;
   background: $ddx-blue-deep;
   color: $ddx-light;
 }
 
-div.warning-feedback,
-div.error-feedback {
-  padding-top: 2px;
-  width: 100%;
-
-  p {
-    @extend .caption-small;
-
-    margin-bottom: 2px;
-    display: flex;
-
-    &:before {
-      content: '-';
-      display: flex;
-      margin: 0 3px;
-    }
-  }
-}
-
-div.warning-feedback {
-  p {
-    color: $ddx-yellow;
-  }
-}
-
-div.error-feedback {
-  p {
-    color: $ddx-red;
-  }
+a,
+a:active {
+  color: $ddx-light;
 }
 
 div.loading-spinner {

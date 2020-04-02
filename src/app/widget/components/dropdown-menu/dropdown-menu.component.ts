@@ -7,14 +7,7 @@ import {
   AfterViewInit,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
-  HostListener,
 } from '@angular/core';
-import { DropdownMenuItem } from '@widget/models';
-import {
-  IconDefinition,
-  faAngleDown,
-  faAngleUp,
-} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'dropdown-menu',
@@ -39,37 +32,9 @@ export class DropdownMenuComponent implements OnInit, AfterViewInit {
     }
   }
 
-  ngAfterViewInit(): void {
-    if (this.dropdownToggle) {
-      this.dropdownToggle.nativeElement.addEventListener(
-        'click',
-        this.toggleDropdown.bind(this)
-      );
-    }
-
-    this.cdRef.detach();
-  }
-
-  @HostListener('window:click', ['$event'])
-  handleClickOnScreen($event: MouseEvent) {
-    if (!this.el.nativeElement.contains($event.target as HTMLElement)) {
-      this.isOpenState = false;
-
-      this.cdRef.detectChanges();
-    }
-  }
+  ngAfterViewInit(): void {}
 
   get isOpen(): boolean {
     return this.isOpenState;
-  }
-
-  get caretIcon(): IconDefinition {
-    return this.isOpen ? faAngleUp : faAngleDown;
-  }
-
-  toggleDropdown(): void {
-    this.isOpenState = !this.isOpenState;
-
-    this.cdRef.detectChanges();
   }
 }

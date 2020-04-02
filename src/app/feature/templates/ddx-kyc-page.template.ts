@@ -5,13 +5,14 @@ import { TraderService } from '@core/services';
 import { Trader } from '@core/models';
 import { ThrowStmt } from '@angular/compiler';
 import { shouldShowErrors } from '@core/util/forms';
+import { ProButtonComponent } from '@widget/components';
 
 @Directive()
 export abstract class KYCPageDirective {
   protected kycForm: FormGroup;
   protected currentTrader: Trader;
 
-  @ViewChild('submitButton') submitButton: ElementRef;
+  @ViewChild('submitButton') submitButton: ProButtonComponent;
 
   constructor(
     protected router: Router,
@@ -28,11 +29,13 @@ export abstract class KYCPageDirective {
   }
 
   protected setLoadingOn(): void {
-    this.renderer.addClass(this.submitButton.nativeElement, 'is-loading');
+    // this.renderer.addClass(this.submitButton.nativeElement, 'is-loading');
+    this.submitButton.setLoadingOn();
   }
 
   protected setLoadingOff(): void {
-    this.renderer.removeClass(this.submitButton.nativeElement, 'is-loading');
+    // this.renderer.removeClass(this.submitButton.nativeElement, 'is-loading');
+    this.submitButton.setLoadingOff();
   }
 
   get kycFormGroup(): FormGroup {

@@ -17,6 +17,7 @@ import { TraderService } from '@core/services';
 })
 export class KYCPersonalInfoPageComponent extends KYCPageDirective
   implements OnInit {
+  private countries: DropdownSelectItem[];
   constructor(
     protected router: Router,
     protected el: ElementRef,
@@ -27,6 +28,12 @@ export class KYCPersonalInfoPageComponent extends KYCPageDirective
   ) {
     super(router, el, renderer, formBuilder, traderService);
     this.renderer.addClass(this.el.nativeElement, 'kyc-form');
+    this.countries = COUNTRIES.map(country => {
+      return {
+        title: `${country.emoji} ${country.name}`,
+        value: country.code,
+      } as DropdownSelectItem;
+    });
   }
 
   ngOnInit() {
@@ -45,7 +52,7 @@ export class KYCPersonalInfoPageComponent extends KYCPageDirective
         trader.personalInformation
           ? trader.personalInformation.dateOfBirth.substr(0, 10)
           : '',
-        [Validators.required, Validators.pattern(/^\d{4}-\d{2}-\d{2}$/)],
+        [],
       ],
       birthCountryCode: [
         trader.personalInformation
@@ -82,17 +89,15 @@ export class KYCPersonalInfoPageComponent extends KYCPageDirective
   }
 
   get countriesList(): DropdownSelectItem[] {
-    return COUNTRIES.map(country => {
-      return { title: country.name, value: country.code } as DropdownSelectItem;
-    });
+    return this.countries;
   }
 
   onSubmit(): void {
-    this.setLoadingOn();
     const { dateOfBirth, ...formValue } = this.kycForm.value;
     const isoBirthdate = new Date(Date.parse(dateOfBirth)).toISOString();
 
     const dataToSend = Object.assign(formValue, { dateOfBirth: isoBirthdate });
+    this.setLoadingOn();
 
     this.restService.requestUpdatePersonalInfo(dataToSend).subscribe(
       response => {

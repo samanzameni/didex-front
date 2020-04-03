@@ -5,6 +5,7 @@ import {
   ViewChild,
   ElementRef,
   Renderer2,
+  ChangeDetectorRef,
 } from '@angular/core';
 import { TradeSymbol, Balance, Ticker } from '@core/models';
 import { getTickerFromSymbol } from '@core/util/ticker';
@@ -52,10 +53,10 @@ export class MarketComponent implements OnInit {
   constructor(
     private orderService: OrderRESTService,
     private authService: AuthService,
-    private renderer: Renderer2
+    private renderer: Renderer2,
+    private cdRef: ChangeDetectorRef
   ) {
     this.currentActiveType = 'limit';
-    this.buyFormErrors = {};
     this.sellFormErrors = {};
 
     // this.buyAmount = 0;
@@ -188,6 +189,7 @@ export class MarketComponent implements OnInit {
 
   activateType(newType: string): void {
     this.currentActiveType = newType;
+    this.cdRef.detectChanges();
   }
 
   onSelectBuyTimeInForce(selectedValue: number): void {

@@ -10,14 +10,18 @@ import {
   OrderBookComponent,
   TradesComponent,
   TimeAndSalesComponent,
+  MarketFormComponent,
 } from '@feature/components';
 import { HomePageComponent } from '@feature/pages';
 import { MainLayoutComponent } from '@feature/layouts';
 import { WidgetModule } from '@widget/widget.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 const routes: Routes = [
   {
@@ -52,6 +56,7 @@ const routes: Routes = [
     //
     InstrumentsComponent,
     MarketComponent,
+    MarketFormComponent,
     OrderBookComponent,
     TradesComponent,
     TimeAndSalesComponent,
@@ -61,9 +66,13 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     WidgetModule,
     FormsModule,
+    ReactiveFormsModule,
     //
     MatMenuModule,
     MatIconModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatCheckboxModule,
   ],
   exports: [],
   providers: [],

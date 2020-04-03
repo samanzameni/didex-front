@@ -1,0 +1,159 @@
+<h2 class="market__action-title">
+  {{ side === 'buy' ? 'Buy' : 'Sell' }}
+  {{ activeSymbol.baseCurrencyShortName }}
+</h2>
+<hr class="market__title-seperator" />
+<form
+  arrangeStack
+  #form="ngForm"
+  class="market__form"
+  autocomplete="off"
+  [formGroup]="marketFormGroup"
+  (ngSubmit)="submitForm()"
+>
+  <dropdown-select
+    *ngIf="activeType === 'limit'"
+    caption="Time in Force"
+    [items]="timeInForceDropdownItems"
+    [control]="marketFormGroup.controls.timeInForce"
+  ></dropdown-select>
+
+  <mat-checkbox
+    *ngIf="activeType === 'limit'"
+    formControlName="postOnly"
+    required
+    #checkbox
+    >Post only
+  </mat-checkbox>
+
+  <table arrangeCenter class="market__balance" *ngIf="!!quoteBalanceData">
+    <tbody arrangeStack>
+      <tr arrangeInline>
+        <td>Balance:</td>
+        <td>
+          {{ quoteBalanceData.available }} {{ quoteBalanceData.currency }}
+        </td>
+      </tr>
+      <tr arrangeInline>
+        <td>In Order:</td>
+        <td>{{ quoteBalanceData.reserved }} {{ quoteBalanceData.currency }}</td>
+      </tr>
+      <tr arrangeInline>
+        <td>Total:</td>
+        <td>
+          {{
+            this.side === 'buy'
+              ? baseTotal + ' ' + baseBalanceData.currency
+              : quoteTotal + ' ' + quoteBalanceData.currency
+          }}
+        </td>
+      </tr>
+      <tr arrangeInline>
+        <td>Best {{ this.side === 'buy' ? 'Bid' : 'Ask' }}:</td>
+        <td>
+          {{
+            this.side === 'buy'
+              ? bestBid + ' ' + quoteBalanceData.currency
+              : bestAsk + ' ' + baseBalanceData.currency
+          }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <table arrangeCenter class="market__balance" *ngIf="!quoteBalanceData">
+    <tbody arrangeStack>
+      <tr arrangeInline>
+        <td>Balance:</td>
+        <td>0 {{ activeSymbol.quoteCurrencyShortName }}</td>
+      </tr>
+      <tr arrangeInline>
+        <td>In Order:</td>
+        <td>0 {{ activeSymbol.quoteCurrencyShortName }}</td>
+      </tr>
+      <tr arrangeInline>
+        <td>Total:</td>
+        <td>0 {{ activeSymbol.quoteCurrencyShortName }}</td>
+      </tr>
+      <tr arrangeInline>
+        <td>Best Bid:</td>
+        <td>0 {{ activeSymbol.quoteCurrencyShortName }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Amount</mat-label>
+    <input
+      type="number"
+      matInput
+      [min]="activeSymbol.quantityIncrement"
+      [step]="activeSymbol.quantityIncrement"
+      formControlName="quantity"
+    />
+    <mat-error *ngIf="marketFormGroup.controls.quantity.hasError('min')">
+      Amount should be a positive number greater or equal than
+      {{ activeSymbol.quantityIncrement }}
+    </mat-error>
+    <ng-container *ngIf="errors">
+      <mat-error *ngFor="let error of errors.amount">{{ error }}</mat-error>
+    </ng-container>
+  </mat-form-field>
+
+  <mat-form-field *ngIf="activeType === 'limit'" appearance="outline">
+    <mat-label>Limit</mat-label>
+    <input
+      type="number"
+      matInput
+      [min]="activeSymbol.tickSize"
+      [step]="activeSymbol.tickSize"
+      formControlName="price"
+    />
+    <ng-container *ngIf="errors">
+      <mat-error *ngFor="let error of errors.limit">{{ error }}</mat-error>
+    </ng-container>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Total</mat-label>
+    <input type="text" [value]="total" matInput readonly disabled #totalInput />
+    <ng-container *ngIf="errors">
+      <mat-error *ngFor="let error of errors.symbol">{{ error }}</mat-error>
+    </ng-container>
+  </mat-form-field>
+
+  <div
+    arrangeStack
+    arrangeCenter
+    *ngIf="activeType === 'market'"
+    class="market__approximations"
+  >
+    <p>You will approximately {{ this.side === 'buy' ? 'pay' : 'get' }}</p>
+    <strong
+      >{{ this.side === 'buy' ? buyApproxPay : sellApproxPay }}
+      {{ activeSymbol.quoteCurrencyShortName }}</strong
+    >
+  </div>
+
+  <table arrangeCenter class="market__estimations">
+    <tbody arrangeStack>
+      <tr arrangeInline>
+        <td>Estimated</td>
+        <td>{{ bestAsk }} BTC</td>
+      </tr>
+      <tr arrangeInline>
+        <td>
+          Taker fee
+          {{ activeSymbol.takeLiquidityRate * 100 }}%
+        </td>
+        <td>
+          {{ takerFee }}
+          {{ activeSymbol.quoteCurrencyShortName }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <pro-button color="basic" type="submit" class="SIDE-button" #submitButton>
+    {{ side === 'buy' ? 'Buy' : 'Sell' }}
+  </pro-button>
+</form>

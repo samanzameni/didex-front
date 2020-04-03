@@ -20,7 +20,24 @@
     >Limit</span
   >
 
-  <div class="market__actions" id="buyActions">
+  <ddx-market-form
+    side="buy"
+    id="buyActions"
+    [activeType]="activeType"
+    [activeSymbol]="activeSymbol"
+    [balanceData]="balanceData"
+    [tickerData]="tickerData"
+  ></ddx-market-form>
+  <ddx-market-form
+    side="sell"
+    id="sellActions"
+    [activeType]="activeType"
+    [activeSymbol]="activeSymbol"
+    [balanceData]="balanceData"
+    [tickerData]="tickerData"
+  ></ddx-market-form>
+
+  <!-- <div class="market__actions" id="buyActions">
     <h2 class="market__action-title">
       Buy {{ activeSymbol.baseCurrencyShortName }}
     </h2>
@@ -88,9 +105,9 @@
     <form
       autocomplete="off"
       arrangeStack
+      class="market__form"
       autocomplete="off"
       (ngSubmit)="onSubmitBuy()"
-      class="market__form"
     >
       <label class="form-control" for="buy_amount">
         <input
@@ -157,10 +174,10 @@
 
       <table arrangeCenter class="market__estimations">
         <tbody arrangeStack>
-          <!-- <tr arrangeInline>
+          <tr arrangeInline>
             <td>Estimated</td>
             <td>{{ bestAsk }} BTC</td>
-          </tr> -->
+          </tr>
           <tr arrangeInline>
             <td>
               Taker fee
@@ -312,10 +329,10 @@
 
       <table arrangeCenter class="market__estimations">
         <tbody arrangeStack>
-          <!-- <tr arrangeInline>
+          <tr arrangeInline>
             <td>Estimated</td>
             <td>0.00004123 BTC</td>
-          </tr> -->
+          </tr>
           <tr arrangeInline>
             <td>
               Taker fee
@@ -337,5 +354,5 @@
         Sell
       </button>
     </form>
-  </div>
+  </div> -->
 </ng-template>

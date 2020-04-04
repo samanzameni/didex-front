@@ -1,22 +1,44 @@
 @import '../../../../styles.scss';
 
+$menu-width: 140px;
+
 body {
   .mat-menu-panel {
     background: $ddx-dark-main;
-    width: 130px;
+    width: $menu-width;
 
     border: 1px solid $ddx-light;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
     border-top: none;
     box-sizing: border-box;
+
+    .mat-menu-content {
+      .mat-menu-item {
+        height: fit-content;
+        margin: 0;
+        padding: 10px;
+        color: $ddx-light-darker;
+        text-decoration: none;
+        display: flex;
+        cursor: pointer;
+        user-select: none;
+
+        &:hover,
+        &:active,
+        &:focus {
+          color: $ddx-light;
+          text-decoration: none;
+        }
+      }
+    }
   }
 }
 
 dropdown-menu {
   display: flex;
 
-  width: 130px;
+  width: $menu-width;
   height: fit-content;
   margin: 3px;
   box-sizing: border-box;
@@ -36,30 +58,16 @@ dropdown-menu {
       justify-content: space-between;
     }
 
+    .mat-icon {
+      @extend .has-transition;
+    }
+
     &.is-open {
       border-bottom-left-radius: 0;
       border-bottom-right-radius: 0;
-    }
-  }
 
-  dropdown-item,
-  ::ng-deep dropdown-item,
-  .dropdown-item {
-    margin: 0;
-
-    & > * {
-      padding: 5px 15px;
-      color: $ddx-light-darker;
-      text-decoration: none;
-      display: flex;
-      cursor: pointer;
-      user-select: none;
-
-      &:hover,
-      &:active,
-      &:focus {
-        color: $ddx-light;
-        text-decoration: none;
+      .mat-icon {
+        transform: rotateX(180deg);
       }
     }
   }

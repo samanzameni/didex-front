@@ -1,7 +1,7 @@
 $transition-time: cubic-bezier(0.4, 0, 0.2, 1);
 
 .has-transition {
-  transition: $transition-time;
+  transition: 0.23s $transition-time;
 }
 
 @keyframes spin {

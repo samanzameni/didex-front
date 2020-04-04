@@ -34,7 +34,7 @@
       height: 15px;
       background-color: $ddx-light;
 
-      border: 1px solid $ddx-primary;
+      border: 1px solid $ddx-dark-lightest;
       outline: none;
       border-radius: 2px;
 
@@ -58,22 +58,19 @@
     &:hover,
     &:focus {
       span.actual-label {
-        color: $ddx-primary-darker;
       }
 
       div.checkbox-container {
-        border-color: $ddx-primary-darker;
       }
     }
 
     div.checkbox-container.checked {
-      background-color: $ddx-primary-darker;
     }
   }
 
   label.dark-theme {
     div.checkbox-container {
-      background-color: $ddx-primary;
+      background-color: $ddx-dark-lightest;
     }
 
     span.actual-label {
@@ -87,13 +84,13 @@
       }
 
       div.checkbox-container {
-        border-color: $ddx-primary;
+        border-color: $ddx-dark-lightest;
       }
     }
 
     div.checkbox-container.checked {
-      background-color: $ddx-blue-lighter;
-      border-color: $ddx-blue-lighter;
+      background-color: $ddx-accent-main;
+      border-color: $ddx-accent-main;
     }
   }
 }

@@ -73,7 +73,7 @@
 
           div.radio-container.checked {
             background-color: $ddx-yellow;
-            box-shadow: 0 0 0 1px $ddx-blue-darkest, 0 0 0 2px $ddx-yellow;
+            box-shadow: 0 0 0 1px $ddx-dark-main, 0 0 0 2px $ddx-yellow;
           }
         }
       }
@@ -114,14 +114,14 @@
     .copy-button {
       margin: 0 5px;
 
-      border-color: $ddx-blue-lighter;
-      color: $ddx-blue-lighter;
-      background: rgba($ddx-blue-lighter, 0.1);
+      border-color: $ddx-accent-main;
+      color: $ddx-accent-main;
+      background: rgba($ddx-accent-main, 0.1);
 
       &:hover {
-        border-color: $ddx-blue-lighter;
+        border-color: $ddx-accent-main;
         color: $ddx-light;
-        background: rgba($ddx-blue-lighter, 0.3);
+        background: rgba($ddx-accent-main, 0.3);
       }
     }
 

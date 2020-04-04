@@ -67,7 +67,7 @@ button,
 .button-primary {
   @extend .callout;
 
-  background: $ddx-primary;
+  background: $ddx-dark-lightest;
   color: $ddx-light-darker;
 
   position: relative;
@@ -89,25 +89,19 @@ button,
 
   &:hover,
   &:focus {
-    background: $ddx-primary-darker;
   }
 
   &:active {
-    background: $ddx-primary-darkest;
   }
 
   &[disabled],
   &[disabled='true'],
   &.disabled {
-    background: $ddx-disabled-background;
-    color: $ddx-disabled-text;
-
     pointer-events: none;
     cursor: not-allowed;
 
     &.is-loading {
       &:after {
-        border: 0.15em solid $ddx-disabled-text;
         border-top-color: transparent;
         border-right-color: transparent;
       }
@@ -116,8 +110,6 @@ button,
     &:hover,
     &:focus,
     &:active {
-      background: $ddx-disabled-background;
-      color: $ddx-disabled-text;
     }
   }
 
@@ -148,17 +140,17 @@ button,
 }
 
 .button-secondary {
-  color: $ddx-primary;
+  color: $ddx-dark-lightest;
   background: $ddx-light;
 
-  border: 1px solid $ddx-primary;
+  border: 1px solid $ddx-dark-lightest;
 
   height: 40px;
   padding: 8px 15px;
 
   &.is-loading {
     &:after {
-      border: 0.15em solid $ddx-primary;
+      border: 0.15em solid $ddx-dark-lightest;
       border-top-color: transparent;
       border-right-color: transparent;
     }
@@ -167,7 +159,6 @@ button,
   &:hover,
   &:focus {
     color: $ddx-light-darker;
-    border: 1px solid $ddx-primary-darker;
 
     &.is-loading {
       &:after {
@@ -180,7 +171,6 @@ button,
 
   &:active {
     color: $ddx-light-darker;
-    border: 1px solid $ddx-primary-darkest;
   }
 }
 

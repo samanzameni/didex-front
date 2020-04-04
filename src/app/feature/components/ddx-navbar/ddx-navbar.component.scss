@@ -5,7 +5,7 @@
   justify-content: space-between;
   align-items: center;
 
-  background: $ddx-blue-darkest;
+  background: $ddx-dark-main;
   color: white;
 
   width: 100%;
@@ -40,30 +40,6 @@
   }
 
   .navbar-items__container {
-    dropdown-menu {
-      min-width: unset;
-
-      ::ng-deep button {
-        @extend .caption;
-
-        color: $ddx-light;
-        border-color: $ddx-light;
-        background-color: $ddx-blue-darkest;
-      }
-
-      ::ng-deep .dropdown-menu {
-        @extend .caption;
-
-        border-color: $ddx-light;
-        background-color: $ddx-blue-darkest;
-
-        .dropdown-item a {
-          @extend .caption;
-
-          color: $ddx-light-darker;
-        }
-      }
-    }
   }
 }
 

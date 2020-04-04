@@ -31,23 +31,19 @@
     height: 15px;
     background-color: $ddx-light;
 
-    border: 1px solid $ddx-primary;
+    border: 1px solid $ddx-dark-lightest;
     border-radius: 100%;
   }
 
   &:hover,
   &:focus {
     span.actual-label {
-      color: $ddx-primary-darker;
     }
 
     div.radio-container {
-      border-color: $ddx-primary-darker;
     }
   }
 
   div.radio-container.checked {
-    background-color: $ddx-primary-darker;
-    box-shadow: 0 0 0 1px white, 0 0 0 2px $ddx-primary-darker;
   }
 }

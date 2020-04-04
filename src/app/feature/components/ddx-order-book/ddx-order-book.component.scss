@@ -8,7 +8,7 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  background-color: $ddx-blue-darkest;
+  background-color: $ddx-dark-main;
 
   .order-book__header {
     padding: 10px;
@@ -41,7 +41,7 @@
       width: 0px;
       height: 95%;
       background: rgba($color: $ddx-light, $alpha: 0.5);
-      border: 1px solid rgba($color: $ddx-primary, $alpha: 0.2);
+      border: 1px solid rgba($color: $ddx-dark-lightest, $alpha: 0.2);
 
       top: 0;
       left: 50%;

@@ -12,7 +12,7 @@ body {
   width: 100%;
   min-height: 100vh;
   overflow-x: hidden;
-  background: $ddx-blue-deep;
+  background: $ddx-dark-deep;
   color: $ddx-light;
 }
 
@@ -30,7 +30,7 @@ div.loading-spinner {
   height: 100%;
 
   z-index: 2;
-  background: rgba($ddx-blue-darkest, 0.95);
+  background: rgba($ddx-dark-main, 0.95);
   color: $ddx-light;
 
   display: flex;
@@ -53,7 +53,7 @@ div.loading-spinner {
     top: 0;
     left: 0;
 
-    background: rgba($ddx-blue-darkest, 0.95);
+    background: rgba($ddx-dark-main, 0.95);
     filter: blur(5px);
 
     z-index: 1;

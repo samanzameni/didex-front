@@ -1,66 +1,65 @@
 @import '../../../../styles.scss';
 
-:host {
-  display: flex;
-  flex-direction: column;
-  position: relative;
+body {
+  .mat-menu-panel {
+    background: $ddx-dark-main;
+    width: 130px;
 
-  width: fit-content;
+    border: 1px solid $ddx-light;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-top: none;
+    box-sizing: border-box;
+  }
+}
+
+dropdown-menu {
+  display: flex;
+
+  width: 130px;
   height: fit-content;
   margin: 3px;
   box-sizing: border-box;
 
-  .dropdown-menu {
-    background: $ddx-light;
+  & > button.mat-stroked-button {
     width: 100%;
-    box-sizing: border-box;
-    list-style: none;
-    border: 1px solid $ddx-primary;
-    border-bottom-left-radius: $button-border-radius;
-    border-bottom-right-radius: $button-border-radius;
-    border-top: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
 
-    padding: 0;
-    margin: 0;
-    border-width: 0;
-    opacity: 0;
-    visibility: hidden;
-    max-height: 0;
-    max-width: 0;
+    color: $ddx-light;
+    border-color: $ddx-light !important;
+    background-color: $ddx-dark-main;
 
-    z-index: 1;
+    .mat-button-wrapper {
+      width: 100%;
 
-    &.active {
-      padding: 10px 0;
-      border-width: 1px;
-      opacity: 1;
-      visibility: visible;
-      max-height: unset;
-      max-width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
 
-    dropdown-item,
-    ::ng-deep dropdown-item,
-    .dropdown-item {
-      margin: 0;
+    &.is-open {
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+  }
 
-      & > * {
-        padding: 5px 15px;
-        color: $ddx-light-darker;
+  dropdown-item,
+  ::ng-deep dropdown-item,
+  .dropdown-item {
+    margin: 0;
+
+    & > * {
+      padding: 5px 15px;
+      color: $ddx-light-darker;
+      text-decoration: none;
+      display: flex;
+      cursor: pointer;
+      user-select: none;
+
+      &:hover,
+      &:active,
+      &:focus {
+        color: $ddx-light;
         text-decoration: none;
-        display: flex;
-        cursor: pointer;
-        user-select: none;
-
-        &:hover,
-        &:active,
-        &:focus {
-          color: $ddx-light;
-          text-decoration: none;
-        }
       }
     }
   }

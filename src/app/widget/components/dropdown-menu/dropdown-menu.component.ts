@@ -4,21 +4,23 @@ import {
   Input,
   ViewChild,
   ElementRef,
-  AfterViewInit,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
+  ViewEncapsulation,
 } from '@angular/core';
+import { MatMenu, MatMenuTrigger } from '@angular/material/menu';
 
 @Component({
   selector: 'dropdown-menu',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.Default,
+  encapsulation: ViewEncapsulation.None,
   templateUrl: './dropdown-menu.component.html',
   styleUrls: ['./dropdown-menu.component.scss'],
 })
-export class DropdownMenuComponent implements OnInit, AfterViewInit {
+export class DropdownMenuComponent implements OnInit {
   @Input() caption: string;
 
-  @ViewChild('dropdownToggle') dropdownToggle: ElementRef;
+  @ViewChild('theMenuTrigger') theMenuTrigger: MatMenuTrigger;
 
   private isOpenState: boolean;
 
@@ -32,7 +34,13 @@ export class DropdownMenuComponent implements OnInit, AfterViewInit {
     }
   }
 
-  ngAfterViewInit(): void {}
+  onMenuOpen($event): void {
+    this.isOpenState = true;
+  }
+
+  onMenuClose($event): void {
+    this.isOpenState = false;
+  }
 
   get isOpen(): boolean {
     return this.isOpenState;

@@ -5,7 +5,7 @@ $ddx-kyc-header-height: 80px;
 :host {
   display: flex;
   flex-direction: column;
-  background-color: $ddx-blue-darkest;
+  background-color: $ddx-dark-main;
 
   header {
     display: flex;
@@ -13,7 +13,7 @@ $ddx-kyc-header-height: 80px;
     margin-bottom: 15px;
 
     div.step-counter {
-      background: $ddx-cyan;
+      background: $ddx-accent-lighter;
 
       display: flex;
       align-items: center;
@@ -26,7 +26,7 @@ $ddx-kyc-header-height: 80px;
       line-height: 80px;
       width: 100%;
       padding-left: 10px;
-      border-bottom: 1px solid rgba($ddx-cyan, 0.3);
+      border-bottom: 1px solid rgba($ddx-accent-lighter, 0.3);
     }
   }
 

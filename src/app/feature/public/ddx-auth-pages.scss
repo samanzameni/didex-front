@@ -7,8 +7,8 @@
   width: 100vw;
   height: 100vh;
 
-  background: $ddx-blue-deep;
-  background: linear-gradient(to top right, $ddx-blue-deep, $ddx-blue-darkest);
+  background: $ddx-dark-deep;
+  background: linear-gradient(to top right, $ddx-dark-deep, $ddx-dark-main);
 
   form {
     color: $ddx-light;
@@ -90,7 +90,7 @@
         a,
         a:hover,
         a:active {
-          color: $ddx-blue-lighter;
+          color: $ddx-accent-main;
           text-decoration: none;
           font-weight: normal;
         }
@@ -118,7 +118,7 @@
       a,
       a:hover,
       a:active {
-        color: $ddx-blue-lighter;
+        color: $ddx-accent-main;
         text-decoration: none;
         font-weight: normal;
       }

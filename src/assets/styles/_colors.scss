@@ -1,31 +1,3 @@
-$ddx-primary: #4a648a;
-// $ddx-primary: #1c3d80;
-$ddx-primary-darker: #2a4368;
-// $ddx-primary-darker: #213450;
-$ddx-primary-darkest: #213450;
-// $ddx-primary-darkest: #04193b;
-$ddx-primary-hover: $ddx-primary-darker;
-$ddx-primary-pressed: $ddx-primary-darkest;
-
-$ddx-light: white;
-$ddx-light-darker: #eee;
-$ddx-disabled-background: #eee;
-$ddx-disabled-text: #4a648a48;
-$ddx-grey: #9a9a9a;
-
-$ddx-blue: #1c3d80;
-$ddx-blue-darker: #213450;
-$ddx-blue-darkest: #04193b;
-$ddx-blue-deep: #000e24;
-$ddx-blue-lighter: #0eaafb;
-
-$ddx-yellow: #f5aa28;
-
-$ddx-cyan: #30acce;
-
-$ddx-red: #ff2d2d;
-$ddx-green: #8ed23f;
-
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
 @import '~@angular/material/theming';
@@ -135,11 +107,15 @@ $mat-ddx-yellow: (
   ),
 );
 
+$ddx-red: #ff2d2d;
+$ddx-green: #8ed23f;
+
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
 $didex-exchange-primary: mat-palette($mat-ddx-yellow);
 $didex-exchange-accent: mat-palette($mat-ddx-blue);
+$didex-exchange-dark: mat-palette($mat-ddx-dark);
 
 // The warn palette is optional (defaults to red).
 $didex-exchange-warn: mat-palette($mat-red);
@@ -155,3 +131,18 @@ $didex-exchange-theme: mat-dark-theme(
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
 @include angular-material-theme($didex-exchange-theme);
+
+// aliases
+$ddx-yellow: mat-color($didex-exchange-primary);
+
+$ddx-dark-deep: mat-color($didex-exchange-dark, 800);
+$ddx-dark-main: mat-color($didex-exchange-dark, 600);
+$ddx-dark-lighter: mat-color($didex-exchange-dark, 400);
+$ddx-dark-lightest: mat-color($didex-exchange-dark, 300);
+
+$ddx-accent-main: mat-color($didex-exchange-accent, 500);
+$ddx-accent-lighter: mat-color($didex-exchange-accent, 600);
+
+$ddx-light: white;
+$ddx-light-darker: #eee;
+$ddx-grey: #9a9a9a;

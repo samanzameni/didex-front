@@ -3,7 +3,7 @@
 $page-margin: 15px;
 
 :host {
-  background: $ddx-blue-darkest;
+  background: $ddx-dark-main;
   margin: $page-margin;
   padding: 15px 0;
 
@@ -75,7 +75,7 @@ $page-margin: 15px;
       width: 100%;
 
       .account-table__header {
-        border-bottom: 1px solid rgba($ddx-primary, 0.1);
+        border-bottom: 1px solid rgba($ddx-dark-lightest, 0.1);
       }
 
       .account-table__row {

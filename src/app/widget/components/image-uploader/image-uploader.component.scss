@@ -12,7 +12,7 @@
   align-items: center;
 
   box-sizing: border-box;
-  border: 1px dashed $ddx-primary;
+  border: 1px dashed $ddx-dark-lightest;
 
   .preview {
     position: absolute;
@@ -40,7 +40,7 @@
     z-index: 2;
 
     .caption {
-      color: $ddx-primary;
+      color: $ddx-dark-lightest;
     }
 
     input {

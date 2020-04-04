@@ -25,7 +25,7 @@
         color: $ddx-grey;
 
         border: none;
-        border-bottom: 2px solid rgba($ddx-cyan, 0.3);
+        border-bottom: 2px solid rgba($ddx-accent-lighter, 0.3);
         box-sizing: border-box;
         padding: 15px 5px;
 
@@ -34,24 +34,24 @@
         }
 
         &.active {
-          border-color: $ddx-cyan;
+          border-color: $ddx-accent-lighter;
 
           .step-counter {
             color: $ddx-light;
           }
 
           .step-title {
-            color: $ddx-cyan;
+            color: $ddx-accent-lighter;
           }
         }
 
         &.passed {
           .step-counter {
-            color: rgba($ddx-cyan, 0.3);
+            color: rgba($ddx-accent-lighter, 0.3);
           }
 
           .step-title {
-            color: rgba($ddx-cyan, 0.3);
+            color: rgba($ddx-accent-lighter, 0.3);
           }
         }
       }
@@ -98,7 +98,7 @@
 
         li.kyc-step {
           border: none;
-          border-left: 2px solid rgba($ddx-cyan, 0.3);
+          border-left: 2px solid rgba($ddx-accent-lighter, 0.3);
           box-sizing: border-box;
           padding: 5px 5px 75px 40px;
 

@@ -110,42 +110,51 @@
     }
 
     .market__submit-button {
-      width: 100%;
+      ::ng-deep button,
+      button {
+        width: 100%;
 
-      background: transparent;
-      border: 2px solid $ddx-light;
+        background: transparent;
+        border: 2px solid $ddx-light;
+      }
 
       &.buy-button {
-        border-color: $ddx-green;
-        color: $ddx-green;
-
-        &:hover {
+        ::ng-deep button,
+        button {
           border-color: $ddx-green;
-          background-color: rgba($ddx-green, 0.2);
-          color: $ddx-light;
-        }
+          color: $ddx-green;
 
-        &.is-loading {
-          border-color: $ddx-green;
-          background-color: rgba($ddx-green, 0.2);
-          color: transparent;
+          &:hover {
+            border-color: $ddx-green;
+            background-color: rgba($ddx-green, 0.2);
+            color: $ddx-light;
+          }
+
+          &.is-loading {
+            border-color: $ddx-green;
+            background-color: rgba($ddx-green, 0.2);
+            color: transparent;
+          }
         }
       }
 
       &.sell-button {
-        border-color: $ddx-red;
-        color: $ddx-red;
-
-        &:hover {
+        ::ng-deep button,
+        button {
           border-color: $ddx-red;
-          background-color: rgba($ddx-red, 0.2);
-          color: $ddx-light;
-        }
+          color: $ddx-red;
 
-        &.is-loading {
-          border-color: $ddx-red;
-          background-color: rgba($ddx-red, 0.2);
-          color: transparent;
+          &:hover {
+            border-color: $ddx-red;
+            background-color: rgba($ddx-red, 0.2);
+            color: $ddx-light;
+          }
+
+          &.is-loading {
+            border-color: $ddx-red;
+            background-color: rgba($ddx-red, 0.2);
+            color: transparent;
+          }
         }
       }
     }

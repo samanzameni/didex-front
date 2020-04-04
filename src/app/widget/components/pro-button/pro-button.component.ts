@@ -1,4 +1,10 @@
-import { Component, Input, Renderer2, ViewChild } from '@angular/core';
+import {
+  Component,
+  Input,
+  Renderer2,
+  ViewChild,
+  ElementRef,
+} from '@angular/core';
 
 @Component({
   selector: 'pro-button',
@@ -9,10 +15,13 @@ export class ProButtonComponent {
   @Input() color: 'basic' | 'primary' | 'accent' | 'warn' = 'basic';
   @Input() disabled = false;
   @Input() type: 'button' | 'submit' = 'button';
+  @Input() stroked = false;
 
   @ViewChild('theButton') theButton: any;
 
-  constructor(private renderer: Renderer2) {}
+  constructor(private renderer: Renderer2, private el: ElementRef) {
+    (el.nativeElement as HTMLElement).tabIndex = 0;
+  }
 
   private getButtonElement(): HTMLButtonElement {
     return (

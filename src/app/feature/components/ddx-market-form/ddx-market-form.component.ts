@@ -86,13 +86,24 @@ export class MarketFormComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(): void {
-    if (this.marketForm) {
-      this.marketForm.controls.type.setValue(
-        this.activeType === 'market' ? OrderType.Market : OrderType.Limit
-      );
-
-      this.marketForm.controls.price.setValue(1); // TODO
-    }
+    this.marketForm = this.formBuilder.group({
+      marketSymbol: [this.activeSymbol.symbol, []],
+      side: [this.side === 'buy' ? OrderSide.Buy : OrderSide.Sell, []],
+      type: [
+        this.activeType === 'market' ? OrderType.Market : OrderType.Limit,
+        [],
+      ],
+      quantity: [
+        0,
+        [
+          Validators.required,
+          Validators.min(this.activeSymbol.quantityIncrement),
+        ],
+      ],
+      price: [this.activeSymbol.tickSize, []],
+      postOnly: [false, []],
+      timeInForce: [OrderTimeInForce.GoodTillCancelled, []],
+    });
   }
 
   get marketFormGroup(): FormGroup {

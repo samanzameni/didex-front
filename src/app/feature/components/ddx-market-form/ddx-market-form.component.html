@@ -26,59 +26,89 @@
     >Post only
   </mat-checkbox>
 
-  <table arrangeCenter class="market__balance" *ngIf="!!quoteBalanceData">
-    <tbody arrangeStack>
-      <tr arrangeInline>
-        <td>Balance:</td>
-        <td>
-          {{ quoteBalanceData.available }} {{ quoteBalanceData.currency }}
-        </td>
-      </tr>
-      <tr arrangeInline>
-        <td>In Order:</td>
-        <td>{{ quoteBalanceData.reserved }} {{ quoteBalanceData.currency }}</td>
-      </tr>
-      <tr arrangeInline>
-        <td>Total:</td>
-        <td>
-          {{
-            this.side === 'buy'
-              ? baseTotal + ' ' + baseBalanceData.currency
-              : quoteTotal + ' ' + quoteBalanceData.currency
-          }}
-        </td>
-      </tr>
-      <tr arrangeInline>
-        <td>Best {{ this.side === 'buy' ? 'Bid' : 'Ask' }}:</td>
-        <td>
-          {{
-            this.side === 'buy'
-              ? bestBid + ' ' + quoteBalanceData.currency
-              : bestAsk + ' ' + baseBalanceData.currency
-          }}
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <table arrangeCenter class="market__balance" *ngIf="!quoteBalanceData">
-    <tbody arrangeStack>
-      <tr arrangeInline>
-        <td>Balance:</td>
-        <td>0 {{ activeSymbol.quoteCurrencyShortName }}</td>
-      </tr>
-      <tr arrangeInline>
-        <td>In Order:</td>
-        <td>0 {{ activeSymbol.quoteCurrencyShortName }}</td>
-      </tr>
-      <tr arrangeInline>
-        <td>Total:</td>
-        <td>0 {{ activeSymbol.quoteCurrencyShortName }}</td>
-      </tr>
-      <tr arrangeInline>
-        <td>Best Bid:</td>
-        <td>0 {{ activeSymbol.quoteCurrencyShortName }}</td>
-      </tr>
-    </tbody>
+  <table arrangeCenter class="market__balance">
+    <ng-template
+      [ngIf]="!!quoteBalanceData && !!baseBalanceData"
+      [ngIfElse]="defaultTable"
+    >
+      <tbody arrangeStack>
+        <tr arrangeInline>
+          <td>Balance:</td>
+          <td>
+            {{
+              this.side === 'buy'
+                ? quoteBalanceData.available + ' ' + quoteBalanceData.currency
+                : baseBalanceData.available + ' ' + baseBalanceData.currency
+            }}
+          </td>
+        </tr>
+        <tr arrangeInline>
+          <td>In Order:</td>
+          <td>
+            {{
+              this.side === 'buy'
+                ? quoteBalanceData.reserved + ' ' + quoteBalanceData.currency
+                : baseBalanceData.reserved + ' ' + baseBalanceData.currency
+            }}
+          </td>
+        </tr>
+        <tr arrangeInline>
+          <td>Total:</td>
+          <td>
+            {{
+              this.side === 'buy'
+                ? baseTotal + ' ' + baseBalanceData.currency
+                : quoteTotal + ' ' + quoteBalanceData.currency
+            }}
+          </td>
+        </tr>
+        <tr arrangeInline>
+          <td>Best {{ this.side === 'buy' ? 'Bid' : 'Ask' }}:</td>
+          <td>
+            {{ this.side === 'buy' ? bestBid : bestAsk }}
+            {{ quoteBalanceData.currency }}
+          </td>
+        </tr>
+      </tbody>
+    </ng-template>
+    <ng-template #defaultTable>
+      <tbody arrangeStack>
+        <tr arrangeInline>
+          <td>Balance:</td>
+          <td>
+            {{
+              this.side === 'buy'
+                ? 0 + ' ' + activeSymbol.quoteCurrencyShortName
+                : 0 + ' ' + activeSymbol.baseCurrencyShortName
+            }}
+          </td>
+        </tr>
+        <tr arrangeInline>
+          <td>In Order:</td>
+          <td>
+            {{
+              this.side === 'buy'
+                ? 0 + ' ' + activeSymbol.quoteCurrencyShortName
+                : 0 + ' ' + activeSymbol.baseCurrencyShortName
+            }}
+          </td>
+        </tr>
+        <tr arrangeInline>
+          <td>Total:</td>
+          <td>
+            {{
+              this.side === 'buy'
+                ? 0 + ' ' + activeSymbol.baseCurrencyShortName
+                : 0 + ' ' + activeSymbol.quoteCurrencyShortName
+            }}
+          </td>
+        </tr>
+        <tr arrangeInline>
+          <td>Best {{ this.side === 'buy' ? 'Bid' : 'Ask' }}:</td>
+          <td>0 {{ activeSymbol.quoteCurrencyShortName }}</td>
+        </tr>
+      </tbody>
+    </ng-template>
   </table>
 
   <mat-form-field appearance="outline">
@@ -90,6 +120,9 @@
       [step]="activeSymbol.quantityIncrement"
       formControlName="quantity"
     />
+    <span matSuffix>
+      {{ activeSymbol.baseCurrencyShortName }}
+    </span>
     <mat-error *ngIf="marketFormGroup.controls.quantity.hasError('min')">
       Amount should be a positive number greater or equal than
       {{ activeSymbol.quantityIncrement }}
@@ -108,6 +141,9 @@
       [step]="activeSymbol.tickSize"
       formControlName="price"
     />
+    <span matSuffix>
+      {{ activeSymbol.quoteCurrencyShortName }}
+    </span>
     <ng-container *ngIf="errors">
       <mat-error *ngFor="let error of errors.limit">{{ error }}</mat-error>
     </ng-container>
@@ -116,6 +152,9 @@
   <mat-form-field appearance="outline">
     <mat-label>Total</mat-label>
     <input type="text" [value]="total" matInput readonly disabled #totalInput />
+    <span matSuffix>
+      {{ activeSymbol.quoteCurrencyShortName }}
+    </span>
     <ng-container *ngIf="errors">
       <mat-error *ngFor="let error of errors.symbol">{{ error }}</mat-error>
     </ng-container>
@@ -137,10 +176,6 @@
   <table arrangeCenter class="market__estimations">
     <tbody arrangeStack>
       <tr arrangeInline>
-        <td>Estimated</td>
-        <td>{{ bestAsk }} BTC</td>
-      </tr>
-      <tr arrangeInline>
         <td>
           Taker fee
           {{ activeSymbol.takeLiquidityRate * 100 }}%
@@ -153,7 +188,13 @@
     </tbody>
   </table>
 
-  <pro-button color="basic" type="submit" class="SIDE-button" #submitButton>
+  <pro-button
+    color="basic"
+    type="submit"
+    class="market__submit-button"
+    [ngClass]="side + '-button'"
+    #submitButton
+  >
     {{ side === 'buy' ? 'Buy' : 'Sell' }}
   </pro-button>
 </form>

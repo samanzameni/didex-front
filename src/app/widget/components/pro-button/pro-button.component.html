@@ -1,9 +1,24 @@
-<button
-  mat-raised-button
-  [color]="color"
-  [type]="type"
-  [disabled]="disabled"
-  #theButton
->
-  <ng-content></ng-content>
-</button>
+<ng-template [ngIf]="stroked" [ngIfElse]="normalButton">
+  <button
+    mat-stroked-button
+    [color]="color"
+    [type]="type"
+    [disabled]="disabled"
+    tabindex="-1"
+    #theButton
+  >
+    <ng-content></ng-content>
+  </button>
+</ng-template>
+<ng-template [ngIf]="stroked" #normalButton>
+  <button
+    mat-raised-button
+    [color]="color"
+    [type]="type"
+    [disabled]="disabled"
+    tabindex="-1"
+    #theButton
+  >
+    <ng-content></ng-content>
+  </button>
+</ng-template>

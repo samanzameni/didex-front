@@ -2,6 +2,7 @@ export interface Trader {
   personalInformation: TraderPersonalInformation;
   mobileNumber: TraderMobileNumber;
   kycImages: TraderKycImage[];
+  generalInformation?: TraderGeneralInformation;
   status: TraderStatus;
 }
 
@@ -26,6 +27,11 @@ export interface TraderPersonalInformation {
   countryCode: string;
   zipCode: string;
   city: string;
+}
+
+export interface TraderGeneralInformation {
+  nickName?: string;
+  timeZone?: string;
 }
 
 export enum TraderStatus {

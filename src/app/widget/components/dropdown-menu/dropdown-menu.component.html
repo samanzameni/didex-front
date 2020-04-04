@@ -1,14 +1,29 @@
-<button
-  mat-stroked-button
-  [ngClass]="{ 'is-open': isOpen }"
-  [matMenuTriggerFor]="theMenu"
-  (menuOpened)="onMenuOpen($event)"
-  (menuClosed)="onMenuClose($event)"
-  #theMenuTrigger
->
-  <span matPrefix>{{ caption }}</span>
-  <mat-icon matSuffix>keyboard_arrow_down</mat-icon>
-</button>
+<ng-template [ngIf]="icon" [ngIfElse]="stroked">
+  <button
+    mat-icon-button
+    [ngClass]="{ 'is-open': isOpen }"
+    [matMenuTriggerFor]="theMenu"
+    (menuOpened)="onMenuOpen($event)"
+    (menuClosed)="onMenuClose($event)"
+    #theMenuTrigger
+  >
+    <mat-icon>{{ icon }}</mat-icon>
+  </button>
+</ng-template>
+
+<ng-template #stroked>
+  <button
+    mat-stroked-button
+    [ngClass]="{ 'is-open': isOpen }"
+    [matMenuTriggerFor]="theMenu"
+    (menuOpened)="onMenuOpen($event)"
+    (menuClosed)="onMenuClose($event)"
+    #theMenuTrigger
+  >
+    <span matPrefix>{{ caption }}</span>
+    <mat-icon matSuffix>keyboard_arrow_down</mat-icon>
+  </button>
+</ng-template>
 
 <mat-menu #theMenu="matMenu" class="dropdown-menu">
   <ng-content></ng-content>

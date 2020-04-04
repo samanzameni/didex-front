@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DropdownMenuItem } from '@widget/models';
-import { AuthService } from '@core/services';
+import { AuthService, TraderService } from '@core/services';
 
 @Component({
   selector: 'ddx-navbar',
@@ -8,7 +8,10 @@ import { AuthService } from '@core/services';
   styleUrls: ['./ddx-navbar.component.scss'],
 })
 export class NavbarComponent implements OnInit {
-  constructor(private authService: AuthService) {}
+  constructor(
+    private authService: AuthService,
+    private traderService: TraderService
+  ) {}
 
   ngOnInit() {}
 
@@ -18,5 +21,12 @@ export class NavbarComponent implements OnInit {
 
   requestSignOut(): void {
     this.authService.requestSignOut();
+  }
+
+  get personalInfo(): string {
+    return (
+      this.traderService?.currentTrader?.personalInformation?.firstName ||
+      'User'
+    );
   }
 }

@@ -22,6 +22,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatButtonModule } from '@angular/material/button';
 
 const routes: Routes = [
   {
@@ -33,14 +34,14 @@ const routes: Routes = [
         path: 'user',
         loadChildren: () =>
           import('@feature/modules/user.module').then(
-            module => module.UserModule
+            (module) => module.UserModule
           ),
       },
       {
         path: 'account',
         loadChildren: () =>
           import('@feature/modules/account.module').then(
-            module => module.AccountModule
+            (module) => module.AccountModule
           ),
       },
     ],
@@ -73,6 +74,7 @@ const routes: Routes = [
     MatFormFieldModule,
     MatInputModule,
     MatCheckboxModule,
+    MatButtonModule,
   ],
   exports: [],
   providers: [],

@@ -1,17 +1,13 @@
 @import '../../../../styles.scss';
 
-$menu-width: 140px;
-
 body {
   .mat-menu-panel {
     background: $ddx-dark-main;
-    width: $menu-width;
 
-    border: 1px solid $ddx-light;
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-    border-top: none;
+    border: 1px solid $ddx-accent-main;
     box-sizing: border-box;
+    margin-top: 2px;
+    min-height: unset;
 
     .mat-menu-content {
       .mat-menu-item {
@@ -38,10 +34,15 @@ body {
 dropdown-menu {
   display: flex;
 
-  width: $menu-width;
   height: fit-content;
   margin: 3px;
   box-sizing: border-box;
+
+  & > button.mat-icon-button {
+    &.is-open {
+      color: $ddx-accent-main;
+    }
+  }
 
   & > button.mat-stroked-button {
     width: 100%;
@@ -63,9 +64,6 @@ dropdown-menu {
     }
 
     &.is-open {
-      border-bottom-left-radius: 0;
-      border-bottom-right-radius: 0;
-
       .mat-icon {
         transform: rotateX(180deg);
       }

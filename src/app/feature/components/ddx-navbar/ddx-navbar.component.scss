@@ -40,6 +40,12 @@
   }
 
   .navbar-items__container {
+    align-items: center;
+
+    .auth-button {
+      height: max-content;
+      margin: 2px;
+    }
   }
 }
 

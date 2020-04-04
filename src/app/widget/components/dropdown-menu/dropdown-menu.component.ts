@@ -19,6 +19,7 @@ import { MatMenu, MatMenuTrigger } from '@angular/material/menu';
 })
 export class DropdownMenuComponent implements OnInit {
   @Input() caption: string;
+  @Input() icon: string;
 
   @ViewChild('theMenuTrigger') theMenuTrigger: MatMenuTrigger;
 

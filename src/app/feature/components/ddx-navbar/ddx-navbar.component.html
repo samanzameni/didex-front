@@ -13,22 +13,47 @@
   </a>
 </div>
 <div arrangeInline class="navbar-items__container" [ngSwitch]="isAuthorized">
+  <a class="link-button" routerLink="/">
+    <!-- TODO: URL -->
+    <button mat-button>
+      Academy
+    </button>
+  </a>
+
+  <a class="link-button" routerLink="/">
+    <!-- TODO: URL -->
+    <button mat-button>
+      Support
+    </button>
+  </a>
+
   <ng-container *ngSwitchCase="true">
-    <dropdown-menu caption="Account">
+    <dropdown-menu title="Account" icon="account_balance_wallet">
       <a mat-menu-item routerLink="/account/funds">Funds</a>
       <a mat-menu-item routerLink="/account/reports">Reports</a>
     </dropdown-menu>
 
-    <dropdown-menu caption="Profile">
+    <dropdown-menu title="Profile" icon="person">
+      <span mat-menu-item disabled>Hello, {{ personalInfo }}</span>
       <a mat-menu-item routerLink="/user/settings">Settings</a>
       <span mat-menu-item (click)="requestSignOut()">Sign Out</span>
     </dropdown-menu>
   </ng-container>
 
   <ng-container *ngSwitchCase="false">
-    <dropdown-menu caption="Profile">
-      <a mat-menu-item routerLink="/auth/signin">Sign In</a>
-      <a mat-menu-item routerLink="/auth/signup">Sign Up</a>
-    </dropdown-menu>
+    <a class="auth-button" routerLink="/auth/signin">
+      <button mat-stroked-button>
+        Sign In
+      </button>
+    </a>
+    <a class="auth-button" routerLink="/auth/signup">
+      <button mat-stroked-button>
+        Sign Up
+      </button>
+    </a>
   </ng-container>
+
+  <dropdown-menu title="Applications" icon="apps">
+    <a mat-menu-item routerLink="/">Trade</a>
+  </dropdown-menu>
 </div>

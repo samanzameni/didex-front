@@ -56,7 +56,7 @@ export class MarketFormComponent implements OnInit, OnChanges {
     const keys = Object.keys(OrderTimeInForce);
     const names = keys.slice(keys.length / 2);
 
-    this.timeInForceItems = names.map(name => {
+    this.timeInForceItems = names.map((name) => {
       return {
         title: name,
         value: OrderTimeInForce[name],
@@ -225,14 +225,12 @@ export class MarketFormComponent implements OnInit, OnChanges {
     }
 
     const dataToSend: OrderData = this.marketForm.value;
-    console.log(dataToSend);
-    debugger;
 
     this.orderService.requestOrder(dataToSend).subscribe(
-      response => {
+      (response) => {
         this.submitButton.setLoadingOff();
       },
-      errorResponse => {
+      (errorResponse) => {
         this.submitButton.setLoadingOff();
         if (errorResponse.status === 401) {
           this.authService.handleAuthError();

@@ -7,6 +7,12 @@ import { WidgetModule } from '@widget/widget.module';
 import { FundsPageComponent, ReportsPageComponent } from '@feature/pages';
 import { AuthGuard } from '@core/guards';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ClipboardModule } from '@angular/cdk/clipboard';
+import { MatButtonModule } from '@angular/material/button';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 const routes: Routes = [
   {
@@ -35,6 +41,13 @@ const routes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     FontAwesomeModule,
+    //
+    ClipboardModule,
+    MatButtonModule,
+    MatRadioModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSnackBarModule,
   ],
   exports: [],
   providers: [],

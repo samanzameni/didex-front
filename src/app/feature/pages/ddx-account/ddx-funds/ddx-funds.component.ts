@@ -30,6 +30,7 @@ import {
 import { combineLatest } from 'rxjs';
 import Decimal from 'decimal.js';
 import { copyToClipboard } from '@core/util/clipboard';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'ddx-funds',
@@ -61,7 +62,8 @@ export class FundsPageComponent implements OnInit, AfterViewInit {
     private publicService: PublicRESTService,
     private tradingService: TradingRESTService,
     private renderer: Renderer2,
-    private cdRef: ChangeDetectorRef
+    private cdRef: ChangeDetectorRef,
+    private snackBarService: MatSnackBar
   ) {
     this.currentActivePane = 'none';
     this.currentTransferType = BalanceTransferType.BankToExchange;
@@ -115,14 +117,14 @@ export class FundsPageComponent implements OnInit, AfterViewInit {
           this.combinedData[i].reserved = new Decimal(0);
           this.combinedData[i].main = new Decimal(0);
 
-          this.bankingBalanceData.forEach(balance => {
+          this.bankingBalanceData.forEach((balance) => {
             if (currency.shortName.trim() === balance.currency.trim()) {
               this.combinedData[i].main = new Decimal(balance.available);
               return;
             }
           });
 
-          this.tradingBalanceData.forEach(balance => {
+          this.tradingBalanceData.forEach((balance) => {
             if (currency.shortName.trim() === balance.currency.trim()) {
               this.combinedData[i].available = new Decimal(balance.available);
               this.combinedData[i].reserved = new Decimal(balance.reserved);
@@ -137,7 +139,7 @@ export class FundsPageComponent implements OnInit, AfterViewInit {
 
         this.cdRef.detectChanges();
       },
-      errorResponse => {
+      (errorResponse) => {
         this.cdRef.detectChanges();
       }
     );
@@ -199,19 +201,19 @@ export class FundsPageComponent implements OnInit, AfterViewInit {
           currencyShortName: this.tableRows[rowIndex].shortName,
         })
         .subscribe(
-          response => {
+          (response) => {
             this.currentWalletAddress = response;
             this.cdRef.detectChanges();
           },
-          errorResponse => {
+          (errorResponse) => {
             this.currentWalletAddress = { address: 'Error while fetching ...' };
           }
         );
     }
   }
 
-  handleClickOnCopyAddress(address: string) {
-    copyToClipboard(address);
+  handleClickOnCopyAddress() {
+    this.snackBarService.open('Copied!', '', { duration: 1500 });
   }
 
   handleRadioValueChanges($event): void {
@@ -231,7 +233,7 @@ export class FundsPageComponent implements OnInit, AfterViewInit {
     this.restService
       .requestTransfer(submittedValue as BalanceTransferData)
       .subscribe(
-        response => {
+        (response) => {
           if (this.transferButton) {
             this.renderer.removeClass(
               this.transferButton.nativeElement,
@@ -241,7 +243,7 @@ export class FundsPageComponent implements OnInit, AfterViewInit {
           this.currentActivePane = 'none';
           this.updateData();
         },
-        errorResponse => {
+        (errorResponse) => {
           if (this.transferButton) {
             this.renderer.removeClass(
               this.transferButton.nativeElement,
@@ -272,7 +274,7 @@ export class FundsPageComponent implements OnInit, AfterViewInit {
     submittedValue.autoCommit = true;
 
     this.restService.requestWithdraw(submittedValue).subscribe(
-      response => {
+      (response) => {
         if (this.withdrawButton) {
           this.renderer.removeClass(
             this.withdrawButton.nativeElement,
@@ -282,7 +284,7 @@ export class FundsPageComponent implements OnInit, AfterViewInit {
         this.currentActivePane = 'none';
         this.updateData();
       },
-      errorResponse => {
+      (errorResponse) => {
         if (this.withdrawButton) {
           this.renderer.removeClass(
             this.withdrawButton.nativeElement,

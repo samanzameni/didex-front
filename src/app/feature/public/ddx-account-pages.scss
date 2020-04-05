@@ -75,14 +75,16 @@ $page-margin: 15px;
       width: 100%;
 
       .account-table__header {
+        background-color: $ddx-dark-main;
         border-bottom: 1px solid rgba($ddx-dark-lightest, 0.1);
       }
 
       .account-table__row {
         display: flex;
+        background-color: $ddx-dark-main;
 
         &:nth-child(even) {
-          background: rgba($ddx-light, 0.1);
+          background: $ddx-dark-lighter;
         }
       }
 

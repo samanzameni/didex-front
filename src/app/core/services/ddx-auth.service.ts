@@ -12,6 +12,7 @@ import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { SignalRService } from './ddx-signalr.service';
+import * as jwtDecode from 'jwt-decode';
 
 @Injectable()
 export class AuthService {
@@ -30,6 +31,12 @@ export class AuthService {
     return this.isUserAuthorized;
   }
 
+  get decodedToken(): any {
+    return this.isUserAuthorized
+      ? jwtDecode(this.storageService.getUserAccessToken())
+      : {};
+  }
+
   public requestSignUp(formData: AuthFormData): Observable<AuthFormResponse> {
     return this.restService.requestRegister(formData);
   }
@@ -40,7 +47,7 @@ export class AuthService {
 
   public requestSignIn(formData: AuthFormData): Observable<AuthFormResponse> {
     return this.restService.requestLogin(formData).pipe(
-      tap(response => {
+      tap((response) => {
         this.storageService.setUserAccessToken({
           didexAccessToken: response.token,
         });
@@ -54,7 +61,7 @@ export class AuthService {
     data: AuthEmailActivationData
   ): Observable<AuthFormResponse> {
     return this.restService.requestVerifyEmail(data).pipe(
-      tap(response => {
+      tap((response) => {
         this.storageService.setUserAccessToken({
           didexAccessToken: response.token,
         });

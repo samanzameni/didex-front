@@ -19,6 +19,10 @@ export class NavbarComponent implements OnInit {
     return this.authService.isAuthorized;
   }
 
+  get traderEmail(): string {
+    return this.authService.decodedToken.email;
+  }
+
   requestSignOut(): void {
     this.authService.requestSignOut();
   }
@@ -26,7 +30,7 @@ export class NavbarComponent implements OnInit {
   get personalInfo(): string {
     return (
       this.traderService?.currentTrader?.personalInformation?.firstName ||
-      'User'
+      'Trader'
     );
   }
 }

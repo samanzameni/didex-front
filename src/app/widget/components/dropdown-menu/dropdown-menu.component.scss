@@ -9,6 +9,10 @@ body {
     margin-top: 2px;
     min-height: unset;
 
+    .mat-divider {
+      margin: 3px 0;
+    }
+
     .mat-menu-content {
       .mat-menu-item {
         height: fit-content;
@@ -25,6 +29,13 @@ body {
         &:focus {
           color: $ddx-light;
           text-decoration: none;
+        }
+
+        &.navbar__personal-info-item {
+          padding: 5px 10px;
+          font-size: 1em;
+          color: $ddx-accent-lighter;
+          cursor: auto;
         }
       }
     }

@@ -33,6 +33,7 @@
     "@types/jquery": "^3.3.31",
     "decimal.js": "^10.2.0",
     "jquery": "^3.4.1",
+    "jwt-decode": "^2.2.0",
     "net": "^1.0.2",
     "rxjs": "~6.5.4",
     "socket.io-client": "^2.3.0",

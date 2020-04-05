@@ -29,18 +29,20 @@ export class KYCDonePageComponent {
     this.submitButton.setLoadingOn();
 
     this.restService.requestKYCApproval().subscribe(
-      response => {
+      (response) => {
         this.traderService.updateCurrentTrader().subscribe(
-          trader => {
+          (trader) => {
             this.submitButton.setLoadingOff();
-            this.router.navigateByUrl('/user/settings');
+            this.router.navigateByUrl('/user/settings?tab=kyc', {
+              queryParams: { tab: 'kyc' },
+            });
           },
-          error => {
+          (error) => {
             this.submitButton.setLoadingOff();
           }
         );
       },
-      errorResponse => {
+      (errorResponse) => {
         this.submitButton.setLoadingOff();
       }
     );

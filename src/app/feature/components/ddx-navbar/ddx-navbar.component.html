@@ -34,8 +34,23 @@
     </dropdown-menu>
 
     <dropdown-menu title="Profile" icon="person">
-      <span mat-menu-item disabled>Hello, {{ personalInfo }}</span>
-      <a mat-menu-item routerLink="/user/settings">Settings</a>
+      <span mat-menu-item disabled class="navbar__personal-info-item"
+        >Hello, {{ personalInfo }}</span
+      >
+      <span
+        mat-menu-item
+        disabled
+        class="navbar__personal-info-item"
+        *ngIf="!!traderEmail"
+        >{{ traderEmail }}</span
+      >
+      <mat-divider></mat-divider>
+      <a
+        mat-menu-item
+        routerLink="/user/settings"
+        [queryParams]="{ tab: 'general' }"
+        >Settings</a
+      >
       <span mat-menu-item (click)="requestSignOut()">Sign Out</span>
     </dropdown-menu>
   </ng-container>

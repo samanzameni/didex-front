@@ -25,7 +25,7 @@ const routes: Routes = [
   {
     path: 'kyc',
     loadChildren: () =>
-      import('@feature/modules/kyc.module').then(module => module.KYCModule),
+      import('@feature/modules/kyc.module').then((module) => module.KYCModule),
   },
 ];
 

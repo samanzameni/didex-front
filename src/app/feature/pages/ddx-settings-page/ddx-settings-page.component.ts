@@ -1,16 +1,5 @@
-import {
-  Component,
-  OnInit,
-  ViewChild,
-  ElementRef,
-  Renderer2,
-} from '@angular/core';
-import {
-  FormGroup,
-  AbstractControl,
-  FormBuilder,
-  Validators,
-} from '@angular/forms';
+import { Component, OnInit, ViewChild, Renderer2 } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { DropdownSelectItem } from '@widget/models';
 import { TIMEZONES } from '@core/util/constants';
 import { mustMatch, isStrong } from '@core/util/validators';
@@ -18,6 +7,7 @@ import { TraderService } from '@core/services';
 import { Trader } from '@core/models';
 import { TraderRESTService, AuthRESTService } from '@core/services/REST';
 import { ProButtonComponent } from '@widget/components';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'ddx-settings-page',
@@ -39,14 +29,19 @@ export class SettingsPageComponent implements OnInit {
     private renderer: Renderer2,
     private traderService: TraderService,
     private restService: TraderRESTService,
-    private authRestService: AuthRESTService
+    private authRestService: AuthRESTService,
+    private route: ActivatedRoute
   ) {
     this.activePage = 'general';
-    this.timezonesMapped = TIMEZONES.map(timezone => {
+    this.timezonesMapped = TIMEZONES.map((timezone) => {
       return {
         title: timezone.text,
         value: timezone.text,
       } as DropdownSelectItem;
+    });
+
+    this.route.queryParams.subscribe((params) => {
+      this.activePage = params.tab || 'general';
     });
   }
 
@@ -131,12 +126,12 @@ export class SettingsPageComponent implements OnInit {
     this.restService
       .requestUpdateGeneralInformation(this.generalReactiveFormGroup.value)
       .subscribe(
-        response => {
+        (response) => {
           if (this.generalSubmitButton) {
             this.generalSubmitButton.setLoadingOff();
           }
         },
-        errorResponse => {
+        (errorResponse) => {
           if (this.generalSubmitButton) {
             this.generalSubmitButton.setLoadingOff();
           }
@@ -151,12 +146,12 @@ export class SettingsPageComponent implements OnInit {
     this.authRestService
       .requestChangePassword(this.securityReactiveFormGroup.value)
       .subscribe(
-        response => {
+        (response) => {
           if (this.securitySubmitButton) {
             this.securitySubmitButton.setLoadingOff();
           }
         },
-        errorResponse => {
+        (errorResponse) => {
           if (this.securitySubmitButton) {
             this.securitySubmitButton.setLoadingOff();
           }

@@ -37,7 +37,9 @@
           <mat-icon>help</mat-icon>
         </button>
       </mat-header-cell>
-      <mat-cell *matCellDef="let item"> {{ item[column] }} </mat-cell>
+      <mat-cell *matCellDef="let item" [title]="item[column]">
+        {{ item[column] }}
+      </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="actions">

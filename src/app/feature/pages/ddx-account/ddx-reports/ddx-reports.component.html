@@ -1,173 +1,145 @@
 <div arrangeInline class="page-header">
   <h2>Reports</h2>
 
-  <ul arrangeInline class="page-header__panes">
-    <li
-      class="page-header__pane"
-      [ngClass]="{ active: activePane === 'orders' }"
+  <div arrangeInline class="page-header__panes">
+    <button
+      mat-stroked-button
+      [ngClass]="{ 'mat-primary': activePane === 'orders' }"
       (click)="activatePane('orders')"
     >
       Orders
-    </li>
-    <li
-      class="page-header__pane"
-      [ngClass]="{ active: activePane === 'trades' }"
+    </button>
+    <button
+      mat-stroked-button
+      [ngClass]="{ 'mat-primary': activePane === 'trades' }"
       (click)="activatePane('trades')"
     >
       Trades
-    </li>
-    <li
-      class="page-header__pane"
-      [ngClass]="{ active: activePane === 'transactions' }"
+    </button>
+    <button
+      mat-stroked-button
+      [ngClass]="{ 'mat-primary': activePane === 'transactions' }"
       (click)="activatePane('transactions')"
     >
       Transactions
-    </li>
-  </ul>
+    </button>
+  </div>
 </div>
 
 <section class="page-content" [ngSwitch]="activePane">
-  <table class="account-table" *ngSwitchCase="'orders'">
-    <thead class="account-table__header">
-      <tr class="account-table__row">
-        <th class="account-table__header-cell row-index">#</th>
-        <th class="account-table__header-cell row-big">Time</th>
-        <th class="account-table__header-cell row-small">Market</th>
-        <th class="account-table__header-cell row-small">ID</th>
-        <th class="account-table__header-cell row-big">Price</th>
-        <th class="account-table__header-cell row-big">Exec/Amount</th>
-        <th class="account-table__header-cell row-big">Total</th>
-      </tr>
-    </thead>
-    <tbody class="account-table__body">
-      <tr
-        class="account-table__row"
-        *ngFor="let row of orderData; let i = index"
-      >
-        <td class="account-table__cell row-index" [title]="i + 1">
-          {{ i + 1 }}
-        </td>
-        <td class="account-table__cell row-big" [title]="row.createdAt">
-          {{ row.createdAt }}
-        </td>
-        <td class="account-table__cell row-small" [title]="row.marketSymbol">
-          {{ row.marketSymbol }}
-        </td>
-        <td class="account-table__cell row-small" [title]="row.id">
-          {{ row.id }}
-        </td>
-        <td
-          class="account-table__cell row-big"
-          [ngClass]="getPriceCellCSSClass(row)"
-          [title]="row.price"
+  <ng-container *ngSwitchCase="'orders'">
+    <ng-template
+      [ngIf]="orderData && orderData.length > 0"
+      [ngIfElse]="noOrderData"
+    >
+      <mat-table class="account-table" [dataSource]="orderData">
+        <ng-container
+          *ngFor="let column of orderTableColumns"
+          matColumnDef="{{ column }}"
         >
-          {{ row.price }}
-        </td>
-        <td
-          class="account-table__cell row-big"
-          [title]="row.executedQuantity + '/' + row.quantity"
+          <mat-header-cell *matHeaderCellDef>
+            {{ getOrderHeaderFromColumn(column) }}
+            <!-- <button
+          *ngIf="!!mapColumnToTooltip(column)"
+          mat-icon-button
+          matTooltip="{{ mapColumnToTooltip(column) }}"
+          class="header-tooltip-button"
         >
-          {{ row.executedQuantity + '/' + row.quantity }}
-        </td>
-        <td class="account-table__cell row-big" [title]="getTotalPrice(row)">
-          {{ getTotalPrice(row) }}
-        </td>
-      </tr>
-    </tbody>
-  </table>
+          <mat-icon>help</mat-icon>
+        </button> -->
+          </mat-header-cell>
+          <mat-cell *matCellDef="let item" [title]="item[column]">
+            {{ item[column] }}
+          </mat-cell>
+        </ng-container>
 
-  <table class="account-table" *ngSwitchCase="'trades'">
-    <thead class="account-table__header">
-      <tr class="account-table__row">
-        <th class="account-table__header-cell row-index">#</th>
-        <th class="account-table__header-cell row-big">Time</th>
-        <th class="account-table__header-cell row-small">Market</th>
-        <th class="account-table__header-cell row-small">ID</th>
-        <th class="account-table__header-cell row-big">Amount</th>
-        <th class="account-table__header-cell row-big">Price</th>
-        <th class="account-table__header-cell row-big">Total</th>
-        <th class="account-table__header-cell row-big">Fee</th>
-      </tr>
-    </thead>
-    <tbody class="account-table__body">
-      <tr
-        class="account-table__row"
-        *ngFor="let row of tradeData; let i = index"
-      >
-        <td class="account-table__cell row-index" [title]="i + 1">
-          {{ i + 1 }}
-        </td>
-        <td class="account-table__cell row-big" [title]="row.timeStamp">
-          {{ row.timeStamp }}
-        </td>
-        <td class="account-table__cell row-small" [title]="row.marketSymbol">
-          {{ row.marketSymbol }}
-        </td>
-        <td class="account-table__cell row-small" [title]="row.id">
-          {{ row.id }}
-        </td>
-        <td class="account-table__cell row-big" [title]="row.volume">
-          {{ row.volume }}
-        </td>
-        <td
-          class="account-table__cell row-big"
-          [ngClass]="getPriceCellCSSClass(row)"
-          [title]="row.price"
-        >
-          {{ row.price }}
-        </td>
-        <td class="account-table__cell row-big" [title]="row.volumeInQoute">
-          {{ row.volumeInQoute }}
-        </td>
-        <td class="account-table__cell row-big" [title]="row.fee">
-          {{ row.fee }}
-        </td>
-      </tr>
-    </tbody>
-  </table>
+        <mat-header-row *matHeaderRowDef="orderTableColumns"></mat-header-row>
+        <mat-row
+          *matRowDef="let row; columns: orderTableColumns; let i = index"
+          [ngClass]="{ even: i % 2 === 0 }"
+        ></mat-row>
+      </mat-table>
+    </ng-template>
+    <ng-template #noOrderData>
+      <p class="message">You have no active orders ...</p>
+    </ng-template>
+  </ng-container>
 
-  <table class="account-table" *ngSwitchCase="'transactions'">
-    <thead class="account-table__header">
-      <tr class="account-table__row">
-        <th class="account-table__header-cell row-index">#</th>
-        <th class="account-table__header-cell row-big">Time</th>
-        <th class="account-table__header-cell row-small">Currency</th>
-        <th class="account-table__header-cell row-small">ID</th>
-        <th class="account-table__header-cell row-big">Amount</th>
-        <th class="account-table__header-cell row-big">Fee</th>
-        <th class="account-table__header-cell row-big">Address</th>
-      </tr>
-    </thead>
-    <tbody class="account-table__body">
-      <tr
-        class="account-table__row"
-        *ngFor="let row of transactionsData; let i = index"
-      >
-        <td class="account-table__cell row-index" [title]="i + 1">
-          {{ i + 1 }}
-        </td>
-        <td class="account-table__cell row-big" [title]="row.createdAt">
-          {{ row.createdAt }}
-        </td>
-        <td
-          class="account-table__cell row-small"
-          [title]="row.currencyShortName"
+  <ng-container *ngSwitchCase="'trades'">
+    <ng-template
+      [ngIf]="!!tradeData && tradeData.length > 0"
+      [ngIfElse]="noTradeData"
+    >
+      <mat-table class="account-table" [dataSource]="tradeData">
+        <ng-container
+          *ngFor="let column of tradeTableColumns"
+          matColumnDef="{{ column }}"
         >
-          {{ row.currencyShortName }}
-        </td>
-        <td class="account-table__cell row-small" [title]="row.id">
-          {{ row.id }}
-        </td>
-        <td class="account-table__cell row-big" [title]="row.amount">
-          {{ row.amount }}
-        </td>
-        <td class="account-table__cell row-big" [title]="row.fee">
-          {{ row.fee }}
-        </td>
-        <td class="account-table__cell row-big" [title]="row.address">
-          {{ row.address }}
-        </td>
-      </tr>
-    </tbody>
-  </table>
+          <mat-header-cell *matHeaderCellDef>
+            {{ getTradeHeaderFromColumn(column) }}
+            <!-- <button
+          *ngIf="!!mapColumnToTooltip(column)"
+          mat-icon-button
+          matTooltip="{{ mapColumnToTooltip(column) }}"
+          class="header-tooltip-button"
+        >
+          <mat-icon>help</mat-icon>
+        </button> -->
+          </mat-header-cell>
+          <mat-cell *matCellDef="let item" [title]="item[column]">
+            {{ item[column] }}
+          </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="tradeTableColumns"></mat-header-row>
+        <mat-row
+          *matRowDef="let row; columns: tradeTableColumns; let i = index"
+          [ngClass]="{ even: i % 2 === 0 }"
+        ></mat-row>
+      </mat-table>
+    </ng-template>
+    <ng-template #noTradeData>
+      <p class="message">You have no trade records ...</p>
+    </ng-template>
+  </ng-container>
+
+  <ng-container *ngSwitchCase="'transactions'">
+    <ng-template
+      [ngIf]="!!transactionsData && transactionsData.length > 0"
+      [ngIfElse]="noTransactionData"
+    >
+      <mat-table class="account-table" [dataSource]="transactionsData">
+        <ng-container
+          *ngFor="let column of transactionTableColumns"
+          matColumnDef="{{ column }}"
+        >
+          <mat-header-cell *matHeaderCellDef>
+            {{ getTransactionHeaderFromColumn(column) }}
+            <!-- <button
+          *ngIf="!!mapColumnToTooltip(column)"
+          mat-icon-button
+          matTooltip="{{ mapColumnToTooltip(column) }}"
+          class="header-tooltip-button"
+        >
+          <mat-icon>help</mat-icon>
+        </button> -->
+          </mat-header-cell>
+          <mat-cell *matCellDef="let item" [title]="item[column]">
+            {{ item[column] }}
+          </mat-cell>
+        </ng-container>
+
+        <mat-header-row
+          *matHeaderRowDef="transactionTableColumns"
+        ></mat-header-row>
+        <mat-row
+          *matRowDef="let row; columns: transactionTableColumns; let i = index"
+          [ngClass]="{ even: i % 2 === 0 }"
+        ></mat-row>
+      </mat-table>
+    </ng-template>
+    <ng-template #noTransactionData>
+      <p class="message">You have no transaction records ...</p>
+    </ng-template>
+  </ng-container>
 </section>

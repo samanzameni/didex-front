@@ -33,43 +33,130 @@ export class ReportsPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.orderDataService.dataStream$.subscribe(data => {
+    this.orderDataService.dataStream$.subscribe((data) => {
       this.orders = data || [];
     });
     this.orderDataService.updateData();
 
-    this.tradeDataService.dataStream$.subscribe(data => {
+    this.tradeDataService.dataStream$.subscribe((data) => {
       this.trades = data || [];
     });
     this.tradeDataService.updateData();
 
-    this.transactionsDataService.dataStream$.subscribe(data => {
+    this.transactionsDataService.dataStream$.subscribe((data) => {
       this.transactions = data || [];
     });
     this.transactionsDataService.updateData();
   }
 
-  get orderData(): Order[] {
-    return (this.orders || []).map(order => {
-      order.createdAt = order.createdAt.replace('T', ' ').substr(0, 19);
-      return order;
+  get orderData(): any[] {
+    return (this.orders || []).map((order) => {
+      const mapped: any = { ...order };
+      mapped.createdAt = order.createdAt.replace('T', ' ').substr(0, 19);
+      mapped.execAmount = order.executedQuantity + '/' + order.quantity;
+      mapped.total = this.getTotalPrice(order);
+      return mapped;
     });
   }
 
+  get blah(): any[] {
+    return [{}, {}, {}];
+  }
+
+  get orderTableColumns(): string[] {
+    return ['createdAt', 'marketSymbol', 'id', 'price', 'execAmount', 'total'];
+  }
+
+  getOrderHeaderFromColumn(column: string): string {
+    switch (column) {
+      case 'createdAt':
+        return 'Time';
+      case 'marketSymbol':
+        return 'Symbol';
+      case 'id':
+        return 'ID';
+      case 'price':
+        return 'Price';
+      case 'execAmount':
+        return 'Exec/Amount';
+      case 'total':
+        return 'Total';
+      default:
+        return '';
+    }
+  }
+
   get tradeData(): Trade[] {
-    return (this.trades || []).map(trade => {
+    return (this.trades || []).map((trade) => {
       trade.timeStamp = trade.timeStamp.replace('T', ' ').substr(0, 19);
       return trade;
     });
   }
 
+  get tradeTableColumns(): string[] {
+    return [
+      'timeStamp',
+      'marketSymbol',
+      'id',
+      'side',
+      'volume',
+      'price',
+      'volumeInQuote',
+      'fee',
+    ];
+  }
+
+  getTradeHeaderFromColumn(column: string): string {
+    switch (column) {
+      case 'timeStamp':
+        return 'Time';
+      case 'marketSymbol':
+        return 'Symbol';
+      case 'id':
+        return 'ID';
+      case 'side':
+        return 'Side';
+      case 'volume':
+        return 'Amount';
+      case 'price':
+        return 'Price';
+      case 'volumeInQuote':
+        return 'Total';
+      case 'fee':
+        return 'Fee';
+      default:
+        return '';
+    }
+  }
+
   get transactionsData(): Transaction[] {
-    return (this.transactions || []).map(transaction => {
+    return (this.transactions || []).map((transaction) => {
       transaction.createdAt = transaction.createdAt
         .replace('T', ' ')
         .substr(0, 19);
       return transaction;
     });
+  }
+
+  get transactionTableColumns(): string[] {
+    return ['createdAt', 'currencyShortName', 'id', 'amount', 'fee', 'address'];
+  }
+
+  getTransactionHeaderFromColumn(column: string): string {
+    switch (column) {
+      case 'createdAt':
+        return 'Time';
+      case 'currencyShortName':
+        return 'Currency';
+      case 'id':
+        return 'ID';
+      case 'amount':
+        return 'Amount';
+      case 'fee':
+        return 'Fee';
+      case 'address':
+        return 'Address';
+    }
   }
 
   get activePane(): string {

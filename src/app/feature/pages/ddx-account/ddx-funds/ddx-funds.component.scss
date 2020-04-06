@@ -15,6 +15,7 @@
 
   .funds__actions {
     justify-content: space-evenly;
+    width: 100%;
 
     .funds__action-button {
       width: 30px;
@@ -35,9 +36,21 @@
     }
   }
 
+  .mat-row:not(.expandable-row) {
+    border-bottom-color: transparent;
+  }
+
+  .expandable-row {
+    overflow: hidden;
+
+    &.no-border {
+      border: none;
+    }
+  }
+
   .row-section {
     width: 100%;
-    flex-shrink: 0;
+    overflow: hidden;
     display: flex;
     align-items: center;
     flex-wrap: wrap;

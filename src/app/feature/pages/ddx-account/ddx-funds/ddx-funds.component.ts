@@ -31,6 +31,13 @@ import { combineLatest } from 'rxjs';
 import Decimal from 'decimal.js';
 import { copyToClipboard } from '@core/util/clipboard';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import {
+  trigger,
+  state,
+  style,
+  transition,
+  animate,
+} from '@angular/animations';
 
 @Component({
   selector: 'ddx-funds',
@@ -38,6 +45,16 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: [
     '../../../public/ddx-account-pages.scss',
     './ddx-funds.component.scss',
+  ],
+  animations: [
+    trigger('detailExpand', [
+      state('collapsed', style({ height: '0px', minHeight: '0' })),
+      state('expanded', style({ height: '*' })),
+      transition(
+        'expanded <=> collapsed',
+        animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')
+      ),
+    ]),
   ],
 })
 export class FundsPageComponent implements OnInit, AfterViewInit {
@@ -165,6 +182,14 @@ export class FundsPageComponent implements OnInit, AfterViewInit {
     return this.combinedData || [];
   }
 
+  get displayedColumns(): string[] {
+    return [...this.dataColumns, 'actions'];
+  }
+
+  get dataColumns(): string[] {
+    return ['shortName', 'main', 'available', 'reserved', 'total'];
+  }
+
   get activePane(): string {
     return this.currentActivePane;
   }
@@ -181,6 +206,25 @@ export class FundsPageComponent implements OnInit, AfterViewInit {
     return this.formsAllErrors || [];
   }
 
+  mapColumnToHeader(columnName: string): string {
+    switch (columnName) {
+      case 'shortName':
+        return 'Coin';
+      case 'main':
+        return 'Main Account';
+      case 'available':
+        return 'Available';
+      case 'reserved':
+        return 'On Orders';
+      case 'total':
+        return 'Total';
+      case 'actions':
+        return 'Actions';
+      default:
+        return '';
+    }
+  }
+
   onSortValueChange($event): void {
     console.log($event);
   }
@@ -188,6 +232,7 @@ export class FundsPageComponent implements OnInit, AfterViewInit {
   handleClickOnAction(rowIndex: number, action: string): void {
     this.formsAllErrors = [];
     const actionID = `${rowIndex}-${action}`;
+    console.log(actionID);
 
     this.currentActivePane =
       this.currentActivePane === actionID ? 'none' : actionID;

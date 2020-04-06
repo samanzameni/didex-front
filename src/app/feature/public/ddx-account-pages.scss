@@ -70,29 +70,27 @@ $page-margin: 15px;
   }
 
   .page-content {
-    .account-table {
+    .mat-table {
       table-layout: fixed;
       width: 100%;
 
-      .account-table__header {
+      .mat-header-row {
         background-color: $ddx-dark-main;
         border-bottom: 1px solid rgba($ddx-dark-lightest, 0.1);
       }
 
-      .account-table__row {
-        display: flex;
+      .mat-row {
         background-color: $ddx-dark-main;
-
-        &:nth-child(even) {
-          background: $ddx-dark-lighter;
-        }
       }
 
-      .account-table__header-cell,
-      .account-table__cell {
+      .mat-row.even {
+        background-color: $ddx-dark-lighter;
+      }
+
+      .mat-header-cell,
+      .mat-cell {
         @extend .caption-small;
 
-        padding: 15px 2px;
         flex: 1;
 
         text-align: center;

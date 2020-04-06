@@ -21,170 +21,156 @@
 </div>
 
 <section class="page-content">
-  <table class="account-table">
-    <thead class="account-table__header">
-      <tr class="account-table__row">
-        <th class="account-table__header-cell row-small">Coin</th>
-        <th class="account-table__header-cell row-big">Main Account</th>
-        <th class="account-table__header-cell row-big">Available</th>
-        <th class="account-table__header-cell row-big show-on-medium">
-          On Orders
-        </th>
-        <th class="account-table__header-cell row-big show-on-medium">Total</th>
-        <th class="account-table__header-cell row-big">Actions</th>
-      </tr>
-    </thead>
-    <tbody class="account-table__body">
-      <tr
-        class="account-table__row"
-        *ngFor="let row of tableRows; let i = index"
+  <mat-table [dataSource]="tableRows" multiTemplateDataRows>
+    <ng-container
+      *ngFor="let column of dataColumns"
+      matColumnDef="{{ column }}"
+    >
+      <mat-header-cell *matHeaderCellDef>
+        {{ mapColumnToHeader(column) }}
+      </mat-header-cell>
+      <mat-cell *matCellDef="let item"> {{ item[column] }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <mat-header-cell
+        *matHeaderCellDef
+        style="text-align: center; justify-content: center;"
       >
-        <td class="account-table__cell row-small" [title]="row.shortName">
-          {{ row.shortName }}
-        </td>
-        <td class="account-table__cell row-big" [title]="row.main">
-          {{ row.main }}
-        </td>
-        <td class="account-table__cell row-big" [title]="row.available">
-          {{ row.available }}
-        </td>
-        <td
-          class="account-table__cell row-big show-on-medium"
-          [title]="row.reserved"
-        >
-          {{ row.reserved }}
-        </td>
-        <td
-          class="account-table__cell row-big show-on-medium"
-          [title]="row.total"
-        >
-          {{ row.total }}
-        </td>
-        <td class="account-table__cell row-big">
-          <div arrangeInline class="funds__actions">
-            <button
-              mat-icon-button
-              disableRipple
-              class="funds__action-button"
-              [ngClass]="{ 'is-active': this.activePane === i + '-deposit' }"
-              (click)="handleClickOnAction(i, 'deposit')"
-              title="Deposit"
+        Actions
+      </mat-header-cell>
+      <mat-cell *matCellDef="let item; let i = dataIndex">
+        <div arrangeInline class="funds__actions">
+          <button
+            mat-icon-button
+            disableRipple
+            class="funds__action-button"
+            [ngClass]="{ 'is-active': this.activePane === i + '-deposit' }"
+            (click)="handleClickOnAction(i, 'deposit')"
+            title="Deposit"
+          >
+            <svg
+              height="512"
+              viewBox="0 0 64 64"
+              width="512"
+              xmlns="http://www.w3.org/2000/svg"
             >
-              <svg
-                height="512"
-                viewBox="0 0 64 64"
-                width="512"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="m57 39v-6a3.009 3.009 0 0 0 -3-3h-43a3.009 3.009 0 0 0 -3 3v26a3.009 3.009 0 0 0 3 3h43a3.009 3.009 0 0 0 3-3v-6a5 5 0 0 0 5-5v-4a5 5 0 0 0 -5-5zm-2 20a1 1 0 0 1 -1 1h-43a1 1 0 0 1 -1-1v-26a1 1 0 0 1 1-1h43a1 1 0 0 1 1 1v6h-6a5 5 0 0 0 -5 5v4a5 5 0 0 0 5 5h6zm5-11a3.009 3.009 0 0 1 -3 3h-8a3.009 3.009 0 0 1 -3-3v-4a3.009 3.009 0 0 1 3-3h8a3.009 3.009 0 0 1 3 3z"
-                />
-                <path
-                  d="m51 43a3 3 0 1 0 3 3 3 3 0 0 0 -3-3zm0 4a1 1 0 1 1 1-1 1 1 0 0 1 -1 1z"
-                />
-                <path
-                  d="m32 7a9 9 0 1 0 9 9 9.014 9.014 0 0 0 -9-9zm0 16a7 7 0 1 1 7-7 7.008 7.008 0 0 1 -7 7z"
-                />
-                <path
-                  d="m33 15v-2a1 1 0 0 1 1 1h2a3.009 3.009 0 0 0 -3-3v-1h-2v1a3 3 0 0 0 0 6v2a1 1 0 0 1 -1-1h-2a3.009 3.009 0 0 0 3 3v1h2v-1a3 3 0 0 0 0-6zm-2 0a1 1 0 0 1 0-2zm2 4v-2a1 1 0 0 1 0 2z"
-                />
-                <path
-                  d="m11 2a9 9 0 1 0 9 9 9.014 9.014 0 0 0 -9-9zm0 16a7 7 0 1 1 7-7 7.008 7.008 0 0 1 -7 7z"
-                />
-                <path
-                  d="m12 17v-1a3 3 0 0 0 0-6v-2a1 1 0 0 1 1 1h2a3 3 0 0 0 -3-3v-1h-2v1a3 3 0 0 0 0 6v2a1 1 0 0 1 -1-1h-2a3 3 0 0 0 3 3v1zm-3-8a1 1 0 0 1 1-1v2a1 1 0 0 1 -1-1zm3 3a1 1 0 0 1 0 2z"
-                />
-                <path
-                  d="m53 2a9 9 0 1 0 9 9 9.014 9.014 0 0 0 -9-9zm0 16a7 7 0 1 1 7-7 7.008 7.008 0 0 1 -7 7z"
-                />
-                <path
-                  d="m54 10v-2a1 1 0 0 1 1 1h2a3.009 3.009 0 0 0 -3-3v-1h-2v1a3 3 0 0 0 0 6v2a1 1 0 0 1 -1-1h-2a3.009 3.009 0 0 0 3 3v1h2v-1a3 3 0 0 0 0-6zm-2 0a1 1 0 0 1 0-2zm2 4v-2a1 1 0 0 1 0 2z"
-                />
-                <path d="m8 22h2v2h-2z" />
-                <path d="m8 26h2v2h-2z" />
-                <path d="m12 22h2v2h-2z" />
-                <path d="m54 22h2v2h-2z" />
-                <path d="m54 26h2v2h-2z" />
-                <path d="m50 22h2v2h-2z" />
-                <path d="m31 26h2v2h-2z" />
-                <path d="m13 35h2v22h-2z" />
-              </svg>
-            </button>
-            <button
-              mat-icon-button
-              disableRipple
-              class="funds__action-button"
-              [ngClass]="{ 'is-active': this.activePane === i + '-withdraw' }"
-              (click)="handleClickOnAction(i, 'withdraw')"
-              title="Withdraw"
+              <path
+                d="m57 39v-6a3.009 3.009 0 0 0 -3-3h-43a3.009 3.009 0 0 0 -3 3v26a3.009 3.009 0 0 0 3 3h43a3.009 3.009 0 0 0 3-3v-6a5 5 0 0 0 5-5v-4a5 5 0 0 0 -5-5zm-2 20a1 1 0 0 1 -1 1h-43a1 1 0 0 1 -1-1v-26a1 1 0 0 1 1-1h43a1 1 0 0 1 1 1v6h-6a5 5 0 0 0 -5 5v4a5 5 0 0 0 5 5h6zm5-11a3.009 3.009 0 0 1 -3 3h-8a3.009 3.009 0 0 1 -3-3v-4a3.009 3.009 0 0 1 3-3h8a3.009 3.009 0 0 1 3 3z"
+              />
+              <path
+                d="m51 43a3 3 0 1 0 3 3 3 3 0 0 0 -3-3zm0 4a1 1 0 1 1 1-1 1 1 0 0 1 -1 1z"
+              />
+              <path
+                d="m32 7a9 9 0 1 0 9 9 9.014 9.014 0 0 0 -9-9zm0 16a7 7 0 1 1 7-7 7.008 7.008 0 0 1 -7 7z"
+              />
+              <path
+                d="m33 15v-2a1 1 0 0 1 1 1h2a3.009 3.009 0 0 0 -3-3v-1h-2v1a3 3 0 0 0 0 6v2a1 1 0 0 1 -1-1h-2a3.009 3.009 0 0 0 3 3v1h2v-1a3 3 0 0 0 0-6zm-2 0a1 1 0 0 1 0-2zm2 4v-2a1 1 0 0 1 0 2z"
+              />
+              <path
+                d="m11 2a9 9 0 1 0 9 9 9.014 9.014 0 0 0 -9-9zm0 16a7 7 0 1 1 7-7 7.008 7.008 0 0 1 -7 7z"
+              />
+              <path
+                d="m12 17v-1a3 3 0 0 0 0-6v-2a1 1 0 0 1 1 1h2a3 3 0 0 0 -3-3v-1h-2v1a3 3 0 0 0 0 6v2a1 1 0 0 1 -1-1h-2a3 3 0 0 0 3 3v1zm-3-8a1 1 0 0 1 1-1v2a1 1 0 0 1 -1-1zm3 3a1 1 0 0 1 0 2z"
+              />
+              <path
+                d="m53 2a9 9 0 1 0 9 9 9.014 9.014 0 0 0 -9-9zm0 16a7 7 0 1 1 7-7 7.008 7.008 0 0 1 -7 7z"
+              />
+              <path
+                d="m54 10v-2a1 1 0 0 1 1 1h2a3.009 3.009 0 0 0 -3-3v-1h-2v1a3 3 0 0 0 0 6v2a1 1 0 0 1 -1-1h-2a3.009 3.009 0 0 0 3 3v1h2v-1a3 3 0 0 0 0-6zm-2 0a1 1 0 0 1 0-2zm2 4v-2a1 1 0 0 1 0 2z"
+              />
+              <path d="m8 22h2v2h-2z" />
+              <path d="m8 26h2v2h-2z" />
+              <path d="m12 22h2v2h-2z" />
+              <path d="m54 22h2v2h-2z" />
+              <path d="m54 26h2v2h-2z" />
+              <path d="m50 22h2v2h-2z" />
+              <path d="m31 26h2v2h-2z" />
+              <path d="m13 35h2v22h-2z" />
+            </svg>
+          </button>
+          <button
+            mat-icon-button
+            disableRipple
+            class="funds__action-button"
+            [ngClass]="{ 'is-active': this.activePane === i + '-withdraw' }"
+            (click)="handleClickOnAction(i, 'withdraw')"
+            title="Withdraw"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              id="Out_line"
+              data-name="Out line"
+              viewBox="0 0 512 512"
+              width="512"
+              height="512"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                id="Out_line"
-                data-name="Out line"
-                viewBox="0 0 512 512"
-                width="512"
-                height="512"
-              >
-                <title>money-dollars-payment-card</title>
-                <path
-                  d="M452.293,275.57812,408.707,144.82031A47.927,47.927,0,0,0,368,112.25049V64h48a8.00039,8.00039,0,0,0,8-8V16H408V48H88V16H72V56a8.00039,8.00039,0,0,0,8,8h48V336a8.00039,8.00039,0,0,0,8,8h90.584l41.6001,104H248a8.00039,8.00039,0,0,0-8,8v40h16V464H424v32h16V456a8.00039,8.00039,0,0,0-8-8h-6.33252l28.23975-148.26074A48.108,48.108,0,0,0,452.293,275.57812ZM311.48218,64a63.982,63.982,0,0,1-126.96436,0Zm-143.0813,0a80.00014,80.00014,0,0,0,159.19824,0H352V244.68652l-16.40137-16.40234a41.94165,41.94165,0,0,0-59.31445,59.31445l12.31372,12.31348A79.80581,79.80581,0,0,0,280.40234,328H215.59912A80.14141,80.14141,0,0,0,144,256.40088V64Zm148.2854,264h-20.179a63.86356,63.86356,0,0,1,4.16163-16.01709ZM144,272.51782A64.10538,64.10538,0,0,1,199.48218,328H144Zm294.19043,24.2273L409.38037,448H285.416l-41.6001-104H319.1936a86.93036,86.93036,0,0,0-10.30883,74.418l15.252-4.83594a71.013,71.013,0,0,1,17.52051-71.9248,8.00122,8.00122,0,0,0,0-11.31446l-54.0586-54.05859a25.9406,25.9406,0,1,1,36.68555-36.68555l30.05859,30.0586,24,24,11.31446-11.31446L368,260.68555V128.36328a31.95457,31.95457,0,0,1,25.52734,21.51758l43.58594,130.75781A32.07418,32.07418,0,0,1,438.19043,296.74512Z"
-                />
-              </svg>
-            </button>
-            <button
-              mat-icon-button
-              disableRipple
-              class="funds__action-button"
-              [ngClass]="{ 'is-active': this.activePane === i + '-transfer' }"
-              class="funds__action-button"
-              (click)="handleClickOnAction(i, 'transfer')"
-              title="Transfer"
+              <title>money-dollars-payment-card</title>
+              <path
+                d="M452.293,275.57812,408.707,144.82031A47.927,47.927,0,0,0,368,112.25049V64h48a8.00039,8.00039,0,0,0,8-8V16H408V48H88V16H72V56a8.00039,8.00039,0,0,0,8,8h48V336a8.00039,8.00039,0,0,0,8,8h90.584l41.6001,104H248a8.00039,8.00039,0,0,0-8,8v40h16V464H424v32h16V456a8.00039,8.00039,0,0,0-8-8h-6.33252l28.23975-148.26074A48.108,48.108,0,0,0,452.293,275.57812ZM311.48218,64a63.982,63.982,0,0,1-126.96436,0Zm-143.0813,0a80.00014,80.00014,0,0,0,159.19824,0H352V244.68652l-16.40137-16.40234a41.94165,41.94165,0,0,0-59.31445,59.31445l12.31372,12.31348A79.80581,79.80581,0,0,0,280.40234,328H215.59912A80.14141,80.14141,0,0,0,144,256.40088V64Zm148.2854,264h-20.179a63.86356,63.86356,0,0,1,4.16163-16.01709ZM144,272.51782A64.10538,64.10538,0,0,1,199.48218,328H144Zm294.19043,24.2273L409.38037,448H285.416l-41.6001-104H319.1936a86.93036,86.93036,0,0,0-10.30883,74.418l15.252-4.83594a71.013,71.013,0,0,1,17.52051-71.9248,8.00122,8.00122,0,0,0,0-11.31446l-54.0586-54.05859a25.9406,25.9406,0,1,1,36.68555-36.68555l30.05859,30.0586,24,24,11.31446-11.31446L368,260.68555V128.36328a31.95457,31.95457,0,0,1,25.52734,21.51758l43.58594,130.75781A32.07418,32.07418,0,0,1,438.19043,296.74512Z"
+              />
+            </svg>
+          </button>
+          <button
+            mat-icon-button
+            disableRipple
+            class="funds__action-button"
+            [ngClass]="{ 'is-active': this.activePane === i + '-transfer' }"
+            class="funds__action-button"
+            (click)="handleClickOnAction(i, 'transfer')"
+            title="Transfer"
+          >
+            <svg
+              id="Layer_1"
+              enable-background="new 0 0 512 512"
+              height="512"
+              viewBox="0 0 512 512"
+              width="512"
+              xmlns="http://www.w3.org/2000/svg"
             >
-              <svg
-                id="Layer_1"
-                enable-background="new 0 0 512 512"
-                height="512"
-                viewBox="0 0 512 512"
-                width="512"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <g id="XMLID_1658_">
-                  <g id="XMLID_221_">
-                    <path
-                      id="XMLID_222_"
-                      d="m120 223.946c7.261 0 13.169 4.947 13.169 11.027 0 5.522 4.477 10 10 10s10-4.478 10-10c0-13.849-9.752-25.606-23.169-29.583v-1.39c0-5.522-4.477-10-10-10s-10 4.478-10 10v1.39c-13.417 3.978-23.169 15.734-23.169 29.583 0 17.109 14.879 31.027 33.169 31.027 7.261 0 13.169 4.946 13.169 11.026s-5.908 11.027-13.169 11.027-13.169-4.947-13.169-11.027c0-5.522-4.477-10-10-10s-10 4.478-10 10c0 13.849 9.752 25.606 23.169 29.583v1.391c0 5.522 4.477 10 10 10s10-4.478 10-10v-1.39c13.417-3.978 23.169-15.734 23.169-29.583 0-17.109-14.879-31.027-33.169-31.027-7.261 0-13.169-4.946-13.169-11.026s5.908-11.028 13.169-11.028z"
-                    />
-                    <path
-                      id="XMLID_242_"
-                      d="m240 256c0-15.199-2.806-30.016-8.341-44.037-2.028-5.138-7.834-7.657-12.973-5.631-5.137 2.027-7.658 7.836-5.63 12.973 4.608 11.674 6.944 24.02 6.944 36.695 0 55.141-44.86 100-100 100s-100-44.86-100-100 44.86-100 100-100c12.599 0 24.876 2.31 36.492 6.864 5.141 2.018 10.944-.517 12.96-5.659 2.017-5.142-.517-10.944-5.659-12.96-13.951-5.471-28.685-8.245-43.793-8.245-66.168 0-120 53.832-120 120s53.832 120 120 120 120-53.832 120-120z"
-                    />
-                    <path
-                      id="XMLID_243_"
-                      d="m392 223.946c7.261 0 13.169 4.947 13.169 11.027 0 5.522 4.477 10 10 10s10-4.478 10-10c0-13.849-9.752-25.606-23.169-29.583v-1.39c0-5.522-4.477-10-10-10s-10 4.478-10 10v1.39c-13.417 3.978-23.169 15.734-23.169 29.583 0 17.109 14.879 31.027 33.169 31.027 7.261 0 13.169 4.946 13.169 11.026s-5.908 11.027-13.169 11.027-13.169-4.947-13.169-11.027c0-5.522-4.477-10-10-10s-10 4.478-10 10c0 13.849 9.752 25.606 23.169 29.583v1.391c0 5.522 4.477 10 10 10s10-4.478 10-10v-1.39c13.417-3.978 23.169-15.734 23.169-29.583 0-17.109-14.879-31.027-33.169-31.027-7.261 0-13.169-4.946-13.169-11.026s5.908-11.028 13.169-11.028z"
-                    />
-                    <path
-                      id="XMLID_676_"
-                      d="m392 136c-66.168 0-120 53.832-120 120s53.832 120 120 120 120-53.832 120-120-53.832-120-120-120zm0 220c-55.14 0-100-44.859-100-100s44.86-100 100-100 100 44.859 100 100-44.86 100-100 100z"
-                    />
-                    <path
-                      id="XMLID_677_"
-                      d="m341.616 402.561c-3.905-3.904-10.237-3.904-14.143 0-3.905 3.905-3.905 10.237 0 14.143l4.005 4.005h-175.1c-5.523 0-10 4.478-10 10s4.477 10 10 10h175.1l-4.005 4.005c-3.905 3.905-3.905 10.237 0 14.143 1.953 1.952 4.512 2.929 7.071 2.929s5.119-.977 7.071-2.929l21.076-21.076c3.905-3.905 3.905-10.237 0-14.143z"
-                    />
-                    <path
-                      id="XMLID_678_"
-                      d="m170.384 109.438c1.953 1.952 4.512 2.929 7.071 2.929s5.119-.977 7.071-2.929c3.905-3.905 3.905-10.237 0-14.143l-4.005-4.005h175.1c5.523 0 10-4.478 10-10s-4.477-10-10-10h-175.1l4.005-4.005c3.905-3.905 3.905-10.237 0-14.143-3.905-3.904-10.237-3.904-14.143 0l-21.076 21.076c-3.905 3.905-3.905 10.237 0 14.143z"
-                    />
-                    <path
-                      id="XMLID_679_"
-                      d="m190.71 171.149c-1.86 1.86-2.93 4.44-2.93 7.07s1.07 5.21 2.93 7.07c1.86 1.859 4.44 2.93 7.07 2.93s5.21-1.07 7.07-2.93 2.93-4.44 2.93-7.07-1.07-5.21-2.93-7.07c-1.86-1.869-4.44-2.93-7.07-2.93s-5.21 1.061-7.07 2.93z"
-                    />
-                  </g>
+              <g id="XMLID_1658_">
+                <g id="XMLID_221_">
+                  <path
+                    id="XMLID_222_"
+                    d="m120 223.946c7.261 0 13.169 4.947 13.169 11.027 0 5.522 4.477 10 10 10s10-4.478 10-10c0-13.849-9.752-25.606-23.169-29.583v-1.39c0-5.522-4.477-10-10-10s-10 4.478-10 10v1.39c-13.417 3.978-23.169 15.734-23.169 29.583 0 17.109 14.879 31.027 33.169 31.027 7.261 0 13.169 4.946 13.169 11.026s-5.908 11.027-13.169 11.027-13.169-4.947-13.169-11.027c0-5.522-4.477-10-10-10s-10 4.478-10 10c0 13.849 9.752 25.606 23.169 29.583v1.391c0 5.522 4.477 10 10 10s10-4.478 10-10v-1.39c13.417-3.978 23.169-15.734 23.169-29.583 0-17.109-14.879-31.027-33.169-31.027-7.261 0-13.169-4.946-13.169-11.026s5.908-11.028 13.169-11.028z"
+                  />
+                  <path
+                    id="XMLID_242_"
+                    d="m240 256c0-15.199-2.806-30.016-8.341-44.037-2.028-5.138-7.834-7.657-12.973-5.631-5.137 2.027-7.658 7.836-5.63 12.973 4.608 11.674 6.944 24.02 6.944 36.695 0 55.141-44.86 100-100 100s-100-44.86-100-100 44.86-100 100-100c12.599 0 24.876 2.31 36.492 6.864 5.141 2.018 10.944-.517 12.96-5.659 2.017-5.142-.517-10.944-5.659-12.96-13.951-5.471-28.685-8.245-43.793-8.245-66.168 0-120 53.832-120 120s53.832 120 120 120 120-53.832 120-120z"
+                  />
+                  <path
+                    id="XMLID_243_"
+                    d="m392 223.946c7.261 0 13.169 4.947 13.169 11.027 0 5.522 4.477 10 10 10s10-4.478 10-10c0-13.849-9.752-25.606-23.169-29.583v-1.39c0-5.522-4.477-10-10-10s-10 4.478-10 10v1.39c-13.417 3.978-23.169 15.734-23.169 29.583 0 17.109 14.879 31.027 33.169 31.027 7.261 0 13.169 4.946 13.169 11.026s-5.908 11.027-13.169 11.027-13.169-4.947-13.169-11.027c0-5.522-4.477-10-10-10s-10 4.478-10 10c0 13.849 9.752 25.606 23.169 29.583v1.391c0 5.522 4.477 10 10 10s10-4.478 10-10v-1.39c13.417-3.978 23.169-15.734 23.169-29.583 0-17.109-14.879-31.027-33.169-31.027-7.261 0-13.169-4.946-13.169-11.026s5.908-11.028 13.169-11.028z"
+                  />
+                  <path
+                    id="XMLID_676_"
+                    d="m392 136c-66.168 0-120 53.832-120 120s53.832 120 120 120 120-53.832 120-120-53.832-120-120-120zm0 220c-55.14 0-100-44.859-100-100s44.86-100 100-100 100 44.859 100 100-44.86 100-100 100z"
+                  />
+                  <path
+                    id="XMLID_677_"
+                    d="m341.616 402.561c-3.905-3.904-10.237-3.904-14.143 0-3.905 3.905-3.905 10.237 0 14.143l4.005 4.005h-175.1c-5.523 0-10 4.478-10 10s4.477 10 10 10h175.1l-4.005 4.005c-3.905 3.905-3.905 10.237 0 14.143 1.953 1.952 4.512 2.929 7.071 2.929s5.119-.977 7.071-2.929l21.076-21.076c3.905-3.905 3.905-10.237 0-14.143z"
+                  />
+                  <path
+                    id="XMLID_678_"
+                    d="m170.384 109.438c1.953 1.952 4.512 2.929 7.071 2.929s5.119-.977 7.071-2.929c3.905-3.905 3.905-10.237 0-14.143l-4.005-4.005h175.1c5.523 0 10-4.478 10-10s-4.477-10-10-10h-175.1l4.005-4.005c3.905-3.905 3.905-10.237 0-14.143-3.905-3.904-10.237-3.904-14.143 0l-21.076 21.076c-3.905 3.905-3.905 10.237 0 14.143z"
+                  />
+                  <path
+                    id="XMLID_679_"
+                    d="m190.71 171.149c-1.86 1.86-2.93 4.44-2.93 7.07s1.07 5.21 2.93 7.07c1.86 1.859 4.44 2.93 7.07 2.93s5.21-1.07 7.07-2.93 2.93-4.44 2.93-7.07-1.07-5.21-2.93-7.07c-1.86-1.869-4.44-2.93-7.07-2.93s-5.21 1.061-7.07 2.93z"
+                  />
                 </g>
-              </svg>
-            </button>
-          </div>
-        </td>
+              </g>
+            </svg>
+          </button>
+        </div>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="depositForm">
+      <mat-cell
+        *matCellDef="let row; let i = dataIndex"
+        [attr.colspan]="displayedColumns.length"
+      >
         <div
           class="row-section deposit"
           [ngClass]="{ hidden: this.activePane !== i + '-deposit' }"
@@ -233,6 +219,14 @@
             </li>
           </ul>
         </div>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="withdrawForm">
+      <mat-cell
+        *matCellDef="let row; let i = dataIndex"
+        [attr.colspan]="displayedColumns.length"
+      >
         <div
           class="row-section withdraw"
           [ngClass]="{ hidden: this.activePane !== i + '-withdraw' }"
@@ -327,7 +321,14 @@
             </li>
           </ul>
         </div>
-        <div
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="transferForm">
+      <mat-cell
+        *matCellDef="let row; let i = dataIndex"
+        [attr.colspan]="displayedColumns.length"
+        ><div
           class="row-section transfer"
           [ngClass]="{ hidden: this.activePane !== i + '-transfer' }"
         >
@@ -390,8 +391,38 @@
               your information is protected from being tampered or leaked.
             </li>
           </ul>
-        </div>
-      </tr>
-    </tbody>
-  </table>
+        </div></mat-cell
+      >
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row
+      *matRowDef="let row; columns: displayedColumns; let i = dataIndex"
+      [ngClass]="{ even: i % 2 === 0 }"
+    ></mat-row>
+    <mat-row
+      *matRowDef="let row; columns: ['depositForm']; let i = dataIndex"
+      class="expandable-row no-border"
+      [ngClass]="{ even: i % 2 === 0 }"
+      [@detailExpand]="activePane === i + '-deposit' ? 'expanded' : 'collapsed'"
+    ></mat-row>
+
+    <mat-row
+      *matRowDef="let row; columns: ['withdrawForm']; let i = dataIndex"
+      class="expandable-row no-border"
+      [ngClass]="{ even: i % 2 === 0 }"
+      [@detailExpand]="
+        activePane === i + '-withdraw' ? 'expanded' : 'collapsed'
+      "
+    ></mat-row>
+
+    <mat-row
+      *matRowDef="let row; columns: ['transferForm']; let i = dataIndex"
+      class="expandable-row no-border"
+      [ngClass]="{ even: i % 2 === 0 }"
+      [@detailExpand]="
+        activePane === i + '-transfer' ? 'expanded' : 'collapsed'
+      "
+    ></mat-row>
+  </mat-table>
 </section>

@@ -19,6 +19,7 @@ import { getTickerFromSymbol } from '@core/util/ticker';
 })
 export class InstrumentsComponent implements OnChanges {
   private currentActiveBaseCurrency: string;
+  private currentActiveSymbol: TradeSymbol;
 
   @Input() symbolsData: TradeSymbol[];
   @Input() tickerData: Ticker[];
@@ -46,8 +47,8 @@ export class InstrumentsComponent implements OnChanges {
         )
       ) {
         this.currentActiveBaseCurrency = this.symbolsData[0].baseCurrencyShortName;
-        this.baseCurrencyChange.emit(this.currentActiveBaseCurrency);
-        this.symbolChange.emit(this.symbolsData[0]);
+        this.activateBaseCurrency(this.currentActiveBaseCurrency);
+        this.activateSymbol(this.symbolsData[0]);
       }
     }
   }
@@ -96,15 +97,19 @@ export class InstrumentsComponent implements OnChanges {
     return this.currentActiveBaseCurrency;
   }
 
+  get activeSymbol(): TradeSymbol {
+    return this.currentActiveSymbol;
+  }
+
   get baseCurrencies(): string[] {
     return this.data
-      .map(item => item.baseCurrencyShortName)
+      .map((item) => item.baseCurrencyShortName)
       .filter((currency, i, self) => self.indexOf(currency) === i);
   }
 
   get tableData(): TradeSymbol[] {
     return this.data.filter(
-      item => item.baseCurrencyShortName === this.currentActiveBaseCurrency
+      (item) => item.baseCurrencyShortName === this.currentActiveBaseCurrency
     );
   }
 
@@ -133,6 +138,7 @@ export class InstrumentsComponent implements OnChanges {
   }
 
   activateSymbol(newSymbol: TradeSymbol): void {
+    this.currentActiveSymbol = newSymbol;
     this.symbolChange.emit(newSymbol);
   }
 }

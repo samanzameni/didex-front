@@ -40,7 +40,7 @@
       <span
         mat-menu-item
         disabled
-        class="navbar__personal-info-item"
+        class="navbar__personal-info-item blue"
         *ngIf="!!traderEmail"
         >{{ traderEmail }}</span
       >
@@ -51,7 +51,26 @@
         [queryParams]="{ tab: 'general' }"
         >Settings</a
       >
-      <span mat-menu-item (click)="requestSignOut()">Sign Out</span>
+      <a
+        mat-menu-item
+        routerLink="/user/settings"
+        [queryParams]="{ tab: 'security' }"
+        >Security</a
+      >
+      <a
+        mat-menu-item
+        routerLink="/user/settings"
+        [queryParams]="{ tab: 'kyc' }"
+        >KYC</a
+      >
+      <button
+        mat-flat-button
+        color="accent"
+        class="sign-out-button"
+        (click)="requestSignOut()"
+      >
+        Sign Out
+      </button>
     </dropdown-menu>
   </ng-container>
 
@@ -70,5 +89,9 @@
 
   <dropdown-menu title="Applications" icon="apps">
     <a mat-menu-item routerLink="/">Trade</a>
+    <!-- TODO: URL -->
+    <a mat-menu-item routerLink="/">Academy</a>
+    <!-- TODO: URL -->
+    <a mat-menu-item routerLink="/">Invest</a>
   </dropdown-menu>
 </div>

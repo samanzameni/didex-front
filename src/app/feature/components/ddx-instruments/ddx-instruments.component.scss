@@ -55,6 +55,18 @@
       }
     }
   }
+
+  table.ddx__table {
+    tbody.ddx-table__body {
+      tr {
+        &.active {
+          td:not(.up):not(.green):not(.down):not(.red) {
+            color: $ddx-yellow;
+          }
+        }
+      }
+    }
+  }
 }
 
 @media screen and (min-width: $break-narrow-mobile) {

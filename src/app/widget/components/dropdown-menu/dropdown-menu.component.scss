@@ -2,18 +2,25 @@
 
 body {
   .mat-menu-panel {
-    background: $ddx-dark-main;
+    background: $ddx-dark-lighter;
 
-    border: 1px solid $ddx-accent-main;
+    border: none;
     box-sizing: border-box;
     margin-top: 2px;
     min-height: unset;
 
     .mat-divider {
-      margin: 3px 0;
+      margin: 4px 0;
     }
 
     .mat-menu-content {
+      .sign-out-button {
+        margin: 5px 10px;
+        width: calc(100% - 20px);
+        height: 30px;
+        line-height: 30px;
+      }
+
       .mat-menu-item {
         height: fit-content;
         margin: 0;
@@ -34,8 +41,11 @@ body {
         &.navbar__personal-info-item {
           padding: 5px 10px;
           font-size: 1em;
-          color: $ddx-accent-lighter;
           cursor: auto;
+
+          &.blue {
+            color: $ddx-accent-lighter;
+          }
         }
       }
     }

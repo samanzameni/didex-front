@@ -17,17 +17,23 @@
 
     <dropdown-select
       id="countryTelephoneCode"
-      caption="Country Code"
+      caption="Country"
       [items]="countriesList"
       [control]="kycFormControls.countryTelephoneCode"
     ></dropdown-select>
 
     <mat-form-field id="mobileNumber" appearance="outline">
-      <mat-label>Mobile Number</mat-label>
-      <span matPrefix>+{{ kycFormControls.countryTelephoneCode.value }}</span>
+      <span
+        matPrefix
+        *ngIf="
+          kycFormControls.countryTelephoneCode.value &&
+          kycFormControls.countryTelephoneCode.value.length > 0
+        "
+        >+{{ kycFormControls.countryTelephoneCode.value }}</span
+      >
       <input
         type="text"
-        placeholder=""
+        placeholder="Mobile Number"
         matInput
         name="mobileNumber"
         formControlName="mobileNumber"
@@ -63,40 +69,42 @@
       </button>
     </div>
 
-    <mat-form-field
-      id="code"
-      appearance="outline"
-      [ngClass]="{ hidden: !hasSubmittedNumber }"
-    >
-      <mat-label>Verification Code</mat-label>
-      <input
-        type="text"
-        placeholder="123456"
-        matInput
-        name="code"
-        formControlName="code"
-      />
-      <mat-error *ngIf="kycFormGroup.controls.code.hasError('required')">
-        This field is required.
-      </mat-error>
-      <mat-error *ngIf="kycFormGroup.controls.code.hasError('minlength')">
-        Min length should be 6.
-      </mat-error>
-      <mat-error *ngIf="kycFormGroup.controls.code.hasError('maxlength')">
-        Max length should be 6.
-      </mat-error>
-      <mat-error *ngIf="kycFormGroup.controls.code.hasError('pattern')">
-        Only digits are valid.
-      </mat-error>
-      <div *ngIf="errors && errors.code" class="error-feedback">
-        <mat-error *ngFor="let error of errors.code">
-          {{ error }}
+    <div id="code" [ngClass]="{ hidden: !hasSubmittedNumber }">
+      <p class="message">Enter the validation code from your mobile:</p>
+      <mat-form-field appearance="outline">
+        <input
+          type="text"
+          placeholder="123456"
+          matInput
+          name="code"
+          formControlName="code"
+        />
+        <mat-error *ngIf="kycFormGroup.controls.code.hasError('required')">
+          This field is required.
         </mat-error>
-      </div>
-    </mat-form-field>
+        <mat-error *ngIf="kycFormGroup.controls.code.hasError('minlength')">
+          Min length should be 6.
+        </mat-error>
+        <mat-error *ngIf="kycFormGroup.controls.code.hasError('maxlength')">
+          Max length should be 6.
+        </mat-error>
+        <mat-error *ngIf="kycFormGroup.controls.code.hasError('pattern')">
+          Only digits are valid.
+        </mat-error>
+        <div *ngIf="errors && errors.code" class="error-feedback">
+          <mat-error *ngFor="let error of errors.code">
+            {{ error }}
+          </mat-error>
+        </div>
+      </mat-form-field>
+    </div>
 
     <div class="actions">
-      <a routerLink="/user/kyc/personal-info" rel="noopener noreferrer">
+      <a
+        routerLink="/user/kyc/personal-info"
+        rel="noopener noreferrer"
+        class="back-button"
+      >
         <button mat-stroked-button color="basic" type="button">Back</button>
       </a>
       <pro-button

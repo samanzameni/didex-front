@@ -28,7 +28,6 @@
   <table arrangeStack class="ddx__table">
     <thead arrangeStack class="ddx-table__head">
       <tr arrangeInline>
-        <th class="row-index">#</th>
         <th class="row-small">Name</th>
         <th class="row-big">Price</th>
         <th class="row-big">Volume</th>
@@ -39,9 +38,9 @@
       <tr
         arrangeInline
         *ngFor="let symbolRow of tableData; let i = index"
+        [ngClass]="{ active: this.activeSymbol.symbol === symbolRow.symbol }"
         (click)="activateSymbol(symbolRow)"
       >
-        <td class="row-index">{{ i + 1 }}</td>
         <td class="row-small">
           {{ symbolRow.quoteCurrencyShortName }}
         </td>

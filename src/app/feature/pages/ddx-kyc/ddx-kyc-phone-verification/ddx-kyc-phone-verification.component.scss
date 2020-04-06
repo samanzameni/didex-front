@@ -32,6 +32,10 @@
 
     #code {
       grid-area: verification;
+
+      .mat-form-field {
+        width: 100%;
+      }
     }
 
     .hidden {
@@ -49,7 +53,7 @@
       grid-template-areas:
         'description description description'
         'countryTelephoneCode mobileNumber mobileNumber'
-        '. submitNumber .'
+        'submitNumber submitNumber submitNumber'
         '. verification .'
         'actions actions actions';
     }
@@ -64,8 +68,8 @@
       grid-template-areas:
         'description description description description description'
         '. countryTelephoneCode mobileNumber mobileNumber .'
-        '. . submitNumber . .'
-        '. . verification . .'
+        '. submitNumber submitNumber submitNumber .'
+        '. verification verification verification .'
         '. . actions actions actions';
     }
   }

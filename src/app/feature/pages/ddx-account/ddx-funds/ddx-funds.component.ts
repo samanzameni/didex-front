@@ -225,6 +225,23 @@ export class FundsPageComponent implements OnInit, AfterViewInit {
     }
   }
 
+  mapColumnToTooltip(columnName: string): string {
+    switch (columnName) {
+      case 'shortName':
+        return 'Name of CryptoCurrency';
+      case 'main':
+        return 'The amount which exists in main account';
+      case 'available':
+        return 'The amount which exists in trading account';
+      case 'reserved':
+        return 'The amount which is already in the order list and is reserved';
+      case 'total':
+        return 'The summation of Main account, Available and On Orders';
+      default:
+        return null;
+    }
+  }
+
   onSortValueChange($event): void {
     console.log($event);
   }

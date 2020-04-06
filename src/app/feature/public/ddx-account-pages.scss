@@ -77,6 +77,25 @@ $page-margin: 15px;
       .mat-header-row {
         background-color: $ddx-dark-main;
         border-bottom: 1px solid rgba($ddx-dark-lightest, 0.1);
+
+        .header-tooltip-button {
+          width: 18px;
+          height: 18px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin: -2px 0 0 2px;
+
+          .mat-icon {
+            width: 18px;
+            height: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 16px;
+            font-size: 16px;
+          }
+        }
       }
 
       .mat-row {

@@ -28,6 +28,14 @@
     >
       <mat-header-cell *matHeaderCellDef>
         {{ mapColumnToHeader(column) }}
+        <button
+          *ngIf="!!mapColumnToTooltip(column)"
+          mat-icon-button
+          matTooltip="{{ mapColumnToTooltip(column) }}"
+          class="header-tooltip-button"
+        >
+          <mat-icon>help</mat-icon>
+        </button>
       </mat-header-cell>
       <mat-cell *matCellDef="let item"> {{ item[column] }} </mat-cell>
     </ng-container>

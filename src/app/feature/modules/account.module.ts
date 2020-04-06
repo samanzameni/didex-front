@@ -14,6 +14,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTableModule } from '@angular/material/table';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatIcon, MatIconModule } from '@angular/material/icon';
 
 const routes: Routes = [
   {
@@ -50,6 +52,8 @@ const routes: Routes = [
     MatInputModule,
     MatSnackBarModule,
     MatTableModule,
+    MatTooltipModule,
+    MatIconModule,
   ],
   exports: [],
   providers: [],

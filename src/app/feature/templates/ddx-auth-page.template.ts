@@ -57,7 +57,7 @@ export abstract class AuthPageDirective {
     return /[a-z]/.test(this.authForm.controls.password.value);
   }
   hasSpecial(): boolean {
-    return /[$@$!%*?&]/.test(this.authForm.controls.password.value);
+    return /[!@#$%^&*_?]/.test(this.authForm.controls.password.value);
   }
   isAtLeastEightCharacters(): boolean {
     return (

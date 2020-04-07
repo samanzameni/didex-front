@@ -35,6 +35,7 @@ export class SignUpPageComponent extends AuthPageDirective implements OnInit {
         password: ['', [Validators.required, Validators.minLength(8)]],
         confirmPassword: ['', [Validators.required, Validators.minLength(8)]],
         acceptedTerms: [false, [Validators.requiredTrue]],
+        token: ['', []],
       },
       {
         validators: [
@@ -54,11 +55,11 @@ export class SignUpPageComponent extends AuthPageDirective implements OnInit {
 
     const { confirmPassword, acceptedTerms, ...formData } = this.authForm.value;
     this.authService.requestSignUp(formData as AuthFormData).subscribe(
-      response => {
+      (response) => {
         this.setLoadingOff();
         this.router.navigateByUrl('/auth/signup/success');
       },
-      errorResponse => {
+      (errorResponse) => {
         this.setLoadingOff();
       }
     );

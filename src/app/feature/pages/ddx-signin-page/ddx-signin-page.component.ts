@@ -27,6 +27,7 @@ export class SignInPageComponent extends AuthPageDirective implements OnInit {
     this.authForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(8)]],
+      token: ['', []],
     });
   }
 
@@ -35,11 +36,11 @@ export class SignInPageComponent extends AuthPageDirective implements OnInit {
 
     const formData = this.authForm.value;
     this.authService.requestSignIn(formData as AuthFormData).subscribe(
-      response => {
+      (response) => {
         this.setLoadingOff();
         this.router.navigateByUrl('/');
       },
-      errorResponse => {
+      (errorResponse) => {
         this.setLoadingOff();
       }
     );

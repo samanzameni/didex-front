@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Order, Trade, OrderSide, Transaction } from '@core/models';
+import {
+  Order,
+  Trade,
+  OrderSide,
+  Transaction,
+  TransactionType,
+} from '@core/models';
 import {
   OrderDATAService,
   TradeDATAService,
@@ -129,27 +135,43 @@ export class ReportsPageComponent implements OnInit {
     }
   }
 
-  get transactionsData(): Transaction[] {
+  get transactionsData(): any[] {
     return (this.transactions || []).map((transaction) => {
-      transaction.createdAt = transaction.createdAt
-        .replace('T', ' ')
-        .substr(0, 19);
-      return transaction;
+      const t: any = { ...transaction };
+      t.createdAt = transaction.createdAt.replace('T', ' ').substr(0, 19);
+
+      // const keys = Object.keys(TransactionType);
+      // const names = keys.slice(keys.length / 2);
+      t.type = TransactionType[transaction.type];
+      return t;
     });
   }
 
   get transactionTableColumns(): string[] {
-    return ['createdAt', 'currencyShortName', 'id', 'amount', 'fee', 'address'];
+    return [
+      'createdAt',
+      'type',
+      'currencyShortName',
+      'transactionId',
+      'hash',
+      'amount',
+      'fee',
+      'address',
+    ];
   }
 
   getTransactionHeaderFromColumn(column: string): string {
     switch (column) {
       case 'createdAt':
         return 'Time';
+      case 'type':
+        return 'Type';
       case 'currencyShortName':
         return 'Currency';
-      case 'id':
+      case 'transactionId':
         return 'ID';
+      case 'hash':
+        return 'Hash';
       case 'amount':
         return 'Amount';
       case 'fee':

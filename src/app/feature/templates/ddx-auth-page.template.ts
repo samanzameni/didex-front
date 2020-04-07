@@ -1,14 +1,11 @@
-import {
-  FormBuilder,
-  FormGroup,
-  FormControl,
-  AbstractControl,
-} from '@angular/forms';
-import { Renderer2, ViewChild, ElementRef, Directive } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { Renderer2, ViewChild, Directive, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '@core/services';
-import { shouldShowErrors } from '@core/util/forms';
 import { ProButtonComponent } from '@widget/components';
+import { CONSTANTS } from '@core/util/constants';
+
+declare const grecaptcha;
 
 @Directive()
 export abstract class AuthPageDirective {
@@ -16,6 +13,7 @@ export abstract class AuthPageDirective {
   protected formErrors: any;
 
   @ViewChild('submitButton') submitButton: ProButtonComponent;
+  @ViewChild('recaptcha', { static: true }) recaptchaElement: ElementRef;
 
   constructor(
     protected formBuilder: FormBuilder,
@@ -24,6 +22,7 @@ export abstract class AuthPageDirective {
     protected authService: AuthService
   ) {
     this.formErrors = {};
+    this.addRecaptchaScript();
   }
 
   protected setLoadingOn(): void {
@@ -32,6 +31,39 @@ export abstract class AuthPageDirective {
 
   protected setLoadingOff(): void {
     this.submitButton.setLoadingOff();
+  }
+
+  protected addRecaptchaScript() {
+    // tslint:disable-next-line: no-string-literal
+    window['grecaptchaCallback'] = () => {
+      this.renderReCaptcha();
+    };
+
+    ((d, s, id, obj) => {
+      let js;
+      const fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) {
+        return;
+      }
+      js = d.createElement(s);
+      js.id = id;
+      js.src =
+        'https://www.google.com/recaptcha/api.js?onload=grecaptchaCallback&amp;render=explicit';
+      fjs.parentNode.insertBefore(js, fjs);
+    })(document, 'script', 'recaptcha-jssdk', this);
+  }
+
+  renderReCaptcha() {
+    // tslint:disable-next-line: no-string-literal
+    window['grecaptcha'].render(this.recaptchaElement.nativeElement, {
+      sitekey: CONSTANTS.RECAPTCHA_SITE_KEY,
+      theme: 'dark',
+      callback: (response) => {
+        if (typeof response === 'string') {
+          this.setReCaptchaToken(response);
+        }
+      },
+    });
   }
 
   get authFormGroup(): FormGroup {
@@ -67,6 +99,10 @@ export abstract class AuthPageDirective {
       this.authForm.controls.password.value &&
       this.authForm.controls.password.value.length >= 8
     );
+  }
+
+  setReCaptchaToken(token: string): void {
+    this.authForm.controls.token.setValue(token);
   }
 
   abstract onSubmit(): void;

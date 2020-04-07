@@ -21,6 +21,10 @@ a:active {
   color: $ddx-light;
 }
 
+.grecaptcha-badge {
+  visibility: hidden;
+}
+
 div.loading-spinner {
   position: absolute;
   top: 0;

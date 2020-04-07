@@ -58,6 +58,7 @@
     </mat-error>
   </ng-container>
 
+  <div arrangeCenter #recaptcha class="recaptcha-container"></div>
   <input type="hidden" name="token" formControlName="token" value="" />
 
   <pro-button
@@ -70,7 +71,17 @@
   </pro-button>
 
   <div class="description">
-    <p class="footnote captcha"></p>
+    <p class="footnote captcha">
+      This site is protected by reCAPTCHA and the Google
+      <a href="https://policies.google.com/privacy" target="_blank"
+        >Privacy Policy</a
+      >
+      and
+      <a href="https://policies.google.com/terms" target="_blank"
+        >Terms of Service</a
+      >
+      apply.
+    </p>
 
     <p class="footnote message">
       Not a member?

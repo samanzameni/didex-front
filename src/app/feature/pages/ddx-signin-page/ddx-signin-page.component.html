@@ -33,6 +33,11 @@
       Email must be a valid address
     </mat-error>
   </mat-form-field>
+  <ng-container *ngIf="authFormErrors && authFormErrors.email">
+    <mat-error *ngFor="let error of authFormErrors.email">
+      {{ error }}
+    </mat-error>
+  </ng-container>
 
   <mat-form-field appearance="outline" for="password">
     <mat-label>Password</mat-label>
@@ -47,6 +52,11 @@
       Password is required
     </mat-error>
   </mat-form-field>
+  <ng-container *ngIf="authFormErrors && authFormErrors.password">
+    <mat-error *ngFor="let error of authFormErrors.password">
+      {{ error }}
+    </mat-error>
+  </ng-container>
 
   <input type="hidden" name="token" formControlName="token" value="" />
 

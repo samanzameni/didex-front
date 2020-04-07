@@ -29,6 +29,11 @@
       Email must be a valid address
     </mat-error>
   </mat-form-field>
+  <ng-container *ngIf="authFormErrors && authFormErrors.email">
+    <mat-error *ngFor="let error of authFormErrors.email">
+      {{ error }}
+    </mat-error>
+  </ng-container>
 
   <mat-form-field appearance="outline">
     <mat-label>Password</mat-label>
@@ -57,6 +62,11 @@
       Must contain a sign
     </li>
   </ul>
+  <ng-container *ngIf="authFormErrors && authFormErrors.email">
+    <mat-error *ngFor="let error of authFormErrors.email">
+      {{ error }}
+    </mat-error>
+  </ng-container>
 
   <mat-form-field appearance="outline">
     <mat-label>Confirm Password</mat-label>

@@ -13,6 +13,7 @@ import { ProButtonComponent } from '@widget/components';
 @Directive()
 export abstract class AuthPageDirective {
   protected authForm: FormGroup;
+  protected formErrors: any;
 
   @ViewChild('submitButton') submitButton: ProButtonComponent;
 
@@ -21,10 +22,8 @@ export abstract class AuthPageDirective {
     protected renderer: Renderer2,
     protected router: Router,
     protected authService: AuthService
-  ) {}
-
-  public shouldShowErrors(control: AbstractControl): boolean {
-    return shouldShowErrors(control);
+  ) {
+    this.formErrors = {};
   }
 
   protected setLoadingOn(): void {
@@ -41,6 +40,10 @@ export abstract class AuthPageDirective {
 
   get authFormControls() {
     return this.authForm.controls;
+  }
+
+  get authFormErrors(): any {
+    return this.formErrors;
   }
 
   get isFormValid(): boolean {

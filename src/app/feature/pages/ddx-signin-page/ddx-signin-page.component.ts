@@ -33,6 +33,7 @@ export class SignInPageComponent extends AuthPageDirective implements OnInit {
 
   onSubmit(): void {
     this.setLoadingOn();
+    this.formErrors = {};
 
     const formData = this.authForm.value;
     this.authService.requestSignIn(formData as AuthFormData).subscribe(
@@ -42,6 +43,24 @@ export class SignInPageComponent extends AuthPageDirective implements OnInit {
       },
       (errorResponse) => {
         this.setLoadingOff();
+
+        if (errorResponse.status === 400) {
+          const errors = errorResponse.error.errors;
+
+          if (errors.email) {
+            this.formErrors.email = errors.email;
+          }
+
+          if (errors.password) {
+            this.formErrors.password = errors.password;
+          }
+
+          for (const key of Object.keys(errors)) {
+            if (!['email', 'password'].includes(key)) {
+              alert(`An error occured: There is something wrong with ${key}`);
+            }
+          }
+        }
       }
     );
   }

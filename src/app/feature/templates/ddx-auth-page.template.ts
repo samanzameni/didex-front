@@ -1,19 +1,23 @@
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { Renderer2, ViewChild, Directive, ElementRef } from '@angular/core';
+import {
+  Renderer2,
+  ViewChild,
+  Directive,
+  ElementRef,
+  AfterViewInit,
+} from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '@core/services';
 import { ProButtonComponent } from '@widget/components';
 import { CONSTANTS } from '@core/util/constants';
 
-declare const grecaptcha;
-
 @Directive()
-export abstract class AuthPageDirective {
+export abstract class AuthPageDirective implements AfterViewInit {
   protected authForm: FormGroup;
   protected formErrors: any;
 
   @ViewChild('submitButton') submitButton: ProButtonComponent;
-  @ViewChild('recaptcha', { static: true }) recaptchaElement: ElementRef;
+  @ViewChild('recaptcha') recaptchaElement: ElementRef;
 
   constructor(
     protected formBuilder: FormBuilder,
@@ -22,6 +26,9 @@ export abstract class AuthPageDirective {
     protected authService: AuthService
   ) {
     this.formErrors = {};
+  }
+
+  ngAfterViewInit(): void {
     this.addRecaptchaScript();
   }
 
@@ -49,6 +56,7 @@ export abstract class AuthPageDirective {
       js.id = id;
       js.src =
         'https://www.google.com/recaptcha/api.js?onload=grecaptchaCallback&amp;render=explicit';
+      js.async = true;
       fjs.parentNode.insertBefore(js, fjs);
     })(document, 'script', 'recaptcha-jssdk', this);
   }
@@ -56,7 +64,7 @@ export abstract class AuthPageDirective {
   renderReCaptcha() {
     // tslint:disable-next-line: no-string-literal
     window['grecaptcha'].render(this.recaptchaElement.nativeElement, {
-      sitekey: CONSTANTS.RECAPTCHA_SITE_KEY,
+      sitekey: '6LcgguIUAAAAAE1GXYfJd7z-uEah67Dd9kTgWcpz',
       theme: 'dark',
       callback: (response) => {
         if (typeof response === 'string') {
@@ -82,23 +90,20 @@ export abstract class AuthPageDirective {
     return this.authForm.valid;
   }
 
-  hasNumber(): boolean {
-    return /\d/.test(this.authForm.controls.password.value);
+  hasNumber(value: string): boolean {
+    return /\d/.test(value);
   }
-  hasUpper(): boolean {
-    return /[A-Z]/.test(this.authForm.controls.password.value);
+  hasUpper(value: string): boolean {
+    return /[A-Z]/.test(value);
   }
-  hasLower(): boolean {
-    return /[a-z]/.test(this.authForm.controls.password.value);
+  hasLower(value: string): boolean {
+    return /[a-z]/.test(value);
   }
-  hasSpecial(): boolean {
-    return /[!@#$%^&*_?]/.test(this.authForm.controls.password.value);
+  hasSpecial(value: string): boolean {
+    return /[!@#$%^&*_?]/.test(value);
   }
-  isAtLeastEightCharacters(): boolean {
-    return (
-      this.authForm.controls.password.value &&
-      this.authForm.controls.password.value.length >= 8
-    );
+  isAtLeastEightCharacters(value: string): boolean {
+    return value && value.length >= 8;
   }
 
   setReCaptchaToken(token: string): void {

@@ -1,4 +1,4 @@
-import { Component, OnInit, Renderer2 } from '@angular/core';
+import { Component, OnInit, Renderer2, AfterViewInit } from '@angular/core';
 import { AuthPageDirective } from '@feature/templates/ddx-auth-page.template';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -14,7 +14,7 @@ import { AuthResetPasswordFormData } from '@core/models';
   ],
 })
 export class ForgotPasswordPageComponent extends AuthPageDirective
-  implements OnInit {
+  implements OnInit, AfterViewInit {
   submittedEmail: string;
 
   constructor(
@@ -33,6 +33,10 @@ export class ForgotPasswordPageComponent extends AuthPageDirective
     });
   }
 
+  ngAfterViewInit(): void {
+    super.ngAfterViewInit();
+  }
+
   onSubmit(): void {
     this.submittedEmail = '';
     this.setLoadingOn();
@@ -41,11 +45,11 @@ export class ForgotPasswordPageComponent extends AuthPageDirective
     this.authService
       .requestResetPassword(formData as AuthResetPasswordFormData)
       .subscribe(
-        response => {
+        (response) => {
           this.setLoadingOff();
           this.submittedEmail = formData.email;
         },
-        errorResponse => {
+        (errorResponse) => {
           this.setLoadingOff();
         }
       );

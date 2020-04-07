@@ -1,4 +1,10 @@
-import { Component, OnInit, ViewChild, Renderer2 } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ViewChild,
+  Renderer2,
+  AfterViewInit,
+} from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { CheckboxComponent } from '@widget/components';
 import { mustMatch, isStrong } from '@core/util/validators';
@@ -16,7 +22,8 @@ import { MatCheckbox } from '@angular/material/checkbox';
     './ddx-signup-page.component.scss',
   ],
 })
-export class SignUpPageComponent extends AuthPageDirective implements OnInit {
+export class SignUpPageComponent extends AuthPageDirective
+  implements OnInit, AfterViewInit {
   @ViewChild(MatCheckbox) checkbox: MatCheckbox;
 
   constructor(
@@ -44,6 +51,10 @@ export class SignUpPageComponent extends AuthPageDirective implements OnInit {
         ],
       }
     );
+  }
+
+  ngAfterViewInit(): void {
+    super.ngAfterViewInit();
   }
 
   get isFormValid(): boolean {

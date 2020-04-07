@@ -1,4 +1,4 @@
-import { Component, OnInit, Renderer2 } from '@angular/core';
+import { Component, OnInit, Renderer2, AfterViewInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '@core/services';
 import { AuthPageDirective } from '@feature/templates';
@@ -14,7 +14,7 @@ import { mustMatch, isStrong } from '@core/util/validators';
   ],
 })
 export class ResetPasswordPageComponent extends AuthPageDirective
-  implements OnInit {
+  implements OnInit, AfterViewInit {
   private email: string;
   private token: string;
 
@@ -31,7 +31,7 @@ export class ResetPasswordPageComponent extends AuthPageDirective
   }
 
   ngOnInit(): void {
-    this.route.queryParams.subscribe(params => {
+    this.route.queryParams.subscribe((params) => {
       this.email = params.email;
       this.token = params.token;
     });
@@ -50,6 +50,10 @@ export class ResetPasswordPageComponent extends AuthPageDirective
     );
   }
 
+  ngAfterViewInit(): void {
+    super.ngAfterViewInit();
+  }
+
   get isFormValid(): boolean {
     return this.authForm.valid;
   }
@@ -66,13 +70,13 @@ export class ResetPasswordPageComponent extends AuthPageDirective
     dataToSend.token = this.token;
 
     this.authService.requestNewPassword(dataToSend).subscribe(
-      response => {
+      (response) => {
         this.setLoadingOff();
         setTimeout(() => {
           this.router.navigateByUrl('/auth/signin');
         }, 1500);
       },
-      errorResponse => {
+      (errorResponse) => {
         this.setLoadingOff();
 
         if (errorResponse.status >= 500) {

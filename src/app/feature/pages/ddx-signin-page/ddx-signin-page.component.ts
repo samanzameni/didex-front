@@ -1,4 +1,4 @@
-import { Component, OnInit, Renderer2 } from '@angular/core';
+import { Component, OnInit, Renderer2, AfterViewInit } from '@angular/core';
 import { AuthPageDirective } from '@feature/templates/ddx-auth-page.template';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -13,7 +13,8 @@ import { AuthFormData } from '@core/models';
     './ddx-signin-page.component.scss',
   ],
 })
-export class SignInPageComponent extends AuthPageDirective implements OnInit {
+export class SignInPageComponent extends AuthPageDirective
+  implements OnInit, AfterViewInit {
   constructor(
     protected formBuilder: FormBuilder,
     protected renderer: Renderer2,
@@ -29,6 +30,10 @@ export class SignInPageComponent extends AuthPageDirective implements OnInit {
       password: ['', [Validators.required, Validators.minLength(8)]],
       token: ['', []],
     });
+  }
+
+  ngAfterViewInit(): void {
+    super.ngAfterViewInit();
   }
 
   onSubmit(): void {

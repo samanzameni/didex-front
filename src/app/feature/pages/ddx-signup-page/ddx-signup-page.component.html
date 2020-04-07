@@ -46,19 +46,35 @@
     />
   </mat-form-field>
   <ul arrangeStack class="password-hints-container">
-    <li [ngClass]="{ approved: isAtLeastEightCharacters() }">
+    <li
+      [ngClass]="{
+        approved: isAtLeastEightCharacters(
+          authFormGroup.controls.password.value
+        )
+      }"
+    >
       Must be at least 8 characters
     </li>
-    <li [ngClass]="{ approved: hasLower() }">
+    <li
+      [ngClass]="{ approved: hasLower(authFormGroup.controls.password.value) }"
+    >
       Must contain a lower case character
     </li>
-    <li [ngClass]="{ approved: hasUpper() }">
+    <li
+      [ngClass]="{ approved: hasUpper(authFormGroup.controls.password.value) }"
+    >
       Must contain a upper case character
     </li>
-    <li [ngClass]="{ approved: hasNumber() }">
+    <li
+      [ngClass]="{ approved: hasNumber(authFormGroup.controls.password.value) }"
+    >
       Must contain a number
     </li>
-    <li [ngClass]="{ approved: hasSpecial() }">
+    <li
+      [ngClass]="{
+        approved: hasSpecial(authFormGroup.controls.password.value)
+      }"
+    >
       Must contain a sign
     </li>
   </ul>

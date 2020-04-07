@@ -46,25 +46,23 @@ export abstract class AuthPageDirective implements AfterViewInit {
       this.renderReCaptcha();
     };
 
-    ((d, s, id, obj) => {
-      let js;
-      const fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) {
-        return;
-      }
-      js = d.createElement(s);
-      js.id = id;
-      js.src =
+    ((id, obj) => {
+      let scriptTag;
+      const formerScripts = document.getElementsByTagName('script')[0];
+
+      scriptTag = document.createElement('script');
+      scriptTag.id = id;
+      scriptTag.src =
         'https://www.google.com/recaptcha/api.js?onload=grecaptchaCallback&amp;render=explicit';
-      js.async = true;
-      fjs.parentNode.insertBefore(js, fjs);
-    })(document, 'script', 'recaptcha-jssdk', this);
+      scriptTag.async = true;
+      formerScripts.parentNode.insertBefore(scriptTag, formerScripts);
+    })('recaptcha-sdk', this);
   }
 
   renderReCaptcha() {
     // tslint:disable-next-line: no-string-literal
     window['grecaptcha'].render(this.recaptchaElement.nativeElement, {
-      sitekey: '6LcgguIUAAAAAE1GXYfJd7z-uEah67Dd9kTgWcpz',
+      sitekey: '6Leik-cUAAAAAJG-1oLQ6nT6NQmL8k3D7QM-jOD2',
       theme: 'dark',
       callback: (response) => {
         if (typeof response === 'string') {

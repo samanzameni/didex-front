@@ -51,7 +51,7 @@ export class TradingViewChartWrapperComponent
 
   ngOnChanges(changes: SimpleChanges): void {
     if (this.activeSymbol && this.symbolExternalSources) {
-      this.symbol$.next(changes.activeSymbol.currentValue);
+      this.symbol$.next(this.activeSymbol);
     }
   }
 

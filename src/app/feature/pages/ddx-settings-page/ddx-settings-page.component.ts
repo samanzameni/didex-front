@@ -41,9 +41,12 @@ export class SettingsPageComponent implements OnInit {
       } as DropdownSelectItem;
     });
 
-    this.route.queryParams.subscribe((params) => {
-      this.activePage = params.tab || 'general';
-    });
+    this.activePage = 'general';
+    if (this.route.queryParams) {
+      this.route.queryParams.subscribe((params) => {
+        this.activePage = params.tab || 'general';
+      });
+    }
   }
 
   ngOnInit() {

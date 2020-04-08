@@ -46,6 +46,7 @@ $ddx-kyc-header-height: 80px;
 
     .description {
       grid-area: description;
+      margin-bottom: 5px;
     }
 
     .actions {
@@ -98,21 +99,10 @@ $ddx-kyc-header-height: 80px;
       }
     }
 
-    label.form-control {
-      background: transparent;
+    dropdown-select,
+    dropdown-autocomplete {
       width: 100%;
       max-width: unset;
-    }
-
-    dropdown-select {
-      background: transparent;
-      width: 100%;
-      max-width: unset;
-    }
-
-    checkbox,
-    ::ng-deep checkbox {
-      margin: 10px 0;
     }
   }
 }

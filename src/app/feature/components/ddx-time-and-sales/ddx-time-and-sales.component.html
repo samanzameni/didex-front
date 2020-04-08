@@ -5,7 +5,9 @@
 <ng-template #content>
   <div arrangeStack class="sale__header">
     <h2 class="sale-header__title" *ngIf="!!activeSymbol">
-      Time & Sales {{ activeSymbol.baseCurrencyShortName }}
+      Time & Sales {{ activeSymbol.baseCurrencyShortName }}/{{
+        activeSymbol.quoteCurrencyShortName
+      }}
     </h2>
 
     <table class="ddx__table">

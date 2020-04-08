@@ -13,3 +13,10 @@ export enum SymbolFeeSide {
   Base = 0,
   Quote = 1,
 }
+
+export interface SymbolExternalSource {
+  symbol: string;
+  first: string;
+  second: string;
+  source: string;
+}

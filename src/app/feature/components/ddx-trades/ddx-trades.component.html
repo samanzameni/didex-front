@@ -5,7 +5,9 @@
 <ng-template #content>
   <div arrangeStack class="trades__header">
     <h2 class="trades-header__title" *ngIf="!!activeSymbol">
-      My Orders and Trades {{ activeSymbol.baseCurrencyShortName }}
+      My Orders and Trades {{ activeSymbol.baseCurrencyShortName }}/{{
+        activeSymbol.quoteCurrencyShortName
+      }}
     </h2>
 
     <div arrangeInline class="trades-header__controls">

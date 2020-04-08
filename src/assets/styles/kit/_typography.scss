@@ -2,6 +2,7 @@
 h1 {
   font-family: 'overpass';
   font-size: 26px;
+  line-height: 26px;
   font-weight: bolder;
 }
 
@@ -9,6 +10,7 @@ h1 {
 h2 {
   font-family: 'overpass';
   font-size: 26px;
+  line-height: 26px;
   font-weight: normal;
 }
 
@@ -16,6 +18,7 @@ h2 {
 h3 {
   font-family: 'overpass';
   font-size: 16px;
+  line-height: 16px;
   font-weight: normal;
 }
 
@@ -23,6 +26,7 @@ h3 {
 p {
   font-family: 'overpass';
   font-size: 14px;
+  line-height: 14px;
   font-weight: normal;
 }
 
@@ -36,23 +40,27 @@ p {
 .callout-small {
   font-family: 'overpass';
   font-size: 14px;
+  line-height: 14px;
   font-weight: bold;
 }
 
 .footnote {
   font-family: 'overpass';
   font-size: 12px;
+  line-height: 12px;
   font-weight: normal;
 }
 
 .caption {
   font-family: 'overpass';
   font-size: 14px;
+  line-height: 14px;
   font-weight: bold;
 }
 
 .caption-small {
   font-family: 'overpass';
   font-size: 12px;
+  line-height: 12px;
   font-weight: lighter;
 }

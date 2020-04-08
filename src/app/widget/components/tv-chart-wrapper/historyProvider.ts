@@ -1,5 +1,5 @@
 // let rp = require('request-promise').defaults({ json: true });
-const rp = reqConfig => {
+const rp = (reqConfig) => {
   const request = new XMLHttpRequest();
 
   return new Promise((resolve, reject) => {
@@ -55,14 +55,14 @@ export default {
     return rp({
       url: `${api_root}${url}`,
       qs,
-    }).then(data => {
+    }).then((data) => {
       data = data['response'];
       if (data['Response'] && data['Response'] === 'Error') {
         console.error('CryptoCompare API error:', data['Message']);
         return [];
       }
       if (data['Data'].length) {
-        const bars = data['Data'].map(el => {
+        const bars = data['Data'].map((el) => {
           return {
             time: el.time * 1000,
             low: el.low,

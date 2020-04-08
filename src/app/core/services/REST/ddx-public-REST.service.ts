@@ -7,6 +7,7 @@ import {
   OrderBookResponse,
   Trade,
   Currency,
+  SymbolExternalSource,
 } from '@core/models';
 
 @Injectable()
@@ -15,6 +16,13 @@ export class PublicRESTService extends AbstractRESTService {
     return this.httpPureRequest('api/Public/Symbol', 'GET') as Observable<
       TradeSymbol[]
     >;
+  }
+
+  public requestSymbolSources(): Observable<SymbolExternalSource[]> {
+    return this.httpPureRequest(
+      'api/Public/Symbol/External',
+      'GET'
+    ) as Observable<SymbolExternalSource[]>;
   }
 
   public requestTicker(): Observable<Ticker[]> {

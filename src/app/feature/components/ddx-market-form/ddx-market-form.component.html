@@ -185,6 +185,16 @@
           {{ activeSymbol.quoteCurrencyShortName }}
         </td>
       </tr>
+      <tr *ngIf="this.activeType === 'limit'" arrangeInline>
+        <td>
+          Maker fee
+          {{ activeSymbol.provideLiquidityRate * 100 }}%
+        </td>
+        <td>
+          {{ takerFee }}
+          {{ activeSymbol.quoteCurrencyShortName }}
+        </td>
+      </tr>
     </tbody>
   </table>
 

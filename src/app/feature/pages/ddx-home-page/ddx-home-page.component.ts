@@ -6,6 +6,7 @@ import {
   Order,
   OrderBookResponse,
   Trade,
+  SymbolExternalSource,
 } from '@core/models';
 import {
   SymbolDATAService,
@@ -17,6 +18,7 @@ import {
   PrivateTradeDATAService,
   FilledOrderDATAService,
 } from '@core/services/DATA';
+import { PublicRESTService } from '@core/services/REST';
 
 @Component({
   selector: 'ddx-home-page',
@@ -25,6 +27,8 @@ import {
 })
 export class HomePageComponent implements OnInit {
   private currentActiveSymbol: TradeSymbol;
+
+  private externalSources: SymbolExternalSource[];
 
   private symbols: TradeSymbol[];
   private ticker: Ticker[];
@@ -37,6 +41,7 @@ export class HomePageComponent implements OnInit {
 
   constructor(
     private cdRef: ChangeDetectorRef,
+    private publicService: PublicRESTService,
     private symbolDataService: SymbolDATAService,
     private tickerDataService: TickerDATAService,
     private balanceDataService: BalanceDATAService,
@@ -45,42 +50,47 @@ export class HomePageComponent implements OnInit {
     private tradeDataService: TradeDATAService,
     private privateTradeDataService: PrivateTradeDATAService,
     private filledOrderDataService: FilledOrderDATAService
-  ) {}
+  ) {
+    this.externalSources = [];
+    publicService.requestSymbolSources().subscribe((response) => {
+      this.externalSources = response || [];
+    });
+  }
 
   ngOnInit() {
-    this.symbolDataService.dataStream$.subscribe(data => {
+    this.symbolDataService.dataStream$.subscribe((data) => {
       this.symbols = data || [];
     });
     this.symbolDataService.updateData();
 
-    this.tickerDataService.dataStream$.subscribe(data => {
+    this.tickerDataService.dataStream$.subscribe((data) => {
       this.ticker = data || [];
     });
     this.tickerDataService.updateData();
     this.tickerDataService.updateFeed();
 
-    this.balanceDataService.dataStream$.subscribe(data => {
+    this.balanceDataService.dataStream$.subscribe((data) => {
       this.balance = data || [];
     });
     this.balanceDataService.updateData();
 
-    this.orderBookDataService.dataStream$.subscribe(data => {
+    this.orderBookDataService.dataStream$.subscribe((data) => {
       this.orderBook = data || { bid: [], ask: [] };
     });
 
-    this.orderDataService.dataStream$.subscribe(data => {
+    this.orderDataService.dataStream$.subscribe((data) => {
       this.order = data || [];
     });
 
-    this.tradeDataService.dataStream$.subscribe(data => {
+    this.tradeDataService.dataStream$.subscribe((data) => {
       this.trade = data || [];
     });
 
-    this.privateTradeDataService.dataStream$.subscribe(data => {
+    this.privateTradeDataService.dataStream$.subscribe((data) => {
       this.privateTrade = data || [];
     });
 
-    this.filledOrderDataService.dataStream$.subscribe(data => {
+    this.filledOrderDataService.dataStream$.subscribe((data) => {
       this.filledOrder = data || [];
     });
   }
@@ -107,6 +117,10 @@ export class HomePageComponent implements OnInit {
 
   get activeSymbol(): TradeSymbol {
     return this.currentActiveSymbol;
+  }
+
+  get symbolExternalSources(): SymbolExternalSource[] {
+    return this.externalSources;
   }
 
   get symbolsData(): TradeSymbol[] {

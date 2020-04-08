@@ -5,7 +5,9 @@
 <ng-template #content>
   <div arrangeStack class="order-book__header">
     <h2 class="order-book-header__title" *ngIf="!!activeSymbol">
-      Order Book {{ activeSymbol.baseCurrencyShortName }}
+      Order Book {{ activeSymbol.baseCurrencyShortName }}/{{
+        activeSymbol.quoteCurrencyShortName
+      }}
     </h2>
 
     <div
@@ -52,11 +54,7 @@
           <div
             class="row-underlay"
             [ngStyle]="{
-              width:
-                bidsSumArray[i]
-                  .div(bidsSum)
-                  .mul(100)
-                  .toString() + '%'
+              width: bidsSumArray[i].div(bidsSum).mul(100).toString() + '%'
             }"
           ></div>
         </tr>
@@ -79,11 +77,7 @@
           <div
             class="row-underlay"
             [ngStyle]="{
-              width:
-                asksSumArray[i]
-                  .div(asksSum)
-                  .mul(100)
-                  .toString() + '%'
+              width: asksSumArray[i].div(asksSum).mul(100).toString() + '%'
             }"
           ></div>
           <td class="row-big" title="{{ row.price }}">{{ row.price }}</td>

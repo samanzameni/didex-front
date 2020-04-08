@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Renderer2 } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { DropdownSelectItem } from '@widget/models';
 import { TIMEZONES } from '@core/util/constants';
@@ -8,6 +8,7 @@ import { Trader } from '@core/models';
 import { TraderRESTService, AuthRESTService } from '@core/services/REST';
 import { ProButtonComponent } from '@widget/components';
 import { ActivatedRoute } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'ddx-settings-page',
@@ -26,11 +27,11 @@ export class SettingsPageComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private renderer: Renderer2,
     private traderService: TraderService,
     private restService: TraderRESTService,
     private authRestService: AuthRESTService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private snackbarService: MatSnackBar
   ) {
     this.activePage = 'general';
     this.timezonesMapped = TIMEZONES.map((timezone) => {
@@ -130,6 +131,8 @@ export class SettingsPageComponent implements OnInit {
           if (this.generalSubmitButton) {
             this.generalSubmitButton.setLoadingOff();
           }
+
+          this.snackbarService.open('Changes saved!', '', { duration: 1500 });
         },
         (errorResponse) => {
           if (this.generalSubmitButton) {
@@ -150,6 +153,8 @@ export class SettingsPageComponent implements OnInit {
           if (this.securitySubmitButton) {
             this.securitySubmitButton.setLoadingOff();
           }
+
+          this.snackbarService.open('Changes saved!', '', { duration: 1500 });
         },
         (errorResponse) => {
           if (this.securitySubmitButton) {

@@ -14,6 +14,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 const routes: Routes = [
   {
@@ -44,6 +45,7 @@ const routes: Routes = [
     MatButtonModule,
     MatSelectModule,
     MatDividerModule,
+    MatSnackBarModule,
   ],
   exports: [],
   providers: [],

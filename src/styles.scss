@@ -25,6 +25,25 @@ a:active {
   visibility: hidden;
 }
 
+.tooltip-mark {
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: -2px 0 0 2px;
+
+  .mat-icon {
+    width: 18px;
+    height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 16px;
+    font-size: 16px;
+  }
+}
+
 div.loading-spinner {
   position: absolute;
   top: 0;

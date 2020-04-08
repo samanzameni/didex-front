@@ -273,6 +273,7 @@
                 id="amount"
                 matInput
                 min="0"
+                value="0"
                 [(ngModel)]="form.value.amount"
                 required
                 #amount="ngModel"
@@ -311,8 +312,7 @@
               color="primary"
               class="withdraw-button"
               [disabled]="
-                !form.value.address ||
-                form.value.address.length <= 0 ||
+                !form.valid ||
                 form.value.amount <= 0 ||
                 form.value.amount <= row.payoutFee
               "
@@ -320,8 +320,8 @@
             >
               Withdraw
             </pro-button>
-            <div *ngIf="!!allErrors" class="error-feedback">
-              <p *ngFor="let error of allErrors">{{ error }}</p>
+            <div *ngIf="!!allErrors" arrangeStack style="width: 100%;">
+              <mat-error *ngFor="let error of allErrors">{{ error }}</mat-error>
             </div>
           </form>
           <ul class="tips">
@@ -347,7 +347,13 @@
             (ngSubmit)="onSubmitTransfer(i, form.value)"
             #form="ngForm"
           >
-            <mat-radio-group arrangeStack arrangeCenter>
+            <mat-radio-group
+              arrangeStack
+              arrangeCenter
+              name="type"
+              ngModel
+              #type="ngModel"
+            >
               <mat-radio-button [value]="3" checked
                 >Main Account to Trading</mat-radio-button
               >
@@ -361,13 +367,6 @@
               [ngModel]="row.shortName"
               required
               [value]="row.shortName"
-            />
-            <input
-              type="hidden"
-              name="type"
-              [ngModel]="transferType"
-              required
-              #type="ngModel"
             />
             <mat-form-field appearance="outline">
               <mat-label>Amount</mat-label>
@@ -391,8 +390,8 @@
             >
               Transfer
             </pro-button>
-            <div *ngIf="!!allErrors" class="error-feedback">
-              <p *ngFor="let error of allErrors">{{ error }}</p>
+            <div arrangeStack *ngIf="!!allErrors" style="width: 100%;">
+              <mat-error *ngFor="let error of allErrors">{{ error }}</mat-error>
             </div>
           </form>
           <ul class="tips">

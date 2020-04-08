@@ -249,7 +249,6 @@ export class FundsPageComponent implements OnInit, AfterViewInit {
   handleClickOnAction(rowIndex: number, action: string): void {
     this.formsAllErrors = [];
     const actionID = `${rowIndex}-${action}`;
-    console.log(actionID);
 
     this.currentActivePane =
       this.currentActivePane === actionID ? 'none' : actionID;
@@ -284,36 +283,15 @@ export class FundsPageComponent implements OnInit, AfterViewInit {
 
   onSubmitTransfer(index: number, submittedValue: any): void {
     this.formsAllErrors = [];
-    if (this.transferButton) {
-      this.renderer.addClass(this.transferButton.nativeElement, 'is-loading');
-    }
-    submittedValue.type = parseInt(
-      submittedValue.type,
-      10
-    ) as BalanceTransferType;
 
     this.restService
       .requestTransfer(submittedValue as BalanceTransferData)
       .subscribe(
         (response) => {
-          if (this.transferButton) {
-            this.renderer.removeClass(
-              this.transferButton.nativeElement,
-              'is-loading'
-            );
-          }
           this.currentActivePane = 'none';
           this.updateData();
         },
         (errorResponse) => {
-          if (this.transferButton) {
-            this.renderer.removeClass(
-              this.transferButton.nativeElement,
-              'is-loading'
-            );
-            this.cdRef.detectChanges();
-          }
-
           if (errorResponse.status === 400) {
             const errors = errorResponse.error.errors;
 
@@ -327,34 +305,16 @@ export class FundsPageComponent implements OnInit, AfterViewInit {
 
   onSubmitWithdraw(index: number, submittedValue: BalanceWithdrawData): void {
     this.formsAllErrors = [];
-    if (this.withdrawButton) {
-      this.renderer.addClass(this.withdrawButton.nativeElement, 'is-loading');
-      this.cdRef.detectChanges();
-    }
 
     submittedValue.includeFee = true;
     submittedValue.autoCommit = true;
 
     this.restService.requestWithdraw(submittedValue).subscribe(
       (response) => {
-        if (this.withdrawButton) {
-          this.renderer.removeClass(
-            this.withdrawButton.nativeElement,
-            'is-loading'
-          );
-        }
         this.currentActivePane = 'none';
         this.updateData();
       },
       (errorResponse) => {
-        if (this.withdrawButton) {
-          this.renderer.removeClass(
-            this.withdrawButton.nativeElement,
-            'is-loading'
-          );
-          this.cdRef.detectChanges();
-        }
-
         if (errorResponse.status === 400) {
           const errors = errorResponse.error.errors;
 

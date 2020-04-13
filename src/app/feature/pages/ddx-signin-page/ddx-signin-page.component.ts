@@ -28,7 +28,7 @@ export class SignInPageComponent extends AuthPageDirective
     this.authForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(8)]],
-      token: ['', []],
+      token: ['', [Validators.required]],
     });
   }
 

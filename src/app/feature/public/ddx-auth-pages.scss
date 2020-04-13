@@ -5,15 +5,15 @@
   align-items: center;
   justify-content: center;
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
 
   background: $ddx-dark-deep;
-  background: linear-gradient(to top right, $ddx-dark-deep, $ddx-dark-main);
+  background: linear-gradient(to top right, $ddx-dark-deep, $ddx-dark-lighter);
 
   form {
     color: $ddx-light;
     box-sizing: border-box;
-    padding: 5px;
+    padding: 10px;
 
     .title {
       display: flex;
@@ -26,7 +26,7 @@
       }
 
       b {
-        margin-left: 5px;
+        margin: 0 5px;
       }
     }
 
@@ -112,6 +112,11 @@
         width: 100%;
         text-align: right;
       }
+    }
+
+    .recaptcha-container {
+      margin-bottom: 5px;
+      height: 78px;
     }
 
     .forgot-password {

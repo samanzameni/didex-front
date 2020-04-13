@@ -42,7 +42,7 @@ export class SignUpPageComponent extends AuthPageDirective
         password: ['', [Validators.required, Validators.minLength(8)]],
         confirmPassword: ['', [Validators.required, Validators.minLength(8)]],
         acceptedTerms: [false, [Validators.requiredTrue]],
-        token: ['', []],
+        token: ['', [Validators.required]],
       },
       {
         validators: [

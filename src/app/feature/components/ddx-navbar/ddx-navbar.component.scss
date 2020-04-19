@@ -13,6 +13,10 @@
   box-sizing: border-box;
   padding: 5px 10px;
 
+  .link-button {
+    display: none;
+  }
+
   .logo__container {
     height: 100%;
 
@@ -33,7 +37,8 @@
       }
 
       #didexLogoText {
-        height: 60%;
+        height: 35%;
+        object-fit: contain;
         display: none;
       }
     }
@@ -52,6 +57,10 @@
 @media screen and (min-width: $break-mobile) {
   :host {
     padding: 5px 40px;
+
+    .link-button {
+      display: block;
+    }
   }
 }
 

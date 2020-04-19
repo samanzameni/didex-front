@@ -211,7 +211,7 @@ export class FundsPageComponent implements OnInit, AfterViewInit {
       case 'shortName':
         return 'Coin';
       case 'main':
-        return 'Main Account';
+        return 'Main';
       case 'available':
         return 'Available';
       case 'reserved':

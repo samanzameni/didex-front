@@ -38,33 +38,6 @@ $page-margin: 15px;
         &:not(:last-child) {
           margin: 0 0 3px 0;
         }
-
-        label.form-control {
-          margin: 0;
-
-          input[type='text'] {
-            height: 40px;
-
-            &:not(:focus):placeholder-shown {
-              & + span.actual-label {
-                @extend .caption;
-
-                font-weight: lighter;
-                line-height: 50px;
-              }
-            }
-          }
-        }
-
-        dropdown-select {
-          width: 100%;
-          margin: 0;
-
-          ::ng-deep .select-toggle,
-          .select-toggle {
-            height: 40px;
-          }
-        }
       }
     }
   }
@@ -81,7 +54,7 @@ $page-margin: 15px;
         .header-tooltip-button {
           width: 18px;
           height: 18px;
-          display: flex;
+          display: none;
           align-items: center;
           justify-content: center;
           margin: -2px 0 0 2px;
@@ -120,6 +93,14 @@ $page-margin: 15px;
 
         &.show-on-medium {
           display: none;
+        }
+
+        &.mat-column-shortName {
+          flex: 0.5;
+        }
+
+        &.mat-column-actions {
+          flex: 2;
         }
 
         &.row-index {
@@ -187,11 +168,10 @@ $page-margin: 15px;
     }
 
     .page-content {
-      .account-table {
-        .account-table__header-cell,
-        .account-table__cell {
-          &.show-on-medium {
-            display: table-cell;
+      .mat-table {
+        .mat-header-row {
+          .header-tooltip-button {
+            display: flex;
           }
         }
       }

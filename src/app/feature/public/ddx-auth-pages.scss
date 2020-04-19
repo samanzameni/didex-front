@@ -101,11 +101,12 @@
       }
 
       p.captcha {
+        display: none;
         text-align: left;
       }
 
       p.message {
-        text-align: right;
+        text-align: center;
       }
 
       p.forgot-password {
@@ -130,6 +131,22 @@
         color: $ddx-accent-main;
         text-decoration: none;
         font-weight: normal;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: $break-narrow-mobile) {
+  :host {
+    form {
+      .description {
+        p.captcha {
+          display: block;
+        }
+
+        p.message {
+          text-align: right;
+        }
       }
     }
   }

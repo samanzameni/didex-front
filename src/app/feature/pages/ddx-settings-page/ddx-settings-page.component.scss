@@ -11,10 +11,10 @@
   .container {
     background: $ddx-dark-main;
     width: 100%;
-    height: calc(100vh - 80px);
+    height: calc(100vh - 100px);
     max-width: $break-narrow-desktop;
     margin: 0px auto;
-    padding: 30px;
+    padding: 10px;
     box-sizing: border-box;
 
     .settings-page__header {
@@ -26,6 +26,7 @@
 
       .settings-page__sections {
         align-items: center;
+        justify-content: space-between;
         padding-bottom: 3px;
 
         .settings-page__section-tab:not(:last-child) {
@@ -67,10 +68,15 @@
     section.container {
       height: fit-content;
       min-height: 550px;
+      padding: 30px;
 
       .settings-page__header {
         flex-direction: row;
         justify-content: space-between;
+      }
+
+      .settings-page__sections {
+        justify-content: flex-end;
       }
     }
   }

@@ -56,7 +56,7 @@
             </th>
           </tr>
         </thead>
-        <tbody arrangeStack class="ddx-table__body">
+        <tbody class="ddx-table__body">
           <tr arrangeInline *ngFor="let item of activeOrders; let i = index">
             <td class="row-index">{{ i + 1 }}</td>
             <td class="row-big">{{ item.createdAt }}</td>
@@ -98,7 +98,7 @@
             </th>
           </tr>
         </thead>
-        <tbody arrangeStack class="ddx-table__body">
+        <tbody class="ddx-table__body">
           <tr arrangeInline *ngFor="let item of filledOrders; let i = index">
             <td class="row-index">{{ i + 1 }}</td>
             <td class="row-big">{{ item.createdAt }}</td>
@@ -140,7 +140,7 @@
             </th>
           </tr>
         </thead>
-        <tbody arrangeStack class="ddx-table__body">
+        <tbody class="ddx-table__body">
           <tr arrangeInline *ngFor="let item of privateTrades; let i = index">
             <td class="row-index">{{ i + 1 }}</td>
             <td class="row-big">{{ item.timeStamp }}</td>

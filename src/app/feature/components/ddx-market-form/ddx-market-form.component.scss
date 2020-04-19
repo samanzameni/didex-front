@@ -89,6 +89,7 @@
       strong {
         @extend .headline;
 
+        margin-top: 5px;
         font-weight: bold;
         color: $ddx-accent-lighter;
         text-align: center;

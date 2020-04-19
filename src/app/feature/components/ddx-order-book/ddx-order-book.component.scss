@@ -19,13 +19,15 @@
 
     .order-book-header__info {
       width: 100%;
-      padding: 20px 0;
+      padding: 10px 0;
 
       .info-section {
         flex: 1;
 
         span {
           @extend .caption-small;
+
+          margin-top: 2px;
         }
       }
     }
@@ -137,6 +139,14 @@
 
 @media screen and (min-width: $break-mobile) {
   :host {
+    .order-book__header {
+      padding: 10px;
+
+      .order-book-header__info {
+        width: 100%;
+        padding: 20px 0;
+      }
+    }
     .ddx__table {
       thead.ddx-table__head,
       tbody.ddx-table__body {

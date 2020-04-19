@@ -13,6 +13,7 @@ import { AuthService } from '@core/services';
 import { Router } from '@angular/router';
 import { AuthPageDirective } from '@feature/templates/ddx-auth-page.template';
 import { MatCheckbox } from '@angular/material/checkbox';
+import { environment } from '@environments/environment';
 
 @Component({
   selector: 'ddx-signup-page',
@@ -42,7 +43,7 @@ export class SignUpPageComponent extends AuthPageDirective
         password: ['', [Validators.required, Validators.minLength(8)]],
         confirmPassword: ['', [Validators.required, Validators.minLength(8)]],
         acceptedTerms: [false, [Validators.requiredTrue]],
-        token: ['', []],
+        token: ['', environment.production ? [Validators.required] : []],
       },
       {
         validators: [

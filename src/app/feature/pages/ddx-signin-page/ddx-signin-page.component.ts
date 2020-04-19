@@ -4,6 +4,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '@core/services';
 import { AuthFormData } from '@core/models';
+import { environment } from '@environments/environment';
 
 @Component({
   selector: 'ddx-signin-page',
@@ -28,7 +29,7 @@ export class SignInPageComponent extends AuthPageDirective
     this.authForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(8)]],
-      token: ['', []],
+      token: ['', environment.production ? [Validators.required] : []],
     });
   }
 
@@ -48,6 +49,7 @@ export class SignInPageComponent extends AuthPageDirective
       },
       (errorResponse) => {
         this.setLoadingOff();
+        // alert(JSON.stringify(errorResponse));
 
         if (errorResponse.status === 400) {
           const errors = errorResponse.error.errors;

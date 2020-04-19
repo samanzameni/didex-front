@@ -3,23 +3,23 @@ variables:
   DEPLOY_FOLDER: 'c:\sites\didex.userClient'
 
 stages:
-  - build
-  - test
+  # - build
+  # - test
   - deploy
 
-build_job:
-  stage: build
-  only:
-    - tags
-  script:
-    - npm i
-    - npm run build-dev
-test_job:
-  stage: test
-  only:
-    - tags
-  script:
-    - dir
+# build_job:
+#   stage: build
+#   only:
+#     - tags
+#   script:
+#     - npm i
+#     - npm run build-dev
+# test_job:
+#   stage: test
+#   only:
+#     - tags
+#   script:
+#     - dir
 
 deploy_job:
   stage: deploy
@@ -27,8 +27,8 @@ deploy_job:
     - tags
   script:
     - npm i
-    - npm run build
+    - npm run build-dev
     - xcopy  /S /Q /Y /F .\dist\didex-exchange C:\sites\didex.userClient\
-  dependencies:
-    - build_job
-    - test_job
+  # dependencies:
+  #   - build_job
+  #   - test_job

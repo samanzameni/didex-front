@@ -15,19 +15,20 @@
       verification.
     </p>
 
-    <dropdown-select
+    <dropdown-autocomplete
       id="countryTelephoneCode"
       caption="Country"
       [items]="countriesList"
       [control]="kycFormControls.countryTelephoneCode"
-    ></dropdown-select>
+    ></dropdown-autocomplete>
 
     <mat-form-field id="mobileNumber" appearance="outline">
       <span
         matPrefix
         *ngIf="
           kycFormControls.countryTelephoneCode.value &&
-          kycFormControls.countryTelephoneCode.value.length > 0
+          kycFormControls.countryTelephoneCode.value.length > 0 &&
+          codeStartsWithDigit(kycFormControls.countryTelephoneCode.value)
         "
         >+{{ kycFormControls.countryTelephoneCode.value }}</span
       >

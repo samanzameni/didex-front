@@ -41,7 +41,7 @@ export class KYCPhoneVerificationPageComponent extends KYCPageDirective
     super(router, el, renderer, formBuilder, traderService);
     this.renderer.addClass(this.el.nativeElement, 'kyc-form');
     this.hasSubmittedMobileNumber = false;
-    this.countries = COUNTRIES.map(country => {
+    this.countries = COUNTRIES.map((country) => {
       return {
         title: `${country.emoji} ${country.name}`,
         value: country.phoneCode,
@@ -93,6 +93,10 @@ export class KYCPhoneVerificationPageComponent extends KYCPageDirective
     return this.formErrors || {};
   }
 
+  codeStartsWithDigit(value: string): boolean {
+    return !!value.match(/^\d/);
+  }
+
   onSubmitNumber(): void {
     const numbetButton =
       this.submitNumberButton.nativeElement ||
@@ -103,11 +107,11 @@ export class KYCPhoneVerificationPageComponent extends KYCPageDirective
     const { code, ...dataToSend } = this.kycForm.value;
 
     this.restService.requestSendConfirmationMobileNumber(dataToSend).subscribe(
-      response => {
+      (response) => {
         this.renderer.removeClass(numbetButton, 'is-loading');
         this.hasSubmittedMobileNumber = true;
       },
-      errorResponse => {
+      (errorResponse) => {
         this.renderer.removeClass(numbetButton, 'is-loading');
       }
     );
@@ -120,11 +124,11 @@ export class KYCPhoneVerificationPageComponent extends KYCPageDirective
     const dataToSend = this.kycForm.value;
 
     this.restService.requestUpdateMobileNumber(dataToSend).subscribe(
-      response => {
+      (response) => {
         this.setLoadingOff();
         this.router.navigateByUrl('/user/kyc/identity-proof');
       },
-      errorResponse => {
+      (errorResponse) => {
         this.setLoadingOff();
 
         if (errorResponse.status === 400) {

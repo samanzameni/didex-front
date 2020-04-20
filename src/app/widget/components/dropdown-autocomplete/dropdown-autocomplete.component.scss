@@ -9,4 +9,8 @@
   max-width: $input-width;
   height: fit-content;
   box-sizing: border-box;
+
+  .mat-form-field {
+    font-size: 14px;
+  }
 }

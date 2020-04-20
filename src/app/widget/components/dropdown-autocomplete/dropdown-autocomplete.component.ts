@@ -22,12 +22,13 @@ export class DropdownAutocompleteComponent extends DataEntryDirective<string>
     super();
 
     this.items = [];
+    this.getTitleFromValue = this.getTitleFromValue.bind(this);
   }
 
   ngOnInit(): void {
     this.filteredOptions = this.control.valueChanges.pipe(
       startWith(''),
-      map(value => this._filter(value))
+      map((selected) => this._filter(selected))
     );
 
     if (!this.caption) {
@@ -35,10 +36,10 @@ export class DropdownAutocompleteComponent extends DataEntryDirective<string>
     }
   }
 
-  private _filter(value: string): DropdownSelectItem[] {
-    const filterValue = value.toLowerCase();
+  private _filter(selected: string): DropdownSelectItem[] {
+    const filterValue = selected.toLowerCase();
 
-    return this.items.filter(option =>
+    return this.items.filter((option) =>
       option.title.toLowerCase().includes(filterValue)
     );
   }
@@ -52,11 +53,11 @@ export class DropdownAutocompleteComponent extends DataEntryDirective<string>
       return '';
     }
 
-    const result = this.items.find(item => item.value === value);
+    const result = this.items.find((item) => item.value === value);
     if (!result) {
       return '';
     }
 
-    return `(${result.title}) `;
+    return result.title;
   }
 }

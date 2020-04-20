@@ -24,6 +24,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatSelectModule } from '@angular/material/select';
 
 const routes: Routes = [
   {
@@ -77,6 +78,7 @@ const routes: Routes = [
     MatCheckboxModule,
     MatButtonModule,
     MatDividerModule,
+    MatSelectModule,
   ],
   exports: [],
   providers: [],

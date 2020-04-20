@@ -7,8 +7,11 @@
     [matAutocomplete]="auto"
     #input
   />
-  <span matSuffix>{{ getTitleFromValue(input.value) }}</span>
-  <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+  <mat-autocomplete
+    autoActiveFirstOption
+    #auto="matAutocomplete"
+    [displayWith]="getTitleFromValue"
+  >
     <mat-option
       *ngFor="let option of filteredOptions | async"
       [value]="option.value"

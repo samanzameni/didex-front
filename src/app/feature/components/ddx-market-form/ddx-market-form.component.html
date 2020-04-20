@@ -11,12 +11,17 @@
   [formGroup]="marketFormGroup"
   (ngSubmit)="submitForm()"
 >
-  <dropdown-select
-    *ngIf="activeType === 'limit'"
-    caption="Time in Force"
-    [items]="timeInForceDropdownItems"
-    [control]="marketFormGroup.controls.timeInForce"
-  ></dropdown-select>
+  <mat-form-field appearance="outline" *ngIf="activeType === 'limit'">
+    <mat-label>Time in Force</mat-label>
+    <mat-select formControlName="timeInForce">
+      <mat-option
+        *ngFor="let item of timeInForceDropdownItems"
+        [value]="item.value"
+      >
+        {{ item.title }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
 
   <mat-checkbox
     *ngIf="activeType === 'limit'"

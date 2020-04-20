@@ -73,13 +73,17 @@ export class MarketFormComponent implements OnInit, OnChanges {
         [],
       ],
       quantity: [
-        0,
+        this.activeSymbol.quantityIncrement,
         [
           Validators.required,
           Validators.min(this.activeSymbol.quantityIncrement),
+          Validators.max(this.baseBalanceData.available),
         ],
       ],
-      price: [0, []],
+      price: [
+        this.activeSymbol.tickSize,
+        [Validators.min(this.activeSymbol.tickSize)],
+      ],
       postOnly: [false, []],
       timeInForce: [OrderTimeInForce.GoodTillCancelled, []],
     });
@@ -94,13 +98,17 @@ export class MarketFormComponent implements OnInit, OnChanges {
         [],
       ],
       quantity: [
-        0,
+        this.activeSymbol.quantityIncrement,
         [
           Validators.required,
           Validators.min(this.activeSymbol.quantityIncrement),
+          Validators.max(this.baseBalanceData.available),
         ],
       ],
-      price: [this.activeSymbol.tickSize, []],
+      price: [
+        this.activeSymbol.tickSize,
+        [Validators.min(this.activeSymbol.tickSize)],
+      ],
       postOnly: [false, []],
       timeInForce: [OrderTimeInForce.GoodTillCancelled, []],
     });
@@ -112,7 +120,11 @@ export class MarketFormComponent implements OnInit, OnChanges {
 
   get baseBalanceData(): Balance {
     if (!this.balanceData) {
-      return null;
+      return {
+        currency: this.activeSymbol.baseCurrencyShortName,
+        available: 0,
+        reserved: 0,
+      };
     }
 
     for (const item of this.balanceData) {
@@ -121,12 +133,20 @@ export class MarketFormComponent implements OnInit, OnChanges {
       }
     }
 
-    return null;
+    return {
+      currency: this.activeSymbol.baseCurrencyShortName,
+      available: 0,
+      reserved: 0,
+    };
   }
 
   get quoteBalanceData(): Balance {
     if (!this.balanceData) {
-      return null;
+      return {
+        currency: this.activeSymbol.quoteCurrencyShortName,
+        available: 0,
+        reserved: 0,
+      };
     }
 
     for (const item of this.balanceData) {
@@ -135,7 +155,11 @@ export class MarketFormComponent implements OnInit, OnChanges {
       }
     }
 
-    return null;
+    return {
+      currency: this.activeSymbol.quoteCurrencyShortName,
+      available: 0,
+      reserved: 0,
+    };
   }
 
   get timeInForceDropdownItems(): DropdownSelectItem[] {
@@ -175,11 +199,11 @@ export class MarketFormComponent implements OnInit, OnChanges {
   }
 
   private get buyTotal(): Decimal {
-    return this.bestBid.mul(this.marketForm.controls.quantity.value || 0);
+    return this.bestAsk.mul(this.marketForm.controls.quantity.value || 0);
   }
 
   private get sellTotal(): Decimal {
-    return this.bestAsk.mul(this.marketForm.controls.quantity.value || 0);
+    return this.bestBid.mul(this.marketForm.controls.quantity.value || 0);
   }
 
   get total(): Decimal {

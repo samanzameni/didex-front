@@ -63,9 +63,9 @@
           </td>
         </tr>
         <tr arrangeInline>
-          <td>Best {{ this.side === 'buy' ? 'Bid' : 'Ask' }}:</td>
+          <td>Best {{ this.side !== 'buy' ? 'Bid' : 'Ask' }}:</td>
           <td>
-            {{ this.side === 'buy' ? bestBid : bestAsk }}
+            {{ this.side !== 'buy' ? bestBid : bestAsk }}
             {{ quoteBalanceData.currency }}
           </td>
         </tr>
@@ -124,8 +124,12 @@
       {{ activeSymbol.baseCurrencyShortName }}
     </span>
     <mat-error *ngIf="marketFormGroup.controls.quantity.hasError('min')">
-      Amount should be a positive number greater or equal than
+      Amount should be a positive number greater than or equal to
       {{ activeSymbol.quantityIncrement }}
+    </mat-error>
+    <mat-error *ngIf="marketFormGroup.controls.quantity.hasError('max')">
+      Amount should be a positive number lesser than or equal to your balance:
+      {{ baseBalanceData.available }}
     </mat-error>
     <ng-container *ngIf="errors">
       <mat-error *ngFor="let error of errors.amount">{{ error }}</mat-error>
@@ -149,9 +153,9 @@
     </ng-container>
   </mat-form-field>
 
-  <mat-form-field appearance="outline">
+  <mat-form-field appearance="outline" class="market__readonly-field">
     <mat-label>Total</mat-label>
-    <input type="text" [value]="total" matInput readonly disabled #totalInput />
+    <input type="text" [value]="total" matInput readonly #totalInput />
     <span matSuffix>
       {{ activeSymbol.quoteCurrencyShortName }}
     </span>

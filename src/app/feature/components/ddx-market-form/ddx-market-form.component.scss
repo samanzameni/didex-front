@@ -68,16 +68,15 @@
     }
   }
 
+  .mat-input-element:disabled,
+  .mat-form-field-type-mat-native-select.mat-form-field-disabled
+    .mat-form-field-infix::after {
+    color: white;
+  }
+
   form.market__form {
     width: 100%;
     margin: 10px auto;
-
-    label.form-control {
-      background: transparent;
-      max-width: $input-width;
-      width: 100%;
-      margin: 5px auto;
-    }
 
     .market__approximations {
       padding: 40px 0;
@@ -98,7 +97,7 @@
 
     table.market__estimations {
       width: 65%;
-      min-width: 230px;
+      min-width: 210px;
       margin: 10px auto;
 
       tr {

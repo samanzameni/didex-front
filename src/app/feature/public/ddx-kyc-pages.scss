@@ -9,21 +9,18 @@ $ddx-kyc-header-height: 80px;
 
   header {
     display: flex;
+    flex-direction: column;
     height: $ddx-kyc-header-height;
     margin-bottom: 15px;
 
     div.step-counter {
-      background: $ddx-accent-lighter;
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      width: 140px;
+      color: $ddx-accent-lighter;
+      padding: 10px;
+      width: 100%;
     }
 
     h2 {
-      line-height: 80px;
+      line-height: 40px;
       width: 100%;
       padding-left: 10px;
       border-bottom: 1px solid rgba($ddx-accent-lighter, 0.3);
@@ -46,7 +43,7 @@ $ddx-kyc-header-height: 80px;
 
     .description {
       grid-area: description;
-      margin-bottom: 5px;
+      margin-bottom: 10px;
     }
 
     .actions {
@@ -103,6 +100,29 @@ $ddx-kyc-header-height: 80px;
     dropdown-autocomplete {
       width: 100%;
       max-width: unset;
+    }
+  }
+}
+
+@media screen and (min-width: $break-mobile) {
+  :host {
+    header {
+      flex-direction: row;
+
+      div.step-counter {
+        background: $ddx-accent-lighter;
+        color: white;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        width: 140px;
+      }
+
+      h2 {
+        line-height: 80px;
+      }
     }
   }
 }

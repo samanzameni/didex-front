@@ -26,13 +26,13 @@
       placeholder="abc@example.com"
       autofocus
     />
-    <mat-error *ngIf="authFormControls.email.hasError('required')">
-      Email is required
-    </mat-error>
-    <mat-error *ngIf="authFormControls.email.hasError('email')">
-      Email must be a valid address
-    </mat-error>
   </mat-form-field>
+  <mat-error *ngIf="authFormControls.email.hasError('required')">
+    Email is required
+  </mat-error>
+  <mat-error *ngIf="authFormControls.email.hasError('email')">
+    Email must be a valid address
+  </mat-error>
   <ng-container *ngIf="authFormErrors && authFormErrors.email">
     <mat-error *ngFor="let error of authFormErrors.email">
       {{ error }}
@@ -48,10 +48,10 @@
       name="password"
       id="password"
     />
-    <mat-error *ngIf="authFormControls.password.hasError('required')">
-      Password is required
-    </mat-error>
   </mat-form-field>
+  <mat-error *ngIf="authFormControls.password.hasError('required')">
+    Password is required
+  </mat-error>
   <ng-container *ngIf="authFormErrors && authFormErrors.password">
     <mat-error *ngFor="let error of authFormErrors.password">
       {{ error }}

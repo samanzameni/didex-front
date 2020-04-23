@@ -45,16 +45,30 @@
       border-radius: 0;
 
       svg {
-        @extend .has-transition;
-
         width: 16px;
         height: 16px;
-        fill: $ddx-light;
+
+        path {
+          @extend .has-transition;
+
+          fill: $ddx-light;
+        }
+
+        line {
+          @extend .has-transition;
+          stroke: $ddx-light;
+        }
       }
 
       &.is-active {
         svg {
-          fill: $ddx-yellow;
+          path {
+            fill: $ddx-yellow;
+          }
+
+          line {
+            stroke: $ddx-yellow;
+          }
         }
       }
     }
@@ -91,6 +105,32 @@
         margin: 5px;
       }
 
+      .form__non-inputs {
+        width: 100%;
+        min-height: 58px; // size of inputs
+        padding: 0 3px;
+        box-sizing: border-box;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        .details-container {
+          width: 100%;
+
+          .details__item {
+            display: flex;
+            justify-content: space-between;
+            font-size: 13px;
+            line-height: 20px;
+
+            span {
+              font-weight: bold;
+              color: $ddx-accent-main;
+            }
+          }
+        }
+      }
+
       div.error-feedback {
         p {
           justify-content: center;
@@ -105,7 +145,7 @@
 
       .mat-radio-group {
         width: 100%;
-        margin-bottom: 5px;
+        margin-bottom: 10px;
       }
     }
 
@@ -118,7 +158,12 @@
 
       &.address-container {
         width: 100%;
-        max-width: 330px;
+        max-width: unset;
+      }
+
+      &.withdraw-amount-container {
+        width: 100%;
+        max-width: unset;
       }
 
       input {
@@ -240,6 +285,39 @@
         svg {
           width: 25px;
           height: 25px;
+        }
+      }
+    }
+
+    .row-section {
+      .mat-form-field,
+      .mat-form-field.mat-form-field-appearance-outline {
+        &.withdraw-amount-container {
+          width: 50%;
+        }
+      }
+
+      form {
+        .form__non-inputs {
+          flex-direction: row;
+          justify-content: space-between;
+          align-items: center;
+
+          .details-container {
+            width: 280px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: $break-tablet) {
+  :host {
+    .row-section {
+      form {
+        .form__non-inputs {
+          width: 50%;
         }
       }
     }

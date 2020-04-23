@@ -158,32 +158,23 @@
     </ng-container>
   </mat-form-field>
 
-  <mat-form-field appearance="outline" class="market__readonly-field">
-    <mat-label>Total</mat-label>
-    <input type="text" [value]="total" matInput readonly #totalInput />
-    <span matSuffix>
-      {{ activeSymbol.quoteCurrencyShortName }}
-    </span>
-    <ng-container *ngIf="errors">
-      <mat-error *ngFor="let error of errors.symbol">{{ error }}</mat-error>
-    </ng-container>
-  </mat-form-field>
-
-  <div
-    arrangeStack
-    arrangeCenter
-    *ngIf="activeType === 'market'"
-    class="market__approximations"
-  >
-    <p>You will approximately {{ this.side === 'buy' ? 'pay' : 'get' }}</p>
-    <strong
-      >{{ this.side === 'buy' ? buyApproxPay : sellApproxPay }}
-      {{ activeSymbol.quoteCurrencyShortName }}</strong
-    >
-  </div>
+  <ng-container *ngIf="errors">
+    <mat-error *ngFor="let error of errors.symbol">{{ error }}</mat-error>
+  </ng-container>
 
   <table arrangeCenter class="market__estimations">
     <tbody arrangeStack>
+      <tr arrangeInline>
+        <td>
+          Total
+        </td>
+        <td class="market__total-amount">
+          {{ total }}
+          <span matSuffix>
+            {{ activeSymbol.quoteCurrencyShortName }}
+          </span>
+        </td>
+      </tr>
       <tr arrangeInline>
         <td>
           Taker fee
@@ -206,6 +197,19 @@
       </tr>
     </tbody>
   </table>
+
+  <div
+    arrangeStack
+    arrangeCenter
+    *ngIf="activeType === 'market'"
+    class="market__approximations"
+  >
+    <p>You will approximately {{ this.side === 'buy' ? 'pay' : 'get' }}</p>
+    <strong
+      >{{ this.side === 'buy' ? buyApproxPay : sellApproxPay }}
+      {{ activeSymbol.quoteCurrencyShortName }}</strong
+    >
+  </div>
 
   <pro-button
     color="basic"

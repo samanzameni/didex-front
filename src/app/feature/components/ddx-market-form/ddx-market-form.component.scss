@@ -90,13 +90,13 @@
 
         margin-top: 5px;
         font-weight: bold;
-        color: $ddx-accent-lighter;
+        color: $ddx-accent-main;
         text-align: center;
       }
     }
 
     table.market__estimations {
-      width: 65%;
+      width: 100%;
       min-width: 210px;
       margin: 10px auto;
 
@@ -105,6 +105,11 @@
 
         td {
           flex: unset;
+
+          &.market__total-amount {
+            font-size: 16px;
+            color: $ddx-accent-main;
+          }
         }
       }
     }

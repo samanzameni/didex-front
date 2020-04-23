@@ -81,7 +81,7 @@ export class MarketFormComponent implements OnInit, OnChanges {
       ],
       price: [
         this.activeSymbol.tickSize,
-        [Validators.min(this.activeSymbol.tickSize)],
+        [Validators.required, Validators.min(this.activeSymbol.tickSize)],
       ],
       postOnly: [false, []],
       timeInForce: [OrderTimeInForce.GoodTillCancelled, []],
@@ -106,7 +106,7 @@ export class MarketFormComponent implements OnInit, OnChanges {
       ],
       price: [
         this.activeSymbol.tickSize,
-        [Validators.min(this.activeSymbol.tickSize)],
+        [Validators.required, Validators.min(this.activeSymbol.tickSize)],
       ],
       postOnly: [false, []],
       timeInForce: [OrderTimeInForce.GoodTillCancelled, []],
@@ -234,13 +234,12 @@ export class MarketFormComponent implements OnInit, OnChanges {
   }
 
   submitForm(): void {
-    if (
-      this.marketForm.controls.quantity.hasError('required') ||
-      this.marketForm.controls.quantity.hasError('min')
-    ) {
-      alert('Amount should be positive.');
-      return;
-    }
+    // if (!this.marketForm.valid) {
+    //   console.warn(this.marketForm.valid);
+    //   console.warn(this.marketForm.value);
+    //   console.log(this.marketForm.errors);
+    //   return;
+    // }
     this.submitButton.setLoadingOn();
 
     if (!this.authService.isAuthorized) {

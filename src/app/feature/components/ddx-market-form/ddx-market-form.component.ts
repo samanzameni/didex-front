@@ -40,7 +40,6 @@ export class MarketFormComponent implements OnInit, OnChanges {
   private formErrors: any;
   private timeInForceItems: DropdownSelectItem[];
 
-  @ViewChild('totalInput') totalInput: ElementRef;
   @ViewChild('submitButton') submitButton: ProButtonComponent;
 
   constructor(

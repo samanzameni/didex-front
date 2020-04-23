@@ -128,18 +128,21 @@
     <span matSuffix>
       {{ activeSymbol.baseCurrencyShortName }}
     </span>
-    <mat-error *ngIf="marketFormGroup.controls.quantity.hasError('min')">
-      Amount should be a positive number greater than or equal to
-      {{ activeSymbol.quantityIncrement }}
-    </mat-error>
-    <mat-error *ngIf="marketFormGroup.controls.quantity.hasError('max')">
-      Amount should be a positive number lesser than or equal to your balance:
-      {{ baseBalanceData.available }}
-    </mat-error>
-    <ng-container *ngIf="errors">
-      <mat-error *ngFor="let error of errors.amount">{{ error }}</mat-error>
-    </ng-container>
   </mat-form-field>
+  <mat-error *ngIf="marketFormGroup.controls.quantity.hasError('required')">
+    Amount field can't be empty
+  </mat-error>
+  <mat-error *ngIf="marketFormGroup.controls.quantity.hasError('min')">
+    Amount should be a positive number greater than or equal to
+    {{ activeSymbol.quantityIncrement }}
+  </mat-error>
+  <mat-error *ngIf="marketFormGroup.controls.quantity.hasError('max')">
+    Amount should be a positive number lesser than or equal to your balance:
+    {{ baseBalanceData.available }}
+  </mat-error>
+  <ng-container *ngIf="errors">
+    <mat-error *ngFor="let error of errors.amount">{{ error }}</mat-error>
+  </ng-container>
 
   <mat-form-field *ngIf="activeType === 'limit'" appearance="outline">
     <mat-label>Limit</mat-label>
@@ -153,10 +156,17 @@
     <span matSuffix>
       {{ activeSymbol.quoteCurrencyShortName }}
     </span>
-    <ng-container *ngIf="errors">
-      <mat-error *ngFor="let error of errors.limit">{{ error }}</mat-error>
-    </ng-container>
   </mat-form-field>
+  <mat-error *ngIf="marketFormGroup.controls.price.hasError('required')">
+    Limit field can't be empty
+  </mat-error>
+  <mat-error *ngIf="marketFormGroup.controls.price.hasError('min')">
+    Limit should be a positive number greater than or equal to
+    {{ activeSymbol.tickSize }}
+  </mat-error>
+  <ng-container *ngIf="errors">
+    <mat-error *ngFor="let error of errors.limit">{{ error }}</mat-error>
+  </ng-container>
 
   <ng-container *ngIf="errors">
     <mat-error *ngFor="let error of errors.symbol">{{ error }}</mat-error>

@@ -78,6 +78,11 @@
     width: 100%;
     margin: 10px auto;
 
+    .mat-error {
+      min-height: 28px;
+      margin-bottom: 3px;
+    }
+
     .market__approximations {
       padding: 40px 0;
 

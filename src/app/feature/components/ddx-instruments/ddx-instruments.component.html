@@ -28,7 +28,16 @@
   <table arrangeStack class="ddx__table">
     <thead arrangeStack class="ddx-table__head">
       <tr arrangeInline>
-        <th class="row-small">Name</th>
+        <th arrangeInline class="row-small">
+          Name
+          <button
+            mat-icon-button
+            matTooltip="The name of the cryptocurrency"
+            class="header-tooltip-button"
+          >
+            <mat-icon>help</mat-icon>
+          </button>
+        </th>
         <th class="row-big">Price</th>
         <th class="row-big">Volume</th>
         <th class="row-small">Change</th>

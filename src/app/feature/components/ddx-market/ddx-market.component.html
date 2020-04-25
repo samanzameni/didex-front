@@ -9,16 +9,30 @@
     id="market"
     [ngClass]="{ active: activeType === 'market' }"
     (click)="activateType('market')"
-    >Market</span
-  >
+    >Market
+    <button
+      mat-icon-button
+      matTooltip="The market price is defined as the best available price for the instrument at the moment when the order is placed."
+      class="header-tooltip-button"
+    >
+      <mat-icon>help</mat-icon>
+    </button>
+  </span>
   <span
     arrangeCenter
     class="market__type"
     id="limit"
     [ngClass]="{ active: activeType === 'limit' }"
     (click)="activateType('limit')"
-    >Limit</span
-  >
+    >Limit
+    <button
+      mat-icon-button
+      matTooltip="A limit order to buy would be at the limit or lower price, and a limit order to sell would be at the limit or higher price."
+      class="header-tooltip-button"
+    >
+      <mat-icon>help</mat-icon>
+    </button>
+  </span>
 
   <ddx-market-form
     side="buy"
@@ -36,323 +50,4 @@
     [balanceData]="balanceData"
     [tickerData]="tickerData"
   ></ddx-market-form>
-
-  <!-- <div class="market__actions" id="buyActions">
-    <h2 class="market__action-title">
-      Buy {{ activeSymbol.baseCurrencyShortName }}
-    </h2>
-    <hr class="market__title-seperator" />
-    <dropdown-select
-      *ngIf="activeType === 'limit'"
-      caption="Time in Force"
-      [items]="timeInForceDropdownItems"
-      [hasDefaultValue]="true"
-      (valueChange)="onSelectBuyTimeInForce($event)"
-    ></dropdown-select>
-    <checkbox
-      *ngIf="activeType === 'limit'"
-      [hasDarkTheme]="true"
-      label="Post only"
-      (valueChange)="onBuyPostOnlyCheck($event)"
-    ></checkbox>
-    <table arrangeCenter class="market__balance" *ngIf="!!quoteBalanceData">
-      <tbody arrangeStack>
-        <tr arrangeInline>
-          <td>Balance:</td>
-          <td>
-            {{ quoteBalanceData.available }} {{ quoteBalanceData.currency }}
-          </td>
-        </tr>
-        <tr arrangeInline>
-          <td>In Order:</td>
-          <td>
-            {{ quoteBalanceData.reserved }} {{ quoteBalanceData.currency }}
-          </td>
-        </tr>
-        <tr arrangeInline>
-          <td>Total:</td>
-          <td>
-            {{ quoteTotal }}
-            {{ quoteBalanceData.currency }}
-          </td>
-        </tr>
-        <tr arrangeInline>
-          <td>Best Bid:</td>
-          <td>{{ bestBid }} {{ quoteBalanceData.currency }}</td>
-        </tr>
-      </tbody>
-    </table>
-    <table arrangeCenter class="market__balance" *ngIf="!quoteBalanceData">
-      <tbody arrangeStack>
-        <tr arrangeInline>
-          <td>Balance:</td>
-          <td>0 {{ activeSymbol.quoteCurrencyShortName }}</td>
-        </tr>
-        <tr arrangeInline>
-          <td>In Order:</td>
-          <td>0 {{ activeSymbol.quoteCurrencyShortName }}</td>
-        </tr>
-        <tr arrangeInline>
-          <td>Total:</td>
-          <td>0 {{ activeSymbol.quoteCurrencyShortName }}</td>
-        </tr>
-        <tr arrangeInline>
-          <td>Best Bid:</td>
-          <td>0 {{ activeSymbol.quoteCurrencyShortName }}</td>
-        </tr>
-      </tbody>
-    </table>
-    <form
-      autocomplete="off"
-      arrangeStack
-      class="market__form"
-      autocomplete="off"
-      (ngSubmit)="onSubmitBuy()"
-    >
-      <label class="form-control" for="buy_amount">
-        <input
-          type="number"
-          name="buy_amount"
-          id="buy_amount"
-          placeholder=" "
-          [min]="activeSymbol.quantityIncrement"
-          [step]="activeSymbol.quantityIncrement"
-          [(ngModel)]="buyAmount"
-        />
-        <span class="actual-label">Amount</span>
-      </label>
-      <div *ngIf="!!buyErrors.amount" class="error-feedback">
-        <p *ngFor="let error of buyErrors.amount">{{ error }}</p>
-      </div>
-
-      <label
-        *ngIf="activeType === 'limit'"
-        class="form-control"
-        for="buy_limit"
-      >
-        <input
-          type="number"
-          name="buy_limit"
-          id="buy_limit"
-          placeholder=" "
-          [min]="activeSymbol.tickSize"
-          [step]="activeSymbol.tickSize"
-          [(ngModel)]="buyLimit"
-        />
-        <span class="actual-label">Limit</span>
-      </label>
-      <div *ngIf="!!buyErrors.limit" class="error-feedback">
-        <p *ngFor="let error of buyErrors.limit">{{ error }}</p>
-      </div>
-      <label class="form-control" for="buy_total">
-        <input
-          type="text"
-          name="buy_total"
-          id="buy_total"
-          placeholder=" "
-          readonly
-          [value]="buyTotal"
-          #buyTotalInput
-        />
-        <span class="actual-label">Total</span>
-      </label>
-      <div *ngIf="!!buyErrors.symbol" class="error-feedback">
-        <p *ngFor="let error of buyErrors.symbol">{{ error }}</p>
-      </div>
-
-      <div
-        arrangeStack
-        arrangeCenter
-        class="market__approximations"
-        *ngIf="activeType === 'market'"
-      >
-        <p>You will approximately pay</p>
-        <strong
-          >{{ buyApproxPay }} {{ activeSymbol.quoteCurrencyShortName }}</strong
-        >
-      </div>
-
-      <table arrangeCenter class="market__estimations">
-        <tbody arrangeStack>
-          <tr arrangeInline>
-            <td>Estimated</td>
-            <td>{{ bestAsk }} BTC</td>
-          </tr>
-          <tr arrangeInline>
-            <td>
-              Taker fee
-              {{ activeSymbol.takeLiquidityRate * 100 }}%
-            </td>
-            <td>
-              {{ buyTakerFee }}
-              {{ activeSymbol.quoteCurrencyShortName }}
-            </td>
-          </tr>
-        </tbody>
-      </table>
-
-      <button type="submit" class="market__submit-button buy-button" #buyButton>
-        Buy
-      </button>
-    </form>
-  </div>
-
-  <div class="market__actions" id="sellActions">
-    <h2 class="market__action-title">
-      Sell {{ activeSymbol.baseCurrencyShortName }}
-    </h2>
-    <hr class="market__title-seperator" />
-    <dropdown-select
-      *ngIf="activeType === 'limit'"
-      caption="Time in Force"
-      [items]="timeInForceDropdownItems"
-      [hasDefaultValue]="true"
-      (valueChange)="onSelectSellTimeInForce($event)"
-    ></dropdown-select>
-    <checkbox
-      *ngIf="activeType === 'limit'"
-      [hasDarkTheme]="true"
-      label="Post only"
-      (valueChange)="onSellPostOnlyCheck($event)"
-    ></checkbox>
-    <table arrangeCenter class="market__balance" *ngIf="!!baseBalanceData">
-      <tbody arrangeStack>
-        <tr arrangeInline>
-          <td>Balance:</td>
-          <td>
-            {{ baseBalanceData.available }} {{ baseBalanceData.currency }}
-          </td>
-        </tr>
-        <tr arrangeInline>
-          <td>In Order:</td>
-          <td>{{ baseBalanceData.reserved }} {{ baseBalanceData.currency }}</td>
-        </tr>
-        <tr arrangeInline>
-          <td>Total:</td>
-          <td>
-            {{ baseTotal }}
-            {{ baseBalanceData.currency }}
-          </td>
-        </tr>
-        <tr arrangeInline>
-          <td>Best Ask:</td>
-          <td>{{ bestAsk }} {{ baseBalanceData.currency }}</td>
-        </tr>
-      </tbody>
-    </table>
-    <table arrangeCenter class="market__balance" *ngIf="!baseBalanceData">
-      <tbody arrangeStack>
-        <tr arrangeInline>
-          <td>Balance:</td>
-          <td>0 {{ activeSymbol.baseCurrencyShortName }}</td>
-        </tr>
-        <tr arrangeInline>
-          <td>In Order:</td>
-          <td>0 {{ activeSymbol.baseCurrencyShortName }}</td>
-        </tr>
-        <tr arrangeInline>
-          <td>Total:</td>
-          <td>0 {{ activeSymbol.baseCurrencyShortName }}</td>
-        </tr>
-        <tr arrangeInline>
-          <td>Best Ask:</td>
-          <td>0 {{ activeSymbol.baseCurrencyShortName }}</td>
-        </tr>
-      </tbody>
-    </table>
-    <form
-      autocomplete="off"
-      (ngSubmit)="onSubmitSell()"
-      arrangeStack
-      class="market__form"
-    >
-      <label class="form-control" for="sell_amount">
-        <input
-          type="number"
-          name="sell_amount"
-          id="sell_amount"
-          placeholder=" "
-          [min]="activeSymbol.quantityIncrement"
-          [step]="activeSymbol.quantityIncrement"
-          [(ngModel)]="sellAmount"
-        />
-        <span class="actual-label">Amount</span>
-      </label>
-      <div *ngIf="!!sellErrors.amount" class="error-feedback">
-        <p *ngFor="let error of sellErrors.amount">{{ error }}</p>
-      </div>
-      <label
-        *ngIf="activeType === 'limit'"
-        class="form-control"
-        for="sell_limit"
-      >
-        <input
-          type="number"
-          name="sell_limit"
-          id="sell_limit"
-          placeholder=" "
-          [min]="activeSymbol.tickSize"
-          [step]="activeSymbol.tickSize"
-          [(ngModel)]="sellLimit"
-        />
-        <span class="actual-label">Limit</span>
-      </label>
-      <div *ngIf="!!sellErrors.limit" class="error-feedback">
-        <p *ngFor="let error of sellErrors.limit">{{ error }}</p>
-      </div>
-      <label class="form-control" for="sell_total">
-        <input
-          type="text"
-          name="sell_total"
-          id="sell_total"
-          readonly
-          [value]="sellTotal"
-          placeholder=" "
-        />
-        <span class="actual-label">Total</span>
-      </label>
-      <div *ngIf="!!sellErrors.symbol" class="error-feedback">
-        <p *ngFor="let error of sellErrors.symbol">{{ error }}</p>
-      </div>
-
-      <div
-        arrangeStack
-        arrangeCenter
-        class="market__approximations"
-        *ngIf="activeType === 'market'"
-      >
-        <p>You will approximately get</p>
-        <strong
-          >{{ sellApproxPay }} {{ activeSymbol.quoteCurrencyShortName }}</strong
-        >
-      </div>
-
-      <table arrangeCenter class="market__estimations">
-        <tbody arrangeStack>
-          <tr arrangeInline>
-            <td>Estimated</td>
-            <td>0.00004123 BTC</td>
-          </tr>
-          <tr arrangeInline>
-            <td>
-              Taker fee
-              {{ activeSymbol.takeLiquidityRate * 100 }}%
-            </td>
-            <td>
-              {{ sellTakerFee }}
-              {{ activeSymbol.quoteCurrencyShortName }}
-            </td>
-          </tr>
-        </tbody>
-      </table>
-
-      <button
-        type="submit"
-        class="market__submit-button sell-button"
-        #sellButton
-      >
-        Sell
-      </button>
-    </form>
-  </div> -->
 </ng-template>

@@ -44,6 +44,10 @@ a:active {
   }
 }
 
+.formatted-tooltip {
+  white-space: pre-line;
+}
+
 @media screen and (min-width: $break-mobile) {
   .header-tooltip-button {
     display: flex;

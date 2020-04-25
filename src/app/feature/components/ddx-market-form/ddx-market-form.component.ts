@@ -161,6 +161,18 @@ export class MarketFormComponent implements OnInit, OnChanges {
     };
   }
 
+  get timeInForceTooltipContent(): string {
+    return `GoodTillCancelled: lasts until the order is completed or canceled.
+
+          ImmediateOrCancel: IOC is an order to buy or sell an currency that executes all or part immediately and cancels any unfilled portion of the order.
+
+          FillOrKill: FOK order executes a transaction immediately and completely or not at all. (i.e., no partial execution of the order is allowed)
+
+          Day: automatically expires if not executed on the day the order was placed. A day ends at 00:00 UTC time.
+
+          GoodTillDate: automatically expires at the specified date and time.`;
+  }
+
   get timeInForceDropdownItems(): DropdownSelectItem[] {
     return this.timeInForceItems;
   }
@@ -215,6 +227,14 @@ export class MarketFormComponent implements OnInit, OnChanges {
           this.activeSymbol.takeLiquidityRate
         )
       : this.total.mul(this.activeSymbol.takeLiquidityRate);
+  }
+
+  get makerFee(): Decimal {
+    return this.activeSymbol.feeSide === 0
+      ? new Decimal(this.marketForm.controls.quantity.value || 0).mul(
+          this.activeSymbol.provideLiquidityRate
+        )
+      : this.total.mul(this.activeSymbol.provideLiquidityRate);
   }
 
   get buyApproxPay(): Decimal {

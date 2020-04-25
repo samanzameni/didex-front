@@ -25,13 +25,13 @@ a:active {
   visibility: hidden;
 }
 
-.tooltip-mark {
+.header-tooltip-button {
   width: 18px;
   height: 18px;
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
-  margin: -2px 0 0 2px;
+  margin: -4px 0 0 2px;
 
   .mat-icon {
     width: 18px;
@@ -41,6 +41,16 @@ a:active {
     justify-content: center;
     line-height: 16px;
     font-size: 16px;
+  }
+}
+
+.formatted-tooltip {
+  white-space: pre-line;
+}
+
+@media screen and (min-width: $break-mobile) {
+  .header-tooltip-button {
+    display: flex;
   }
 }
 

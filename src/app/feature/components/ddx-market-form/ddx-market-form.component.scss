@@ -83,6 +83,14 @@
       margin-bottom: 3px;
     }
 
+    .post-only-container {
+      align-items: center;
+
+      .header-tooltip-button {
+        margin: 0;
+      }
+    }
+
     .market__approximations {
       padding: 40px 0;
 

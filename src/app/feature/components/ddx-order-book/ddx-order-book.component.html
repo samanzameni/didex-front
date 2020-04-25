@@ -40,7 +40,16 @@
           <th class="row-index">#</th>
           <th class="row-big">Sum {{ activeSymbol.baseCurrencyShortName }}</th>
           <th class="row-big">Amount</th>
-          <th class="row-big">Bid</th>
+          <th arrangeInline class="row-big">
+            Bid
+            <button
+              mat-icon-button
+              matTooltip="The bid price represents the maximum price that a buyer is willing to pay for a share of stock or other currency."
+              class="header-tooltip-button"
+            >
+              <mat-icon>help</mat-icon>
+            </button>
+          </th>
         </tr>
       </thead>
       <tbody class="ddx-table__body">
@@ -66,7 +75,16 @@
     <table class="ddx__table">
       <thead class="ddx-table__head">
         <tr arrangeInline>
-          <th class="row-big">Ask</th>
+          <th arrangeInline class="row-big">
+            <button
+              mat-icon-button
+              matTooltip="The ask price represents the minimum price that a seller is willing to take for that same currency."
+              class="header-tooltip-button"
+            >
+              <mat-icon>help</mat-icon>
+            </button>
+            Ask
+          </th>
           <th class="row-big">Amount</th>
           <th class="row-big">Sum {{ activeSymbol.baseCurrencyShortName }}</th>
           <th class="row-index">#</th>

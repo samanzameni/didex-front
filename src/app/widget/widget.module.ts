@@ -18,6 +18,7 @@ import {
   TradingViewChartWrapperComponent,
   ImageUploaderComponent,
   ProButtonComponent,
+  DropdownAutocompleteCountriesComponent,
 } from './components';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -39,6 +40,7 @@ import { MatDividerModule } from '@angular/material/divider';
     ArrangeStackDirective,
     //
     DropdownAutocompleteComponent,
+    DropdownAutocompleteCountriesComponent,
     DropdownMenuComponent,
     DropdownSelectComponent,
     ToggleButtonComponent,
@@ -73,6 +75,7 @@ import { MatDividerModule } from '@angular/material/divider';
     ArrangeStackDirective,
     //
     DropdownAutocompleteComponent,
+    DropdownAutocompleteCountriesComponent,
     DropdownMenuComponent,
     DropdownSelectComponent,
     ToggleButtonComponent,

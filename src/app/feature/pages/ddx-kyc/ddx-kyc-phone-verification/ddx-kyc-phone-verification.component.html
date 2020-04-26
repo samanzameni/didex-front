@@ -15,12 +15,12 @@
       verification.
     </p>
 
-    <dropdown-autocomplete
+    <dropdown-autocomplete-countries
       id="countryTelephoneCode"
       caption="Country"
-      [items]="countriesList"
+      desiredValueKey="phoneCode"
       [control]="kycFormControls.countryTelephoneCode"
-    ></dropdown-autocomplete>
+    ></dropdown-autocomplete-countries>
 
     <mat-form-field id="mobileNumber" appearance="outline">
       <span

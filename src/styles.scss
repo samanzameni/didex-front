@@ -22,8 +22,14 @@ a:active {
   color: $ddx-light;
 }
 
-.grecaptcha-badge {
-  visibility: hidden;
+.mat-form-field-wrapper {
+  margin-top: 0.75em;
+  margin-bottom: 0.25em;
+  padding-bottom: 0.25em;
+}
+
+.mat-error {
+  margin: 4px 0;
 }
 
 .header-tooltip-button {

@@ -8,7 +8,7 @@
   min-height: 100vh;
 
   background: $ddx-dark-deep;
-  background: linear-gradient(to top right, $ddx-dark-deep, $ddx-dark-lighter);
+  background: linear-gradient(to top right, $ddx-dark-deep, $ddx-dark-main);
 
   form {
     color: $ddx-light;
@@ -73,10 +73,6 @@
         line-height: 15px;
         white-space: normal;
       }
-    }
-
-    .mat-error {
-      margin: 3px 0;
     }
 
     .description {

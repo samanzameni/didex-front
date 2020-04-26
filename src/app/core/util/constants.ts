@@ -12,13 +12,13 @@ export const CONSTANTS = {
 };
 
 export const COUNTRIES: CountryData[] = [
-  {
-    code: 'AC',
-    emoji: '🇦🇨',
-    name: 'Ascension Island',
-    phoneCode: '247',
-    unicode: 'U+1F1E6 U+1F1E8',
-  },
+  // {
+  //   code: 'AC',
+  //   emoji: '🇦🇨',
+  //   name: 'Ascension Island',
+  //   phoneCode: '247',
+  //   unicode: 'U+1F1E6 U+1F1E8',
+  // },
   {
     code: 'AD',
     emoji: '🇦🇩',

@@ -25,18 +25,21 @@
       id="email"
       placeholder="abc@example.com"
       autofocus
+      #emailInput
     />
   </mat-form-field>
-  <mat-error *ngIf="authFormControls.email.hasError('required')">
-    Email is required
-  </mat-error>
-  <mat-error *ngIf="authFormControls.email.hasError('email')">
-    Email must be a valid address
-  </mat-error>
-  <ng-container *ngIf="authFormErrors && authFormErrors.email">
-    <mat-error *ngFor="let error of authFormErrors.email">
-      {{ error }}
+  <ng-container *ngIf="authFormControls.email.dirty">
+    <mat-error *ngIf="authFormControls.email.hasError('required')">
+      Email is required
     </mat-error>
+    <mat-error *ngIf="authFormControls.email.hasError('email')">
+      Email must be a valid address
+    </mat-error>
+    <ng-container *ngIf="authFormErrors && authFormErrors.email">
+      <mat-error *ngFor="let error of authFormErrors.email">
+        {{ error }}
+      </mat-error>
+    </ng-container>
   </ng-container>
 
   <mat-form-field appearance="outline" for="password">
@@ -49,13 +52,15 @@
       id="password"
     />
   </mat-form-field>
-  <mat-error *ngIf="authFormControls.password.hasError('required')">
-    Password is required
-  </mat-error>
-  <ng-container *ngIf="authFormErrors && authFormErrors.password">
-    <mat-error *ngFor="let error of authFormErrors.password">
-      {{ error }}
+  <ng-container *ngIf="authFormControls.password.dirty">
+    <mat-error *ngIf="authFormControls.password.hasError('required')">
+      Password is required
     </mat-error>
+    <ng-container *ngIf="authFormErrors && authFormErrors.password">
+      <mat-error *ngFor="let error of authFormErrors.password">
+        {{ error }}
+      </mat-error>
+    </ng-container>
   </ng-container>
 
   <div arrangeCenter #recaptcha class="recaptcha-container"></div>

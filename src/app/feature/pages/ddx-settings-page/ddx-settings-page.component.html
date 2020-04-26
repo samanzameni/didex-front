@@ -139,7 +139,7 @@
         in DidEx
       </p>
       <a routerLink="/user/kyc"
-        ><button mat-stroked-button color="accent">
+        ><button mat-raised-button color="accent">
           Validate identity
         </button></a
       >
@@ -149,19 +149,19 @@
         You have filled and sent your information and it is waiting for approval
       </p>
       <a routerLink="/user/kyc"
-        ><button mat-stroked-button color="accent">Update KYC Info</button></a
+        ><button mat-raised-button color="accent">Update KYC Info</button></a
       >
     </ng-container>
     <ng-container *ngSwitchCase="'approved'">
       <p class="settings-page__info">Your KYC Information is approved.</p>
       <a routerLink="/user/kyc"
-        ><button mat-stroked-button color="accent">Update KYC Info</button></a
+        ><button mat-raised-button color="accent">Update KYC Info</button></a
       >
     </ng-container>
     <ng-container *ngSwitchCase="'banned'">
       <p class="settings-page__info">Your application for KYC is banned</p>
       <a routerLink="/user/kyc"
-        ><button mat-stroked-button color="accent">
+        ><button mat-raised-button color="accent">
           Validate identity
         </button></a
       >

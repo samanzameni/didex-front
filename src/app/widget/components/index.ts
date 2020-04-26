@@ -1,4 +1,5 @@
 export * from './dropdown-autocomplete/dropdown-autocomplete.component';
+export * from './dropdown-autocomplete-countries/dropdown-autocomplete-countries.component';
 export * from './dropdown-menu/dropdown-menu.component';
 export * from './dropdown-select/dropdown-select.component';
 export * from './checkbox/checkbox.component';

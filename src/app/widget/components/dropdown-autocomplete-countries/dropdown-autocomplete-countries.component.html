@@ -1,0 +1,30 @@
+<mat-form-field appearance="outline">
+  <mat-label>{{ caption }}</mat-label>
+  <input
+    type="text"
+    matInput
+    [formControl]="control"
+    [matAutocomplete]="auto"
+    #input
+  />
+  <mat-autocomplete
+    autoActiveFirstOption
+    #auto="matAutocomplete"
+    [displayWith]="getTitleFromValue"
+  >
+    <mat-option
+      *ngFor="let option of filteredOptions | async"
+      [value]="option[desiredValueKey]"
+    >
+      <div class="f32">
+        <span class="flag" [ngClass]="option.code.toLowerCase()"></span>
+        <span style="font-size: 14px; line-height: 14px;">{{
+          option.name
+        }}</span>
+      </div>
+    </mat-option>
+  </mat-autocomplete>
+  <mat-error *ngIf="control.hasError('required')">
+    This field is required.
+  </mat-error>
+</mat-form-field>

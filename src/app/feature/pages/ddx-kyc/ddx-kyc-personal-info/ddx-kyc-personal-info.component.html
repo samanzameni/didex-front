@@ -69,12 +69,12 @@
       </mat-error>
     </mat-form-field>
 
-    <dropdown-autocomplete
+    <dropdown-autocomplete-countries
       caption="Country of Birth"
       id="birthCountry"
       [control]="kycFormControls.birthCountryCode"
-      [items]="countriesList"
-    ></dropdown-autocomplete>
+      desiredValueKey="code"
+    ></dropdown-autocomplete-countries>
 
     <mat-form-field id="zipCode" appearance="outline">
       <mat-label>Zip Code</mat-label>
@@ -94,12 +94,12 @@
       </mat-error>
     </mat-form-field>
 
-    <dropdown-autocomplete
+    <dropdown-autocomplete-countries
       caption="Living in"
       id="country"
       [control]="kycFormControls.countryCode"
-      [items]="countriesList"
-    ></dropdown-autocomplete>
+      desiredValueKey="code"
+    ></dropdown-autocomplete-countries>
 
     <mat-form-field id="city" appearance="outline">
       <mat-label>City</mat-label>

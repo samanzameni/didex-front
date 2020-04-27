@@ -15,6 +15,7 @@ import { CONSTANTS } from '@core/util/constants';
 export abstract class AuthPageDirective implements AfterViewInit {
   protected authForm: FormGroup;
   protected formErrors: any;
+  protected isPasswordHidden: boolean;
 
   @ViewChild('submitButton') submitButton: ProButtonComponent;
   @ViewChild('recaptcha') recaptchaElement: ElementRef;
@@ -26,10 +27,19 @@ export abstract class AuthPageDirective implements AfterViewInit {
     protected authService: AuthService
   ) {
     this.formErrors = {};
+    this.isPasswordHidden = true;
   }
 
   ngAfterViewInit(): void {
     this.addRecaptchaScript();
+  }
+
+  get isHidden(): boolean {
+    return this.isPasswordHidden;
+  }
+
+  public toggleHidePassword(): void {
+    this.isPasswordHidden = !this.isPasswordHidden;
   }
 
   protected setLoadingOn(): void {

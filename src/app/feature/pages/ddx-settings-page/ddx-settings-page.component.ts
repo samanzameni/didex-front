@@ -21,6 +21,7 @@ export class SettingsPageComponent implements OnInit {
 
   private generalReactiveFormGroup: FormGroup;
   private securityReactiveFormGroup: FormGroup;
+  private isPasswordHidden: boolean;
 
   @ViewChild('generalSubmitButton') generalSubmitButton: ProButtonComponent;
   @ViewChild('securitySubmitButton') securitySubmitButton: ProButtonComponent;
@@ -33,6 +34,7 @@ export class SettingsPageComponent implements OnInit {
     private route: ActivatedRoute,
     private snackbarService: MatSnackBar
   ) {
+    this.isPasswordHidden = true;
     this.activePage = 'general';
     this.timezonesMapped = TIMEZONES.map((timezone) => {
       return {
@@ -117,6 +119,14 @@ export class SettingsPageComponent implements OnInit {
       default:
         return 'newbie';
     }
+  }
+
+  get isHidden(): boolean {
+    return this.isPasswordHidden;
+  }
+
+  toggleHidePassword(): void {
+    this.isPasswordHidden = !this.isPasswordHidden;
   }
 
   activatePage(newPage: string): void {

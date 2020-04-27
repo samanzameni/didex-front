@@ -88,33 +88,42 @@
         <mat-label>Old Password</mat-label>
         <input
           matInput
-          type="password"
+          [type]="isHidden ? 'password' : 'text'"
           formControlName="currentPassword"
           name="currentPassword"
           id="currentPassword"
         />
+        <mat-icon matSuffix (click)="toggleHidePassword()">{{
+          isHidden ? 'visibility_off' : 'visibility'
+        }}</mat-icon>
       </mat-form-field>
 
       <mat-form-field appearance="outline">
         <mat-label>Password</mat-label>
         <input
           matInput
-          type="password"
+          [type]="isHidden ? 'password' : 'text'"
           formControlName="newPassword"
           name="password"
           id="password"
         />
+        <mat-icon matSuffix (click)="toggleHidePassword()">{{
+          isHidden ? 'visibility_off' : 'visibility'
+        }}</mat-icon>
       </mat-form-field>
 
       <mat-form-field appearance="outline">
         <mat-label>Confirm Password</mat-label>
         <input
           matInput
-          type="password"
+          [type]="isHidden ? 'password' : 'text'"
           formControlName="confirmPassword"
           name="confirm-password"
           id="confirm-password"
         />
+        <mat-icon matSuffix (click)="toggleHidePassword()">{{
+          isHidden ? 'visibility_off' : 'visibility'
+        }}</mat-icon>
       </mat-form-field>
 
       <pro-button

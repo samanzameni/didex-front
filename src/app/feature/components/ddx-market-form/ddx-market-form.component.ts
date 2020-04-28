@@ -63,7 +63,7 @@ export class MarketFormComponent implements OnInit, OnChanges {
     });
   }
 
-  ngOnInit(): void {
+  private buildFormGroup(): void {
     this.marketForm = this.formBuilder.group({
       marketSymbol: [this.activeSymbol.symbol, []],
       side: [this.side === 'buy' ? OrderSide.Buy : OrderSide.Sell, []],
@@ -73,11 +73,16 @@ export class MarketFormComponent implements OnInit, OnChanges {
       ],
       quantity: [
         this.activeSymbol.quantityIncrement,
-        [
-          Validators.required,
-          Validators.min(this.activeSymbol.quantityIncrement),
-          Validators.max(this.baseBalanceData.available),
-        ],
+        this.side === 'buy'
+          ? [
+              Validators.required,
+              Validators.min(this.activeSymbol.quantityIncrement),
+            ]
+          : [
+              Validators.required,
+              Validators.min(this.activeSymbol.quantityIncrement),
+              Validators.max(this.baseBalanceData.available),
+            ],
       ],
       price: [
         this.activeSymbol.tickSize,
@@ -88,29 +93,12 @@ export class MarketFormComponent implements OnInit, OnChanges {
     });
   }
 
+  ngOnInit(): void {
+    this.buildFormGroup();
+  }
+
   ngOnChanges(): void {
-    this.marketForm = this.formBuilder.group({
-      marketSymbol: [this.activeSymbol.symbol, []],
-      side: [this.side === 'buy' ? OrderSide.Buy : OrderSide.Sell, []],
-      type: [
-        this.activeType === 'market' ? OrderType.Market : OrderType.Limit,
-        [],
-      ],
-      quantity: [
-        this.activeSymbol.quantityIncrement,
-        [
-          Validators.required,
-          Validators.min(this.activeSymbol.quantityIncrement),
-          Validators.max(this.baseBalanceData.available),
-        ],
-      ],
-      price: [
-        this.activeSymbol.tickSize,
-        [Validators.required, Validators.min(this.activeSymbol.tickSize)],
-      ],
-      postOnly: [false, []],
-      timeInForce: [OrderTimeInForce.GoodTillCancelled, []],
-    });
+    this.buildFormGroup();
   }
 
   get marketFormGroup(): FormGroup {

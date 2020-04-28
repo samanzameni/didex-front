@@ -7,6 +7,7 @@ import {
   OrderBookResponse,
   Trade,
   SymbolExternalSource,
+  Trader,
 } from '@core/models';
 import {
   SymbolDATAService,
@@ -19,6 +20,7 @@ import {
   FilledOrderDATAService,
 } from '@core/services/DATA';
 import { PublicRESTService } from '@core/services/REST';
+import { TraderService, AuthService } from '@core/services';
 
 @Component({
   selector: 'ddx-home-page',
@@ -41,6 +43,8 @@ export class HomePageComponent implements OnInit {
 
   constructor(
     private cdRef: ChangeDetectorRef,
+    private traderService: TraderService,
+    private authService: AuthService,
     private publicService: PublicRESTService,
     private symbolDataService: SymbolDATAService,
     private tickerDataService: TickerDATAService,
@@ -69,11 +73,6 @@ export class HomePageComponent implements OnInit {
     this.tickerDataService.updateData();
     this.tickerDataService.updateFeed();
 
-    this.balanceDataService.dataStream$.subscribe((data) => {
-      this.balance = data || [];
-    });
-    this.balanceDataService.updateData();
-
     this.orderBookDataService.dataStream$.subscribe((data) => {
       this.orderBook = data || { bid: [], ask: [] };
     });
@@ -86,13 +85,20 @@ export class HomePageComponent implements OnInit {
       this.trade = data || [];
     });
 
-    this.privateTradeDataService.dataStream$.subscribe((data) => {
-      this.privateTrade = data || [];
-    });
+    if (this.authService.isAuthorized) {
+      this.balanceDataService.dataStream$.subscribe((data) => {
+        this.balance = data || [];
+      });
+      this.balanceDataService.updateData();
 
-    this.filledOrderDataService.dataStream$.subscribe((data) => {
-      this.filledOrder = data || [];
-    });
+      this.privateTradeDataService.dataStream$.subscribe((data) => {
+        this.privateTrade = data || [];
+      });
+
+      this.filledOrderDataService.dataStream$.subscribe((data) => {
+        this.filledOrder = data || [];
+      });
+    }
   }
 
   handleSymbolChange(symbol: TradeSymbol): void {
@@ -108,11 +114,13 @@ export class HomePageComponent implements OnInit {
     this.orderDataService.updateData(symbol.symbol);
     this.orderDataService.updateFeed(symbol.symbol);
 
-    this.privateTradeDataService.updateData(symbol.symbol);
-    this.privateTradeDataService.updateFeed(symbol.symbol);
+    if (this.authService.isAuthorized) {
+      this.privateTradeDataService.updateData(symbol.symbol);
+      this.privateTradeDataService.updateFeed(symbol.symbol);
 
-    this.filledOrderDataService.updateData(symbol.symbol);
-    this.filledOrderDataService.updateFeed(symbol.symbol);
+      this.filledOrderDataService.updateData(symbol.symbol);
+      this.filledOrderDataService.updateFeed(symbol.symbol);
+    }
   }
 
   get activeSymbol(): TradeSymbol {
@@ -153,5 +161,13 @@ export class HomePageComponent implements OnInit {
 
   get filledOrderData(): Order[] {
     return this.filledOrder || [];
+  }
+
+  get currentTrader(): Trader {
+    return this.traderService.currentTrader;
+  }
+
+  get isAuthorized(): boolean {
+    return this.authService.isAuthorized;
   }
 }

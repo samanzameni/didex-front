@@ -1,10 +1,4 @@
-import {
-  Component,
-  OnInit,
-  Renderer2,
-  ElementRef,
-  ViewChild,
-} from '@angular/core';
+import { Component, Renderer2, ViewChild } from '@angular/core';
 import { TraderRESTService } from '@core/services/REST';
 import { Router } from '@angular/router';
 import { TraderService } from '@core/services';

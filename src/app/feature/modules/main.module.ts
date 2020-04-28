@@ -27,11 +27,13 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { TraderResolver } from '@core/resolvers/trader.resolver';
 
 const routes: Routes = [
   {
     path: '',
     component: MainLayoutComponent,
+    resolve: { trader: TraderResolver },
     children: [
       { path: '', component: HomePageComponent, pathMatch: 'full' },
       {

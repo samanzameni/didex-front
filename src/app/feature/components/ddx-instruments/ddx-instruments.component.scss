@@ -42,7 +42,8 @@
           }
 
           &.active {
-            color: $ddx-light-darker;
+            font-weight: bold;
+            color: $ddx-light;
             border-color: $ddx-yellow;
             background: $ddx-yellow;
 

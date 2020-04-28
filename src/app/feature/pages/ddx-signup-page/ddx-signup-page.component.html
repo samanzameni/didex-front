@@ -38,12 +38,15 @@
   <mat-form-field appearance="outline">
     <mat-label>Password</mat-label>
     <input
-      type="password"
+      [type]="isHidden ? 'password' : 'text'"
       formControlName="password"
       matInput
       name="password"
       id="password"
     />
+    <mat-icon matSuffix (click)="toggleHidePassword()">{{
+      isHidden ? 'visibility_off' : 'visibility'
+    }}</mat-icon>
   </mat-form-field>
   <ul arrangeStack class="password-hints-container">
     <li
@@ -87,12 +90,15 @@
   <mat-form-field appearance="outline">
     <mat-label>Confirm Password</mat-label>
     <input
-      type="password"
+      [type]="isHidden ? 'password' : 'text'"
       formControlName="confirmPassword"
       matInput
       name="confirm-password"
       id="confirm-password"
     />
+    <mat-icon matSuffix (click)="toggleHidePassword()">{{
+      isHidden ? 'visibility_off' : 'visibility'
+    }}</mat-icon>
     <mat-error
       *ngIf="authFormGroup.controls.confirmPassword.hasError('required')"
     >

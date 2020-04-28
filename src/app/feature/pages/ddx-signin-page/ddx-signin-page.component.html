@@ -45,12 +45,15 @@
   <mat-form-field appearance="outline" for="password">
     <mat-label>Password</mat-label>
     <input
-      type="password"
+      [type]="isHidden ? 'password' : 'text'"
       formControlName="password"
       matInput
       name="password"
       id="password"
     />
+    <mat-icon matSuffix (click)="toggleHidePassword()">{{
+      isHidden ? 'visibility_off' : 'visibility'
+    }}</mat-icon>
   </mat-form-field>
   <ng-container *ngIf="authFormControls.password.dirty">
     <mat-error *ngIf="authFormControls.password.hasError('required')">

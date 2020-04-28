@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Resolve } from '@angular/router';
+import { Resolve, ActivatedRouteSnapshot } from '@angular/router';
 
 import { TraderService, AuthService } from '@core/services';
 import { catchError } from 'rxjs/operators';
@@ -12,15 +12,21 @@ export class TraderResolver implements Resolve<any> {
     private authService: AuthService
   ) {}
 
-  resolve() {
-    return this.traderService.updateCurrentTrader().pipe(
-      catchError(error => {
-        if (error.status === 401) {
-          this.authService.handleAuthError();
-        }
+  resolve(route: ActivatedRouteSnapshot) {
+    if (!this.traderService.currentTrader) {
+      return this.traderService.updateCurrentTrader().pipe(
+        catchError((error) => {
+          if (error.status === 401) {
+            if (!route.url || route.url.length === 0) {
+              // We're in homepage;
+            } else {
+              this.authService.handleAuthError();
+            }
+          }
 
-        return of(null);
-      })
-    );
+          return of(null);
+        })
+      );
+    }
   }
 }

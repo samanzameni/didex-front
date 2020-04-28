@@ -18,6 +18,7 @@ import Decimal from 'decimal.js';
 })
 export class TradesComponent implements OnInit {
   @Input() activeSymbol: TradeSymbol;
+  @Input() isAuthorized: boolean;
   @Input() orderData: Order[];
   @Input() tradeData: Trade[];
   @Input() filledOrderData: Order[];
@@ -39,21 +40,21 @@ export class TradesComponent implements OnInit {
   }
 
   get activeOrders(): Order[] {
-    return (this.orderData || []).map(order => {
+    return (this.orderData || []).map((order) => {
       order.createdAt = order.createdAt.replace('T', ' ').substr(0, 19);
       return order;
     });
   }
 
   get filledOrders(): Order[] {
-    return (this.filledOrderData || []).map(order => {
+    return (this.filledOrderData || []).map((order) => {
       order.createdAt = order.createdAt.replace('T', ' ').substr(0, 19);
       return order;
     });
   }
 
   get privateTrades(): Trade[] {
-    return (this.tradeData || []).map(trade => {
+    return (this.tradeData || []).map((trade) => {
       trade.timeStamp = trade.timeStamp.replace('T', ' ').substr(0, 19);
       return trade;
     });

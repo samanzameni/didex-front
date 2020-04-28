@@ -3,158 +3,199 @@
 </ng-template>
 
 <ng-template #content>
-  <div arrangeStack class="trades__header">
-    <h2 class="trades-header__title" *ngIf="!!activeSymbol">
-      My Orders and Trades {{ activeSymbol.baseCurrencyShortName }}/{{
-        activeSymbol.quoteCurrencyShortName
-      }}
-    </h2>
-
-    <div arrangeInline class="trades-header__controls">
-      <ul arrangeInline class="trades-header__trade-panes">
-        <li
-          class="trades-header__pane"
-          [ngClass]="{ active: activePane === 'active' }"
-          (click)="activatePane('active')"
-        >
-          <span class="show-on-medium"> Active </span> Orders
-        </li>
-        <li
-          class="trades-header__pane"
-          [ngClass]="{ active: activePane === 'filled' }"
-          (click)="activatePane('filled')"
-        >
-          Filled <span class="show-on-medium"> & Canceled </span>
-        </li>
-        <li
-          class="trades-header__pane"
-          [ngClass]="{ active: activePane === 'trade' }"
-          (click)="activatePane('trade')"
-        >
-          Trades
-        </li>
-      </ul>
-
-      <!-- <button class="button-short">Edit</button> -->
+  <ng-template #notAuthorized>
+    <div arrangeStack class="trades__header">
+      <h2 class="trades-header__title" *ngIf="!!activeSymbol">
+        My Orders and Trades {{ activeSymbol.baseCurrencyShortName }}/{{
+          activeSymbol.quoteCurrencyShortName
+        }}
+      </h2>
     </div>
-  </div>
+    <div arrangeStack class="tab-overlay">
+      <h3>You must sign in to see this tab</h3>
+      <a routerLink="/auth/signin">
+        <button mat-raised-button color="primary">
+          Sign In
+        </button>
+      </a>
+    </div>
+  </ng-template>
 
-  <table class="ddx__table" [ngSwitch]="activePane" *ngIf="!!activeSymbol">
-    <ng-container *ngSwitchCase="'active'">
-      <thead class="ddx-table__head">
-        <tr arrangeInline>
-          <th class="row-big">Time</th>
-          <th class="row-small">ID</th>
-          <th class="row-big">
-            Price ({{ activeSymbol.quoteCurrencyShortName }})
-          </th>
-          <th class="row-big">
-            Exec/Amount ({{ activeSymbol.baseCurrencyShortName }})
-          </th>
-          <th class="row-big">
-            Total ({{ activeSymbol.quoteCurrencyShortName }})
-          </th>
-        </tr>
-      </thead>
-      <tbody class="ddx-table__body">
-        <tr arrangeInline *ngFor="let item of activeOrders; let i = index">
-          <td class="row-big">{{ item.createdAt }}</td>
-          <td class="row-small" title="{{ item.id }}">{{ item.id }}</td>
-          <td
-            class="row-big"
-            [ngClass]="getPriceCellCSSClass(item)"
-            title="{{ item.price }}"
-          >
-            {{ item.price }}
-          </td>
-          <td
-            class="row-big"
-            title="{{ item.executedQuantity + '/' + item.quantity }}"
-          >
-            {{ item.executedQuantity + '/' + item.quantity }}
-          </td>
-          <td class="row-big" title="{{ getTotalPrice(item) }}">
-            {{ getTotalPrice(item) }}
-          </td>
-        </tr>
-      </tbody>
-    </ng-container>
+  <ng-template [ngIf]="isAuthorized" [ngIfElse]="notAuthorized">
+    <div arrangeStack class="trades__header">
+      <h2 class="trades-header__title" *ngIf="!!activeSymbol">
+        My Orders and Trades {{ activeSymbol.baseCurrencyShortName }}/{{
+          activeSymbol.quoteCurrencyShortName
+        }}
+      </h2>
 
-    <ng-container *ngSwitchCase="'filled'">
-      <thead arrangeStack class="ddx-table__head">
-        <tr arrangeInline>
-          <th class="row-big">Time</th>
-          <th class="row-small">ID</th>
-          <th class="row-big">
-            Price ({{ activeSymbol.quoteCurrencyShortName }})
-          </th>
-          <th class="row-big">
-            Exec/Amount ({{ activeSymbol.baseCurrencyShortName }})
-          </th>
-          <th class="row-big">
-            Total ({{ activeSymbol.quoteCurrencyShortName }})
-          </th>
-        </tr>
-      </thead>
-      <tbody class="ddx-table__body">
-        <tr arrangeInline *ngFor="let item of filledOrders; let i = index">
-          <td class="row-big">{{ item.createdAt }}</td>
-          <td class="row-small" title="{{ item.id }}">{{ item.id }}</td>
-          <td
-            class="row-big"
-            [ngClass]="getPriceCellCSSClass(item)"
-            title="{{ item.price }}"
+      <div arrangeInline class="trades-header__controls">
+        <ul arrangeInline class="trades-header__trade-panes">
+          <li
+            class="trades-header__pane"
+            [ngClass]="{ active: activePane === 'active' }"
+            (click)="activatePane('active')"
           >
-            {{ item.price }}
-          </td>
-          <td
-            class="row-big"
-            title="{{ item.executedQuantity + '/' + item.quantity }}"
+            <span class="show-on-medium"> Active </span> Orders
+          </li>
+          <li
+            class="trades-header__pane"
+            [ngClass]="{ active: activePane === 'filled' }"
+            (click)="activatePane('filled')"
           >
-            {{ item.executedQuantity + '/' + item.quantity }}
-          </td>
-          <td class="row-big" title="{{ getTotalPrice(item) }}">
-            {{ getTotalPrice(item) }}
-          </td>
-        </tr>
-      </tbody>
-    </ng-container>
+            Filled <span class="show-on-medium"> & Canceled </span>
+          </li>
+          <li
+            class="trades-header__pane"
+            [ngClass]="{ active: activePane === 'trade' }"
+            (click)="activatePane('trade')"
+          >
+            Trades
+          </li>
+        </ul>
 
-    <ng-container *ngSwitchCase="'trade'">
-      <thead arrangeStack class="ddx-table__head">
-        <tr arrangeInline>
-          <th class="row-big">Time</th>
-          <th class="row-small">ID</th>
-          <th class="row-big">
-            Price ({{ activeSymbol.quoteCurrencyShortName }})
-          </th>
-          <th class="row-big">
-            Amount ({{ activeSymbol.baseCurrencyShortName }})
-          </th>
-          <th class="row-big">
-            Total ({{ activeSymbol.quoteCurrencyShortName }})
-          </th>
-        </tr>
-      </thead>
-      <tbody class="ddx-table__body">
-        <tr arrangeInline *ngFor="let item of privateTrades; let i = index">
-          <td class="row-big">{{ item.timeStamp }}</td>
-          <td class="row-small" title="{{ item.id }}">{{ item.id }}</td>
-          <td
-            class="row-big"
-            [ngClass]="getPriceCellCSSClass(item)"
-            title="{{ item.price }}"
-          >
-            {{ item.price }}
-          </td>
-          <td class="row-big" title="{{ item.volume }}">
-            {{ item.volume }}
-          </td>
-          <td class="row-big" title="{{ item.volumeInQoute }}">
-            {{ item.volumeInQoute }}
-          </td>
-        </tr>
-      </tbody>
-    </ng-container>
-  </table>
+        <!-- <button class="button-short">Edit</button> -->
+      </div>
+    </div>
+
+    <table class="ddx__table" [ngSwitch]="activePane" *ngIf="!!activeSymbol">
+      <ng-template #noData>
+        <div arrangeStack class="tab-overlay">
+          <h3>No data to be shown in this section ...</h3>
+        </div>
+      </ng-template>
+
+      <ng-container *ngSwitchCase="'active'">
+        <ng-template
+          [ngIf]="!!activeOrders && activeOrders.length > 0"
+          [ngIfElse]="noData"
+        >
+          <thead class="ddx-table__head">
+            <tr arrangeInline>
+              <th class="row-big">Time</th>
+              <th class="row-small">ID</th>
+              <th class="row-big">
+                Price ({{ activeSymbol.quoteCurrencyShortName }})
+              </th>
+              <th class="row-big">
+                Exec/Amount ({{ activeSymbol.baseCurrencyShortName }})
+              </th>
+              <th class="row-big">
+                Total ({{ activeSymbol.quoteCurrencyShortName }})
+              </th>
+            </tr>
+          </thead>
+          <tbody class="ddx-table__body">
+            <tr arrangeInline *ngFor="let item of activeOrders; let i = index">
+              <td class="row-big">{{ item.createdAt }}</td>
+              <td class="row-small" title="{{ item.id }}">{{ item.id }}</td>
+              <td
+                class="row-big"
+                [ngClass]="getPriceCellCSSClass(item)"
+                title="{{ item.price }}"
+              >
+                {{ item.price }}
+              </td>
+              <td
+                class="row-big"
+                title="{{ item.executedQuantity + '/' + item.quantity }}"
+              >
+                {{ item.executedQuantity + '/' + item.quantity }}
+              </td>
+              <td class="row-big" title="{{ getTotalPrice(item) }}">
+                {{ getTotalPrice(item) }}
+              </td>
+            </tr>
+          </tbody>
+        </ng-template>
+      </ng-container>
+
+      <ng-container *ngSwitchCase="'filled'">
+        <ng-template
+          [ngIf]="!!filledOrders && filledOrders.length > 0"
+          [ngIfElse]="noData"
+        >
+          <thead arrangeStack class="ddx-table__head">
+            <tr arrangeInline>
+              <th class="row-big">Time</th>
+              <th class="row-small">ID</th>
+              <th class="row-big">
+                Price ({{ activeSymbol.quoteCurrencyShortName }})
+              </th>
+              <th class="row-big">
+                Exec/Amount ({{ activeSymbol.baseCurrencyShortName }})
+              </th>
+              <th class="row-big">
+                Total ({{ activeSymbol.quoteCurrencyShortName }})
+              </th>
+            </tr>
+          </thead>
+          <tbody class="ddx-table__body">
+            <tr arrangeInline *ngFor="let item of filledOrders; let i = index">
+              <td class="row-big">{{ item.createdAt }}</td>
+              <td class="row-small" title="{{ item.id }}">{{ item.id }}</td>
+              <td
+                class="row-big"
+                [ngClass]="getPriceCellCSSClass(item)"
+                title="{{ item.price }}"
+              >
+                {{ item.price }}
+              </td>
+              <td
+                class="row-big"
+                title="{{ item.executedQuantity + '/' + item.quantity }}"
+              >
+                {{ item.executedQuantity + '/' + item.quantity }}
+              </td>
+              <td class="row-big" title="{{ getTotalPrice(item) }}">
+                {{ getTotalPrice(item) }}
+              </td>
+            </tr>
+          </tbody>
+        </ng-template>
+      </ng-container>
+
+      <ng-container *ngSwitchCase="'trade'">
+        <ng-template
+          [ngIf]="!!privateTrades && privateTrades.length > 0"
+          [ngIfElse]="noData"
+        >
+          <thead arrangeStack class="ddx-table__head">
+            <tr arrangeInline>
+              <th class="row-big">Time</th>
+              <th class="row-small">ID</th>
+              <th class="row-big">
+                Price ({{ activeSymbol.quoteCurrencyShortName }})
+              </th>
+              <th class="row-big">
+                Amount ({{ activeSymbol.baseCurrencyShortName }})
+              </th>
+              <th class="row-big">
+                Total ({{ activeSymbol.quoteCurrencyShortName }})
+              </th>
+            </tr>
+          </thead>
+          <tbody class="ddx-table__body">
+            <tr arrangeInline *ngFor="let item of privateTrades; let i = index">
+              <td class="row-big">{{ item.timeStamp }}</td>
+              <td class="row-small" title="{{ item.id }}">{{ item.id }}</td>
+              <td
+                class="row-big"
+                [ngClass]="getPriceCellCSSClass(item)"
+                title="{{ item.price }}"
+              >
+                {{ item.price }}
+              </td>
+              <td class="row-big" title="{{ item.volume }}">
+                {{ item.volume }}
+              </td>
+              <td class="row-big" title="{{ item.volumeInQoute }}">
+                {{ item.volumeInQoute }}
+              </td>
+            </tr>
+          </tbody>
+        </ng-template>
+      </ng-container>
+    </table>
+  </ng-template>
 </ng-template>

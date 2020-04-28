@@ -13,18 +13,20 @@ export class TraderResolver implements Resolve<any> {
   ) {}
 
   resolve(route: ActivatedRouteSnapshot) {
-    return this.traderService.updateCurrentTrader().pipe(
-      catchError((error) => {
-        if (error.status === 401) {
-          if (!route.url || route.url.length === 0) {
-            // We're in homepage;
-          } else {
-            this.authService.handleAuthError();
+    if (!this.traderService.currentTrader) {
+      return this.traderService.updateCurrentTrader().pipe(
+        catchError((error) => {
+          if (error.status === 401) {
+            if (!route.url || route.url.length === 0) {
+              // We're in homepage;
+            } else {
+              this.authService.handleAuthError();
+            }
           }
-        }
 
-        return of(null);
-      })
-    );
+          return of(null);
+        })
+      );
+    }
   }
 }

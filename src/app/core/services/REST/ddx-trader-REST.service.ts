@@ -21,6 +21,10 @@ export class TraderRESTService extends AbstractRESTService {
     return this.httpPUT('api/Trader/MobileNumber', data);
   }
 
+  public requestKYCImages(): Observable<any> {
+    return this.httpGET('api/Trader/KycImage');
+  }
+
   public requestUpdateIdentityImage(data: any): Observable<any> {
     return this.httpPUT(
       'api/Trader/KycImage',

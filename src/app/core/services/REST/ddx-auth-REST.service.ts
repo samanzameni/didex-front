@@ -8,6 +8,7 @@ import {
   AuthResetPasswordFormData,
   AuthResetPasswordData,
   AuthEmailActivationData,
+  NotificationContent,
 } from '@core/models';
 import { Observable } from 'rxjs';
 
@@ -66,5 +67,11 @@ export class AuthRESTService extends AbstractRESTService {
 
   public requestChangePassword(data: any): Observable<any> {
     return this.httpPOST(`api/Account/changePassword`, data) as Observable<any>;
+  }
+
+  public requestNotifications(): Observable<NotificationContent[]> {
+    return this.httpGET('api/Account/notification') as Observable<
+      NotificationContent[]
+    >;
   }
 }

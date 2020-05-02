@@ -4,8 +4,8 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve --aot --port 4000 --host 0.0.0.0",
-    "build": "ng build --aot --prod",
-    "build-dev": "ng build --aot",
+    "build": "ng build --aot --prod --base-href /trade --deploy-url /trade",
+    "build-dev": "ng build --aot --base-href /trade --deploy-url /trade",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"

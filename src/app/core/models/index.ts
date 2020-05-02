@@ -13,3 +13,5 @@ export * from './ddx-transaction.model';
 export * from './ddx-wallet.model';
 
 export * from './ddx-trader.model';
+
+export * from './ddx-notification.model';

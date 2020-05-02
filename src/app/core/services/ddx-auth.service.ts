@@ -6,6 +6,7 @@ import {
   AuthResetPasswordFormData,
   AuthEmailActivationData,
   AuthResetPasswordData,
+  NotificationContent,
 } from '@core/models';
 import { StorageService } from './ddx-storage.service';
 import { Observable } from 'rxjs';
@@ -13,16 +14,19 @@ import { tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { SignalRService } from './ddx-signalr.service';
 import * as jwtDecode from 'jwt-decode';
+import { TraderService } from './ddx-trader.service';
 
 @Injectable()
 export class AuthService {
   private isUserAuthorized: boolean;
+  private notifications: NotificationContent[];
 
   constructor(
     private restService: AuthRESTService,
     private storageService: StorageService,
     private signalrService: SignalRService,
-    private router: Router
+    private router: Router,
+    private traderService: TraderService
   ) {
     this.isUserAuthorized = !!this.storageService.getUserAccessToken();
   }
@@ -31,10 +35,22 @@ export class AuthService {
     return this.isUserAuthorized;
   }
 
+  get accountNotifications(): NotificationContent[] {
+    return this.notifications || [];
+  }
+
   get decodedToken(): any {
     return this.isUserAuthorized
       ? jwtDecode(this.storageService.getUserAccessToken())
       : {};
+  }
+
+  public requestGetNotifications(): Observable<NotificationContent[]> {
+    return this.restService.requestNotifications().pipe(
+      tap((response) => {
+        this.notifications = response;
+      })
+    );
   }
 
   public requestSignUp(formData: AuthFormData): Observable<AuthFormResponse> {
@@ -81,6 +97,8 @@ export class AuthService {
     this.storageService.clearUserToken();
     this.isUserAuthorized = false;
     this.signalrService.resetConnection();
+    this.traderService.removeCurrentTrader();
+    this.traderService.removeCurrentTraderImages();
     this.router.navigateByUrl('/');
   }
 
@@ -91,6 +109,8 @@ export class AuthService {
     this.storageService.clearUserToken();
     this.isUserAuthorized = false;
     this.signalrService.resetConnection();
+    this.traderService.removeCurrentTrader();
+    this.traderService.removeCurrentTraderImages();
     this.router.navigateByUrl('/auth/signin');
   }
 }

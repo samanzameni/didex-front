@@ -6,7 +6,7 @@ import {
   UrlTree,
   Router,
 } from '@angular/router';
-import { Observable, of } from 'rxjs';
+import { Observable, of, forkJoin } from 'rxjs';
 import { TraderService } from '@core/services';
 import { catchError, map } from 'rxjs/operators';
 import { Trader } from '@core/models';
@@ -15,7 +15,7 @@ import { Trader } from '@core/models';
   providedIn: 'root',
 })
 export class KYCGuard implements CanActivateChild {
-  constructor(private restService: TraderService, private router: Router) {}
+  constructor(private traderService: TraderService, private router: Router) {}
 
   canActivateChild(
     next: ActivatedRouteSnapshot,
@@ -25,17 +25,44 @@ export class KYCGuard implements CanActivateChild {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    return this.restService.updateCurrentTrader().pipe(
-      catchError(errorResponse => {
+    const currentKYCPageURL: string = state.url.split('/').slice(-1)[0];
+    let observableToSubscribe;
+    if (
+      currentKYCPageURL === 'identity-proof' ||
+      currentKYCPageURL === 'selfie' ||
+      currentKYCPageURL === 'done'
+    ) {
+      observableToSubscribe = forkJoin([
+        this.traderService.updateCurrentTrader(),
+        this.traderService.updateCurrentTraderKYCImages(),
+      ]);
+    } else {
+      observableToSubscribe = this.traderService.updateCurrentTrader();
+    }
+
+    return observableToSubscribe.pipe(
+      catchError((errorResponse) => {
         return of(null);
+      }),
+      map((response: Trader | Array<any> | null) => {
+        if (!response) {
+          return null;
+        }
+
+        let trader: Trader;
+        if (Array.isArray(response)) {
+          trader = response[0];
+          trader.kycImages = response[1];
+        } else {
+          trader = response;
+        }
+        return trader;
       }),
       map((trader: Trader | null) => {
         if (!trader) {
           alert('In order to view this page, you have to be signed in.');
           return this.router.parseUrl('/auth/signin');
         }
-
-        const currentKYCPageURL: string = state.url.split('/').slice(-1)[0];
 
         switch (currentKYCPageURL) {
           case 'personal-info':

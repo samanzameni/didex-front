@@ -1,0 +1,36 @@
+{
+  "title": "Settings",
+  "tab_general": "General",
+  "tab_security": "Security",
+  "tab_kyc": "KYC",
+
+  "general": {
+    "message": "Here, you can change your general account information.",
+    "nickname": "Nickname",
+    "nickname_placeholder": "Johnny Doe",
+    "timezone": "Timezone",
+    "save_button": "Save Changes"
+  },
+
+  "security": {
+    "message": "Here, you can change your password for improving the security of your account.",
+    "old_password": "Old Password",
+    "password": "Password",
+    "confirm_password": "Confirm Password",
+    "save_button": "Save Changes"
+  },
+
+  "kyc": {
+    "message_newbie": "As a user, you must validate your identity in order to do transactions in DidEx",
+    "button_newbie": "Validate Identity",
+
+    "message_sent": "You have filled and sent your information and it is waiting for approval",
+    "button_sent": "Update KYC Info",
+
+    "message_approved": "Your KYC Information is approved",
+    "button_approved": "Update KYC Info",
+
+    "message_banned": "Your application for KYC is banned",
+    "button_banned": "Validate Identity"
+  }
+}

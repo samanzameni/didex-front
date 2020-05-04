@@ -1,0 +1,93 @@
+{
+  "steps": {
+    "step_1": "Step 1",
+    "step_1_caption": "Personal Information",
+    "step_2": "Step 2",
+    "step_2_caption": "Phone Verification",
+    "step_3": "Step 3",
+    "step_3_caption": "Identity Proof",
+    "step_4": "Step 4",
+    "step_4_caption": "Selfie"
+  },
+
+  "personal_information": {
+    "description": "Please fill in your personal information the way it is stated in the proof of identity document",
+    "first_name": "First Name",
+    "first_name_placeholder": "John",
+    "first_name_error_required": "This field is required.",
+    "first_name_error_maxlength": "Max length should be 50.",
+    "last_name": "Last Name",
+    "last_name_placeholder": "Doe",
+    "last_name_error_required": "This field is required.",
+    "last_name_error_maxlength": "Max length should be 50.",
+    "date_of_birth": "Date of Birth",
+    "date_of_birth_error_required": "This field is required.",
+    "country_of_birth": "Country of Birth",
+    "zip_code": "Zip Code",
+    "zip_code_error_required": "This field is required.",
+    "zip_code_error_maxlength": "Max length should be 10.",
+    "living_in": "Living In",
+    "city": "City",
+    "city_error_required": "This field is required.",
+    "city_error_maxlength": "Max length should be 50.",
+    "address_line_1": "Address (Line 1)",
+    "address_line_1_error_required": "This field is required.",
+    "address_line_2": "Address (Line 2)",
+    "address_line_2_error_required": "This field is required.",
+    "next": "Next"
+  },
+
+  "phone_verification": {
+    "description": "Please write down your valid phone number. A text message wil be sent for verification.",
+    "country": "Country",
+    "mobile_number_placeholder": "Mobile Number",
+    "mobile_number_error_required": "This field is required.",
+    "mobile_number_error_maxlength": "Max length should be 15.",
+    "mobile_number_error_pattern": "Only digits are valid.",
+    "button_submit": "Submit",
+    "verification_message": "Enter the validation code from your mobile",
+    "code_error_required": "This field is required.",
+    "code_error_maxlength": "Max length should be 6.",
+    "code_error_minlength": "Mix length should be 6.",
+    "code_error_pattern": "Only digits are valid.",
+    "next": "Next",
+    "back": "Back"
+  },
+
+  "identity_proof": {
+    "description": "Please provide a picture of any of the following:",
+    "documents": [
+      "Passport (the main double-page spread)",
+      "Driver's license (both sides)",
+      "National identity document (both sides)"
+    ],
+    "hints": [
+      "Photo/scan must be clear, in color and display the entire ID.",
+      "Your full legal name and date of birth entered in form 'Personal information' must exactly match the information in your document.",
+      "Documents in non-latin characters cannot be accepted without certified translation.",
+      "Max size 10 Mb."
+    ],
+    "next": "Next",
+    "back": "Back"
+  },
+
+  "selfie": {
+    "description": "Please submit a selfie in which you are holding your government-issued ID and a paper note. On the note you should handwrite your email address, the current date, and the words 'for Didex'. Make sure the selfie you are submitting meets the following requirements:",
+    "restricts": [
+      "It is taken in good light",
+      "The photo is clear, high-resolution, and in color",
+      "Your face must be clearly visible",
+      "The text in the note must be handwritten by you and not typed",
+      "The document you are holding must be the same you are submitting for your identity verification",
+      "Neither the photos nor the documents have been edited or manipulated"
+    ],
+    "next": "Next",
+    "back": "Back"
+  },
+
+  "done": {
+    "description": "Thanks! Now click on submit button to send your KYC application for approval.",
+    "edit_application": "Edit Application",
+    "submit": "Submit"
+  }
+}

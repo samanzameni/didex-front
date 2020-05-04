@@ -1,0 +1,91 @@
+{
+  "instruments": {
+    "title": "Instruments",
+    "name": "Name",
+    "name_tooltip": "The name of the cryptocurrency",
+    "price": "Price",
+    "volume": "Volume",
+    "change": "Change"
+  },
+  "market": {
+    "market_tab": "Market",
+    "market_tab_tooltip": "The market price is defined as the best available price for the instrument at the moment when the order is placed.",
+    "limit_tab": "Limit",
+    "limit_tab_tooltip": "A limit order to buy would be at the limit or lower price, and a limit order to sell would be at the limit or higher price."
+  },
+  "market_form": {
+    "side_buy": "Buy",
+    "side_sell": "Sell",
+    "time_in_force": "Time in force",
+    "time_in_force_tooltip": "GoodTillCancelled: lasts until the order is completed or canceled.\n\nImmediateOrCancel: IOC is an order to buy or sell an currency that executes all or part immediately and cancels any unfilled portion of the order.\n\nFillOrKill: FOK order executes a transaction immediately and completely or not at all. (i.e., no partial execution of the order is allowed)\n\nDay: automatically expires if not executed on the day the order was placed. A day ends at 00:00 UTC time.\n\nGoodTillDate: automatically expires at the specified date and time.",
+    "post_only": "Post only",
+    "post_only_tooltip": "A post-only limit order is either placed in the order book or expires if matches an existing order. Post-only option guarantees that you will not pay the taker fee.",
+    "balance": "Balance",
+    "in_order": "In order",
+    "total": "Total",
+    "total_tooltip": "Total value of order in quote currency",
+    "best_ask": "Best Ask",
+    "best_bid": "Best Bid",
+    "amount": "Amount",
+    "amount_error_required": "Amount field can't be empty",
+    "amount_error_max": "Amount should be a positive number lesser than or equal to your balance:",
+    "amount_error_min": "Amount should be a positive number greater than or equal to",
+    "limit": "Limit",
+    "limit_error_required": "Limit field can't be empty",
+    "limit_error_min": "Limit should be a positive number greater than or equal to",
+    "taker_fee": "Taker fee",
+    "taker_fee_tooltip": "Taker fees are paid when you remove liquidity from our order book by placing any order that is executed against an order on the order book. If you buy or sell using a market order, you will pay the taker fee because a market order immediately removes liquidity (other traders' offers) from the order book.",
+    "maker_fee": "Maker fee",
+    "maker_fee_tooltip": "Maker fees are paid when you add liquidity to our order book by placing a limit order below the ticker price for buy, and above the ticker price for sell.  If you place a limit buy below the current market price, or a limit sell above the current market price, then you will pay the maker fee if the market moves into your limit order because you added liquidity to the order book, while other traders took your offer from the order book.",
+    "market_approx_pay": "You will approximately pay",
+    "market_approx_get": "You will approximately get"
+  },
+  "order_book": {
+    "title": "Order Book",
+    "buying": "Buying",
+    "selling": "Selling",
+    "total": "Total",
+    "sum": "Sum",
+    "amount": "Amount",
+    "bid": "Bid",
+    "bid_tooltip": "The bid price represents the maximum price that a buyer is willing to pay for a share of stock or other currency.",
+    "ask": "Ask",
+    "ask_tooltip": "The ask price represents the minimum price that a seller is willing to take for that same currency."
+  },
+  "time_and_sales": {
+    "title": "Time & Sales",
+    "time": "Time",
+    "price": "Price",
+    "amount": "Amount"
+  },
+  "trades": {
+    "title": "My Orders and Trades",
+    "overlay_auth_message": "You must sign in to see this tab",
+    "overlay_auth_button": "Sign In",
+    "overlay_data_message": "No data to be shown in this section ...",
+
+    "active": {
+      "time": "Time",
+      "id": "ID",
+      "price": "Price",
+      "exec_amount": "Exec/Amount",
+      "total": "Total"
+    },
+
+    "filled": {
+      "time": "Time",
+      "id": "ID",
+      "price": "Price",
+      "exec_amount": "Exec/Amount",
+      "total": "Total"
+    },
+
+    "trade": {
+      "time": "Time",
+      "id": "ID",
+      "price": "Price",
+      "amount": "Amount",
+      "total": "Total"
+    }
+  }
+}

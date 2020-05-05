@@ -1,0 +1,40 @@
+{
+  "title": "Reports",
+  "tab_orders": "Orders",
+  "tab_trades": "Trades",
+  "tab_transactions": "Transactions",
+
+  "orders": {
+    "data_message": "You have no active orders ...",
+    "createdAt": "Time",
+    "marketSymbol": "Symbol",
+    "id": "ID",
+    "price": "Price",
+    "execAmount": "Exec/Amount",
+    "total": "Total"
+  },
+
+  "trades": {
+    "data_message": "You have no trade records ...",
+    "timeStamp": "Time",
+    "marketSymbol": "Symbol",
+    "id": "ID",
+    "side": "Side",
+    "volume": "Amount",
+    "price": "Price",
+    "volumeInQuote": "Total",
+    "fee": "Fee"
+  },
+
+  "transactions": {
+    "data_message": "You have no transaction records ...",
+    "createdAt": "Time",
+    "type": "Type",
+    "currencyShortName": "Currency",
+    "transactionId": "ID",
+    "hash": "Hash",
+    "amount": "Amount",
+    "fee": "Fee",
+    "address": "Address"
+  }
+}

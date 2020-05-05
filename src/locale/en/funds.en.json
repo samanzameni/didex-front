@@ -1,0 +1,52 @@
+{
+  "title": "Funds",
+  "shortName": "Coin",
+  "shortName_tooltip": "Name of CryptoCurrency",
+  "main": "Main",
+  "main_tooltip": "The amount which exists in main account",
+  "available": "Available",
+  "available_tooltip": "The amount which exists in trading account",
+  "reserved": "On Orders",
+  "reserved_tooltip": "The amount which is already in the order list and is reserved",
+  "total": "Total",
+  "total_tooltip": "The summation of Main account, Available and On Orders",
+  "actions": "Actions",
+
+  "deposit": {
+    "title": "Deposit",
+    "deposit_address": "Deposit Address",
+    "fetching": "Fetching ...",
+    "fetching_error": "Error while fetching!",
+    "copy": "Copy",
+    "tips": [
+      "Please don’t deposit any other digital assets except selected currency to the above address. Otherwise, you may lose your assets permanently.",
+      "Depositing to the above address requires confirmations of the entire network. It will arrive after 12 confirmations, and it will be available to withdraw after 12 confirmations.",
+      "Your deposit address won’t change often. If there are any changes, we will notify you via announcement or email.",
+      "Please make sure that your computer and browser are secure and your information is protected from being tampered or leaked."
+    ]
+  },
+
+  "withdraw": {
+    "title": "Withdraw",
+    "address": "Address",
+    "amount": "Amount",
+    "fee": "Fee",
+    "received": "Received",
+    "received_error": "Quantity should be higher",
+    "withdraw": "Withdraw",
+    "tips": [
+      "Please make sure that your computer and browser are secure and your information is protected from being tampered or leaked."
+    ]
+  },
+
+  "transfer": {
+    "title": "Transfer",
+    "main_to_trade": "Main Account to Trading",
+    "trade_to_main": "Trading Account to Main",
+    "amount": "Amount",
+    "transfer": "Transfer",
+    "tips": [
+      "Please make sure that your computer and browser are secure and your information is protected from being tampered or leaked."
+    ]
+  }
+}

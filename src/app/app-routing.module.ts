@@ -5,13 +5,9 @@ const routes: Routes = [
   {
     path: '',
     loadChildren: () =>
-      import('@feature/modules/main.module').then(module => module.MainModule),
-  },
-
-  {
-    path: 'auth',
-    loadChildren: () =>
-      import('@feature/modules/auth.module').then(module => module.AuthModule),
+      import('@feature/modules/main.module').then(
+        (module) => module.MainModule
+      ),
   },
 ];
 

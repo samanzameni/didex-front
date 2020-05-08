@@ -19,6 +19,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { NativeDateModule, MatNativeDateModule } from '@angular/material/core';
+import { LocalePipeModule } from './locale-pipe.module';
 
 const routes: Routes = [
   {
@@ -61,6 +62,7 @@ const routes: Routes = [
     CommonModule,
     RouterModule.forChild(routes),
     WidgetModule,
+    LocalePipeModule,
     FormsModule,
     ReactiveFormsModule,
     //

@@ -28,6 +28,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { TraderResolver } from '@core/resolvers/trader.resolver';
+import { LocalePipeModule } from './locale-pipe.module';
 
 const routes: Routes = [
   {
@@ -72,6 +73,7 @@ const routes: Routes = [
     CommonModule,
     RouterModule.forChild(routes),
     WidgetModule,
+    LocalePipeModule,
     FormsModule,
     ReactiveFormsModule,
     //

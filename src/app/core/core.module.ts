@@ -8,6 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [],
   imports: [HttpClientModule, DATAModule, RESTModule, INTERVALModule],
+  exports: [],
   providers: [StorageService, AuthService, TraderService],
 })
 export class CoreModule {}

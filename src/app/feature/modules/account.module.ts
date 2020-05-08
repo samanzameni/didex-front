@@ -16,6 +16,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTableModule } from '@angular/material/table';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatIcon, MatIconModule } from '@angular/material/icon';
+import { LocalePipeModule } from './locale-pipe.module';
 
 const routes: Routes = [
   {
@@ -42,6 +43,7 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     WidgetModule,
     FormsModule,
+    LocalePipeModule,
     ReactiveFormsModule,
     FontAwesomeModule,
     //

@@ -7,7 +7,9 @@
 
 <ng-template #content>
   <div arrangeStack class="instruments__header">
-    <h2 class="instruments-header__title">Instruments</h2>
+    <h2 class="instruments-header__title">
+      {{ 'homepage.instruments.title' | ddxLocale }}
+    </h2>
 
     <div arrangeInline class="instruments-header__controls">
       <ul arrangeInline class="instruments-header__base-currencies">

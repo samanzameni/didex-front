@@ -15,6 +15,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { LocalePipeModule } from './locale-pipe.module';
 
 const routes: Routes = [
   {
@@ -36,6 +37,7 @@ const routes: Routes = [
     CommonModule,
     RouterModule.forChild(routes),
     WidgetModule,
+    LocalePipeModule,
     FormsModule,
     ReactiveFormsModule,
     //

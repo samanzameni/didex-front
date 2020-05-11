@@ -1,7 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { ExternalUrlRedirectorComponent } from '@widget/components';
 
 const routes: Routes = [
+  {
+    path: 'externalRedirect',
+    component: ExternalUrlRedirectorComponent,
+  },
   {
     path: '',
     loadChildren: () =>

@@ -12,3 +12,5 @@ export * from './pro-button/pro-button.component';
 export * from './image-uploader/image-uploader.component';
 
 export * from './tv-chart-wrapper/tv-chart-wrapper.component';
+
+export * from './external-url-redirector/external-url-redirector.component';

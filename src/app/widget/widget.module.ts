@@ -31,6 +31,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDividerModule } from '@angular/material/divider';
+import { ExternalUrlRedirectorComponent } from './components/external-url-redirector/external-url-redirector.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { MatDividerModule } from '@angular/material/divider';
     ImageUploaderComponent,
     //
     TradingViewChartWrapperComponent,
+    ExternalUrlRedirectorComponent,
   ],
   imports: [
     CommonModule,
@@ -86,6 +88,7 @@ import { MatDividerModule } from '@angular/material/divider';
     ImageUploaderComponent,
     //
     TradingViewChartWrapperComponent,
+    ExternalUrlRedirectorComponent,
   ],
 })
 export class WidgetModule {}

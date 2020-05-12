@@ -4,7 +4,7 @@ import { ExternalUrlRedirectorComponent } from '@widget/components';
 
 const routes: Routes = [
   {
-    path: 'externalRedirect',
+    path: 'external-redirect',
     component: ExternalUrlRedirectorComponent,
   },
   {

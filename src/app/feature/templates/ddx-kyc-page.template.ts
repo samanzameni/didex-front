@@ -29,12 +29,10 @@ export abstract class KYCPageDirective {
   }
 
   protected setLoadingOn(): void {
-    // this.renderer.addClass(this.submitButton.nativeElement, 'is-loading');
     this.submitButton.setLoadingOn();
   }
 
   protected setLoadingOff(): void {
-    // this.renderer.removeClass(this.submitButton.nativeElement, 'is-loading');
     this.submitButton.setLoadingOff();
   }
 

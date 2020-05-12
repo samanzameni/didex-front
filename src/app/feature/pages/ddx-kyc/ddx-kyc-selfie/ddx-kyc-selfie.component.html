@@ -37,7 +37,10 @@
     </div>
 
     <div class="uploader-section">
-      <image-uploader [base64Control]="kycFormControls.image"></image-uploader>
+      <image-uploader
+        [base64Control]="kycFormControls.image"
+        [isLoading]="isLoading"
+      ></image-uploader>
     </div>
 
     <div arrangeStack class="guide">

@@ -26,42 +26,33 @@ export class KYCGuard implements CanActivateChild {
     | boolean
     | UrlTree {
     const currentKYCPageURL: string = state.url.split('/').slice(-1)[0];
-    let observableToSubscribe;
-    if (
-      currentKYCPageURL === 'identity-proof' ||
-      currentKYCPageURL === 'selfie' ||
-      currentKYCPageURL === 'done'
-    ) {
-      observableToSubscribe = forkJoin([
-        this.traderService.updateCurrentTrader(),
-        this.traderService.updateCurrentTraderKYCImages(),
-      ]);
-    } else {
-      observableToSubscribe = this.traderService.updateCurrentTrader();
-    }
 
-    return observableToSubscribe.pipe(
+    return this.traderService.updateCurrentTrader().pipe(
       catchError((errorResponse) => {
         return of(null);
       }),
-      map((response: Trader | Array<any> | null) => {
-        if (!response) {
-          return null;
-        }
+      // map((response: Trader | Array<any> | null) => {
+      //   if (!response) {
+      //     return null;
+      //   }
 
-        let trader: Trader;
-        if (Array.isArray(response)) {
-          trader = response[0];
-          trader.kycImages = response[1];
-        } else {
-          trader = response;
-        }
-        return trader;
-      }),
+      //   let trader: Trader;
+      //   if (Array.isArray(response)) {
+      //     trader = response[0];
+      //     trader.kycImages = response[1];
+      //   } else {
+      //     trader = response;
+      //   }
+      //   return trader;
+      // }),
       map((trader: Trader | null) => {
         if (!trader) {
           alert('In order to view this page, you have to be signed in.');
-          return this.router.parseUrl('/auth/signin');
+          return this.router.parseUrl(
+            '/external-redirect?redirect_url=/auth/signin&from=/trade'.concat(
+              state.url
+            )
+          );
         }
 
         switch (currentKYCPageURL) {

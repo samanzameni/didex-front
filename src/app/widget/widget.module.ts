@@ -19,6 +19,7 @@ import {
   ImageUploaderComponent,
   ProButtonComponent,
   DropdownAutocompleteCountriesComponent,
+  ExternalUrlRedirectorComponent,
 } from './components';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -31,7 +32,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDividerModule } from '@angular/material/divider';
-import { ExternalUrlRedirectorComponent } from './components/external-url-redirector/external-url-redirector.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -69,6 +70,7 @@ import { ExternalUrlRedirectorComponent } from './components/external-url-redire
     MatInputModule,
     MatSelectModule,
     MatDividerModule,
+    MatProgressSpinnerModule,
   ],
   exports: [
     ArrangeCenterDirective,

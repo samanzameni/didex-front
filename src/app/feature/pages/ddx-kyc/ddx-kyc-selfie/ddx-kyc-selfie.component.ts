@@ -14,6 +14,8 @@ import { TraderService } from '@core/services';
   ],
 })
 export class KYCSelfiePageComponent extends KYCPageDirective implements OnInit {
+  private isLoadingImage: boolean;
+
   constructor(
     protected router: Router,
     protected el: ElementRef,
@@ -27,12 +29,24 @@ export class KYCSelfiePageComponent extends KYCPageDirective implements OnInit {
   }
 
   ngOnInit() {
-    const trader = this.currentTrader;
+    this.buildForm();
+
+    this.isLoadingImage = true;
+    this.traderService.updateCurrentTraderKYCImages().subscribe((response) => {
+      this.isLoadingImage = false;
+      this.buildForm();
+    });
+  }
+
+  get isLoading(): boolean {
+    return this.isLoadingImage;
+  }
+
+  private buildForm(): void {
+    const images = this.traderService.currentTraderKYCImages;
     let img = '';
-    if (trader.kycImages && trader.kycImages.length > 0) {
-      const identityImage = trader.kycImages.find(
-        image => image.imageType === 2
-      );
+    if (images && images.length > 0) {
+      const identityImage = images.find((image) => image.imageType === 2);
       if (identityImage) {
         img = identityImage.image;
       }
@@ -49,11 +63,11 @@ export class KYCSelfiePageComponent extends KYCPageDirective implements OnInit {
     const dataToSend = this.kycForm.value;
 
     this.restService.requestUpdateSelfieImage(dataToSend).subscribe(
-      response => {
+      (response) => {
         this.setLoadingOff();
         this.router.navigateByUrl('/user/kyc/done');
       },
-      errorResponse => {
+      (errorResponse) => {
         this.setLoadingOff();
       }
     );

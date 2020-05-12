@@ -79,12 +79,18 @@
   </ng-container>
 
   <ng-container *ngSwitchCase="false">
-    <a class="auth-button" routerLink="/auth/signin">
+    <a
+      class="auth-button"
+      routerLink="/external-redirect?redirect_url=/auth/signin&from=/trade"
+    >
       <button mat-stroked-button>
         Sign In
       </button>
     </a>
-    <a class="auth-button" routerLink="/auth/signup">
+    <a
+      class="auth-button"
+      routerLink="/external-redirect?redirect_url=/auth/signin&from=/trade"
+    >
       <button mat-stroked-button>
         Sign Up
       </button>
@@ -92,10 +98,10 @@
   </ng-container>
 
   <dropdown-menu title="Applications" icon="apps">
-    <a mat-menu-item routerLink="/">Trade</a>
+    <a mat-menu-item class="active" routerLink="/">Trade</a>
     <!-- TODO: URL -->
-    <a mat-menu-item routerLink="/">Academy</a>
+    <!-- <a mat-menu-item routerLink="/">Academy</a> -->
     <!-- TODO: URL -->
-    <a mat-menu-item routerLink="/">Invest</a>
+    <a mat-menu-item href="/invest">Invest</a>
   </dropdown-menu>
 </div>

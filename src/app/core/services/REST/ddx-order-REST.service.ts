@@ -9,6 +9,10 @@ export class OrderRESTService extends AbstractRESTService {
     return this.httpPOST('api/Order', data) as Observable<any>;
   }
 
+  public requestCancelOrder(orderID: string): Observable<any> {
+    return this.httpDELETE(`api/Order/${orderID}`) as Observable<any>;
+  }
+
   public requestListOrders(activeSymbol: string): Observable<Order[]> {
     return this.httpGET(`api/Order/${activeSymbol}?Desc=true`) as Observable<
       Order[]

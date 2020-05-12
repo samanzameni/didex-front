@@ -83,11 +83,12 @@
               <th class="row-big">
                 Total ({{ activeSymbol.quoteCurrencyShortName }})
               </th>
+              <th class="row-small">Cancel</th>
             </tr>
           </thead>
           <tbody class="ddx-table__body">
             <tr arrangeInline *ngFor="let item of activeOrders; let i = index">
-              <td class="row-big">{{ item.createdAt }}</td>
+              <td class="row-big">{{ item.createdAt | date: 'short' }}</td>
               <td class="row-small" title="{{ item.id }}">{{ item.id }}</td>
               <td
                 class="row-big"
@@ -104,6 +105,29 @@
               </td>
               <td class="row-big" title="{{ getTotalPrice(item) }}">
                 {{ getTotalPrice(item) }}
+              </td>
+              <td class="row-small">
+                <ng-template
+                  [ngIf]="!cancelingIDs.includes(item.id)"
+                  [ngIfElse]="canceling"
+                >
+                  <button
+                    class="cancel-order-button"
+                    mat-icon-button
+                    disableRipple
+                    color="warn"
+                    (click)="cancelOrder(item.id)"
+                  >
+                    <mat-icon>clear</mat-icon>
+                  </button>
+                </ng-template>
+                <ng-template #canceling>
+                  <mat-spinner
+                    class="cancel-order-progress"
+                    color="warn"
+                    diameter="14"
+                  ></mat-spinner>
+                </ng-template>
               </td>
             </tr>
           </tbody>
@@ -132,7 +156,7 @@
           </thead>
           <tbody class="ddx-table__body">
             <tr arrangeInline *ngFor="let item of filledOrders; let i = index">
-              <td class="row-big">{{ item.createdAt }}</td>
+              <td class="row-big">{{ item.createdAt | date: 'short' }}</td>
               <td class="row-small" title="{{ item.id }}">{{ item.id }}</td>
               <td
                 class="row-big"
@@ -177,7 +201,7 @@
           </thead>
           <tbody class="ddx-table__body">
             <tr arrangeInline *ngFor="let item of privateTrades; let i = index">
-              <td class="row-big">{{ item.timeStamp }}</td>
+              <td class="row-big">{{ item.timeStamp | date: 'short' }}</td>
               <td class="row-small" title="{{ item.id }}">{{ item.id }}</td>
               <td
                 class="row-big"

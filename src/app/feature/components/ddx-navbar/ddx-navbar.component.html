@@ -81,7 +81,8 @@
   <ng-container *ngSwitchCase="false">
     <a
       class="auth-button"
-      routerLink="/external-redirect?redirect_url=/auth/signin&from=/trade"
+      routerLink="/external-redirect"
+      [queryParams]="{ redirect_url: '/auth/signin', from: '/trade' }"
     >
       <button mat-stroked-button>
         Sign In
@@ -89,7 +90,8 @@
     </a>
     <a
       class="auth-button"
-      routerLink="/external-redirect?redirect_url=/auth/signin&from=/trade"
+      routerLink="/external-redirect"
+      [queryParams]="{ redirect_url: '/auth/signup', from: '/trade' }"
     >
       <button mat-stroked-button>
         Sign Up

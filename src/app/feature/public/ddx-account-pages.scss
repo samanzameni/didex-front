@@ -95,8 +95,16 @@ $page-margin: 15px;
           display: none;
         }
 
+        &.mat-column-currencyShortName {
+          flex: 1.25;
+        }
+
+        &.mat-column-marketSymbol {
+          flex: 1.25;
+        }
+
         &.mat-column-shortName {
-          flex: 0.5;
+          flex: 1;
         }
 
         &.mat-column-actions {

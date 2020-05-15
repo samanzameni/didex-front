@@ -14,6 +14,7 @@ import {
   TransactionsDATAService,
 } from '@core/services/DATA';
 import Decimal from 'decimal.js';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'ddx-reports',
@@ -33,7 +34,8 @@ export class ReportsPageComponent implements OnInit {
   constructor(
     private orderDataService: FilledOrderDATAService,
     private tradeDataService: PrivateTradeDATAService,
-    private transactionsDataService: TransactionsDATAService
+    private transactionsDataService: TransactionsDATAService,
+    private datePipe: DatePipe
   ) {
     this.currentActivePane = 'orders';
   }
@@ -58,8 +60,8 @@ export class ReportsPageComponent implements OnInit {
   get orderData(): any[] {
     return (this.orders || []).map((order) => {
       const mapped: any = { ...order };
-      mapped.createdAt = order.createdAt.replace('T', ' ').substr(0, 19);
-      mapped.execAmount = order.executedQuantity + '/' + order.quantity;
+      mapped.createdAt = this.datePipe.transform(order.createdAt, 'short');
+      mapped.execAmount = `${order.executedQuantity}/${order.quantity}`;
       mapped.total = this.getTotalPrice(order);
       return mapped;
     });
@@ -92,10 +94,12 @@ export class ReportsPageComponent implements OnInit {
     }
   }
 
-  get tradeData(): Trade[] {
+  get tradeData(): any[] {
     return (this.trades || []).map((trade) => {
-      trade.timeStamp = trade.timeStamp.replace('T', ' ').substr(0, 19);
-      return trade;
+      const t: any = { ...trade };
+      t.timeStamp = this.datePipe.transform(trade.timeStamp, 'short');
+      t.side = OrderSide[trade.side];
+      return t;
     });
   }
 
@@ -107,7 +111,7 @@ export class ReportsPageComponent implements OnInit {
       'side',
       'volume',
       'price',
-      'volumeInQuote',
+      'volumeInQoute',
       'fee',
     ];
   }
@@ -126,7 +130,7 @@ export class ReportsPageComponent implements OnInit {
         return 'Amount';
       case 'price':
         return 'Price';
-      case 'volumeInQuote':
+      case 'volumeInQoute':
         return 'Total';
       case 'fee':
         return 'Fee';
@@ -138,10 +142,7 @@ export class ReportsPageComponent implements OnInit {
   get transactionsData(): any[] {
     return (this.transactions || []).map((transaction) => {
       const t: any = { ...transaction };
-      t.createdAt = transaction.createdAt.replace('T', ' ').substr(0, 19);
-
-      // const keys = Object.keys(TransactionType);
-      // const names = keys.slice(keys.length / 2);
+      t.createdAt = this.datePipe.transform(transaction.createdAt, 'short');
       t.type = TransactionType[transaction.type];
       return t;
     });

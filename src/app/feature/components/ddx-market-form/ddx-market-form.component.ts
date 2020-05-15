@@ -73,16 +73,10 @@ export class MarketFormComponent implements OnInit, OnChanges {
       ],
       quantity: [
         this.activeSymbol.quantityIncrement,
-        this.side === 'buy'
-          ? [
-              Validators.required,
-              Validators.min(this.activeSymbol.quantityIncrement),
-            ]
-          : [
-              Validators.required,
-              Validators.min(this.activeSymbol.quantityIncrement),
-              Validators.max(this.baseBalanceData.available),
-            ],
+        [
+          Validators.required,
+          Validators.min(this.activeSymbol.quantityIncrement),
+        ],
       ],
       price: [
         this.activeSymbol.tickSize,

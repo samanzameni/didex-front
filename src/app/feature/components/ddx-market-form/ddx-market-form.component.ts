@@ -195,11 +195,17 @@ export class MarketFormComponent implements OnInit, OnChanges {
   }
 
   private get buyTotal(): Decimal {
-    return this.bestAsk.mul(this.marketForm.controls.quantity.value || 0);
+    // return this.bestAsk.mul(this.marketForm.controls.quantity.value || 0);
+    const amount = new Decimal(this.marketFormGroup.controls.quantity.value);
+    const limit = new Decimal(this.marketFormGroup.controls.price.value);
+    return amount.mul(limit);
   }
 
   private get sellTotal(): Decimal {
-    return this.bestBid.mul(this.marketForm.controls.quantity.value || 0);
+    // return this.bestBid.mul(this.marketForm.controls.quantity.value || 0);
+    const amount = new Decimal(this.marketFormGroup.controls.quantity.value);
+    const limit = new Decimal(this.marketFormGroup.controls.price.value);
+    return amount.mul(limit);
   }
 
   get total(): Decimal {
@@ -207,19 +213,11 @@ export class MarketFormComponent implements OnInit, OnChanges {
   }
 
   get takerFee(): Decimal {
-    return this.activeSymbol.feeSide === 0
-      ? new Decimal(this.marketForm.controls.quantity.value || 0).mul(
-          this.activeSymbol.takeLiquidityRate
-        )
-      : this.total.mul(this.activeSymbol.takeLiquidityRate);
+    return this.total.mul(this.activeSymbol.takeLiquidityRate);
   }
 
   get makerFee(): Decimal {
-    return this.activeSymbol.feeSide === 0
-      ? new Decimal(this.marketForm.controls.quantity.value || 0).mul(
-          this.activeSymbol.provideLiquidityRate
-        )
-      : this.total.mul(this.activeSymbol.provideLiquidityRate);
+    return this.total.mul(this.activeSymbol.provideLiquidityRate);
   }
 
   get buyApproxPay(): Decimal {

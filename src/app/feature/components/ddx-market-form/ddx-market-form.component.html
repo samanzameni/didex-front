@@ -8,6 +8,7 @@
   #form="ngForm"
   class="market__form"
   autocomplete="off"
+  *ngIf="!!marketFormGroup"
   [formGroup]="marketFormGroup"
   (ngSubmit)="submitForm()"
 >
@@ -18,6 +19,7 @@
       matTooltip="{{ timeInForceTooltipContent }}"
       matTooltipClass="formatted-tooltip"
       class="header-tooltip-button"
+      type="button"
     >
       <mat-icon>help</mat-icon>
     </button>
@@ -46,6 +48,7 @@
       matTooltip="A post-only limit order is either placed in the order book or expires if matches an existing order. Post-only option guarantees that you will not pay the taker fee."
       matTooltipClass="formatted-tooltip"
       class="header-tooltip-button"
+      type="button"
     >
       <mat-icon>help</mat-icon>
     </button>
@@ -85,6 +88,7 @@
               matTooltip="Total value of order in quote currency"
               matTooltipClass="formatted-tooltip"
               class="header-tooltip-button"
+              type="button"
             >
               <mat-icon>help</mat-icon>
             </button>
@@ -136,6 +140,7 @@
               matTooltip="Total value of order in quote currency"
               matTooltipClass="formatted-tooltip"
               class="header-tooltip-button"
+              type="button"
             >
               <mat-icon>help</mat-icon>
             </button>
@@ -234,6 +239,7 @@
             matTooltip="Taker fees are paid when you remove liquidity from our order book by placing any order that is executed against an order on the order book. If you buy or sell using a market order, you will pay the taker fee because a market order immediately removes liquidity (other traders' offers) from the order book."
             matTooltipClass="formatted-tooltip"
             class="header-tooltip-button"
+            type="button"
           >
             <mat-icon>help</mat-icon>
           </button>
@@ -252,6 +258,7 @@
             matTooltip="Maker fees are paid when you add liquidity to our order book by placing a limit order below the ticker price for buy, and above the ticker price for sell.  If you place a limit buy below the current market price, or a limit sell above the current market price, then you will pay the maker fee if the market moves into your limit order because you added liquidity to the order book, while other traders took your offer from the order book."
             matTooltipClass="formatted-tooltip"
             class="header-tooltip-button"
+            type="button"
           >
             <mat-icon>help</mat-icon>
           </button>

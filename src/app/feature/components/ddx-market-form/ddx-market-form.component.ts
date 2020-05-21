@@ -79,6 +79,10 @@ export class MarketFormComponent implements OnInit, OnChanges {
         ],
       ],
       price: [
+        Math.max(
+          (this.side === 'buy' ? this.bestAsk : this.bestBid).toNumber(),
+          this.activeSymbol.tickSize
+        ),
         this.activeSymbol.tickSize,
         [Validators.required, Validators.min(this.activeSymbol.tickSize)],
       ],

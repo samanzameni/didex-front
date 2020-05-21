@@ -46,8 +46,8 @@ export class PublicRESTService extends AbstractRESTService {
 
   public requestTrade(activeSymbol: string): Observable<Trade[]> {
     return this.httpPureRequest(
-      `api/Public/Trades/${activeSymbol}?Desc=true&Limit=100`,
+      `api/Public/Trades/${activeSymbol}?Desc=true&Limit=150`,
       'GET'
-    ) as Observable<any>;
+    ) as Observable<Trade[]>;
   }
 }

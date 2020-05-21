@@ -195,17 +195,23 @@ export class MarketFormComponent implements OnInit, OnChanges {
   }
 
   private get buyTotal(): Decimal {
-    // return this.bestAsk.mul(this.marketForm.controls.quantity.value || 0);
-    const amount = new Decimal(this.marketFormGroup.controls.quantity.value);
-    const limit = new Decimal(this.marketFormGroup.controls.price.value);
-    return amount.mul(limit);
+    if (this.activeType === 'limit') {
+      const amount = new Decimal(this.marketFormGroup.controls.quantity.value);
+      const limit = new Decimal(this.marketFormGroup.controls.price.value);
+      return amount.mul(limit);
+    }
+
+    return new Decimal(0); // TODO
   }
 
   private get sellTotal(): Decimal {
-    // return this.bestBid.mul(this.marketForm.controls.quantity.value || 0);
-    const amount = new Decimal(this.marketFormGroup.controls.quantity.value);
-    const limit = new Decimal(this.marketFormGroup.controls.price.value);
-    return amount.mul(limit);
+    if (this.activeType === 'limit') {
+      const amount = new Decimal(this.marketFormGroup.controls.quantity.value);
+      const limit = new Decimal(this.marketFormGroup.controls.price.value);
+      return amount.mul(limit);
+    }
+
+    return new Decimal(0); // TODO
   }
 
   get total(): Decimal {

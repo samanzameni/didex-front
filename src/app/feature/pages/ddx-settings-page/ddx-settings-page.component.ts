@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, NgForm } from '@angular/forms';
 import { DropdownSelectItem } from '@widget/models';
 import { TIMEZONES } from '@core/util/constants';
 import { mustMatch, isStrong } from '@core/util/validators';
@@ -22,9 +22,11 @@ export class SettingsPageComponent implements OnInit {
   private generalReactiveFormGroup: FormGroup;
   private securityReactiveFormGroup: FormGroup;
   private isPasswordHidden: boolean;
+  private formErrors: any;
 
   @ViewChild('generalSubmitButton') generalSubmitButton: ProButtonComponent;
   @ViewChild('securitySubmitButton') securitySubmitButton: ProButtonComponent;
+  @ViewChild('securityForm') private securityFormDirective: NgForm;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -49,9 +51,43 @@ export class SettingsPageComponent implements OnInit {
         this.activePage = params.tab || 'general';
       });
     }
+
+    this.formErrors = {};
   }
 
-  ngOnInit() {
+  private buildSecurityForm(): void {
+    this.securityReactiveFormGroup = this.formBuilder.group(
+      {
+        currentPassword: ['', [Validators.required, Validators.minLength(8)]],
+        newPassword: ['', [Validators.required, Validators.minLength(8)]],
+        confirmPassword: ['', [Validators.required]],
+      },
+      {
+        validators: [
+          mustMatch('newPassword', 'confirmPassword'),
+          isStrong('newPassword'),
+        ],
+      }
+    );
+  }
+
+  private resetSecurityForm(): void {
+    if (this.securityReactiveFormGroup) {
+      this.securityReactiveFormGroup.markAsPristine();
+      this.securityReactiveFormGroup.markAsUntouched();
+      this.securityReactiveFormGroup.reset({
+        currentPassword: '',
+        newPassword: '',
+        confirmPassword: '',
+      });
+    }
+
+    if (this.securityFormDirective) {
+      this.securityFormDirective.resetForm();
+    }
+  }
+
+  private buildGeneralForm(): void {
     const trader: any = this.traderService.currentTrader;
 
     this.generalReactiveFormGroup = this.formBuilder.group({
@@ -62,20 +98,11 @@ export class SettingsPageComponent implements OnInit {
         trader.generalInformation ? trader.generalInformation.timeZone : '',
       ],
     });
+  }
 
-    this.securityReactiveFormGroup = this.formBuilder.group(
-      {
-        currentPassword: ['', [Validators.required, Validators.minLength(8)]],
-        newPassword: ['', [Validators.required, Validators.minLength(8)]],
-        confirmPassword: ['', [Validators.required, Validators.minLength(8)]],
-      },
-      {
-        validators: [
-          mustMatch('newPassword', 'confirmPassword'),
-          isStrong('newPassword'),
-        ],
-      }
-    );
+  ngOnInit() {
+    this.buildGeneralForm();
+    this.buildSecurityForm();
   }
 
   get currentActivePage(): string {
@@ -125,6 +152,10 @@ export class SettingsPageComponent implements OnInit {
     return this.isPasswordHidden;
   }
 
+  get errors(): any {
+    return this.formErrors;
+  }
+
   toggleHidePassword(): void {
     this.isPasswordHidden = !this.isPasswordHidden;
   }
@@ -155,6 +186,22 @@ export class SettingsPageComponent implements OnInit {
       );
   }
 
+  hasNumber(value: string): boolean {
+    return /\d/.test(value);
+  }
+  hasUpper(value: string): boolean {
+    return /[A-Z]/.test(value);
+  }
+  hasLower(value: string): boolean {
+    return /[a-z]/.test(value);
+  }
+  hasSpecial(value: string): boolean {
+    return /[!@#$%^&*_?]/.test(value);
+  }
+  isAtLeastEightCharacters(value: string): boolean {
+    return value && value.length >= 8;
+  }
+
   onSubmitSecurityForm(): void {
     if (this.securitySubmitButton) {
       this.securitySubmitButton.setLoadingOn();
@@ -167,11 +214,27 @@ export class SettingsPageComponent implements OnInit {
             this.securitySubmitButton.setLoadingOff();
           }
 
+          this.resetSecurityForm();
+
           this.snackbarService.open('Changes saved!', '', { duration: 1500 });
         },
         (errorResponse) => {
           if (this.securitySubmitButton) {
             this.securitySubmitButton.setLoadingOff();
+          }
+
+          if (errorResponse.status === 400) {
+            const errors = errorResponse.error.errors;
+
+            if (errors.password) {
+              this.formErrors.password = errors.password;
+            }
+
+            for (const key of Object.keys(errors)) {
+              if (!['password', 'default'].includes(key)) {
+                alert(`An error occured: There is something wrong with ${key}`);
+              }
+            }
           }
         }
       );

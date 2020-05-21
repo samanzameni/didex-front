@@ -82,7 +82,7 @@
       autocomplete="off"
       [formGroup]="securityFormGroup"
       (ngSubmit)="onSubmitSecurityForm()"
-      #securityForm
+      #securityForm="ngForm"
     >
       <mat-form-field appearance="outline">
         <mat-label>Old Password</mat-label>
@@ -98,6 +98,10 @@
         }}</mat-icon>
       </mat-form-field>
 
+      <ng-container *ngIf="errors">
+        <mat-error *ngFor="let error of errors.password">{{ error }}</mat-error>
+      </ng-container>
+
       <mat-form-field appearance="outline">
         <mat-label>Password</mat-label>
         <input
@@ -112,6 +116,46 @@
         }}</mat-icon>
       </mat-form-field>
 
+      <ul arrangeStack class="password-hints-container">
+        <li
+          [ngClass]="{
+            approved: isAtLeastEightCharacters(
+              securityFormGroup.controls.newPassword.value
+            )
+          }"
+        >
+          Must be at least 8 characters
+        </li>
+        <li
+          [ngClass]="{
+            approved: hasLower(securityFormGroup.controls.newPassword.value)
+          }"
+        >
+          Must contain a lower case character
+        </li>
+        <li
+          [ngClass]="{
+            approved: hasUpper(securityFormGroup.controls.newPassword.value)
+          }"
+        >
+          Must contain a upper case character
+        </li>
+        <li
+          [ngClass]="{
+            approved: hasNumber(securityFormGroup.controls.newPassword.value)
+          }"
+        >
+          Must contain a number
+        </li>
+        <li
+          [ngClass]="{
+            approved: hasSpecial(securityFormGroup.controls.newPassword.value)
+          }"
+        >
+          Must contain a sign
+        </li>
+      </ul>
+
       <mat-form-field appearance="outline">
         <mat-label>Confirm Password</mat-label>
         <input
@@ -125,6 +169,21 @@
           isHidden ? 'visibility_off' : 'visibility'
         }}</mat-icon>
       </mat-form-field>
+
+      <mat-error
+        *ngIf="securityFormGroup.controls.confirmPassword.hasError('required')"
+      >
+        Password must be confirmed
+      </mat-error>
+      <mat-error
+        *ngIf="securityFormGroup.controls.confirmPassword.hasError('mustMatch')"
+      >
+        Passwords must match
+      </mat-error>
+
+      <ng-container *ngIf="errors">
+        <mat-error *ngFor="let error of errors.default">{{ error }}</mat-error>
+      </ng-container>
 
       <pro-button
         color="primary"

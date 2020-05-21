@@ -276,7 +276,9 @@ export class MarketFormComponent implements OnInit, OnChanges {
           }
 
           for (const key of Object.keys(errors)) {
-            if (!['Price', 'Quantity', 'MarketSymbol'].includes(key)) {
+            if (
+              !['Price', 'Quantity', 'MarketSymbol', 'default'].includes(key)
+            ) {
               alert(`An error occured: There is something wrong with ${key}`);
             }
           }

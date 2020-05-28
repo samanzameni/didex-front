@@ -5,8 +5,8 @@ import { OrderData, Order } from '@core/models/ddx-order.model';
 
 @Injectable()
 export class OrderRESTService extends AbstractRESTService {
-  public requestOrder(data: OrderData): Observable<any> {
-    return this.httpPOST('api/Order', data) as Observable<any>;
+  public requestOrder(data: OrderData): Observable<Order> {
+    return this.httpPOST('api/Order', data) as Observable<Order>;
   }
 
   public requestCancelOrder(orderID: string): Observable<any> {

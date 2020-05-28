@@ -14,6 +14,7 @@ import {
   OrderType,
   OrderTimeInForce,
   OrderData,
+  Order,
 } from '@core/models';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { ProButtonComponent } from '@widget/components';
@@ -22,6 +23,8 @@ import { AuthService } from '@core/services';
 import { OrderRESTService } from '@core/services/REST';
 import Decimal from 'decimal.js';
 import { getTickerFromSymbol } from '@core/util/ticker';
+
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'ddx-market-form',
@@ -45,7 +48,8 @@ export class MarketFormComponent implements OnInit, OnChanges {
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService,
-    private orderService: OrderRESTService
+    private orderService: OrderRESTService,
+    private toastr: ToastrService
   ) {
     this.side = 'buy';
     this.activeType = 'limit';
@@ -258,8 +262,12 @@ export class MarketFormComponent implements OnInit, OnChanges {
     const dataToSend: OrderData = this.marketForm.value;
 
     this.orderService.requestOrder(dataToSend).subscribe(
-      (response) => {
+      (response: Order) => {
         this.submitButton.setLoadingOff();
+        this.toastr.success(
+          `Your order ID: ${response.id}`,
+          'Order submitted!'
+        );
       },
       (errorResponse) => {
         this.submitButton.setLoadingOff();

@@ -30,15 +30,21 @@
   }
 
   span.market__type {
+    @extend .has-transition;
+
     padding: 20px 0;
     cursor: pointer;
+    background: rgba($ddx-light, 0.1);
+    border-top: 2px solid transparent;
+
+    &.active {
+      background: transparent;
+      color: $ddx-yellow;
+      border-color: $ddx-yellow;
+    }
 
     &:hover {
       background: rgba($ddx-yellow, 0.2);
-    }
-
-    &.active {
-      background: rgba($ddx-light, 0.1);
     }
   }
 }

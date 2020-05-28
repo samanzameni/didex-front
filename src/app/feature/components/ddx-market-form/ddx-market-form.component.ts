@@ -225,6 +225,12 @@ export class MarketFormComponent implements OnInit, OnChanges {
   }
 
   get takerFee(): Decimal {
+    if (this.activeType === 'market') {
+      const averagePrice = this.getAveragePrice();
+      return averagePrice === null
+        ? new Decimal(0)
+        : averagePrice.mul(this.activeSymbol.takeLiquidityRate);
+    }
     return this.total.mul(this.activeSymbol.takeLiquidityRate);
   }
 

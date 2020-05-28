@@ -17,8 +17,21 @@ export class ExternalUrlRedirectorComponent implements OnInit, OnDestroy {
       const url = params.from
         ? params.redirect_url.concat(`?from=${params.from}`)
         : params.redirect_url;
-      window.open(url, '_self');
+      this.redirectTo(url);
     });
+  }
+
+  redirectTo(url: string): void {
+    const link = document.createElement('a');
+    link.href = url;
+    link.style.width = '1px';
+    link.style.height = '1px';
+    link.style.position = 'fixed';
+    link.style.top = '0';
+    link.style.left = '0';
+    link.target = '_self';
+    document.getElementsByTagName('body')[0].appendChild(link);
+    link.click();
   }
 
   ngOnDestroy(): void {

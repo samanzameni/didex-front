@@ -15,6 +15,7 @@ import {
   OrderTimeInForce,
   OrderData,
   Order,
+  OrderBookRecord,
 } from '@core/models';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { ProButtonComponent } from '@widget/components';
@@ -38,6 +39,7 @@ export class MarketFormComponent implements OnInit, OnChanges {
 
   @Input() side: 'buy' | 'sell';
   @Input() activeType: 'market' | 'limit';
+  @Input() activeOrders: OrderBookRecord[];
 
   private marketForm: FormGroup;
   private formErrors: any;
@@ -205,7 +207,7 @@ export class MarketFormComponent implements OnInit, OnChanges {
       return amount.mul(limit);
     }
 
-    return new Decimal(0); // TODO
+    return new Decimal(0); // N/A
   }
 
   private get sellTotal(): Decimal {
@@ -215,7 +217,7 @@ export class MarketFormComponent implements OnInit, OnChanges {
       return amount.mul(limit);
     }
 
-    return new Decimal(0); // TODO
+    return new Decimal(0); // N/A
   }
 
   get total(): Decimal {
@@ -230,12 +232,53 @@ export class MarketFormComponent implements OnInit, OnChanges {
     return this.total.mul(this.activeSymbol.provideLiquidityRate);
   }
 
+  private getAveragePrice(): Decimal {
+    const inputAmount: number = this.marketFormGroup.controls.quantity.value;
+    let remainingAmount = new Decimal(inputAmount);
+    let averagePrice = new Decimal(0);
+
+    for (const orderRecord of this.activeOrders) {
+      if (remainingAmount.greaterThan(orderRecord.volume)) {
+        averagePrice = averagePrice.add(
+          new Decimal(orderRecord.price).mul(orderRecord.volume)
+        );
+        remainingAmount = remainingAmount.minus(orderRecord.volume);
+      } else {
+        averagePrice = averagePrice.add(
+          new Decimal(orderRecord.price).mul(remainingAmount)
+        );
+        remainingAmount = new Decimal(0);
+      }
+    }
+
+    if (remainingAmount.greaterThan(0)) {
+      return null; // Not available in market
+    }
+
+    return averagePrice;
+  }
+
   get buyApproxPay(): Decimal {
-    return Decimal.max(this.buyTotal.plus(this.takerFee), 0);
+    const averagePrice = this.getAveragePrice();
+
+    if (averagePrice === null) {
+      return null;
+    }
+    return Decimal.max(averagePrice.plus(this.takerFee), 0);
   }
 
   get sellApproxPay(): Decimal {
-    return Decimal.max(this.sellTotal.minus(this.takerFee), 0);
+    const averagePrice = this.getAveragePrice();
+
+    if (averagePrice === null) {
+      return null;
+    }
+
+    return Decimal.max(averagePrice.minus(this.takerFee), 0);
+  }
+
+  get approxPay(): Decimal {
+    return this.side === 'buy' ? this.buyApproxPay : this.sellApproxPay;
   }
 
   get errors(): any {

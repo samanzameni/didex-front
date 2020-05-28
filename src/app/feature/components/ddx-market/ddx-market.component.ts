@@ -17,6 +17,8 @@ import {
   OrderSide,
   OrderType,
   OrderTimeInForce,
+  OrderBookResponse,
+  OrderBookRecord,
 } from '@core/models/ddx-order.model';
 import { DropdownSelectItem } from '@widget/models';
 import { AuthService } from '@core/services';
@@ -30,6 +32,7 @@ export class MarketComponent implements OnInit {
   @Input() activeSymbol: TradeSymbol;
   @Input() tickerData: Ticker[];
   @Input() balanceData: Balance[];
+  @Input() orderBookData: OrderBookResponse;
 
   private currentActiveType: string;
 
@@ -67,8 +70,52 @@ export class MarketComponent implements OnInit {
 
   ngOnInit() {}
 
+  private bidSorter(a: OrderBookRecord, b: OrderBookRecord): number {
+    if (!a || !b) {
+      return 0;
+    }
+
+    if (a.price < b.price) {
+      return 1;
+    }
+
+    if (a.price === b.price) {
+      return 0;
+    }
+
+    return -1;
+  }
+
+  private askSorter(a: OrderBookRecord, b: OrderBookRecord): number {
+    if (!a || !b) {
+      return 0;
+    }
+
+    if (a.price > b.price) {
+      return 1;
+    }
+
+    if (a.price === b.price) {
+      return 0;
+    }
+
+    return -1;
+  }
+
   get activeType(): string {
     return this.currentActiveType;
+  }
+
+  get bidsTableData(): OrderBookRecord[] {
+    return this.orderBookData
+      ? this.orderBookData.bid.sort(this.bidSorter)
+      : [];
+  }
+
+  get asksTableData(): OrderBookRecord[] {
+    return this.orderBookData
+      ? this.orderBookData.ask.sort(this.askSorter)
+      : [];
   }
 
   get baseBalanceData(): Balance {
@@ -103,7 +150,7 @@ export class MarketComponent implements OnInit {
     const keys = Object.keys(OrderTimeInForce);
     const names = keys.slice(keys.length / 2);
 
-    return names.map(name => {
+    return names.map((name) => {
       return {
         title: name,
         value: OrderTimeInForce[name],
@@ -243,10 +290,10 @@ export class MarketComponent implements OnInit {
     }
 
     this.orderService.requestOrder(dataToSend).subscribe(
-      response => {
+      (response) => {
         this.setLoadingOff(this.buyButton);
       },
-      errorResponse => {
+      (errorResponse) => {
         this.setLoadingOff(this.buyButton);
         if (errorResponse.status === 401) {
           this.authService.handleAuthError();
@@ -309,10 +356,10 @@ export class MarketComponent implements OnInit {
     }
 
     this.orderService.requestOrder(dataToSend).subscribe(
-      response => {
+      (response) => {
         this.setLoadingOff(this.sellButton);
       },
-      errorResponse => {
+      (errorResponse) => {
         this.setLoadingOff(this.sellButton);
         if (errorResponse.status === 401) {
           this.authService.handleAuthError();

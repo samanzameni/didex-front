@@ -190,7 +190,7 @@
   </ng-container>
 
   <mat-form-field *ngIf="activeType === 'limit'" appearance="outline">
-    <mat-label>Limit</mat-label>
+    <mat-label>Price</mat-label>
     <input
       type="number"
       matInput
@@ -203,10 +203,10 @@
     </span>
   </mat-form-field>
   <mat-error *ngIf="marketFormGroup.controls.price.hasError('required')">
-    Limit field can't be empty
+    Price field can't be empty
   </mat-error>
   <mat-error *ngIf="marketFormGroup.controls.price.hasError('min')">
-    Limit should be a positive number greater than or equal to
+    Price should be a positive number greater than or equal to
     {{ activeSymbol.tickSize }}
   </mat-error>
   <ng-container *ngIf="errors">
@@ -219,7 +219,7 @@
 
   <table arrangeCenter class="market__estimations">
     <tbody arrangeStack>
-      <tr arrangeInline>
+      <tr *ngIf="this.activeType === 'limit'" arrangeInline>
         <td>
           Total
         </td>
@@ -277,11 +277,17 @@
     *ngIf="activeType === 'market'"
     class="market__approximations"
   >
-    <p>You will approximately {{ this.side === 'buy' ? 'pay' : 'get' }}</p>
-    <strong
-      >{{ this.side === 'buy' ? buyApproxPay : sellApproxPay }}
-      {{ activeSymbol.quoteCurrencyShortName }}</strong
+    <ng-template
+      [ngIf]="approxPay !== null"
+      ;
+      [ngIfElse]="notAvailableInMarket"
     >
+      <p>You will {{ this.side === 'buy' ? 'pay' : 'get' }}</p>
+      <strong>{{ approxPay }} {{ activeSymbol.quoteCurrencyShortName }}</strong>
+    </ng-template>
+    <ng-template #notAvailableInMarket>
+      <p>Not available in the market</p>
+    </ng-template>
   </div>
 
   <pro-button

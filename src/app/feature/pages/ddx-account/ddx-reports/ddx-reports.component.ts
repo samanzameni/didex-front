@@ -61,6 +61,7 @@ export class ReportsPageComponent implements OnInit {
     return (this.orders || []).map((order) => {
       const mapped: any = { ...order };
       mapped.createdAt = this.datePipe.transform(order.createdAt, 'short');
+      mapped.side = OrderSide[order.side];
       mapped.execAmount = `${order.executedQuantity}/${order.quantity}`;
       mapped.total = this.getTotalPrice(order);
       return mapped;
@@ -72,7 +73,15 @@ export class ReportsPageComponent implements OnInit {
   }
 
   get orderTableColumns(): string[] {
-    return ['createdAt', 'marketSymbol', 'id', 'price', 'execAmount', 'total'];
+    return [
+      'createdAt',
+      'marketSymbol',
+      'id',
+      'side',
+      'price',
+      'execAmount',
+      'total',
+    ];
   }
 
   getOrderHeaderFromColumn(column: string): string {
@@ -83,6 +92,8 @@ export class ReportsPageComponent implements OnInit {
         return 'Symbol';
       case 'id':
         return 'ID';
+      case 'side':
+        return 'Side';
       case 'price':
         return 'Price';
       case 'execAmount':

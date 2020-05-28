@@ -4,6 +4,7 @@ import { AuthService } from '@core/services';
 import { OrderRESTService } from '@core/services/REST';
 import { Order, OrderSide, OrderStatus } from '@core/models';
 import { SignalRService } from '../ddx-signalr.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable()
 export class OrderDATAService extends AbstractDATAService<Order[]> {
@@ -12,7 +13,8 @@ export class OrderDATAService extends AbstractDATAService<Order[]> {
   constructor(
     protected authService: AuthService,
     protected restService: OrderRESTService,
-    protected signalrService: SignalRService
+    protected signalrService: SignalRService,
+    private toastr: ToastrService
   ) {
     super(authService);
 

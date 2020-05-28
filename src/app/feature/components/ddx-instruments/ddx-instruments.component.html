@@ -14,10 +14,10 @@
     <div arrangeInline class="instruments-header__controls">
       <ul arrangeInline class="instruments-header__base-currencies">
         <li
-          *ngFor="let currency of baseCurrencies"
+          *ngFor="let currency of quoteCurrencies"
           class="instruments-header__currency"
-          [ngClass]="{ active: activeBaseCurrency === currency }"
-          (click)="activateBaseCurrency(currency)"
+          [ngClass]="{ active: activeQuoteCurrency === currency }"
+          (click)="activateQuoteCurrency(currency)"
         >
           {{ currency }}
         </li>
@@ -53,7 +53,7 @@
         (click)="activateSymbol(symbolRow)"
       >
         <td class="row-small">
-          {{ symbolRow.quoteCurrencyShortName }}
+          {{ symbolRow.baseCurrencyShortName }}
         </td>
         <td class="row-big" *ngIf="tickerData && tickerData.length > 0">
           {{

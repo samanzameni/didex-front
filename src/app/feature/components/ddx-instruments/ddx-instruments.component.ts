@@ -19,16 +19,19 @@ import { getTickerFromSymbol } from '@core/util/ticker';
 })
 export class InstrumentsComponent implements OnChanges {
   private currentActiveBaseCurrency: string;
+  private currentActiveQuoteCurrency: string;
   private currentActiveSymbol: TradeSymbol;
 
   @Input() symbolsData: TradeSymbol[];
   @Input() tickerData: Ticker[];
 
   @Output() baseCurrencyChange: EventEmitter<string>;
+  @Output() quoteCurrencyChange: EventEmitter<string>;
   @Output() symbolChange: EventEmitter<TradeSymbol>;
 
   constructor() {
     this.baseCurrencyChange = new EventEmitter();
+    this.quoteCurrencyChange = new EventEmitter();
     this.symbolChange = new EventEmitter();
     this.symbolsData = [];
     this.tickerData = [];
@@ -47,7 +50,9 @@ export class InstrumentsComponent implements OnChanges {
         )
       ) {
         this.currentActiveBaseCurrency = this.symbolsData[0].baseCurrencyShortName;
+        this.currentActiveQuoteCurrency = this.symbolsData[0].quoteCurrencyShortName;
         this.activateBaseCurrency(this.currentActiveBaseCurrency);
+        this.activateQuoteCurrency(this.currentActiveQuoteCurrency);
         this.activateSymbol(this.symbolsData[0]);
       }
     }
@@ -97,6 +102,10 @@ export class InstrumentsComponent implements OnChanges {
     return this.currentActiveBaseCurrency;
   }
 
+  get activeQuoteCurrency(): string {
+    return this.currentActiveQuoteCurrency;
+  }
+
   get activeSymbol(): TradeSymbol {
     return this.currentActiveSymbol;
   }
@@ -107,9 +116,15 @@ export class InstrumentsComponent implements OnChanges {
       .filter((currency, i, self) => self.indexOf(currency) === i);
   }
 
+  get quoteCurrencies(): string[] {
+    return this.data
+      .map((item) => item.quoteCurrencyShortName)
+      .filter((currency, i, self) => self.indexOf(currency) === i);
+  }
+
   get tableData(): TradeSymbol[] {
     return this.data.filter(
-      (item) => item.baseCurrencyShortName === this.currentActiveBaseCurrency
+      (item) => item.quoteCurrencyShortName === this.currentActiveQuoteCurrency
     );
   }
 
@@ -135,6 +150,11 @@ export class InstrumentsComponent implements OnChanges {
   activateBaseCurrency(newBaseCurrency: string): void {
     this.currentActiveBaseCurrency = newBaseCurrency;
     this.baseCurrencyChange.emit(this.currentActiveBaseCurrency);
+  }
+
+  activateQuoteCurrency(newQuoteCurrency: string): void {
+    this.currentActiveQuoteCurrency = newQuoteCurrency;
+    this.quoteCurrencyChange.emit(this.currentActiveQuoteCurrency);
   }
 
   activateSymbol(newSymbol: TradeSymbol): void {

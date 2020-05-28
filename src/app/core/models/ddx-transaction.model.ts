@@ -25,4 +25,7 @@ export enum TransactionType {
   Withdraw = 2,
   BankToExchange = 3,
   ExchangeToBank = 4,
+  BankToInvest = 5,
+  InvestToBank = 6,
+  Interest = 7,
 }

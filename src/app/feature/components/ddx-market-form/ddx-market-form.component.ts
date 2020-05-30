@@ -5,6 +5,7 @@ import {
   ElementRef,
   ViewChild,
   OnChanges,
+  SimpleChanges,
 } from '@angular/core';
 import {
   TradeSymbol,
@@ -100,8 +101,19 @@ export class MarketFormComponent implements OnInit, OnChanges {
     this.buildFormGroup();
   }
 
-  ngOnChanges(): void {
-    this.buildFormGroup();
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes && changes.activeSymbol && changes.activeType) {
+      const isSymbolChanged =
+        changes.activeSymbol.previousValue?.symbol !==
+        changes.activeSymbol.currentValue?.symbol;
+
+      const isTypeChanged =
+        changes.activeType.previousValue !== changes.activeType.currentValue;
+
+      if (isSymbolChanged || isTypeChanged) {
+        this.buildFormGroup();
+      }
+    }
   }
 
   get marketFormGroup(): FormGroup {

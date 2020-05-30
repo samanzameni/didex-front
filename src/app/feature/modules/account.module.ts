@@ -4,7 +4,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 
 import { WidgetModule } from '@widget/widget.module';
-import { FundsPageComponent, ReportsPageComponent } from '@feature/pages';
+import {
+  FundsPageComponent,
+  ReportsPageComponent,
+  WithdrawConfirmationPageComponent,
+} from '@feature/pages';
 import { AuthGuard } from '@core/guards';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ClipboardModule } from '@angular/cdk/clipboard';
@@ -35,10 +39,19 @@ const routes: Routes = [
     component: ReportsPageComponent,
     canActivate: [AuthGuard],
   },
+  {
+    path: 'withdraw/confirm',
+    component: WithdrawConfirmationPageComponent,
+    canActivate: [AuthGuard],
+  },
 ];
 
 @NgModule({
-  declarations: [FundsPageComponent, ReportsPageComponent],
+  declarations: [
+    FundsPageComponent,
+    ReportsPageComponent,
+    WithdrawConfirmationPageComponent,
+  ],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),

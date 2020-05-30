@@ -8,6 +8,7 @@ import {
   Transaction,
   WalletAddressData,
   WalletAddress,
+  BalanceWithdrawConfirmData,
 } from '@core/models';
 import { map } from 'rxjs/operators';
 
@@ -21,6 +22,13 @@ export class BankingRESTService extends AbstractRESTService {
     return this.httpPOST('api/Banking/withdraw-request', data) as Observable<
       any
     >;
+  }
+
+  public requestWithdrawConfirm(
+    data: BalanceWithdrawConfirmData
+  ): Observable<any> {
+    const url = `api/Banking/withdraw?requestId=${data.requestId}&token=${data.token}`;
+    return this.httpGET(url) as Observable<any>;
   }
 
   public requestTransfer(data: BalanceTransferData): Observable<any> {

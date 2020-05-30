@@ -13,6 +13,11 @@ export interface BalanceWithdrawData {
   code?: string;
 }
 
+export interface BalanceWithdrawConfirmData {
+  requestId: string;
+  token: string;
+}
+
 export interface BalanceTransferData {
   currency: string;
   amount: number;

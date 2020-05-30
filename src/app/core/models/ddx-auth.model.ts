@@ -23,3 +23,16 @@ export interface AuthFormResponse {
   twoFactorEnabled: boolean;
   roles: string[];
 }
+
+export interface TwoFactorQRData {
+  qrUri: string;
+  manualKey: string;
+}
+
+export interface TwoFactorData {
+  code: string;
+}
+
+export interface TwoFactorResponse {
+  recoveryKey: string;
+}

@@ -11,7 +11,7 @@
   .container {
     background: $ddx-dark-main;
     width: 100%;
-    height: calc(100vh - 100px);
+    min-height: calc(100vh - 100px);
     max-width: $break-narrow-desktop;
     margin: 0px auto;
     padding: 10px;
@@ -38,6 +38,11 @@
       }
     }
 
+    .settings-page__subtitle {
+      font-size: 18px;
+      line-height: 32px;
+    }
+
     .settings-page__seperator {
       width: 100%;
       border-color: $ddx-dark-lightest;
@@ -53,7 +58,7 @@
       flex: 1;
 
       .settings-page__info {
-        margin-bottom: 10px;
+        margin: 10px 0;
       }
     }
 

@@ -156,6 +156,10 @@ export class SettingsPageComponent implements OnInit {
     return this.formErrors;
   }
 
+  get hasTraderEnabledTwoFactor(): boolean {
+    return this.traderService.currentTrader.twoFactorEnabled;
+  }
+
   toggleHidePassword(): void {
     this.isPasswordHidden = !this.isPasswordHidden;
   }

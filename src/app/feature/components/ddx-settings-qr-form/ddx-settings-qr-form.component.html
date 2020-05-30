@@ -1,0 +1,99 @@
+<ng-template [ngIf]="isQRLoading" [ngIfElse]="qrContainer">
+  Loading ...
+</ng-template>
+
+<ng-template #qrContainer>
+  <ng-template [ngIf]="!!qrData" [ngIfElse]="noData">
+    <div arrangeStack arrangeCenter class="qr__wrapper" [ngSwitch]="mode">
+      <ng-container *ngSwitchCase="'add'">
+        <h5>
+          <strong>Step 1</strong> - Add DidEx to your authenticator account
+        </h5>
+        <div arrangeStack arrangeCenter class="qr__container">
+          <qrcode
+            [qrdata]="qrData.qrUri"
+            [width]="200"
+            [errorCorrectionLevel]="'M'"
+          ></qrcode>
+          <div class="qr__code">
+            <h4>(or enter the code below manually)</h4>
+            <span>{{ qrData.manualKey }}</span>
+          </div>
+        </div>
+        <h5><strong>Step 2</strong> - Enter authenticator code:</h5>
+
+        <form
+          #enableForm="ngForm"
+          autocomplete="off"
+          arrangeStack
+          (ngSubmit)="submitEnableForm(enableForm.value)"
+        >
+          <mat-form-field appearance="outline">
+            <mat-label>Code</mat-label>
+            <input matInput type="text" name="code" ngModel required />
+          </mat-form-field>
+          <mat-hint>Code from your authenticator app</mat-hint>
+          <ng-container *ngIf="!!errors && errors.code">
+            <mat-error *ngFor="let error of errors.code">{{ error }}</mat-error>
+          </ng-container>
+          <ng-container *ngIf="!!errors && errors.default">
+            <mat-error *ngFor="let error of errors.default">{{
+              error
+            }}</mat-error>
+          </ng-container>
+          <pro-button
+            color="primary"
+            type="submit"
+            [disabled]="!enableForm.valid"
+            #enableSubmitButton
+          >
+            Enable
+          </pro-button>
+        </form>
+      </ng-container>
+
+      <ng-container *ngSwitchCase="'remove'">
+        <h5 class="warning">
+          WARNING: This will remove two factor authentication from your account.
+        </h5>
+        <h5>
+          For disabling two factor authentication from your account, enter your
+          authenticator code below and submit.
+        </h5>
+
+        <form
+          #disableForm="ngForm"
+          autocomplete="off"
+          arrangeStack
+          (ngSubmit)="submitDisableForm(disableForm.value)"
+        >
+          <mat-form-field appearance="outline">
+            <mat-label>Code</mat-label>
+            <input matInput type="text" name="code" ngModel required />
+          </mat-form-field>
+          <mat-hint>Code from your authenticator app</mat-hint>
+          <ng-container *ngIf="!!errors && errors.code">
+            <mat-error *ngFor="let error of errors.code">{{ error }}</mat-error>
+          </ng-container>
+          <ng-container *ngIf="!!errors && errors.default">
+            <mat-error *ngFor="let error of errors.default">{{
+              error
+            }}</mat-error>
+          </ng-container>
+          <pro-button
+            color="warn"
+            type="submit"
+            [disabled]="!disableForm.valid"
+            #disableSubmitButton
+          >
+            Disable Authenticator
+          </pro-button>
+        </form>
+      </ng-container>
+    </div>
+  </ng-template>
+
+  <ng-template #noData>
+    <p>QR data not available ...</p>
+  </ng-template>
+</ng-template>

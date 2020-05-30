@@ -1,0 +1,12 @@
+<h1 mat-dialog-title>Two-Factor authentication enabled</h1>
+<div mat-dialog-content>
+  <p>
+    Your account is now safe! The code below is your recovery code. Save it for
+    later use
+  </p>
+  <p>{{ data?.recoveryCode }}</p>
+  <mat-hint>HINT: This code will never be available to read again</mat-hint>
+</div>
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close>Close</button>
+</div>

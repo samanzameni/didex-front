@@ -1,0 +1,43 @@
+@import '../../../../styles.scss';
+
+:host {
+  .qr__wrapper {
+    width: 100%;
+    max-width: 420px;
+    margin: 15px 0;
+
+    h5 {
+      font-size: 14px;
+      text-align: left;
+      width: 100%;
+      margin: 10px 0;
+
+      &.warning {
+        color: $ddx-red;
+      }
+
+      strong {
+        font-weight: bold;
+        color: $ddx-accent-main;
+      }
+    }
+
+    .qr__container {
+      .qr__code {
+        padding: 10px 5px;
+        box-sizing: border-box;
+        width: 100%;
+        text-align: center;
+
+        h4 {
+          color: $ddx-accent-lighter;
+        }
+
+        span {
+          font-family: monospace;
+          font-size: 13px;
+        }
+      }
+    }
+  }
+}

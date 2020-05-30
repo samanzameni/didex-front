@@ -22,6 +22,14 @@
       <button
         mat-stroked-button
         class="settings-page__section-tab"
+        [ngClass]="{ 'mat-accent': currentActivePage === '2fa' }"
+        (click)="activatePage('2fa')"
+      >
+        2FA
+      </button>
+      <button
+        mat-stroked-button
+        class="settings-page__section-tab"
         [ngClass]="{ 'mat-accent': currentActivePage === 'kyc' }"
         (click)="activatePage('kyc')"
       >
@@ -194,6 +202,27 @@
         Save Changes
       </pro-button>
     </form>
+  </div>
+
+  <div class="settings-page__content" *ngSwitchCase="'2fa'">
+    <p class="settings-page__info">
+      Here, you can change your two factor authentication settings for improving
+      the security of your account.
+    </p>
+
+    <ng-template
+      [ngIf]="hasTraderEnabledTwoFactor"
+      [ngIfElse]="enableTwoFactor"
+    >
+      <h4 class="settings-page__subtitle">Disable Two Factor Authentication</h4>
+
+      <ddx-settings-qr-form mode="remove"></ddx-settings-qr-form>
+    </ng-template>
+    <ng-template #enableTwoFactor>
+      <h4 class="settings-page__subtitle">Enable Two Factor Authentication</h4>
+
+      <ddx-settings-qr-form mode="add"></ddx-settings-qr-form>
+    </ng-template>
   </div>
 
   <div

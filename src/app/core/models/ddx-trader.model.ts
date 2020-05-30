@@ -4,6 +4,7 @@ export interface Trader {
   kycImages: TraderKycImage[];
   generalInformation?: TraderGeneralInformation;
   status: TraderStatus;
+  twoFactorEnabled: boolean;
 }
 
 export interface TraderKycImage {

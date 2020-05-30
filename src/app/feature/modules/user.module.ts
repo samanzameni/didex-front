@@ -1,12 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 
-import { SettingsPageComponent } from '@feature/pages';
-import { WidgetModule } from '@widget/widget.module';
 import { AuthGuard } from '@core/guards/auth.guard';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TraderResolver } from '@core/resolvers/trader.resolver';
+import { SettingsPageComponent } from '@feature/pages';
+import {
+  SettingsQRFormComponent,
+  SettingsQrRecoveryPopupComponent,
+} from '@feature/components';
+import { WidgetModule } from '@widget/widget.module';
+import { LocalePipeModule } from './locale-pipe.module';
+
+import { QRCodeModule } from 'angularx-qrcode';
 
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -15,7 +22,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { LocalePipeModule } from './locale-pipe.module';
+import { MatDialogModule } from '@angular/material/dialog';
+// import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 const routes: Routes = [
   {
@@ -32,7 +40,12 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [SettingsPageComponent],
+  declarations: [
+    SettingsPageComponent,
+    SettingsQRFormComponent,
+    SettingsQrRecoveryPopupComponent,
+  ],
+  entryComponents: [SettingsQrRecoveryPopupComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
@@ -40,6 +53,7 @@ const routes: Routes = [
     LocalePipeModule,
     FormsModule,
     ReactiveFormsModule,
+    QRCodeModule,
     //
     MatFormFieldModule,
     MatInputModule,
@@ -48,6 +62,8 @@ const routes: Routes = [
     MatSelectModule,
     MatDividerModule,
     MatSnackBarModule,
+    MatDialogModule,
+    // MatProgressSpinnerModule,
   ],
   exports: [],
   providers: [],

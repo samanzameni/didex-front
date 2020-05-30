@@ -9,6 +9,9 @@ import {
   AuthResetPasswordData,
   AuthEmailActivationData,
   NotificationContent,
+  TwoFactorQRData,
+  TwoFactorData,
+  TwoFactorResponse,
 } from '@core/models';
 import { Observable } from 'rxjs';
 
@@ -73,5 +76,27 @@ export class AuthRESTService extends AbstractRESTService {
     return this.httpGET('api/Account/notification') as Observable<
       NotificationContent[]
     >;
+  }
+
+  public requestTwoFactorQRData(): Observable<TwoFactorQRData> {
+    return this.httpGET('api/Account/manage/getTwoFactor') as Observable<
+      TwoFactorQRData
+    >;
+  }
+
+  public requestEnableTwoFactor(
+    data: TwoFactorData
+  ): Observable<TwoFactorResponse> {
+    return this.httpPOST(
+      'api/Account/manage/enableTwoFactor',
+      data
+    ) as Observable<TwoFactorResponse>;
+  }
+
+  public requestDisableTwoFactor(data: TwoFactorData): Observable<any> {
+    return this.httpPOST(
+      'api/Account/manage/removeTwoFactor',
+      data
+    ) as Observable<any>;
   }
 }

@@ -17,6 +17,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatIconModule } from '@angular/material/icon';
 import { LocalePipeModule } from './locale-pipe.module';
+import { ToastrModule } from 'ngx-toastr';
 
 const routes: Routes = [
   {

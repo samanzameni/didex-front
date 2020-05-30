@@ -5,11 +5,12 @@ export interface Balance {
 }
 
 export interface BalanceWithdrawData {
-  address: string;
-  amount: number;
-  autoCommit: boolean;
   currency: string;
+  amount: number;
+  address: string;
+  autoCommit: boolean;
   includeFee: boolean;
+  code?: string;
 }
 
 export interface BalanceTransferData {

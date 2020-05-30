@@ -273,6 +273,15 @@
       }
     }
 
+    .row-section {
+      .mat-form-field,
+      .mat-form-field.mat-form-field-appearance-outline {
+        &.address-container {
+          width: 50%;
+        }
+      }
+    }
+
     .funds__actions {
       justify-content: space-evenly;
       width: 100%;
@@ -304,7 +313,7 @@
           align-items: center;
 
           .details-container {
-            width: 280px;
+            width: 230px;
           }
         }
       }
@@ -312,7 +321,7 @@
   }
 }
 
-@media screen and (min-width: $break-tablet) {
+@media screen and (min-width: $break-narrow-tablet) {
   :host {
     .row-section {
       form {

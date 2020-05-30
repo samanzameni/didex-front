@@ -18,7 +18,9 @@ export class BankingRESTService extends AbstractRESTService {
   }
 
   public requestWithdraw(data: BalanceWithdrawData): Observable<any> {
-    return this.httpPOST('api/Banking/withdraw', data) as Observable<any>;
+    return this.httpPOST('api/Banking/withdraw-request', data) as Observable<
+      any
+    >;
   }
 
   public requestTransfer(data: BalanceTransferData): Observable<any> {
@@ -34,7 +36,7 @@ export class BankingRESTService extends AbstractRESTService {
 
   public requestTransactions(): Observable<Transaction[]> {
     return this.httpGET('api/Banking/transactions?Desc=true').pipe(
-      map(response => response.records)
+      map((response) => response.records)
     ) as Observable<Transaction[]>;
   }
 }

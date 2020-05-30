@@ -3,7 +3,6 @@ import {
   OnInit,
   ViewChild,
   ElementRef,
-  Renderer2,
   ChangeDetectorRef,
   AfterViewInit,
 } from '@angular/core';
@@ -38,6 +37,8 @@ import {
   transition,
   animate,
 } from '@angular/animations';
+import { ToastrService } from 'ngx-toastr';
+import { TraderService } from '@core/services';
 
 @Component({
   selector: 'ddx-funds',
@@ -78,9 +79,10 @@ export class FundsPageComponent implements OnInit, AfterViewInit {
     private restService: BankingRESTService,
     private publicService: PublicRESTService,
     private tradingService: TradingRESTService,
-    private renderer: Renderer2,
+    private toastr: ToastrService,
     private cdRef: ChangeDetectorRef,
-    private snackBarService: MatSnackBar
+    private snackBarService: MatSnackBar,
+    private traderService: TraderService
   ) {
     this.currentActivePane = 'none';
     this.currentTransferType = BalanceTransferType.BankToExchange;
@@ -206,6 +208,10 @@ export class FundsPageComponent implements OnInit, AfterViewInit {
     return this.formsAllErrors || [];
   }
 
+  get hasTraderEnabledTwoFactor(): boolean {
+    return this.traderService.currentTrader.twoFactorEnabled;
+  }
+
   mapColumnToHeader(columnName: string): string {
     switch (columnName) {
       case 'shortName':
@@ -311,8 +317,12 @@ export class FundsPageComponent implements OnInit, AfterViewInit {
 
     this.restService.requestWithdraw(submittedValue).subscribe(
       (response) => {
-        this.currentActivePane = 'none';
-        this.updateData();
+        // this.currentActivePane = 'none';
+        // this.updateData();
+        this.toastr.success(
+          'An email is sent for withdrawal confirmation. Check your inbox',
+          'Confirmation required'
+        );
       },
       (errorResponse) => {
         if (errorResponse.status === 400) {

@@ -31,11 +31,13 @@ export class SettingsQRFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.isLoading = true;
-    this.restService.requestTwoFactorQRData().subscribe((response) => {
-      this.data = response;
-      this.isLoading = false;
-    });
+    if (!this.traderService.currentTrader.twoFactorEnabled) {
+      this.isLoading = true;
+      this.restService.requestTwoFactorQRData().subscribe((response) => {
+        this.data = response;
+        this.isLoading = false;
+      });
+    }
   }
 
   get qrData(): TwoFactorQRData {

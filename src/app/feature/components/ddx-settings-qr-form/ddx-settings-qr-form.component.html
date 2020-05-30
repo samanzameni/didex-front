@@ -3,7 +3,7 @@
 </ng-template>
 
 <ng-template #qrContainer>
-  <ng-template [ngIf]="!!qrData" [ngIfElse]="noData">
+  <ng-template [ngIf]="mode === 'remove' || !!qrData" [ngIfElse]="noData">
     <div arrangeStack arrangeCenter class="qr__wrapper" [ngSwitch]="mode">
       <ng-container *ngSwitchCase="'add'">
         <h5>

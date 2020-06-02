@@ -103,7 +103,6 @@ export class MarketFormComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes && (changes.activeSymbol || changes.activeType)) {
-      debugger;
       const isSymbolChanged =
         changes.activeSymbol &&
         changes.activeSymbol.previousValue?.symbol !==

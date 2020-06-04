@@ -11,6 +11,7 @@ import {
   BalanceWithdrawConfirmData,
 } from '@core/models';
 import { map } from 'rxjs/operators';
+import { CONSTANTS } from '@core/util/constants';
 
 @Injectable()
 export class BankingRESTService extends AbstractRESTService {
@@ -43,8 +44,8 @@ export class BankingRESTService extends AbstractRESTService {
   }
 
   public requestTransactions(): Observable<Transaction[]> {
-    return this.httpGET('api/Banking/transactions?Desc=true').pipe(
-      map((response) => response.records)
-    ) as Observable<Transaction[]>;
+    return this.httpGET(
+      `api/Banking/transactions?Desc=true&Limit=${CONSTANTS.PAGINATION_LIMIT_BIG}`
+    ).pipe(map((response) => response.records)) as Observable<Transaction[]>;
   }
 }

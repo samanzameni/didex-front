@@ -9,6 +9,7 @@ import {
   Currency,
   SymbolExternalSource,
 } from '@core/models';
+import { CONSTANTS } from '@core/util/constants';
 
 @Injectable()
 export class PublicRESTService extends AbstractRESTService {
@@ -46,7 +47,7 @@ export class PublicRESTService extends AbstractRESTService {
 
   public requestTrade(activeSymbol: string): Observable<Trade[]> {
     return this.httpPureRequest(
-      `api/Public/Trades/${activeSymbol}?Desc=true&Limit=150`,
+      `api/Public/Trades/${activeSymbol}?Desc=true&Limit=${CONSTANTS.PAGINATION_LIMIT_BIG}`,
       'GET'
     ) as Observable<Trade[]>;
   }

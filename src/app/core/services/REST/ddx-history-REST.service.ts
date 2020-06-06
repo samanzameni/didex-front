@@ -11,7 +11,7 @@ export class HistoryRESTService extends AbstractRESTService {
   public requestListFilledOrders(activeSymbol: string): Observable<Order[]> {
     const url = `api/History/orders${
       activeSymbol ? `/${activeSymbol}` : ''
-    }&Limit=${CONSTANTS.PAGINATION_LIMIT_BIG}`;
+    }?Limit=${CONSTANTS.PAGINATION_LIMIT_BIG}`;
     return this.httpGET(url).pipe(
       map((response) => response.records)
     ) as Observable<Order[]>;
@@ -20,7 +20,7 @@ export class HistoryRESTService extends AbstractRESTService {
   public requestListPrivateTrades(activeSymbol: string): Observable<Trade[]> {
     const url = `api/History/trades${
       activeSymbol ? `/${activeSymbol}` : ''
-    }&Limit=${CONSTANTS.PAGINATION_LIMIT_BIG}`;
+    }?Limit=${CONSTANTS.PAGINATION_LIMIT_BIG}`;
     return this.httpGET(url).pipe(
       map((response) => response.records)
     ) as Observable<Trade[]>;

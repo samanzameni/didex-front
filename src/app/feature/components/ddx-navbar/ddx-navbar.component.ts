@@ -20,7 +20,7 @@ export class NavbarComponent implements OnInit {
   }
 
   get traderEmail(): string {
-    return this.authService.decodedToken.email;
+    return this.authService.decodedToken?.email || '';
   }
 
   requestSignOut(): void {

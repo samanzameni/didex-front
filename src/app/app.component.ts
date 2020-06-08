@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SignalRService } from '@core/services';
+import { SignalRService, TawkToService } from '@core/services';
 import { LocaleService } from '@core/services/ddx-locale.service';
 
 @Component({
@@ -10,7 +10,8 @@ import { LocaleService } from '@core/services/ddx-locale.service';
 export class AppComponent implements OnInit {
   constructor(
     private signalrService: SignalRService,
-    private localeService: LocaleService
+    private localeService: LocaleService,
+    private tawkToService: TawkToService
   ) {}
 
   ngOnInit(): void {

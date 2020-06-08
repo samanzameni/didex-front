@@ -6,6 +6,7 @@ stages:
   # - build
   # - test
   - deploy
+  - deliver
 
 # build_job:
 #   stage: build
@@ -29,6 +30,15 @@ deploy_job:
     - npm i
     - npm run build-dev
     - xcopy  /S /Q /Y /F .\dist\didex-exchange C:\sites\didex.userClient\
+    
+deliver_job:
+  stage: deliver
+  only:
+    - tags
+  script:
+    - npm i
+    - npm run build
+    - xcopy  /S /Q /Y /F .\dist\didex-exchange C:\sites-prod\didex.userClient\
   # dependencies:
   #   - build_job
   #   - test_job

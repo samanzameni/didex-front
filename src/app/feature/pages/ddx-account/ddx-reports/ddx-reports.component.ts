@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import {
   Order,
   Trade,
@@ -15,6 +15,7 @@ import {
 } from '@core/services/DATA';
 import Decimal from 'decimal.js';
 import { DatePipe } from '@angular/common';
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'ddx-reports',
@@ -30,6 +31,8 @@ export class ReportsPageComponent implements OnInit {
   private transactions: any[];
 
   private currentActivePane: string;
+
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
   constructor(
     private orderDataService: FilledOrderDATAService,
@@ -66,10 +69,6 @@ export class ReportsPageComponent implements OnInit {
       mapped.total = this.getTotalPrice(order);
       return mapped;
     });
-  }
-
-  get blah(): any[] {
-    return [{}, {}, {}];
   }
 
   get orderTableColumns(): string[] {

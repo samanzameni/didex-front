@@ -33,7 +33,6 @@
     "address_line_1": "Address (Line 1)",
     "address_line_1_error_required": "This field is required.",
     "address_line_2": "Address (Line 2)",
-    "address_line_2_error_required": "This field is required.",
     "next": "Next"
   },
 
@@ -56,31 +55,27 @@
 
   "identity_proof": {
     "description": "Please provide a picture of any of the following:",
-    "documents": [
-      "Passport (the main double-page spread)",
-      "Driver's license (both sides)",
-      "National identity document (both sides)"
-    ],
-    "hints": [
-      "Photo/scan must be clear, in color and display the entire ID.",
-      "Your full legal name and date of birth entered in form 'Personal information' must exactly match the information in your document.",
-      "Documents in non-latin characters cannot be accepted without certified translation.",
-      "Max size 10 Mb."
-    ],
+    "documents_1": "Passport (the main double-page spread)",
+    "documents_2": "Driver's license (both sides)",
+    "documents_3": "National identity document (both sides)",
+    "hints_1": "Photo/scan must be clear, in color and display the entire ID.",
+    "hints_2": "Your full legal name and date of birth entered in form 'Personal information' must exactly match the information in your document.",
+    "hints_3": "Documents in non-latin characters cannot be accepted without certified translation.",
+    "hints_4": "Max size 10 Mb.",
     "next": "Next",
-    "back": "Back"
+    "back": "Back",
+    "or": "Or"
   },
 
   "selfie": {
     "description": "Please submit a selfie in which you are holding your government-issued ID and a paper note. On the note you should handwrite your email address, the current date, and the words 'for Didex'. Make sure the selfie you are submitting meets the following requirements:",
-    "restricts": [
-      "It is taken in good light",
-      "The photo is clear, high-resolution, and in color",
-      "Your face must be clearly visible",
-      "The text in the note must be handwritten by you and not typed",
-      "The document you are holding must be the same you are submitting for your identity verification",
-      "Neither the photos nor the documents have been edited or manipulated"
-    ],
+
+    "restricts_1": "It is taken in good light",
+    "restricts_2": "The photo is clear, high-resolution, and in color",
+    "restricts_3": "Your face must be clearly visible",
+    "restricts_4": "The text in the note must be handwritten by you and not typed",
+    "restricts_5": "The document you are holding must be the same you are submitting for your identity verification",
+    "restricts_6": "Neither the photos nor the documents have been edited or manipulated",
     "next": "Next",
     "back": "Back"
   },

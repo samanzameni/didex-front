@@ -2,6 +2,7 @@
   "title": "Settings",
   "tab_general": "General",
   "tab_security": "Security",
+  "tab_2fa": "2FA",
   "tab_kyc": "KYC",
 
   "general": {
@@ -17,7 +18,28 @@
     "old_password": "Old Password",
     "password": "Password",
     "confirm_password": "Confirm Password",
+    "confirm_password_error_required": "Password must be confirmed",
+    "confirm_password_error_match": "Passwords must match",
     "save_button": "Save Changes"
+  },
+
+  "2fa": {
+    "title": "2FA",
+    "message": "Here, you can change your two factor authentication settings for improving the security of your account",
+    "enable_title": "Enable Two-Factor Authentication",
+    "disable_title": "Disable Two-Factor Authentication",
+    "step_1": "Step 1",
+    "step_2": "Step 2",
+    "enable_form_step_1": "Add DidEx to your authenticator account",
+    "enable_form_step_2": "Enter authenticator code",
+    "enable_form_enter_manually": "or enter the code below manually",
+    "enable_form_code": "Code",
+    "enable_form_code_hint": "Code from your authenticator app",
+    "enable_form_button": "Enable",
+    "disable_form_warning": "WARNING: This will remove two factor authentication from your account",
+    "disable_form_title": "For disabling two factor authentication from your account, enter your authenticator code below and submit",
+    "disable_form_button": "Disable",
+    "qr_no_data": "No QR data available ..."
   },
 
   "kyc": {

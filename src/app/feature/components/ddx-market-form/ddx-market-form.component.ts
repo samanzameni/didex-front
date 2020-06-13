@@ -310,12 +310,7 @@ export class MarketFormComponent implements OnInit, OnChanges {
   }
 
   submitForm(): void {
-    // if (!this.marketForm.valid) {
-    //   console.warn(this.marketForm.valid);
-    //   console.warn(this.marketForm.value);
-    //   console.log(this.marketForm.errors);
-    //   return;
-    // }
+    this.formErrors = {};
     this.submitButton.setLoadingOn();
 
     if (!this.authService.isAuthorized) {

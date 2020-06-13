@@ -39,7 +39,8 @@
     "maker_fee": "Maker fee",
     "maker_fee_tooltip": "Maker fees are paid when you add liquidity to our order book by placing a limit order below the ticker price for buy, and above the ticker price for sell.  If you place a limit buy below the current market price, or a limit sell above the current market price, then you will pay the maker fee if the market moves into your limit order because you added liquidity to the order book, while other traders took your offer from the order book.",
     "market_approx_pay": "You will approximately pay",
-    "market_approx_get": "You will approximately get"
+    "market_approx_get": "You will approximately get",
+    "market_not_available": "Not available in market"
   },
   "order_book": {
     "title": "Order Book",
@@ -64,29 +65,25 @@
     "overlay_auth_message": "You must sign in to see this tab",
     "overlay_auth_button": "Sign In",
     "overlay_data_message": "No data to be shown in this section ...",
-
-    "active": {
-      "time": "Time",
-      "id": "ID",
-      "price": "Price",
-      "exec_amount": "Exec/Amount",
-      "total": "Total"
-    },
-
-    "filled": {
-      "time": "Time",
-      "id": "ID",
-      "price": "Price",
-      "exec_amount": "Exec/Amount",
-      "total": "Total"
-    },
-
-    "trade": {
-      "time": "Time",
-      "id": "ID",
-      "price": "Price",
-      "amount": "Amount",
-      "total": "Total"
-    }
+    "active_tab_title": "Orders",
+    "active_tab_title_extra": "Active",
+    "active_time": "Time",
+    "active_id": "ID",
+    "active_price": "Price",
+    "active_exec_amount": "Exec/Amount",
+    "active_total": "Total",
+    "active_cancel": "Cancel",
+    "filled_tab_title": "Filled/Canceled",
+    "filled_time": "Time",
+    "filled_id": "ID",
+    "filled_price": "Price",
+    "filled_exec_amount": "Exec/Amount",
+    "filled_total": "Total",
+    "trade_tab_title": "Trades",
+    "trade_time": "Time",
+    "trade_id": "ID",
+    "trade_price": "Price",
+    "trade_amount": "Amount",
+    "trade_total": "Total"
   }
 }

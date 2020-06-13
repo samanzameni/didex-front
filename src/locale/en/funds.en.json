@@ -18,25 +18,19 @@
     "fetching": "Fetching ...",
     "fetching_error": "Error while fetching!",
     "copy": "Copy",
-    "tips": [
-      "Please don’t deposit any other digital assets except selected currency to the above address. Otherwise, you may lose your assets permanently.",
-      "Depositing to the above address requires confirmations of the entire network. It will arrive after 12 confirmations, and it will be available to withdraw after 12 confirmations.",
-      "Your deposit address won’t change often. If there are any changes, we will notify you via announcement or email.",
-      "Please make sure that your computer and browser are secure and your information is protected from being tampered or leaked."
-    ]
+    "tips": "Please don’t deposit any other digital assets except selected currency to the above address. Otherwise, you may lose your assets permanently."
   },
 
   "withdraw": {
     "title": "Withdraw",
     "address": "Address",
     "amount": "Amount",
+    "2fa": "Two-Factor code",
     "fee": "Fee",
     "received": "Received",
     "received_error": "Quantity should be higher",
     "withdraw": "Withdraw",
-    "tips": [
-      "Please make sure that your computer and browser are secure and your information is protected from being tampered or leaked."
-    ]
+    "tips": "Please make sure that your computer and browser are secure and your information is protected from being tampered or leaked."
   },
 
   "transfer": {
@@ -45,8 +39,6 @@
     "trade_to_main": "Trading Account to Main",
     "amount": "Amount",
     "transfer": "Transfer",
-    "tips": [
-      "Please make sure that your computer and browser are secure and your information is protected from being tampered or leaked."
-    ]
+    "tips": "Please make sure that your computer and browser are secure and your information is protected from being tampered or leaked."
   }
 }

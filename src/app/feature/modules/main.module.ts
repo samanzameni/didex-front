@@ -16,6 +16,7 @@ import { HomePageComponent } from '@feature/pages';
 import { MainLayoutComponent } from '@feature/layouts';
 import { WidgetModule } from '@widget/widget.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
@@ -78,6 +79,7 @@ const routes: Routes = [
     LocalePipeModule,
     FormsModule,
     ReactiveFormsModule,
+    InfiniteScrollModule,
     //
     MatMenuModule,
     MatIconModule,

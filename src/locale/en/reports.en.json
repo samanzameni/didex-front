@@ -9,6 +9,7 @@
     "createdAt": "Time",
     "marketSymbol": "Symbol",
     "id": "ID",
+    "side": "Side",
     "price": "Price",
     "execAmount": "Exec/Amount",
     "total": "Total"

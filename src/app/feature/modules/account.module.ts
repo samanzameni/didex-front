@@ -20,6 +20,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTableModule } from '@angular/material/table';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatIconModule } from '@angular/material/icon';
+import { MatPaginatorModule } from '@angular/material/paginator';
 import { LocalePipeModule } from './locale-pipe.module';
 import { ToastrModule } from 'ngx-toastr';
 
@@ -70,6 +71,7 @@ const routes: Routes = [
     MatTableModule,
     MatTooltipModule,
     MatIconModule,
+    MatPaginatorModule,
   ],
   exports: [],
   providers: [DatePipe],

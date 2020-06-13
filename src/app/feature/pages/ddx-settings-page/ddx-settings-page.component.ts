@@ -169,6 +169,7 @@ export class SettingsPageComponent implements OnInit {
   }
 
   onSubmitGeneralForm(): void {
+    this.formErrors = {};
     if (this.generalSubmitButton) {
       this.generalSubmitButton.setLoadingOn();
     }
@@ -207,6 +208,7 @@ export class SettingsPageComponent implements OnInit {
   }
 
   onSubmitSecurityForm(): void {
+    this.formErrors = {};
     if (this.securitySubmitButton) {
       this.securitySubmitButton.setLoadingOn();
     }

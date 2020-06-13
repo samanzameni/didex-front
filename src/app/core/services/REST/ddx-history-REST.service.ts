@@ -8,19 +8,33 @@ import { CONSTANTS } from '@core/util/constants';
 
 @Injectable()
 export class HistoryRESTService extends AbstractRESTService {
-  public requestListFilledOrders(activeSymbol: string): Observable<Order[]> {
+  public requestListFilledOrders(
+    activeSymbol: string,
+    options: any = {}
+  ): Observable<Order[]> {
+    const offset =
+      options && options.page !== undefined
+        ? (options.page - 1) * CONSTANTS.PAGINATION_LIMIT
+        : 0;
     const url = `api/History/orders${
       activeSymbol ? `/${activeSymbol}` : ''
-    }?Limit=${CONSTANTS.PAGINATION_LIMIT_BIG}`;
+    }?Offset=${offset}&Limit=${CONSTANTS.PAGINATION_LIMIT}`;
     return this.httpGET(url).pipe(
       map((response) => response.records)
     ) as Observable<Order[]>;
   }
 
-  public requestListPrivateTrades(activeSymbol: string): Observable<Trade[]> {
+  public requestListPrivateTrades(
+    activeSymbol: string,
+    options: any = {}
+  ): Observable<Trade[]> {
+    const offset =
+      options && options.page !== undefined
+        ? (options.page - 1) * CONSTANTS.PAGINATION_LIMIT
+        : 0;
     const url = `api/History/trades${
       activeSymbol ? `/${activeSymbol}` : ''
-    }?Limit=${CONSTANTS.PAGINATION_LIMIT_BIG}`;
+    }?Offset=${offset}&Limit=${CONSTANTS.PAGINATION_LIMIT}`;
     return this.httpGET(url).pipe(
       map((response) => response.records)
     ) as Observable<Trade[]>;

@@ -89,7 +89,14 @@
               <th class="row-small">Cancel</th>
             </tr>
           </thead>
-          <tbody class="ddx-table__body">
+          <tbody
+            infiniteScroll
+            [infiniteScrollDistance]="1"
+            [infiniteScrollThrottle]="100"
+            [scrollWindow]="false"
+            (scrolled)="onScrollOnActiveOrders()"
+            class="ddx-table__body"
+          >
             <tr arrangeInline *ngFor="let item of activeOrders; let i = index">
               <td class="row-big">{{ item.createdAt | date: 'short' }}</td>
               <td class="row-small" title="{{ item.id }}">{{ item.id }}</td>
@@ -157,7 +164,14 @@
               </th>
             </tr>
           </thead>
-          <tbody class="ddx-table__body">
+          <tbody
+            infiniteScroll
+            [infiniteScrollDistance]="1"
+            [infiniteScrollThrottle]="100"
+            [scrollWindow]="false"
+            (scrolled)="onScrollOnFilledOrders()"
+            class="ddx-table__body"
+          >
             <tr arrangeInline *ngFor="let item of filledOrders; let i = index">
               <td class="row-big">{{ item.createdAt | date: 'short' }}</td>
               <td class="row-small" title="{{ item.id }}">{{ item.id }}</td>
@@ -202,7 +216,14 @@
               </th>
             </tr>
           </thead>
-          <tbody class="ddx-table__body">
+          <tbody
+            infiniteScroll
+            [infiniteScrollDistance]="1"
+            [infiniteScrollThrottle]="100"
+            [scrollWindow]="false"
+            (scrolled)="onScrollOnTrades()"
+            class="ddx-table__body"
+          >
             <tr arrangeInline *ngFor="let item of privateTrades; let i = index">
               <td class="row-big">{{ item.timeStamp | date: 'short' }}</td>
               <td class="row-small" title="{{ item.id }}">{{ item.id }}</td>

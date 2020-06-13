@@ -45,9 +45,16 @@ export class PublicRESTService extends AbstractRESTService {
     >;
   }
 
-  public requestTrade(activeSymbol: string): Observable<Trade[]> {
+  public requestTrade(
+    activeSymbol: string,
+    options: any = {}
+  ): Observable<Trade[]> {
+    const offset =
+      options && options.page !== undefined
+        ? (options.page - 1) * CONSTANTS.PAGINATION_LIMIT
+        : 0;
     return this.httpPureRequest(
-      `api/Public/Trades/${activeSymbol}?Desc=true&Limit=${CONSTANTS.PAGINATION_LIMIT_BIG}`,
+      `api/Public/Trades/${activeSymbol}?Desc=true&Offset=${offset}&Limit=${CONSTANTS.PAGINATION_LIMIT}`,
       'GET'
     ) as Observable<Trade[]>;
   }

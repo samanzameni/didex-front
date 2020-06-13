@@ -41,6 +41,11 @@ export class HomePageComponent implements OnInit {
   private privateTrade: Trade[];
   private filledOrder: Order[];
 
+  private timesAndSalesPageNumber: number;
+  private activeOrdersPageNumber: number;
+  private filledAndCanceledPageNumber: number;
+  private tradesPageNumber: number;
+
   constructor(
     private cdRef: ChangeDetectorRef,
     private traderService: TraderService,
@@ -59,6 +64,11 @@ export class HomePageComponent implements OnInit {
     publicService.requestSymbolSources().subscribe((response) => {
       this.externalSources = response || [];
     });
+
+    this.timesAndSalesPageNumber = 1;
+    this.activeOrdersPageNumber = 1;
+    this.filledAndCanceledPageNumber = 1;
+    this.tradesPageNumber = 1;
   }
 
   ngOnInit() {
@@ -108,7 +118,10 @@ export class HomePageComponent implements OnInit {
     this.orderBookDataService.updateData(symbol.symbol);
     this.orderBookDataService.updateFeed(symbol.symbol);
 
-    this.tradeDataService.updateData(symbol.symbol);
+    this.tradeDataService.updateData(
+      symbol.symbol,
+      this.timesAndSalesPageNumber
+    );
     this.tradeDataService.updateFeed(symbol.symbol);
 
     this.orderDataService.updateData(symbol.symbol);
@@ -169,5 +182,33 @@ export class HomePageComponent implements OnInit {
 
   get isAuthorized(): boolean {
     return this.authService.isAuthorized;
+  }
+
+  loadNextPageForTimeAndSales(): void {
+    this.timesAndSalesPageNumber++;
+    this.tradeDataService.updateData(this.currentActiveSymbol.symbol, {
+      page: this.timesAndSalesPageNumber,
+    });
+  }
+
+  loadNextPageForActiveOrders(): void {
+    this.activeOrdersPageNumber++;
+    this.orderDataService.updateData(this.currentActiveSymbol.symbol, {
+      page: this.activeOrdersPageNumber,
+    });
+  }
+
+  loadNextPageForFilledAndCanceled(): void {
+    this.filledAndCanceledPageNumber++;
+    this.filledOrderDataService.updateData(this.currentActiveSymbol.symbol, {
+      page: this.filledAndCanceledPageNumber,
+    });
+  }
+
+  loadNextPageForTrades(): void {
+    this.tradesPageNumber++;
+    this.privateTradeDataService.updateData(this.currentActiveSymbol.symbol, {
+      page: this.tradesPageNumber,
+    });
   }
 }

@@ -32,11 +32,15 @@
     [orderData]="orderData"
     [filledOrderData]="filledOrderData"
     [tradeData]="privateTradeData"
+    (loadActiveOrdersNextPage)="loadNextPageForActiveOrders()"
+    (loadFilledOrdersNextPage)="loadNextPageForFilledAndCanceled()"
+    (loadTradesNextPage)="loadNextPageForTrades()"
   ></ddx-trades>
 </section>
 <section class="sale-section">
   <ddx-time-and-sales
     [activeSymbol]="activeSymbol"
     [tradeData]="tradeData"
+    (loadNextPage)="loadNextPageForTimeAndSales()"
   ></ddx-time-and-sales>
 </section>

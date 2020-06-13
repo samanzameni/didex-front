@@ -14,6 +14,17 @@ export abstract class AbstractDATAService<T> {
     this.dataStream = new BehaviorSubject(null);
   }
 
+  private getPageParam(...params: any[]): number {
+    const pageParams = params.filter((param) =>
+      Object.keys(param).includes('page')
+    );
+    if (pageParams && pageParams.length > 0) {
+      return pageParams[0].page;
+    }
+
+    return -1; // NOT FOUND
+  }
+
   protected turnOnLoading() {
     this.isLoading.next(true);
   }
@@ -34,9 +45,20 @@ export abstract class AbstractDATAService<T> {
     this.turnOnLoading();
     this.queryEngine(...params).subscribe(
       (response) => {
-        if (response === null && response === undefined) {
+        if (
+          response === null ||
+          response === undefined ||
+          (Array.isArray(response) && (response as Array<any>).length === 0)
+        ) {
         } else {
-          this.dataStream$.next(response);
+          const page = this.getPageParam(...params);
+          const isCumulative = page > 1;
+          let dataToSend = response;
+
+          if (isCumulative) {
+            dataToSend = (this.dataStream$.value as any).concat(response);
+          }
+          this.dataStream$.next(dataToSend);
         }
         this.turnOffLoading();
       },

@@ -14,9 +14,16 @@ export class OrderRESTService extends AbstractRESTService {
     return this.httpDELETE(`api/Order/${orderID}`) as Observable<any>;
   }
 
-  public requestListOrders(activeSymbol: string): Observable<Order[]> {
-    return this.httpGET(`api/Order/${activeSymbol}?Desc=true`) as Observable<
-      Order[]
-    >;
+  public requestListOrders(
+    activeSymbol: string,
+    options: any = {}
+  ): Observable<Order[]> {
+    const offset =
+      options && options.page !== undefined
+        ? (options.page - 1) * CONSTANTS.PAGINATION_LIMIT
+        : 0;
+    return this.httpGET(
+      `api/Order/${activeSymbol}?Desc=true&Offset=${offset}&Limit=${CONSTANTS.PAGINATION_LIMIT}`
+    ) as Observable<Order[]>;
   }
 }

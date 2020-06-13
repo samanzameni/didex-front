@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import {
   TradeSymbol,
   Order,
@@ -25,6 +25,10 @@ export class TradesComponent implements OnInit {
   @Input() tradeData: Trade[];
   @Input() filledOrderData: Order[];
 
+  @Output() loadActiveOrdersNextPage: EventEmitter<any>;
+  @Output() loadFilledOrdersNextPage: EventEmitter<any>;
+  @Output() loadTradesNextPage: EventEmitter<any>;
+
   private currentActivePane: string;
   private cancelingOrderIDs: string[];
 
@@ -34,6 +38,10 @@ export class TradesComponent implements OnInit {
   ) {
     this.currentActivePane = 'active';
     this.cancelingOrderIDs = [];
+
+    this.loadActiveOrdersNextPage = new EventEmitter();
+    this.loadFilledOrdersNextPage = new EventEmitter();
+    this.loadTradesNextPage = new EventEmitter();
   }
 
   ngOnInit(): void {}
@@ -92,5 +100,17 @@ export class TradesComponent implements OnInit {
         );
       }
     );
+  }
+
+  onScrollOnActiveOrders(): void {
+    this.loadActiveOrdersNextPage.emit(null);
+  }
+
+  onScrollOnFilledOrders(): void {
+    this.loadFilledOrdersNextPage.emit(null);
+  }
+
+  onScrollOnTrades(): void {
+    this.loadTradesNextPage.emit(null);
   }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { TradeSymbol, Trade, OrderSide } from '@core/models';
 
 @Component({
@@ -13,7 +13,11 @@ export class TimeAndSalesComponent implements OnInit {
   @Input() activeSymbol: TradeSymbol;
   @Input() tradeData: Trade[];
 
-  constructor() {}
+  @Output() loadNextPage: EventEmitter<any>;
+
+  constructor() {
+    this.loadNextPage = new EventEmitter();
+  }
 
   ngOnInit(): void {}
 
@@ -23,5 +27,9 @@ export class TimeAndSalesComponent implements OnInit {
 
   get tableData(): Trade[] {
     return this.tradeData || [];
+  }
+
+  onScroll(): void {
+    this.loadNextPage.emit(null);
   }
 }

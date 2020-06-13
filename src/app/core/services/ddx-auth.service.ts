@@ -102,15 +102,20 @@ export class AuthService {
     this.router.navigateByUrl('/');
   }
 
-  public handleAuthError(): void {
-    alert(
-      'Your token is expired or is not valid. You will get redirected to the sign in page.'
-    );
-    this.storageService.clearUserToken();
+  public handleAuthError(noRedirect: boolean = false): void {
     this.isUserAuthorized = false;
+    this.storageService.clearUserToken();
     this.signalrService.resetConnection();
     this.traderService.removeCurrentTrader();
     this.traderService.removeCurrentTraderImages();
+
+    if (noRedirect) {
+      return;
+    }
+
+    alert(
+      'Your token is expired or is not valid. You will get redirected to the sign in page.'
+    );
     this.router.navigateByUrl(
       this.router.parseUrl(
         '/external-redirect?redirect_url=/auth/signin&from=/trade'

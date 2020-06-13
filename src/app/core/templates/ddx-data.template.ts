@@ -22,8 +22,8 @@ export abstract class AbstractDATAService<T> {
     this.isLoading.next(false);
   }
 
-  protected handleAuthError(): void {
-    this.authService.handleAuthError();
+  protected handleAuthError(noRedirect: boolean): void {
+    this.authService.handleAuthError(noRedirect);
   }
 
   public resetDataStream(): void {
@@ -33,16 +33,16 @@ export abstract class AbstractDATAService<T> {
   public updateData(...params) {
     this.turnOnLoading();
     this.queryEngine(...params).subscribe(
-      response => {
+      (response) => {
         if (response === null && response === undefined) {
         } else {
           this.dataStream$.next(response);
         }
         this.turnOffLoading();
       },
-      error => {
+      (error) => {
         if (error.status && error.status === 401) {
-          // this.handleAuthError(); TODO
+          this.handleAuthError(true);
         }
       }
     );
@@ -53,16 +53,16 @@ export abstract class AbstractDATAService<T> {
     this.queryEngine(...params)
       .pipe(debounceTime(milis))
       .subscribe(
-        response => {
+        (response) => {
           if (response === null && response === undefined) {
           } else {
             this.dataStream$.next(response);
           }
           this.turnOffLoading();
         },
-        error => {
+        (error) => {
           if (error.status && error.status === 401) {
-            // this.handleAuthError(); TODO
+            this.handleAuthError(true);
           }
         }
       );

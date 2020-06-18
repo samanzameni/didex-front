@@ -57,6 +57,7 @@ const routes: Routes = [
     CommonModule,
     RouterModule.forChild(routes),
     WidgetModule,
+    ToastrModule,
     FormsModule,
     LocalePipeModule,
     ReactiveFormsModule,

@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 
 import * as en_locale from '@locale/en';
+import * as cn_locale from '@locale/cn';
 
-export type Locale = 'en';
+export type Locale = 'en' | 'cn';
 
 @Injectable({
   providedIn: 'root',
@@ -61,6 +62,9 @@ export class LocaleService {
     try {
       let localeFile;
       switch (this.locale) {
+        case 'cn':
+          localeFile = cn_locale[decodedMessageID.messageSection];
+          break;
         case 'en':
         default:
           localeFile = en_locale[decodedMessageID.messageSection];

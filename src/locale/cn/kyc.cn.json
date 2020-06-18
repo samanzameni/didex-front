@@ -1,0 +1,88 @@
+{
+  "steps": {
+    "step_1": "第一步",
+    "step_1_caption": "个人信息",
+    "step_2": "第二步",
+    "step_2_caption": "电话号码验证",
+    "step_3": "第三步",
+    "step_3_caption": "个人证明",
+    "step_4": "第四步",
+    "step_4_caption": "个人照片"
+  },
+
+  "personal_information": {
+    "description": "所提交的个人信息需与您所上传的证件中的信息一致",
+    "first_name": "名",
+    "first_name_placeholder": "XX",
+    "first_name_error_required": "此为必填项",
+    "first_name_error_maxlength": "不可超过50字节.",
+    "last_name": "姓",
+    "last_name_placeholder": "X",
+    "last_name_error_required": "此为必填项.",
+    "last_name_error_maxlength": "不可超过50字节.",
+    "date_of_birth": "出生日期",
+    "date_of_birth_error_required": "此为必填项.",
+    "country_of_birth": "国籍",
+    "zip_code": "邮政编码",
+    "zip_code_error_required": "此为必填项.",
+    "zip_code_error_maxlength": "不可超过10字节.",
+    "living_in": "居住地",
+    "city": "城市",
+    "city_error_required": "此为必填项.",
+    "city_error_maxlength": "不可超过50字节.",
+    "address_line_1": "地址（第一行）",
+    "address_line_1_error_required": "此为必填项.",
+    "address_line_2": "地址（第二行）",
+    "next": "下一步"
+  },
+
+  "phone_verification": {
+    "description": "请输入您的电话号码，稍后您将收到一条验证短信.",
+    "country": "国家",
+    "mobile_number_placeholder": "手机号码",
+    "mobile_number_error_required": "此为必填项.",
+    "mobile_number_error_maxlength": "不可超过15字节.",
+    "mobile_number_error_pattern": "只可填入数字.",
+    "button_submit": "提交",
+    "verification_message": "请输入您收到的验证码",
+    "code_error_required": "此为必填项.",
+    "code_error_maxlength": "不超过6个字节.",
+    "code_error_minlength": "不超过6个字节.",
+    "code_error_pattern": "只可填入数字.",
+    "next": "下一步",
+    "back": "返回上一步"
+  },
+
+  "identity_proof": {
+    "description": "请提供带有照片的以下证件之一:",
+    "documents_1": "护照（照片页）",
+    "documents_2": "驾驶证（正反双面）",
+    "documents_3": "身份证（正反双面）",
+    "hints_1": "照片或扫描件必须清晰，彩色，并包含整个证件在内",
+    "hints_2": "您的全名，出生日期必须同您填写的内容一致.",
+    "hints_3": "非英文的证件必须通过认证翻译，否则不予接受.",
+    "hints_4": "文件最大不超过10 Mb.",
+    "next": "下一步",
+    "back": "返回上一步",
+    "or": "或者"
+  },
+
+  "selfie": {
+    "description": "请提供您本人手持所提交证件及手写便条的自拍照片，便条上应手写您的邮件地址，拍照日期，以及（for Didex）字样，请确保照片满足以下条件",
+
+    "restricts_1": "光线要充足",
+    "restricts_2": "照片要清晰，高解析度，彩色",
+    "restricts_3": "您的面部清楚看见",
+    "restricts_4": "便条需手写，不可打印",
+    "restricts_5": "您所手持的证件需同您上传的证件为同一份",
+    "restricts_6": "照片不可修改或PS",
+    "next": "下一步",
+    "back": "返回上一步"
+  },
+
+  "done": {
+    "description": "谢谢，现在请点击提交按钮以便我们进行审核.",
+    "edit_application": "编辑申请表 ",
+    "submit": "提交"
+  }
+}

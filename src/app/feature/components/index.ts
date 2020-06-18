@@ -1,4 +1,5 @@
 export * from './ddx-navbar/ddx-navbar.component';
+export * from './ddx-notification-bar/ddx-notification-bar.component';
 export * from './ddx-footer/ddx-footer.component';
 
 export * from './ddx-market-form/ddx-market-form.component';

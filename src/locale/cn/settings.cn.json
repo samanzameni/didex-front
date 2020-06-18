@@ -1,0 +1,58 @@
+{
+  "title": "设置",
+  "tab_general": "通用设置",
+  "tab_security": "安全",
+  "tab_2fa": "两步验证",
+  "tab_kyc": "个人信息",
+
+  "general": {
+    "message": "您可以在这里更改您的一般账户信息.",
+    "nickname": "昵称",
+    "nickname_placeholder": "Johnny Doe",
+    "timezone": "时区",
+    "save_button": "保存更改"
+  },
+
+  "security": {
+    "message": "您可以在这里修改您的密码以提高您账户的安全性.",
+    "old_password": "请输入旧密码",
+    "password": "新密码",
+    "confirm_password": "请再次确认",
+    "confirm_password_error_required": "请确认您的新密码",
+    "confirm_password_error_match": "两次输入不一致",
+    "save_button": "保存更改"
+  },
+
+  "2fa": {
+    "title": "两步验证",
+    "message": "您可以在这里开启两步验证以提高您账户的安全性",
+    "enable_title": "启用两步验证",
+    "disable_title": "停用两步验证",
+    "step_1": "第一步",
+    "step_2": "第二步",
+    "enable_form_step_1": "将DidEx加入您的验证账户",
+    "enable_form_step_2": "请输入验证码",
+    "enable_form_enter_manually": "请手动输入以下验证码",
+    "enable_form_code": "验证码",
+    "enable_form_code_hint": "您的验证软件提供的验证码",
+    "enable_form_button": "启用",
+    "disable_form_warning": "警告，这将停用您账户的两步验证",
+    "disable_form_title": "如要停用您账户的两步验证，请输入验证码并提交",
+    "disable_form_button": "停用",
+    "qr_no_data": "无可用QR数据"
+  },
+
+  "kyc": {
+    "message_newbie": "如要进行交易，请将您的个人信息提交给DidEx",
+    "button_newbie": "验证个人信息",
+
+    "message_sent": "您的个人信息已提交，请等待审核",
+    "button_sent": "更新个人信息",
+
+    "message_approved": "您的个人信息已通过审核",
+    "button_approved": "更新个人信息",
+
+    "message_banned": "您的个人信息未通过审核",
+    "button_banned": "验证个人信息"
+  }
+}

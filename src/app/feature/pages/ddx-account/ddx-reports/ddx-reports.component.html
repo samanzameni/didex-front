@@ -29,7 +29,7 @@
 <section class="page-content" [ngSwitch]="activePane">
   <ng-container *ngSwitchCase="'orders'">
     <ng-template
-      [ngIf]="orderData && orderData.length > 0"
+      [ngIf]="orderData && orderData.data.length > 0"
       [ngIfElse]="noOrderData"
     >
       <mat-table class="account-table" [dataSource]="orderData">
@@ -39,14 +39,6 @@
         >
           <mat-header-cell *matHeaderCellDef>
             {{ getOrderHeaderFromColumn(column) }}
-            <!-- <button
-          *ngIf="!!mapColumnToTooltip(column)"
-          mat-icon-button
-          matTooltip="{{ mapColumnToTooltip(column) }}"
-          class="header-tooltip-button"
-        >
-          <mat-icon>help</mat-icon>
-        </button> -->
           </mat-header-cell>
           <mat-cell *matCellDef="let item" [title]="item[column]">
             {{ item[column] }}
@@ -67,7 +59,7 @@
 
   <ng-container *ngSwitchCase="'trades'">
     <ng-template
-      [ngIf]="!!tradeData && tradeData.length > 0"
+      [ngIf]="!!tradeData && tradeData.data.length > 0"
       [ngIfElse]="noTradeData"
     >
       <mat-table class="account-table" [dataSource]="tradeData">
@@ -77,14 +69,6 @@
         >
           <mat-header-cell *matHeaderCellDef>
             {{ getTradeHeaderFromColumn(column) }}
-            <!-- <button
-          *ngIf="!!mapColumnToTooltip(column)"
-          mat-icon-button
-          matTooltip="{{ mapColumnToTooltip(column) }}"
-          class="header-tooltip-button"
-        >
-          <mat-icon>help</mat-icon>
-        </button> -->
           </mat-header-cell>
           <mat-cell *matCellDef="let item" [title]="item[column]">
             {{ item[column] }}
@@ -105,7 +89,7 @@
 
   <ng-container *ngSwitchCase="'transactions'">
     <ng-template
-      [ngIf]="!!transactionsData && transactionsData.length > 0"
+      [ngIf]="!!transactionsData && transactionsData.data.length > 0"
       [ngIfElse]="noTransactionData"
     >
       <mat-table class="account-table" [dataSource]="transactionsData">
@@ -115,14 +99,6 @@
         >
           <mat-header-cell *matHeaderCellDef>
             {{ getTransactionHeaderFromColumn(column) }}
-            <!-- <button
-          *ngIf="!!mapColumnToTooltip(column)"
-          mat-icon-button
-          matTooltip="{{ mapColumnToTooltip(column) }}"
-          class="header-tooltip-button"
-        >
-          <mat-icon>help</mat-icon>
-        </button> -->
           </mat-header-cell>
           <mat-cell *matCellDef="let item" [title]="item[column]">
             {{ item[column] }}
@@ -142,4 +118,6 @@
       <p class="message">You have no transaction records ...</p>
     </ng-template>
   </ng-container>
+
+  <mat-paginator [pageSizeOptions]="pageSizeOptions"></mat-paginator>
 </section>

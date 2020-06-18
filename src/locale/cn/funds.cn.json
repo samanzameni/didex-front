@@ -1,0 +1,44 @@
+﻿{
+  "title": "资产",
+  "shortName": "币种",
+  "shortName_tooltip": "币名",
+  "main": "总计",
+  "main_tooltip": "法币合计",
+  "available": "可用余额",
+  "available_tooltip": "法币可用余额",
+  "reserved": "On Orders",
+  "reserved_tooltip": "冻结",
+  "total": "折合",
+  "total_tooltip": "总金额",
+  "actions": "Actions",
+
+  "deposit": {
+    "title": "充币",
+    "deposit_address": "充币地址",
+    "fetching": "提取中",
+    "fetching_error": "提币错误",
+    "copy": "复制",
+    "tips": "请勿向以上地址充入非选则的电子货币，否则资产将不可找回."
+  },
+
+  "withdraw": {
+    "title": "提币",
+    "address": "提币地址",
+    "amount": "金额",
+    "2fa": "两步验证码",
+    "fee": "手续费",
+    "received": "提币已收到",
+    "received_error": "金额过低",
+    "withdraw": "提币",
+    "tips": "请务必确认您的计算机及浏览器的安全，以免信息被篡改或泄露"
+  },
+
+  "transfer": {
+    "title": "划转",
+    "main_to_trade": "币币账户到法币账户",
+    "trade_to_main": "法币账户到币币账户",
+    "amount": "金额",
+    "transfer": "划转",
+    "tips": "请务必确认您的计算机及浏览器的安全，以免信息被篡改或泄露"
+  }
+}

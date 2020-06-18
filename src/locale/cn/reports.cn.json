@@ -1,0 +1,41 @@
+{
+  "title": "报告",
+  "tab_orders": "订单",
+  "tab_trades": "交易",
+  "tab_transactions": "划转",
+
+  "orders": {
+    "data_message": "您没有进行中的订单",
+    "createdAt": "时间",
+    "marketSymbol": "符号",
+    "id": "户名",
+    "side": "转到",
+    "price": "单价",
+    "execAmount": "执行/金额",
+    "total": "总额"
+  },
+
+  "trades": {
+    "data_message": "您没有交易记录",
+    "timeStamp": "时间",
+    "marketSymbol": "符号",
+    "id": "户名",
+    "side": "Side",
+    "volume": "金额",
+    "price": "单价",
+    "volumeInQuote": "总额",
+    "fee": "手续费"
+  },
+
+  "transactions": {
+    "data_message": "您没有划转记录",
+    "createdAt": "时间",
+    "type": "类型",
+    "currencyShortName": "币别",
+    "transactionId": "户名",
+    "hash": "散列",
+    "amount": "金额",
+    "fee": "手续费",
+    "address": "地址"
+  }
+}

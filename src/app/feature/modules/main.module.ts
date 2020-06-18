@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import {
   NavbarComponent,
+  NotificationBarComponent,
   FooterComponent,
   InstrumentsComponent,
   MarketComponent,
@@ -62,6 +63,7 @@ const routes: Routes = [
   declarations: [
     MainLayoutComponent,
     NavbarComponent,
+    NotificationBarComponent,
     FooterComponent,
     HomePageComponent,
     //

@@ -1,4 +1,11 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ViewChild,
+  ViewChildren,
+  QueryList,
+  AfterViewInit,
+} from '@angular/core';
 import {
   Order,
   Trade,
@@ -16,6 +23,8 @@ import {
 import Decimal from 'decimal.js';
 import { DatePipe } from '@angular/common';
 import { MatPaginator } from '@angular/material/paginator';
+import { CONSTANTS } from '@core/util/constants';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'ddx-reports',
@@ -25,12 +34,21 @@ import { MatPaginator } from '@angular/material/paginator';
     './ddx-reports.component.scss',
   ],
 })
-export class ReportsPageComponent implements OnInit {
-  private orders: Order[];
-  private trades: Trade[];
+export class ReportsPageComponent implements OnInit, AfterViewInit {
+  private orders: any[];
+  private trades: any[];
   private transactions: any[];
 
   private currentActivePane: string;
+
+  private ordersDataSource: MatTableDataSource<any>;
+  private ordersPaginator: MatPaginator;
+
+  private tradesDataSource: MatTableDataSource<any>;
+  private tradesPaginator: MatPaginator;
+
+  private transactionsDataSource: MatTableDataSource<any>;
+  private transactionsPaginator: MatPaginator;
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
@@ -39,36 +57,62 @@ export class ReportsPageComponent implements OnInit {
     private tradeDataService: PrivateTradeDATAService,
     private transactionsDataService: TransactionsDATAService,
     private datePipe: DatePipe
-  ) {
-    this.currentActivePane = 'orders';
-  }
+  ) {}
 
   ngOnInit(): void {
+    this.activatePane('orders');
+  }
+
+  ngAfterViewInit(): void {
     this.orderDataService.dataStream$.subscribe((data) => {
-      this.orders = data || [];
+      this.orders = (data || []).map((order) => {
+        const mapped: any = { ...order };
+        mapped.createdAt = this.datePipe.transform(order.createdAt, 'short');
+        mapped.side = OrderSide[order.side];
+        mapped.execAmount = `${order.executedQuantity}/${order.quantity}`;
+        mapped.total = this.getTotalPrice(order);
+        return mapped;
+      });
+      this.ordersDataSource = new MatTableDataSource(this.orders);
+      this.activatePane(this.currentActivePane);
     });
     this.orderDataService.updateData();
 
     this.tradeDataService.dataStream$.subscribe((data) => {
-      this.trades = data || [];
+      this.trades = (data || []).map((trade) => {
+        const t: any = { ...trade };
+        t.timeStamp = this.datePipe.transform(trade.timeStamp, 'short');
+        t.side = OrderSide[trade.side];
+        return t;
+      });
+      this.tradesDataSource = new MatTableDataSource(this.trades);
+      this.activatePane(this.currentActivePane);
     });
     this.tradeDataService.updateData();
 
     this.transactionsDataService.dataStream$.subscribe((data) => {
-      this.transactions = data || [];
+      this.transactions = (data || []).map((transaction) => {
+        const t: any = { ...transaction };
+        t.createdAt = this.datePipe.transform(transaction.createdAt, 'short');
+        t.type = TransactionType[transaction.type];
+        return t;
+      });
+      this.transactionsDataSource = new MatTableDataSource(this.transactions);
+      this.activatePane(this.currentActivePane);
     });
     this.transactionsDataService.updateData();
   }
 
-  get orderData(): any[] {
-    return (this.orders || []).map((order) => {
-      const mapped: any = { ...order };
-      mapped.createdAt = this.datePipe.transform(order.createdAt, 'short');
-      mapped.side = OrderSide[order.side];
-      mapped.execAmount = `${order.executedQuantity}/${order.quantity}`;
-      mapped.total = this.getTotalPrice(order);
-      return mapped;
-    });
+  get pageSizeOptions(): number[] {
+    return [
+      CONSTANTS.PAGINATION_LIMIT_SMALL,
+      CONSTANTS.PAGINATION_LIMIT,
+      CONSTANTS.PAGINATION_LIMIT_BIG,
+    ];
+  }
+
+  get orderData(): MatTableDataSource<any> {
+    return this.ordersDataSource;
   }
 
   get orderTableColumns(): string[] {
@@ -104,13 +148,8 @@ export class ReportsPageComponent implements OnInit {
     }
   }
 
-  get tradeData(): any[] {
-    return (this.trades || []).map((trade) => {
-      const t: any = { ...trade };
-      t.timeStamp = this.datePipe.transform(trade.timeStamp, 'short');
-      t.side = OrderSide[trade.side];
-      return t;
-    });
+  get tradeData(): MatTableDataSource<any> {
+    return this.tradesDataSource;
   }
 
   get tradeTableColumns(): string[] {
@@ -149,13 +188,8 @@ export class ReportsPageComponent implements OnInit {
     }
   }
 
-  get transactionsData(): any[] {
-    return (this.transactions || []).map((transaction) => {
-      const t: any = { ...transaction };
-      t.createdAt = this.datePipe.transform(transaction.createdAt, 'short');
-      t.type = TransactionType[transaction.type];
-      return t;
-    });
+  get transactionsData(): MatTableDataSource<any> {
+    return this.transactionsDataSource;
   }
 
   get transactionTableColumns(): string[] {
@@ -198,6 +232,23 @@ export class ReportsPageComponent implements OnInit {
 
   activatePane(newPane: string): void {
     this.currentActivePane = newPane;
+    switch (newPane) {
+      case 'orders':
+        if (this.ordersDataSource) {
+          this.ordersDataSource.paginator = this.paginator;
+        }
+        break;
+      case 'trades':
+        if (this.tradesDataSource) {
+          this.tradesDataSource.paginator = this.paginator;
+        }
+        break;
+      case 'transactions':
+        if (this.transactionsDataSource) {
+          this.transactionsDataSource.paginator = this.paginator;
+        }
+        break;
+    }
   }
 
   getPriceCellCSSClass(row: Trade): string {

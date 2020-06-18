@@ -8,4 +8,10 @@
       margin-right: 3px;
     }
   }
+
+  .page-content {
+    .mat-paginator {
+      background: transparent;
+    }
+  }
 }

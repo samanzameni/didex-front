@@ -7,12 +7,14 @@ import {
   OrderRESTService,
   HistoryRESTService,
   BankingRESTService,
+  GeneralRESTService,
 } from '@core/services/REST';
 
 @NgModule({
   declarations: [],
   imports: [],
   providers: [
+    GeneralRESTService,
     AuthRESTService,
     TraderRESTService,
     PublicRESTService,

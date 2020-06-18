@@ -1,3 +1,36 @@
-<div *ngFor="let notification of notifications" class="notification__container">
-  NOTIF
+<div
+  *ngFor="let notification of notifications; let i = index"
+  class="notification__container"
+>
+  <button
+    mat-icon-button
+    class="notification__close-button"
+    (click)="closeNotification(i)"
+  >
+    <mat-icon>clear</mat-icon>
+  </button>
+  <div class="notification__content">
+    <p class="notification__message">{{ notification.body }}</p>
+    <ng-container *ngIf="notification.hasCallToAction">
+      <ng-template [ngIf]="notification.call" [ngIfElse]="linkCTA">
+        <button
+          mat-stroked-button
+          color="primary"
+          class="notification__button"
+          (click)="callCTA(i)"
+        >
+          {{ notification.buttonText }}
+        </button>
+      </ng-template>
+      <ng-template #linkCTA>
+        <a
+          [href]="notification.buttonUrl"
+          target="_blank"
+          class="notification__link"
+        >
+          {{ notification.buttonText }}
+        </a>
+      </ng-template>
+    </ng-container>
+  </div>
 </div>

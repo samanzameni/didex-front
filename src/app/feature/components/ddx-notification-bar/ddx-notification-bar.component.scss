@@ -1,0 +1,76 @@
+@import '../../../../styles.scss';
+
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+
+  &:not(:empty) {
+    margin-top: 10px;
+  }
+
+  .notification__container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: calc(100% - 30px);
+    margin: 5px auto;
+    padding: 5px;
+    box-sizing: border-box;
+    border-radius: 3px;
+    border: 1px solid $ddx-red;
+    background-color: rgba($ddx-red, 0.25);
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    .notification__close-button {
+      height: 15px;
+      width: 15px;
+      position: absolute;
+      transform: translateY(-50%);
+      top: 50%;
+      right: 0;
+
+      .mat-icon {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 15px;
+        height: 15px;
+        font-size: 12px;
+        line-height: 12px;
+      }
+    }
+
+    .notification__content {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      width: calc(100% - 30px);
+
+      .notification__message {
+        font-size: 12px;
+        text-align: center;
+      }
+
+      .notification__button {
+        margin: 0 3px;
+        font-size: 12px;
+        line-height: 24px;
+      }
+
+      .notification__link {
+        padding: 2px 5px;
+        margin: 2px;
+        font-size: 12px;
+        line-height: 24px;
+      }
+    }
+  }
+}

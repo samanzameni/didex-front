@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '@core/services';
 import { NotificationContent } from '@core/models';
+import { GeneralRESTService } from '@core/services/REST';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'ddx-notification-bar',
@@ -10,7 +12,11 @@ import { NotificationContent } from '@core/models';
 export class NotificationBarComponent implements OnInit {
   private notificationsContent: NotificationContent[];
 
-  constructor(private authService: AuthService) {}
+  constructor(
+    private authService: AuthService,
+    private httpClient: GeneralRESTService,
+    private toastr: ToastrService
+  ) {}
 
   ngOnInit(): void {
     if (this.authService.isAuthorized) {
@@ -22,5 +28,21 @@ export class NotificationBarComponent implements OnInit {
 
   get notifications(): NotificationContent[] {
     return this.notificationsContent || [];
+  }
+
+  callCTA(index: number): void {
+    const ntf = this.notificationsContent[index];
+    this.httpClient.httpGET(ntf.buttonUrl).subscribe(
+      (response) => {
+        this.toastr.success('Success', ntf.title);
+      },
+      (errorResponse) => {
+        this.toastr.error('An error occured', ntf.title);
+      }
+    );
+  }
+
+  closeNotification(index: number): void {
+    this.notificationsContent.splice(index, 1);
   }
 }

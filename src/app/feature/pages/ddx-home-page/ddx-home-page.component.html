@@ -15,11 +15,13 @@
   <ddx-order-book
     [activeSymbol]="activeSymbol"
     [orderBookData]="orderBookData"
+    (clickOnRecord)="handleOrderChange($event)"
   ></ddx-order-book>
 </section>
 <section class="market-section">
   <ddx-market
     [activeSymbol]="activeSymbol"
+    [activeOrder]="activeOrder"
     [tickerData]="tickerData"
     [balanceData]="balanceData"
     [orderBookData]="orderBookData"

@@ -1,7 +1,13 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { TradeSymbol, OrderBookResponse, OrderBookRecord } from '@core/models';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
+import {
+  TradeSymbol,
+  OrderBookResponse,
+  OrderBookRecord,
+  OrderClickEventData,
+} from '@core/models';
 
 import { Decimal } from 'decimal.js';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'ddx-order-book',
@@ -15,7 +21,11 @@ export class OrderBookComponent implements OnInit {
   @Input() activeSymbol: TradeSymbol;
   @Input() orderBookData: OrderBookResponse;
 
-  constructor() {}
+  @Output() clickOnRecord: EventEmitter<OrderClickEventData>;
+
+  constructor(private snackbarService: MatSnackBar) {
+    this.clickOnRecord = new EventEmitter();
+  }
 
   ngOnInit(): void {}
 
@@ -66,7 +76,7 @@ export class OrderBookComponent implements OnInit {
   get asksTotal(): Decimal {
     let summation: Decimal = new Decimal(0);
 
-    this.asksTableData.forEach(askRecord => {
+    this.asksTableData.forEach((askRecord) => {
       summation = summation.add(askRecord.volume);
     });
 
@@ -76,13 +86,23 @@ export class OrderBookComponent implements OnInit {
   get bidsTotal(): Decimal {
     let summation: Decimal = new Decimal(0);
 
-    this.bidsTableData.forEach(bidRecord => {
+    this.bidsTableData.forEach((bidRecord) => {
       summation = summation.add(
         new Decimal(bidRecord.volume).mul(bidRecord.price)
       );
     });
 
     return summation;
+  }
+
+  handleClickOnRecord(amount: Decimal, price: number): void {
+    const dataToEmit: OrderClickEventData = {
+      amount: amount.toNumber(),
+      price,
+    };
+
+    this.snackbarService.open('Record data copied!', '', { duration: 700 });
+    this.clickOnRecord.emit(dataToEmit);
   }
 
   private bidSorter(a: OrderBookRecord, b: OrderBookRecord): number {

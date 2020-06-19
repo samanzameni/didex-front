@@ -17,6 +17,7 @@ import {
   OrderData,
   Order,
   OrderBookRecord,
+  OrderClickEventData,
 } from '@core/models';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { ProButtonComponent } from '@widget/components';
@@ -35,6 +36,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class MarketFormComponent implements OnInit, OnChanges {
   @Input() activeSymbol: TradeSymbol;
+  @Input() activeOrder: OrderClickEventData;
   @Input() tickerData: Ticker[];
   @Input() balanceData: Balance[];
 
@@ -70,7 +72,17 @@ export class MarketFormComponent implements OnInit, OnChanges {
     });
   }
 
-  private buildFormGroup(): void {
+  private buildFormGroup(hasNewActiveOrder: boolean = false): void {
+    const initQuantityValue: number = hasNewActiveOrder
+      ? this.activeOrder.amount
+      : this.activeSymbol.quantityIncrement;
+    const initPriceValue: number = hasNewActiveOrder
+      ? this.activeOrder.price
+      : Math.max(
+          (this.side === 'buy' ? this.bestAsk : this.bestBid).toNumber(),
+          this.activeSymbol.tickSize
+        );
+
     this.marketForm = this.formBuilder.group({
       marketSymbol: [this.activeSymbol.symbol, []],
       side: [this.side === 'buy' ? OrderSide.Buy : OrderSide.Sell, []],
@@ -79,17 +91,14 @@ export class MarketFormComponent implements OnInit, OnChanges {
         [],
       ],
       quantity: [
-        this.activeSymbol.quantityIncrement,
+        initQuantityValue,
         [
           Validators.required,
           Validators.min(this.activeSymbol.quantityIncrement),
         ],
       ],
       price: [
-        Math.max(
-          (this.side === 'buy' ? this.bestAsk : this.bestBid).toNumber(),
-          this.activeSymbol.tickSize
-        ),
+        initPriceValue,
         [Validators.required, Validators.min(this.activeSymbol.tickSize)],
       ],
       postOnly: [false, []],
@@ -102,7 +111,10 @@ export class MarketFormComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes && (changes.activeSymbol || changes.activeType)) {
+    if (
+      changes &&
+      (changes.activeSymbol || changes.activeType || changes.activeOrder)
+    ) {
       const isSymbolChanged =
         changes.activeSymbol &&
         changes.activeSymbol.previousValue?.symbol !==
@@ -112,8 +124,15 @@ export class MarketFormComponent implements OnInit, OnChanges {
         changes.activeType &&
         changes.activeType.previousValue !== changes.activeType.currentValue;
 
-      if (isSymbolChanged || isTypeChanged) {
-        this.buildFormGroup();
+      const isActiveOrderChanged =
+        changes.activeOrder &&
+        (changes.activeOrder.previousValue?.amount !==
+          changes.activeOrder.currentValue?.amount ||
+          changes.activeOrder.previousValue?.price !==
+            changes.activeOrder.currentValue?.price);
+
+      if (isSymbolChanged || isTypeChanged || isActiveOrderChanged) {
+        this.buildFormGroup(isActiveOrderChanged);
       }
     }
   }

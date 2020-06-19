@@ -19,6 +19,7 @@ import {
   OrderTimeInForce,
   OrderBookResponse,
   OrderBookRecord,
+  OrderClickEventData,
 } from '@core/models/ddx-order.model';
 import { DropdownSelectItem } from '@widget/models';
 import { AuthService } from '@core/services';
@@ -30,6 +31,7 @@ import { AuthService } from '@core/services';
 })
 export class MarketComponent implements OnInit {
   @Input() activeSymbol: TradeSymbol;
+  @Input() activeOrder: OrderClickEventData;
   @Input() tickerData: Ticker[];
   @Input() balanceData: Balance[];
   @Input() orderBookData: OrderBookResponse;

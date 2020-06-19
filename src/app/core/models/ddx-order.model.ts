@@ -47,6 +47,11 @@ export interface OrderData {
   expireTime?: string; // if TmieInFor === 5 then show (NO NEED FOR NOW)
 }
 
+export interface OrderClickEventData {
+  amount: number;
+  price: number;
+}
+
 export enum OrderSide {
   Buy = 0,
   Sell = 1,

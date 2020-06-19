@@ -8,6 +8,7 @@ import {
   Trade,
   SymbolExternalSource,
   Trader,
+  OrderClickEventData,
 } from '@core/models';
 import {
   SymbolDATAService,
@@ -29,6 +30,7 @@ import { TraderService, AuthService } from '@core/services';
 })
 export class HomePageComponent implements OnInit {
   private currentActiveSymbol: TradeSymbol;
+  private currentActiveOrder: OrderClickEventData;
 
   private externalSources: SymbolExternalSource[];
 
@@ -136,8 +138,17 @@ export class HomePageComponent implements OnInit {
     }
   }
 
+  handleOrderChange(order: OrderClickEventData): void {
+    this.currentActiveOrder = order;
+    this.cdRef.detectChanges();
+  }
+
   get activeSymbol(): TradeSymbol {
     return this.currentActiveSymbol;
+  }
+
+  get activeOrder(): OrderClickEventData {
+    return this.currentActiveOrder;
   }
 
   get symbolExternalSources(): SymbolExternalSource[] {

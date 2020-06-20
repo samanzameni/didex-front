@@ -40,4 +40,5 @@ export enum TraderStatus {
   KycSent = 1,
   Approved = 2,
   Banned = 3,
+  Rejected = 4,
 }

@@ -1,5 +1,5 @@
 <div arrangeInline class="page-header">
-  <h2>Funds</h2>
+  <h2>{{ 'funds.title' | ddxLocale }}</h2>
 
   <!--
   <ul arrangeInline class="page-header__items">
@@ -47,7 +47,7 @@
         *matHeaderCellDef
         style="text-align: center; justify-content: center;"
       >
-        Actions
+        {{ 'funds.actions' | ddxLocale }}
       </mat-header-cell>
       <mat-cell *matCellDef="let item; let i = dataIndex">
         <div arrangeInline class="funds__actions">
@@ -57,7 +57,7 @@
             class="funds__action-button"
             [ngClass]="{ 'is-active': this.activePane === i + '-deposit' }"
             (click)="handleClickOnAction(i, 'deposit')"
-            title="Deposit"
+            title="{{ 'funds.deposit.title' | ddxLocale }}"
           >
             <svg
               id="deposit"
@@ -107,7 +107,7 @@
             class="funds__action-button"
             [ngClass]="{ 'is-active': this.activePane === i + '-withdraw' }"
             (click)="handleClickOnAction(i, 'withdraw')"
-            title="Withdraw"
+            title="{{ 'funds.withdraw.title' | ddxLocale }}"
           >
             <svg
               id="withdraw_1_"
@@ -155,7 +155,7 @@
             [ngClass]="{ 'is-active': this.activePane === i + '-transfer' }"
             class="funds__action-button"
             (click)="handleClickOnAction(i, 'transfer')"
-            title="Transfer"
+            title="{{ 'funds.transfer.title' | ddxLocale }}"
           >
             <svg
               id="currency-exchange"
@@ -192,13 +192,19 @@
           [ngClass]="{ hidden: this.activePane !== i + '-deposit' }"
         >
           <mat-form-field appearance="outline" class="address-container">
-            <mat-label>Deposit Address</mat-label>
+            <mat-label>{{
+              'funds.deposit.deposit_address' | ddxLocale
+            }}</mat-label>
             <input
               type="text"
               name="address"
               id="address"
               matInput
-              [value]="walletAddress ? walletAddress.address : 'Fetching...'"
+              [value]="
+                walletAddress
+                  ? walletAddress.address
+                  : translate('funds.deposit.fetching')
+              "
               class="address-input"
               readonly
               disabled
@@ -212,26 +218,11 @@
             [cdkCopyToClipboard]="addressCode.value"
             (click)="handleClickOnCopyAddress()"
           >
-            Copy
+            {{ 'funds.deposit.copy' | ddxLocale }}
           </button>
           <ul class="tips">
             <li>
-              Please don’t deposit any other digital assets except selected
-              currency to the above address. Otherwise, you may lose your assets
-              permanently.
-            </li>
-            <li>
-              Depositing to the above address requires confirmations of the
-              entire network. It will arrive after 12 confirmations, and it will
-              be available to withdraw after 12 confirmations.
-            </li>
-            <li>
-              Your deposit address won’t change often. If there are any changes,
-              we will notify you via announcement or email.
-            </li>
-            <li>
-              Please make sure that your computer and browser are secure and
-              your information is protected from being tampered or leaked.
+              {{ 'funds.deposit.tips' | ddxLocale }}
             </li>
           </ul>
         </div>
@@ -259,7 +250,7 @@
               [value]="row.shortName"
             />
             <mat-form-field appearance="outline" class="address-container">
-              <mat-label>Address</mat-label>
+              <mat-label>{{ 'funds.withdraw.address' | ddxLocale }}</mat-label>
               <input
                 type="text"
                 name="address"
@@ -275,7 +266,7 @@
               appearance="outline"
               class="withdraw-amount-container"
             >
-              <mat-label>Amount</mat-label>
+              <mat-label>{{ 'funds.withdraw.amount' | ddxLocale }}</mat-label>
               <input
                 type="number"
                 name="amount"
@@ -293,7 +284,7 @@
               class="withdraw-amount-container"
               *ngIf="hasTraderEnabledTwoFactor"
             >
-              <mat-label>TwoFactor Auth Code</mat-label>
+              <mat-label>{{ 'funds.withdraw.2fa' | ddxLocale }}</mat-label>
               <input
                 type="text"
                 name="code"
@@ -307,18 +298,18 @@
             <div class="form__non-inputs" arrangeInline>
               <ul class="details-container">
                 <li class="details__item">
-                  Fee
+                  {{ 'funds.withdraw.fee' | ddxLocale }}
                   <span matSuffix>
                     {{ row.payoutFee }}
                   </span>
                 </li>
                 <li class="details__item">
-                  Received
+                  {{ 'funds.withdraw.received' | ddxLocale }}
                   <span matSuffix>
                     {{
                       form.value.amount - row.payoutFee > 0
                         ? form.value.amount - row.payoutFee
-                        : 'Quantity should be higher'
+                        : translate('funds.withdraw.received_error')
                     }}
                   </span>
                 </li>
@@ -334,7 +325,7 @@
                 "
                 #withdrawButton
               >
-                Withdraw
+                {{ 'funds.withdraw.withdraw' | ddxLocale }}
               </pro-button>
             </div>
             <div *ngIf="!!allErrors" arrangeStack style="width: 100%;">
@@ -343,8 +334,7 @@
           </form>
           <ul class="tips">
             <li>
-              Please make sure that your computer and browser are secure and
-              your information is protected from being tampered or leaked.
+              {{ 'funds.withdraw.tips' | ddxLocale }}
             </li>
           </ul>
         </div>
@@ -372,12 +362,12 @@
               #type="ngModel"
               required
             >
-              <mat-radio-button [value]="3" checked
-                >Main Account to Trading</mat-radio-button
-              >
-              <mat-radio-button [value]="4"
-                >Trading Account to Main</mat-radio-button
-              >
+              <mat-radio-button [value]="3" checked>{{
+                'funds.transfer.main_to_trade' | ddxLocale
+              }}</mat-radio-button>
+              <mat-radio-button [value]="4">{{
+                'funds.transfer.trade_to_main' | ddxLocale
+              }}</mat-radio-button>
             </mat-radio-group>
             <input
               type="hidden"
@@ -387,7 +377,7 @@
               [value]="row.shortName"
             />
             <mat-form-field appearance="outline">
-              <mat-label>Amount</mat-label>
+              <mat-label>{{ 'funds.transfer.amount' | ddxLocale }}</mat-label>
               <input
                 type="number"
                 name="amount"
@@ -406,7 +396,7 @@
               [disabled]="!form.valid || form.value.amount <= 0"
               #transferButton
             >
-              Transfer
+              {{ 'funds.transfer.transfer' | ddxLocale }}
             </pro-button>
             <div arrangeStack *ngIf="!!allErrors" style="width: 100%;">
               <mat-error *ngFor="let error of allErrors">{{ error }}</mat-error>
@@ -414,8 +404,7 @@
           </form>
           <ul class="tips">
             <li>
-              Please make sure that your computer and browser are secure and
-              your information is protected from being tampered or leaked.
+              {{ 'funds.transfer.tips' | ddxLocale }}
             </li>
           </ul>
         </div></mat-cell

@@ -5,7 +5,8 @@
 <ng-template #content>
   <div arrangeStack class="sale__header">
     <h2 class="sale-header__title" *ngIf="!!activeSymbol">
-      Time & Sales {{ activeSymbol.baseCurrencyShortName }}/{{
+      {{ 'homepage.time_and_sales.title' | ddxLocale }}
+      {{ activeSymbol.baseCurrencyShortName }}/{{
         activeSymbol.quoteCurrencyShortName
       }}
     </h2>
@@ -13,12 +14,18 @@
     <table class="ddx__table">
       <thead arrangeStack class="ddx-table__head">
         <tr arrangeInline *ngIf="!!activeSymbol">
-          <th class="row-big">Time</th>
-          <th class="row-small">
-            Price ({{ activeSymbol.quoteCurrencyShortName }})
+          <th class="row-big">
+            {{ 'homepage.time_and_sales.time' | ddxLocale }}
           </th>
           <th class="row-small">
-            Amount ({{ activeSymbol.baseCurrencyShortName }})
+            {{ 'homepage.time_and_sales.price' | ddxLocale }} ({{
+              activeSymbol.quoteCurrencyShortName
+            }})
+          </th>
+          <th class="row-small">
+            {{ 'homepage.time_and_sales.amount' | ddxLocale }} ({{
+              activeSymbol.baseCurrencyShortName
+            }})
           </th>
         </tr>
       </thead>

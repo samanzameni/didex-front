@@ -9,10 +9,10 @@
     id="market"
     [ngClass]="{ active: activeType === 'market' }"
     (click)="activateType('market')"
-    >Market
+    >{{ 'homepage.market.market_tab' | ddxLocale }}
     <button
       mat-icon-button
-      matTooltip="The market price is defined as the best available price for the instrument at the moment when the order is placed."
+      matTooltip="{{ 'homepage.market.market_tab_tooltip' | ddxLocale }}"
       class="header-tooltip-button"
     >
       <mat-icon>help</mat-icon>
@@ -24,10 +24,10 @@
     id="limit"
     [ngClass]="{ active: activeType === 'limit' }"
     (click)="activateType('limit')"
-    >Limit
+    >{{ 'homepage.market.limit_tab' | ddxLocale }}
     <button
       mat-icon-button
-      matTooltip="A limit order to buy would be at the limit or lower price, and a limit order to sell would be at the limit or higher price."
+      matTooltip="{{ 'homepage.market.limit_tab_tooltip' | ddxLocale }}"
       class="header-tooltip-button"
     >
       <mat-icon>help</mat-icon>

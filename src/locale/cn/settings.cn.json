@@ -53,6 +53,9 @@
     "button_approved": "更新个人信息",
 
     "message_banned": "您的个人信息未通过审核",
-    "button_banned": "验证个人信息"
+    "button_banned": "验证个人信息",
+
+    "message_rejected": "",
+    "button_rejected": ""
   }
 }

@@ -26,7 +26,7 @@ export class LocaleService {
   /*
     message ID valid formats are: section.code, section.subsection.code
   */
-  public getMessage(messageID: string): string | string[] {
+  public getMessage(messageID: string): string {
     if (!messageID || messageID.length === 0) {
       return '';
     }

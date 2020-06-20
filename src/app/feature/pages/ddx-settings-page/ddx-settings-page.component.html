@@ -1,6 +1,6 @@
 <section arrangeStack class="container" [ngSwitch]="currentActivePage">
   <div arrangeInline class="settings-page__header">
-    <h2 class="settings-page__title">Settings</h2>
+    <h2 class="settings-page__title">{{ 'settings.title' | ddxLocale }}</h2>
 
     <div arrangeInline class="settings-page__sections">
       <button
@@ -9,7 +9,7 @@
         [ngClass]="{ 'mat-accent': currentActivePage === 'general' }"
         (click)="activatePage('general')"
       >
-        General
+        {{ 'settings.tab_general' | ddxLocale }}
       </button>
       <button
         mat-stroked-button
@@ -17,7 +17,7 @@
         [ngClass]="{ 'mat-accent': currentActivePage === 'security' }"
         (click)="activatePage('security')"
       >
-        Security
+        {{ 'settings.tab_security' | ddxLocale }}
       </button>
       <button
         mat-stroked-button
@@ -25,7 +25,7 @@
         [ngClass]="{ 'mat-accent': currentActivePage === '2fa' }"
         (click)="activatePage('2fa')"
       >
-        2FA
+        {{ 'settings.tab_2fa' | ddxLocale }}
       </button>
       <button
         mat-stroked-button
@@ -33,7 +33,7 @@
         [ngClass]="{ 'mat-accent': currentActivePage === 'kyc' }"
         (click)="activatePage('kyc')"
       >
-        KYC
+        {{ 'settings.tab_kyc' | ddxLocale }}
       </button>
     </div>
   </div>
@@ -41,7 +41,7 @@
 
   <div class="settings-page__content" *ngSwitchCase="'general'">
     <p class="settings-page__info">
-      Here, you can change your general account information.
+      {{ 'settings.general.message' | ddxLocale }}
     </p>
 
     <form
@@ -52,18 +52,20 @@
       #generalForm="ngForm"
     >
       <mat-form-field appearance="outline">
-        <mat-label>Nickname</mat-label>
+        <mat-label>{{ 'settings.general.nickname' | ddxLocale }}</mat-label>
         <input
           matInput
           type="text"
           formControlName="nickname"
           name="nickname"
-          placeholder="Johnny Doe"
+          placeholder="{{
+            'settings.general.nickname_placeholder' | ddxLocale
+          }}"
         />
       </mat-form-field>
 
       <dropdown-autocomplete
-        caption="Timezone"
+        caption="{{ 'settings.general.timezone' | ddxLocale }}"
         [control]="generalFormControls.timezone"
         [items]="timezonesList"
       ></dropdown-autocomplete>
@@ -74,15 +76,14 @@
         [disabled]="!generalFormGroup.valid"
         #generalSubmitButton
       >
-        Save Changes
+        {{ 'settings.general.save_button' | ddxLocale }}
       </pro-button>
     </form>
   </div>
 
   <div class="settings-page__content" *ngSwitchCase="'security'">
     <p class="settings-page__info">
-      Here, you can change your password for improving the security of your
-      account.
+      {{ 'settings.security.message' | ddxLocale }}
     </p>
 
     <form
@@ -93,7 +94,9 @@
       #securityForm="ngForm"
     >
       <mat-form-field appearance="outline">
-        <mat-label>Old Password</mat-label>
+        <mat-label>{{
+          'settings.security.old_password' | ddxLocale
+        }}</mat-label>
         <input
           matInput
           [type]="isHidden ? 'password' : 'text'"
@@ -111,7 +114,7 @@
       </ng-container>
 
       <mat-form-field appearance="outline">
-        <mat-label>Password</mat-label>
+        <mat-label>{{ 'settings.security.password' | ddxLocale }}</mat-label>
         <input
           matInput
           [type]="isHidden ? 'password' : 'text'"
@@ -165,7 +168,9 @@
       </ul>
 
       <mat-form-field appearance="outline">
-        <mat-label>Confirm Password</mat-label>
+        <mat-label>{{
+          'settings.security.confirm_password' | ddxLocale
+        }}</mat-label>
         <input
           matInput
           [type]="isHidden ? 'password' : 'text'"
@@ -181,12 +186,12 @@
       <mat-error
         *ngIf="securityFormGroup.controls.confirmPassword.hasError('required')"
       >
-        Password must be confirmed
+        {{ 'settings.security.confirm_password_error_required' | ddxLocale }}
       </mat-error>
       <mat-error
         *ngIf="securityFormGroup.controls.confirmPassword.hasError('mustMatch')"
       >
-        Passwords must match
+        {{ 'settings.security.confirm_password_error_match' | ddxLocale }}
       </mat-error>
 
       <ng-container *ngIf="errors">
@@ -199,27 +204,30 @@
         [disabled]="!securityFormGroup.valid"
         #securitySubmitButton
       >
-        Save Changes
+        {{ 'settings.security.save_button' | ddxLocale }}
       </pro-button>
     </form>
   </div>
 
   <div class="settings-page__content" *ngSwitchCase="'2fa'">
     <p class="settings-page__info">
-      Here, you can change your two factor authentication settings for improving
-      the security of your account.
+      {{ 'settings.2fa.message' | ddxLocale }}
     </p>
 
     <ng-template
       [ngIf]="hasTraderEnabledTwoFactor"
       [ngIfElse]="enableTwoFactor"
     >
-      <h4 class="settings-page__subtitle">Disable Two Factor Authentication</h4>
+      <h4 class="settings-page__subtitle">
+        {{ 'settings.2fa.disable_title' | ddxLocale }}
+      </h4>
 
       <ddx-settings-qr-form mode="remove"></ddx-settings-qr-form>
     </ng-template>
     <ng-template #enableTwoFactor>
-      <h4 class="settings-page__subtitle">Enable Two Factor Authentication</h4>
+      <h4 class="settings-page__subtitle">
+        {{ 'settings.2fa.enable_title' | ddxLocale }}
+      </h4>
 
       <ddx-settings-qr-form mode="add"></ddx-settings-qr-form>
     </ng-template>
@@ -232,34 +240,52 @@
   >
     <ng-container *ngSwitchCase="'newbie'">
       <p class="settings-page__info">
-        As a user, you must validate your identity in order to do transactions
-        in DidEx
+        {{ 'settings.kyc.message_newbie' | ddxLocale }}
       </p>
       <a routerLink="/user/kyc"
         ><button mat-raised-button color="accent">
-          Validate identity
+          {{ 'settings.kyc.button_newbie' | ddxLocale }}
         </button></a
       >
     </ng-container>
     <ng-container *ngSwitchCase="'sent'">
       <p class="settings-page__info">
-        You have filled and sent your information and it is waiting for approval
+        {{ 'settings.kyc.message_sent' | ddxLocale }}
       </p>
       <a routerLink="/user/kyc"
-        ><button mat-raised-button color="accent">Update KYC Info</button></a
+        ><button mat-raised-button color="accent">
+          {{ 'settings.kyc.button_sent' | ddxLocale }}
+        </button></a
       >
     </ng-container>
     <ng-container *ngSwitchCase="'approved'">
-      <p class="settings-page__info">Your KYC Information is approved.</p>
+      <p class="settings-page__info">
+        {{ 'settings.kyc.message_approved' | ddxLocale }}
+      </p>
       <a routerLink="/user/kyc"
-        ><button mat-raised-button color="accent">Update KYC Info</button></a
+        ><button mat-raised-button color="accent">
+          {{ 'settings.kyc.button_approved' | ddxLocale }}
+        </button></a
       >
     </ng-container>
     <ng-container *ngSwitchCase="'banned'">
-      <p class="settings-page__info">Your application for KYC is banned</p>
+      <p class="settings-page__info">
+        {{ 'settings.kyc.message_banned' | ddxLocale }}
+      </p>
       <a routerLink="/user/kyc"
         ><button mat-raised-button color="accent">
-          Validate identity
+          {{ 'settings.kyc.button_banned' | ddxLocale }}
+        </button></a
+      >
+    </ng-container>
+
+    <ng-container *ngSwitchCase="'rejected'">
+      <p class="settings-page__info">
+        {{ 'settings.kyc.message_rejected' | ddxLocale }}
+      </p>
+      <a routerLink="/user/kyc"
+        ><button mat-raised-button color="accent">
+          {{ 'settings.kyc.button_rejected' | ddxLocale }}
         </button></a
       >
     </ng-container>

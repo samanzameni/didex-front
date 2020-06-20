@@ -5,7 +5,8 @@
 <ng-template #content>
   <div arrangeStack class="order-book__header">
     <h2 class="order-book-header__title" *ngIf="!!activeSymbol">
-      Order Book {{ activeSymbol.baseCurrencyShortName }}/{{
+      {{ 'homepage.order_book.title' | ddxLocale }}
+      {{ activeSymbol.baseCurrencyShortName }}/{{
         activeSymbol.quoteCurrencyShortName
       }}
     </h2>
@@ -17,17 +18,24 @@
       class="order-book-header__info"
     >
       <div arrangeStack arrangeCenter class="info-section">
-        <h3>Buying {{ activeSymbol.baseCurrencyShortName }}</h3>
+        <h3>
+          {{ 'homepage.order_book.buying' | ddxLocale }}
+          {{ activeSymbol.baseCurrencyShortName }}
+        </h3>
         <span
-          >Total: {{ bidsTotal }}
+          >{{ 'homepage.order_book.total' | ddxLocale }}: {{ bidsTotal }}
           {{ activeSymbol.quoteCurrencyShortName }}</span
         >
       </div>
 
       <div arrangeStack arrangeCenter class="info-section">
-        <h3>Selling {{ activeSymbol.baseCurrencyShortName }}</h3>
+        <h3>
+          {{ 'homepage.order_book.selling' | ddxLocale }}
+          {{ activeSymbol.baseCurrencyShortName }}
+        </h3>
         <span
-          >Total: {{ asksTotal }} {{ activeSymbol.baseCurrencyShortName }}</span
+          >{{ 'homepage.order_book.total' | ddxLocale }}: {{ asksTotal }}
+          {{ activeSymbol.baseCurrencyShortName }}</span
         >
       </div>
     </div>
@@ -38,13 +46,18 @@
       <thead class="ddx-table__head">
         <tr arrangeInline>
           <!-- <th class="row-index">#</th> -->
-          <th class="row-big">Sum {{ activeSymbol.baseCurrencyShortName }}</th>
-          <th class="row-big">Amount</th>
+          <th class="row-big">
+            {{ 'homepage.order_book.sum' | ddxLocale }}
+            {{ activeSymbol.baseCurrencyShortName }}
+          </th>
+          <th class="row-big">
+            {{ 'homepage.order_book.amount' | ddxLocale }}
+          </th>
           <th arrangeInline class="row-big">
-            Bid
+            {{ 'homepage.order_book.bid' | ddxLocale }}
             <button
               mat-icon-button
-              matTooltip="The bid price represents the maximum price that a buyer is willing to pay for a share of stock or other currency."
+              matTooltip="{{ 'homepage.order_book.bid_tooltip' | ddxLocale }}"
               class="header-tooltip-button"
             >
               <mat-icon>help</mat-icon>
@@ -82,15 +95,20 @@
           <th arrangeInline class="row-big">
             <button
               mat-icon-button
-              matTooltip="The ask price represents the minimum price that a seller is willing to take for that same currency."
+              matTooltip="{{ 'homepage.order_book.ask_tooltip' | ddxLocale }}"
               class="header-tooltip-button"
             >
               <mat-icon>help</mat-icon>
             </button>
-            Ask
+            {{ 'homepage.order_book.ask' | ddxLocale }}
           </th>
-          <th class="row-big">Amount</th>
-          <th class="row-big">Sum {{ activeSymbol.baseCurrencyShortName }}</th>
+          <th class="row-big">
+            {{ 'homepage.order_book.amount' | ddxLocale }}
+          </th>
+          <th class="row-big">
+            {{ 'homepage.order_book.sum' | ddxLocale }}
+            {{ activeSymbol.baseCurrencyShortName }}
+          </th>
           <!-- <th class="row-index">#</th> -->
         </tr>
       </thead>

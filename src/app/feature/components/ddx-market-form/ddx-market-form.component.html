@@ -1,5 +1,9 @@
 <h2 class="market__action-title">
-  {{ side === 'buy' ? 'Buy' : 'Sell' }}
+  {{
+    side === 'buy'
+      ? ('homepage.market_form.side_buy' | ddxLocale)
+      : ('homepage.market_form.side_sell' | ddxLocale)
+  }}
   {{ activeSymbol.baseCurrencyShortName }}
 </h2>
 <hr class="market__title-seperator" />
@@ -13,10 +17,12 @@
   (ngSubmit)="submitForm()"
 >
   <span arrangeInline *ngIf="activeType === 'limit'">
-    Time in Force
+    {{ 'homepage.market_form.time_in_force' | ddxLocale }}
     <button
       mat-icon-button
-      matTooltip="{{ timeInForceTooltipContent }}"
+      matTooltip="{{
+        'homepage.market_form.time_in_force_tooltip' | ddxLocale
+      }}"
       matTooltipClass="formatted-tooltip"
       class="header-tooltip-button"
       type="button"
@@ -41,11 +47,11 @@
     class="post-only-container"
   >
     <mat-checkbox formControlName="postOnly" required #checkbox
-      >Post only
+      >{{ 'homepage.market_form.post_only' | ddxLocale }}
     </mat-checkbox>
     <button
       mat-icon-button
-      matTooltip="A post-only limit order is either placed in the order book or expires if matches an existing order. Post-only option guarantees that you will not pay the taker fee."
+      matTooltip="{{ 'homepage.market_form.post_only_tooltip' | ddxLocale }}"
       matTooltipClass="formatted-tooltip"
       class="header-tooltip-button"
       type="button"
@@ -61,7 +67,7 @@
     >
       <tbody arrangeStack>
         <tr arrangeInline>
-          <td>Balance:</td>
+          <td>{{ 'homepage.market_form.balance' | ddxLocale }}:</td>
           <td>
             {{
               this.side === 'buy'
@@ -71,7 +77,7 @@
           </td>
         </tr>
         <tr arrangeInline>
-          <td>In Order:</td>
+          <td>{{ 'homepage.market_form.in_order' | ddxLocale }}:</td>
           <td>
             {{
               this.side === 'buy'
@@ -82,10 +88,12 @@
         </tr>
         <tr arrangeInline>
           <td arrangeInline>
-            Total:
+            {{ 'homepage.market_form.total' | ddxLocale }}:
             <button
               mat-icon-button
-              matTooltip="Total value of order in quote currency"
+              matTooltip="{{
+                'homepage.market_form.total_tooltip' | ddxLocale
+              }}"
               matTooltipClass="formatted-tooltip"
               class="header-tooltip-button"
               type="button"
@@ -96,13 +104,19 @@
           <td>
             {{
               this.side === 'buy'
-                ? baseTotal + ' ' + baseBalanceData.currency
-                : quoteTotal + ' ' + quoteBalanceData.currency
+                ? baseTotal.toNumber() + ' ' + baseBalanceData.currency
+                : quoteTotal.toNumber() + ' ' + quoteBalanceData.currency
             }}
           </td>
         </tr>
         <tr arrangeInline>
-          <td>Best {{ this.side !== 'buy' ? 'Bid' : 'Ask' }}:</td>
+          <td>
+            {{
+              this.side !== 'buy'
+                ? ('homepage.market_form.best_bid' | ddxLocale)
+                : ('homepage.market_form.best_ask' | ddxLocale)
+            }}:
+          </td>
           <td>
             {{ this.side !== 'buy' ? bestBid : bestAsk }}
             {{ quoteBalanceData.currency }}
@@ -113,7 +127,7 @@
     <ng-template #defaultTable>
       <tbody arrangeStack>
         <tr arrangeInline>
-          <td>Balance:</td>
+          <td>{{ 'homepage.market_form.balance' | ddxLocale }}:</td>
           <td>
             {{
               this.side === 'buy'
@@ -123,7 +137,7 @@
           </td>
         </tr>
         <tr arrangeInline>
-          <td>In Order:</td>
+          <td>{{ 'homepage.market_form.in_order' | ddxLocale }}:</td>
           <td>
             {{
               this.side === 'buy'
@@ -134,10 +148,12 @@
         </tr>
         <tr arrangeInline>
           <td arrangeInline>
-            Total:
+            {{ 'homepage.market_form.total' | ddxLocale }}:
             <button
               mat-icon-button
-              matTooltip="Total value of order in quote currency"
+              matTooltip="{{
+                'homepage.market_form.total_tooltip' | ddxLocale
+              }}"
               matTooltipClass="formatted-tooltip"
               class="header-tooltip-button"
               type="button"
@@ -154,7 +170,13 @@
           </td>
         </tr>
         <tr arrangeInline>
-          <td>Best {{ this.side === 'buy' ? 'Bid' : 'Ask' }}:</td>
+          <td>
+            {{
+              this.side !== 'buy'
+                ? ('homepage.market_form.best_bid' | ddxLocale)
+                : ('homepage.market_form.best_ask' | ddxLocale)
+            }}:
+          </td>
           <td>0 {{ activeSymbol.quoteCurrencyShortName }}</td>
         </tr>
       </tbody>
@@ -162,7 +184,7 @@
   </table>
 
   <mat-form-field appearance="outline">
-    <mat-label>Amount</mat-label>
+    <mat-label>{{ 'homepage.market_form.amount' | ddxLocale }}</mat-label>
     <input
       type="number"
       matInput
@@ -175,14 +197,14 @@
     </span>
   </mat-form-field>
   <mat-error *ngIf="marketFormGroup.controls.quantity.hasError('required')">
-    Amount field can't be empty
+    {{ 'homepage.market_form.amount_errror_required' | ddxLocale }}
   </mat-error>
   <mat-error *ngIf="marketFormGroup.controls.quantity.hasError('min')">
-    Amount should be a positive number greater than or equal to
+    {{ 'homepage.market_form.amount_errror_min' | ddxLocale }}
     {{ activeSymbol.quantityIncrement }}
   </mat-error>
   <mat-error *ngIf="marketFormGroup.controls.quantity.hasError('max')">
-    Amount should be a positive number lesser than or equal to your balance:
+    {{ 'homepage.market_form.amount_errror_max' | ddxLocale }}
     {{ baseBalanceData.available }}
   </mat-error>
   <ng-container *ngIf="errors">
@@ -190,7 +212,7 @@
   </ng-container>
 
   <mat-form-field *ngIf="activeType === 'limit'" appearance="outline">
-    <mat-label>Price</mat-label>
+    <mat-label>{{ 'homepage.market_form.limit' | ddxLocale }}</mat-label>
     <input
       type="number"
       matInput
@@ -203,10 +225,10 @@
     </span>
   </mat-form-field>
   <mat-error *ngIf="marketFormGroup.controls.price.hasError('required')">
-    Price field can't be empty
+    {{ 'homepage.market_form.limit_error_required' | ddxLocale }}
   </mat-error>
   <mat-error *ngIf="marketFormGroup.controls.price.hasError('min')">
-    Price should be a positive number greater than or equal to
+    {{ 'homepage.market_form.limit_error_min' | ddxLocale }}
     {{ activeSymbol.tickSize }}
   </mat-error>
   <ng-container *ngIf="errors">
@@ -221,7 +243,7 @@
     <tbody arrangeStack>
       <tr *ngIf="this.activeType === 'limit'" arrangeInline>
         <td>
-          Total
+          {{ 'homepage.market_form.total' | ddxLocale }}
         </td>
         <td class="market__total-amount">
           {{ total }}
@@ -232,11 +254,13 @@
       </tr>
       <tr arrangeInline>
         <td arrangeInline>
-          Taker fee
+          {{ 'homepage.market_form.taker_fee' | ddxLocale }}
           {{ activeSymbol.takeLiquidityRate * 100 }}%
           <button
             mat-icon-button
-            matTooltip="Taker fees are paid when you remove liquidity from our order book by placing any order that is executed against an order on the order book. If you buy or sell using a market order, you will pay the taker fee because a market order immediately removes liquidity (other traders' offers) from the order book."
+            matTooltip="{{
+              'homepage.market_form.taker_fee_tooltip' | ddxLocale
+            }}"
             matTooltipClass="formatted-tooltip"
             class="header-tooltip-button"
             type="button"
@@ -251,11 +275,13 @@
       </tr>
       <tr *ngIf="this.activeType === 'limit'" arrangeInline>
         <td arrangeInline>
-          Maker fee
+          {{ 'homepage.market_form.maker_fee' | ddxLocale }}
           {{ activeSymbol.provideLiquidityRate * 100 }}%
           <button
             mat-icon-button
-            matTooltip="Maker fees are paid when you add liquidity to our order book by placing a limit order below the ticker price for buy, and above the ticker price for sell.  If you place a limit buy below the current market price, or a limit sell above the current market price, then you will pay the maker fee if the market moves into your limit order because you added liquidity to the order book, while other traders took your offer from the order book."
+            matTooltip="{{
+              'homepage.market_form.maker_fee_tooltip' | ddxLocale
+            }}"
             matTooltipClass="formatted-tooltip"
             class="header-tooltip-button"
             type="button"
@@ -282,11 +308,17 @@
       ;
       [ngIfElse]="notAvailableInMarket"
     >
-      <p>You will {{ this.side === 'buy' ? 'pay' : 'get' }}</p>
+      <p>
+        {{
+          this.side === 'buy'
+            ? ('homepage.market_form.market_approx_pay' | ddxLocale)
+            : ('homepage.market_form.market_approx_get' | ddxLocale)
+        }}
+      </p>
       <strong>{{ approxPay }} {{ activeSymbol.quoteCurrencyShortName }}</strong>
     </ng-template>
     <ng-template #notAvailableInMarket>
-      <p>Not available in the market</p>
+      <p>{{ 'homepage.market_form.market_not_available' | ddxLocale }}</p>
     </ng-template>
   </div>
 
@@ -297,6 +329,10 @@
     [ngClass]="side + '-button'"
     #submitButton
   >
-    {{ side === 'buy' ? 'Buy' : 'Sell' }}
+    {{
+      side === 'buy'
+        ? ('homepage.market_form.side_buy' | ddxLocale)
+        : ('homepage.market_form.side_sell' | ddxLocale)
+    }}
   </pro-button>
 </form>

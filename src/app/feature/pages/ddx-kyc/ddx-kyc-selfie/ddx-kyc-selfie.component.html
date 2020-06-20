@@ -1,6 +1,6 @@
 <header>
-  <div class="step-counter">Step 4</div>
-  <h2>Selfie</h2>
+  <div class="step-counter">{{ 'kyc.steps.step_4' | ddxLocale }}</div>
+  <h2>{{ 'kyc.steps.step_4_caption' | ddxLocale }}</h2>
 </header>
 
 <section>
@@ -12,26 +12,26 @@
   >
     <div arrangeStack class="description">
       <p>
-        Please submit a selfie in which you are holding your government-issued
-        ID and a paper note. On the note you should handwrite your email
-        address, the current date, and the words "for Didex Make sure the selfie
-        you are submitting meets the following requirements:
+        {{ 'kyc.selfie.description' | ddxLocale }}
       </p>
       <ul arrangeStack class="restricts">
-        <li class="restrict">It is taken in good light</li>
         <li class="restrict">
-          The photo is clear, high-resolution, and in color
-        </li>
-        <li class="restrict">Your face must be clearly visible</li>
-        <li class="restrict">
-          The text in the note must be handwritten by you and not typed
+          {{ 'kyc.selfie.restricts_1' | ddxLocale }}
         </li>
         <li class="restrict">
-          The document you are holding must be the same you are submitting for
-          your identity verification
+          {{ 'kyc.selfie.restricts_2' | ddxLocale }}
         </li>
         <li class="restrict">
-          Neither the photos nor the documents have been edited or manipulated
+          {{ 'kyc.selfie.restricts_3' | ddxLocale }}
+        </li>
+        <li class="restrict">
+          {{ 'kyc.selfie.restricts_4' | ddxLocale }}
+        </li>
+        <li class="restrict">
+          {{ 'kyc.selfie.restricts_5' | ddxLocale }}
+        </li>
+        <li class="restrict">
+          {{ 'kyc.selfie.restricts_6' | ddxLocale }}
         </li>
       </ul>
     </div>
@@ -54,7 +54,9 @@
         class="back-button"
         routerLink="/user/kyc/identity-proof"
         rel="noopener noreferrer"
-        ><button mat-stroked-button color="basic" type="button">Back</button></a
+        ><button mat-stroked-button color="basic" type="button">
+          {{ 'kyc.selfie.back' | ddxLocale }}
+        </button></a
       >
       <pro-button
         color="primary"
@@ -62,7 +64,7 @@
         [disabled]="!kycFormGroup.valid"
         #submitButton
       >
-        Next
+        {{ 'kyc.selfie.next' | ddxLocale }}
       </pro-button>
     </div>
   </form>

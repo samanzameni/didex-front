@@ -1,6 +1,18 @@
 @import '../../../../styles.scss';
 
 body {
+  .mat-select-panel {
+    &.locale-selector-panel {
+      transform: none !important;
+      margin-top: 30px !important;
+
+      .mat-option {
+        text-align: center;
+      }
+    }
+  }
+
+  .mat-select-panel,
   .mat-menu-panel {
     background: $ddx-dark-lighter;
 

@@ -31,15 +31,32 @@
     </a>
   -->
 
+  <mat-form-field class="locale-selector">
+    <mat-select
+      disableOptionCentering
+      [value]="currentLocaleModel.locale"
+      panelClass="locale-selector-panel"
+      (valueChange)="handleLocaleChange($event)"
+    >
+      <mat-option *ngFor="let item of availableLocales" [value]="item.locale">
+        {{ item.caption }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
   <ng-container *ngSwitchCase="true">
     <dropdown-menu title="Account" icon="account_balance_wallet">
-      <a mat-menu-item routerLink="/account/funds">Funds</a>
-      <a mat-menu-item routerLink="/account/reports">Reports</a>
+      <a mat-menu-item routerLink="/account/funds">{{
+        'navbar.funds' | ddxLocale
+      }}</a>
+      <a mat-menu-item routerLink="/account/reports">{{
+        'navbar.reports' | ddxLocale
+      }}</a>
     </dropdown-menu>
 
     <dropdown-menu title="Profile" icon="person">
       <span mat-menu-item disabled class="navbar__personal-info-item"
-        >Hello, {{ personalInfo }}</span
+        >{{ 'navbar.hello' | ddxLocale }}, {{ personalInfo }}</span
       >
       <span
         mat-menu-item
@@ -53,19 +70,25 @@
         mat-menu-item
         routerLink="/user/settings"
         [queryParams]="{ tab: 'general' }"
-        >General Settings</a
+        >{{ 'navbar.general_settings' | ddxLocale }}</a
       >
       <a
         mat-menu-item
         routerLink="/user/settings"
         [queryParams]="{ tab: 'security' }"
-        >Security</a
+        >{{ 'navbar.security' | ddxLocale }}</a
+      >
+      <a
+        mat-menu-item
+        routerLink="/user/settings"
+        [queryParams]="{ tab: '2fa' }"
+        >{{ 'navbar.2fa' | ddxLocale }}</a
       >
       <a
         mat-menu-item
         routerLink="/user/settings"
         [queryParams]="{ tab: 'kyc' }"
-        >KYC</a
+        >{{ 'navbar.kyc' | ddxLocale }}</a
       >
       <button
         mat-flat-button
@@ -73,7 +96,7 @@
         class="sign-out-button"
         (click)="requestSignOut()"
       >
-        Sign Out
+        {{ 'navbar.sign_out' | ddxLocale }}
       </button>
     </dropdown-menu>
   </ng-container>
@@ -85,7 +108,7 @@
       [queryParams]="{ redirect_url: '/auth/signin', from: '/trade' }"
     >
       <button mat-stroked-button>
-        Sign In
+        {{ 'navbar.sign_in' | ddxLocale }}
       </button>
     </a>
     <a
@@ -94,7 +117,7 @@
       [queryParams]="{ redirect_url: '/auth/signup', from: '/trade' }"
     >
       <button mat-stroked-button>
-        Sign Up
+        {{ 'navbar.sign_up' | ddxLocale }}
       </button>
     </a>
   </ng-container>

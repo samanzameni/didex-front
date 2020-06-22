@@ -1,6 +1,6 @@
 <header>
-  <div class="step-counter">Step 3</div>
-  <h2>Identity Proof</h2>
+  <div class="step-counter">{{ 'kyc.steps.step_3' | ddxLocale }}</div>
+  <h2>{{ 'kyc.steps.steps_3_caption' | ddxLocale }}</h2>
 </header>
 
 <section>
@@ -11,29 +11,33 @@
     #form
   >
     <div arrangeStack class="description">
-      <p>Please provide a picture of any of the following:</p>
+      <p>{{ 'kyc.identity_proof.description' | ddxLocale }}:</p>
       <ul arrangeStack class="documents">
-        <li class="document">Passport (the main double-page spread)</li>
-        <li class="document">Driver's license (both sides)</li>
-        <li class="document">National identity document (both sides).</li>
+        <li class="document">
+          {{ 'kyc.identity_proof.documents_1' | ddxLocale }}
+        </li>
+        <li class="document">
+          {{ 'kyc.identity_proof.documents_2' | ddxLocale }}
+        </li>
+        <li class="document">
+          {{ 'kyc.identity_proof.documents_3' | ddxLocale }}
+        </li>
       </ul>
-      <p>Photo/scan must be clear, in color and display the entire ID.</p>
+      <p>{{ 'kyc.identity_proof.hints_1' | ddxLocale }}</p>
       <p>
-        Your full legal name and date of birth entered in form "Personal
-        information" must exactly match the information in your document.
+        {{ 'kyc.identity_proof.hints_2' | ddxLocale }}
       </p>
       <p>
-        Documents in non-latin characters cannot be accepted without certified
-        translation.
+        {{ 'kyc.identity_proof.hints_3' | ddxLocale }}
       </p>
-      <p>Max size 10 Mb.</p>
+      <p>{{ 'kyc.identity_proof.hints_4' | ddxLocale }}</p>
     </div>
 
     <div arrangeInline class="guide">
       <div arrangeCenter class="image-frame">
         <img src="assets/images/kyc-id-1.svg" alt="guide-1" />
       </div>
-      <span>or</span>
+      <span>{{ 'kyc.identity_proof.or' | ddxLocale }}</span>
       <div arrangeCenter class="image-frame">
         <img src="assets/images/kyc-id-2.svg" alt="guide-2" />
       </div>
@@ -51,7 +55,9 @@
         class="back-button"
         routerLink="/user/kyc/phone-verification"
         rel="noopener noreferrer"
-        ><button mat-stroked-button color="basic" type="button">Back</button></a
+        ><button mat-stroked-button color="basic" type="button">
+          {{ 'kyc.identity_proof.back' | ddxLocale }}
+        </button></a
       >
       <pro-button
         color="primary"
@@ -59,7 +65,7 @@
         [disabled]="!kycFormGroup.valid"
         #submitButton
       >
-        Next
+        {{ 'kyc.identity_proof.next' | ddxLocale }}
       </pro-button>
     </div>
   </form>

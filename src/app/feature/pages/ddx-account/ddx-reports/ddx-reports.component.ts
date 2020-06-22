@@ -25,6 +25,7 @@ import { DatePipe } from '@angular/common';
 import { MatPaginator } from '@angular/material/paginator';
 import { CONSTANTS } from '@core/util/constants';
 import { MatTableDataSource } from '@angular/material/table';
+import { LocalePipe } from '@feature/pipes/ddx-locale.pipe';
 
 @Component({
   selector: 'ddx-reports',
@@ -42,13 +43,10 @@ export class ReportsPageComponent implements OnInit, AfterViewInit {
   private currentActivePane: string;
 
   private ordersDataSource: MatTableDataSource<any>;
-  private ordersPaginator: MatPaginator;
 
   private tradesDataSource: MatTableDataSource<any>;
-  private tradesPaginator: MatPaginator;
 
   private transactionsDataSource: MatTableDataSource<any>;
-  private transactionsPaginator: MatPaginator;
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
@@ -56,7 +54,8 @@ export class ReportsPageComponent implements OnInit, AfterViewInit {
     private orderDataService: FilledOrderDATAService,
     private tradeDataService: PrivateTradeDATAService,
     private transactionsDataService: TransactionsDATAService,
-    private datePipe: DatePipe
+    private datePipe: DatePipe,
+    private localePipe: LocalePipe
   ) {}
 
   ngOnInit(): void {
@@ -130,19 +129,19 @@ export class ReportsPageComponent implements OnInit, AfterViewInit {
   getOrderHeaderFromColumn(column: string): string {
     switch (column) {
       case 'createdAt':
-        return 'Time';
+        return this.localePipe.transform('reports.orders.createdAt');
       case 'marketSymbol':
-        return 'Symbol';
+        return this.localePipe.transform('reports.orders.marketSymbol');
       case 'id':
-        return 'ID';
+        return this.localePipe.transform('reports.orders.id');
       case 'side':
-        return 'Side';
+        return this.localePipe.transform('reports.orders.side');
       case 'price':
-        return 'Price';
+        return this.localePipe.transform('reports.orders.price');
       case 'execAmount':
-        return 'Exec/Amount';
+        return this.localePipe.transform('reports.orders.execAmount');
       case 'total':
-        return 'Total';
+        return this.localePipe.transform('reports.orders.total');
       default:
         return '';
     }
@@ -168,21 +167,21 @@ export class ReportsPageComponent implements OnInit, AfterViewInit {
   getTradeHeaderFromColumn(column: string): string {
     switch (column) {
       case 'timeStamp':
-        return 'Time';
+        return this.localePipe.transform('reports.trades.timeStamp');
       case 'marketSymbol':
-        return 'Symbol';
+        return this.localePipe.transform('reports.trades.marketSymbol');
       case 'id':
-        return 'ID';
+        return this.localePipe.transform('reports.trades.id');
       case 'side':
-        return 'Side';
+        return this.localePipe.transform('reports.trades.side');
       case 'volume':
-        return 'Amount';
+        return this.localePipe.transform('reports.trades.volume');
       case 'price':
-        return 'Price';
+        return this.localePipe.transform('reports.trades.price');
       case 'volumeInQoute':
-        return 'Total';
+        return this.localePipe.transform('reports.trades.volumeInQuote');
       case 'fee':
-        return 'Fee';
+        return this.localePipe.transform('reports.trades.fee');
       default:
         return '';
     }
@@ -208,21 +207,23 @@ export class ReportsPageComponent implements OnInit, AfterViewInit {
   getTransactionHeaderFromColumn(column: string): string {
     switch (column) {
       case 'createdAt':
-        return 'Time';
+        return this.localePipe.transform('reports.transactions.createdAt');
       case 'type':
-        return 'Type';
+        return this.localePipe.transform('reports.transactions.type');
       case 'currencyShortName':
-        return 'Currency';
+        return this.localePipe.transform(
+          'reports.transactions.currencyShortName'
+        );
       case 'transactionId':
-        return 'ID';
+        return this.localePipe.transform('reports.transactions.transactionId');
       case 'hash':
-        return 'Hash';
+        return this.localePipe.transform('reports.transactions.hash');
       case 'amount':
-        return 'Amount';
+        return this.localePipe.transform('reports.transactions.amount');
       case 'fee':
-        return 'Fee';
+        return this.localePipe.transform('reports.transactions.fee');
       case 'address':
-        return 'Address';
+        return this.localePipe.transform('reports.transactions.address');
     }
   }
 

@@ -39,6 +39,7 @@ import {
 } from '@angular/animations';
 import { ToastrService } from 'ngx-toastr';
 import { TraderService } from '@core/services';
+import { LocalePipe } from '@feature/pipes/ddx-locale.pipe';
 
 @Component({
   selector: 'ddx-funds',
@@ -82,7 +83,8 @@ export class FundsPageComponent implements OnInit, AfterViewInit {
     private toastr: ToastrService,
     private cdRef: ChangeDetectorRef,
     private snackBarService: MatSnackBar,
-    private traderService: TraderService
+    private traderService: TraderService,
+    private localePipe: LocalePipe
   ) {
     this.currentActivePane = 'none';
     this.currentTransferType = BalanceTransferType.BankToExchange;
@@ -106,6 +108,10 @@ export class FundsPageComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     this.cdRef.detectChanges();
+  }
+
+  translate(text: string): string {
+    return this.localePipe.transform(text);
   }
 
   private updateData(): void {
@@ -215,17 +221,17 @@ export class FundsPageComponent implements OnInit, AfterViewInit {
   mapColumnToHeader(columnName: string): string {
     switch (columnName) {
       case 'shortName':
-        return 'Coin';
+        return this.localePipe.transform('funds.shortName');
       case 'main':
-        return 'Main';
+        return this.localePipe.transform('funds.main');
       case 'available':
-        return 'Available';
+        return this.localePipe.transform('funds.available');
       case 'reserved':
-        return 'On Orders';
+        return this.localePipe.transform('funds.reserved');
       case 'total':
-        return 'Total';
+        return this.localePipe.transform('funds.total');
       case 'actions':
-        return 'Actions';
+        return this.localePipe.transform('funds.actions');
       default:
         return '';
     }
@@ -234,15 +240,15 @@ export class FundsPageComponent implements OnInit, AfterViewInit {
   mapColumnToTooltip(columnName: string): string {
     switch (columnName) {
       case 'shortName':
-        return 'Name of CryptoCurrency';
+        return this.localePipe.transform('funds.shortName_tooltip');
       case 'main':
-        return 'The amount which exists in main account';
+        return this.localePipe.transform('funds.main_tooltip');
       case 'available':
-        return 'The amount which exists in trading account';
+        return this.localePipe.transform('funds.available_tooltip');
       case 'reserved':
-        return 'The amount which is already in the order list and is reserved';
+        return this.localePipe.transform('funds.reserved_tooltip');
       case 'total':
-        return 'The summation of Main account, Available and On Orders';
+        return this.localePipe.transform('funds.total_tooltip');
       default:
         return null;
     }
@@ -273,14 +279,22 @@ export class FundsPageComponent implements OnInit, AfterViewInit {
             this.cdRef.detectChanges();
           },
           (errorResponse) => {
-            this.currentWalletAddress = { address: 'Error while fetching ...' };
+            this.currentWalletAddress = {
+              address: this.localePipe.transform(
+                'funds.deposit.fetching_error'
+              ),
+            };
           }
         );
     }
   }
 
   handleClickOnCopyAddress() {
-    this.snackBarService.open('Copied!', '', { duration: 1500 });
+    this.snackBarService.open(
+      this.localePipe.transform('funds.deposit.copied'),
+      '',
+      { duration: 1500 }
+    );
   }
 
   handleRadioValueChanges($event): void {

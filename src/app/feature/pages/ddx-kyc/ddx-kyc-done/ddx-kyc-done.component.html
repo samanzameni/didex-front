@@ -1,6 +1,6 @@
 <img src="assets/images/kyc-done.svg" alt="done" />
 <p class="body">
-  Thanks! Now click on submit button to send your KYC application for approval.
+  {{ 'kyc.done.description' | ddxLocale }}
 </p>
 
 <div class="actions">
@@ -9,10 +9,10 @@
     routerLink="/user/kyc/personal-info"
     rel="noopener noreferrer"
     ><button mat-stroked-button color="basic" type="button">
-      Edit application
+      {{ 'kyc.done.edit_application' | ddxLocale }}
     </button></a
   >
   <pro-button color="primary" type="submit" (click)="onSubmit()" #submitButton>
-    Submit
+    {{ 'kyc.done.submit' | ddxLocale }}
   </pro-button>
 </div>

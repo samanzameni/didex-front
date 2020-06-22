@@ -7,7 +7,7 @@ import { LocaleService } from '@core/services/ddx-locale.service';
 export class LocalePipe implements PipeTransform {
   constructor(private localeService: LocaleService) {}
 
-  transform(value: string, ...args: unknown[]): string | string[] {
+  transform(value: string, ...args: unknown[]): string {
     return this.localeService.getMessage(value);
   }
 }

@@ -6,19 +6,20 @@
   <ng-template #notAuthorized>
     <div arrangeStack class="trades__header">
       <h2 class="trades-header__title" *ngIf="!!activeSymbol">
-        My Orders and Trades {{ activeSymbol.baseCurrencyShortName }}/{{
+        {{ 'homepage.trades.title' | ddxLocale }}
+        {{ activeSymbol.baseCurrencyShortName }}/{{
           activeSymbol.quoteCurrencyShortName
         }}
       </h2>
     </div>
     <div arrangeStack class="tab-overlay">
-      <h3>You must sign in to see this tab</h3>
+      <h3>{{ 'homepage.trades.overlay_auth_message' | ddxLocale }}</h3>
       <a
         routerLink="/external-redirect"
         [queryParams]="{ redirect_url: '/auth/signin', from: '/trade' }"
       >
         <button mat-raised-button color="primary">
-          Sign In
+          {{ 'homepage.trades.overlay_auth_button' | ddxLocale }}
         </button>
       </a>
     </div>
@@ -27,7 +28,8 @@
   <ng-template [ngIf]="isAuthorized" [ngIfElse]="notAuthorized">
     <div arrangeStack class="trades__header">
       <h2 class="trades-header__title" *ngIf="!!activeSymbol">
-        My Orders and Trades {{ activeSymbol.baseCurrencyShortName }}/{{
+        {{ 'homepage.trades.title' | ddxLocale }}
+        {{ activeSymbol.baseCurrencyShortName }}/{{
           activeSymbol.quoteCurrencyShortName
         }}
       </h2>
@@ -39,21 +41,21 @@
             [ngClass]="{ active: activePane === 'active' }"
             (click)="activatePane('active')"
           >
-            <span class="show-on-medium"> Active </span> Orders
+            {{ 'homepage.trades.active_tab_title' | ddxLocale }}
           </li>
           <li
             class="trades-header__pane"
             [ngClass]="{ active: activePane === 'filled' }"
             (click)="activatePane('filled')"
           >
-            Filled <span class="show-on-medium"> & Canceled </span>
+            {{ 'homepage.trades.filled_tab_title' | ddxLocale }}
           </li>
           <li
             class="trades-header__pane"
             [ngClass]="{ active: activePane === 'trade' }"
             (click)="activatePane('trade')"
           >
-            Trades
+            {{ 'homepage.trades.trade_tab_title' | ddxLocale }}
           </li>
         </ul>
 
@@ -64,7 +66,7 @@
     <table class="ddx__table" [ngSwitch]="activePane" *ngIf="!!activeSymbol">
       <ng-template #noData>
         <div arrangeStack class="tab-overlay">
-          <h3>No data to be shown in this section ...</h3>
+          <h3>{{ 'homepage.trades.overlay_data_message' | ddxLocale }}</h3>
         </div>
       </ng-template>
 
@@ -75,18 +77,30 @@
         >
           <thead class="ddx-table__head">
             <tr arrangeInline>
-              <th class="row-big">Time</th>
-              <th class="row-small">ID</th>
               <th class="row-big">
-                Price ({{ activeSymbol.quoteCurrencyShortName }})
+                {{ 'homepage.trades.active_time' | ddxLocale }}
+              </th>
+              <th class="row-small">
+                {{ 'homepage.trades.active_id' | ddxLocale }}
               </th>
               <th class="row-big">
-                Exec/Amount ({{ activeSymbol.baseCurrencyShortName }})
+                {{ 'homepage.trades.active_price' | ddxLocale }} ({{
+                  activeSymbol.quoteCurrencyShortName
+                }})
               </th>
               <th class="row-big">
-                Total ({{ activeSymbol.quoteCurrencyShortName }})
+                {{ 'homepage.trades.active_exec_amount' | ddxLocale }} ({{
+                  activeSymbol.baseCurrencyShortName
+                }})
               </th>
-              <th class="row-small">Cancel</th>
+              <th class="row-big">
+                {{ 'homepage.trades.active_total' | ddxLocale }} ({{
+                  activeSymbol.quoteCurrencyShortName
+                }})
+              </th>
+              <th class="row-small">
+                {{ 'homepage.trades.active_cancel' | ddxLocale }}
+              </th>
             </tr>
           </thead>
           <tbody
@@ -151,16 +165,26 @@
         >
           <thead arrangeStack class="ddx-table__head">
             <tr arrangeInline>
-              <th class="row-big">Time</th>
-              <th class="row-small">ID</th>
               <th class="row-big">
-                Price ({{ activeSymbol.quoteCurrencyShortName }})
+                {{ 'homepage.trades.filled_time' | ddxLocale }}
+              </th>
+              <th class="row-small">
+                {{ 'homepage.trades.filled_id' | ddxLocale }}
               </th>
               <th class="row-big">
-                Exec/Amount ({{ activeSymbol.baseCurrencyShortName }})
+                {{ 'homepage.trades.filled_price' | ddxLocale }} ({{
+                  activeSymbol.quoteCurrencyShortName
+                }})
               </th>
               <th class="row-big">
-                Total ({{ activeSymbol.quoteCurrencyShortName }})
+                {{ 'homepage.trades.filled_exec_amount' | ddxLocale }} ({{
+                  activeSymbol.baseCurrencyShortName
+                }})
+              </th>
+              <th class="row-big">
+                {{ 'homepage.trades.filled_total' | ddxLocale }} ({{
+                  activeSymbol.quoteCurrencyShortName
+                }})
               </th>
             </tr>
           </thead>
@@ -203,16 +227,26 @@
         >
           <thead arrangeStack class="ddx-table__head">
             <tr arrangeInline>
-              <th class="row-big">Time</th>
-              <th class="row-small">ID</th>
               <th class="row-big">
-                Price ({{ activeSymbol.quoteCurrencyShortName }})
+                {{ 'homepage.trades.trade_time' | ddxLocale }}
+              </th>
+              <th class="row-small">
+                {{ 'homepage.trades.trade_id' | ddxLocale }}
               </th>
               <th class="row-big">
-                Amount ({{ activeSymbol.baseCurrencyShortName }})
+                {{ 'homepage.trades.trade_price' | ddxLocale }} ({{
+                  activeSymbol.quoteCurrencyShortName
+                }})
               </th>
               <th class="row-big">
-                Total ({{ activeSymbol.quoteCurrencyShortName }})
+                {{ 'homepage.trades.trade_amount' | ddxLocale }} ({{
+                  activeSymbol.baseCurrencyShortName
+                }})
+              </th>
+              <th class="row-big">
+                {{ 'homepage.trades.trade_total' | ddxLocale }} ({{
+                  activeSymbol.quoteCurrencyShortName
+                }})
               </th>
             </tr>
           </thead>

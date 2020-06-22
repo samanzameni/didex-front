@@ -34,15 +34,17 @@
           {{ 'homepage.instruments.name' | ddxLocale }}
           <button
             mat-icon-button
-            matTooltip="The name of the cryptocurrency"
+            matTooltip="{{ 'homepage.instruments.name_tooltip' | ddxLocale }}"
             class="header-tooltip-button"
           >
             <mat-icon>help</mat-icon>
           </button>
         </th>
-        <th class="row-big">Price</th>
-        <th class="row-big">Volume</th>
-        <th class="row-small">Change</th>
+        <th class="row-big">{{ 'homepage.instruments.price' | ddxLocale }}</th>
+        <th class="row-big">{{ 'homepage.instruments.volume' | ddxLocale }}</th>
+        <th class="row-small">
+          {{ 'homepage.instruments.change' | ddxLocale }}
+        </th>
       </tr>
     </thead>
     <tbody class="ddx-table__body">

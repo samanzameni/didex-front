@@ -1,5 +1,5 @@
 <div arrangeInline class="page-header">
-  <h2>Reports</h2>
+  <h2>{{ 'reports.title' | ddxLocale }}</h2>
 
   <div arrangeInline class="page-header__panes">
     <button
@@ -7,21 +7,21 @@
       [ngClass]="{ 'mat-primary': activePane === 'orders' }"
       (click)="activatePane('orders')"
     >
-      Orders
+      {{ 'reports.tab_orders' | ddxLocale }}
     </button>
     <button
       mat-stroked-button
       [ngClass]="{ 'mat-primary': activePane === 'trades' }"
       (click)="activatePane('trades')"
     >
-      Trades
+      {{ 'reports.tab_trades' | ddxLocale }}
     </button>
     <button
       mat-stroked-button
       [ngClass]="{ 'mat-primary': activePane === 'transactions' }"
       (click)="activatePane('transactions')"
     >
-      Transactions
+      {{ 'reports.tab_transactions' | ddxLocale }}
     </button>
   </div>
 </div>
@@ -53,7 +53,7 @@
       </mat-table>
     </ng-template>
     <ng-template #noOrderData>
-      <p class="message">You have no active orders ...</p>
+      <p class="message">{{ 'reports.orders.data_message' | ddxLocale }}</p>
     </ng-template>
   </ng-container>
 
@@ -83,7 +83,7 @@
       </mat-table>
     </ng-template>
     <ng-template #noTradeData>
-      <p class="message">You have no trade records ...</p>
+      <p class="message">{{ 'reports.trades.data_message' | ddxLocale }}</p>
     </ng-template>
   </ng-container>
 
@@ -115,7 +115,9 @@
       </mat-table>
     </ng-template>
     <ng-template #noTransactionData>
-      <p class="message">You have no transaction records ...</p>
+      <p class="message">
+        {{ 'reports.transactions.data_message' | ddxLocale }}
+      </p>
     </ng-template>
   </ng-container>
 

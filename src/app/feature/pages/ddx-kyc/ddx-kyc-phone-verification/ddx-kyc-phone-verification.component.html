@@ -1,6 +1,6 @@
 <header>
-  <div class="step-counter">Step 2</div>
-  <h2>Phone Verification</h2>
+  <div class="step-counter">{{ 'kyc.steps.step_2' | ddxLocale }}</div>
+  <h2>{{ 'kyc.steps.step_2_caption' | ddxLocale }}</h2>
 </header>
 
 <section>
@@ -11,13 +11,12 @@
     #form="ngForm"
   >
     <p class="description">
-      Please write down your valid phone number. A text message wil be sent for
-      verification.
+      {{ 'kyc.phone_verification.description' | ddxLocale }}
     </p>
 
     <dropdown-autocomplete-countries
       id="countryTelephoneCode"
-      caption="Country"
+      caption="{{ 'kyc.phone_verification.country' | ddxLocale }}"
       desiredValueKey="phoneCode"
       [control]="kycFormControls.countryTelephoneCode"
     ></dropdown-autocomplete-countries>
@@ -34,7 +33,9 @@
       >
       <input
         type="text"
-        placeholder="Mobile Number"
+        placeholder="{{
+          'kyc.phone_verification.mobile_number_placeholder' | ddxLocale
+        }}"
         matInput
         name="mobileNumber"
         formControlName="mobileNumber"
@@ -42,15 +43,15 @@
       <mat-error
         *ngIf="kycFormGroup.controls.mobileNumber.hasError('required')"
       >
-        This field is required.
+        {{ 'kyc.phone_verification.mobile_number_error_required' | ddxLocale }}
       </mat-error>
       <mat-error
         *ngIf="kycFormGroup.controls.mobileNumber.hasError('maxlength')"
       >
-        Max length should be 15.
+        {{ 'kyc.phone_verification.mobile_number_error_maxlength' | ddxLocale }}
       </mat-error>
       <mat-error *ngIf="kycFormGroup.controls.mobileNumber.hasError('pattern')">
-        Only digits are valid.
+        {{ 'kyc.phone_verification.mobile_number_error_pattern' | ddxLocale }}
       </mat-error>
     </mat-form-field>
 
@@ -66,12 +67,14 @@
         (click)="onSubmitNumber()"
         #submitNumberButton
       >
-        Submit
+        {{ 'kyc.phone_verification.button_submit' | ddxLocale }}
       </button>
     </div>
 
     <div id="code" [ngClass]="{ hidden: !hasSubmittedNumber }">
-      <p class="message">Enter the validation code from your mobile:</p>
+      <p class="message">
+        {{ 'kyc.phone_verification.verification_message' | ddxLocale }}
+      </p>
       <mat-form-field appearance="outline">
         <input
           type="text"
@@ -81,16 +84,16 @@
           formControlName="code"
         />
         <mat-error *ngIf="kycFormGroup.controls.code.hasError('required')">
-          This field is required.
+          {{ 'kyc.phone_verification.code_error_required' | ddxLocale }}
         </mat-error>
         <mat-error *ngIf="kycFormGroup.controls.code.hasError('minlength')">
-          Min length should be 6.
+          {{ 'kyc.phone_verification.code_error_minlength' | ddxLocale }}
         </mat-error>
         <mat-error *ngIf="kycFormGroup.controls.code.hasError('maxlength')">
-          Max length should be 6.
+          {{ 'kyc.phone_verification.code_error_maxlength' | ddxLocale }}
         </mat-error>
         <mat-error *ngIf="kycFormGroup.controls.code.hasError('pattern')">
-          Only digits are valid.
+          {{ 'kyc.phone_verification.code_error_pattern' | ddxLocale }}
         </mat-error>
         <div *ngIf="errors && errors.code" class="error-feedback">
           <mat-error *ngFor="let error of errors.code">
@@ -106,7 +109,9 @@
         rel="noopener noreferrer"
         class="back-button"
       >
-        <button mat-stroked-button color="basic" type="button">Back</button>
+        <button mat-stroked-button color="basic" type="button">
+          {{ 'kyc.phone_verification.back' | ddxLocale }}
+        </button>
       </a>
       <pro-button
         color="primary"
@@ -115,7 +120,7 @@
         [disabled]="!kycFormGroup.valid"
         #submitButton
       >
-        Next
+        {{ 'kyc.phone_verification.next' | ddxLocale }}
       </pro-button>
     </div>
   </form>

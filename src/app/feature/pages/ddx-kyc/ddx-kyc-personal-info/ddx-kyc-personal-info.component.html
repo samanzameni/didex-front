@@ -1,6 +1,6 @@
 <header>
-  <div class="step-counter">Step 1</div>
-  <h2>Personal Information</h2>
+  <div class="step-counter">{{ 'kyc.steps.step_1' | ddxLocale }}</div>
+  <h2>{{ 'kyc.steps.step_1_caption' | ddxLocale }}</h2>
 </header>
 
 <section>
@@ -11,45 +11,60 @@
     #form="ngForm"
   >
     <p class="description">
-      Please fill in your personal information the way it is stated in the proof
-      of identity document.
+      {{ 'kyc.personal_information.description' | ddxLocale }}
     </p>
     <mat-form-field appearance="outline" id="firstName">
-      <mat-label>First Name</mat-label>
+      <mat-label>{{
+        'kyc.personal_information.first_name' | ddxLocale
+      }}</mat-label>
       <input
         matInput
         type="text"
-        placeholder="John"
+        placeholder="{{
+          'kyc.personal_information.first_name_placeholder' | ddxLocale
+        }}"
         name="firstName"
         formControlName="firstName"
       />
-      <mat-error *ngIf="kycFormGroup.controls.firstName.hasError('required')"
-        >This field is required.</mat-error
-      >
-      <mat-error *ngIf="kycFormGroup.controls.firstName.hasError('maxlength')"
-        >Max length should be 50.</mat-error
+      <mat-error *ngIf="kycFormGroup.controls.firstName.hasError('required')">{{
+        'kyc.personal_information.first_name_error_required' | ddxLocale
+      }}</mat-error>
+      <mat-error
+        *ngIf="kycFormGroup.controls.firstName.hasError('maxlength')"
+        >{{
+          'kyc.personal_information.first_name_error_maxlength' | ddxLocale
+        }}</mat-error
       >
     </mat-form-field>
 
     <mat-form-field appearance="outline" id="lastName">
-      <mat-label>Last Name</mat-label>
+      <mat-label>{{
+        'kyc.personal_information.last_name' | ddxLocale
+      }}</mat-label>
       <input
         type="text"
-        placeholder="Doe"
+        placeholder="{{
+          'kyc.personal_information.last_name_placeholder' | ddxLocale
+        }}"
         matInput
         name="lastName"
         formControlName="lastName"
       />
       <mat-error *ngIf="kycFormGroup.controls.lastName.hasError('required')">
-        This field is required.
+        {{ 'kyc.personal_information.last_name_error_required' | ddxLocale }}
       </mat-error>
       <mat-error *ngIf="kycFormGroup.controls.lastName.hasError('maxlength')">
-        Max length should be 50.
+        {{ 'kyc.personal_information.last_name_error_maxlength' | ddxLocale }}
       </mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="outline" id="dateOfBirth">
-      <mat-label>Date of Birth (MM/DD/YYYY)</mat-label>
+      <mat-label
+        >{{
+          'kyc.personal_information.date_of_birth' | ddxLocale
+        }}
+        (MM/DD/YYYY)</mat-label
+      >
       <input
         type="text"
         placeholder="01/21/1900"
@@ -65,19 +80,23 @@
       <mat-datepicker #birthDatepicker></mat-datepicker>
 
       <mat-error *ngIf="kycFormGroup.controls.dateOfBirth.hasError('required')">
-        This field is required.
+        {{
+          'kyc.personal_information.date_of_birth_error_required' | ddxLocale
+        }}
       </mat-error>
     </mat-form-field>
 
     <dropdown-autocomplete-countries
-      caption="Country of Birth"
+      caption="{{ 'kyc.personal_information.country_of_birth' | ddxLocale }}"
       id="birthCountry"
       [control]="kycFormControls.birthCountryCode"
       desiredValueKey="code"
     ></dropdown-autocomplete-countries>
 
     <mat-form-field id="zipCode" appearance="outline">
-      <mat-label>Zip Code</mat-label>
+      <mat-label>{{
+        'kyc.personal_information.zip_code' | ddxLocale
+      }}</mat-label>
       <input
         type="text"
         placeholder=""
@@ -87,22 +106,22 @@
       />
 
       <mat-error *ngIf="kycFormGroup.controls.zipCode.hasError('required')">
-        This field is required.
+        {{ 'kyc.personal_information.zip_code_error_required' | ddxLocale }}
       </mat-error>
       <mat-error *ngIf="kycFormGroup.controls.zipCode.hasError('maxlength')">
-        Max length should be 10.
+        {{ 'kyc.personal_information.zip_code_error_maxlength' | ddxLocale }}
       </mat-error>
     </mat-form-field>
 
     <dropdown-autocomplete-countries
-      caption="Living in"
+      caption="{{ 'kyc.personal_information.living_in' | ddxLocale }}"
       id="country"
       [control]="kycFormControls.countryCode"
       desiredValueKey="code"
     ></dropdown-autocomplete-countries>
 
     <mat-form-field id="city" appearance="outline">
-      <mat-label>City</mat-label>
+      <mat-label>{{ 'kyc.personal_information.city' | ddxLocale }}</mat-label>
       <input
         type="text"
         placeholder=""
@@ -112,15 +131,17 @@
       />
 
       <mat-error *ngIf="kycFormGroup.controls.city.hasError('required')">
-        This field is required.
+        {{ 'kyc.personal_information.city_error_required' | ddxLocale }}
       </mat-error>
       <mat-error *ngIf="kycFormGroup.controls.city.hasError('maxlength')">
-        Max length should be 50.
+        {{ 'kyc.personal_information.city_error_maxlength' | ddxLocale }}
       </mat-error>
     </mat-form-field>
 
     <mat-form-field id="addressLine1" appearance="outline">
-      <mat-label>Address (Line 1)</mat-label>
+      <mat-label>{{
+        'kyc.personal_information.address_line_1' | ddxLocale
+      }}</mat-label>
       <input
         type="text"
         placeholder=""
@@ -131,12 +152,14 @@
       <mat-error
         *ngIf="kycFormGroup.controls.addressLine1.hasError('required')"
       >
-        This field is required.
+        {{ 'kyc.personal_information.address_line_error_required' | ddxLocale }}
       </mat-error>
     </mat-form-field>
 
     <mat-form-field id="addressLine2" appearance="outline">
-      <mat-label>Address (Line 2)</mat-label>
+      <mat-label>{{
+        'kyc.personal_information.address_line_2' | ddxLocale
+      }}</mat-label>
       <input
         type="text"
         placeholder=""
@@ -153,7 +176,7 @@
         [disabled]="!kycFormGroup.valid"
         #submitButton
       >
-        Next
+        {{ 'kyc.personal_information.next' | ddxLocale }}
       </pro-button>
     </div>
   </form>

@@ -89,6 +89,7 @@ export class LocaleService {
     }
 
     try {
+      debugger;
       let localeFile;
       switch (this.locale) {
         case 'cn':
@@ -104,10 +105,35 @@ export class LocaleService {
             decodedMessageID.messageCode
           ]
         : localeFile[decodedMessageID.messageCode];
+
+      if (!message || message.length === 0) {
+        throw 'noTranslation';
+      }
+
       return message;
     } catch (error) {
-      console.warn('Translation not found in', decodedMessageID.messageSection);
-      return '';
+      if (this.locale !== 'en') {
+        try {
+          const localeFile = en_locale[decodedMessageID.messageSection];
+          let message = decodedMessageID.messageSubSection
+            ? localeFile[decodedMessageID.messageSubSection][
+                decodedMessageID.messageCode
+              ]
+            : localeFile[decodedMessageID.messageCode];
+
+          if (!message || message.length === 0) {
+            throw 'noTranslation';
+          }
+
+          return message;
+        } catch (fallbackError) {
+          console.warn(
+            'Translation not found in',
+            decodedMessageID.messageSection
+          );
+          return '';
+        }
+      }
     }
     return '';
   }

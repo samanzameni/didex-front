@@ -28,8 +28,7 @@ export class BankingRESTService extends AbstractRESTService {
   public requestWithdrawConfirm(
     data: BalanceWithdrawConfirmData
   ): Observable<any> {
-    const url = `api/Banking/withdraw?requestId=${data.requestId}&token=${data.token}`;
-    return this.httpGET(url) as Observable<any>;
+    return this.httpPOST('api/Banking/withdraw',data) as Observable<any>;
   }
 
   public requestTransfer(data: BalanceTransferData): Observable<any> {

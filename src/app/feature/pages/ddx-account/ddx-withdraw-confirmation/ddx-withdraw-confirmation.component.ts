@@ -8,7 +8,7 @@ import { BankingRESTService } from '@core/services/REST';
   styleUrls: ['./ddx-withdraw-confirmation.component.scss'],
 })
 export class WithdrawConfirmationPageComponent implements OnInit {
-  private requestId: string;
+  private requestId: number;
   private token: string;
 
   private currentPageState: string;

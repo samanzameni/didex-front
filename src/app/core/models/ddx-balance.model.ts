@@ -14,7 +14,7 @@ export interface BalanceWithdrawData {
 }
 
 export interface BalanceWithdrawConfirmData {
-  requestId: string;
+  requestId: number;
   token: string;
 }
 

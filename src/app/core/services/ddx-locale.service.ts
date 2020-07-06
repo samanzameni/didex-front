@@ -89,7 +89,6 @@ export class LocaleService {
     }
 
     try {
-      debugger;
       let localeFile;
       switch (this.locale) {
         case 'cn':

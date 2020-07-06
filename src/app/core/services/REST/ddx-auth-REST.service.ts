@@ -14,14 +14,16 @@ import {
   TwoFactorResponse,
 } from '@core/models';
 import { Observable } from 'rxjs';
+import { LocaleService } from '../ddx-locale.service';
 
 @Injectable()
 export class AuthRESTService extends AbstractRESTService {
   constructor(
     protected storageService: StorageService,
-    protected http: HttpClient
+    protected http: HttpClient,
+    protected localeService: LocaleService
   ) {
-    super(storageService, http);
+    super(storageService, http, localeService);
   }
 
   public requestRegister(data: AuthFormData): Observable<AuthFormResponse> {

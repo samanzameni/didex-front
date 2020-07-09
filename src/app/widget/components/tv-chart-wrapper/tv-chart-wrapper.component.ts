@@ -34,7 +34,7 @@ export class TradingViewChartWrapperComponent
   implements OnChanges, OnDestroy, AfterViewInit {
   private symbol$: BehaviorSubject<TradeSymbol>;
 
-  tvWidget: IChartingLibraryWidget;
+  tvWidget: any;
   datafeedConfig: any;
 
   @Input() activeSymbol: TradeSymbol;
@@ -90,12 +90,6 @@ export class TradingViewChartWrapperComponent
         this.renderChart(symbol);
       }, 100);
     }
-
-    // let symbol = 'Kraken:ETH/USDT';
-    // if (activeSymbol) {
-    //   symbol = `Kraken:${activeSymbol.baseCurrencyShortName.trim()}/${activeSymbol.quoteCurrencyShortName.trim()}`;
-    //   // symbol = `Kraken:${activeSymbol.quoteCurrencyShortName.trim()}/${activeSymbol.baseCurrencyShortName.trim()}`;
-    // }
   }
 
   private renderChart(symbol: string): void {
@@ -109,75 +103,74 @@ export class TradingViewChartWrapperComponent
     const widgetOptions: any = {
       symbol,
       datafeed: this.datafeedConfig,
-      interval: 'D',
+      interval: '1',
       container_id: 'tv_chart_container',
       library_path: 'assets/charting_library/',
       locale: 'en',
-      disabled_features: [
-        'use_localstorage_for_settings',
-        'compare_symbol',
-        'border_around_the_chart',
-      ],
-      enabled_features: ['study_templates'],
-      charts_storage_url: 'https://saveload.tradingview.com',
-      charts_storage_api_version: '1.1',
-      client_id: 'test',
-      user_id: 'public_user_id',
+      theme: 'dark',
+      timezone: 'Etc/UTC',
+      enable_publishing: false,
+      hide_legend: true,
+      save_image: false,
+      // enabled_features: ['study_templates'],
+      // charts_storage_url: 'https://saveload.tradingview.com',
+      // charts_storage_api_version: '1.1',
+      // client_id: 'didex.com',
+      // user_id: 'public_user_id',
       fullscreen: false,
       autosize: true,
       debug: false,
-      overrides: {
-        'paneProperties.background': '#000e24',
+      // overrides: {
+      //   'paneProperties.background': '#000e24',
 
-        'paneProperties.vertGridProperties.color': 'rgba(0, 0, 0, 0)',
-        'paneProperties.vertGridProperties.style': LINESTYLE_SOLID,
-        'paneProperties.horzGridProperties.color': 'rgba(0, 0, 0, 0)',
-        'paneProperties.horzGridProperties.style': LINESTYLE_SOLID,
+      //   'paneProperties.vertGridProperties.color': 'rgba(0, 0, 0, 0)',
+      //   'paneProperties.vertGridProperties.style': LINESTYLE_SOLID,
+      //   'paneProperties.horzGridProperties.color': 'rgba(0, 0, 0, 0)',
+      //   'paneProperties.horzGridProperties.style': LINESTYLE_SOLID,
 
-        'paneProperties.crossHairProperties.color': 'rgba(255, 255, 255, 0.7)',
-        'paneProperties.crossHairProperties.width': 1,
-        'paneProperties.crossHairProperties.style': LINESTYLE_DASHED,
+      //   'paneProperties.crossHairProperties.color': 'rgba(255, 255, 255, 0.7)',
+      //   'paneProperties.crossHairProperties.width': 1,
+      //   'paneProperties.crossHairProperties.style': LINESTYLE_DASHED,
 
-        'paneProperties.topMargin': 5,
-        'paneProperties.bottomMargin': 5,
+      //   'paneProperties.topMargin': 5,
+      //   'paneProperties.bottomMargin': 5,
 
-        'paneProperties.legendProperties.showStudyArguments': true,
-        'paneProperties.legendProperties.showStudyTitles': true,
-        'paneProperties.legendProperties.showStudyValues': true,
-        'paneProperties.legendProperties.showSeriesTitle': true,
-        'paneProperties.legendProperties.showSeriesOHLC': true,
+      //   'paneProperties.legendProperties.showStudyArguments': false,
+      //   'paneProperties.legendProperties.showStudyTitles': false,
+      //   'paneProperties.legendProperties.showStudyValues': false,
+      //   'paneProperties.legendProperties.showSeriesTitle': false,
+      //   'paneProperties.legendProperties.showSeriesOHLC': false,
 
-        'scalesProperties.showLeftScale': false,
-        'scalesProperties.showRightScale': true,
-        'scalesProperties.backgroundColor': 'rgba(0, 0, 0, 0)',
-        'scalesProperties.fontSize': 10,
-        'scalesProperties.lineColor': 'rgba(255, 255, 255, 0.5)',
-        'scalesProperties.textColor': 'rgba(255, 255, 255, 0.5)',
-        'scalesProperties.scaleSeriesOnly': false,
-        'scalesProperties.showSeriesLastValue': true,
-        'scalesProperties.showSeriesPrevCloseValue': false,
-        'scalesProperties.showStudyLastValue': false,
-        'scalesProperties.showStudyPlotLabels': false,
-        'scalesProperties.showSymbolLabels': false,
+      //   'scalesProperties.showLeftScale': false,
+      //   'scalesProperties.showRightScale': true,
+      //   'scalesProperties.backgroundColor': 'rgba(0, 0, 0, 0)',
+      //   'scalesProperties.fontSize': 10,
+      //   'scalesProperties.lineColor': 'rgba(255, 255, 255, 0.5)',
+      //   'scalesProperties.textColor': 'rgba(255, 255, 255, 0.5)',
+      //   'scalesProperties.scaleSeriesOnly': false,
+      //   'scalesProperties.showSeriesLastValue': true,
+      //   'scalesProperties.showSeriesPrevCloseValue': false,
+      //   'scalesProperties.showStudyLastValue': false,
+      //   'scalesProperties.showStudyPlotLabels': false,
+      //   'scalesProperties.showSymbolLabels': false,
 
-        'symbolWatermarkProperties.transparency': 0,
-        // 'mainSeriesProperties.candleStyle.borderUpColor': '#8ed23f',
-        // 'mainSeriesProperties.candleStyle.wickUpColor': '#8ed23f',
-        // 'mainSeriesProperties.candleStyle.upColor': '#8ed23f',
-        // 'mainSeriesProperties.candleStyle.borderDownColor': '#ff2d2d',
-        // 'mainSeriesProperties.candleStyle.wickDownColor': '#ff2d2d',
-        // 'mainSeriesProperties.candleStyle.downColor': '#ff2d2d',
-      },
+      //   'symbolWatermarkProperties.transparency': 0,
+      //   // 'mainSeriesProperties.candleStyle.borderUpColor': '#8ed23f',
+      //   // 'mainSeriesProperties.candleStyle.wickUpColor': '#8ed23f',
+      //   // 'mainSeriesProperties.candleStyle.upColor': '#8ed23f',
+      //   // 'mainSeriesProperties.candleStyle.borderDownColor': '#ff2d2d',
+      //   // 'mainSeriesProperties.candleStyle.wickDownColor': '#ff2d2d',
+      //   // 'mainSeriesProperties.candleStyle.downColor': '#ff2d2d',
+      // },
     };
 
     this.tvWidget = new widget(widgetOptions);
-    this.tvWidget.onChartReady(() => {
-      applyTheme();
-
-      setTimeout(() => {
-        renderer.addClass(spinner, 'hidden');
-        cdRef.detectChanges();
-      }, 100);
-    });
+    setTimeout(() => {
+      renderer.addClass(spinner, 'hidden');
+      cdRef.detectChanges();
+    }, 100);
+    // this.tvWidget.onChartReady(() => {
+    //   // applyTheme();
+    // });
   }
 }

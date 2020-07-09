@@ -72,10 +72,10 @@ export default {
             volume: el.volumefrom,
           };
         });
-        if (first) {
-          const lastBar = bars[bars.length - 1];
-          history[symbolInfo.name] = { lastBar };
-        }
+        const lastBar = bars[bars.length - 1];
+        console.log('$$$', 'Fetched:', symbolInfo.name);
+        history[symbolInfo.name] = { lastBar };
+        console.log('$$$', 'History:', history);
         return bars;
       } else {
         return [];

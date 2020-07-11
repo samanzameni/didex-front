@@ -1,0 +1,40 @@
+{
+  "title": "Отчеты",
+  "tab_orders": "Ордера",
+  "tab_trades": "Сделки",
+  "tab_transactions": "Транзакция",
+
+  "orders": {
+    "data_message": "У вас нет активных ордеров...",
+    "createdAt": "Время",
+    "marketSymbol": "Символ",
+    "id": "ID",
+    "price": "Цена",
+    "execAmount": "Exec/Количество",
+    "total": "Всего"
+  },
+
+  "trades": {
+    "data_message": "У вас нет торговых записей ...",
+    "timeStamp": "Время",
+    "marketSymbol": "Символ",
+    "id": "ID",
+    "side": "Cторона",
+    "volume": "Количество",
+    "price": "Цена",
+    "volumeInQuote": "Всего",
+    "fee": "Комиссия"
+  },
+
+  "transactions": {
+    "data_message": "У вас нет записей транзакций ...",
+    "createdAt": "Время",
+    "type": "Тип",
+    "currencyShortName": "Валюта",
+    "transactionId": "ID",
+    "hash": "Хэш",
+    "amount": "Количество",
+    "fee": "Комиссия",
+    "address": "Адрес"
+  }
+}

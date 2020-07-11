@@ -1,10 +1,13 @@
 .drawingToolbar-U3_QXRof-,
 .inner-1xuW-gY4-,
+html.theme-dark .chart-page,
+html.theme-dark .chart-page .chart-container,
 .chart-page,
 .chart-page .chart-container {
-  background: #000e24;
+  background: #000a33;
 }
 
+html.theme-dark .chart-page .chart-container,
 .chart-page .chart-container {
   border-color: transparent;
 }
@@ -16,12 +19,13 @@
 .button-2ioYhFEY-.isInteractive-20uLObIc-,
 .group-2JyOhh7Z-,
 .group-2JyOhh7Z- {
-  background: #021e49;
+  background: #00104400;
   color: white;
 }
 
+html.theme-dark .group-wWM3zP_M-,
 .group-wWM3zP_M- {
-  background: #000e24;
+  background: #000a33;
   color: white;
 }
 
@@ -39,7 +43,7 @@
 .icon-beK_KS0k- svg g,
 .icon-beK_KS0k- svg path {
   fill: white;
-  color: #000e24;
+  color: #000a33;
 }
 
 .chart-controls-bar {

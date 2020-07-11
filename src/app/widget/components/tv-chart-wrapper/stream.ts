@@ -81,7 +81,6 @@ socket.on('m', (e) => {
 
     // send the most recent bar back to TV's realtimeUpdate callback
     sub.listener(_lastBar);
-    console.log('###', 'Updated to:', _lastBar);
     // update our own record of lastBar
     sub.lastBar = _lastBar;
   }

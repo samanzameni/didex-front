@@ -3,6 +3,7 @@
   "tab_orders": "Orders",
   "tab_trades": "Trades",
   "tab_transactions": "Transactions",
+  "paginator": "Items per page",
 
   "orders": {
     "data_message": "You have no active orders ...",
@@ -31,6 +32,8 @@
     "data_message": "You have no transaction records ...",
     "createdAt": "Time",
     "type": "Type",
+    "type_option_1": "InvestToBank",
+    "type_option_2": "BankToInvest",
     "currencyShortName": "Currency",
     "transactionId": "ID",
     "hash": "Hash",

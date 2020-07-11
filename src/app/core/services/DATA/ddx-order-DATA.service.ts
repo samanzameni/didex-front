@@ -33,6 +33,9 @@ export class OrderDATAService extends AbstractDATAService<Order[]> {
       this.signalrService.addDataListener(
         'on-private-order-' + symbol,
         (feed: Order) => {
+          if (feed.createdAt.endsWith('Z')) {
+            feed.createdAt = feed.createdAt.slice(0, feed.createdAt.length - 1);
+          }
           const currentData = this.dataStream$.value;
           if (currentData) {
             let tempIndex: number;

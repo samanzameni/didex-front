@@ -135,35 +135,35 @@
             )
           }"
         >
-          Must be at least 8 characters
+          {{ 'settings.security.password_length_criteria' | ddxLocale }}
         </li>
         <li
           [ngClass]="{
             approved: hasLower(securityFormGroup.controls.newPassword.value)
           }"
         >
-          Must contain a lower case character
+          {{ 'settings.security.password_lowercase_criteria' | ddxLocale }}
         </li>
         <li
           [ngClass]="{
             approved: hasUpper(securityFormGroup.controls.newPassword.value)
           }"
         >
-          Must contain a upper case character
+          {{ 'settings.security.password_uppercase_criteria' | ddxLocale }}
         </li>
         <li
           [ngClass]="{
             approved: hasNumber(securityFormGroup.controls.newPassword.value)
           }"
         >
-          Must contain a number
+          {{ 'settings.security.password_number_criteria' | ddxLocale }}
         </li>
         <li
           [ngClass]="{
             approved: hasSpecial(securityFormGroup.controls.newPassword.value)
           }"
         >
-          Must contain a sign
+          {{ 'settings.security.password_sign_criteria' | ddxLocale }}
         </li>
       </ul>
 

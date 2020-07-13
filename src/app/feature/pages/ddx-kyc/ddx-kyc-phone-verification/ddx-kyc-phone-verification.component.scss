@@ -12,6 +12,10 @@
       'verification'
       'actions';
 
+    .mat-error {
+      margin-top: 13px;
+    }
+
     #countryTelephoneCode {
       grid-area: countryTelephoneCode;
     }

@@ -61,7 +61,7 @@
     "hints_1": "Photo/scan must be clear, in color and display the entire ID.",
     "hints_2": "Your full legal name and date of birth entered in form 'Personal information' must exactly match the information in your document.",
     "hints_3": "Documents in non-latin characters cannot be accepted without certified translation.",
-    "hints_4": "Max size 10 Mb.",
+    "hints_4": "Max size 3 Mb.",
     "next": "Next",
     "back": "Back",
     "or": "Or"

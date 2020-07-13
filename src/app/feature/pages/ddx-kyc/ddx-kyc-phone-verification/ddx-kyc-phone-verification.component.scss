@@ -4,6 +4,7 @@
   form {
     grid-template-rows: auto max-content max-content auto max-content auto;
     grid-template-columns: auto;
+    row-gap: 15px;
     grid-template-areas:
       'description'
       'countryTelephoneCode'

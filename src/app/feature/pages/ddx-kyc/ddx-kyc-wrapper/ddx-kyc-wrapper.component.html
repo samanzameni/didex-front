@@ -1,22 +1,22 @@
 <aside>
-  <ol class="kyc-steps">
-    <li class="kyc-step" #step>
+  <div class="kyc-steps">
+    <a routerLink="/user/kyc/personal-info" class="kyc-step" #step>
       <span class="step-counter">{{ 'kyc.steps.step_1' | ddxLocale }}</span>
       <p class="step-title">{{ 'kyc.steps.step_1_caption' | ddxLocale }}</p>
-    </li>
-    <li class="kyc-step" #step>
+    </a>
+    <a routerLink="/user/kyc/phone-verification" class="kyc-step" #step>
       <span class="step-counter">{{ 'kyc.steps.step_2' | ddxLocale }}</span>
       <p class="step-title">{{ 'kyc.steps.step_2_caption' | ddxLocale }}</p>
-    </li>
-    <li class="kyc-step" #step>
+    </a>
+    <a routerLink="/user/kyc/identity-proof" class="kyc-step" #step>
       <span class="step-counter">{{ 'kyc.steps.step_3' | ddxLocale }}</span>
       <p class="step-title">{{ 'kyc.steps.step_3_caption' | ddxLocale }}</p>
-    </li>
-    <li class="kyc-step" #step>
+    </a>
+    <a routerLink="/user/kyc/selfie" class="kyc-step" #step>
       <span class="step-counter">{{ 'kyc.steps.step_4' | ddxLocale }}</span>
       <p class="step-title">{{ 'kyc.steps.step_4_caption' | ddxLocale }}</p>
-    </li>
-  </ol>
+    </a>
+  </div>
 </aside>
 <main>
   <router-outlet></router-outlet>

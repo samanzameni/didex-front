@@ -7,13 +7,6 @@ import { Balance } from '@core/models';
 
 @Injectable()
 export class TradingRESTService extends AbstractRESTService {
-  constructor(
-    protected storageService: StorageService,
-    protected http: HttpClient
-  ) {
-    super(storageService, http);
-  }
-
   public requestBalance(): Observable<Balance[]> {
     return this.httpGET('api/Trading/Balance') as Observable<Balance[]>;
   }

@@ -10,6 +10,17 @@
   }
 
   .page-content {
+    .mat-table {
+      background: transparent;
+      max-width: 100%;
+      overflow-x: auto;
+
+      .mat-header-row,
+      .mat-row {
+        min-width: 1000px;
+      }
+    }
+
     .mat-paginator {
       background: transparent;
     }

@@ -1,0 +1,30 @@
+{
+  "title": "Дашборд",
+
+  "header_content": {
+    "header_title": "DidEx инвестирование",
+    "header_subtitle": "Простой способ заработать"
+  },
+
+  "hero_content": {
+    "hero_title": "Выберите свой ",
+    "hero_title_highlighted": "План инвестирования ",
+    "hero_paragraph": "Чтобы вложить свои средства в инвестиционный план, вы должны иметь средства на основном балансе. Каждый инвестиционный план создается с учетом его интереса и продолжительности. Если вы выводите средства с инвестиционного плана раньше, чем требуется, проценты не начисляются."
+  },
+
+  "carousel_content": {
+    "carousel_card_duration": "Продолжительность",
+    "carousel_card_plan_type": "План",
+    "carousel_card_subscribe_button": "Подписаться",
+    "expansion_panel_button_text": "Еще",
+    "expansion_panel_content_total_supply": "Общий объем поставок",
+    "expansion_panel_content_expiration_date": "Срок действия"
+  },
+
+  "table_content": {
+    "table_header_text": "История моего инвестирования",
+    "table_close_investment_button_text": "Закрыто",
+    "not_authorized_message": "Вы должны войти, чтобы увидеть ваши инвестиционные записи",
+    "not_authorized_button_text": "Войти"
+  }
+}

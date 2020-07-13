@@ -34,7 +34,7 @@ export class TradingViewChartWrapperComponent
   implements OnChanges, OnDestroy, AfterViewInit {
   private symbol$: BehaviorSubject<TradeSymbol>;
 
-  tvWidget: IChartingLibraryWidget;
+  tvWidget: any;
   datafeedConfig: any;
 
   @Input() activeSymbol: TradeSymbol;
@@ -90,12 +90,6 @@ export class TradingViewChartWrapperComponent
         this.renderChart(symbol);
       }, 100);
     }
-
-    // let symbol = 'Kraken:ETH/USDT';
-    // if (activeSymbol) {
-    //   symbol = `Kraken:${activeSymbol.baseCurrencyShortName.trim()}/${activeSymbol.quoteCurrencyShortName.trim()}`;
-    //   // symbol = `Kraken:${activeSymbol.quoteCurrencyShortName.trim()}/${activeSymbol.baseCurrencyShortName.trim()}`;
-    // }
   }
 
   private renderChart(symbol: string): void {
@@ -107,27 +101,29 @@ export class TradingViewChartWrapperComponent
     cdRef.detectChanges();
 
     const widgetOptions: any = {
-      symbol,
-      datafeed: this.datafeedConfig,
-      interval: 'D',
-      container_id: 'tv_chart_container',
-      library_path: 'assets/charting_library/',
-      locale: 'en',
-      disabled_features: [
-        'use_localstorage_for_settings',
-        'compare_symbol',
-        'border_around_the_chart',
-      ],
-      enabled_features: ['study_templates'],
+      autosize: true,
       charts_storage_url: 'https://saveload.tradingview.com',
       charts_storage_api_version: '1.1',
-      client_id: 'test',
-      user_id: 'public_user_id',
-      fullscreen: false,
-      autosize: true,
+      client_id: 'didex.com',
+      container_id: 'tv_chart_container',
+      datafeed: this.datafeedConfig,
       debug: false,
+      disabled_features: ['use_localstorage_for_settings'],
+      enabled_features: [],
+      enable_publishing: false,
+      fullscreen: false,
+      hide_legend: true,
+      interval: '60',
+      library_path: 'assets/charting_library/',
+      locale: 'en',
+      save_image: false,
+      symbol,
+      theme: 'dark',
+      timezone: 'Etc/UTC',
+      toolbar_bg: '#000a33',
+      user_id: 'public_user_id',
       overrides: {
-        'paneProperties.background': '#000e24',
+        'paneProperties.background': '#000a33',
 
         'paneProperties.vertGridProperties.color': 'rgba(0, 0, 0, 0)',
         'paneProperties.vertGridProperties.style': LINESTYLE_SOLID,
@@ -141,11 +137,11 @@ export class TradingViewChartWrapperComponent
         'paneProperties.topMargin': 5,
         'paneProperties.bottomMargin': 5,
 
-        'paneProperties.legendProperties.showStudyArguments': true,
-        'paneProperties.legendProperties.showStudyTitles': true,
-        'paneProperties.legendProperties.showStudyValues': true,
-        'paneProperties.legendProperties.showSeriesTitle': true,
-        'paneProperties.legendProperties.showSeriesOHLC': true,
+        'paneProperties.legendProperties.showStudyArguments': false,
+        'paneProperties.legendProperties.showStudyTitles': false,
+        'paneProperties.legendProperties.showStudyValues': false,
+        'paneProperties.legendProperties.showSeriesTitle': false,
+        'paneProperties.legendProperties.showSeriesOHLC': false,
 
         'scalesProperties.showLeftScale': false,
         'scalesProperties.showRightScale': true,
@@ -160,17 +156,20 @@ export class TradingViewChartWrapperComponent
         'scalesProperties.showStudyPlotLabels': false,
         'scalesProperties.showSymbolLabels': false,
 
-        'symbolWatermarkProperties.transparency': 0,
+        'symbolWatermarkProperties.transparency': 100,
         // 'mainSeriesProperties.candleStyle.borderUpColor': '#8ed23f',
         // 'mainSeriesProperties.candleStyle.wickUpColor': '#8ed23f',
         // 'mainSeriesProperties.candleStyle.upColor': '#8ed23f',
         // 'mainSeriesProperties.candleStyle.borderDownColor': '#ff2d2d',
         // 'mainSeriesProperties.candleStyle.wickDownColor': '#ff2d2d',
         // 'mainSeriesProperties.candleStyle.downColor': '#ff2d2d',
+
+        volumePaneSize: 'tiny',
       },
     };
 
     this.tvWidget = new widget(widgetOptions);
+
     this.tvWidget.onChartReady(() => {
       applyTheme();
 

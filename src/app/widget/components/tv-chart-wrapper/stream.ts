@@ -1,5 +1,5 @@
 // api/stream.js
-import historyProvider from './historyProvider.js';
+import { default as historyProvider } from './historyProvider';
 // we use Socket.io client to connect to cryptocompare's socket.io stream
 const io = require('socket.io-client');
 // tslint:disable-next-line: variable-name
@@ -11,20 +11,20 @@ let _subs = [];
 export default {
   subscribeBars(symbolInfo, resolution, updateCb, uid, resetCache) {
     const channelString = createChannelString(symbolInfo);
-    socket.emit('SubAdd', { subs: [channelString] });
 
+    socket.emit('SubAdd', { subs: [channelString] });
     const newSub = {
       channelString,
       uid,
       resolution,
       symbolInfo,
-      lastBar: historyProvider.history[symbolInfo.name].lastBar,
+      lastBar: historyProvider.history[symbolInfo.name]?.lastBar,
       listener: updateCb,
     };
     _subs.push(newSub);
   },
   unsubscribeBars(uid) {
-    const subIndex = _subs.findIndex(e => e.uid === uid);
+    const subIndex = _subs.findIndex((e) => e.uid === uid);
     if (subIndex === -1) {
       return;
     }
@@ -37,20 +37,19 @@ export default {
 socket.on('connect', () => {
   console.log('===Socket connected');
 });
-socket.on('disconnect', e => {
+socket.on('disconnect', (e) => {
   console.log('===Socket disconnected:', e);
 });
-socket.on('error', err => {
+socket.on('error', (err) => {
   console.log('===Socket error', err);
 });
-socket.on('m', e => {
-  console.log('===Socket event');
+socket.on('m', (e) => {
   // here we get all events the CryptoCompare connection has subscribed to
   // we need to send this new data to our subscribed charts
   // tslint:disable-next-line: variable-name
   const _data = e.split('~');
   if (_data[0] === '3') {
-    // console.log('Websocket Snapshot load event complete')
+    console.log('===Socket Snapshot load event complete');
     return;
   }
   const data = {
@@ -66,11 +65,15 @@ socket.on('m', e => {
 
   const channelString = `${data.sub_type}~${data.exchange}~${data.to_sym}~${data.from_sym}`;
 
-  const sub = _subs.find(e => e.channelString === channelString);
+  const sub = _subs.find((e) => e.channelString === channelString);
 
   if (sub) {
+    // getting last bar from history provider
+    if (!sub.lastBar) {
+      sub.lastBar = historyProvider.history[sub.symbolInfo.name]?.lastBar;
+    }
     // disregard the initial catchup snapshot of trades for already closed candles
-    if (data.ts < sub.lastBar.time / 1000) {
+    if (!sub.lastBar || data.ts < sub.lastBar.time / 1000) {
       return;
     }
 
@@ -128,9 +131,13 @@ function updateBar(data, sub) {
 // takes symbolInfo object as input and creates the subscription string to send to CryptoCompare
 function createChannelString(symbolInfo) {
   const channel = symbolInfo.name.split(/[:/]/);
-  const exchange = channel[0] === 'GDAX' ? 'Coinbase' : channel[0];
+  const exchange = capitalize(channel[0] === 'GDAX' ? 'Coinbase' : channel[0]);
   const to = channel[2];
   const from = channel[1];
   // subscribe to the CryptoCompare trade channel for the pair and exchange
   return `0~${exchange}~${from}~${to}`;
+}
+
+function capitalize(str: string) {
+  return str.charAt(0).concat(str.slice(1).toLowerCase());
 }

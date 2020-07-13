@@ -21,6 +21,9 @@
       justify-content: space-between;
 
       .instruments-header__base-currencies {
+        max-width: 84.5vw;
+        width: 100%;
+        overflow-x: auto;
         align-items: center;
 
         .instruments-header__currency {

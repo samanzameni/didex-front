@@ -3,7 +3,7 @@
   "tab_general": "General",
   "tab_security": "Security",
   "tab_2fa": "2FA",
-  "tab_kyc": "KYC",
+  "tab_kyc": "ID Verification",
 
   "general": {
     "message": "Here, you can change your general account information.",
@@ -52,12 +52,15 @@
     "button_newbie": "Validate Identity",
 
     "message_sent": "You have filled and sent your information and it is waiting for approval",
-    "button_sent": "Update KYC Info",
+    "button_sent": "Update ID Info",
 
-    "message_approved": "Your KYC Information is approved",
-    "button_approved": "Update KYC Info",
+    "message_approved": "Your ID Verification is approved",
+    "button_approved": "Update ID Info",
 
-    "message_banned": "Your application for KYC is banned",
-    "button_banned": "Validate Identity"
+    "message_banned": "Your application for ID Verification is banned",
+    "button_banned": "Validate Identity",
+
+    "message_rejected": "Your application for ID Verification is rejected",
+    "button_rejected": "Validate Identity"
   }
 }

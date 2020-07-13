@@ -2,9 +2,10 @@ import { Injectable, ApplicationRef } from '@angular/core';
 
 import * as en_locale from '@locale/en';
 import * as cn_locale from '@locale/cn';
+import * as ru_locale from '@locale/ru';
 import { StorageService } from './ddx-storage.service';
 
-export type Locale = 'en' | 'cn';
+export type Locale = 'en' | 'cn' | 'ru';
 export type LocaleModel = {
   locale: Locale;
   caption: string;
@@ -23,6 +24,7 @@ export class LocaleService {
     this.localeModels = [
       { locale: 'en', caption: 'English' },
       { locale: 'cn', caption: '中文' },
+      { locale: 'ru', caption: 'русский' },
     ];
 
     this.changeLocale(this.storageService.getStoredLocale() || 'en');
@@ -91,6 +93,9 @@ export class LocaleService {
     try {
       let localeFile;
       switch (this.locale) {
+        case 'ru':
+          localeFile = ru_locale[decodedMessageID.messageSection];
+          break;
         case 'cn':
           localeFile = cn_locale[decodedMessageID.messageSection];
           break;
@@ -104,10 +109,35 @@ export class LocaleService {
             decodedMessageID.messageCode
           ]
         : localeFile[decodedMessageID.messageCode];
+
+      if (!message || message.length === 0) {
+        throw 'noTranslation';
+      }
+
       return message;
     } catch (error) {
-      console.warn('Translation not found in', decodedMessageID.messageSection);
-      return '';
+      if (this.locale !== 'en') {
+        try {
+          const localeFile = en_locale[decodedMessageID.messageSection];
+          let message = decodedMessageID.messageSubSection
+            ? localeFile[decodedMessageID.messageSubSection][
+                decodedMessageID.messageCode
+              ]
+            : localeFile[decodedMessageID.messageCode];
+
+          if (!message || message.length === 0) {
+            throw 'noTranslation';
+          }
+
+          return message;
+        } catch (fallbackError) {
+          console.warn(
+            'Translation not found in',
+            decodedMessageID.messageSection
+          );
+          return '';
+        }
+      }
     }
     return '';
   }

@@ -31,6 +31,9 @@ export class TradeDATAService extends AbstractDATAService<Trade[]> {
       this.signalrService.addDataListener(
         'on-trade-' + symbol,
         (feed: Trade) => {
+          if (feed.timeStamp.endsWith('Z')) {
+            feed.timeStamp = feed.timeStamp.slice(0, feed.timeStamp.length - 1);
+          }
           const currentValue: Trade[] = this.dataStream$.value;
 
           if (currentValue) {

@@ -18,7 +18,7 @@ const config = {
 };
 
 export default {
-  onReady: cb => {
+  onReady: (cb) => {
     // console.log('=====onReady running');
     setTimeout(() => cb(config), 0);
   },
@@ -78,14 +78,14 @@ export default {
     // console.log(`Requesting bars between ${new Date(from * 1000).toISOString()} and ${new Date(to * 1000).toISOString()}`)
     historyProvider
       .getBars(symbolInfo, resolution, from, to, firstDataRequest)
-      .then(bars => {
+      .then((bars) => {
         if (bars.length) {
           onHistoryCallback(bars, { noData: false });
         } else {
           onHistoryCallback(bars, { noData: true });
         }
       })
-      .catch(err => {
+      .catch((err) => {
         // console.log({ err });
         onErrorCallback(err);
       });
@@ -97,7 +97,7 @@ export default {
     subscribeUID,
     onResetCacheNeededCallback
   ) => {
-    // console.log('=====subscribeBars runnning');
+    console.log('===Socket subscribeBars runnning');
     stream.subscribeBars(
       symbolInfo,
       resolution,
@@ -106,7 +106,7 @@ export default {
       onResetCacheNeededCallback
     );
   },
-  unsubscribeBars: subscriberUID => {
+  unsubscribeBars: (subscriberUID) => {
     // console.log('=====unsubscribeBars running');
     stream.unsubscribeBars(subscriberUID);
   },
@@ -133,7 +133,7 @@ export default {
     // optional
     // console.log('=====getTimeScaleMarks running');
   },
-  getServerTime: cb => {
+  getServerTime: (cb) => {
     // console.log('=====getServerTime running');
   },
 };

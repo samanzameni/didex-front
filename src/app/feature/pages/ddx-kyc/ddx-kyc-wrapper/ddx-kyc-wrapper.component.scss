@@ -10,14 +10,17 @@
     display: flex;
     grid-area: 'sidebar';
 
-    ol.kyc-steps {
+    .kyc-steps {
       display: none;
       justify-content: space-between;
       align-items: center;
 
       width: 100%;
 
-      li.kyc-step {
+      .kyc-step {
+        @extend .has-transition;
+
+        text-decoration: none;
         width: 100%;
         display: flex;
         flex-direction: column;
@@ -54,6 +57,10 @@
             color: rgba($ddx-accent-lighter, 0.3);
           }
         }
+
+        &:hover {
+          border-color: $ddx-yellow;
+        }
       }
     }
   }
@@ -74,10 +81,10 @@
 @media screen and (min-width: $break-mobile) {
   :host {
     aside {
-      ol.kyc-steps {
+      .kyc-steps {
         display: flex;
 
-        li.kyc-step {
+        .kyc-step {
           .step-title {
             display: block;
           }
@@ -97,11 +104,11 @@
       padding: 70px;
       box-sizing: border-box;
 
-      ol.kyc-steps {
+      .kyc-steps {
         flex-direction: column;
         justify-content: center;
 
-        li.kyc-step {
+        .kyc-step {
           border: none;
           border-left: 2px solid rgba($ddx-accent-lighter, 0.3);
           box-sizing: border-box;

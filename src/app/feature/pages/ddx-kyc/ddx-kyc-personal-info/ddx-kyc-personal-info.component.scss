@@ -4,6 +4,7 @@
   form {
     grid-template-rows: repeat(8, max-content) auto;
     grid-template-columns: 100%;
+    row-gap: 15px;
     grid-template-areas:
       'description'
       'firstName'
@@ -43,6 +44,11 @@
     }
     #addressLine2 {
       grid-area: addressLine2;
+    }
+
+    .mat-error,
+    ::ng-deep .mat-error {
+      margin: 13px 0;
     }
   }
 }

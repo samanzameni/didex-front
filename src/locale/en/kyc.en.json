@@ -59,7 +59,7 @@
     "documents_2": "Driver's license (both sides)",
     "documents_3": "National identity document (both sides)",
     "hints_1": "Photo/scan must be clear, in color and display the entire ID.",
-    "hints_2": "Your full legal name and date of birth entered in form 'Personal information' must exactly match the information in your document.",
+    "hints_2": "Your full legal name and date of birth entered in the 'Personal information' form must exactly match the information in your document.",
     "hints_3": "Documents in non-latin characters cannot be accepted without certified translation.",
     "hints_4": "Max size 3 Mb.",
     "next": "Next",
@@ -74,17 +74,17 @@
     "paper_note_content": "I’m --------- with ID No: --------- and email address --------- verifying with www.DidEx.com website for my cryptocurrency transaction. No one has asked me to make this account. I hereby acknowledge that I have read, understand and agree to the terms of all document relating to this platform.\n\nDate: ---------\n\nSignature: ---------",
     "restricts_1": "It is taken in good light",
     "restricts_2": "The photo is clear, high-resolution, and in color",
-    "restricts_3": "Your face must be clearly visible",
-    "restricts_4": "The text in the note must be handwritten by you and not typed",
-    "restricts_5": "The document you are holding must be the same you are submitting for your identity verification",
+    "restricts_3": "Your face is clearly visible",
+    "restricts_4": "The text in the note is handwritten by you and not typed",
+    "restricts_5": "The document you are holding is the same you are submitting for your identity verification",
     "restricts_6": "Neither the photos nor the documents have been edited or manipulated",
     "next": "Next",
     "back": "Back"
   },
 
   "done": {
-    "description": "Thanks! Now click on submit button to send your KYC application for approval.",
-    "edit_application": "Edit Application",
+    "description": "You have filled and sent your information and it is pending for approval",
+    "edit_application": "Update your Info",
     "submit": "Submit"
   }
 }

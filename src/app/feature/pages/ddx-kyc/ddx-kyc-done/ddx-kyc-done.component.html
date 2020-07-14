@@ -6,11 +6,11 @@
   <ng-container *ngSwitchCase="'sent'">
     <img src="assets/images/kyc-sent.svg" alt="sent" />
     <p class="settings-page__info">
-      {{ 'settings.kyc.message_sent' | ddxLocale }}
+      {{ 'kyc.sent.description' | ddxLocale }}
     </p>
     <a routerLink="/user/kyc"
       ><button mat-raised-button color="accent">
-        {{ 'settings.kyc.button_sent' | ddxLocale }}
+        {{ 'kyc.sent.edit_application' | ddxLocale }}
       </button></a
     >
   </ng-container>
@@ -46,20 +46,18 @@
   </ng-container>
 
   <ng-container *ngSwitchCase="'rejected'">
-    <div class="settings-page__content" arrangeStack arrangeCenter>
-      <img src="assets/images/kyc-rejected.svg" alt="rejected" />
-      <p class="body">
-        {{ 'kyc.rejected.description' | ddxLocale }}
-      </p>
-      <a
-        class="back-button"
-        routerLink="/user/kyc/correct-information"
-        rel="noopener noreferrer"
-        ><button mat-stroked-button color="basic" type="button">
-          {{ 'kyc.rejected.correct_information' | ddxLocale }}
-        </button></a
-      >
-    </div>
+    <img src="assets/images/kyc-rejected.svg" alt="rejected" />
+    <p class="body">
+      {{ 'kyc.rejected.description' | ddxLocale }}
+    </p>
+    <a
+      class="back-button"
+      routerLink="/user/kyc/correct-information"
+      rel="noopener noreferrer"
+      ><button mat-stroked-button color="basic" type="button">
+        {{ 'kyc.rejected.correct_information' | ddxLocale }}
+      </button></a
+    >
   </ng-container>
 </section>
 

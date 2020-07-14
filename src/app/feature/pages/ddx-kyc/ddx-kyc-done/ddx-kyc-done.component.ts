@@ -25,10 +25,10 @@ export class KYCDonePageComponent {
   get currentTraderStatus(): string {
     //when would it ever return newbie whilst in the last stage of KYC?!
     switch (true) {
-      case true:
+      case this.traderService.isRejected:
         console.log('rejected');
         return 'rejected';
-      case this.traderService.hasSentKYC:
+      case true:
         console.log('sent');
         return 'sent';
       case this.traderService.hasKYCApproved:

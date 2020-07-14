@@ -34,7 +34,7 @@ export class KYCDonePageComponent {
       case this.traderService.hasKYCApproved:
         console.log('approved');
         return 'approved';
-      case true:
+      case this.traderService.isBanned:
         console.log('banned');
         return 'banned';
       default:

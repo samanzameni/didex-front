@@ -9,6 +9,13 @@
   background-color: $ddx-dark-main;
   height: 100%;
 
+  section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
   img {
     width: 190px;
     height: 190px;

@@ -84,9 +84,24 @@
     "back": "Back"
   },
 
-  "done": {
-    "description": "You have filled and sent your information and it is pending for approval",
+  "sent": {
+    "description": "Thank you for your patience, your verification is being reviewed",
     "edit_application": "Update your Info",
     "submit": "Submit"
+  },
+
+  "approved": {
+    "description": "Thank you for your patience, your ID has been approved",
+    "edit_application": "Show",
+    "start_trade": "Start Trade"
+  },
+
+  "banned": {
+    "description": "Verification of your ID is banned, Please wait"
+  },
+
+  "rejected": {
+    "description": "Your ID has not been verified, Please check",
+    "correct_information": "Correct information"
   }
 }

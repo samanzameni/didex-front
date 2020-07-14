@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="161.451" height="161.451" viewBox="0 0 161.451 161.451">
+  <defs>
+    <filter id="circle3030" x="0" y="0" width="161.451" height="161.451" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feFlood flood-color="#000871" flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="g3028" transform="translate(170.304 179.304)">
+    <g id="g4155" transform="translate(-155.304 -167.304)">
+      <path id="path3818" d="M-116.99-39.4l12.209,12.209,90.667-90.667-12.209-12.209Z" transform="translate(131.69 144.353)" fill="#d40000" stroke="#707070" stroke-width="1"/>
+      <g transform="matrix(1, 0, 0, 1, -15, -12)" filter="url(#circle3030)">
+        <circle id="circle3030-2" data-name="circle3030" cx="65.726" cy="65.726" r="65.726" transform="translate(15 12)" fill="rgba(0,0,0,0)" stroke="#d40000" stroke-width="12"/>
+      </g>
+    </g>
+  </g>
+</svg>

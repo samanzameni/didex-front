@@ -10,6 +10,7 @@ $ddx-kyc-header-height: 80px;
   header {
     display: flex;
     flex-direction: column;
+    width: 100%;
     height: $ddx-kyc-header-height;
     margin-bottom: 15px;
 

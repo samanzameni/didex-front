@@ -85,7 +85,7 @@
   },
 
   "sent": {
-    "description": "Thank you for your patience, your verification is being reviewed",
+    "description": "You have filled and sent your information and it is pending for approval",
     "edit_application": "Update your Info",
     "submit": "Submit"
   },

@@ -28,13 +28,13 @@ export class KYCDonePageComponent {
       case this.traderService.isRejected:
         console.log('rejected');
         return 'rejected';
-      case true:
+      case this.traderService.hasSentKYC:
         console.log('sent');
         return 'sent';
       case this.traderService.hasKYCApproved:
         console.log('approved');
         return 'approved';
-      case this.traderService.isBanned:
+      case true:
         console.log('banned');
         return 'banned';
       default:

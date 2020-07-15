@@ -60,6 +60,12 @@
       .settings-page__info {
         margin: 20px 0;
       }
+
+      .actions {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+      }
     }
 
     .password-hints-container {

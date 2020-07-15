@@ -137,9 +137,9 @@ export class SettingsPageComponent implements OnInit {
     switch (true) {
       // case this.traderService.isNewbie:
       //   return 'newbie';
+      // case this.traderService.hasSentKYC:
+      //   return 'sent';
       case true:
-        return 'sent';
-      case this.traderService.hasKYCApproved:
         return 'approved';
       case this.traderService.isBanned:
         return 'banned';

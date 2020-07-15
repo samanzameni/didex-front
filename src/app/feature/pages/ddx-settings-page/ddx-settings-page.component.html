@@ -175,12 +175,19 @@
         </button></a>
     </ng-container>
     <ng-container *ngSwitchCase="'approved'">
+      <img src="assets/images/kyc-approved.svg" alt="approved" />
       <p class="settings-page__info">
         {{ 'settings.kyc.message_approved' | ddxLocale }}
       </p>
-      <a routerLink="/user/kyc"><button mat-raised-button color="accent">
-          {{ 'settings.kyc.button_approved' | ddxLocale }}
-        </button></a>
+      <div class="actions">
+        <a class="back-button" routerLink="/user/kyc/personal-info" rel="noopener noreferrer"><button mat-stroked-button
+            color="basic" type="button">
+            {{ 'kyc.approved.edit_application' | ddxLocale }}
+          </button></a>
+        <pro-button color="primary" routerLink="/" type="submit">
+          {{ 'kyc.approved.start_trade' | ddxLocale }}
+        </pro-button>
+      </div>
     </ng-container>
     <ng-container *ngSwitchCase="'banned'">
       <img src="assets/images/kyc-banned.svg" alt="banned" />

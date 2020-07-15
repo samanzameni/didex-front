@@ -52,11 +52,21 @@
 </p>
 
 <div class="actions">
-  <a class="back-button" routerLink="/user/kyc/personal-info" rel="noopener noreferrer"><button mat-stroked-button
-      color="basic" type="button">
+  <a
+    class="back-button"
+    routerLink="/user/kyc/personal-info"
+    rel="noopener noreferrer"
+    ><button mat-stroked-button color="basic" type="button">
       {{ 'kyc.sent.edit_application' | ddxLocale }}
-    </button></a>
-  <pro-button color="primary" type="submit" (click)="onSubmit()" #submitButton>
+    </button></a
+  >
+  <pro-button
+    color="primary"
+    routerLink="/"
+    type="submit"
+    (click)="onSubmit()"
+    #submitButton
+  >
     {{ 'kyc.sent.submit' | ddxLocale }}
   </pro-button>
 </div>

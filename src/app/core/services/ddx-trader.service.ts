@@ -35,6 +35,10 @@ export class TraderService {
     return !!this.trader && this.trader.status === TraderStatus.Banned;
   }
 
+  get isRejected(): boolean {
+    return !!this.trader && this.trader.status === TraderStatus.Rejected;
+  }
+
   get hasKYCFilled(): boolean {
     return (
       !!this.trader &&

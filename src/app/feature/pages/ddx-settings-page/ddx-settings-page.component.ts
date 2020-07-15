@@ -135,9 +135,9 @@ export class SettingsPageComponent implements OnInit {
 
   get currentTraderStatus(): string {
     switch (true) {
-      case this.traderService.isNewbie:
-        return 'newbie';
-      case this.traderService.hasSentKYC:
+      // case this.traderService.isNewbie:
+      //   return 'newbie';
+      case true:
         return 'sent';
       case this.traderService.hasKYCApproved:
         return 'approved';

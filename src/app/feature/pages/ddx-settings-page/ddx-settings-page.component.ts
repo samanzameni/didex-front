@@ -141,8 +141,10 @@ export class SettingsPageComponent implements OnInit {
       //   return 'sent';
       // case this.traderService.hasKYCApproved:
       //   return 'approved';
+      // case this.traderService.isBanned:
+      //   return 'banned';
       case true:
-        return 'banned';
+        return 'rejected';
       default:
         return 'newbie';
     }

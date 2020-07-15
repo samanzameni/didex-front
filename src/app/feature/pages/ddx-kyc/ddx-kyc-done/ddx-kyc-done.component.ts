@@ -20,28 +20,7 @@ export class KYCDonePageComponent {
     private restService: TraderRESTService,
     private traderService: TraderService,
     private router: Router
-  ) {}
-
-  get currentTraderStatus(): string {
-    //when would it ever return newbie whilst in the last stage of KYC?!
-    switch (true) {
-      case this.traderService.isRejected:
-        console.log('rejected');
-        return 'rejected';
-      case this.traderService.hasSentKYC:
-        console.log('sent');
-        return 'sent';
-      case this.traderService.hasKYCApproved:
-        console.log('approved');
-        return 'approved';
-      case this.traderService.isBanned:
-        console.log('banned');
-        return 'banned';
-      default:
-        console.log('newbie');
-        return 'newbie';
-    }
-  }
+  ) { }
 
   onSubmit(): void {
     this.submitButton.setLoadingOn();

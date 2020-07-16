@@ -73,7 +73,7 @@
     "description": "Please submit a selfie in which you are holding your government-issued ID and a paper note. On the note you should handwrite your email address, the current date, and the words 'for Didex'. Make sure the selfie you are submitting meets the following requirements:",
 
     "paper_note_title": "Paper Note",
-    "paper_note_content": "I’m --------- with ID No: --------- and email address --------- verifying with www.DidEx.com website for my cryptocurrency transaction. No one has asked me to make this account. I hereby acknowledge that I have read, understand and agree to the terms of all document relating to this platform.\n\nDate: ---------\n\nSignature: ---------",
+    "paper_note_content": "I’m --------- with ID No: --------- and email address --------- verifying with www.DidEx.com website for my cryptocurrency transaction. No one has asked me to make this account. I hereby acknowledge that I have read, understand and agree to the terms of all documents relating to this platform.\n\nDate: ---------\n\nSignature: ---------",
     "restricts_1": "It is taken in good light",
     "restricts_2": "The photo is clear, high-resolution, and in color",
     "restricts_3": "Your face is clearly visible",

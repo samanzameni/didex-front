@@ -1,18 +1,16 @@
 <header>
   <h2>{{ 'kyc.title' | ddxLocale }}</h2>
 </header>
-<section [ngSwitch]="currentTraderStatus">
-  <!-- don't forget to specify code for when the condition returns newbie -->
+<!-- <section [ngSwitch]="currentTraderStatus">
+
   <ng-container *ngSwitchCase="'sent'">
     <img src="assets/images/kyc-sent.svg" alt="sent" />
     <p class="settings-page__info">
       {{ 'kyc.sent.description' | ddxLocale }}
     </p>
-    <a routerLink="/user/kyc"
-      ><button mat-raised-button color="accent">
+    <a routerLink="/user/kyc"><button mat-raised-button color="accent">
         {{ 'kyc.sent.edit_application' | ddxLocale }}
-      </button></a
-    >
+      </button></a>
   </ng-container>
   <ng-container *ngSwitchCase="'approved'">
     <img src="assets/images/kyc-approved.svg" alt="sent" />
@@ -20,20 +18,11 @@
       {{ 'kyc.approved.description' | ddxLocale }}
     </p>
     <div class="actions">
-      <a
-        class="back-button"
-        routerLink="/user/kyc/personal-info"
-        rel="noopener noreferrer"
-        ><button mat-stroked-button color="basic" type="button">
+      <a class="back-button" routerLink="/user/kyc/personal-info" rel="noopener noreferrer"><button mat-stroked-button
+          color="basic" type="button">
           {{ 'kyc.approved.edit_application' | ddxLocale }}
-        </button></a
-      >
-      <pro-button
-        color="primary"
-        type="submit"
-        (click)="onSubmit()"
-        #submitButton
-      >
+        </button></a>
+      <pro-button color="primary" type="submit" (click)="onSubmit()" #submitButton>
         {{ 'kyc.approved.start_trade' | ddxLocale }}
       </pro-button>
     </div>
@@ -50,20 +39,16 @@
     <p class="body">
       {{ 'kyc.rejected.description' | ddxLocale }}
     </p>
-    <a
-      class="back-button"
-      routerLink="/user/kyc/personal-information"
-      rel="noopener noreferrer"
-      ><button mat-stroked-button color="basic" type="button">
+    <a class="back-button" routerLink="/user/kyc/personal-information" rel="noopener noreferrer"><button
+        mat-stroked-button color="basic" type="button">
         {{ 'kyc.rejected.correct_information' | ddxLocale }}
-      </button></a
-    >
+      </button></a>
   </ng-container>
-</section>
+</section> -->
 
-<!-- <img src="assets/images/kyc-done.svg" alt="done" />
+<img src="assets/images/kyc-sent.svg" alt="sent" />
 <p class="body">
-  {{ 'kyc.done.description' | ddxLocale }}
+  {{ 'kyc.sent.description' | ddxLocale }}
 </p>
 
 <div class="actions">
@@ -72,10 +57,16 @@
     routerLink="/user/kyc/personal-info"
     rel="noopener noreferrer"
     ><button mat-stroked-button color="basic" type="button">
-      {{ 'kyc.done.edit_application' | ddxLocale }}
+      {{ 'kyc.sent.edit_application' | ddxLocale }}
     </button></a
   >
-  <pro-button color="primary" type="submit" (click)="onSubmit()" #submitButton>
-    {{ 'kyc.done.submit' | ddxLocale }}
+  <pro-button
+    color="primary"
+    routerLink="/"
+    type="submit"
+    (click)="onSubmit()"
+    #submitButton
+  >
+    {{ 'kyc.sent.submit' | ddxLocale }}
   </pro-button>
-</div> -->
+</div>

@@ -3,36 +3,20 @@
     <h2 class="settings-page__title">{{ 'settings.title' | ddxLocale }}</h2>
 
     <div arrangeInline class="settings-page__sections">
-      <button
-        mat-stroked-button
-        class="settings-page__section-tab"
-        [ngClass]="{ 'mat-accent': currentActivePage === 'general' }"
-        (click)="activatePage('general')"
-      >
+      <button mat-stroked-button class="settings-page__section-tab"
+        [ngClass]="{ 'mat-accent': currentActivePage === 'general' }" (click)="activatePage('general')">
         {{ 'settings.tab_general' | ddxLocale }}
       </button>
-      <button
-        mat-stroked-button
-        class="settings-page__section-tab"
-        [ngClass]="{ 'mat-accent': currentActivePage === 'security' }"
-        (click)="activatePage('security')"
-      >
+      <button mat-stroked-button class="settings-page__section-tab"
+        [ngClass]="{ 'mat-accent': currentActivePage === 'security' }" (click)="activatePage('security')">
         {{ 'settings.tab_security' | ddxLocale }}
       </button>
-      <button
-        mat-stroked-button
-        class="settings-page__section-tab"
-        [ngClass]="{ 'mat-accent': currentActivePage === '2fa' }"
-        (click)="activatePage('2fa')"
-      >
+      <button mat-stroked-button class="settings-page__section-tab"
+        [ngClass]="{ 'mat-accent': currentActivePage === '2fa' }" (click)="activatePage('2fa')">
         {{ 'settings.tab_2fa' | ddxLocale }}
       </button>
-      <button
-        mat-stroked-button
-        class="settings-page__section-tab"
-        [ngClass]="{ 'mat-accent': currentActivePage === 'kyc' }"
-        (click)="activatePage('kyc')"
-      >
+      <button mat-stroked-button class="settings-page__section-tab"
+        [ngClass]="{ 'mat-accent': currentActivePage === 'kyc' }" (click)="activatePage('kyc')">
         {{ 'settings.tab_kyc' | ddxLocale }}
       </button>
     </div>
@@ -44,38 +28,19 @@
       {{ 'settings.general.message' | ddxLocale }}
     </p>
 
-    <form
-      arrangeStack
-      autocomplete="off"
-      [formGroup]="generalFormGroup"
-      (ngSubmit)="onSubmitGeneralForm()"
-      #generalForm="ngForm"
-    >
+    <form arrangeStack autocomplete="off" [formGroup]="generalFormGroup" (ngSubmit)="onSubmitGeneralForm()"
+      #generalForm="ngForm">
       <mat-form-field appearance="outline">
         <mat-label>{{ 'settings.general.nickname' | ddxLocale }}</mat-label>
-        <input
-          matInput
-          type="text"
-          formControlName="nickname"
-          name="nickname"
-          placeholder="{{
+        <input matInput type="text" formControlName="nickname" name="nickname" placeholder="{{
             'settings.general.nickname_placeholder' | ddxLocale
-          }}"
-        />
+          }}" />
       </mat-form-field>
 
-      <dropdown-autocomplete
-        caption="{{ 'settings.general.timezone' | ddxLocale }}"
-        [control]="generalFormControls.timezone"
-        [items]="timezonesList"
-      ></dropdown-autocomplete>
+      <dropdown-autocomplete caption="{{ 'settings.general.timezone' | ddxLocale }}"
+        [control]="generalFormControls.timezone" [items]="timezonesList"></dropdown-autocomplete>
 
-      <pro-button
-        color="primary"
-        type="submit"
-        [disabled]="!generalFormGroup.valid"
-        #generalSubmitButton
-      >
+      <pro-button color="primary" type="submit" [disabled]="!generalFormGroup.valid" #generalSubmitButton>
         {{ 'settings.general.save_button' | ddxLocale }}
       </pro-button>
     </form>
@@ -86,24 +51,14 @@
       {{ 'settings.security.message' | ddxLocale }}
     </p>
 
-    <form
-      arrangeStack
-      autocomplete="off"
-      [formGroup]="securityFormGroup"
-      (ngSubmit)="onSubmitSecurityForm()"
-      #securityForm="ngForm"
-    >
+    <form arrangeStack autocomplete="off" [formGroup]="securityFormGroup" (ngSubmit)="onSubmitSecurityForm()"
+      #securityForm="ngForm">
       <mat-form-field appearance="outline">
         <mat-label>{{
           'settings.security.old_password' | ddxLocale
         }}</mat-label>
-        <input
-          matInput
-          [type]="isHidden ? 'password' : 'text'"
-          formControlName="currentPassword"
-          name="currentPassword"
-          id="currentPassword"
-        />
+        <input matInput [type]="isHidden ? 'password' : 'text'" formControlName="currentPassword" name="currentPassword"
+          id="currentPassword" />
         <mat-icon matSuffix (click)="toggleHidePassword()">{{
           isHidden ? 'visibility_off' : 'visibility'
         }}</mat-icon>
@@ -115,54 +70,39 @@
 
       <mat-form-field appearance="outline">
         <mat-label>{{ 'settings.security.password' | ddxLocale }}</mat-label>
-        <input
-          matInput
-          [type]="isHidden ? 'password' : 'text'"
-          formControlName="newPassword"
-          name="password"
-          id="password"
-        />
+        <input matInput [type]="isHidden ? 'password' : 'text'" formControlName="newPassword" name="password"
+          id="password" />
         <mat-icon matSuffix (click)="toggleHidePassword()">{{
           isHidden ? 'visibility_off' : 'visibility'
         }}</mat-icon>
       </mat-form-field>
 
       <ul arrangeStack class="password-hints-container">
-        <li
-          [ngClass]="{
+        <li [ngClass]="{
             approved: isAtLeastEightCharacters(
               securityFormGroup.controls.newPassword.value
             )
-          }"
-        >
+          }">
           {{ 'settings.security.password_length_criteria' | ddxLocale }}
         </li>
-        <li
-          [ngClass]="{
+        <li [ngClass]="{
             approved: hasLower(securityFormGroup.controls.newPassword.value)
-          }"
-        >
+          }">
           {{ 'settings.security.password_lowercase_criteria' | ddxLocale }}
         </li>
-        <li
-          [ngClass]="{
+        <li [ngClass]="{
             approved: hasUpper(securityFormGroup.controls.newPassword.value)
-          }"
-        >
+          }">
           {{ 'settings.security.password_uppercase_criteria' | ddxLocale }}
         </li>
-        <li
-          [ngClass]="{
+        <li [ngClass]="{
             approved: hasNumber(securityFormGroup.controls.newPassword.value)
-          }"
-        >
+          }">
           {{ 'settings.security.password_number_criteria' | ddxLocale }}
         </li>
-        <li
-          [ngClass]="{
+        <li [ngClass]="{
             approved: hasSpecial(securityFormGroup.controls.newPassword.value)
-          }"
-        >
+          }">
           {{ 'settings.security.password_sign_criteria' | ddxLocale }}
         </li>
       </ul>
@@ -171,26 +111,17 @@
         <mat-label>{{
           'settings.security.confirm_password' | ddxLocale
         }}</mat-label>
-        <input
-          matInput
-          [type]="isHidden ? 'password' : 'text'"
-          formControlName="confirmPassword"
-          name="confirm-password"
-          id="confirm-password"
-        />
+        <input matInput [type]="isHidden ? 'password' : 'text'" formControlName="confirmPassword"
+          name="confirm-password" id="confirm-password" />
         <mat-icon matSuffix (click)="toggleHidePassword()">{{
           isHidden ? 'visibility_off' : 'visibility'
         }}</mat-icon>
       </mat-form-field>
 
-      <mat-error
-        *ngIf="securityFormGroup.controls.confirmPassword.hasError('required')"
-      >
+      <mat-error *ngIf="securityFormGroup.controls.confirmPassword.hasError('required')">
         {{ 'settings.security.confirm_password_error_required' | ddxLocale }}
       </mat-error>
-      <mat-error
-        *ngIf="securityFormGroup.controls.confirmPassword.hasError('mustMatch')"
-      >
+      <mat-error *ngIf="securityFormGroup.controls.confirmPassword.hasError('mustMatch')">
         {{ 'settings.security.confirm_password_error_match' | ddxLocale }}
       </mat-error>
 
@@ -198,12 +129,7 @@
         <mat-error *ngFor="let error of errors.default">{{ error }}</mat-error>
       </ng-container>
 
-      <pro-button
-        color="primary"
-        type="submit"
-        [disabled]="!securityFormGroup.valid"
-        #securitySubmitButton
-      >
+      <pro-button color="primary" type="submit" [disabled]="!securityFormGroup.valid" #securitySubmitButton>
         {{ 'settings.security.save_button' | ddxLocale }}
       </pro-button>
     </form>
@@ -214,10 +140,7 @@
       {{ 'settings.2fa.message' | ddxLocale }}
     </p>
 
-    <ng-template
-      [ngIf]="hasTraderEnabledTwoFactor"
-      [ngIfElse]="enableTwoFactor"
-    >
+    <ng-template [ngIf]="hasTraderEnabledTwoFactor" [ngIfElse]="enableTwoFactor">
       <h4 class="settings-page__subtitle">
         {{ 'settings.2fa.disable_title' | ddxLocale }}
       </h4>
@@ -233,61 +156,55 @@
     </ng-template>
   </div>
 
-  <div
-    class="settings-page__content"
-    *ngSwitchCase="'kyc'"
-    [ngSwitch]="currentTraderStatus"
-  >
+  <div class="settings-page__content" *ngSwitchCase="'kyc'" [ngSwitch]="currentTraderStatus">
     <ng-container *ngSwitchCase="'newbie'">
       <p class="settings-page__info">
         {{ 'settings.kyc.message_newbie' | ddxLocale }}
       </p>
-      <a routerLink="/user/kyc"
-        ><button mat-raised-button color="accent">
+      <a routerLink="/user/kyc"><button mat-raised-button color="accent">
           {{ 'settings.kyc.button_newbie' | ddxLocale }}
-        </button></a
-      >
+        </button></a>
     </ng-container>
     <ng-container *ngSwitchCase="'sent'">
+      <img src="assets/images/kyc-sent.svg" alt="sent" />
       <p class="settings-page__info">
-        {{ 'settings.kyc.message_sent' | ddxLocale }}
+        {{ 'kyc.sent.description' | ddxLocale }}
       </p>
-      <a routerLink="/user/kyc"
-        ><button mat-raised-button color="accent">
-          {{ 'settings.kyc.button_sent' | ddxLocale }}
-        </button></a
-      >
+      <a routerLink="/user/kyc"><button mat-stroked-button color="basic" type="button">
+          {{ 'kyc.sent.edit_application' | ddxLocale }}
+        </button></a>
     </ng-container>
     <ng-container *ngSwitchCase="'approved'">
+      <img src="assets/images/kyc-approved.svg" alt="approved" />
       <p class="settings-page__info">
         {{ 'settings.kyc.message_approved' | ddxLocale }}
       </p>
-      <a routerLink="/user/kyc"
-        ><button mat-raised-button color="accent">
-          {{ 'settings.kyc.button_approved' | ddxLocale }}
-        </button></a
-      >
+      <div class="actions">
+        <a class="back-button" routerLink="/user/kyc/personal-info" rel="noopener noreferrer"><button mat-stroked-button
+            color="basic" type="button">
+            {{ 'kyc.approved.edit_application' | ddxLocale }}
+          </button></a>
+        <pro-button color="primary" routerLink="/" type="submit">
+          {{ 'kyc.approved.start_trade' | ddxLocale }}
+        </pro-button>
+      </div>
     </ng-container>
     <ng-container *ngSwitchCase="'banned'">
-      <p class="settings-page__info">
-        {{ 'settings.kyc.message_banned' | ddxLocale }}
+      <img src="assets/images/kyc-banned.svg" alt="banned" />
+      <p class="body">
+        {{ 'kyc.banned.description' | ddxLocale }}
       </p>
-      <a routerLink="/user/kyc"
-        ><button mat-raised-button color="accent">
-          {{ 'settings.kyc.button_banned' | ddxLocale }}
-        </button></a
-      >
     </ng-container>
 
     <ng-container *ngSwitchCase="'rejected'">
-      <p class="settings-page__info">
-        {{ 'settings.kyc.message_rejected' | ddxLocale }}
+      <img src="assets/images/kyc-rejected.svg" alt="rejected" />
+      <p class="body">
+        {{ 'kyc.rejected.description' | ddxLocale }}
       </p>
-      <a routerLink="/user/kyc"
-        ><button mat-raised-button color="accent">
-          {{ 'settings.kyc.button_rejected' | ddxLocale }}
-        </button></a
-      >
+      <a class="back-button" routerLink="/user/kyc/personal-information" rel="noopener noreferrer"><button
+          mat-stroked-button color="basic" type="button">
+          {{ 'kyc.rejected.correct_information' | ddxLocale }}
+        </button></a>
     </ng-container>
   </div>
 </section>

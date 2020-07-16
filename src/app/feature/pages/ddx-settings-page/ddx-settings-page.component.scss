@@ -58,7 +58,18 @@
       flex: 1;
 
       .settings-page__info {
-        margin: 10px 0;
+        margin: 20px 0;
+      }
+
+      .actions {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        min-width: 240px;
+      }
+
+      .body {
+        margin: 30px 0;
       }
     }
 

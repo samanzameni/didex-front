@@ -143,6 +143,8 @@ export class SettingsPageComponent implements OnInit {
         return 'approved';
       case this.traderService.isBanned:
         return 'banned';
+      case this.traderService.isRejected:
+        return 'rejected';
       default:
         return 'newbie';
     }

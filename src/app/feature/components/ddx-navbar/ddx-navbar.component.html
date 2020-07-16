@@ -123,10 +123,12 @@
   </ng-container>
 
   <dropdown-menu title="Applications" icon="apps">
-    <a mat-menu-item class="active" routerLink="/">Trade</a>
+    <a mat-menu-item class="active" routerLink="/">{{
+      'navbar.trade' | ddxLocale
+    }}</a>
     <!-- TODO: URL -->
     <!-- <a mat-menu-item routerLink="/">Academy</a> -->
     <!-- TODO: URL -->
-    <a mat-menu-item href="/invest">Invest</a>
+    <a mat-menu-item href="/invest">{{ 'navbar.invest' | ddxLocale }}</a>
   </dropdown-menu>
 </div>

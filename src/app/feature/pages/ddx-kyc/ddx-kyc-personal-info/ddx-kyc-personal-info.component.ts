@@ -18,6 +18,8 @@ import { TraderService } from '@core/services';
 export class KYCPersonalInfoPageComponent extends KYCPageDirective
   implements OnInit {
   private countries: DropdownSelectItem[];
+  private formErrors: any;
+  public flag: boolean; //this flag toggles the date of birth error visibility
   constructor(
     protected router: Router,
     protected el: ElementRef,
@@ -27,8 +29,9 @@ export class KYCPersonalInfoPageComponent extends KYCPageDirective
     private restService: TraderRESTService
   ) {
     super(router, el, renderer, formBuilder, traderService);
+    this.formErrors = {};
     this.renderer.addClass(this.el.nativeElement, 'kyc-form');
-    this.countries = COUNTRIES.map(country => {
+    this.countries = COUNTRIES.map((country) => {
       return {
         title: `${country.emoji} ${country.name}`,
         value: country.code,
@@ -88,8 +91,17 @@ export class KYCPersonalInfoPageComponent extends KYCPageDirective
     });
   }
 
+  hideError() {
+    //this method toggles the dateOfBirth error visibility
+    this.flag = true;
+  }
+
   get countriesList(): DropdownSelectItem[] {
     return this.countries;
+  }
+
+  get errors(): any {
+    return this.formErrors;
   }
 
   onSubmit(): void {
@@ -100,12 +112,20 @@ export class KYCPersonalInfoPageComponent extends KYCPageDirective
     this.setLoadingOn();
 
     this.restService.requestUpdatePersonalInfo(dataToSend).subscribe(
-      response => {
+      (response) => {
         this.setLoadingOff();
         this.router.navigateByUrl('/user/kyc/phone-verification');
       },
-      errorResponse => {
+      (errorResponse) => {
         this.setLoadingOff();
+        if (errorResponse.status === 400) {
+          const errors = errorResponse.error.errors;
+          if (errors.DateOfBirth) {
+            this.flag = false; //this flag toggles DateOfBirth error visibility
+            this.formErrors.birthday = errors.DateOfBirth;
+            console.log(errors.DateOfBirth);
+          }
+        }
       }
     );
   }

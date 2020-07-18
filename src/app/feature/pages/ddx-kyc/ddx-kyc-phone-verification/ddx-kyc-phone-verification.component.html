@@ -73,11 +73,11 @@
 
     <div arrangeInline id="resendCode">
       <button
-        mat-flat-button
+        mat-stroked-button
         color="basic"
         type="button"
         [ngClass]="{ hidden: !hasSubmittedNumber }"
-        [disabled]="countdownTimer !== '0:00'"
+        [disabled]="countdownTimer !== '0:01'"
         (click)="onSubmitNumber()"
         #submitNumberButton
       >

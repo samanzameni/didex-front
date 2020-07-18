@@ -5,11 +5,14 @@ import {
   Renderer2,
   ViewChild,
 } from '@angular/core';
+import { interval, timer } from 'rxjs';
+import { take } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { KYCPageDirective } from '@feature/templates';
 import { FormBuilder, Validators } from '@angular/forms';
 import { TraderRESTService } from '@core/services/REST';
 import { CONSTANTS, COUNTRIES } from '@core/util/constants';
+import { secondsToTime } from '@core/util/time';
 import { TraderService } from '@core/services';
 import { DropdownSelectItem } from '@widget/models';
 
@@ -98,6 +101,16 @@ export class KYCPhoneVerificationPageComponent extends KYCPageDirective
   }
 
   onSubmitNumber(): void {
+    const timerInterval$ = interval(1000); //1s
+    const timer$ = timer(120000); //120s
+    const times = 120;
+    const countDown$ = timerInterval$.pipe(take(times));
+    const sub = countDown$.subscribe((val) =>
+      console.log(secondsToTime(times - val))
+    );
+    // console.log(secondsToTime(times - val));
+    const sub1 = timer$.subscribe((val) => console.log('time is up!'));
+
     const numbetButton =
       this.submitNumberButton.nativeElement ||
       this.submitNumberButton._elementRef.nativeElement;

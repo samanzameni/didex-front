@@ -2,16 +2,17 @@
 
 :host {
   form {
-    grid-template-rows: auto max-content max-content auto max-content auto;
-    grid-template-columns: auto;
+    grid-template-rows: auto max-content max-content auto auto max-content auto;
+    grid-template-columns: auto auto;
     row-gap: 15px;
     grid-template-areas:
-      'description'
-      'countryTelephoneCode'
-      'mobileNumber'
-      'submitNumber'
-      'verification'
-      'actions';
+      'description description'
+      'countryTelephoneCode countryTelephoneCode'
+      'mobileNumber mobileNumber'
+      'submitNumber submitNumber'
+      'resendCode timer'
+      'verification verification'
+      'actions actions';
 
     .mat-error {
       margin-top: 13px;
@@ -35,6 +36,14 @@
       }
     }
 
+    #resendCode {
+      grid-area: resendCode;
+    }
+
+    #timer {
+      grid-area: timer;
+    }
+
     #code {
       grid-area: verification;
 
@@ -53,13 +62,14 @@
 @media screen and (min-width: $break-mobile) {
   :host {
     form {
-      grid-template-rows: auto max-content auto max-content auto;
+      grid-template-rows: auto max-content auto auto max-content auto;
       grid-template-columns: 1fr 1fr 1fr;
       grid-template-areas:
         'description description description'
         'countryTelephoneCode mobileNumber mobileNumber'
         'submitNumber submitNumber submitNumber'
-        '. verification .'
+        'resendCode . timer'
+        'verification verification verification'
         'actions actions actions';
     }
   }
@@ -68,12 +78,13 @@
 @media screen and (min-width: $break-narrow-tablet) {
   :host {
     form {
-      grid-template-rows: auto max-content auto max-content auto;
+      grid-template-rows: auto max-content auto auto max-content auto;
       grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
       grid-template-areas:
         'description description description description description'
         '. countryTelephoneCode mobileNumber mobileNumber .'
         '. submitNumber submitNumber submitNumber .'
+        '. resendCode . timer .'
         '. verification verification verification .'
         '. . actions actions actions';
     }

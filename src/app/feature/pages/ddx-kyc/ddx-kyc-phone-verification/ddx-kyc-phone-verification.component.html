@@ -71,6 +71,23 @@
       </button>
     </div>
 
+    <div arrangeInline id="resendCode">
+      <button
+        mat-flat-button
+        color="basic"
+        type="button"
+        [disabled]="kycFormControls.countryTelephoneCode.valid"
+        (click)="onSubmitNumber()"
+        #submitNumberButton
+      >
+        {{ 'kyc.phone_verification.resend_code_button' | ddxLocale }}
+      </button>
+    </div>
+
+    <div arrangeInline id="timer">
+      <span>{{ countdownTimer }}</span>
+    </div>
+
     <div id="code" [ngClass]="{ hidden: !hasSubmittedNumber }">
       <p class="message">
         {{ 'kyc.phone_verification.verification_message' | ddxLocale }}

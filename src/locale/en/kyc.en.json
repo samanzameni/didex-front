@@ -46,6 +46,7 @@
     "mobile_number_error_maxlength": "Max length should be 15.",
     "mobile_number_error_pattern": "Only digits are valid.",
     "button_submit": "Submit",
+    "resend_code_button": "Resend code",
     "verification_message": "Enter the validation code from your mobile",
     "code_error_required": "This field is required.",
     "code_error_maxlength": "Max length should be 6.",

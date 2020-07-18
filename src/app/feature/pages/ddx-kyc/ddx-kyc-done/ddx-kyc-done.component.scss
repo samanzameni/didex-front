@@ -31,14 +31,19 @@
   .actions {
     display: flex;
     flex-direction: row;
-    min-width: 290px;
-    justify-content: space-evenly;
+    width: 100%;
+    justify-content: center;
+
+    #start_button {
+      margin-left: 10px;
+    }
 
     .back-button {
       @extend .caption;
 
       text-decoration: none;
-      margin-bottom: 30px;
+      margin-right: 10px;
+      // margin-bottom: 30px;
 
       &,
       &:active,

@@ -29,7 +29,7 @@ export class KYCPhoneVerificationPageComponent extends KYCPageDirective
   private hasSubmittedMobileNumber: boolean;
   private formErrors: any;
   private countries: DropdownSelectItem[];
-  public countdownTimer: String;
+  public countdownTimer: string;
 
   @ViewChild('submitNumberButton')
   submitNumberButton: any;
@@ -112,8 +112,9 @@ export class KYCPhoneVerificationPageComponent extends KYCPageDirective
         this.countdownTimer = secondsToTime(times - val);
       }
     );
-    // console.log(secondsToTime(times - val));
-    const sub1 = timer$.subscribe((val) => console.log('time is up!'));
+    const sub1 = timer$.subscribe((val) => {
+      this.countdownTimer = '0:00';
+    });
   }
 
   onSubmitNumber(): void {

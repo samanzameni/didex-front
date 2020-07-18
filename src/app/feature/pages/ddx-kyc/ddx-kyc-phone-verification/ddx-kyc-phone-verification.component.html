@@ -76,7 +76,8 @@
         mat-flat-button
         color="basic"
         type="button"
-        [disabled]="kycFormControls.countryTelephoneCode.valid"
+        [ngClass]="{ hidden: !hasSubmittedNumber }"
+        [disabled]="countdownTimer !== '0:00'"
         (click)="onSubmitNumber()"
         #submitNumberButton
       >

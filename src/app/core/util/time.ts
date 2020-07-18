@@ -1,4 +1,4 @@
-export function secondsToTime(seconds: number): String {
+export function secondsToTime(seconds: number): string {
   const minute: number = Math.floor(seconds / 60);
   const second: number = seconds == 0 ? 0 : seconds % 60;
 

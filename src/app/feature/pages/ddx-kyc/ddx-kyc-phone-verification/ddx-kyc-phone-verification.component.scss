@@ -38,10 +38,14 @@
 
     #resendCode {
       grid-area: resendCode;
+      align-items: center;
     }
 
     #timer {
       grid-area: timer;
+      justify-content: flex-end;
+      align-items: center;
+      font-size: 14px;
     }
 
     #code {

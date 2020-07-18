@@ -55,9 +55,9 @@
     "button_sent": "Update ID Info",
 
     "message_approved": "Your ID Verification is approved",
-    "button_approved": "Update ID Info",
+    "button_approved": "Show",
 
-    "message_banned": "Your application for ID Verification is banned",
+    "message_banned": "Your application for ID Verification is banned, please contact the support",
     "button_banned": "Validate Identity",
 
     "message_rejected": "Your application for ID Verification is rejected",

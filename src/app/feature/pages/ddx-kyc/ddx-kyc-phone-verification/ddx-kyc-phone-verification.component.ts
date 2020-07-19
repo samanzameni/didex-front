@@ -106,12 +106,9 @@ export class KYCPhoneVerificationPageComponent extends KYCPageDirective
     const timer$ = timer(120000); //120s
     const times = 120;
     const countDown$ = timerInterval$.pipe(take(times));
-    const sub = countDown$.subscribe((val) =>
-      // console.log(secondsToTime(times - val))
-      {
-        this.countdownTimer = secondsToTime(times - val);
-      }
-    );
+    const sub = countDown$.subscribe((val) => {
+      this.countdownTimer = secondsToTime(times - (val + 1));
+    });
     // const sub1 = timer$.subscribe((val) => {
     //   this.countdownTimer = '0:00';
     // });

@@ -77,7 +77,7 @@
         color="basic"
         type="button"
         [ngClass]="{ hidden: !hasSubmittedNumber }"
-        [disabled]="countdownTimer !== '0:01'"
+        [disabled]="countdownTimer !== '0:00'"
         (click)="onSubmitNumber()"
         #submitNumberButton
       >

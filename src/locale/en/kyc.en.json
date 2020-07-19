@@ -81,14 +81,14 @@
     "restricts_4": "The text in the note is handwritten by you and not typed",
     "restricts_5": "The document you are holding is the same you are submitting for your identity verification",
     "restricts_6": "Neither the photos nor the documents have been edited or manipulated",
-    "next": "Next",
+    "done": "Done",
     "back": "Back"
   },
 
   "sent": {
     "description": "You have filled and sent your information and it is pending for approval",
-    "edit_application": "Update your Info",
-    "submit": "Submit"
+    "edit_application": "Update",
+    "submit": "Start"
   },
 
   "approved": {

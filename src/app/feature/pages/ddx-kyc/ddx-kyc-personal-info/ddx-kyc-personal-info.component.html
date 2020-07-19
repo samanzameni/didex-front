@@ -85,6 +85,13 @@
         }}
       </mat-error>
     </mat-form-field>
+    <ng-container *ngIf="errors">
+      <mat-error
+        [ngStyle]="{ visibility: flag ? 'hidden' : 'visible' }"
+        *ngFor="let error of errors.birthday"
+        >{{ error }}
+      </mat-error>
+    </ng-container>
 
     <dropdown-autocomplete-countries
       caption="{{ 'kyc.personal_information.country_of_birth' | ddxLocale }}"

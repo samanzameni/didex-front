@@ -22,8 +22,8 @@
     "confirm_password_error_match": "Passwords must match",
     "save_button": "Save Changes",
     "password_length_criteria": "Must be at least 8 characters",
-    "password_lowercase_criteria": "Must contain a lower case character",
-    "password_uppercase_criteria": "Must contain an upper case character",
+    "password_lowercase_criteria": "Must contain at least a lowercase character",
+    "password_uppercase_criteria": "Must contain at least an uppercase character",
     "password_number_criteria": "Must contain a number",
     "password_sign_criteria": "Must contain a sign"
   },

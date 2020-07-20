@@ -239,15 +239,17 @@
     [ngSwitch]="currentTraderStatus"
   >
     <ng-container *ngSwitchCase="'newbie'">
-      <img src="assets/images/kyc-newbie.svg" alt="newbie" />
-      <p class="settings-page__info">
-        {{ 'settings.kyc.message_newbie' | ddxLocale }}
-      </p>
-      <a routerLink="/user/kyc"
-        ><button mat-raised-button color="primary">
-          {{ 'settings.kyc.button_newbie' | ddxLocale }}
-        </button></a
-      >
+      <div id="parent-container">
+        <img id="image" src="assets/images/kyc-newbie.svg" alt="newbie" />
+        <p id="description" class="settings-page__info">
+          {{ 'settings.kyc.message_newbie' | ddxLocale }}
+        </p>
+        <a id="button" routerLink="/user/kyc"
+          ><button mat-raised-button color="primary">
+            {{ 'settings.kyc.button_newbie' | ddxLocale }}
+          </button></a
+        >
+      </div>
     </ng-container>
     <ng-container *ngSwitchCase="'sent'">
       <img src="assets/images/kyc-sent.svg" alt="sent" />

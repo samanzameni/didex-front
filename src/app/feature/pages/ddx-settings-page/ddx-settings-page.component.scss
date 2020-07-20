@@ -49,13 +49,40 @@
     }
 
     .settings-page__content {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
+      height: 100%;
+    }
+
+    #parent-container {
+      display: grid;
+      grid-template-rows: repeat(8, max-content);
+      grid-template-columns: 100%;
+      row-gap: 40px;
+      grid-template-areas:
+        '.'
+        '.'
+        '.'
+        'image'
+        'description'
+        '.'
+        '.'
+        'button';
+      // align-items: center;
+      // justify-content: center;
+      // flex-direction: column;
+      // flex: 1;
       height: 100%;
       width: 100%;
-      flex: 1;
+      max-height: 100vh;
+
+      #image {
+        grid-area: image;
+      }
+      #description {
+        grid-area: description;
+      }
+      #button {
+        grid-area: button;
+      }
 
       .settings-page__info {
         margin: 20px 0;

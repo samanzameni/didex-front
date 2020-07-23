@@ -62,7 +62,8 @@
         type="button"
         [disabled]="
           !kycFormControls.countryTelephoneCode.valid ||
-          !kycFormControls.mobileNumber.valid
+          !kycFormControls.mobileNumber.valid ||
+          !timerFinished
         "
         (click)="onSubmitNumber()"
         #submitNumberButton

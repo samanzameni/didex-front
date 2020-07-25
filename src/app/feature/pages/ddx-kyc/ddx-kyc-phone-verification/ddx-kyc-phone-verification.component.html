@@ -62,8 +62,7 @@
         type="button"
         [disabled]="
           !kycFormControls.countryTelephoneCode.valid ||
-          !kycFormControls.mobileNumber.valid ||
-          !timerFinished
+          !kycFormControls.mobileNumber.valid
         "
         (click)="onSubmitNumber()"
         #submitNumberButton
@@ -78,7 +77,7 @@
         color="basic"
         type="button"
         [ngClass]="{ hidden: !hasSubmittedNumber }"
-        [disabled]="!timerFinished"
+        [disabled]="countdownTimer !== '0:00'"
         (click)="onSubmitNumber()"
         #submitNumberButton
       >

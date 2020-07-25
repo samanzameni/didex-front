@@ -4,7 +4,6 @@
   .ddx__table {
     width: 100%;
     height: 100%;
-    font-size: 14px;
     table-layout: fixed;
 
     tbody.ddx-table__body {
@@ -40,9 +39,9 @@
 
         th,
         td {
-          @extend .body;
+          @extend .caption-small;
 
-          padding: 8px;
+          padding: 5px;
           box-sizing: border-box;
 
           flex: 1;

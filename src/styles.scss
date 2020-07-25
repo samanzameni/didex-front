@@ -7,7 +7,18 @@
 @import 'assets/styles/kit';
 
 body {
-  font-family: 'segoe';
+  &.en {
+    font-family: 'segoe';
+  }
+
+  &.ru {
+    font-family: nabakof;
+  }
+
+  &.zh {
+    font-family: 'ching chang choong';
+  }
+
   font-size: 12px;
   line-height: 14px !important;
   width: 100%;

@@ -282,15 +282,17 @@
             {{ 'settings.kyc.message_approved' | ddxLocale }}
           </p>
         </div>
-        <div class="actions">
-          <a
-            class="back-button kyc-buttons__container"
+        <div class="actions kyc-buttons__container">
+          <button
+            class="back-button"
+            id="approved-back__button"
             routerLink="/user/kyc/personal-info"
-            rel="noopener noreferrer"
-            ><button mat-stroked-button color="basic" type="button">
-              {{ 'kyc.approved.edit_application' | ddxLocale }}
-            </button></a
+            mat-stroked-button
+            color="basic"
+            type="button"
           >
+            {{ 'kyc.approved.edit_application' | ddxLocale }}
+          </button>
           <pro-button color="primary" routerLink="/" type="submit">
             {{ 'kyc.approved.start_trade' | ddxLocale }}
           </pro-button>

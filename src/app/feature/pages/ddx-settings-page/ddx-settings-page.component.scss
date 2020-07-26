@@ -52,30 +52,33 @@
       height: 100%;
     }
 
-    #parent-container {
+    .parent-container {
       display: grid;
-      grid-template-rows: fit-content(40%) fit-content(40%) fit-content(20%);
+      grid-template-rows: 4fr 1fr;
       grid-template-columns: 100%;
       row-gap: 15px;
       grid-template-areas:
-        'image'
-        'description'
-        'button';
-      // align-items: center;
-      // justify-content: center;
-      // flex-direction: column;
-      // flex: 1;
-      height: 100vh;
+        'kyc-content__container'
+        'kyc-buttons__container';
+
+      min-height: calc(100vh - 240px);
       width: 100%;
 
-      #image {
-        grid-area: image;
+      .kyc-content__container {
+        grid-area: kyc-content__container;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
       }
-      #description {
-        grid-area: description;
-      }
-      #button {
-        grid-area: button;
+
+      .kyc-buttons__container {
+        grid-area: kyc-buttons__container;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        align-self: flex-end;
       }
 
       .settings-page__info {

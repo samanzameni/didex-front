@@ -239,13 +239,15 @@
     [ngSwitch]="currentTraderStatus"
   >
     <ng-container *ngSwitchCase="'newbie'">
-      <div id="parent-container">
-        <img id="image" src="assets/images/kyc-newbie.svg" alt="newbie" />
-        <p id="description" class="settings-page__info">
-          {{ 'settings.kyc.message_newbie' | ddxLocale }}
-        </p>
+      <div class="parent-container">
+        <div class="kyc-content__container">
+          <img id="image" src="assets/images/kyc-newbie.svg" alt="newbie" />
+          <p id="description" class="settings-page__info">
+            {{ 'settings.kyc.message_newbie' | ddxLocale }}
+          </p>
+        </div>
         <button
-          id="button"
+          class="kyc-buttons__container"
           routerLink="/user/kyc"
           mat-raised-button
           color="primary"
@@ -255,53 +257,74 @@
       </div>
     </ng-container>
     <ng-container *ngSwitchCase="'sent'">
-      <img src="assets/images/kyc-sent.svg" alt="sent" />
-      <p class="settings-page__info">
-        {{ 'kyc.sent.description' | ddxLocale }}
-      </p>
-      <a routerLink="/user/kyc"
-        ><button mat-raised-button color="primary">Update KYC Info</button></a
-      >
+      <div class="parent-container">
+        <div class="kyc-content__container">
+          <img src="assets/images/kyc-sent.svg" alt="sent" />
+          <p class="settings-page__info">
+            {{ 'kyc.sent.description' | ddxLocale }}
+          </p>
+        </div>
+        <button
+          class="kyc-buttons__container"
+          routerLink="/user/kyc"
+          mat-raised-button
+          color="primary"
+        >
+          Update KYC Info
+        </button>
+      </div>
     </ng-container>
     <ng-container *ngSwitchCase="'approved'">
-      <img src="assets/images/kyc-approved.svg" alt="approved" />
-      <p class="settings-page__info">
-        {{ 'settings.kyc.message_approved' | ddxLocale }}
-      </p>
-      <div class="actions">
-        <a
-          class="back-button"
-          routerLink="/user/kyc/personal-info"
-          rel="noopener noreferrer"
-          ><button mat-stroked-button color="basic" type="button">
-            {{ 'kyc.approved.edit_application' | ddxLocale }}
-          </button></a
-        >
-        <pro-button color="primary" routerLink="/" type="submit">
-          {{ 'kyc.approved.start_trade' | ddxLocale }}
-        </pro-button>
+      <div class="parent-container">
+        <div class="kyc-content__container">
+          <img src="assets/images/kyc-approved.svg" alt="approved" />
+          <p class="settings-page__info">
+            {{ 'settings.kyc.message_approved' | ddxLocale }}
+          </p>
+        </div>
+        <div class="actions">
+          <a
+            class="back-button kyc-buttons__container"
+            routerLink="/user/kyc/personal-info"
+            rel="noopener noreferrer"
+            ><button mat-stroked-button color="basic" type="button">
+              {{ 'kyc.approved.edit_application' | ddxLocale }}
+            </button></a
+          >
+          <pro-button color="primary" routerLink="/" type="submit">
+            {{ 'kyc.approved.start_trade' | ddxLocale }}
+          </pro-button>
+        </div>
       </div>
     </ng-container>
     <ng-container *ngSwitchCase="'banned'">
-      <img src="assets/images/kyc-banned.svg" alt="banned" />
-      <p class="body">
-        {{ 'kyc.banned.description' | ddxLocale }}
-      </p>
+      <div class="parent-container">
+        <div class="kyc-content__container">
+          <img src="assets/images/kyc-banned.svg" alt="banned" />
+          <p class="body">
+            {{ 'kyc.banned.description' | ddxLocale }}
+          </p>
+        </div>
+      </div>
     </ng-container>
 
     <ng-container *ngSwitchCase="'rejected'">
-      <img src="assets/images/kyc-rejected.svg" alt="rejected" />
-      <p class="body">
-        {{ 'kyc.rejected.description' | ddxLocale }}
-      </p>
-      <a
-        class="back-button"
-        routerLink="/user/kyc/personal-info"
-        rel="noopener noreferrer"
-        ><button mat-stroked-button color="basic" type="button">
-          {{ 'kyc.rejected.correct_information' | ddxLocale }}
-        </button></a
-      >
+      <div class="parent-container">
+        <div class="kyc-content__container">
+          <img src="assets/images/kyc-rejected.svg" alt="rejected" />
+          <p class="body">
+            {{ 'kyc.rejected.description' | ddxLocale }}
+          </p>
+        </div>
+        <a
+          class="back-button kyc-buttons__container"
+          routerLink="/user/kyc/personal-info"
+          rel="noopener noreferrer"
+          ><button mat-stroked-button color="basic" type="button">
+            {{ 'kyc.rejected.correct_information' | ddxLocale }}
+          </button></a
+        >
+      </div>
     </ng-container>
   </div>
 </section>

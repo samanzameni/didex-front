@@ -144,6 +144,21 @@
     margin: 40px;
     padding: 30px 10px;
 
+    .container {
+      .parent-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-self: center;
+
+        min-height: 500px;
+
+        .kyc-buttons__container {
+          align-self: center;
+        }
+      }
+    }
+
     section.container {
       height: fit-content;
       min-height: 550px;

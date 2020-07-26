@@ -266,11 +266,11 @@
         </div>
         <button
           class="kyc-buttons__container"
-          routerLink="/user/kyc"
+          routerLink="/"
           mat-raised-button
           color="primary"
         >
-          Update KYC Info
+          Start Trade
         </button>
       </div>
     </ng-container>
@@ -282,7 +282,7 @@
             {{ 'settings.kyc.message_approved' | ddxLocale }}
           </p>
         </div>
-        <div class="actions kyc-buttons__container">
+        <div id="approved-buttons" class="actions kyc-buttons__container">
           <button
             class="back-button"
             id="approved-back__button"
@@ -307,6 +307,14 @@
             {{ 'kyc.banned.description' | ddxLocale }}
           </p>
         </div>
+        <button
+          class="kyc-buttons__container"
+          routerLink="/user/kyc"
+          mat-raised-button
+          color="primary"
+        >
+          Validate Identity
+        </button>
       </div>
     </ng-container>
 

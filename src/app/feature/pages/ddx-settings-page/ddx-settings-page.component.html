@@ -314,18 +314,19 @@
       <div class="parent-container">
         <div class="kyc-content__container">
           <img src="assets/images/kyc-rejected.svg" alt="rejected" />
-          <p class="body">
+          <p class="settings-page__info">
             {{ 'kyc.rejected.description' | ddxLocale }}
           </p>
         </div>
-        <a
+        <button
           class="back-button kyc-buttons__container"
           routerLink="/user/kyc/personal-info"
-          rel="noopener noreferrer"
-          ><button mat-stroked-button color="basic" type="button">
-            {{ 'kyc.rejected.correct_information' | ddxLocale }}
-          </button></a
+          mat-stroked-button
+          color="basic"
+          type="button"
         >
+          {{ 'kyc.rejected.correct_information' | ddxLocale }}
+        </button>
       </div>
     </ng-container>
   </div>

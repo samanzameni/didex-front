@@ -244,11 +244,14 @@
         <p id="description" class="settings-page__info">
           {{ 'settings.kyc.message_newbie' | ddxLocale }}
         </p>
-        <a id="button" routerLink="/user/kyc"
-          ><button mat-raised-button color="primary">
-            {{ 'settings.kyc.button_newbie' | ddxLocale }}
-          </button></a
+        <button
+          id="button"
+          routerLink="/user/kyc"
+          mat-raised-button
+          color="primary"
         >
+          {{ 'settings.kyc.button_newbie' | ddxLocale }}
+        </button>
       </div>
     </ng-container>
     <ng-container *ngSwitchCase="'sent'">

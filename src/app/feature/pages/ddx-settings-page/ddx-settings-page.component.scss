@@ -54,25 +54,19 @@
 
     #parent-container {
       display: grid;
-      grid-template-rows: repeat(8, max-content);
+      grid-template-rows: fit-content(40%) fit-content(40%) fit-content(20%);
       grid-template-columns: 100%;
-      row-gap: 40px;
+      row-gap: 15px;
       grid-template-areas:
-        '.'
-        '.'
-        '.'
         'image'
         'description'
-        '.'
-        '.'
         'button';
       // align-items: center;
       // justify-content: center;
       // flex-direction: column;
       // flex: 1;
-      height: 100%;
+      height: 100vh;
       width: 100%;
-      max-height: 100vh;
 
       #image {
         grid-area: image;

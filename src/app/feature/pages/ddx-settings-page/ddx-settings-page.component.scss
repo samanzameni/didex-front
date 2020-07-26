@@ -81,7 +81,7 @@
         align-self: flex-end;
 
         #approved-back__button {
-          width: 45%;
+          width: 46%;
         }
       }
 
@@ -93,11 +93,11 @@
       .actions {
         display: flex;
         flex-direction: row;
-        justify-content: space-evenly;
+        justify-content: space-between;
 
         pro-button {
           align-self: flex-end;
-          width: 45%;
+          width: 46%;
         }
       }
 

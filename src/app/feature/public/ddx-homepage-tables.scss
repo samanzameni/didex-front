@@ -4,7 +4,7 @@
   .ddx__table {
     width: 100%;
     height: 100%;
-    font-size: 14px;
+    font-size: 12px;
     table-layout: fixed;
 
     tbody.ddx-table__body {
@@ -94,6 +94,14 @@
     .ddx__table {
       overflow-x: hidden;
       min-width: unset;
+    }
+  }
+}
+
+@media screen and (min-width: $break-mobile) {
+  :host {
+    .ddx__table {
+      font-size: 14px;
     }
   }
 }

@@ -81,7 +81,7 @@ $page-margin: 5px;
 
       .mat-header-cell,
       .mat-cell {
-        @extend .body;
+        @extend .caption-small;
 
         flex: 1;
 

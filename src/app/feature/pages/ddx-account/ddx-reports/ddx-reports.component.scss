@@ -17,7 +17,20 @@
 
       .mat-header-row,
       .mat-row {
-        min-width: 1000px;
+        min-width: 1920px;
+      }
+
+      .mat-column-currencyShortName {
+        flex: 0.5;
+      }
+
+      .mat-column-hash {
+        flex: 5;
+      }
+
+      .mat-column-address,
+      .mat-column-transactionId {
+        flex: 3;
       }
     }
 

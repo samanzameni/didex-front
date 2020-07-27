@@ -4,17 +4,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  // justify-content: center;
 
   background-color: $ddx-dark-main;
   height: 100%;
-
-  // section {
-  //   display: flex;
-  //   flex-direction: column;
-  //   justify-content: center;
-  //   align-items: center;
-  // }
 
   img {
     width: 190px;
@@ -26,6 +18,60 @@
   p {
     margin: 20px 0;
     text-align: center;
+  }
+
+  .parent-container {
+    display: grid;
+    grid-template-rows: 4fr 1fr;
+    grid-template-columns: 100%;
+    row-gap: 15px;
+    grid-template-areas:
+      'kyc-content__container'
+      'kyc-buttons__container';
+
+    height: 100%;
+    width: 100%;
+
+    .kyc-content__container {
+      grid-area: kyc-content__container;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .kyc-buttons__container {
+      grid-area: kyc-buttons__container;
+      box-sizing: border-box;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      align-self: flex-end;
+      padding: 0 10px 10px 10px;
+
+      .kyc-edit__buttons {
+        width: 46%;
+        line-height: 36px;
+      }
+    }
+
+    .settings-page__info {
+      margin: 20px 0;
+      text-align: center;
+    }
+
+    .actions {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+
+      pro-button {
+        align-self: flex-end;
+        width: 46%;
+      }
+    }
   }
 
   .actions {
@@ -76,5 +122,45 @@
         }
       }
     }
+  }
+}
+
+@media screen and (min-width: $break-mobile) {
+  :host {
+    padding: 30px 10px;
+    box-sizing: border-box;
+
+    .parent-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-self: center;
+
+      min-height: 500px;
+
+      .kyc-buttons__container {
+        align-self: center;
+        width: 40%;
+      }
+
+      .double-button__container {
+        min-width: 40%;
+      }
+    }
+
+    // section.container {
+    //   height: fit-content;
+    //   min-height: 550px;
+    //   padding: 30px;
+
+    //   .settings-page__header {
+    //     flex-direction: row;
+    //     justify-content: space-between;
+    //   }
+
+    //   .settings-page__sections {
+    //     justify-content: flex-end;
+    //   }
+    // }
   }
 }

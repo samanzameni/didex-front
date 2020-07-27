@@ -1,73 +1,34 @@
 <header>
   <h2>{{ 'kyc.title' | ddxLocale }}</h2>
 </header>
-<!-- <section [ngSwitch]="currentTraderStatus">
 
-  <ng-container *ngSwitchCase="'sent'">
+<div class="parent-container">
+  <div class="kyc-content__container">
     <img src="assets/images/kyc-sent.svg" alt="sent" />
-    <p class="settings-page__info">
+    <p class="body">
       {{ 'kyc.sent.description' | ddxLocale }}
     </p>
-    <a routerLink="/user/kyc"><button mat-raised-button color="accent">
-        {{ 'kyc.sent.edit_application' | ddxLocale }}
-      </button></a>
-  </ng-container>
-  <ng-container *ngSwitchCase="'approved'">
-    <img src="assets/images/kyc-approved.svg" alt="sent" />
-    <p class="body">
-      {{ 'kyc.approved.description' | ddxLocale }}
-    </p>
-    <div class="actions">
-      <a class="back-button" routerLink="/user/kyc/personal-info" rel="noopener noreferrer"><button mat-stroked-button
-          color="basic" type="button">
-          {{ 'kyc.approved.edit_application' | ddxLocale }}
-        </button></a>
-      <pro-button color="primary" type="submit" (click)="onSubmit()" #submitButton>
-        {{ 'kyc.approved.start_trade' | ddxLocale }}
-      </pro-button>
-    </div>
-  </ng-container>
-  <ng-container *ngSwitchCase="'banned'">
-    <img src="assets/images/kyc-banned.svg" alt="banned" />
-    <p class="body">
-      {{ 'kyc.banned.description' | ddxLocale }}
-    </p>
-  </ng-container>
+  </div>
 
-  <ng-container *ngSwitchCase="'rejected'">
-    <img src="assets/images/kyc-rejected.svg" alt="rejected" />
-    <p class="body">
-      {{ 'kyc.rejected.description' | ddxLocale }}
-    </p>
-    <a class="back-button" routerLink="/user/kyc/personal-information" rel="noopener noreferrer"><button
-        mat-stroked-button color="basic" type="button">
-        {{ 'kyc.rejected.correct_information' | ddxLocale }}
-      </button></a>
-  </ng-container>
-</section> -->
-
-<img src="assets/images/kyc-sent.svg" alt="sent" />
-<p class="body">
-  {{ 'kyc.sent.description' | ddxLocale }}
-</p>
-
-<div class="actions">
-  <a
-    class="back-button"
-    routerLink="/user/kyc/personal-info"
-    rel="noopener noreferrer"
-    ><button mat-stroked-button color="basic" type="button">
+  <div class="actions kyc-buttons__container double-button__container">
+    <button
+      class="back-button kyc-edit__buttons"
+      routerLink="/user/kyc/personal-info"
+      mat-stroked-button
+      color="basic"
+      type="button"
+    >
       {{ 'kyc.sent.edit_application' | ddxLocale }}
-    </button></a
-  >
-  <pro-button
-    id="start_button"
-    color="primary"
-    routerLink="/"
-    type="submit"
-    (click)="onSubmit()"
-    #submitButton
-  >
-    {{ 'kyc.sent.submit' | ddxLocale }}
-  </pro-button>
+    </button>
+    <pro-button
+      class="kyc-edit__buttons"
+      color="primary"
+      routerLink="/"
+      type="submit"
+      (click)="onSubmit()"
+      #submitButton
+    >
+      {{ 'kyc.sent.submit' | ddxLocale }}
+    </pro-button>
+  </div>
 </div>

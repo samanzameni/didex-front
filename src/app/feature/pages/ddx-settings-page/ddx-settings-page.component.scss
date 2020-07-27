@@ -80,7 +80,7 @@
         align-items: center;
         align-self: flex-end;
 
-        #approved-back__button {
+        .kyc-edit__buttons {
           width: 46%;
         }
       }
@@ -157,7 +157,7 @@
           align-self: center;
         }
 
-        #approved-buttons {
+        .double-button__container {
           min-width: 40%;
         }
       }

@@ -264,14 +264,25 @@
             {{ 'kyc.sent.description' | ddxLocale }}
           </p>
         </div>
-        <button
-          class="kyc-buttons__container"
-          routerLink="/"
-          mat-raised-button
-          color="primary"
-        >
-          Start Trade
-        </button>
+        <div class="actions kyc-buttons__container double-button__container">
+          <button
+            class="back-button kyc-edit__buttons"
+            routerLink="/user/kyc/personal-info"
+            mat-stroked-button
+            color="basic"
+            type="button"
+          >
+            {{ 'kyc.approved.edit_application' | ddxLocale }}
+          </button>
+          <button
+            class="kyc-edit__buttons"
+            routerLink="/"
+            mat-raised-button
+            color="primary"
+          >
+            {{ 'kyc.approved.start_trade' | ddxLocale }}
+          </button>
+        </div>
       </div>
     </ng-container>
     <ng-container *ngSwitchCase="'approved'">
@@ -282,10 +293,9 @@
             {{ 'settings.kyc.message_approved' | ddxLocale }}
           </p>
         </div>
-        <div id="approved-buttons" class="actions kyc-buttons__container">
+        <div class="actions kyc-buttons__container double-button__container">
           <button
-            class="back-button"
-            id="approved-back__button"
+            class="back-button kyc-edit__buttons"
             routerLink="/user/kyc/personal-info"
             mat-stroked-button
             color="basic"
@@ -313,7 +323,7 @@
           mat-raised-button
           color="primary"
         >
-          Validate Identity
+          {{ 'kyc.banned.validate_identity_button' | ddxLocale }}
         </button>
       </div>
     </ng-container>

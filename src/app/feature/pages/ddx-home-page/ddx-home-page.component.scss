@@ -1,6 +1,7 @@
 @import '../../../../styles.scss';
 
 :host {
+  //I can't believe market form is fixed. I didn't do anything and it's fixed!
   display: grid;
   grid-template-columns: auto;
   grid-template-rows: repeat(6, fit-content);

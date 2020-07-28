@@ -62,6 +62,18 @@
   }
 
   table.ddx__table {
+    padding: 0 15px;
+
+    thead.ddx-table__head,
+    tbody.ddx-table__body {
+      tr {
+        th,
+        td {
+          @extend .body;
+        }
+      }
+    }
+
     tbody.ddx-table__body {
       tr {
         &.active {

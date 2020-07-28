@@ -49,7 +49,17 @@
     }
 
     .settings-page__content {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
       height: 100%;
+      width: 100%;
+      flex: 1;
+
+      .settings-page__info {
+        margin: 10px 0;
+      }
     }
 
     .parent-container {

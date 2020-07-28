@@ -26,11 +26,12 @@
         width: 100%;
         overflow-x: auto;
         align-items: center;
+        flex-wrap: wrap;
 
         .instruments-header__currency {
           @extend .button-primary;
           @extend .button-short;
-          @extend .body;
+          @extend .caption-small;
 
           margin-right: 3px;
           display: flex;

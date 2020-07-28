@@ -3,7 +3,7 @@
 :host {
   display: block;
   background: $ddx-dark-main;
-  width: calc(100% - 20px);
+  width: calc(100% - 5vw);
   margin: 10px;
   padding: 10px;
   box-sizing: border-box;
@@ -148,10 +148,17 @@
   }
 }
 
+@media screen and (min-width: $break-narrow-mobile) {
+  :host {
+    width: calc(100% - 10vw);
+    margin: 20px auto;
+  }
+}
+
 @media screen and (min-width: $break-mobile) {
   :host {
-    width: calc(100% - 80px);
-    margin: 40px;
+    width: calc(100% - 22vw);
+    margin: 40px auto;
     padding: 30px 10px;
 
     .container {
@@ -187,5 +194,11 @@
         justify-content: flex-end;
       }
     }
+  }
+}
+
+@media screen and (min-width: $break-tablet) {
+  :host {
+    width: calc(100% - 40vw);
   }
 }

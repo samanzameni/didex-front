@@ -16,4 +16,16 @@
       margin-bottom: 15px;
     }
   }
+
+  table.ddx__table {
+    thead.ddx-table__head,
+    tbody.ddx-table__body {
+      tr {
+        th,
+        td {
+          @extend .body;
+        }
+      }
+    }
+  }
 }

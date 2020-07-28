@@ -30,7 +30,7 @@
         .instruments-header__currency {
           @extend .button-primary;
           @extend .button-short;
-          @extend .caption-small;
+          @extend .body;
 
           margin-right: 3px;
           display: flex;

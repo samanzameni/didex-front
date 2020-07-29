@@ -61,6 +61,9 @@
     <span>{{ 'navbar.account' | ddxLocale }}</span>
 
     <dropdown-menu title="Profile" icon="profile">
+      <span mat-menu-item disabled class="navbar__personal-info-item"
+        >{{ 'navbar.hello' | ddxLocale }}, {{ personalInfo }}</span
+      >
       <span
         mat-menu-item
         disabled

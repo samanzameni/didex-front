@@ -9,6 +9,8 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { MatMenu, MatMenuTrigger } from '@angular/material/menu';
+import { DomSanitizer } from '@angular/platform-browser';
+import { MatIconRegistry } from '@angular/material/icon';
 
 @Component({
   selector: 'dropdown-menu',
@@ -25,8 +27,27 @@ export class DropdownMenuComponent implements OnInit {
 
   private isOpenState: boolean;
 
-  constructor(private cdRef: ChangeDetectorRef, private el: ElementRef) {
+  constructor(
+    private cdRef: ChangeDetectorRef,
+    private el: ElementRef,
+    iconRegistry: MatIconRegistry,
+    sanitizer: DomSanitizer
+  ) {
     this.isOpenState = false;
+    iconRegistry.addSvgIcon(
+      'account',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/icons/icon-account.svg')
+    );
+    iconRegistry.addSvgIcon(
+      'profile',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/icons/icon-profile.svg')
+    );
+    iconRegistry.addSvgIcon(
+      'desktop-menu',
+      sanitizer.bypassSecurityTrustResourceUrl(
+        'assets/icons/icon-desktop-menu.svg'
+      )
+    );
   }
 
   ngOnInit(): void {

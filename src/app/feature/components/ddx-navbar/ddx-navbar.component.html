@@ -45,7 +45,12 @@
   </mat-form-field>
 
   <ng-container *ngSwitchCase="true">
-    <dropdown-menu title="Account" icon="account_balance_wallet">
+    <!-- <mat-icon
+      svgIcon="account"
+      aria-hidden="false"
+      aria-label="Example thumbs up SVG icon"
+    ></mat-icon> -->
+    <dropdown-menu title="Account" icon="account">
       <a mat-menu-item routerLink="/account/funds">{{
         'navbar.funds' | ddxLocale
       }}</a>
@@ -55,7 +60,7 @@
     </dropdown-menu>
     <span>{{ 'navbar.account' | ddxLocale }}</span>
 
-    <dropdown-menu title="Profile" icon="person">
+    <dropdown-menu title="Profile" icon="profile">
       <span
         mat-menu-item
         disabled

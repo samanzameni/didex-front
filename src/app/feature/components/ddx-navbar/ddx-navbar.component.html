@@ -53,11 +53,9 @@
         'navbar.reports' | ddxLocale
       }}</a>
     </dropdown-menu>
+    <span>{{ 'navbar.account' | ddxLocale }}</span>
 
     <dropdown-menu title="Profile" icon="person">
-      <span mat-menu-item disabled class="navbar__personal-info-item"
-        >{{ 'navbar.hello' | ddxLocale }}, {{ personalInfo }}</span
-      >
       <span
         mat-menu-item
         disabled
@@ -99,6 +97,7 @@
         {{ 'navbar.sign_out' | ddxLocale }}
       </button>
     </dropdown-menu>
+    <span>{{ 'navbar.hello' | ddxLocale }}, {{ personalInfo }}</span>
   </ng-container>
 
   <ng-container *ngSwitchCase="false">

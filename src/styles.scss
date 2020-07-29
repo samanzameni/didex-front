@@ -7,6 +7,7 @@
 @import 'assets/styles/kit';
 
 body {
+  //TODO
   &.en {
     font-family: 'segoe';
   }
@@ -60,6 +61,14 @@ a:active {
     line-height: 16px;
     font-size: 16px;
   }
+}
+
+::ng-deep .mat-select-arrow {
+  border: none;
+  background-image: url(assets/icons/icon-arrow-down.svg);
+  background-repeat: no-repeat;
+  height: 7px;
+  width: 12px;
 }
 
 .formatted-tooltip {

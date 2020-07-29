@@ -48,6 +48,12 @@ export class DropdownMenuComponent implements OnInit {
         'assets/icons/icon-desktop-menu.svg'
       )
     );
+    iconRegistry.addSvgIcon(
+      'arrow-down',
+      sanitizer.bypassSecurityTrustResourceUrl(
+        'assets/icons/icon-arrow-down.svg'
+      )
+    );
   }
 
   ngOnInit(): void {

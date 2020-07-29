@@ -59,6 +59,7 @@
       }}</a>
     </dropdown-menu>
     <span>{{ 'navbar.account' | ddxLocale }}</span>
+    <mat-icon svgIcon="arrow-down" class="icon-arrow__down"></mat-icon>
 
     <dropdown-menu title="Profile" icon="profile">
       <span mat-menu-item disabled class="navbar__personal-info-item"
@@ -106,6 +107,7 @@
       </button>
     </dropdown-menu>
     <span>{{ 'navbar.hello' | ddxLocale }}, {{ personalInfo }}</span>
+    <mat-icon svgIcon="arrow-down" class="icon-arrow__down"></mat-icon>
   </ng-container>
 
   <ng-container *ngSwitchCase="false">

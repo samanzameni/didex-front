@@ -12,6 +12,12 @@ body {
     }
   }
 
+  .icon-arrow__down {
+    height: 7px;
+    width: 12px;
+    margin: 0px 4px 7px 4px;
+  }
+
   .mat-select-panel,
   .mat-menu-panel {
     background: $ddx-dark-lighter;

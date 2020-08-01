@@ -8,6 +8,10 @@
     #theMenuTrigger
   >
     <mat-icon svgIcon="{{ icon }}">{{ icon }}</mat-icon>
+    <span>{{ title }}</span>
+    <ng-container *ngIf="hasArrow"
+      ><mat-icon svgIcon="arrow-down" class="icon-arrow__down"></mat-icon
+    ></ng-container>
   </button>
 </ng-template>
 

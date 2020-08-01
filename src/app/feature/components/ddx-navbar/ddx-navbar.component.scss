@@ -13,6 +13,10 @@
   box-sizing: border-box;
   padding: 5px 15px;
 
+  dropdown-menu:not(:last-child) {
+    margin: 0 40px;
+  }
+
   .link-button {
     display: none;
   }

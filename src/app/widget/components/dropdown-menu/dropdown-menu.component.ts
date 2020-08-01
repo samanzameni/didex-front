@@ -22,6 +22,8 @@ import { MatIconRegistry } from '@angular/material/icon';
 export class DropdownMenuComponent implements OnInit {
   @Input() caption: string;
   @Input() icon: string;
+  @Input() title: string;
+  @Input() hasArrow: boolean = false;
 
   @ViewChild('theMenuTrigger') theMenuTrigger: MatMenuTrigger;
 
@@ -59,6 +61,9 @@ export class DropdownMenuComponent implements OnInit {
   ngOnInit(): void {
     if (!this.caption) {
       this.caption = 'Menu';
+    }
+    if (!this.title) {
+      this.title = '';
     }
   }
 

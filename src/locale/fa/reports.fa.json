@@ -1,0 +1,41 @@
+﻿{
+  "title": "گزارش‌ها",
+  "tab_orders": "سفارش‌ها",
+  "tab_trades": "معاملات",
+  "tab_transactions": "تراکنش‌ها ",
+
+  "orders": {
+    "data_message": "شما سفارش فعالی ندارید",
+    "createdAt": "زمان",
+    "marketSymbol": "نماد ",
+    "id": "شناسه",
+    "side": "جهت",
+    "price": "قیمت",
+    "execAmount": "مقدار  اجرا شده",
+    "total": "مقدار کل"
+  },
+
+  "trades": {
+    "data_message": "معامله ای  برای شما  ثبت نشده است",
+    "timeStamp": "زمان",
+    "marketSymbol": "نماد ",
+    "id": "شناسه",
+    "side": "جهت",
+    "volume": "مقدار",
+    "price": "قیمت",
+    "volumeInQuote": " مقدار کل",
+    "fee": "کارمزد"
+  },
+
+  "transactions": {
+    "data_message": "تراکنشی برای شما  ثبت نشده  است",
+    "createdAt": "زمان",
+    "type": "نوع",
+    "currencyShortName": "ارز",
+    "transactionId": "شناسه",
+    "hash": " Hash ",
+    "amount": "مقدار",
+    "fee": "کارمزد",
+    "address": "آدرس"
+  }
+}

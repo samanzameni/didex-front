@@ -1,0 +1,93 @@
+﻿{
+  "activate": {
+    "success_all_set": "همه تنظیمات انجام شد",
+    "success_redirect_message": "شما به زودی به صفحه اصلی هدایت میشوید...",
+    "error_error": "خطا!",
+    "error_message": "هنگام فعالسازی حساب شما خطایی رخ داده است."
+  },
+
+  "forgot": {
+    "title": "فراموشی رمز عبور",
+    "email": "ایمیل",
+    "email_placeholder": "abc@example.com",
+    "email_error_required": "وارد کردن ایمیل الزامی است",
+    "email_error_invalid": "آدرس ایمیل شما باید معتبر باشد",
+    "reset_button": "تغییر رمز",
+    "reset_message": "راهنمای تغییر رمز عبور به ایمیل شما فرستاده شده است: ",
+    "remember_message": "رمز عبور را به یاد می آورید?",
+    "sign_in": "ورود"
+  },
+
+  "reset": {
+    "title": "تغییر رمز عبور",
+    "new_password": "رمز عبور جدید",
+    "password_hint_length": "رمز عبور شما باید حداقل شامل 8 کاراکتر باشد",
+    "password_hint_lower": "رمز عبور شما باید شامل حروف کوچک باشد",
+    "password_hint_upper": "رمز عبور شما باید شامل حروف بزرگ باشد",
+    "password_hint_number": "رمز عبور شما باید شامل عدد باشد",
+    "password_hint_sign": "رمز عبور شما باید شامل علامت باشد",
+    "confirm_password": "تأیید رمز عبور",
+    "confirm_password_error_required": "رمز عبور خود را باید تأیید کنید",
+    "confirm_password_error_match": "رمزهای عبور شما باید یکسان باشند",
+    "reset_button": "تغییر رمز عبور"
+  },
+
+  "signin": {
+    "title": "ورود به ICM",
+    "forgot_password": "فراموشی رمز عبور",
+    "email": "ایمیل",
+    "email_placeholder": "abc@example.com",
+    "email_error_required": " وارد کردن ایمیل الزامی است",
+    "email_error_invalid": "آدرس ایمیل شما باید معتبر باشد",
+    "password": "رمز عبور",
+    "password_error_required": "وارد کردن رمز عبور الزامی است",
+    "sign_in": "ورود",
+    "recaptcha_message_before": "این سایت توسط ربات reCAPTCHA و گوگل محافظت میشود",
+    "recaptcha_message_privacy": "قوانین حریم خصوصی",
+    "recaptcha_message_between": "و",
+    "recaptcha_message_terms": "قوانین استفاده",
+    "recaptcha_message_after": "پذیرش",
+    "not_a_member": "عضو نیستید؟",
+    "sign_up": "ثبت نام"
+  },
+
+  "signup": {
+    "title": "ثبت نام در «بازار ارز ایرانیان»",
+    "email": "ایمیل خود را وارد کنید",
+    "email_placeholder": "abc@example.com",
+    "email_error_required": "وارد کردن ایمیل الزامی است.",
+    "email_error_invalid": "آدرس ایمیل شما باید معتبر باشد.",
+    "password": "رمز عبور",
+    "password_hint_length": "رمز عبور شما باید حداقل شامل 8 کاراکتر باشد.",
+    "password_hint_lower": "رمز عبور شما باید شامل حروف کوچک باشد",
+    "password_hint_upper": "رمز عبور شما باید شامل حروف بزرگ باشد",
+    "password_hint_number": "رمز عبور شما باید شامل عدد باشد",
+    "password_hint_sign": "رمز عبور شما باید شامل علامت باشد",
+    "confirm_password": "تأئید رمز عبور",
+    "confirm_password_error_required": "رمز عبور خود را باید تأیید کنید",
+    "confirm_password_error_match": "رمزهای عبور شما باید یکسان باشند.",
+    "terms_check": "ایجاد حساب در «بازار ارز ایرانیان» به معنای پذیرفتن سیاست های داخلی،شرایط استفاده و تنظیمات اعلان پیش ‌فرض ما می باشد. ",
+    "sign_in": "ورود",
+    "recaptcha_message_before": "این سایت توسط ربات reCAPTCHA و گوگل محافظت میشود.",
+    "recaptcha_message_privacy": "قوانین حریم خصوصی",
+    "recaptcha_message_between": "و",
+    "recaptcha_message_terms": "شرایط استفاده",
+    "recaptcha_message_after": "پذیرش",
+    "already_a_member": "عضو هستید؟",
+    "sign_up": "ثبت نام"
+  },
+
+  "success": {
+    "title": "اطلاعات شما با موفقیت ثبت گردید!",
+    "message": "لطفا ایمیل خود را برای فعالسازی حساب خود چک کنید",
+    "continue_to_signin": "ورود"
+  },
+
+  "2fa": {
+    "title": "شناسایی دو مرحله ای",
+    "code": "کد امنیتی",
+    "code_hint": "از نرم‌افزار کدساز",
+    "code_error_required": "وارد کردن کد الزامی است",
+    "sign_in": "ورود"
+  }
+}

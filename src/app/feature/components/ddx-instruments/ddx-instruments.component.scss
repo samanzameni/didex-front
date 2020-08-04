@@ -68,6 +68,7 @@
     thead.ddx-table__head,
     tbody.ddx-table__body {
       tr {
+        padding: 0 9px;
         th,
         td {
           @extend .body;

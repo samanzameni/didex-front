@@ -50,11 +50,7 @@
       aria-hidden="false"
       aria-label="Example thumbs up SVG icon"
     ></mat-icon> -->
-    <dropdown-menu
-      title="{{ 'navbar.account' | ddxLocale }}"
-      icon="account"
-      [hasArrow]="true"
-    >
+    <dropdown-menu title="Account" icon="account" [hasArrow]="true">
       <a mat-menu-item routerLink="/account/funds">{{
         'navbar.funds' | ddxLocale
       }}</a>

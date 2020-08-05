@@ -90,17 +90,9 @@ dropdown-menu {
     border-color: $ddx-light !important;
     background-color: $ddx-dark-main;
 
-    .mat-button-wrapper {
-      width: 100%;
-
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      vertical-align: baseline;
-    }
-
     .mat-icon {
       @extend .has-transition;
+      margin: 0 5px;
     }
 
     &.is-open {

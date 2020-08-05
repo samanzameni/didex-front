@@ -13,12 +13,16 @@
   box-sizing: border-box;
   padding: 5px 15px;
 
+  ::ng-deep .mat-select-value {
+    text-overflow: clip;
+  }
+
   dropdown-menu:not(:last-child) {
-    margin: 0 50px;
+    margin: 0 45px;
   }
 
   dropdown-menu:last-child {
-    margin-left: 50px;
+    margin-left: 45px;
   }
 
   .link-button {
@@ -58,6 +62,10 @@
     .auth-button {
       height: max-content;
       margin: 2px;
+    }
+
+    .locale-selector {
+      margin-right: -35px;
     }
 
     .locale-selector.mat-form-field-appearance-legacy {

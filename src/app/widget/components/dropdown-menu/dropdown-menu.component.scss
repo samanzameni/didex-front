@@ -68,6 +68,10 @@ body {
       }
     }
   }
+
+  .mat-icon-button .mat-button-wrapper > * {
+    vertical-align: baseline;
+  }
 }
 
 dropdown-menu {
@@ -76,6 +80,12 @@ dropdown-menu {
   height: fit-content;
   margin: 3px 0 3px 20px;
   box-sizing: border-box;
+
+  button {
+    span {
+      margin: 0 10px;
+    }
+  }
 
   & > button.mat-icon-button {
     &.is-open {
@@ -93,6 +103,7 @@ dropdown-menu {
     .mat-icon {
       @extend .has-transition;
       margin: 0 5px;
+      vertical-align: baseline;
     }
 
     &.is-open {

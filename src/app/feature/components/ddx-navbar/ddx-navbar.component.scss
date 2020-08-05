@@ -14,7 +14,11 @@
   padding: 5px 15px;
 
   dropdown-menu:not(:last-child) {
-    margin: 0 40px;
+    margin: 0 50px;
+  }
+
+  dropdown-menu:last-child {
+    margin-left: 50px;
   }
 
   .link-button {

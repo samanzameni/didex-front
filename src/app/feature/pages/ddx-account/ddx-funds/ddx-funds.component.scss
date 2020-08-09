@@ -275,8 +275,10 @@
       .mat-form-field,
       .mat-form-field.mat-form-field-appearance-outline {
         &.address-container {
-          width: 78%;
-          max-width: 780px;
+          &#deposit-address__container {
+            width: 78%;
+            max-width: 780px;
+          }
         }
       }
     }

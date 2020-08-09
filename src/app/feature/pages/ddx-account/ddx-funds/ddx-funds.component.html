@@ -162,7 +162,11 @@
           class="row-section deposit"
           [ngClass]="{ hidden: this.activePane !== i + '-deposit' }"
         >
-          <mat-form-field appearance="outline" class="address-container">
+          <mat-form-field
+            id="deposit-address__container"
+            appearance="outline"
+            class="address-container"
+          >
             <mat-label>{{
               'funds.deposit.deposit_address' | ddxLocale
             }}</mat-label>
@@ -221,7 +225,11 @@
               [ngModel]="row.shortName"
               [value]="row.shortName"
             />
-            <mat-form-field appearance="outline" class="address-container">
+            <mat-form-field
+              id="withdraw-address__container"
+              appearance="outline"
+              class="address-container"
+            >
               <mat-label>{{ 'funds.withdraw.address' | ddxLocale }}</mat-label>
               <input
                 type="text"

@@ -275,25 +275,25 @@
                 #code="ngModel"
               />
             </mat-form-field>
+            <ul class="details-container">
+              <li class="details__item">
+                {{ 'funds.withdraw.fee' | ddxLocale }}
+                <span matSuffix>
+                  {{ row.payoutFee }}
+                </span>
+              </li>
+              <li class="details__item">
+                {{ 'funds.withdraw.received' | ddxLocale }}
+                <span matSuffix>
+                  {{
+                    form.value.amount - row.payoutFee > 0
+                      ? form.value.amount - row.payoutFee
+                      : translate('funds.withdraw.received_error')
+                  }}
+                </span>
+              </li>
+            </ul>
             <div class="form__non-inputs" arrangeInline>
-              <ul class="details-container">
-                <li class="details__item">
-                  {{ 'funds.withdraw.fee' | ddxLocale }}
-                  <span matSuffix>
-                    {{ row.payoutFee }}
-                  </span>
-                </li>
-                <li class="details__item">
-                  {{ 'funds.withdraw.received' | ddxLocale }}
-                  <span matSuffix>
-                    {{
-                      form.value.amount - row.payoutFee > 0
-                        ? form.value.amount - row.payoutFee
-                        : translate('funds.withdraw.received_error')
-                    }}
-                  </span>
-                </li>
-              </ul>
               <ul class="tips">
                 <li>
                   {{ 'funds.withdraw.tips' | ddxLocale }}

@@ -180,16 +180,6 @@
 
     .copy-button {
       margin: 0 5px;
-
-      border-color: $ddx-accent-main;
-      color: $ddx-accent-main;
-      background: rgba($ddx-accent-main, 0.1);
-
-      &:hover {
-        border-color: $ddx-accent-main;
-        color: $ddx-light;
-        background: rgba($ddx-accent-main, 0.3);
-      }
     }
 
     .tips {

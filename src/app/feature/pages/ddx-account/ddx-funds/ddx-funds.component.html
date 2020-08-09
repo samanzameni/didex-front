@@ -286,6 +286,11 @@
                   </span>
                 </li>
               </ul>
+              <ul class="tips">
+                <li>
+                  {{ 'funds.withdraw.tips' | ddxLocale }}
+                </li>
+              </ul>
               <pro-button
                 type="submit"
                 color="primary"
@@ -304,11 +309,6 @@
               <mat-error *ngFor="let error of allErrors">{{ error }}</mat-error>
             </div>
           </form>
-          <ul class="tips">
-            <li>
-              {{ 'funds.withdraw.tips' | ddxLocale }}
-            </li>
-          </ul>
         </div>
       </mat-cell>
     </ng-container>

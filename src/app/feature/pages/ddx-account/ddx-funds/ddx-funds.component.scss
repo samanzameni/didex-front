@@ -179,7 +179,8 @@
     }
 
     .copy-button {
-      margin: 0 5px;
+      margin: 0.25em;
+      width: 100%;
     }
 
     .tips {
@@ -314,6 +315,9 @@
 @media screen and (min-width: $break-narrow-tablet) {
   :host {
     .row-section {
+      .copy-button {
+        width: 138px;
+      }
       form {
         .form__non-inputs {
           width: 50%;

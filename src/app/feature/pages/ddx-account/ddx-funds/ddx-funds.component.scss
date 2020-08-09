@@ -265,10 +265,14 @@
     }
 
     .row-section {
+      .copy-button {
+        width: 18%;
+      }
       .mat-form-field,
       .mat-form-field.mat-form-field-appearance-outline {
         &.address-container {
-          width: 50%;
+          width: 78%;
+          max-width: 780px;
         }
       }
     }

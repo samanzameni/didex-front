@@ -13,9 +13,9 @@ body {
   }
 
   .icon-arrow__down {
-    height: 7px;
+    // height: 7px;
     width: 12px;
-    margin: 0px 4px 7px 4px;
+    // margin: 0px 4px 7px 4px;
   }
 
   .mat-select-panel,
@@ -70,7 +70,7 @@ body {
   }
 
   .mat-icon-button .mat-button-wrapper > * {
-    vertical-align: baseline;
+    // vertical-align: baseline;
   }
 }
 
@@ -90,6 +90,16 @@ dropdown-menu {
   & > button.mat-icon-button {
     &.is-open {
       color: $ddx-accent-main;
+
+      .mat-icon svg {
+        stroke: $ddx-accent-main;
+        fill: $ddx-accent-main;
+
+        path {
+          stroke: $ddx-accent-main;
+          fill: $ddx-accent-main;
+        }
+      }
     }
   }
 
@@ -103,7 +113,7 @@ dropdown-menu {
     .mat-icon {
       @extend .has-transition;
       margin: 0 5px;
-      vertical-align: baseline;
+      // vertical-align: baseline;
     }
 
     &.is-open {

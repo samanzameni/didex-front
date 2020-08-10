@@ -16,9 +16,12 @@ export class DirectionService {
     private storageService: StorageService,
     private localeService: LocaleService
   ) {
-    this._currentDirection =
-      localeService.currentLocale === 'fa' ? 'rtl' : 'ltr';
-    this._direction$ = new BehaviorSubject(this._currentDirection);
+    this._direction$ = new BehaviorSubject('ltr');
+    localeService.locale$.subscribe((currentLocale) => {
+      this._currentDirection =
+        localeService.currentLocale === 'fa' ? 'rtl' : 'ltr';
+      this._direction$.next(this._currentDirection);
+    });
   }
 
   get direction$(): Observable<Direction> {

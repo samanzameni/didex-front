@@ -293,6 +293,15 @@
         width: 18%;
       }
 
+      .transfer-button {
+        width: 30%;
+        order: 3;
+      }
+
+      #transfer-tip {
+        order: 4;
+      }
+
       .details-container {
         .details__item {
           padding-left: 10px;
@@ -333,6 +342,7 @@
       .mat-form-field.mat-form-field-appearance-outline {
         &.transfer-amount-container {
           width: 70%;
+          order: 2;
         }
 
         &.withdraw-amount-container {
@@ -350,6 +360,7 @@
         ::ng-deep .mat-radio-group {
           flex-direction: row;
           justify-content: flex-start;
+          order: 1;
 
           width: 100%;
           min-height: 0;

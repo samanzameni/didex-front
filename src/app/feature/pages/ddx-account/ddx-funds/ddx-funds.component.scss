@@ -143,9 +143,15 @@
         }
       }
 
-      .mat-radio-group {
+      ::ng-deep .mat-radio-group {
         width: 100%;
         margin-bottom: 10px;
+        min-height: 80px;
+
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: space-evenly;
       }
     }
 
@@ -165,6 +171,10 @@
       &.withdraw-amount-container {
         width: 100%;
         max-width: unset;
+      }
+
+      &.transfer-amount-container {
+        width: 100%;
       }
 
       input {
@@ -203,6 +213,11 @@
     .transfer-button {
       width: 100%;
     }
+
+    // .transfer__radio-group {
+    //   align-items: flex-start;
+    //   justify-content: flex-start;
+    // }
 
     &.hidden {
       display: none;

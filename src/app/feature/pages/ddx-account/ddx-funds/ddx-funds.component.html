@@ -335,8 +335,7 @@
             #form="ngForm"
           >
             <mat-radio-group
-              arrangeStack
-              arrangeCenter
+              class="transfer__radio-group"
               name="type"
               ngModel
               #type="ngModel"
@@ -356,7 +355,10 @@
               required
               [value]="row.shortName"
             />
-            <mat-form-field appearance="outline">
+            <mat-form-field
+              class="transfer-amount-container"
+              appearance="outline"
+            >
               <mat-label>{{ 'funds.transfer.amount' | ddxLocale }}</mat-label>
               <input
                 type="number"

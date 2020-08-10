@@ -331,6 +331,10 @@
     .row-section {
       .mat-form-field,
       .mat-form-field.mat-form-field-appearance-outline {
+        &.transfer-amount-container {
+          width: 70%;
+        }
+
         &.withdraw-amount-container {
           display: flex;
           flex-wrap: wrap;

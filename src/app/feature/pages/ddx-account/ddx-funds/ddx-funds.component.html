@@ -370,9 +370,15 @@
                 #amount="ngModel"
               />
             </mat-form-field>
+            <ul class="tips">
+              <li>
+                {{ 'funds.transfer.tips' | ddxLocale }}
+              </li>
+            </ul>
             <pro-button
               color="primary"
               type="submit"
+              class="transfer-button"
               [disabled]="!form.valid || form.value.amount <= 0"
               #transferButton
             >
@@ -382,11 +388,6 @@
               <mat-error *ngFor="let error of allErrors">{{ error }}</mat-error>
             </div>
           </form>
-          <ul class="tips">
-            <li>
-              {{ 'funds.transfer.tips' | ddxLocale }}
-            </li>
-          </ul>
         </div></mat-cell
       >
     </ng-container>

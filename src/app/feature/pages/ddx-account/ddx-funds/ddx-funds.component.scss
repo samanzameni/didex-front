@@ -200,6 +200,10 @@
       width: 100%;
     }
 
+    .transfer-button {
+      width: 100%;
+    }
+
     &.hidden {
       display: none;
     }
@@ -292,8 +296,8 @@
             width: 78%;
             max-width: 780px;
           }
-          &#withdraw-address__container {
-          }
+          // &#withdraw-address__container {
+          // }
         }
       }
     }
@@ -346,6 +350,7 @@
         width: 138px;
       }
       form {
+        flex-wrap: nowrap;
         .form__non-inputs {
           width: 50%;
         }

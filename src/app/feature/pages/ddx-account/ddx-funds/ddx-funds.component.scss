@@ -214,11 +214,6 @@
       width: 100%;
     }
 
-    // .transfer__radio-group {
-    //   align-items: flex-start;
-    //   justify-content: flex-start;
-    // }
-
     &.hidden {
       display: none;
     }
@@ -346,6 +341,18 @@
       form {
         .details-container {
           width: 50%;
+        }
+
+        ::ng-deep .mat-radio-group {
+          flex-direction: row;
+          justify-content: flex-start;
+
+          width: 100%;
+          min-height: 0;
+
+          .mat-radio-button:nth-child(2) {
+            margin-inline-start: 40px;
+          }
         }
 
         .form__non-inputs {

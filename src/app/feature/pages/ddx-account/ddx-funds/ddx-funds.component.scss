@@ -388,9 +388,32 @@
         width: 138px;
       }
       form {
-        flex-wrap: nowrap;
         .form__non-inputs {
           width: 50%;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: $break-tablet) {
+  :host {
+    .row-section {
+      .transfer-button {
+        margin-inline-end: auto;
+      }
+
+      .mat-form-field,
+      .mat-form-field.mat-form-field-appearance-outline {
+        &.transfer-amount-container {
+          width: 30%;
+        }
+      }
+
+      form {
+        .mat-radio-group {
+          width: 40%;
+          min-width: 365px;
         }
       }
     }

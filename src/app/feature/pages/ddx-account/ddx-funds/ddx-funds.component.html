@@ -226,9 +226,8 @@
               [value]="row.shortName"
             />
             <mat-form-field
-              id="withdraw-address__container"
               appearance="outline"
-              class="address-container"
+              class="address-container withdraw-address__container"
             >
               <mat-label>{{ 'funds.withdraw.address' | ddxLocale }}</mat-label>
               <input
@@ -244,7 +243,7 @@
             </mat-form-field>
             <mat-form-field
               appearance="outline"
-              class="withdraw-amount-container"
+              class="withdraw-amount__container"
             >
               <mat-label>{{ 'funds.withdraw.amount' | ddxLocale }}</mat-label>
               <input
@@ -261,7 +260,7 @@
             </mat-form-field>
             <mat-form-field
               appearance="outline"
-              class="withdraw-amount-container"
+              class="withdraw-amount__container"
               *ngIf="hasTraderEnabledTwoFactor"
             >
               <mat-label>{{ 'funds.withdraw.2fa' | ddxLocale }}</mat-label>
@@ -293,26 +292,26 @@
                 </span>
               </li>
             </ul>
-            <div class="form__non-inputs" arrangeInline>
-              <ul class="tips">
-                <li>
-                  {{ 'funds.withdraw.tips' | ddxLocale }}
-                </li>
-              </ul>
-              <pro-button
-                type="submit"
-                color="primary"
-                class="withdraw-button"
-                [disabled]="
-                  !form.valid ||
-                  form.value.amount <= 0 ||
-                  form.value.amount <= row.payoutFee
-                "
-                #withdrawButton
-              >
-                {{ 'funds.withdraw.withdraw' | ddxLocale }}
-              </pro-button>
-            </div>
+
+            <ul class="tips">
+              <li>
+                {{ 'funds.withdraw.tips' | ddxLocale }}
+              </li>
+            </ul>
+            <pro-button
+              type="submit"
+              color="primary"
+              class="withdraw-button"
+              [disabled]="
+                !form.valid ||
+                form.value.amount <= 0 ||
+                form.value.amount <= row.payoutFee
+              "
+              #withdrawButton
+            >
+              {{ 'funds.withdraw.withdraw' | ddxLocale }}
+            </pro-button>
+
             <div *ngIf="!!allErrors" arrangeStack style="width: 100%;">
               <mat-error *ngFor="let error of allErrors">{{ error }}</mat-error>
             </div>

@@ -293,12 +293,6 @@
         order: 4;
       }
 
-      // .details-container {
-      //   .details__item {
-      //     padding-left: 10px;
-      //   }
-      // }
-
       .mat-form-field,
       .mat-form-field.mat-form-field-appearance-outline {
         &.address-container {
@@ -334,7 +328,7 @@
           order: 2;
         }
 
-        &.withdraw-amount-container {
+        &.withdraw-amount__container {
           display: flex;
           flex-wrap: wrap;
           width: 50%;

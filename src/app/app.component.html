@@ -1,1 +1,7 @@
-<router-outlet></router-outlet>
+<div
+  class="app__container"
+  dir="{{ direction$ | async }}"
+  class="{{ direction$ | async }}"
+>
+  <router-outlet></router-outlet>
+</div>

@@ -1,6 +1,7 @@
 <ng-template [ngIf]="icon" [ngIfElse]="stroked">
   <button
     mat-icon-button
+    disableRipple
     [ngClass]="{ 'is-open': isOpen }"
     [matMenuTriggerFor]="theMenu"
     (menuOpened)="onMenuOpen($event)"

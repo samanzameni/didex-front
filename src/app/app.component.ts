@@ -1,6 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { SignalRService, TawkToService } from '@core/services';
+import {
+  SignalRService,
+  TawkToService,
+  DirectionService,
+  Direction,
+} from '@core/services';
 import { LocaleService } from '@core/services/ddx-locale.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -11,10 +17,15 @@ export class AppComponent implements OnInit {
   constructor(
     private signalrService: SignalRService,
     private localeService: LocaleService,
-    private tawkToService: TawkToService
+    private tawkToService: TawkToService,
+    private directionService: DirectionService
   ) {}
 
   ngOnInit(): void {
     this.signalrService.startConnection();
+  }
+
+  get direction$(): Observable<Direction> {
+    return this.directionService.direction$;
   }
 }

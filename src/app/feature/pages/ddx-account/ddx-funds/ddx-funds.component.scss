@@ -121,16 +121,6 @@
         }
       }
 
-      .form__non-inputs {
-        width: 100%;
-        min-height: 58px; // size of inputs
-        padding: 0 3px;
-        box-sizing: border-box;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-      }
-
       div.error-feedback {
         p {
           justify-content: center;
@@ -157,6 +147,7 @@
 
     .mat-form-field,
     .mat-form-field.mat-form-field-appearance-outline {
+      width: 100%;
       ::ng-deep .mat-form-field-wrapper {
         padding-bottom: 0;
         margin: 0.25em;
@@ -169,7 +160,6 @@
       }
 
       &.withdraw-amount-container {
-        width: 100%;
         max-width: unset;
       }
 
@@ -367,12 +357,6 @@
           .mat-radio-button:nth-child(2) {
             margin-inline-start: 40px;
           }
-        }
-
-        .form__non-inputs {
-          flex-direction: column;
-          justify-content: space-between;
-          align-items: center;
         }
       }
     }

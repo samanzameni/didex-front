@@ -135,7 +135,6 @@
 
       ::ng-deep .mat-radio-group {
         width: 100%;
-        margin-bottom: 10px;
         min-height: 80px;
 
         display: flex;
@@ -281,6 +280,7 @@
 
       .copy-button {
         width: 18%;
+        margin-inline-start: 20px;
       }
 
       .transfer-button {
@@ -297,7 +297,7 @@
       .mat-form-field.mat-form-field-appearance-outline {
         &.address-container {
           &#deposit-address__container {
-            width: 78%;
+            width: 70%;
             max-width: 780px;
           }
         }
@@ -346,6 +346,7 @@
           order: 1;
 
           width: 100%;
+          margin-bottom: 10px;
           min-height: 0;
 
           .mat-radio-button:nth-child(2) {
@@ -395,9 +396,10 @@
       }
 
       form {
-        .mat-radio-group {
+        ::ng-deep .mat-radio-group {
           width: 40%;
           min-width: 365px;
+          margin-bottom: 0;
         }
 
         .mat-form-field {

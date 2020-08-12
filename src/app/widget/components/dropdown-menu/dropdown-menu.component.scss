@@ -16,6 +16,10 @@ body {
     // height: 7px;
     width: 12px;
     // margin: 0px 4px 7px 4px;
+    @extend .has-transition;
+    &.is-open {
+      transform: rotateX(180deg);
+    }
   }
 
   .mat-select-panel,

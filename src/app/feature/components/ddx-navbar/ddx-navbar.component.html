@@ -45,11 +45,6 @@
   </mat-form-field>
 
   <ng-container *ngSwitchCase="true">
-    <!-- <mat-icon
-      svgIcon="account"
-      aria-hidden="false"
-      aria-label="Example thumbs up SVG icon"
-    ></mat-icon> -->
     <dropdown-menu title="Account" icon="account" [hasArrow]="true">
       <a mat-menu-item routerLink="/account/funds">{{
         'navbar.funds' | ddxLocale
@@ -58,8 +53,6 @@
         'navbar.reports' | ddxLocale
       }}</a>
     </dropdown-menu>
-    <!-- <span>{{ 'navbar.account' | ddxLocale }}</span>
-    <mat-icon svgIcon="arrow-down" class="icon-arrow__down"></mat-icon> -->
 
     <dropdown-menu title="Profile" icon="profile" [hasArrow]="true">
       <span mat-menu-item disabled class="navbar__personal-info-item"
@@ -106,8 +99,6 @@
         {{ 'navbar.sign_out' | ddxLocale }}
       </button>
     </dropdown-menu>
-    <!-- <span>{{ 'navbar.hello' | ddxLocale }}, {{ personalInfo }}</span>
-    <mat-icon svgIcon="hasArrow-down" class="icon-arrow__down"></mat-icon> -->
   </ng-container>
 
   <ng-container *ngSwitchCase="false">

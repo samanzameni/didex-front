@@ -57,6 +57,7 @@
   }
 
   .navbar-container {
+    display: none;
     .navbar-items__container {
       display: flex;
       flex-direction: row;
@@ -90,6 +91,10 @@
 @media screen and (min-width: $break-mobile) {
   :host {
     .link-button {
+      display: block;
+    }
+
+    .navbar-container {
       display: block;
     }
   }

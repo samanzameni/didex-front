@@ -13,6 +13,8 @@ import {
   styleUrls: ['./ddx-navbar.component.scss'],
 })
 export class NavbarComponent implements OnInit {
+  public isMobile: boolean;
+
   constructor(
     private authService: AuthService,
     private traderService: TraderService,
@@ -51,5 +53,9 @@ export class NavbarComponent implements OnInit {
 
   get currentLocaleModel(): LocaleModel {
     return this.localeService.currentLocaleModel;
+  }
+
+  toggleMenu(): void {
+    this.isMobile = !this.isMobile;
   }
 }

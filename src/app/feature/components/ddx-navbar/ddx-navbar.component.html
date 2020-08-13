@@ -14,11 +14,11 @@
   </a>
 </div>
 
-<button class="hamburger-menu">
+<button (click)="toggleMenu()" class="hamburger-menu">
   <mat-icon aria-hidden="false" aria-label="mobile menu">menu</mat-icon>
 </button>
 
-<div class="navbar-container">
+<div class="navbar-container" [ngClass]="{ show: isMobile }">
   <div class="navbar-items__container" [ngSwitch]="isAuthorized">
     <!-- 
   <a class="link-button" routerLink="/">

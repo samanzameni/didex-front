@@ -56,6 +56,19 @@
     }
   }
 
+  .hamburger-menu {
+    background-color: transparent;
+    border: none;
+
+    &:focus {
+      border: none;
+    }
+
+    .mat-icon {
+      color: white;
+    }
+  }
+
   .navbar-container {
     display: none;
     .navbar-items__container {

@@ -48,6 +48,15 @@
         margin: 0 3px;
       }
 
+      span {
+        border-left: 2px solid $ddx-yellow;
+        padding: 10px;
+        margin-left: 10px;
+        font-size: 14px;
+        font-weight: bold;
+        letter-spacing: 1px;
+      }
+
       #didexLogoText {
         height: 35%;
         object-fit: contain;
@@ -110,6 +119,10 @@
     .navbar-container {
       display: block;
     }
+
+    .hamburger-menu {
+      display: none;
+    }
   }
 }
 
@@ -119,6 +132,9 @@
       a {
         #didexLogoText {
           display: flex;
+        }
+        span {
+          display: none;
         }
       }
     }

@@ -123,3 +123,9 @@ dropdown-menu {
     }
   }
 }
+
+@media screen and (min-width: $break-mobile) {
+  dropdown-menu {
+    margin-left: 0;
+  }
+}

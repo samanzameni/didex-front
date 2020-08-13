@@ -17,14 +17,6 @@
     text-overflow: clip;
   }
 
-  dropdown-menu:not(:last-child) {
-    margin: 0 45px;
-  }
-
-  dropdown-menu:last-child {
-    margin-left: 45px;
-  }
-
   .link-button {
     display: none;
   }
@@ -124,6 +116,8 @@
 
       .navbar-items__container {
         flex-direction: column-reverse;
+        align-items: flex-start;
+        padding: 5px 15px;
       }
     }
   }
@@ -131,6 +125,14 @@
 
 @media screen and (min-width: $break-mobile) {
   :host {
+    dropdown-menu:not(:last-child) {
+      margin: 0 45px;
+    }
+
+    dropdown-menu:last-child {
+      margin-left: 45px;
+    }
+
     .logo__container {
       a {
         #didexLogoText {

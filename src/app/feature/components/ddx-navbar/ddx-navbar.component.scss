@@ -50,8 +50,8 @@
 
       span {
         border-left: 2px solid $ddx-yellow;
-        padding: 10px;
-        margin-left: 10px;
+        padding: 7px;
+        margin-left: 7px;
         font-size: 14px;
         font-weight: bold;
         letter-spacing: 1px;
@@ -112,6 +112,17 @@
 
 @media screen and (min-width: $break-mobile) {
   :host {
+    .logo__container {
+      a {
+        #didexLogoText {
+          display: flex;
+        }
+        span {
+          display: none;
+        }
+      }
+    }
+
     .link-button {
       display: block;
     }
@@ -128,15 +139,15 @@
 
 @media screen and (min-width: $break-narrow-tablet) {
   :host {
-    .logo__container {
-      a {
-        #didexLogoText {
-          display: flex;
-        }
-        span {
-          display: none;
-        }
-      }
-    }
+    // .logo__container {
+    //   a {
+    //     #didexLogoText {
+    //       display: flex;
+    //     }
+    //     span {
+    //       display: none;
+    //     }
+    //   }
+    // }
   }
 }

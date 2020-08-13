@@ -56,29 +56,31 @@
     }
   }
 
-  .navbar-items__container {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+  .navbar-container {
+    .navbar-items__container {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
 
-    .auth-button {
-      height: max-content;
-      margin: 2px;
-    }
+      .auth-button {
+        height: max-content;
+        margin: 2px;
+      }
 
-    .locale-selector {
-      margin-right: -35px;
-    }
+      .locale-selector {
+        margin-right: -35px;
+      }
 
-    .locale-selector.mat-form-field-appearance-legacy {
-      font-size: 14px;
-      width: 70px;
-      text-align: right;
+      .locale-selector.mat-form-field-appearance-legacy {
+        font-size: 14px;
+        width: 70px;
+        text-align: right;
 
-      ::ng-deep .mat-form-field-wrapper,
-      .mat-form-field-wrapper {
-        .mat-form-field-underline {
-          display: none;
+        ::ng-deep .mat-form-field-wrapper,
+        .mat-form-field-wrapper {
+          .mat-form-field-underline {
+            display: none;
+          }
         }
       }
     }

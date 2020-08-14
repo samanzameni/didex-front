@@ -6,3 +6,4 @@ export * from './ddx-order-REST.service';
 export * from './ddx-history-REST.service';
 export * from './ddx-banking-REST.service';
 export * from './ddx-general-REST.service';
+export * from './ddx-bank-account-REST.service';

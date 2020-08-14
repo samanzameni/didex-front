@@ -17,6 +17,7 @@ import {
   BankingRESTService,
   PublicRESTService,
   TradingRESTService,
+  BankAccountRESTService,
 } from '@core/services/REST';
 import {
   Balance,
@@ -25,6 +26,7 @@ import {
   BalanceTransferData,
   BalanceTransferType,
   WalletAddress,
+  BankAccount,
 } from '@core/models';
 import { combineLatest } from 'rxjs';
 import Decimal from 'decimal.js';
@@ -40,6 +42,9 @@ import {
 import { ToastrService } from 'ngx-toastr';
 import { TraderService } from '@core/services';
 import { LocalePipe } from '@feature/pipes/ddx-locale.pipe';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogAddBankAccountComponent } from '@feature/components/ddx-dialog-add-bank-account/ddx-dialog-add-bank-account.component';
+import { catchError } from 'rxjs/operators';
 
 @Component({
   selector: 'ddx-funds',
@@ -73,6 +78,8 @@ export class FundsPageComponent implements OnInit, AfterViewInit {
 
   private formsAllErrors: string[];
 
+  private _bankAccounts: BankAccount.Model[];
+
   @ViewChild('withdrawButton') withdrawButton: ElementRef;
   @ViewChild('transferButton') transferButton: ElementRef;
 
@@ -84,7 +91,9 @@ export class FundsPageComponent implements OnInit, AfterViewInit {
     private cdRef: ChangeDetectorRef,
     private snackBarService: MatSnackBar,
     private traderService: TraderService,
-    private localePipe: LocalePipe
+    private localePipe: LocalePipe,
+    private bankAccountService: BankAccountRESTService,
+    private dialog: MatDialog
   ) {
     this.currentActivePane = 'none';
     this.currentTransferType = BalanceTransferType.BankToExchange;
@@ -100,6 +109,8 @@ export class FundsPageComponent implements OnInit, AfterViewInit {
     this.combinedData = [];
 
     this.formsAllErrors = [];
+
+    this._bankAccounts = [];
   }
 
   ngOnInit(): void {
@@ -123,18 +134,27 @@ export class FundsPageComponent implements OnInit, AfterViewInit {
     const bankingBalance$ = this.restService.requestBalance();
     const tradingBalance$ = this.tradingService.requestBalance();
     const currency$ = this.publicService.requestCurrency();
+    const bankAccounts$ = this.bankAccountService
+      .requestListBankAccounts()
+      .pipe(
+        catchError((err) => {
+          return [];
+        })
+      );
 
     const dataFetcher = combineLatest([
       bankingBalance$,
       tradingBalance$,
       currency$,
+      bankAccounts$,
     ]);
 
     dataFetcher.subscribe(
-      ([b, t, c]) => {
+      ([b, t, c, a]) => {
         this.bankingBalanceData = b;
         this.tradingBalanceData = t;
         this.currenciesData = c;
+        this._bankAccounts = a;
 
         this.combinedData = Array.from(this.currenciesData);
         this.combinedData.forEach((currency, i) => {
@@ -218,6 +238,14 @@ export class FundsPageComponent implements OnInit, AfterViewInit {
     return this.traderService.currentTrader.twoFactorEnabled;
   }
 
+  get availableCards(): string[] {
+    return ['6221-0610-2345-0954', '6037-0610-4235-9431'];
+  }
+
+  get bankAccounts(): BankAccount.Model[] {
+    return this._bankAccounts;
+  }
+
   mapColumnToHeader(columnName: string): string {
     switch (columnName) {
       case 'shortName':
@@ -299,6 +327,21 @@ export class FundsPageComponent implements OnInit, AfterViewInit {
 
   handleRadioValueChanges($event): void {
     this.currentTransferType = $event;
+  }
+
+  openAddBankAccountDialog(currencyShortName: string): void {
+    const addBankAccountDialogRef = this.dialog.open(
+      DialogAddBankAccountComponent,
+      {
+        width: '420px',
+        data: { currencyShortName },
+      }
+    );
+
+    addBankAccountDialogRef.afterClosed().subscribe((result) => {
+      this._bankAccounts.push(result);
+      this.cdRef.detectChanges();
+    });
   }
 
   onSubmitTransfer(index: number, submittedValue: any): void {

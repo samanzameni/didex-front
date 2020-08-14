@@ -162,45 +162,118 @@
           class="row-section deposit"
           [ngClass]="{ hidden: this.activePane !== i + '-deposit' }"
         >
-          <mat-form-field
-            id="deposit-address__container"
-            appearance="outline"
-            class="address-container"
-          >
-            <mat-label>{{
-              'funds.deposit.deposit_address' | ddxLocale
-            }}</mat-label>
-            <input
-              type="text"
-              name="address"
-              id="address"
-              matInput
-              [value]="
-                walletAddress
-                  ? walletAddress.address
-                  : translate('funds.deposit.fetching')
-              "
-              class="address-input"
-              readonly
-              disabled
-              #addressCode
-            />
-          </mat-form-field>
-          <button
-            mat-raised-button
-            color="primary"
-            type="button"
-            class="copy-button"
-            [cdkCopyToClipboard]="addressCode.value"
-            (click)="handleClickOnCopyAddress()"
-          >
-            {{ 'funds.deposit.copy' | ddxLocale }}
-          </button>
-          <ul class="tips">
-            <li>
-              {{ 'funds.deposit.tips' | ddxLocale }}
-            </li>
-          </ul>
+          <ng-template [ngIf]="row.crypto" [ngIfElse]="fiat">
+            <mat-form-field
+              id="deposit-address__container"
+              appearance="outline"
+              class="address-container"
+            >
+              <mat-label>{{
+                'funds.deposit.deposit_address' | ddxLocale
+              }}</mat-label>
+              <input
+                type="text"
+                name="address"
+                id="address"
+                matInput
+                [value]="
+                  walletAddress
+                    ? walletAddress.address
+                    : translate('funds.deposit.fetching')
+                "
+                class="address-input"
+                readonly
+                disabled
+                #addressCode
+              />
+            </mat-form-field>
+            <button
+              mat-raised-button
+              color="primary"
+              type="button"
+              class="copy-button"
+              [cdkCopyToClipboard]="addressCode.value"
+              (click)="handleClickOnCopyAddress()"
+            >
+              {{ 'funds.deposit.copy' | ddxLocale }}
+            </button>
+            <ul class="tips">
+              <li>
+                {{ 'funds.deposit.tips' | ddxLocale }}
+              </li>
+            </ul>
+          </ng-template>
+          <ng-template #fiat>
+            <form #form="ngForm" class="deposit__fiat-form">
+              <mat-label>
+                {{ 'funds.deposit.r2_fiat_select_card' | ddxLocale }}
+              </mat-label>
+              <mat-form-field
+                appearance="outline"
+                class="card-selector__container"
+              >
+                <mat-select
+                  [value]="
+                    bankAccounts.length > 0 ? bankAccounts[0].cardNumber : null
+                  "
+                  [disabled]="bankAccounts.length === 0"
+                  panelClass="card-selector-panel"
+                >
+                  <mat-option
+                    *ngFor="let item of bankAccounts"
+                    [value]="item.cardNumber"
+                  >
+                    {{ item.cardNumber }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+              <button
+                class="card-selector__add-button"
+                mat-raised-button
+                color="accent"
+                type="button"
+                (click)="openAddBankAccountDialog(row.shortName)"
+              >
+                <mat-icon>add</mat-icon>
+                <span>{{ 'funds.deposit.r2_fiat_add_card' | ddxLocale }}</span>
+              </button>
+              <mat-label>{{
+                'funds.deposit.r2_fiat_deposit_amount' | ddxLocale
+              }}</mat-label>
+              <mat-form-field
+                appearance="outline"
+                class="deposit-amount-container"
+              >
+                <input
+                  type="number"
+                  name="amount"
+                  id="amount"
+                  matInput
+                  min="0"
+                  value="0"
+                  [(ngModel)]="form.value.amount"
+                  required
+                  #amount="ngModel"
+                />
+                <span matSuffix>
+                  {{ row.shortName }}
+                </span>
+              </mat-form-field>
+              <button
+                mat-raised-button
+                color="primary"
+                type="submit"
+                class="deposit-button"
+              >
+                {{ 'funds.deposit.r2_fiat_deposit' | ddxLocale }}
+              </button>
+            </form>
+            <ul class="tips">
+              <li>
+                {{ 'funds.deposit.r2_fiat_tips' | ddxLocale }}
+              </li>
+            </ul>
+          </ng-template>
         </div>
       </mat-cell>
     </ng-container>

@@ -8,6 +8,7 @@ import {
   HistoryRESTService,
   BankingRESTService,
   GeneralRESTService,
+  BankAccountRESTService,
 } from '@core/services/REST';
 
 @NgModule({
@@ -22,6 +23,7 @@ import {
     OrderRESTService,
     HistoryRESTService,
     BankingRESTService,
+    BankAccountRESTService,
   ],
 })
 export class RESTModule {}

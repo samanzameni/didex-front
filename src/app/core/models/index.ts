@@ -11,6 +11,7 @@ export * from './ddx-trade.model';
 export * from './ddx-currency.model';
 export * from './ddx-transaction.model';
 export * from './ddx-wallet.model';
+export * from './ddx-back-account.model';
 
 export * from './ddx-trader.model';
 

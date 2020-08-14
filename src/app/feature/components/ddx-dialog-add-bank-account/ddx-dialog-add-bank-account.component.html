@@ -1,0 +1,26 @@
+<h1 mat-dialog-title>{{ 'funds.deposit.r2_fiat_add_card' | ddxLocale }}</h1>
+<div mat-dialog-content>
+  <form autocomplete="off">
+    <mat-form-field appearance="outline">
+      <mat-label>{{
+        'funds.deposit.r2_fiat_add_form_card_number' | ddxLocale
+      }}</mat-label>
+      <input matInput type="text" name="cardNumber" [(ngModel)]="cardNumber" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>{{
+        'funds.deposit.r2_fiat_add_form_iban' | ddxLocale
+      }}</mat-label>
+      <input matInput type="text" name="iban" [(ngModel)]="iban" />
+    </mat-form-field>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <!-- <button mat-button (click)="handleCancel()">
+    {{ 'funds.deposit.r2_fiat_cancel' | ddxLocale }}
+  </button> -->
+  <button mat-raised-button (click)="handleAssign()">
+    {{ 'funds.deposit.r2_fiat_add_card' | ddxLocale }}
+  </button>
+</div>

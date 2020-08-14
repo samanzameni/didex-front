@@ -23,6 +23,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { LocalePipeModule } from './locale-pipe.module';
 import { ToastrModule } from 'ngx-toastr';
+import { MatSelectModule } from '@angular/material/select';
+import { MatDialogModule } from '@angular/material/dialog';
+import { DialogAddBankAccountComponent } from '@feature/components/ddx-dialog-add-bank-account/ddx-dialog-add-bank-account.component';
 
 const routes: Routes = [
   {
@@ -52,7 +55,9 @@ const routes: Routes = [
     FundsPageComponent,
     ReportsPageComponent,
     WithdrawConfirmationPageComponent,
+    DialogAddBankAccountComponent,
   ],
+  entryComponents: [DialogAddBankAccountComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
@@ -73,6 +78,8 @@ const routes: Routes = [
     MatTooltipModule,
     MatIconModule,
     MatPaginatorModule,
+    MatSelectModule,
+    MatDialogModule,
   ],
   exports: [],
   providers: [DatePipe],

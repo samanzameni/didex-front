@@ -19,7 +19,15 @@
     "fetching_error": "Error while fetching!",
     "copy": "Copy",
     "copied": "Copied!",
-    "tips": "Please don’t deposit any other digital assets except selected currency to the above address. Otherwise, you may lose your assets permanently."
+    "tips": "Please don’t deposit any other digital assets except selected currency to the above address. Otherwise, you may lose your assets permanently.",
+    "r2_fiat_deposit": "Deposit",
+    "r2_fiat_select_card": "Select card",
+    "r2_fiat_add_card": "Add new card",
+    "r2_fiat_cancel": "Cancel",
+    "r2_fiat_deposit_amount": "Amount",
+    "r2_fiat_tips": "Please don’t deposit any other digital assets except selected currency to the above address. Otherwise, you may lose your assets permanently.",
+    "r2_fiat_add_form_card_number": "Card Number",
+    "r2_fiat_add_form_iban": "IBAN"
   },
 
   "withdraw": {

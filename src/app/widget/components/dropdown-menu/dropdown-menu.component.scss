@@ -95,7 +95,12 @@ dropdown-menu {
         stroke: $ddx-accent-main;
         fill: $ddx-accent-main;
 
-        path {
+        path,
+        circle {
+          stroke: $ddx-accent-main;
+        }
+
+        rect {
           stroke: $ddx-accent-main;
           fill: $ddx-accent-main;
         }

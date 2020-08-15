@@ -61,7 +61,6 @@
     border: none;
 
     &:focus {
-      border: none;
       outline: none;
     }
 
@@ -149,6 +148,24 @@
 
     .navbar-container {
       display: block;
+
+      &.navbar-container.show {
+        position: static;
+        height: unset;
+        width: unset;
+
+        display: flex;
+        flex-direction: row;
+
+        background-color: transparent;
+        z-index: 0;
+
+        .navbar-items__container {
+          flex-direction: row;
+          align-items: center;
+          padding: 0;
+        }
+      }
     }
 
     .hamburger-menu {

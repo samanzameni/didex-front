@@ -302,9 +302,13 @@
     }
 
     .row-section {
+      .tips {
+        order: 5;
+      }
+
       .withdraw-button {
         width: 145px;
-        margin-left: auto;
+        order: 4;
       }
 
       .copy-button {
@@ -351,23 +355,12 @@
     }
 
     .row-section {
-      .mat-form-field,
-      .mat-form-field.mat-form-field-appearance-outline {
-        &.transfer-amount-container {
-          width: 70%;
-          order: 2;
-        }
-
-        &.withdraw-amount__container {
-          display: flex;
-          flex-wrap: wrap;
-          width: 50%;
-        }
-      }
-
       form {
         .details-container {
-          width: 50%;
+          width: 230px;
+          margin-inline-start: auto;
+          margin-inline-end: 7px;
+          order: 3;
         }
 
         ::ng-deep .mat-radio-group {
@@ -381,6 +374,33 @@
 
           .mat-radio-button:nth-child(2) {
             margin-inline-start: 40px;
+          }
+        }
+
+        .mat-form-field,
+        .mat-form-field.mat-form-field-appearance-outline {
+          &.transfer-amount-container {
+            width: 70%;
+            order: 2;
+          }
+
+          &.withdraw-amount__container {
+            display: flex;
+            flex-wrap: wrap;
+            width: calc(45% - 7px);
+            margin-inline-start: 7px;
+          }
+
+          &.withdraw-2fa__container {
+            width: calc(100% - 375px - 14px);
+            max-width: 230px;
+            order: 2;
+            margin-inline-start: 0;
+            margin-inline-end: 7px;
+          }
+
+          &.withdraw-address__container {
+            width: 55%;
           }
         }
       }
@@ -463,12 +483,6 @@
             order: 2;
           }
         }
-
-        .details-container {
-          margin: 0 auto;
-          width: 25%;
-          order: 3;
-        }
       }
     }
   }
@@ -501,6 +515,40 @@
           &.deposit-button {
             margin: 0 0.25em;
             width: 130px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: $break-desktop) {
+  :host {
+    .row-section {
+      .withdraw-button {
+        order: 5;
+      }
+
+      form {
+        .details-container {
+          width: calc(20% - 7px);
+        }
+
+        .mat-form-field,
+        .mat-form-field.mat-form-field-appearance-outline {
+          &.withdraw-amount__container {
+            width: 20%;
+            margin: 0 7px;
+          }
+
+          &.withdraw-2fa__container {
+            width: calc(20% - 7px);
+            margin: 0;
+          }
+
+          &.withdraw-address__container {
+            width: calc(40% - 7px);
+            margin: 0;
           }
         }
       }

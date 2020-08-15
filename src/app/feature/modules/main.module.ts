@@ -33,6 +33,7 @@ import { TraderResolver } from '@core/resolvers/trader.resolver';
 import { LocalePipeModule } from './locale-pipe.module';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 const routes: Routes = [
   {
@@ -95,6 +96,7 @@ const routes: Routes = [
     MatTooltipModule,
     MatSnackBarModule,
     MatProgressSpinnerModule,
+    MatExpansionModule,
   ],
   exports: [],
   providers: [],

@@ -13,7 +13,7 @@ import {
   styleUrls: ['./ddx-navbar.component.scss'],
 })
 export class NavbarComponent implements OnInit {
-  public isMobile: boolean;
+  public isHamburgerMenuClicked: boolean;
 
   constructor(
     private authService: AuthService,
@@ -56,6 +56,6 @@ export class NavbarComponent implements OnInit {
   }
 
   toggleMenu(): void {
-    this.isMobile = !this.isMobile;
+    this.isHamburgerMenuClicked = !this.isHamburgerMenuClicked;
   }
 }

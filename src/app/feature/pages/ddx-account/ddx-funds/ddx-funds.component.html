@@ -315,22 +315,73 @@
               [ngModel]="row.shortName"
               [value]="row.shortName"
             />
-            <mat-form-field
-              appearance="outline"
-              class="address-container withdraw-address__container"
-            >
-              <mat-label>{{ 'funds.withdraw.address' | ddxLocale }}</mat-label>
-              <input
-                type="text"
-                name="address"
-                id="address"
-                matInput
-                class="address-input"
-                [(ngModel)]="form.value.address"
-                required
-                #address="ngModel"
-              />
-            </mat-form-field>
+            <ng-template [ngIf]="row.crypto" [ngIfElse]="fiatWithdraw">
+              <mat-form-field
+                appearance="outline"
+                class="address-container withdraw-address__container"
+              >
+                <mat-label>{{
+                  'funds.withdraw.address' | ddxLocale
+                }}</mat-label>
+                <input
+                  type="text"
+                  name="address"
+                  id="address"
+                  matInput
+                  class="address-input"
+                  [(ngModel)]="form.value.address"
+                  required
+                  #address="ngModel"
+                />
+              </mat-form-field>
+            </ng-template>
+            <ng-template #fiatWithdraw>
+              <div class="withdraw-cards__container">
+                <mat-label>
+                  {{ 'funds.deposit.r2_fiat_select_card' | ddxLocale }}
+                </mat-label>
+                <mat-form-field
+                  appearance="outline"
+                  class="card-selector__container"
+                >
+                  <mat-select
+                    name="card"
+                    panelClass="card-selector-panel"
+                    [disabled]="bankAccounts.length === 0"
+                    [value]="
+                      bankAccounts.length > 0
+                        ? bankAccounts[0].cardNumber
+                        : null
+                    "
+                    [ngModel]="
+                      bankAccounts.length > 0
+                        ? bankAccounts[0].cardNumber
+                        : null
+                    "
+                    required
+                  >
+                    <mat-option
+                      *ngFor="let item of bankAccounts"
+                      [value]="item.cardNumber"
+                    >
+                      {{ item.cardNumber }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <button
+                  class="card-selector__add-button"
+                  mat-raised-button
+                  color="accent"
+                  type="button"
+                  (click)="openAddBankAccountDialog(row.shortName)"
+                >
+                  <mat-icon>add</mat-icon>
+                  <span class="card-selector__button-text">{{
+                    'funds.deposit.r2_fiat_add_card' | ddxLocale
+                  }}</span>
+                </button>
+              </div>
+            </ng-template>
             <mat-form-field
               appearance="outline"
               class="withdraw-amount__container"

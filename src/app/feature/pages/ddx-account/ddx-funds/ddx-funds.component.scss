@@ -232,6 +232,21 @@
       }
     }
 
+    .withdraw-cards__container {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+
+      mat-label {
+        display: none;
+      }
+
+      .mat-raised-button {
+        width: 100%;
+        margin: 0.25em 0;
+      }
+    }
+
     &.hidden {
       display: none;
     }
@@ -377,6 +392,23 @@
           }
         }
 
+        .withdraw-cards__container {
+          width: 55%;
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+
+          .mat-raised-button {
+            width: unset;
+            margin: 0 0 0 7px;
+            height: 48px;
+
+            .card-selector__button-text {
+              display: none;
+            }
+          }
+        }
+
         .mat-form-field,
         .mat-form-field.mat-form-field-appearance-outline {
           &.transfer-amount-container {
@@ -472,10 +504,20 @@
           margin-bottom: 0;
         }
 
+        .withdraw-cards__container {
+          width: 55%;
+          order: 1;
+
+          mat-label {
+            display: flex;
+            margin-inline-end: 7px;
+            width: 85px;
+          }
+        }
+
         .mat-form-field {
           &.withdraw-address__container {
             order: 1;
-            width: 35%;
           }
           &.withdraw-amount__container {
             margin: 0 auto;
@@ -515,6 +557,20 @@
           &.deposit-button {
             margin: 0 0.25em;
             width: 130px;
+          }
+        }
+      }
+
+      form {
+        .withdraw-cards__container {
+          .mat-raised-button {
+            .card-selector__button-text {
+              display: inline-block;
+            }
+          }
+
+          .card-selector__container {
+            width: calc(100% - 145px - 60px - 35px);
           }
         }
       }

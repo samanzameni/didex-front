@@ -32,4 +32,13 @@ export class BankAccountRESTService extends AbstractRESTService {
   ): Observable<any> {
     return this.httpPOST(`api/Banking/verify-deposit`, data) as Observable<any>;
   }
+
+  public requestWithdrawFiat(
+    data: BankAccount.WithdrawFormData
+  ): Observable<any> {
+    return this.httpPOST(
+      'api/Banking/fiat-withdraw-request',
+      data
+    ) as Observable<any>;
+  }
 }

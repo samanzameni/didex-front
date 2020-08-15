@@ -419,8 +419,32 @@ export class FundsPageComponent implements OnInit, AfterViewInit {
     );
   }
 
-  onSubmitFiatWithdraw(index: number, submittedValue: any): void {
-    console.log(submittedValue);
+  onSubmitFiatWithdraw(
+    index: number,
+    submittedValue: BankAccount.WithdrawFormData
+  ): void {
+    this.formsAllErrors = [];
+
+    submittedValue.includeFee = true;
+    submittedValue.autoCommit = true;
+
+    this.bankAccountService.requestWithdrawFiat(submittedValue).subscribe(
+      (response) => {
+        this.toastr.success(
+          'An email is sent for withdrawal confirmation. Check your inbox',
+          'Confirmation required'
+        );
+      },
+      (errorResponse) => {
+        if (errorResponse.status === 400) {
+          const errors = errorResponse.error.errors;
+
+          for (const e of Object.keys(errors)) {
+            this.formsAllErrors.push(...errors[e]);
+          }
+        }
+      }
+    );
   }
 
   onSubmitWithdraw(

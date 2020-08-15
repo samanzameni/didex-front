@@ -25,4 +25,13 @@ export namespace BankAccount {
   export interface DepositVerifyData {
     token: string;
   }
+
+  export interface WithdrawFormData {
+    currency: string;
+    amount: number;
+    bankAccountId: number;
+    autoCommit: boolean;
+    includeFee: boolean;
+    code?: string;
+  }
 }

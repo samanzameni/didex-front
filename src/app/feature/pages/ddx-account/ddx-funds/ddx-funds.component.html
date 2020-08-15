@@ -338,18 +338,14 @@
                   class="card-selector__container"
                 >
                   <mat-select
-                    name="card"
+                    name="bankAccountId"
                     panelClass="card-selector-panel"
                     [disabled]="bankAccounts.length === 0"
                     [value]="
-                      bankAccounts.length > 0
-                        ? bankAccounts[0].cardNumber
-                        : null
+                      bankAccounts.length > 0 ? bankAccounts[0].id : null
                     "
                     [ngModel]="
-                      bankAccounts.length > 0
-                        ? bankAccounts[0].cardNumber
-                        : null
+                      bankAccounts.length > 0 ? bankAccounts[0].id : null
                     "
                     required
                   >

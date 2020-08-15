@@ -80,7 +80,6 @@
           </mat-expansion-panel-header>
           <span
             mat-menu-item
-            
             class="expansion-panel__content navbar__personal-info-item"
             >{{ 'navbar.hello' | ddxLocale }}, {{ personalInfo }}</span
           >
@@ -141,8 +140,18 @@
               Account
             </mat-panel-title>
           </mat-expansion-panel-header>
-          <p>Funds</p>
-          <p>Reports</p>
+          <a
+            class="expansion-panel__content"
+            mat-menu-item
+            routerLink="/account/funds"
+            >{{ 'navbar.funds' | ddxLocale }}</a
+          >
+          <a
+            class="expansion-panel__content"
+            mat-menu-item
+            routerLink="/account/reports"
+            >{{ 'navbar.reports' | ddxLocale }}</a
+          >
         </mat-expansion-panel>
         <mat-expansion-panel>
           <mat-expansion-panel-header>
@@ -238,14 +247,6 @@
             [queryParams]="{ tab: 'kyc' }"
             >{{ 'navbar.kyc' | ddxLocale }}</a
           >
-          <button
-            mat-flat-button
-            color="accent"
-            class="sign-out-button"
-            (click)="requestSignOut()"
-          >
-            {{ 'navbar.sign_out' | ddxLocale }}
-          </button>
         </dropdown-menu>
       </ng-container>
 

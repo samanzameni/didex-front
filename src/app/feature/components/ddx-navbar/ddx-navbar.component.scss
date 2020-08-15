@@ -27,6 +27,14 @@
     }
   }
 
+  .mat-expansion-panel-header-title {
+    align-items: center;
+  }
+
+  .mobile-menu__icon {
+    margin-right: 12px;
+  }
+
   ::ng-deep .mat-select-value {
     text-overflow: clip;
   }

@@ -7,6 +7,9 @@ import {
   Locale,
 } from '@core/services/ddx-locale.service';
 
+import { DomSanitizer } from '@angular/platform-browser';
+import { MatIconRegistry } from '@angular/material/icon';
+
 @Component({
   selector: 'ddx-navbar',
   templateUrl: './ddx-navbar.component.html',
@@ -18,8 +21,35 @@ export class NavbarComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private traderService: TraderService,
-    private localeService: LocaleService
-  ) {}
+    private localeService: LocaleService,
+    iconRegistry: MatIconRegistry,
+    sanitizer: DomSanitizer
+  ) {
+    iconRegistry.addSvgIcon(
+      'product',
+      sanitizer.bypassSecurityTrustResourceUrl(
+        'assets/icons/icon-desktop-menu.svg'
+      )
+    );
+    iconRegistry.addSvgIcon(
+      'profile',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/icons/icon-account.svg')
+    );
+    iconRegistry.addSvgIcon(
+      'account',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/icons/icon-account.svg')
+    );
+    iconRegistry.addSvgIcon(
+      'locale-selector',
+      sanitizer.bypassSecurityTrustResourceUrl(
+        'assets/icons/icon-locale-selector.svg'
+      )
+    );
+    iconRegistry.addSvgIcon(
+      'log-out',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/icons/icon-log-out.svg')
+    );
+  }
 
   ngOnInit() {}
 

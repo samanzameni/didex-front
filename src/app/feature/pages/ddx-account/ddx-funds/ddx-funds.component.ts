@@ -142,14 +142,14 @@ export class FundsPageComponent implements OnInit, AfterViewInit {
         })
       );
 
-    const dataFetcher = combineLatest([
+    const dataFetcher$ = combineLatest([
       bankingBalance$,
       tradingBalance$,
       currency$,
       bankAccounts$,
     ]);
 
-    dataFetcher.subscribe(
+    dataFetcher$.subscribe(
       ([b, t, c, a]) => {
         this.bankingBalanceData = b;
         this.tradingBalanceData = t;
@@ -342,6 +342,10 @@ export class FundsPageComponent implements OnInit, AfterViewInit {
       if (result) {
         this._bankAccounts.push(result);
         this.cdRef.detectChanges();
+        this.toastr.success(
+          this.localePipe.transform('funds.deposit.r2_fiat_add_toast_message'),
+          this.localePipe.transform('funds.deposit.r2_fiat_add_toast_title')
+        );
       }
     });
   }

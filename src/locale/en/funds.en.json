@@ -27,7 +27,9 @@
     "r2_fiat_deposit_amount": "Amount",
     "r2_fiat_tips": "Please don’t deposit any other digital assets except selected currency to the above address. Otherwise, you may lose your assets permanently.",
     "r2_fiat_add_form_card_number": "Card Number",
-    "r2_fiat_add_form_iban": "IBAN"
+    "r2_fiat_add_form_iban": "IBAN",
+    "r2_fiat_add_toast_title": "Bank Account",
+    "r2_fiat_add_toast_message": "Successfully added!"
   },
 
   "withdraw": {

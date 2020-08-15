@@ -78,7 +78,56 @@
               Profile
             </mat-panel-title>
           </mat-expansion-panel-header>
-          <p>Hello Nasim</p>
+          <span
+            mat-menu-item
+            
+            class="expansion-panel__content navbar__personal-info-item"
+            >{{ 'navbar.hello' | ddxLocale }}, {{ personalInfo }}</span
+          >
+          <span
+            mat-menu-item
+            disabled
+            class="expansion-panel__content navbar__personal-info-item blue"
+            *ngIf="!!traderEmail"
+            >{{ traderEmail }}</span
+          >
+
+          <a
+            mat-menu-item
+            class="expansion-panel__content"
+            routerLink="/user/settings"
+            [queryParams]="{ tab: 'general' }"
+            >{{ 'navbar.general_settings' | ddxLocale }}</a
+          >
+          <a
+            mat-menu-item
+            class="expansion-panel__content"
+            routerLink="/user/settings"
+            [queryParams]="{ tab: 'security' }"
+            >{{ 'navbar.security' | ddxLocale }}</a
+          >
+          <a
+            mat-menu-item
+            class="expansion-panel__content"
+            routerLink="/user/settings"
+            [queryParams]="{ tab: '2fa' }"
+            >{{ 'navbar.2fa' | ddxLocale }}</a
+          >
+          <a
+            mat-menu-item
+            class="expansion-panel__content"
+            routerLink="/user/settings"
+            [queryParams]="{ tab: 'kyc' }"
+            >{{ 'navbar.kyc' | ddxLocale }}</a
+          >
+          <button
+            mat-flat-button
+            color="accent"
+            class="sign-out-button expansion-panel__content"
+            (click)="requestSignOut()"
+          >
+            {{ 'navbar.sign_out' | ddxLocale }}
+          </button>
         </mat-expansion-panel>
         <mat-expansion-panel>
           <mat-expansion-panel-header>

@@ -37,6 +37,16 @@
     margin-inline-start: 45px;
   }
 
+  .navbar__personal-info-item {
+    font-size: 16px;
+
+    &.blue {
+      color: $ddx-accent-lighter;
+      padding-left: 10px;
+      padding-top: 0;
+    }
+  }
+
   .mobile-menu__icon {
     margin-right: 12px;
   }

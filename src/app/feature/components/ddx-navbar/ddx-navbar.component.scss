@@ -39,6 +39,7 @@
 
   .navbar__personal-info-item {
     font-size: 16px;
+    background: rgba($ddx-light, 0.1);
 
     &.blue {
       color: $ddx-accent-lighter;

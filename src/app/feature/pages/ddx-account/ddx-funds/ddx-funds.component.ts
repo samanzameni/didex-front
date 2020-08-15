@@ -339,9 +339,15 @@ export class FundsPageComponent implements OnInit, AfterViewInit {
     );
 
     addBankAccountDialogRef.afterClosed().subscribe((result) => {
-      this._bankAccounts.push(result);
-      this.cdRef.detectChanges();
+      if (result) {
+        this._bankAccounts.push(result);
+        this.cdRef.detectChanges();
+      }
     });
+  }
+
+  onSubmitFiatDeposit(submittedValue: any): void {
+    console.log(submittedValue);
   }
 
   onSubmitTransfer(index: number, submittedValue: any): void {

@@ -18,4 +18,12 @@ export class BankAccountRESTService extends AbstractRESTService {
       BankAccount.Model
     >;
   }
+
+  public requestDepositFiat(
+    data: BankAccount.DepositInitiateFormData
+  ): Observable<BankAccount.DepositInitiateResponse> {
+    return this.httpPOST(`api/Banking/initiate-deposit`, data) as Observable<
+      BankAccount.DepositInitiateResponse
+    >;
+  }
 }

@@ -162,7 +162,7 @@
           class="row-section deposit"
           [ngClass]="{ hidden: this.activePane !== i + '-deposit' }"
         >
-          <ng-template [ngIf]="row.crypto" [ngIfElse]="fiat">
+          <ng-template [ngIf]="row.crypto" [ngIfElse]="fiatDeposit">
             <mat-form-field
               id="deposit-address__container"
               appearance="outline"
@@ -203,19 +203,12 @@
               </li>
             </ul>
           </ng-template>
-          <ng-template #fiat>
+          <ng-template #fiatDeposit>
             <form
               #form="ngForm"
               class="deposit__fiat-form"
               (ngSubmit)="onSubmitFiatDeposit(form.value)"
             >
-              <input
-                type="hidden"
-                name="currencyShortName"
-                [ngModel]="row.shortName"
-                [value]="row.shortName"
-                class="hidden"
-              />
               <mat-label>
                 {{ 'funds.deposit.r2_fiat_select_card' | ddxLocale }}
               </mat-label>
@@ -224,20 +217,20 @@
                 class="card-selector__container"
               >
                 <mat-select
-                  name="card"
+                  name="bankAccountId"
                   panelClass="card-selector-panel"
                   [disabled]="bankAccounts.length === 0"
                   [value]="
                     bankAccounts.length > 0 ? bankAccounts[0].cardNumber : null
                   "
                   [ngModel]="
-                    bankAccounts.length > 0 ? bankAccounts[0].cardNumber : null
+                    bankAccounts.length > 0 ? bankAccounts[0].id : null
                   "
                   required
                 >
                   <mat-option
                     *ngFor="let item of bankAccounts"
-                    [value]="item.cardNumber"
+                    [value]="item.id"
                   >
                     {{ item.cardNumber }}
                   </mat-option>
@@ -306,7 +299,7 @@
         >
           <form
             autocomplete="off"
-            (ngSubmit)="onSubmitWithdraw(i, form.value)"
+            (ngSubmit)="onSubmitWithdraw(i, form.value, row.crypto)"
             #form="ngForm"
           >
             <input

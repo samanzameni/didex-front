@@ -45,6 +45,7 @@ import { LocalePipe } from '@feature/pipes/ddx-locale.pipe';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogAddBankAccountComponent } from '@feature/components/ddx-dialog-add-bank-account/ddx-dialog-add-bank-account.component';
 import { catchError } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'ddx-funds',
@@ -93,7 +94,8 @@ export class FundsPageComponent implements OnInit, AfterViewInit {
     private traderService: TraderService,
     private localePipe: LocalePipe,
     private bankAccountService: BankAccountRESTService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private router: Router
   ) {
     this.currentActivePane = 'none';
     this.currentTransferType = BalanceTransferType.BankToExchange;
@@ -350,8 +352,21 @@ export class FundsPageComponent implements OnInit, AfterViewInit {
     });
   }
 
-  onSubmitFiatDeposit(submittedValue: any): void {
-    console.log(submittedValue);
+  onSubmitFiatDeposit(
+    submittedValue: BankAccount.DepositInitiateFormData
+  ): void {
+    this.bankAccountService.requestDepositFiat(submittedValue).subscribe(
+      (response) => {
+        this.router.navigateByUrl(
+          this.router.parseUrl(
+            `/external-redirect?redirect_url=${response.redirectLink}`
+          )
+        );
+      },
+      (errorResponse) => {
+        console.error(errorResponse);
+      }
+    );
   }
 
   onSubmitTransfer(index: number, submittedValue: any): void {
@@ -376,7 +391,10 @@ export class FundsPageComponent implements OnInit, AfterViewInit {
       );
   }
 
-  onSubmitWithdraw(index: number, submittedValue: BalanceWithdrawData): void {
+  onSubmitCryptoWithdraw(
+    index: number,
+    submittedValue: BalanceWithdrawData
+  ): void {
     this.formsAllErrors = [];
 
     submittedValue.includeFee = true;
@@ -384,8 +402,6 @@ export class FundsPageComponent implements OnInit, AfterViewInit {
 
     this.restService.requestWithdraw(submittedValue).subscribe(
       (response) => {
-        // this.currentActivePane = 'none';
-        // this.updateData();
         this.toastr.success(
           'An email is sent for withdrawal confirmation. Check your inbox',
           'Confirmation required'
@@ -401,5 +417,21 @@ export class FundsPageComponent implements OnInit, AfterViewInit {
         }
       }
     );
+  }
+
+  onSubmitFiatWithdraw(index: number, submittedValue: any): void {
+    console.log(submittedValue);
+  }
+
+  onSubmitWithdraw(
+    index: number,
+    submittedValue: any,
+    isCrypto: boolean = true
+  ): void {
+    if (isCrypto) {
+      this.onSubmitCryptoWithdraw(index, submittedValue);
+    } else {
+      this.onSubmitFiatWithdraw(index, submittedValue);
+    }
   }
 }

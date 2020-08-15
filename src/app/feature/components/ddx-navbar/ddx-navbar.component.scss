@@ -47,6 +47,22 @@
     }
   }
 
+  .sign-out-button__mobile {
+    background-color: transparent;
+
+    ::ng-deep .mat-button-wrapper {
+      display: flex;
+    }
+
+    span {
+      align-self: center;
+    }
+  }
+
+  #sign-out__icon {
+    margin-inline-start: 8px;
+  }
+
   .mobile-menu__icon {
     margin-right: 12px;
   }

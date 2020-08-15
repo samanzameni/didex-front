@@ -16,7 +16,7 @@ import { MatIconRegistry } from '@angular/material/icon';
   styleUrls: ['./ddx-navbar.component.scss'],
 })
 export class NavbarComponent implements OnInit {
-  public isHamburgerMenuClicked: boolean;
+  public isHamburgerMenuClicked: boolean = false;
 
   constructor(
     private authService: AuthService,

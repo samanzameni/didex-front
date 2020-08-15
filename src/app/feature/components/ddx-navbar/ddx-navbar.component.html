@@ -119,14 +119,6 @@
             [queryParams]="{ tab: 'kyc' }"
             >{{ 'navbar.kyc' | ddxLocale }}</a
           >
-          <button
-            mat-flat-button
-            color="accent"
-            class="sign-out-button expansion-panel__content"
-            (click)="requestSignOut()"
-          >
-            {{ 'navbar.sign_out' | ddxLocale }}
-          </button>
         </mat-expansion-panel>
         <mat-expansion-panel>
           <mat-expansion-panel-header>
@@ -168,20 +160,22 @@
           <p>chinese</p>
           <p>russian</p>
         </mat-expansion-panel>
-        <mat-expansion-panel>
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-              <mat-icon
-                class="mobile-menu__icon"
-                svgIcon="log-out"
-                aria-hidden="false"
-                aria-label="log out SVG icon"
-              ></mat-icon>
-              Log out
-            </mat-panel-title>
-          </mat-expansion-panel-header>
-        </mat-expansion-panel>
       </mat-accordion>
+      <button
+        style="display: flex; align-items: center;"
+        mat-flat-button
+        class="sign-out-button__mobile"
+        (click)="requestSignOut()"
+      >
+        <mat-icon
+          class="mobile-menu__icon expansion-panel__content"
+          id="sign-out__icon"
+          svgIcon="log-out"
+          aria-hidden="false"
+          aria-label="log out SVG icon"
+        ></mat-icon>
+        <span>{{ 'navbar.sign_out' | ddxLocale }}</span>
+      </button>
     </div>
 
     <ng-template #desktopMenu>
@@ -247,6 +241,14 @@
             [queryParams]="{ tab: 'kyc' }"
             >{{ 'navbar.kyc' | ddxLocale }}</a
           >
+          <button
+            mat-flat-button
+            color="accent"
+            class="sign-out-button"
+            (click)="requestSignOut()"
+          >
+            {{ 'navbar.sign_out' | ddxLocale }}
+          </button>
         </dropdown-menu>
       </ng-container>
 

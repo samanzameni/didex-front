@@ -38,32 +38,56 @@
     </a>
   -->
 
-    <div *ngIf="isHamburgerMenuClicked; else desktopMenu">
+    <div
+      class="mobile-menu__container"
+      *ngIf="isHamburgerMenuClicked; else desktopMenu"
+    >
       <mat-accordion>
-        <mat-expansion-panel hideToggle>
+        <mat-expansion-panel>
           <mat-expansion-panel-header>
             <mat-panel-title>
-              This is the expansion title
+              Product
             </mat-panel-title>
-            <mat-panel-description>
-              This is a summary of the content
-            </mat-panel-description>
           </mat-expansion-panel-header>
-          <p>This is the primary content of the panel.</p>
+          <p>Trade</p>
+          <p>Invest</p>
         </mat-expansion-panel>
         <mat-expansion-panel>
           <mat-expansion-panel-header>
             <mat-panel-title>
-              Self aware panel
+              Profile
             </mat-panel-title>
-            <mat-panel-description>
-              Currently I am open
-            </mat-panel-description>
           </mat-expansion-panel-header>
-          <p>I'm visible because I am open</p>
+          <p>Hello Nasim</p>
+        </mat-expansion-panel>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Account
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <p>Funds</p>
+          <p>Reports</p>
+        </mat-expansion-panel>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              English
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <p>chinese</p>
+          <p>russian</p>
+        </mat-expansion-panel>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Log out
+            </mat-panel-title>
+          </mat-expansion-panel-header>
         </mat-expansion-panel>
       </mat-accordion>
     </div>
+
     <ng-template #desktopMenu>
       <mat-form-field class="locale-selector">
         <mat-select

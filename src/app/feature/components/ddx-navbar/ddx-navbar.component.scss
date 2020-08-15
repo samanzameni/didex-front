@@ -13,6 +13,20 @@
   box-sizing: border-box;
   padding: 5px 15px;
 
+  .mat-accordion .mat-expansion-panel {
+    background-color: transparent;
+  }
+
+  .mat-accordion .mat-expansion-panel {
+    border-top: 1px solid $ddx-dark-lighter;
+    border-bottom: 1px solid $ddx-dark-lighter;
+    border-radius: 0;
+
+    &.mat-expansion-panel:first-child {
+      border-top: none;
+    }
+  }
+
   ::ng-deep .mat-select-value {
     text-overflow: clip;
   }
@@ -116,6 +130,10 @@
         flex-direction: column-reverse;
         align-items: flex-start;
         padding: 5px 15px;
+
+        .mobile-menu__container {
+          width: 100%;
+        }
       }
     }
   }

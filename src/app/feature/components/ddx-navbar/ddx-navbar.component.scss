@@ -31,6 +31,12 @@
     align-items: center;
   }
 
+  .expansion-panel__content {
+    height: unset;
+    padding: 10px 0;
+    margin-inline-start: 45px;
+  }
+
   .mobile-menu__icon {
     margin-right: 12px;
   }

@@ -55,8 +55,16 @@
               Product
             </mat-panel-title>
           </mat-expansion-panel-header>
-          <p>Trade</p>
-          <p>Invest</p>
+          <a
+            mat-menu-item
+            class="active expansion-panel__content"
+            routerLink="/"
+          >
+            {{ 'navbar.trade' | ddxLocale }}
+          </a>
+          <a mat-menu-item class="expansion-panel__content" href="/invest">{{
+            'navbar.invest' | ddxLocale
+          }}</a>
         </mat-expansion-panel>
         <mat-expansion-panel>
           <mat-expansion-panel-header>

@@ -8,6 +8,7 @@ import {
   FundsPageComponent,
   ReportsPageComponent,
   WithdrawConfirmationPageComponent,
+  DepositCallbackHandlerPageComponent,
 } from '@feature/pages';
 import { AuthGuard } from '@core/guards';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -48,6 +49,11 @@ const routes: Routes = [
     component: WithdrawConfirmationPageComponent,
     canActivate: [AuthGuard],
   },
+  {
+    path: 'deposit/callback',
+    component: DepositCallbackHandlerPageComponent,
+    canActivate: [AuthGuard],
+  },
 ];
 
 @NgModule({
@@ -56,6 +62,7 @@ const routes: Routes = [
     ReportsPageComponent,
     WithdrawConfirmationPageComponent,
     DialogAddBankAccountComponent,
+    DepositCallbackHandlerPageComponent,
   ],
   entryComponents: [DialogAddBankAccountComponent],
   imports: [

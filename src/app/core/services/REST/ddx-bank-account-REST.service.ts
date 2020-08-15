@@ -26,4 +26,10 @@ export class BankAccountRESTService extends AbstractRESTService {
       BankAccount.DepositInitiateResponse
     >;
   }
+
+  public requestDepositFiatVerify(
+    data: BankAccount.DepositVerifyData
+  ): Observable<any> {
+    return this.httpPOST(`api/Banking/verify-deposit`, data) as Observable<any>;
+  }
 }

@@ -18,7 +18,7 @@ body {
     // margin: 0px 4px 7px 4px;
     @extend .has-transition;
     &.is-open {
-      transform: rotateX(180deg);
+      transform: rotateZ(180deg);
     }
   }
 
@@ -123,7 +123,7 @@ dropdown-menu {
 
     &.is-open {
       .mat-icon {
-        transform: rotateX(180deg);
+        transform: rotateZ(180deg);
       }
     }
   }

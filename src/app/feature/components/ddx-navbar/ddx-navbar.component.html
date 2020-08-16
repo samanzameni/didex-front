@@ -10,7 +10,7 @@
       id="didexLogoText"
       alt="didex text"
     />
-    <span>Trade</span>
+    <span>{{ 'navbar.trade' | ddxLocale }}</span>
   </a>
 </div>
 
@@ -50,7 +50,7 @@
             width="50px"
           />
 
-          <span>Trade</span>
+          <span>{{ 'navbar.trade' | ddxLocale }}</span>
         </a>
 
         <button (click)="toggleMenu()" class="hamburger-menu">
@@ -68,7 +68,7 @@
                 aria-hidden="false"
                 aria-label="product SVG icon"
               ></mat-icon>
-              Product
+              {{ 'navbar.product' | ddxLocale }}
             </mat-panel-title>
           </mat-expansion-panel-header>
           <a
@@ -96,7 +96,7 @@
                 aria-hidden="false"
                 aria-label="profile SVG icon"
               ></mat-icon>
-              Profile
+              {{ 'navbar.profile' | ddxLocale }}
             </mat-panel-title>
           </mat-expansion-panel-header>
           <span
@@ -154,7 +154,7 @@
                 aria-hidden="false"
                 aria-label="account SVG icon"
               ></mat-icon>
-              Account
+              {{ 'navbar.account' | ddxLocale }}
             </mat-panel-title>
           </mat-expansion-panel-header>
           <a

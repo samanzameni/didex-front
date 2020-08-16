@@ -75,6 +75,7 @@ export class NavbarComponent implements OnInit {
     window.location.reload();
   }
 
+  // exact same function as the one above it but for mobile menu
   onLocaleSelection(selectedLanguage: Locale): void {
     this.localeService.changeLocale(selectedLanguage);
     window.location.reload();

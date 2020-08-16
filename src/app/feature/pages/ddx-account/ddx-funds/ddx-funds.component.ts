@@ -45,6 +45,7 @@ import { LocalePipe } from '@feature/pipes/ddx-locale.pipe';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogAddBankAccountComponent } from '@feature/components/ddx-dialog-add-bank-account/ddx-dialog-add-bank-account.component';
 import { catchError } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'ddx-funds',
@@ -93,7 +94,8 @@ export class FundsPageComponent implements OnInit, AfterViewInit {
     private traderService: TraderService,
     private localePipe: LocalePipe,
     private bankAccountService: BankAccountRESTService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private router: Router
   ) {
     this.currentActivePane = 'none';
     this.currentTransferType = BalanceTransferType.BankToExchange;
@@ -142,14 +144,14 @@ export class FundsPageComponent implements OnInit, AfterViewInit {
         })
       );
 
-    const dataFetcher = combineLatest([
+    const dataFetcher$ = combineLatest([
       bankingBalance$,
       tradingBalance$,
       currency$,
       bankAccounts$,
     ]);
 
-    dataFetcher.subscribe(
+    dataFetcher$.subscribe(
       ([b, t, c, a]) => {
         this.bankingBalanceData = b;
         this.tradingBalanceData = t;
@@ -339,9 +341,32 @@ export class FundsPageComponent implements OnInit, AfterViewInit {
     );
 
     addBankAccountDialogRef.afterClosed().subscribe((result) => {
-      this._bankAccounts.push(result);
-      this.cdRef.detectChanges();
+      if (result) {
+        this._bankAccounts.push(result);
+        this.cdRef.detectChanges();
+        this.toastr.success(
+          this.localePipe.transform('funds.deposit.r2_fiat_add_toast_message'),
+          this.localePipe.transform('funds.deposit.r2_fiat_add_toast_title')
+        );
+      }
     });
+  }
+
+  onSubmitFiatDeposit(
+    submittedValue: BankAccount.DepositInitiateFormData
+  ): void {
+    this.bankAccountService.requestDepositFiat(submittedValue).subscribe(
+      (response) => {
+        this.router.navigateByUrl(
+          this.router.parseUrl(
+            `/external-redirect?redirect_url=${response.redirectLink}`
+          )
+        );
+      },
+      (errorResponse) => {
+        console.error(errorResponse);
+      }
+    );
   }
 
   onSubmitTransfer(index: number, submittedValue: any): void {
@@ -366,7 +391,10 @@ export class FundsPageComponent implements OnInit, AfterViewInit {
       );
   }
 
-  onSubmitWithdraw(index: number, submittedValue: BalanceWithdrawData): void {
+  onSubmitCryptoWithdraw(
+    index: number,
+    submittedValue: BalanceWithdrawData
+  ): void {
     this.formsAllErrors = [];
 
     submittedValue.includeFee = true;
@@ -374,8 +402,6 @@ export class FundsPageComponent implements OnInit, AfterViewInit {
 
     this.restService.requestWithdraw(submittedValue).subscribe(
       (response) => {
-        // this.currentActivePane = 'none';
-        // this.updateData();
         this.toastr.success(
           'An email is sent for withdrawal confirmation. Check your inbox',
           'Confirmation required'
@@ -391,5 +417,45 @@ export class FundsPageComponent implements OnInit, AfterViewInit {
         }
       }
     );
+  }
+
+  onSubmitFiatWithdraw(
+    index: number,
+    submittedValue: BankAccount.WithdrawFormData
+  ): void {
+    this.formsAllErrors = [];
+
+    submittedValue.includeFee = true;
+    submittedValue.autoCommit = true;
+
+    this.bankAccountService.requestWithdrawFiat(submittedValue).subscribe(
+      (response) => {
+        this.toastr.success(
+          'An email is sent for withdrawal confirmation. Check your inbox',
+          'Confirmation required'
+        );
+      },
+      (errorResponse) => {
+        if (errorResponse.status === 400) {
+          const errors = errorResponse.error.errors;
+
+          for (const e of Object.keys(errors)) {
+            this.formsAllErrors.push(...errors[e]);
+          }
+        }
+      }
+    );
+  }
+
+  onSubmitWithdraw(
+    index: number,
+    submittedValue: any,
+    isCrypto: boolean = true
+  ): void {
+    if (isCrypto) {
+      this.onSubmitCryptoWithdraw(index, submittedValue);
+    } else {
+      this.onSubmitFiatWithdraw(index, submittedValue);
+    }
   }
 }

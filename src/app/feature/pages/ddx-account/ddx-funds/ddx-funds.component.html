@@ -162,7 +162,7 @@
           class="row-section deposit"
           [ngClass]="{ hidden: this.activePane !== i + '-deposit' }"
         >
-          <ng-template [ngIf]="row.crypto" [ngIfElse]="fiat">
+          <ng-template [ngIf]="row.crypto" [ngIfElse]="fiatDeposit">
             <mat-form-field
               id="deposit-address__container"
               appearance="outline"
@@ -203,8 +203,12 @@
               </li>
             </ul>
           </ng-template>
-          <ng-template #fiat>
-            <form #form="ngForm" class="deposit__fiat-form">
+          <ng-template #fiatDeposit>
+            <form
+              #form="ngForm"
+              class="deposit__fiat-form"
+              (ngSubmit)="onSubmitFiatDeposit(form.value)"
+            >
               <mat-label>
                 {{ 'funds.deposit.r2_fiat_select_card' | ddxLocale }}
               </mat-label>
@@ -213,15 +217,20 @@
                 class="card-selector__container"
               >
                 <mat-select
+                  name="bankAccountId"
+                  panelClass="card-selector-panel"
+                  [disabled]="bankAccounts.length === 0"
                   [value]="
                     bankAccounts.length > 0 ? bankAccounts[0].cardNumber : null
                   "
-                  [disabled]="bankAccounts.length === 0"
-                  panelClass="card-selector-panel"
+                  [ngModel]="
+                    bankAccounts.length > 0 ? bankAccounts[0].id : null
+                  "
+                  required
                 >
                   <mat-option
                     *ngFor="let item of bankAccounts"
-                    [value]="item.cardNumber"
+                    [value]="item.id"
                   >
                     {{ item.cardNumber }}
                   </mat-option>
@@ -264,6 +273,7 @@
                 color="primary"
                 type="submit"
                 class="deposit-button"
+                [disabled]="!form.valid"
               >
                 {{ 'funds.deposit.r2_fiat_deposit' | ddxLocale }}
               </button>
@@ -289,7 +299,7 @@
         >
           <form
             autocomplete="off"
-            (ngSubmit)="onSubmitWithdraw(i, form.value)"
+            (ngSubmit)="onSubmitWithdraw(i, form.value, row.crypto)"
             #form="ngForm"
           >
             <input
@@ -298,22 +308,69 @@
               [ngModel]="row.shortName"
               [value]="row.shortName"
             />
-            <mat-form-field
-              appearance="outline"
-              class="address-container withdraw-address__container"
-            >
-              <mat-label>{{ 'funds.withdraw.address' | ddxLocale }}</mat-label>
-              <input
-                type="text"
-                name="address"
-                id="address"
-                matInput
-                class="address-input"
-                [(ngModel)]="form.value.address"
-                required
-                #address="ngModel"
-              />
-            </mat-form-field>
+            <ng-template [ngIf]="row.crypto" [ngIfElse]="fiatWithdraw">
+              <mat-form-field
+                appearance="outline"
+                class="address-container withdraw-address__container"
+              >
+                <mat-label>{{
+                  'funds.withdraw.address' | ddxLocale
+                }}</mat-label>
+                <input
+                  type="text"
+                  name="address"
+                  id="address"
+                  matInput
+                  class="address-input"
+                  [(ngModel)]="form.value.address"
+                  required
+                  #address="ngModel"
+                />
+              </mat-form-field>
+            </ng-template>
+            <ng-template #fiatWithdraw>
+              <div class="withdraw-cards__container">
+                <mat-label>
+                  {{ 'funds.deposit.r2_fiat_select_card' | ddxLocale }}
+                </mat-label>
+                <mat-form-field
+                  appearance="outline"
+                  class="card-selector__container"
+                >
+                  <mat-select
+                    name="bankAccountId"
+                    panelClass="card-selector-panel"
+                    [disabled]="bankAccounts.length === 0"
+                    [value]="
+                      bankAccounts.length > 0 ? bankAccounts[0].id : null
+                    "
+                    [ngModel]="
+                      bankAccounts.length > 0 ? bankAccounts[0].id : null
+                    "
+                    required
+                  >
+                    <mat-option
+                      *ngFor="let item of bankAccounts"
+                      [value]="item.cardNumber"
+                    >
+                      {{ item.cardNumber }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <button
+                  class="card-selector__add-button"
+                  mat-raised-button
+                  color="accent"
+                  type="button"
+                  (click)="openAddBankAccountDialog(row.shortName)"
+                >
+                  <mat-icon>add</mat-icon>
+                  <span class="card-selector__button-text">{{
+                    'funds.deposit.r2_fiat_add_card' | ddxLocale
+                  }}</span>
+                </button>
+              </div>
+            </ng-template>
             <mat-form-field
               appearance="outline"
               class="withdraw-amount__container"
@@ -333,7 +390,7 @@
             </mat-form-field>
             <mat-form-field
               appearance="outline"
-              class="withdraw-amount__container"
+              class="withdraw-amount__container withdraw-2fa__container"
               *ngIf="hasTraderEnabledTwoFactor"
             >
               <mat-label>{{ 'funds.withdraw.2fa' | ddxLocale }}</mat-label>

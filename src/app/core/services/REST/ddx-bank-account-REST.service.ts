@@ -18,4 +18,27 @@ export class BankAccountRESTService extends AbstractRESTService {
       BankAccount.Model
     >;
   }
+
+  public requestDepositFiat(
+    data: BankAccount.DepositInitiateFormData
+  ): Observable<BankAccount.DepositInitiateResponse> {
+    return this.httpPOST(`api/Banking/initiate-deposit`, data) as Observable<
+      BankAccount.DepositInitiateResponse
+    >;
+  }
+
+  public requestDepositFiatVerify(
+    data: BankAccount.DepositVerifyData
+  ): Observable<any> {
+    return this.httpPOST(`api/Banking/verify-deposit`, data) as Observable<any>;
+  }
+
+  public requestWithdrawFiat(
+    data: BankAccount.WithdrawFormData
+  ): Observable<any> {
+    return this.httpPOST(
+      'api/Banking/fiat-withdraw-request',
+      data
+    ) as Observable<any>;
+  }
 }

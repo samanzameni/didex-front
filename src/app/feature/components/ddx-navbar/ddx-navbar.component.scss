@@ -51,6 +51,11 @@
     margin-inline-start: 45px;
   }
 
+  #locale-items {
+    display: flex;
+    flex-direction: column;
+  }
+
   .navbar__personal-info-item {
     font-size: 16px;
 

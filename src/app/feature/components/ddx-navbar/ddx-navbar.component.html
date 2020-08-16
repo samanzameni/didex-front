@@ -186,6 +186,8 @@
           </mat-expansion-panel-header>
 
           <a
+            class="expansion-panel__content"
+            id="locale-items"
             *ngFor="let item of availableLocales"
             (click)="onLocaleSelection(item.locale)"
           >

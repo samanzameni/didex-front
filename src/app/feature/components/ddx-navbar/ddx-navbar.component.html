@@ -42,6 +42,22 @@
       class="mobile-menu__container"
       *ngIf="isHamburgerMenuClicked; else desktopMenu"
     >
+      <div class="mobile-navbar__inner-container">
+        <a arrangeInline href="/">
+          <img
+            src="assets/images/logo-white-symbol.svg"
+            alt="didex symbol"
+            width="50px"
+          />
+
+          <span>Trade</span>
+        </a>
+
+        <button (click)="toggleMenu()" class="hamburger-menu">
+          <mat-icon aria-hidden="false" aria-label="mobile menu">menu</mat-icon>
+        </button>
+      </div>
+
       <mat-accordion>
         <mat-expansion-panel>
           <mat-expansion-panel-header>

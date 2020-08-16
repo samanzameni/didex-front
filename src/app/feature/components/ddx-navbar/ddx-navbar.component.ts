@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
+import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
+
 import { DropdownMenuItem } from '@widget/models';
 import { AuthService, TraderService } from '@core/services';
 import {
@@ -17,13 +19,15 @@ import { MatIconRegistry } from '@angular/material/icon';
 })
 export class NavbarComponent implements OnInit {
   public isHamburgerMenuClicked: boolean = false;
+  public innerWidth: any;
 
   constructor(
     private authService: AuthService,
     private traderService: TraderService,
     private localeService: LocaleService,
     iconRegistry: MatIconRegistry,
-    sanitizer: DomSanitizer
+    sanitizer: DomSanitizer,
+    public breakpointObserver: BreakpointObserver
   ) {
     iconRegistry.addSvgIcon(
       'product',
@@ -51,7 +55,11 @@ export class NavbarComponent implements OnInit {
     );
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    if (this.breakpointObserver.isMatched(`(min-width: ${this.innerWidth})`)) {
+      this.isHamburgerMenuClicked = false;
+    }
+  }
 
   get isAuthorized(): boolean {
     return this.authService.isAuthorized;
@@ -88,5 +96,13 @@ export class NavbarComponent implements OnInit {
 
   toggleMenu(): void {
     this.isHamburgerMenuClicked = !this.isHamburgerMenuClicked;
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onresize(event) {
+    this.innerWidth = window.innerWidth;
+    if (this.innerWidth > 640) {
+      this.isHamburgerMenuClicked = false;
+    }
   }
 }

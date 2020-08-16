@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
+import { LayoutModule } from '@angular/cdk/layout';
 
 import {
   NavbarComponent,
@@ -83,6 +84,7 @@ const routes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     InfiniteScrollModule,
+    LayoutModule,
     //
     MatMenuModule,
     MatIconModule,

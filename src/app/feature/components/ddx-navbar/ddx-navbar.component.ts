@@ -55,11 +55,7 @@ export class NavbarComponent implements OnInit {
     );
   }
 
-  ngOnInit() {
-    if (this.breakpointObserver.isMatched(`(min-width: ${this.innerWidth})`)) {
-      this.isHamburgerMenuClicked = false;
-    }
-  }
+  ngOnInit() {}
 
   get isAuthorized(): boolean {
     return this.authService.isAuthorized;
@@ -76,6 +72,11 @@ export class NavbarComponent implements OnInit {
 
   handleLocaleChange($event: Locale): void {
     this.localeService.changeLocale($event);
+    window.location.reload();
+  }
+
+  onLocaleSelection(selectedLanguage: Locale): void {
+    this.localeService.changeLocale(selectedLanguage);
     window.location.reload();
   }
 

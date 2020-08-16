@@ -184,8 +184,13 @@
               English
             </mat-panel-title>
           </mat-expansion-panel-header>
-          <p>chinese</p>
-          <p>russian</p>
+
+          <a
+            *ngFor="let item of availableLocales"
+            (click)="onLocaleSelection(item.locale)"
+          >
+            {{ item.caption }}
+          </a>
         </mat-expansion-panel>
       </mat-accordion>
       <button

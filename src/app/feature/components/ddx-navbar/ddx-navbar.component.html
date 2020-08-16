@@ -43,7 +43,7 @@
       *ngIf="isHamburgerMenuClicked; else desktopMenu"
     >
       <div class="mobile-navbar__inner-container">
-        <a arrangeInline href="/">
+        <a arrangeInline (click)="toggleMenu()" href="/">
           <img
             src="assets/images/logo-white-symbol.svg"
             alt="didex symbol"
@@ -72,15 +72,20 @@
             </mat-panel-title>
           </mat-expansion-panel-header>
           <a
+            (click)="toggleMenu()"
             mat-menu-item
             class="active expansion-panel__content"
             routerLink="/"
           >
             {{ 'navbar.trade' | ddxLocale }}
           </a>
-          <a mat-menu-item class="expansion-panel__content" href="/invest">{{
-            'navbar.invest' | ddxLocale
-          }}</a>
+          <a
+            (click)="toggleMenu()"
+            mat-menu-item
+            class="expansion-panel__content"
+            href="/invest"
+            >{{ 'navbar.invest' | ddxLocale }}</a
+          >
         </mat-expansion-panel>
         <mat-expansion-panel class="mat-elevation-z0">
           <mat-expansion-panel-header>
@@ -108,6 +113,7 @@
           >
 
           <a
+            (click)="toggleMenu()"
             mat-menu-item
             class="expansion-panel__content"
             routerLink="/user/settings"
@@ -115,6 +121,7 @@
             >{{ 'navbar.general_settings' | ddxLocale }}</a
           >
           <a
+            (click)="toggleMenu()"
             mat-menu-item
             class="expansion-panel__content"
             routerLink="/user/settings"
@@ -122,6 +129,7 @@
             >{{ 'navbar.security' | ddxLocale }}</a
           >
           <a
+            (click)="toggleMenu()"
             mat-menu-item
             class="expansion-panel__content"
             routerLink="/user/settings"
@@ -129,6 +137,7 @@
             >{{ 'navbar.2fa' | ddxLocale }}</a
           >
           <a
+            (click)="toggleMenu()"
             mat-menu-item
             class="expansion-panel__content"
             routerLink="/user/settings"
@@ -149,12 +158,14 @@
             </mat-panel-title>
           </mat-expansion-panel-header>
           <a
+            (click)="toggleMenu()"
             class="expansion-panel__content"
             mat-menu-item
             routerLink="/account/funds"
             >{{ 'navbar.funds' | ddxLocale }}</a
           >
           <a
+            (click)="toggleMenu()"
             class="expansion-panel__content"
             mat-menu-item
             routerLink="/account/reports"

@@ -63,6 +63,7 @@ export class NavbarComponent implements OnInit {
 
   requestSignOut(): void {
     this.authService.requestSignOut();
+    this.isHamburgerMenuClicked = false;
   }
 
   handleLocaleChange($event: Locale): void {

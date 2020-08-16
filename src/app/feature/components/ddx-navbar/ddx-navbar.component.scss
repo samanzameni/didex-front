@@ -13,11 +13,15 @@
   box-sizing: border-box;
   padding: 5px 15px;
 
-  .mat-accordion .mat-expansion-panel {
-    background-color: transparent;
+  .mat-flat-button {
+    padding: 0;
+    height: 48px;
+    font-size: 15px;
+    font-weight: 400;
   }
 
   .mat-accordion .mat-expansion-panel {
+    background-color: transparent;
     border-top: 1px solid $ddx-dark-lighter;
     border-bottom: 1px solid $ddx-dark-lighter;
     border-radius: 0;
@@ -27,8 +31,18 @@
     }
   }
 
-  .mat-expansion-panel-header-title {
-    align-items: center;
+  .mat-expansion-panel-header {
+    padding: 0;
+
+    .mat-expansion-panel-header-title {
+      align-items: center;
+      margin-right: 0;
+    }
+
+    ::ng-deep .mat-expansion-indicator {
+      padding-right: 10px;
+      padding-left: 10px;
+    }
   }
 
   .expansion-panel__content {
@@ -61,7 +75,7 @@
   }
 
   #sign-out__icon {
-    margin-inline-start: 8px;
+    margin-inline-start: 0px;
   }
 
   .mobile-menu__icon {
@@ -181,6 +195,8 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+
+            margin-bottom: 30px;
 
             a {
               height: 100%;

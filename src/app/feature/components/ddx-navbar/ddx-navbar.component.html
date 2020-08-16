@@ -287,24 +287,26 @@
       </ng-container>
 
       <ng-container *ngSwitchCase="false">
-        <a
-          class="auth-button"
-          routerLink="/external-redirect"
-          [queryParams]="{ redirect_url: '/auth/signin', from: '/trade' }"
-        >
-          <button mat-stroked-button>
-            {{ 'navbar.sign_in' | ddxLocale }}
-          </button>
-        </a>
-        <a
-          class="auth-button"
-          routerLink="/external-redirect"
-          [queryParams]="{ redirect_url: '/auth/signup', from: '/trade' }"
-        >
-          <button mat-stroked-button>
-            {{ 'navbar.sign_up' | ddxLocale }}
-          </button>
-        </a>
+        <div id="auth-buttons__container">
+          <a
+            class="auth-button"
+            routerLink="/external-redirect"
+            [queryParams]="{ redirect_url: '/auth/signin', from: '/trade' }"
+          >
+            <button mat-stroked-button>
+              {{ 'navbar.sign_in' | ddxLocale }}
+            </button>
+          </a>
+          <a
+            class="auth-button"
+            routerLink="/external-redirect"
+            [queryParams]="{ redirect_url: '/auth/signup', from: '/trade' }"
+          >
+            <button mat-stroked-button>
+              {{ 'navbar.sign_up' | ddxLocale }}
+            </button>
+          </a>
+        </div>
       </ng-container>
 
       <dropdown-menu icon="desktop-menu" [hasArrow]="false">

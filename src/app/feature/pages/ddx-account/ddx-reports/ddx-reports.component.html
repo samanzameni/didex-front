@@ -29,7 +29,7 @@
 <section class="page-content" [ngSwitch]="activePane">
   <ng-container *ngSwitchCase="'orders'">
     <ng-template
-      [ngIf]="orderData && orderData.data.length > 0"
+      [ngIf]="!!orderData && orderData.data.length > 0"
       [ngIfElse]="noOrderData"
     >
       <mat-table class="account-table" [dataSource]="orderData">

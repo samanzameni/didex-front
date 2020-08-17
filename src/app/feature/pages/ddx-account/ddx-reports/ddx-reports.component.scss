@@ -3,9 +3,10 @@
 :host {
   .page-header__panes {
     align-items: center;
+    padding-inline-start: 15px;
 
     button:not(:last-child) {
-      margin-right: 3px;
+      margin-inline-end: 3px;
     }
   }
 
@@ -36,6 +37,15 @@
 
     .mat-paginator {
       background: transparent;
+    }
+  }
+}
+
+@media screen and (min-width: $break-mobile) {
+  :host {
+    .page-header__panes {
+      padding-inline-start: 0;
+      padding-inline-end: 15px;
     }
   }
 }

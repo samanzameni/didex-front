@@ -177,6 +177,7 @@
       <mat-cell
         *matCellDef="let row; let i = dataIndex"
         [attr.colspan]="displayedColumns.length"
+        dir="{{ direction$ | async }}"
       >
         <div
           class="row-section deposit"
@@ -310,6 +311,7 @@
       <mat-cell
         *matCellDef="let row; let i = dataIndex"
         [attr.colspan]="displayedColumns.length"
+        dir="{{ direction$ | async }}"
       >
         <div
           class="row-section withdraw"
@@ -472,6 +474,7 @@
       <mat-cell
         *matCellDef="let row; let i = dataIndex"
         [attr.colspan]="displayedColumns.length"
+        dir="{{ direction$ | async }}"
         ><div
           class="row-section transfer"
           [ngClass]="{ hidden: this.activePane !== i + '-transfer' }"

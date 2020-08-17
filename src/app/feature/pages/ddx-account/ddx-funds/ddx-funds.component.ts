@@ -28,7 +28,7 @@ import {
   WalletAddress,
   BankAccount,
 } from '@core/models';
-import { combineLatest } from 'rxjs';
+import { combineLatest, Observable } from 'rxjs';
 import Decimal from 'decimal.js';
 import { copyToClipboard } from '@core/util/clipboard';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -40,7 +40,7 @@ import {
   animate,
 } from '@angular/animations';
 import { ToastrService } from 'ngx-toastr';
-import { TraderService } from '@core/services';
+import { TraderService, DirectionService } from '@core/services';
 import { LocalePipe } from '@feature/pipes/ddx-locale.pipe';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogAddBankAccountComponent } from '@feature/components/ddx-dialog-add-bank-account/ddx-dialog-add-bank-account.component';
@@ -97,7 +97,8 @@ export class FundsPageComponent implements OnInit, AfterViewInit {
     private localePipe: LocalePipe,
     private bankAccountService: BankAccountRESTService,
     private dialog: MatDialog,
-    private router: Router
+    private router: Router,
+    private directionService: DirectionService
   ) {
     this.currentActivePane = 'none';
     this.currentTransferType = BalanceTransferType.BankToExchange;
@@ -215,6 +216,10 @@ export class FundsPageComponent implements OnInit, AfterViewInit {
         .add(this.combinedData[i].main);
     });
     this.cdRef.detectChanges();
+  }
+
+  get direction$(): Observable<string> {
+    return this.directionService.direction$;
   }
 
   get sortSelectOptions(): DropdownSelectItem[] {

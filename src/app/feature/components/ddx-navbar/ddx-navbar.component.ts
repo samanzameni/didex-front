@@ -1,4 +1,11 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import {
+  Component,
+  HostListener,
+  ElementRef,
+  Renderer2,
+  AfterViewInit,
+  OnInit,
+} from '@angular/core';
 import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
 
 import { DropdownMenuItem } from '@widget/models';
@@ -17,7 +24,7 @@ import { MatIconRegistry } from '@angular/material/icon';
   templateUrl: './ddx-navbar.component.html',
   styleUrls: ['./ddx-navbar.component.scss'],
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent implements OnInit, AfterViewInit {
   public isHamburgerMenuClicked: boolean = false;
   public innerWidth: any;
 
@@ -27,7 +34,9 @@ export class NavbarComponent implements OnInit {
     private localeService: LocaleService,
     iconRegistry: MatIconRegistry,
     sanitizer: DomSanitizer,
-    public breakpointObserver: BreakpointObserver
+    public breakpointObserver: BreakpointObserver,
+    private el: ElementRef,
+    private renderer: Renderer2
   ) {
     iconRegistry.addSvgIcon(
       'product',
@@ -56,6 +65,10 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit() {}
+
+  ngAfterViewInit() {
+    this.renderer.setAttribute(this.el.nativeElement, 'dir', 'ltr');
+  }
 
   get isAuthorized(): boolean {
     return this.authService.isAuthorized;

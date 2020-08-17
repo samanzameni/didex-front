@@ -24,6 +24,7 @@ import datafeedConfig from './datafeed';
 import { applyTheme } from './theme';
 import { TradeSymbol, SymbolExternalSource } from '@core/models';
 import { BehaviorSubject, Subscription } from 'rxjs';
+import { LocaleService } from '@core/services/ddx-locale.service';
 
 @Component({
   selector: 'tv-chart-wrapper',
@@ -44,7 +45,11 @@ export class TradingViewChartWrapperComponent
 
   private symbolSubscription: Subscription;
 
-  constructor(private renderer: Renderer2, private cdRef: ChangeDetectorRef) {
+  constructor(
+    private renderer: Renderer2,
+    private cdRef: ChangeDetectorRef,
+    private localeService: LocaleService
+  ) {
     this.symbol$ = new BehaviorSubject(null);
     this.datafeedConfig = datafeedConfig;
   }
@@ -115,7 +120,7 @@ export class TradingViewChartWrapperComponent
       hide_legend: true,
       interval: '60',
       library_path: 'assets/charting_library/',
-      locale: 'en',
+      locale: this.localeService.currentLocale,
       save_image: false,
       symbol,
       theme: 'dark',

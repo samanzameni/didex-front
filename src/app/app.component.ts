@@ -5,7 +5,7 @@ import {
   DirectionService,
   Direction,
 } from '@core/services';
-import { LocaleService } from '@core/services/ddx-locale.service';
+import { LocaleService, Locale } from '@core/services/ddx-locale.service';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -27,5 +27,9 @@ export class AppComponent implements OnInit {
 
   get direction$(): Observable<Direction> {
     return this.directionService.direction$;
+  }
+
+  get locale$(): Observable<Locale> {
+    return this.localeService.locale$;
   }
 }

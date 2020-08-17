@@ -3,23 +3,11 @@
 @import 'assets/styles/constants';
 @import 'assets/styles/flags';
 @import 'assets/styles/segoe';
+@import 'assets/styles/shabnam';
 
 @import 'assets/styles/kit';
 
 body {
-  //TODO
-  &.en {
-    font-family: 'segoe';
-  }
-
-  &.ru {
-    font-family: nabakof;
-  }
-
-  &.zh {
-    font-family: 'ching chang choong';
-  }
-
   font-size: 12px;
   line-height: 14px !important;
   width: 100%;

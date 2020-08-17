@@ -8,6 +8,8 @@ import {
 
 import { Decimal } from 'decimal.js';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { DirectionService } from '@core/services';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'ddx-order-book',
@@ -23,11 +25,18 @@ export class OrderBookComponent implements OnInit {
 
   @Output() clickOnRecord: EventEmitter<OrderClickEventData>;
 
-  constructor(private snackbarService: MatSnackBar) {
+  constructor(
+    private snackbarService: MatSnackBar,
+    private directionService: DirectionService
+  ) {
     this.clickOnRecord = new EventEmitter();
   }
 
   ngOnInit(): void {}
+
+  get direction$(): Observable<string> {
+    return this.directionService.direction$;
+  }
 
   get bidsSumArray(): Decimal[] {
     const result: Decimal[] = [];

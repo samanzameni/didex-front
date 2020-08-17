@@ -37,6 +37,7 @@
   <ddx-market-form
     side="buy"
     id="buyActions"
+    dir="{{ direction$ | async }}"
     [activeType]="activeType"
     [activeSymbol]="activeSymbol"
     [activeOrder]="activeOrder"
@@ -47,6 +48,7 @@
   <ddx-market-form
     side="sell"
     id="sellActions"
+    dir="{{ direction$ | async }}"
     [activeType]="activeType"
     [activeSymbol]="activeSymbol"
     [activeOrder]="activeOrder"

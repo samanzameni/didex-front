@@ -58,10 +58,10 @@
           // @extend .caption-small;
 
           width: 50%;
-          text-align: left;
+          text-align: start;
 
           &:last-child {
-            text-align: right;
+            text-align: end;
           }
         }
       }

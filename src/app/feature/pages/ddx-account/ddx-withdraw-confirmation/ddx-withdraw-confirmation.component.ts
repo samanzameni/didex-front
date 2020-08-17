@@ -23,7 +23,7 @@ export class WithdrawConfirmationPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.queryParams.subscribe((params) => {
-      this.requestId = params.requestId;
+      this.requestId = parseInt(params.requestId, 10);
       this.token = params.token;
 
       this.bankingService

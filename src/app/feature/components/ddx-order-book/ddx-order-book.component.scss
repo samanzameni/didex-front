@@ -15,6 +15,7 @@
 
     .order-book-header__title {
       margin-bottom: 15px;
+      text-align: start;
     }
 
     .order-book-header__info {
@@ -23,6 +24,7 @@
 
       .info-section {
         flex: 1;
+        text-align: start;
 
         span {
           @extend .caption-small;

@@ -4,7 +4,11 @@
 
 <ng-template #content>
   <div arrangeStack class="order-book__header">
-    <h2 class="order-book-header__title" *ngIf="!!activeSymbol">
+    <h2
+      class="order-book-header__title"
+      *ngIf="!!activeSymbol"
+      dir="{{ direction$ | async }}"
+    >
       {{ 'homepage.order_book.title' | ddxLocale }}
       {{ activeSymbol.baseCurrencyShortName }}/{{
         activeSymbol.quoteCurrencyShortName
@@ -17,7 +21,12 @@
       *ngIf="!!activeSymbol"
       class="order-book-header__info"
     >
-      <div arrangeStack arrangeCenter class="info-section">
+      <div
+        arrangeStack
+        arrangeCenter
+        class="info-section"
+        dir="{{ direction$ | async }}"
+      >
         <h3>
           {{ 'homepage.order_book.buying' | ddxLocale }}
           {{ activeSymbol.baseCurrencyShortName }}
@@ -28,7 +37,12 @@
         >
       </div>
 
-      <div arrangeStack arrangeCenter class="info-section">
+      <div
+        arrangeStack
+        arrangeCenter
+        class="info-section"
+        dir="{{ direction$ | async }}"
+      >
         <h3>
           {{ 'homepage.order_book.selling' | ddxLocale }}
           {{ activeSymbol.baseCurrencyShortName }}

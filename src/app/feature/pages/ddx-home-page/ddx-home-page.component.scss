@@ -1,8 +1,8 @@
 @import '../../../../styles.scss';
 
 :host {
-  //I can't believe market form is fixed. I didn't do anything and it's fixed!
   display: grid;
+  direction: ltr;
   grid-template-columns: auto;
   grid-template-rows: repeat(6, fit-content);
   grid-template-areas:
@@ -52,6 +52,10 @@
       'market-section market-section'
       'order-book-section order-book-section'
       'my-orders-section sale-section';
+
+    section.sale-section {
+      margin-bottom: 0px;
+    }
   }
 }
 

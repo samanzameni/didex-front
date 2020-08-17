@@ -4,7 +4,7 @@
     [symbolExternalSources]="symbolExternalSources"
   ></tv-chart-wrapper>
 </section>
-<section class="instruments-section">
+<section dir="{{ direction$ | async }}" class="instruments-section">
   <ddx-instruments
     [symbolsData]="symbolsData"
     [tickerData]="tickerData"
@@ -27,7 +27,7 @@
     [orderBookData]="orderBookData"
   ></ddx-market>
 </section>
-<section class="my-orders-section">
+<section dir="{{ direction$ | async }}" class="my-orders-section">
   <ddx-trades
     [activeSymbol]="activeSymbol"
     [isAuthorized]="isAuthorized"
@@ -39,7 +39,7 @@
     (loadTradesNextPage)="loadNextPageForTrades()"
   ></ddx-trades>
 </section>
-<section class="sale-section">
+<section dir="{{ direction$ | async }}" class="sale-section">
   <ddx-time-and-sales
     [activeSymbol]="activeSymbol"
     [tradeData]="tradeData"

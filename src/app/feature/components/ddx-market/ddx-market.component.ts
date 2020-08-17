@@ -22,7 +22,8 @@ import {
   OrderClickEventData,
 } from '@core/models/ddx-order.model';
 import { DropdownSelectItem } from '@widget/models';
-import { AuthService } from '@core/services';
+import { AuthService, DirectionService } from '@core/services';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'ddx-market',
@@ -59,7 +60,8 @@ export class MarketComponent implements OnInit {
     private orderService: OrderRESTService,
     private authService: AuthService,
     private renderer: Renderer2,
-    private cdRef: ChangeDetectorRef
+    private cdRef: ChangeDetectorRef,
+    private directionService: DirectionService
   ) {
     this.currentActiveType = 'limit';
     this.sellFormErrors = {};
@@ -71,6 +73,10 @@ export class MarketComponent implements OnInit {
   }
 
   ngOnInit() {}
+
+  get direction$(): Observable<string> {
+    return this.directionService.direction$;
+  }
 
   private bidSorter(a: OrderBookRecord, b: OrderBookRecord): number {
     if (!a || !b) {

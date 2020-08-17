@@ -21,7 +21,8 @@ import {
   FilledOrderDATAService,
 } from '@core/services/DATA';
 import { PublicRESTService } from '@core/services/REST';
-import { TraderService, AuthService } from '@core/services';
+import { TraderService, AuthService, DirectionService } from '@core/services';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'ddx-home-page',
@@ -60,7 +61,8 @@ export class HomePageComponent implements OnInit {
     private orderDataService: OrderDATAService,
     private tradeDataService: TradeDATAService,
     private privateTradeDataService: PrivateTradeDATAService,
-    private filledOrderDataService: FilledOrderDATAService
+    private filledOrderDataService: FilledOrderDATAService,
+    private directionService: DirectionService
   ) {
     this.externalSources = [];
     publicService.requestSymbolSources().subscribe((response) => {
@@ -193,6 +195,10 @@ export class HomePageComponent implements OnInit {
 
   get isAuthorized(): boolean {
     return this.authService.isAuthorized;
+  }
+
+  get direction$(): Observable<string> {
+    return this.directionService.direction$;
   }
 
   loadNextPageForTimeAndSales(): void {

@@ -29,7 +29,9 @@
     "r2_fiat_add_form_card_number": "Card Number",
     "r2_fiat_add_form_iban": "IBAN",
     "r2_fiat_add_toast_title": "Bank Account",
-    "r2_fiat_add_toast_message": "Successfully added!"
+    "r2_fiat_add_toast_message": "Successfully added!",
+    "r2_fiat_kyc_needed_message": "To work with fiat currencies, first you have to verify your identity",
+    "r2_fiat_kyc_needed_button": "Verify Identity"
   },
 
   "withdraw": {

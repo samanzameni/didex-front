@@ -34,9 +34,35 @@
     }
   }
 
+  .funds__alerts {
+    .funds__alert-item {
+      width: calc(100% - 14px);
+      margin: 7px;
+      padding: 7px;
+      box-sizing: border-box;
+      border-radius: 4px;
+      border: 1px solid $ddx-yellow;
+      background: rgba($ddx-yellow, 0.2);
+
+      display: flex;
+      align-content: center;
+      justify-content: center;
+
+      p {
+        color: $ddx-light;
+        text-shadow: 0 0 2px $ddx-yellow;
+        text-align: center;
+      }
+    }
+  }
+
   .funds__actions {
     justify-content: space-evenly;
     width: 100%;
+
+    .funds__action-verify {
+      line-height: 28px;
+    }
 
     .funds__action-button {
       width: 16px;
@@ -356,6 +382,10 @@
     .funds__actions {
       justify-content: space-evenly;
       width: 100%;
+
+      .funds__action-verify {
+        line-height: 36px;
+      }
 
       .funds__action-button {
         width: 25px;

@@ -78,6 +78,10 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     return this.authService.decodedToken?.email || '';
   }
 
+  public translate(msg: string): string {
+    return this.localeService.getMessage(msg);
+  }
+
   requestSignOut(): void {
     this.authService.requestSignOut();
     this.isHamburgerMenuClicked = false;

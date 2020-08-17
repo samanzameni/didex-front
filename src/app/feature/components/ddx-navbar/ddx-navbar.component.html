@@ -230,7 +230,11 @@
       </mat-form-field>
 
       <ng-container *ngSwitchCase="true">
-        <dropdown-menu title="Account" icon="account" [hasArrow]="true">
+        <dropdown-menu
+          title="{{ 'navbar.account' | ddxLocale }}"
+          icon="account"
+          [hasArrow]="true"
+        >
           <a mat-menu-item routerLink="/account/funds">{{
             'navbar.funds' | ddxLocale
           }}</a>
@@ -239,7 +243,11 @@
           }}</a>
         </dropdown-menu>
 
-        <dropdown-menu title="Profile" icon="profile" [hasArrow]="true">
+        <dropdown-menu
+          title="{{ 'navbar.profile' | ddxLocale }}"
+          icon="profile"
+          [hasArrow]="true"
+        >
           <span mat-menu-item disabled class="navbar__personal-info-item"
             >{{ 'navbar.hello' | ddxLocale }}, {{ personalInfo }}</span
           >

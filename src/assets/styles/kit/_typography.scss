@@ -128,10 +128,12 @@ p {
 
   @include mat-checkbox-typography($custom-typography);
   @include angular-material-typography($custom-typography);
-  @include mat-core($custom-typography);
 
-  .mat-checkbox-layout .mat-checkbox-label {
-    $font-family: 'segoe';
+  mat-label,
+  .formatted-tooltip,
+  .mat-checkbox-layout,
+  ::ng-deep mat-label {
+    font-family: 'segoe';
   }
 }
 
@@ -142,9 +144,11 @@ p {
 
   @include mat-checkbox-typography($custom-typography);
   @include angular-material-typography($custom-typography);
-  @include mat-core($custom-typography);
 
-  .mat-checkbox-layout .mat-checkbox-label {
-    $font-family: 'shabnam';
+  mat-label,
+  .formatted-tooltip,
+  .mat-checkbox-layout,
+  ::ng-deep mat-label {
+    font-family: 'shabnam';
   }
 }

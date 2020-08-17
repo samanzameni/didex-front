@@ -3,12 +3,13 @@ import { FormGroup, FormBuilder, Validators, NgForm } from '@angular/forms';
 import { DropdownSelectItem } from '@widget/models';
 import { TIMEZONES } from '@core/util/constants';
 import { mustMatch, isStrong } from '@core/util/validators';
-import { TraderService } from '@core/services';
+import { TraderService, DirectionService } from '@core/services';
 import { Trader } from '@core/models';
 import { TraderRESTService, AuthRESTService } from '@core/services/REST';
 import { ProButtonComponent } from '@widget/components';
 import { ActivatedRoute } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'ddx-settings-page',
@@ -34,7 +35,8 @@ export class SettingsPageComponent implements OnInit {
     private restService: TraderRESTService,
     private authRestService: AuthRESTService,
     private route: ActivatedRoute,
-    private snackbarService: MatSnackBar
+    private snackbarService: MatSnackBar,
+    private directionService: DirectionService
   ) {
     this.isPasswordHidden = true;
     this.activePage = 'general';
@@ -103,6 +105,10 @@ export class SettingsPageComponent implements OnInit {
   ngOnInit() {
     this.buildGeneralForm();
     this.buildSecurityForm();
+  }
+
+  get direction$(): Observable<string> {
+    return this.directionService.direction$;
   }
 
   get currentActivePage(): string {

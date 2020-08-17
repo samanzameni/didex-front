@@ -50,6 +50,7 @@
       [formGroup]="generalFormGroup"
       (ngSubmit)="onSubmitGeneralForm()"
       #generalForm="ngForm"
+      dir="{{ direction$ | async }}"
     >
       <mat-form-field appearance="outline">
         <mat-label>{{ 'settings.general.nickname' | ddxLocale }}</mat-label>
@@ -92,6 +93,7 @@
       [formGroup]="securityFormGroup"
       (ngSubmit)="onSubmitSecurityForm()"
       #securityForm="ngForm"
+      dir="{{ direction$ | async }}"
     >
       <mat-form-field appearance="outline">
         <mat-label>{{
@@ -222,7 +224,10 @@
         {{ 'settings.2fa.disable_title' | ddxLocale }}
       </h4>
 
-      <ddx-settings-qr-form mode="remove"></ddx-settings-qr-form>
+      <ddx-settings-qr-form
+        mode="remove"
+        dir="{{ direction$ | async }}"
+      ></ddx-settings-qr-form>
     </ng-template>
     <ng-template #enableTwoFactor>
       <h4 class="settings-page__subtitle">
@@ -239,7 +244,7 @@
     [ngSwitch]="currentTraderStatus"
   >
     <ng-container *ngSwitchCase="'newbie'">
-      <div class="parent-container">
+      <div class="parent-container" dir="{{ direction$ | async }}">
         <div class="kyc-content__container">
           <img id="image" src="assets/images/kyc-newbie.svg" alt="newbie" />
           <p id="description" class="settings-page__info">
@@ -257,7 +262,7 @@
       </div>
     </ng-container>
     <ng-container *ngSwitchCase="'sent'">
-      <div class="parent-container">
+      <div class="parent-container" dir="{{ direction$ | async }}">
         <div class="kyc-content__container">
           <img src="assets/images/kyc-sent.svg" alt="sent" />
           <p class="settings-page__info">
@@ -286,7 +291,7 @@
       </div>
     </ng-container>
     <ng-container *ngSwitchCase="'approved'">
-      <div class="parent-container">
+      <div class="parent-container" dir="{{ direction$ | async }}">
         <div class="kyc-content__container">
           <img src="assets/images/kyc-approved.svg" alt="approved" />
           <p class="settings-page__info">
@@ -310,7 +315,7 @@
       </div>
     </ng-container>
     <ng-container *ngSwitchCase="'banned'">
-      <div class="parent-container">
+      <div class="parent-container" dir="{{ direction$ | async }}">
         <div class="kyc-content__container">
           <img src="assets/images/kyc-banned.svg" alt="banned" />
           <p class="settings-page__info">
@@ -329,7 +334,7 @@
     </ng-container>
 
     <ng-container *ngSwitchCase="'rejected'">
-      <div class="parent-container">
+      <div class="parent-container" dir="{{ direction$ | async }}">
         <div class="kyc-content__container">
           <img src="assets/images/kyc-rejected.svg" alt="rejected" />
           <p class="settings-page__info">

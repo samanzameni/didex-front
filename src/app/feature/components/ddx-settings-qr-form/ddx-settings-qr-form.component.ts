@@ -4,7 +4,8 @@ import { TwoFactorQRData, TwoFactorData } from '@core/models';
 import { ProButtonComponent } from '@widget/components';
 import { MatDialog } from '@angular/material/dialog';
 import { SettingsQrRecoveryPopupComponent } from '../ddx-settings-qr-recovery-popup/ddx-settings-qr-recovery-popup.component';
-import { TraderService } from '@core/services';
+import { TraderService, DirectionService } from '@core/services';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'ddx-settings-qr-form',
@@ -24,6 +25,7 @@ export class SettingsQRFormComponent implements OnInit {
   constructor(
     private restService: AuthRESTService,
     private traderService: TraderService,
+    private directionService: DirectionService,
     public dialog: MatDialog
   ) {
     this.isLoading = false;
@@ -38,6 +40,10 @@ export class SettingsQRFormComponent implements OnInit {
         this.isLoading = false;
       });
     }
+  }
+
+  get direction$(): Observable<string> {
+    return this.directionService.direction$;
   }
 
   get qrData(): TwoFactorQRData {

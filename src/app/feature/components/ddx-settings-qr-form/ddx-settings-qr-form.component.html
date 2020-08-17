@@ -33,6 +33,7 @@
           autocomplete="off"
           arrangeStack
           (ngSubmit)="submitEnableForm(enableForm.value)"
+          dir="{{ direction$ | async }}"
         >
           <mat-form-field appearance="outline">
             <mat-label>{{
@@ -75,6 +76,7 @@
           autocomplete="off"
           arrangeStack
           (ngSubmit)="submitDisableForm(disableForm.value)"
+          dir="{{ direction$ | async }}"
         >
           <mat-form-field appearance="outline">
             <mat-label>{{

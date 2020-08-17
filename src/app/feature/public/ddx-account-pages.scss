@@ -20,8 +20,9 @@ $page-margin: 5px;
 
     h2 {
       width: 100%;
-      text-align: left;
+      text-align: start;
       margin-bottom: 10px;
+      padding-inline-start: 15px;
     }
 
     .page-header__items {
@@ -158,8 +159,6 @@ $page-margin: 5px;
 
 @media screen and (min-width: $break-mobile) {
   :host {
-    padding: 15px;
-
     .page-header {
       flex-direction: row;
       justify-content: space-between;

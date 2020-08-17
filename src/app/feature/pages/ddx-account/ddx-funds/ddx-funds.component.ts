@@ -81,6 +81,8 @@ export class FundsPageComponent implements OnInit, AfterViewInit {
 
   private _bankAccounts: BankAccount.Model[];
 
+  private _isKycApproved: boolean;
+
   @ViewChild('withdrawButton') withdrawButton: ElementRef;
   @ViewChild('transferButton') transferButton: ElementRef;
 
@@ -113,9 +115,12 @@ export class FundsPageComponent implements OnInit, AfterViewInit {
     this.formsAllErrors = [];
 
     this._bankAccounts = [];
+
+    this._isKycApproved = false;
   }
 
   ngOnInit(): void {
+    this._isKycApproved = this.traderService.hasKYCApproved;
     this.updateData();
   }
 
@@ -144,52 +149,72 @@ export class FundsPageComponent implements OnInit, AfterViewInit {
         })
       );
 
-    const dataFetcher$ = combineLatest([
-      bankingBalance$,
-      tradingBalance$,
-      currency$,
-      bankAccounts$,
-    ]);
+    if (this._isKycApproved) {
+      const dataFetcher$ = combineLatest([
+        bankingBalance$,
+        tradingBalance$,
+        currency$,
+        bankAccounts$,
+      ]);
 
-    dataFetcher$.subscribe(
-      ([b, t, c, a]) => {
-        this.bankingBalanceData = b;
-        this.tradingBalanceData = t;
-        this.currenciesData = c;
-        this._bankAccounts = a;
+      dataFetcher$.subscribe(
+        ([b, t, c, a]) => {
+          this._bankAccounts = a;
+          this.mergeData(b, t, c);
+        },
+        (errorResponse) => {
+          this.cdRef.detectChanges();
+        }
+      );
+    } else {
+      const dataFetcher$ = combineLatest([
+        bankingBalance$,
+        tradingBalance$,
+        currency$,
+      ]);
 
-        this.combinedData = Array.from(this.currenciesData);
-        this.combinedData.forEach((currency, i) => {
-          this.combinedData[i].available = new Decimal(0);
-          this.combinedData[i].reserved = new Decimal(0);
-          this.combinedData[i].main = new Decimal(0);
+      dataFetcher$.subscribe(
+        ([b, t, c]) => {
+          this.mergeData(b, t, c);
+        },
+        (errorResponse) => {
+          this.cdRef.detectChanges();
+        }
+      );
+    }
+  }
 
-          this.bankingBalanceData.forEach((balance) => {
-            if (currency.shortName.trim() === balance.currency.trim()) {
-              this.combinedData[i].main = new Decimal(balance.available);
-              return;
-            }
-          });
+  private mergeData(b, t, c): void {
+    this.bankingBalanceData = b;
+    this.tradingBalanceData = t;
+    this.currenciesData = c;
 
-          this.tradingBalanceData.forEach((balance) => {
-            if (currency.shortName.trim() === balance.currency.trim()) {
-              this.combinedData[i].available = new Decimal(balance.available);
-              this.combinedData[i].reserved = new Decimal(balance.reserved);
-              return;
-            }
-          });
+    this.combinedData = Array.from(this.currenciesData);
+    this.combinedData.forEach((currency, i) => {
+      this.combinedData[i].available = new Decimal(0);
+      this.combinedData[i].reserved = new Decimal(0);
+      this.combinedData[i].main = new Decimal(0);
 
-          this.combinedData[i].total = this.combinedData[i].available
-            .add(this.combinedData[i].reserved)
-            .add(this.combinedData[i].main);
-        });
+      this.bankingBalanceData.forEach((balance) => {
+        if (currency.shortName.trim() === balance.currency.trim()) {
+          this.combinedData[i].main = new Decimal(balance.available);
+          return;
+        }
+      });
 
-        this.cdRef.detectChanges();
-      },
-      (errorResponse) => {
-        this.cdRef.detectChanges();
-      }
-    );
+      this.tradingBalanceData.forEach((balance) => {
+        if (currency.shortName.trim() === balance.currency.trim()) {
+          this.combinedData[i].available = new Decimal(balance.available);
+          this.combinedData[i].reserved = new Decimal(balance.reserved);
+          return;
+        }
+      });
+
+      this.combinedData[i].total = this.combinedData[i].available
+        .add(this.combinedData[i].reserved)
+        .add(this.combinedData[i].main);
+    });
+    this.cdRef.detectChanges();
   }
 
   get sortSelectOptions(): DropdownSelectItem[] {
@@ -246,6 +271,10 @@ export class FundsPageComponent implements OnInit, AfterViewInit {
 
   get bankAccounts(): BankAccount.Model[] {
     return this._bankAccounts;
+  }
+
+  get isKycApproved(): boolean {
+    return this._isKycApproved;
   }
 
   mapColumnToHeader(columnName: string): string {

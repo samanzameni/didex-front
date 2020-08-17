@@ -5,7 +5,7 @@ import {
   Renderer2,
   ViewChild,
 } from '@angular/core';
-import { interval, timer } from 'rxjs';
+import { interval, timer, Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { KYCPageDirective } from '@feature/templates';
@@ -13,7 +13,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { TraderRESTService } from '@core/services/REST';
 import { CONSTANTS, COUNTRIES } from '@core/util/constants';
 import { secondsToTime } from '@core/util/time';
-import { TraderService } from '@core/services';
+import { TraderService, DirectionService } from '@core/services';
 import { DropdownSelectItem } from '@widget/models';
 
 @Component({
@@ -41,7 +41,8 @@ export class KYCPhoneVerificationPageComponent extends KYCPageDirective
     protected renderer: Renderer2,
     protected formBuilder: FormBuilder,
     protected traderService: TraderService,
-    private restService: TraderRESTService
+    private restService: TraderRESTService,
+    private directionService: DirectionService
   ) {
     super(router, el, renderer, formBuilder, traderService);
     this.renderer.addClass(this.el.nativeElement, 'kyc-form');
@@ -86,6 +87,10 @@ export class KYCPhoneVerificationPageComponent extends KYCPageDirective
     });
   }
 
+  get direction$(): Observable<string> {
+    return this.directionService.direction$;
+  }
+
   get countriesList(): DropdownSelectItem[] {
     return this.countries;
   }
@@ -117,22 +122,22 @@ export class KYCPhoneVerificationPageComponent extends KYCPageDirective
   }
 
   onSubmitNumber(): void {
-    this.startCountdown();
-    const numbetButton =
+    const numberButton =
       this.submitNumberButton.nativeElement ||
       this.submitNumberButton._elementRef.nativeElement;
 
-    this.renderer.addClass(numbetButton, 'is-loading');
+    this.renderer.addClass(numberButton, 'is-loading');
 
     const { code, ...dataToSend } = this.kycForm.value;
 
     this.restService.requestSendConfirmationMobileNumber(dataToSend).subscribe(
       (response) => {
-        this.renderer.removeClass(numbetButton, 'is-loading');
         this.hasSubmittedMobileNumber = true;
+        this.renderer.removeClass(numberButton, 'is-loading');
+        this.startCountdown();
       },
       (errorResponse) => {
-        this.renderer.removeClass(numbetButton, 'is-loading');
+        this.renderer.removeClass(numberButton, 'is-loading');
       }
     );
   }

@@ -9,6 +9,7 @@
     [formGroup]="kycFormGroup"
     (ngSubmit)="onSubmit()"
     #form="ngForm"
+    dir="{{ direction$ | async }}"
   >
     <p class="description">
       {{ 'kyc.phone_verification.description' | ddxLocale }}
@@ -39,6 +40,7 @@
         matInput
         name="mobileNumber"
         formControlName="mobileNumber"
+        dir="ltr"
       />
       <mat-error
         *ngIf="kycFormGroup.controls.mobileNumber.hasError('required')"

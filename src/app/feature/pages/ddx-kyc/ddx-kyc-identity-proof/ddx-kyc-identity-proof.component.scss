@@ -17,7 +17,7 @@
       }
       ul.documents {
         list-style: none;
-        padding-left: 10px;
+        padding-inline-start: 10px;
         margin-bottom: 5px;
 
         li.document {
@@ -31,7 +31,14 @@
             display: flex;
             position: absolute;
             top: 0;
-            left: -10px;
+
+            .rtl & {
+              right: -10px;
+            }
+
+            .ltr & {
+              left: -10px;
+            }
           }
         }
       }

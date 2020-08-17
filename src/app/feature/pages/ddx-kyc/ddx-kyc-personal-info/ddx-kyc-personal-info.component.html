@@ -9,6 +9,7 @@
     [formGroup]="kycFormGroup"
     (ngSubmit)="onSubmit()"
     #form="ngForm"
+    dir="{{ direction$ | async }}"
   >
     <p class="description">
       {{ 'kyc.personal_information.description' | ddxLocale }}

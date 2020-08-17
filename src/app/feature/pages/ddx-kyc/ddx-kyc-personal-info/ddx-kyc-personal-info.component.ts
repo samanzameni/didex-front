@@ -5,7 +5,8 @@ import { DropdownSelectItem } from '@widget/models';
 import { FormBuilder, Validators } from '@angular/forms';
 import { KYCPageDirective } from '@feature/templates';
 import { TraderRESTService } from '@core/services/REST';
-import { TraderService } from '@core/services';
+import { TraderService, DirectionService } from '@core/services';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'ddx-kyc-personal-info',
@@ -26,7 +27,8 @@ export class KYCPersonalInfoPageComponent extends KYCPageDirective
     protected renderer: Renderer2,
     protected formBuilder: FormBuilder,
     protected traderService: TraderService,
-    private restService: TraderRESTService
+    private restService: TraderRESTService,
+    private directionService: DirectionService
   ) {
     super(router, el, renderer, formBuilder, traderService);
     this.formErrors = {};
@@ -94,6 +96,10 @@ export class KYCPersonalInfoPageComponent extends KYCPageDirective
   hideError() {
     //this method toggles the dateOfBirth error visibility
     this.flag = true;
+  }
+
+  get direction$(): Observable<string> {
+    return this.directionService.direction$;
   }
 
   get countriesList(): DropdownSelectItem[] {

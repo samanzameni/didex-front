@@ -28,6 +28,7 @@ export interface TraderPersonalInformation {
   countryCode: string;
   zipCode: string;
   city: string;
+  nationalCode?: string;
 }
 
 export interface TraderGeneralInformation {

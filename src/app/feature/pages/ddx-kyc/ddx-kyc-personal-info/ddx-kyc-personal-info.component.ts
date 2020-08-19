@@ -5,7 +5,7 @@ import { DropdownSelectItem } from '@widget/models';
 import { FormBuilder, Validators } from '@angular/forms';
 import { KYCPageDirective } from '@feature/templates';
 import { TraderRESTService } from '@core/services/REST';
-import { TraderService, DirectionService } from '@core/services';
+import { TraderService, DirectionService, AuthService } from '@core/services';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -28,7 +28,8 @@ export class KYCPersonalInfoPageComponent extends KYCPageDirective
     protected formBuilder: FormBuilder,
     protected traderService: TraderService,
     private restService: TraderRESTService,
-    private directionService: DirectionService
+    private directionService: DirectionService,
+    private authService: AuthService
   ) {
     super(router, el, renderer, formBuilder, traderService);
     this.formErrors = {};
@@ -79,6 +80,12 @@ export class KYCPersonalInfoPageComponent extends KYCPageDirective
         trader.personalInformation ? trader.personalInformation.city : '',
         [Validators.required, Validators.maxLength(50)],
       ],
+      nationalCode: [
+        trader.personalInformation
+          ? trader.personalInformation.nationalCode
+          : '',
+        this.isTraderInRegionTwo ? [Validators.required] : [],
+      ],
       addressLine1: [
         trader.personalInformation
           ? trader.personalInformation.addressLine1
@@ -108,6 +115,10 @@ export class KYCPersonalInfoPageComponent extends KYCPageDirective
 
   get errors(): any {
     return this.formErrors;
+  }
+
+  get isTraderInRegionTwo(): boolean {
+    return this.authService.decodedToken?.region === '2';
   }
 
   onSubmit(): void {

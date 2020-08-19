@@ -1,10 +1,41 @@
 @import '../../../../../styles.scss';
 
 :host {
+  #firstName {
+    grid-area: firstName;
+  }
+  #lastName {
+    grid-area: lastName;
+  }
+  #dateOfBirth {
+    grid-area: dateOfBirth;
+  }
+  #birthCountry {
+    grid-area: birthCountry;
+  }
+  #zipCode {
+    grid-area: zipCode;
+  }
+  #country {
+    grid-area: country;
+  }
+  #city {
+    grid-area: city;
+  }
+  #nationalCode {
+    grid-area: nationalCode;
+  }
+  #addressLine1 {
+    grid-area: addressLine1;
+  }
+  #addressLine2 {
+    grid-area: addressLine2;
+  }
+
   form {
     grid-template-rows: repeat(8, max-content) auto;
     grid-template-columns: 100%;
-    row-gap: 15px;
+    row-gap: 5px;
     grid-template-areas:
       'description'
       'firstName'
@@ -18,37 +49,30 @@
       'addressLine2'
       'actions';
 
-    #firstName {
-      grid-area: firstName;
-    }
-    #lastName {
-      grid-area: lastName;
-    }
-    #dateOfBirth {
-      grid-area: dateOfBirth;
-    }
-    #birthCountry {
-      grid-area: birthCountry;
-    }
-    #zipCode {
-      grid-area: zipCode;
-    }
-    #country {
-      grid-area: country;
-    }
-    #city {
-      grid-area: city;
-    }
-    #addressLine1 {
-      grid-area: addressLine1;
-    }
-    #addressLine2 {
-      grid-area: addressLine2;
-    }
-
     .mat-error,
     ::ng-deep .mat-error {
-      margin: 13px 0;
+      margin: 0;
+    }
+  }
+
+  .trader-on-region-two {
+    form {
+      grid-template-rows: repeat(9, max-content) auto;
+      grid-template-columns: 100%;
+      row-gap: 5px;
+      grid-template-areas:
+        'description'
+        'firstName'
+        'lastName'
+        'dateOfBirth'
+        'birthCountry'
+        'country'
+        'city'
+        'zipCode'
+        'nationalCode'
+        'addressLine1'
+        'addressLine2'
+        'actions';
     }
   }
 }
@@ -66,6 +90,21 @@
         'addressLine1 addressLine1'
         'zipCode addressLine2'
         '. actions';
+    }
+
+    .trader-on-region-two {
+      form {
+        grid-template-rows: repeat(6, max-content) auto;
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas:
+          'description description'
+          'firstName lastName'
+          'dateOfBirth birthCountry'
+          'country city'
+          'nationalCode zipCode'
+          'addressLine1 addressLine2'
+          '. actions';
+      }
     }
   }
 }

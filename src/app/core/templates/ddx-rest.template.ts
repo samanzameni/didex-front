@@ -1,5 +1,6 @@
 import { HttpHeaders, HttpClient, HttpRequest } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import * as jwtDecode from 'jwt-decode';
 
 import { StorageService } from '@core/services/ddx-storage.service';
 import { LocaleService } from '@core/services/ddx-locale.service';
@@ -10,6 +11,7 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export abstract class AbstractRESTService {
   private userAccessToken: string;
+  private region: string;
   protected baseURL: string;
 
   constructor(
@@ -22,6 +24,7 @@ export abstract class AbstractRESTService {
       : CONSTANTS.MOCK_SERVER_URL;
 
     this.userAccessToken = this.storageService.getUserAccessToken();
+    this.region = this.userAccessToken ? jwtDecode(this.userAccessToken) : '1';
   }
 
   /**
@@ -84,6 +87,16 @@ export abstract class AbstractRESTService {
   }
 
   /**
+   * Sends a GET request with custom headers
+   *
+   */
+  protected httpPublicGET(url: string): Observable<any> {
+    return this.http.get(this.baseURL + url, {
+      headers: this.getPublicHeaders(),
+    });
+  }
+
+  /**
    * Sends a POST request with custom headers
    *
    */
@@ -139,20 +152,47 @@ export abstract class AbstractRESTService {
    */
   private getFullHeaders(): HttpHeaders {
     this.userAccessToken = this.storageService.getUserAccessToken();
+    this.region = this.determineRegion();
     const headers = new HttpHeaders({
       Authorization: 'Bearer ' + this.userAccessToken,
       'Content-Type': 'application/json; charset=utf-8',
       'Accept-Language': this.localeService.currentLocale,
+      'Accept-Region': this.region,
     });
     return headers;
   }
 
   private getAuthHeaders(): HttpHeaders {
     this.userAccessToken = this.storageService.getUserAccessToken();
+    this.region = this.determineRegion();
     const headers = new HttpHeaders({
       Authorization: 'Bearer ' + this.userAccessToken,
       'Accept-Language': this.localeService.currentLocale,
+      'Accept-Region': this.region,
     });
     return headers;
+  }
+
+  private getPublicHeaders(): HttpHeaders {
+    this.userAccessToken = this.storageService.getUserAccessToken();
+    this.region = this.determineRegion();
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json; charset=utf-8',
+      'Accept-Language': this.localeService.currentLocale,
+      'Accept-Region': this.region,
+    });
+    return headers;
+  }
+
+  private determineRegion(): string {
+    if (this.userAccessToken) {
+      return jwtDecode(this.userAccessToken).region;
+    } else {
+      if (window.location.hostname.endsWith('.ir')) {
+        return '2';
+      } else {
+        return '1';
+      }
+    }
   }
 }

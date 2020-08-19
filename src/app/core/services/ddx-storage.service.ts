@@ -10,9 +10,9 @@ export class StorageService {
   constructor() {}
 
   public getUserAccessToken(): string {
-    return environment.production
-      ? localStorage.getItem('didexAccessToken')
-      : CONSTANTS.DEV_ACCESS_TOKEN;
+    return !environment.production && window.location.hostname === 'localhost'
+      ? CONSTANTS.DEV_ACCESS_TOKEN
+      : localStorage.getItem('didexAccessToken');
   }
 
   public setUserAccessToken(tokenData: AuthTokenData): void {

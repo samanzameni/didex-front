@@ -1,5 +1,5 @@
 <div class="logo__container">
-  <a arrangeInline href="/">
+  <a arrangeInline routerLink="/">
     <img
       src="assets/images/logo-white-symbol.svg"
       alt="didex symbol"
@@ -318,12 +318,8 @@
       </ng-container>
 
       <dropdown-menu icon="desktop-menu" [hasArrow]="false">
-        <a mat-menu-item class="active" routerLink="/">{{
-          'navbar.trade' | ddxLocale
-        }}</a>
-        <!-- TODO: URL -->
-        <!-- <a mat-menu-item routerLink="/">Academy</a> -->
-        <!-- TODO: URL -->
+        <a mat-menu-item href="/">{{ 'navbar.home' | ddxLocale }}</a>
+        <a mat-menu-item href="/trade">{{ 'navbar.trade' | ddxLocale }}</a>
         <a mat-menu-item href="/invest">{{ 'navbar.invest' | ddxLocale }}</a>
       </dropdown-menu>
     </ng-template>

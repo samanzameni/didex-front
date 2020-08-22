@@ -385,6 +385,8 @@ export class FundsPageComponent implements OnInit, AfterViewInit {
   onSubmitFiatDeposit(
     submittedValue: BankAccount.DepositInitiateFormData
   ): void {
+    this.formsAllErrors = [];
+
     this.bankAccountService.requestDepositFiat(submittedValue).subscribe(
       (response) => {
         this.router.navigateByUrl(
@@ -394,7 +396,13 @@ export class FundsPageComponent implements OnInit, AfterViewInit {
         );
       },
       (errorResponse) => {
-        console.error(errorResponse);
+        if (errorResponse.status === 400) {
+          const errors = errorResponse.error.errors;
+
+          for (const e of Object.keys(errors)) {
+            this.formsAllErrors.push(...errors[e]);
+          }
+        }
       }
     );
   }

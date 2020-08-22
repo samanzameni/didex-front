@@ -175,13 +175,12 @@ export class TradingViewChartWrapperComponent
 
     this.tvWidget = new widget(widgetOptions);
 
-    this.tvWidget.onChartReady(() => {
+    setTimeout(() => {
       applyTheme();
-
-      setTimeout(() => {
-        renderer.addClass(spinner, 'hidden');
-        cdRef.detectChanges();
-      }, 100);
-    });
+      renderer.addClass(spinner, 'hidden');
+      cdRef.detectChanges();
+    }, 1000);
+    //           this.tvWidget.onChartReady(() => {
+    // });
   }
 }

@@ -302,6 +302,9 @@
                 {{ 'funds.deposit.r2_fiat_tips' | ddxLocale }}
               </li>
             </ul>
+            <div *ngIf="!!allErrors" arrangeStack style="width: 100%;">
+              <mat-error *ngFor="let error of allErrors">{{ error }}</mat-error>
+            </div>
           </ng-template>
         </div>
       </mat-cell>

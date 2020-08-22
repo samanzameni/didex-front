@@ -36,6 +36,7 @@
     "hash": " Hash ",
     "amount": "مقدار",
     "fee": "کارمزد",
-    "address": "آدرس"
+    "address": "آدرس",
+    "status": "وضعیت"
   }
 }

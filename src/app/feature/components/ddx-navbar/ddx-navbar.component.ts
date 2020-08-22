@@ -88,20 +88,20 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   }
 
   handleLocaleChange($event: Locale): void {
-    this.localeService.changeLocale($event);
+    this.localeService.changeLocale($event, true);
     window.location.reload();
   }
 
   // exact same function as the one above it but for mobile menu
   onLocaleSelection(selectedLanguage: Locale): void {
-    this.localeService.changeLocale(selectedLanguage);
+    this.localeService.changeLocale(selectedLanguage, true);
     window.location.reload();
   }
 
   get personalInfo(): string {
     return (
       this.traderService?.currentTrader?.personalInformation?.firstName ||
-      'Trader'
+      this.localeService.getMessage('navbar.trader')
     );
   }
 

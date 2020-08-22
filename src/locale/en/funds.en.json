@@ -43,7 +43,9 @@
     "received": "Received",
     "received_error": "Quantity should be higher",
     "withdraw": "Withdraw",
-    "tips": "Please make sure that your computer and browser are secure and your information is protected from being tampered or leaked."
+    "tips": "Please make sure that your computer and browser are secure and your information is protected from being tampered or leaked.",
+    "toast_confirmation_body": "An email is sent for withdrawal confirmation. Check your inbox",
+    "toast_confirmation_title": "Confirmation required"
   },
 
   "transfer": {

@@ -45,7 +45,9 @@
     "maker_fee_tooltip": "Maker fees are paid when you add liquidity to our order book by placing a limit order below the ticker price for buy, and above the ticker price for sell.  If you place a limit buy below the current market price, or a limit sell above the current market price, then you will pay the maker fee if the market moves into your limit order because you added liquidity to the order book, while other traders took your offer from the order book.",
     "market_approx_pay": "You will approximately pay",
     "market_approx_get": "You will approximately get",
-    "market_not_available": "Not available in market"
+    "market_not_available": "Not available in market",
+    "toast_order_success_body": "Your order ID",
+    "toast_order_success_title": "Order submitted!"
   },
   "order_book": {
     "title": "Order Book",
@@ -57,7 +59,8 @@
     "bid": "Bid",
     "bid_tooltip": "The bid price represents the maximum price that a buyer is willing to pay for a share of stock or other currency.",
     "ask": "Ask",
-    "ask_tooltip": "The ask price represents the minimum price that a seller is willing to take for that same currency."
+    "ask_tooltip": "The ask price represents the minimum price that a seller is willing to take for that same currency.",
+    "snack_record_copied": "Record data copied!"
   },
   "time_and_sales": {
     "title": "Time & Sales",

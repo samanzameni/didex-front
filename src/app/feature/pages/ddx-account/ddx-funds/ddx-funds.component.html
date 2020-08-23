@@ -251,7 +251,7 @@
                     *ngFor="let item of bankAccounts"
                     [value]="item.id"
                   >
-                    {{ item.cardNumber }}
+                    {{ item.cardNumber | ddxCreditCardMask }}
                   </mat-option>
                 </mat-select>
               </mat-form-field>
@@ -376,7 +376,7 @@
                       *ngFor="let item of bankAccounts"
                       [value]="item.id"
                     >
-                      {{ item.cardNumber }}
+                      {{ item.cardNumber | ddxCreditCardMask }}
                     </mat-option>
                   </mat-select>
                 </mat-form-field>

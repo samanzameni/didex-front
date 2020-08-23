@@ -89,8 +89,8 @@ $page-margin: 5px;
         text-align: center;
         min-width: 0;
         white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
+        // overflow: hidden;
+        // text-overflow: ellipsis;
 
         &.show-on-medium {
           display: none;

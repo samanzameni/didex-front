@@ -28,8 +28,9 @@
 
         .mat-header-cell,
         .mat-cell {
-          white-space: normal;
-          text-overflow: none;
+          white-space: nowrap;
+          overflow: visible;
+          // text-overflow: none;
         }
       }
     }

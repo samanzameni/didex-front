@@ -82,8 +82,10 @@ dropdown-menu {
   box-sizing: border-box;
 
   button {
-    span {
+    div {
       margin: 0 10px;
+      display: inline;
+      position: relative;
     }
   }
 

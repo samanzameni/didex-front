@@ -4,7 +4,7 @@ import { Pipe, PipeTransform } from '@angular/core';
   name: 'ddxCreditCardMask',
 })
 export class CreditCardMaskPipe implements PipeTransform {
-  transform(cardNumber: string): unknown {
+  transform(cardNumber: string): string {
     return cardNumber
       .replace(/\s+/g, '')
       .replace(/(\d{4})/g, '$1 ')

@@ -42,6 +42,7 @@ import {
 import { ToastrService } from 'ngx-toastr';
 import { TraderService, DirectionService } from '@core/services';
 import { LocalePipe } from '@feature/pipes/ddx-locale.pipe';
+import { CreditCardMaskPipe } from '@feature/pipes/ddx-credit-card-mask.pipe';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogAddBankAccountComponent } from '@feature/components/ddx-dialog-add-bank-account/ddx-dialog-add-bank-account.component';
 import { catchError } from 'rxjs/operators';
@@ -95,6 +96,7 @@ export class FundsPageComponent implements OnInit, AfterViewInit {
     private snackBarService: MatSnackBar,
     private traderService: TraderService,
     private localePipe: LocalePipe,
+    private creditCardMaskPipe: CreditCardMaskPipe,
     private bankAccountService: BankAccountRESTService,
     private dialog: MatDialog,
     private router: Router,
@@ -131,6 +133,10 @@ export class FundsPageComponent implements OnInit, AfterViewInit {
 
   translate(text: string): string {
     return this.localePipe.transform(text);
+  }
+
+  maskCardNumber(creditCardNumber: string): string {
+    return this.creditCardMaskPipe.transform(creditCardNumber);
   }
 
   private updateData(): void {

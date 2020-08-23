@@ -5,5 +5,6 @@ import { MainModule } from '@feature/modules/main.module';
 
 @NgModule({
   imports: [CommonModule, WidgetModule, MainModule],
+  declarations: [],
 })
 export class FeatureModule {}

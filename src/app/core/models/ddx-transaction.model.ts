@@ -21,11 +21,14 @@ export enum TransactionStatus {
 }
 
 export enum TransactionType {
-  Deposit = 1,
-  Withdraw = 2,
+  CryptoDeposit = 1,
+  CryptoWithdraw = 2,
   BankToExchange = 3,
   ExchangeToBank = 4,
   BankToInvest = 5,
   InvestToBank = 6,
   Interest = 7,
+  Reward = 8,
+  FiatDeposit = 9,
+  FiatWithdraw = 10,
 }

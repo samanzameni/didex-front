@@ -4,7 +4,10 @@ import { Pipe, PipeTransform } from '@angular/core';
   name: 'ddxCreditCardMask',
 })
 export class CreditCardMaskPipe implements PipeTransform {
-  transform(value: unknown, ...args: unknown[]): unknown {
-    return null;
+  transform(cardNumber: string): unknown {
+    return cardNumber
+      .replace(/\s+/g, '')
+      .replace(/(\d{4})/g, '$1 ')
+      .trim();
   }
 }

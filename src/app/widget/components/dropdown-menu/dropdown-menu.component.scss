@@ -13,6 +13,7 @@ body {
   }
 
   .icon-arrow__down {
+    position: relative; //safari support
     // height: 7px;
     width: 12px;
     // margin: 0px 4px 7px 4px;

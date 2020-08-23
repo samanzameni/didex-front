@@ -28,6 +28,8 @@ import Decimal from 'decimal.js';
 import { getTickerFromSymbol } from '@core/util/ticker';
 
 import { ToastrService } from 'ngx-toastr';
+import { LocaleService } from '@core/services/ddx-locale.service';
+import { LocalePipe } from '@feature/pipes/ddx-locale.pipe';
 
 @Component({
   selector: 'ddx-market-form',
@@ -54,7 +56,8 @@ export class MarketFormComponent implements OnInit, OnChanges {
     private formBuilder: FormBuilder,
     private authService: AuthService,
     private orderService: OrderRESTService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private localePipe: LocalePipe
   ) {
     this.side = 'buy';
     this.activeType = 'limit';
@@ -342,8 +345,12 @@ export class MarketFormComponent implements OnInit, OnChanges {
       (response: Order) => {
         this.submitButton.setLoadingOff();
         this.toastr.success(
-          `Your order ID: ${response.id}`,
-          'Order submitted!'
+          `${this.localePipe.transform(
+            'homepage.market_form.toast_order_success_body'
+          )}: ${response.id}`,
+          this.localePipe.transform(
+            'homepage.market_form.toast_order_success_title'
+          )
         );
       },
       (errorResponse) => {

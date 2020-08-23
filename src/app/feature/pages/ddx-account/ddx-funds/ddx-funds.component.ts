@@ -270,10 +270,6 @@ export class FundsPageComponent implements OnInit, AfterViewInit {
     return this.traderService.currentTrader.twoFactorEnabled;
   }
 
-  get availableCards(): string[] {
-    return ['6221-0610-2345-0954', '6037-0610-4235-9431'];
-  }
-
   get bankAccounts(): BankAccount.Model[] {
     return this._bankAccounts;
   }
@@ -389,6 +385,8 @@ export class FundsPageComponent implements OnInit, AfterViewInit {
   onSubmitFiatDeposit(
     submittedValue: BankAccount.DepositInitiateFormData
   ): void {
+    this.formsAllErrors = [];
+
     this.bankAccountService.requestDepositFiat(submittedValue).subscribe(
       (response) => {
         this.router.navigateByUrl(
@@ -398,7 +396,13 @@ export class FundsPageComponent implements OnInit, AfterViewInit {
         );
       },
       (errorResponse) => {
-        console.error(errorResponse);
+        if (errorResponse.status === 400) {
+          const errors = errorResponse.error.errors;
+
+          for (const e of Object.keys(errors)) {
+            this.formsAllErrors.push(...errors[e]);
+          }
+        }
       }
     );
   }
@@ -437,8 +441,8 @@ export class FundsPageComponent implements OnInit, AfterViewInit {
     this.restService.requestWithdraw(submittedValue).subscribe(
       (response) => {
         this.toastr.success(
-          'An email is sent for withdrawal confirmation. Check your inbox',
-          'Confirmation required'
+          this.localePipe.transform('funds.withdraw.toast_confirmation_body'),
+          this.localePipe.transform('funds.withdraw.toast_confirmation_title')
         );
       },
       (errorResponse) => {
@@ -465,8 +469,8 @@ export class FundsPageComponent implements OnInit, AfterViewInit {
     this.bankAccountService.requestWithdrawFiat(submittedValue).subscribe(
       (response) => {
         this.toastr.success(
-          'An email is sent for withdrawal confirmation. Check your inbox',
-          'Confirmation required'
+          this.localePipe.transform('funds.withdraw.toast_confirmation_body'),
+          this.localePipe.transform('funds.withdraw.toast_confirmation_title')
         );
       },
       (errorResponse) => {

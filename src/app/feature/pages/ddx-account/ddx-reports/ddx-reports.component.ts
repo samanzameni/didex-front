@@ -12,6 +12,7 @@ import {
   OrderSide,
   Transaction,
   TransactionType,
+  TransactionStatus,
 } from '@core/models';
 import {
   OrderDATAService,
@@ -94,6 +95,7 @@ export class ReportsPageComponent implements OnInit, AfterViewInit {
         const t: any = { ...transaction };
         t.createdAt = this.datePipe.transform(transaction.createdAt, 'short');
         t.type = TransactionType[transaction.type];
+        t.status = TransactionStatus[transaction.status];
         return t;
       });
       this.transactionsDataSource = new MatTableDataSource(this.transactions);
@@ -201,6 +203,7 @@ export class ReportsPageComponent implements OnInit, AfterViewInit {
       'amount',
       'fee',
       'address',
+      'status',
     ];
   }
 
@@ -224,6 +227,8 @@ export class ReportsPageComponent implements OnInit, AfterViewInit {
         return this.localePipe.transform('reports.transactions.fee');
       case 'address':
         return this.localePipe.transform('reports.transactions.address');
+      case 'status':
+        return this.localePipe.transform('reports.transactions.status');
     }
   }
 

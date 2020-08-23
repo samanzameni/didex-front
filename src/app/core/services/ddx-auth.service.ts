@@ -96,6 +96,7 @@ export class AuthService {
   public requestSignOut(): void {
     this.storageService.clearUserToken();
     this.isUserAuthorized = false;
+    this.notifications = [];
     this.signalrService.resetConnection();
     this.traderService.removeCurrentTrader();
     this.traderService.removeCurrentTraderImages();
@@ -104,6 +105,7 @@ export class AuthService {
 
   public handleAuthError(noRedirect: boolean = false): void {
     this.isUserAuthorized = false;
+    this.notifications = [];
     this.storageService.clearUserToken();
     this.signalrService.resetConnection();
     this.traderService.removeCurrentTrader();

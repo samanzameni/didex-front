@@ -32,7 +32,11 @@ export class LocaleService {
       { locale: 'fa', caption: 'فارسی' },
     ];
 
-    this.changeLocale(this.storageService.getStoredLocale() || 'en');
+    const defaultLocale =
+      this.storageService.getStoredLocale() ||
+      (window.location.hostname.endsWith('.ir') ? 'fa' : 'en');
+
+    this.changeLocale(defaultLocale);
     this._locale$ = new BehaviorSubject(this.locale);
   }
 
@@ -52,9 +56,15 @@ export class LocaleService {
     return this._locale$.asObservable();
   }
 
-  public changeLocale(newLocale: Locale): void {
+  public changeLocale(
+    newLocale: Locale,
+    shouldSaveOnStorage: boolean = false
+  ): void {
     this.locale = newLocale;
-    this.storageService.setStoredLocale(newLocale);
+
+    if (shouldSaveOnStorage) {
+      this.storageService.setStoredLocale(newLocale);
+    }
 
     for (const l of this.availableLocales) {
       if (l.locale === newLocale) {

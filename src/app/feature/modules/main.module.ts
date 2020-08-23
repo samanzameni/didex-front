@@ -87,6 +87,7 @@ const routes: Routes = [
     ReactiveFormsModule,
     InfiniteScrollModule,
     LayoutModule,
+    LocalePipeModule,
     //
     MatMenuModule,
     MatIconModule,

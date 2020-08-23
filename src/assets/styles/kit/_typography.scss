@@ -122,14 +122,6 @@ p {
 @import '~@angular/material/theming';
 
 .en {
-  $custom-typography: mat-typography-config(
-    $font-family: 'segoe',
-  );
-
-  @include mat-core($custom-typography);
-  @include mat-checkbox-typography($custom-typography);
-  @include angular-material-typography($custom-typography);
-
   mat-label,
   .mat-button,
   .mat-raised-button,
@@ -141,17 +133,17 @@ p {
   ::ng-deep mat-label {
     font-family: 'segoe';
   }
-}
 
-.fa {
   $custom-typography: mat-typography-config(
-    $font-family: 'shabnam',
+    $font-family: 'segoe',
   );
 
   @include mat-core($custom-typography);
   @include mat-checkbox-typography($custom-typography);
   @include angular-material-typography($custom-typography);
+}
 
+.fa {
   mat-label,
   .mat-button,
   .mat-raised-button,
@@ -164,4 +156,12 @@ p {
     direction: rtl;
     font-family: 'shabnam';
   }
+
+  $custom-typography: mat-typography-config(
+    $font-family: 'shabnam',
+  );
+
+  @include mat-core($custom-typography);
+  @include mat-checkbox-typography($custom-typography);
+  @include angular-material-typography($custom-typography);
 }

@@ -10,6 +10,7 @@ import { Decimal } from 'decimal.js';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { DirectionService } from '@core/services';
 import { Observable } from 'rxjs';
+import { LocalePipe } from '@feature/pipes/ddx-locale.pipe';
 
 @Component({
   selector: 'ddx-order-book',
@@ -27,7 +28,8 @@ export class OrderBookComponent implements OnInit {
 
   constructor(
     private snackbarService: MatSnackBar,
-    private directionService: DirectionService
+    private directionService: DirectionService,
+    private localePipe: LocalePipe
   ) {
     this.clickOnRecord = new EventEmitter();
   }
@@ -110,7 +112,11 @@ export class OrderBookComponent implements OnInit {
       price,
     };
 
-    this.snackbarService.open('Record data copied!', '', { duration: 700 });
+    this.snackbarService.open(
+      this.localePipe.transform('homepage.order_book.snack_record_copied'),
+      '',
+      { duration: 700 }
+    );
     this.clickOnRecord.emit(dataToEmit);
   }
 

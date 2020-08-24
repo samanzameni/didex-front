@@ -61,7 +61,7 @@
   .expansion-panel__content {
     height: unset;
     padding: 10px 0;
-    margin-inline-start: 45px;
+    margin-inline-start: 13px;
   }
 
   #locale-items {
@@ -70,7 +70,7 @@
   }
 
   .navbar__personal-info-item {
-    font-size: 16px;
+    font-size: 14px;
 
     &.blue {
       color: $ddx-accent-lighter;
@@ -279,6 +279,10 @@
 
     dropdown-menu:last-child {
       margin-left: 38px;
+    }
+
+    .navbar__personal-info-item {
+      font-size: 16px;
     }
 
     .logo__container {

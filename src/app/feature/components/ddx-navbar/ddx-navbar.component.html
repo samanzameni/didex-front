@@ -20,24 +20,6 @@
 
 <div class="navbar-container" [ngClass]="{ show: isHamburgerMenuClicked }">
   <div class="navbar-items__container" [ngSwitch]="isAuthorized">
-    <!-- 
-  <a class="link-button" routerLink="/">
-    <!- TODO: URL ->
-    <button mat-button>
-      Academy
-    </button>
-  </a> 
-  -->
-
-    <!--
-    <a class="link-button" routerLink="/">
-      <!- TODO: URL ->
-      <button mat-button>
-        Support
-      </button>
-    </a>
-  -->
-
     <div
       class="mobile-menu__container"
       *ngIf="isHamburgerMenuClicked; else desktopMenu"

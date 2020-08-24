@@ -214,7 +214,8 @@
       <ng-container *ngSwitchCase="false">
         <div id="auth-buttons-mobile__container">
           <button
-            mat-stroked-button
+            mat-raised-button
+            color="primary"
             class="auth-button-mobile"
             routerLink="/external-redirect"
             [queryParams]="{ redirect_url: '/auth/signin', from: '/trade' }"
@@ -223,7 +224,8 @@
           </button>
 
           <button
-            mat-stroked-button
+            mat-raised-button
+            color="primary"
             class="auth-button-mobile"
             routerLink="/external-redirect"
             [queryParams]="{ redirect_url: '/auth/signup', from: '/trade' }"

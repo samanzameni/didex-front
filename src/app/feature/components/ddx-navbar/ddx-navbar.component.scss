@@ -26,6 +26,10 @@
     border-bottom: 1px solid $ddx-dark-lighter;
     border-radius: 0;
 
+    .rtl & {
+      direction: rtl;
+    }
+
     &.mat-expansion-panel:first-child {
       border-top: none;
     }

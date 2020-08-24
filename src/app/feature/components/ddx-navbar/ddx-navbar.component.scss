@@ -29,6 +29,10 @@
     &.mat-expansion-panel:first-child {
       border-top: none;
     }
+
+    &.mat-expansion-panel-spacing {
+      margin: 0;
+    }
   }
 
   .mat-expansion-panel-header {

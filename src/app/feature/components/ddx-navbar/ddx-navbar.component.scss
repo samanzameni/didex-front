@@ -110,6 +110,16 @@
     display: none;
   }
 
+  #auth-buttons-mobile__container {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+
+    button.auth-button-mobile {
+      width: 48%;
+    }
+  }
+
   .logo__container {
     height: 100%;
 

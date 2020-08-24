@@ -53,6 +53,11 @@
     }
   }
 
+  .mat-expansion-panel:not(.mat-expanded):not([aria-disabled='true'])
+    .mat-expansion-panel-header:hover {
+    background: none;
+  }
+
   .expansion-panel__content {
     height: unset;
     padding: 10px 0;

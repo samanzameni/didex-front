@@ -36,7 +36,7 @@
 
     .mat-expansion-panel-header-title {
       align-items: center;
-      margin-right: 0;
+      margin-inline-end: 0;
     }
 
     ::ng-deep .mat-expansion-indicator {
@@ -67,7 +67,14 @@
   }
 
   .sign-out-button__mobile {
+    display: flex;
+    align-items: center;
+
     background-color: transparent;
+
+    .rtl & {
+      margin-inline-start: 16px;
+    }
 
     ::ng-deep .mat-button-wrapper {
       display: flex;
@@ -83,7 +90,7 @@
   }
 
   .mobile-menu__icon {
-    margin-right: 12px;
+    margin-inline-end: 12px;
   }
 
   ::ng-deep .mat-select-value {

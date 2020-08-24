@@ -58,158 +58,234 @@
         </button>
       </div>
 
-      <mat-accordion>
-        <mat-expansion-panel class="mat-elevation-z0">
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-              <mat-icon
-                class="mobile-menu__icon"
-                svgIcon="product"
-                aria-hidden="false"
-                aria-label="product SVG icon"
-              ></mat-icon>
-              {{ 'navbar.product' | ddxLocale }}
-            </mat-panel-title>
-          </mat-expansion-panel-header>
-          <a
-            (click)="toggleMenu()"
-            mat-menu-item
-            class="active expansion-panel__content"
-            routerLink="/"
-          >
-            {{ 'navbar.trade' | ddxLocale }}
-          </a>
-          <a
-            (click)="toggleMenu()"
-            mat-menu-item
-            class="expansion-panel__content"
-            href="/invest"
-            >{{ 'navbar.invest' | ddxLocale }}</a
-          >
-        </mat-expansion-panel>
-        <mat-expansion-panel class="mat-elevation-z0">
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-              <mat-icon
-                class="mobile-menu__icon"
-                svgIcon="profile"
-                aria-hidden="false"
-                aria-label="profile SVG icon"
-              ></mat-icon>
-              {{ 'navbar.profile' | ddxLocale }}
-            </mat-panel-title>
-          </mat-expansion-panel-header>
-          <span
-            mat-menu-item
-            class="expansion-panel__content navbar__personal-info-item"
-            >{{ 'navbar.hello' | ddxLocale }}, {{ personalInfo }}</span
-          >
-          <span
-            mat-menu-item
-            disabled
-            class="expansion-panel__content navbar__personal-info-item blue"
-            *ngIf="!!traderEmail"
-            >{{ traderEmail }}</span
-          >
+      <ng-container *ngSwitchCase="true">
+        <mat-accordion>
+          <mat-expansion-panel class="mat-elevation-z0">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <mat-icon
+                  class="mobile-menu__icon"
+                  svgIcon="product"
+                  aria-hidden="false"
+                  aria-label="product SVG icon"
+                ></mat-icon>
+                {{ 'navbar.product' | ddxLocale }}
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <a
+              (click)="toggleMenu()"
+              mat-menu-item
+              class="active expansion-panel__content"
+              routerLink="/"
+            >
+              {{ 'navbar.trade' | ddxLocale }}
+            </a>
+            <a
+              (click)="toggleMenu()"
+              mat-menu-item
+              class="expansion-panel__content"
+              href="/invest"
+              >{{ 'navbar.invest' | ddxLocale }}</a
+            >
+          </mat-expansion-panel>
+          <mat-expansion-panel class="mat-elevation-z0">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <mat-icon
+                  class="mobile-menu__icon"
+                  svgIcon="profile"
+                  aria-hidden="false"
+                  aria-label="profile SVG icon"
+                ></mat-icon>
+                {{ 'navbar.profile' | ddxLocale }}
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <span
+              mat-menu-item
+              class="expansion-panel__content navbar__personal-info-item"
+              >{{ 'navbar.hello' | ddxLocale }}, {{ personalInfo }}</span
+            >
+            <span
+              mat-menu-item
+              disabled
+              class="expansion-panel__content navbar__personal-info-item blue"
+              *ngIf="!!traderEmail"
+              >{{ traderEmail }}</span
+            >
 
-          <a
-            (click)="toggleMenu()"
-            mat-menu-item
-            class="expansion-panel__content"
-            routerLink="/user/settings"
-            [queryParams]="{ tab: 'general' }"
-            >{{ 'navbar.general_settings' | ddxLocale }}</a
-          >
-          <a
-            (click)="toggleMenu()"
-            mat-menu-item
-            class="expansion-panel__content"
-            routerLink="/user/settings"
-            [queryParams]="{ tab: 'security' }"
-            >{{ 'navbar.security' | ddxLocale }}</a
-          >
-          <a
-            (click)="toggleMenu()"
-            mat-menu-item
-            class="expansion-panel__content"
-            routerLink="/user/settings"
-            [queryParams]="{ tab: '2fa' }"
-            >{{ 'navbar.2fa' | ddxLocale }}</a
-          >
-          <a
-            (click)="toggleMenu()"
-            mat-menu-item
-            class="expansion-panel__content"
-            routerLink="/user/settings"
-            [queryParams]="{ tab: 'kyc' }"
-            >{{ 'navbar.kyc' | ddxLocale }}</a
-          >
-        </mat-expansion-panel>
-        <mat-expansion-panel class="mat-elevation-z0">
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-              <mat-icon
-                class="mobile-menu__icon"
-                svgIcon="account"
-                aria-hidden="false"
-                aria-label="account SVG icon"
-              ></mat-icon>
-              {{ 'navbar.account' | ddxLocale }}
-            </mat-panel-title>
-          </mat-expansion-panel-header>
-          <a
-            (click)="toggleMenu()"
-            class="expansion-panel__content"
-            mat-menu-item
-            routerLink="/account/funds"
-            >{{ 'navbar.funds' | ddxLocale }}</a
-          >
-          <a
-            (click)="toggleMenu()"
-            class="expansion-panel__content"
-            mat-menu-item
-            routerLink="/account/reports"
-            >{{ 'navbar.reports' | ddxLocale }}</a
-          >
-        </mat-expansion-panel>
-        <mat-expansion-panel class="mat-elevation-z0">
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-              <mat-icon
-                class="mobile-menu__icon"
-                svgIcon="locale-selector"
-                aria-hidden="false"
-                aria-label="locale selector SVG icon"
-              ></mat-icon>
-              {{ currentLocaleModel.caption }}
-            </mat-panel-title>
-          </mat-expansion-panel-header>
+            <a
+              (click)="toggleMenu()"
+              mat-menu-item
+              class="expansion-panel__content"
+              routerLink="/user/settings"
+              [queryParams]="{ tab: 'general' }"
+              >{{ 'navbar.general_settings' | ddxLocale }}</a
+            >
+            <a
+              (click)="toggleMenu()"
+              mat-menu-item
+              class="expansion-panel__content"
+              routerLink="/user/settings"
+              [queryParams]="{ tab: 'security' }"
+              >{{ 'navbar.security' | ddxLocale }}</a
+            >
+            <a
+              (click)="toggleMenu()"
+              mat-menu-item
+              class="expansion-panel__content"
+              routerLink="/user/settings"
+              [queryParams]="{ tab: '2fa' }"
+              >{{ 'navbar.2fa' | ddxLocale }}</a
+            >
+            <a
+              (click)="toggleMenu()"
+              mat-menu-item
+              class="expansion-panel__content"
+              routerLink="/user/settings"
+              [queryParams]="{ tab: 'kyc' }"
+              >{{ 'navbar.kyc' | ddxLocale }}</a
+            >
+          </mat-expansion-panel>
+          <mat-expansion-panel class="mat-elevation-z0">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <mat-icon
+                  class="mobile-menu__icon"
+                  svgIcon="account"
+                  aria-hidden="false"
+                  aria-label="account SVG icon"
+                ></mat-icon>
+                {{ 'navbar.account' | ddxLocale }}
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <a
+              (click)="toggleMenu()"
+              class="expansion-panel__content"
+              mat-menu-item
+              routerLink="/account/funds"
+              >{{ 'navbar.funds' | ddxLocale }}</a
+            >
+            <a
+              (click)="toggleMenu()"
+              class="expansion-panel__content"
+              mat-menu-item
+              routerLink="/account/reports"
+              >{{ 'navbar.reports' | ddxLocale }}</a
+            >
+          </mat-expansion-panel>
+          <mat-expansion-panel class="mat-elevation-z0">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <mat-icon
+                  class="mobile-menu__icon"
+                  svgIcon="locale-selector"
+                  aria-hidden="false"
+                  aria-label="locale selector SVG icon"
+                ></mat-icon>
+                {{ currentLocaleModel.caption }}
+              </mat-panel-title>
+            </mat-expansion-panel-header>
 
-          <a
-            class="expansion-panel__content"
-            id="locale-items"
-            *ngFor="let item of availableLocales"
-            (click)="onLocaleSelection(item.locale)"
+            <a
+              class="expansion-panel__content"
+              id="locale-items"
+              *ngFor="let item of availableLocales"
+              (click)="onLocaleSelection(item.locale)"
+            >
+              {{ item.caption }}
+            </a>
+          </mat-expansion-panel>
+        </mat-accordion>
+        <button
+          mat-flat-button
+          class="sign-out-button__mobile"
+          (click)="requestSignOut()"
+        >
+          <mat-icon
+            class="mobile-menu__icon expansion-panel__content"
+            id="sign-out__icon"
+            svgIcon="log-out"
+            aria-hidden="false"
+            aria-label="log out SVG icon"
+          ></mat-icon>
+          <span>{{ 'navbar.sign_out' | ddxLocale }}</span>
+        </button>
+      </ng-container>
+      <ng-container *ngSwitchCase="false">
+        <div id="auth-buttons-mobile__container">
+          <button
+            mat-stroked-button
+            class="auth-button-mobile"
+            routerLink="/external-redirect"
+            [queryParams]="{ redirect_url: '/auth/signin', from: '/trade' }"
           >
-            {{ item.caption }}
-          </a>
-        </mat-expansion-panel>
-      </mat-accordion>
-      <button
-        style="display: flex; align-items: center;"
-        mat-flat-button
-        class="sign-out-button__mobile"
-        (click)="requestSignOut()"
-      >
-        <mat-icon
-          class="mobile-menu__icon expansion-panel__content"
-          id="sign-out__icon"
-          svgIcon="log-out"
-          aria-hidden="false"
-          aria-label="log out SVG icon"
-        ></mat-icon>
-        <span>{{ 'navbar.sign_out' | ddxLocale }}</span>
-      </button>
+            {{ 'navbar.sign_in' | ddxLocale }}
+          </button>
+
+          <button
+            mat-raised-button
+            color="primary"
+            class="auth-button-mobile"
+            routerLink="/external-redirect"
+            [queryParams]="{ redirect_url: '/auth/signup', from: '/trade' }"
+          >
+            {{ 'navbar.sign_up' | ddxLocale }}
+          </button>
+        </div>
+        <mat-accordion>
+          <mat-expansion-panel class="mat-elevation-z0">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <mat-icon
+                  class="mobile-menu__icon"
+                  svgIcon="product"
+                  aria-hidden="false"
+                  aria-label="product SVG icon"
+                ></mat-icon>
+                {{ 'navbar.product' | ddxLocale }}
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <a
+              (click)="toggleMenu()"
+              mat-menu-item
+              class="active expansion-panel__content"
+              routerLink="/"
+            >
+              {{ 'navbar.trade' | ddxLocale }}
+            </a>
+            <a
+              (click)="toggleMenu()"
+              mat-menu-item
+              class="expansion-panel__content"
+              href="/invest"
+              >{{ 'navbar.invest' | ddxLocale }}</a
+            >
+          </mat-expansion-panel>
+
+          <mat-expansion-panel class="mat-elevation-z0">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <mat-icon
+                  class="mobile-menu__icon"
+                  svgIcon="locale-selector"
+                  aria-hidden="false"
+                  aria-label="locale selector SVG icon"
+                ></mat-icon>
+                {{ currentLocaleModel.caption }}
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+
+            <a
+              class="expansion-panel__content"
+              id="locale-items"
+              *ngFor="let item of availableLocales"
+              (click)="onLocaleSelection(item.locale)"
+            >
+              {{ item.caption }}
+            </a>
+          </mat-expansion-panel>
+        </mat-accordion>
+      </ng-container>
     </div>
 
     <ng-template #desktopMenu>

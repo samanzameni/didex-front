@@ -81,7 +81,8 @@
     background-color: transparent;
 
     .rtl & {
-      margin-inline-start: 16px;
+      direction: rtl;
+      margin-inline-end: auto;
     }
 
     ::ng-deep .mat-button-wrapper {

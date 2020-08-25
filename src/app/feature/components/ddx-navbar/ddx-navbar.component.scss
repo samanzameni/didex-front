@@ -67,6 +67,10 @@
   #locale-items {
     display: flex;
     flex-direction: column;
+
+    &:last-child {
+      font-family: Shabnam;
+    }
   }
 
   .navbar__personal-info-item {

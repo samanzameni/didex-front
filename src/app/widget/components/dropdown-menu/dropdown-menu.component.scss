@@ -8,6 +8,9 @@ body {
 
       .mat-option {
         text-align: center;
+        &:last-child {
+          font-family: Shabnam;
+        }
       }
     }
   }

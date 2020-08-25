@@ -19,6 +19,11 @@
     }
 
     .mat-table {
+      .mat-select {
+        .credit-card-number {
+          font-family: OCR-A !important;
+        }
+      }
       .expandable-row {
         overflow: hidden;
 

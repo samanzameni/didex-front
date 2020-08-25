@@ -194,75 +194,76 @@
 
       .locale-selector {
         margin-right: -35px;
-      }
-
-      .locale-selector.mat-form-field-appearance-legacy {
-        font-size: 14px;
-        width: 70px;
-        text-align: right;
-
-        ::ng-deep .mat-form-field-wrapper,
-        .mat-form-field-wrapper {
-          .mat-form-field-underline {
-            display: none;
-          }
-        }
+        font-size: 15px;
       }
     }
 
-    &.navbar-container.show {
-      position: fixed;
-      height: 100vh;
-      top: 0;
-      right: 0;
-      width: 100vw;
+    .locale-selector.mat-form-field-appearance-legacy {
+      font-size: 14px;
+      width: 70px;
+      text-align: right;
 
-      display: flex;
-      flex-direction: column;
+      ::ng-deep .mat-form-field-wrapper,
+      .mat-form-field-wrapper {
+        .mat-form-field-underline {
+          display: none;
+        }
+      }
+    }
+  }
 
-      background-color: $ddx-dark-main;
-      z-index: 1000;
+  &.navbar-container.show {
+    position: fixed;
+    height: 100vh;
+    top: 0;
+    right: 0;
+    width: 100vw;
 
-      .navbar-items__container {
-        flex-direction: column-reverse;
-        align-items: flex-start;
-        padding: 5px 15px;
+    display: flex;
+    flex-direction: column;
 
-        .mobile-menu__container {
+    background-color: $ddx-dark-main;
+    z-index: 1000;
+
+    .navbar-items__container {
+      flex-direction: column-reverse;
+      align-items: flex-start;
+      padding: 5px 15px;
+
+      .mobile-menu__container {
+        width: 100%;
+
+        .mobile-navbar__inner-container {
           width: 100%;
+          height: 50px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
 
-          .mobile-navbar__inner-container {
-            width: 100%;
-            height: 50px;
-            display: flex;
-            justify-content: space-between;
+          margin-bottom: 30px;
+
+          a {
+            height: 100%;
+            text-decoration: none;
+            color: $ddx-light;
             align-items: center;
 
-            margin-bottom: 30px;
-
-            a {
-              height: 100%;
-              text-decoration: none;
+            &:active {
               color: $ddx-light;
-              align-items: center;
+            }
 
-              &:active {
-                color: $ddx-light;
-              }
+            img {
+              height: 100%;
+              object-fit: contain;
+              margin: 0 3px;
+            }
 
-              img {
-                height: 100%;
-                object-fit: contain;
-                margin: 0 3px;
-              }
-
-              span {
-                border-left: 2px solid $ddx-yellow;
-                padding: 7px;
-                margin-left: 7px;
-                font-size: 14px;
-                font-weight: bold;
-              }
+            span {
+              border-left: 2px solid $ddx-yellow;
+              padding: 7px;
+              margin-left: 7px;
+              font-size: 14px;
+              font-weight: bold;
             }
           }
         }

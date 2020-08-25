@@ -1,11 +1,11 @@
 .title,
 h1 {
   &.en {
-    font-family: 'segoe';
+    font-family: Segoe;
   }
 
   &.fa {
-    font-family: 'shabnam';
+    font-family: Shabnam;
   }
   font-size: 26px;
   line-height: 26px;
@@ -15,11 +15,11 @@ h1 {
 .headline,
 h2 {
   &.en {
-    font-family: 'segoe';
+    font-family: Segoe;
   }
 
   &.fa {
-    font-family: 'shabnam';
+    font-family: Shabnam;
   }
   font-size: 26px;
   line-height: 26px;
@@ -29,11 +29,11 @@ h2 {
 .subhead,
 h3 {
   &.en {
-    font-family: 'segoe';
+    font-family: Segoe;
   }
 
   &.fa {
-    font-family: 'shabnam';
+    font-family: Shabnam;
   }
   font-size: 16px;
   line-height: 16px;
@@ -43,11 +43,11 @@ h3 {
 .body,
 p {
   &.en {
-    font-family: 'segoe';
+    font-family: Segoe;
   }
 
   &.fa {
-    font-family: 'shabnam';
+    font-family: Shabnam;
   }
   font-size: 14px;
   line-height: 14px;
@@ -56,11 +56,11 @@ p {
 
 .callout {
   &.en {
-    font-family: 'segoe';
+    font-family: Segoe;
   }
 
   &.fa {
-    font-family: 'shabnam';
+    font-family: Shabnam;
   }
   font-size: 16px;
   line-height: 16px;
@@ -69,11 +69,11 @@ p {
 
 .callout-small {
   &.en {
-    font-family: 'segoe';
+    font-family: Segoe;
   }
 
   &.fa {
-    font-family: 'shabnam';
+    font-family: Shabnam;
   }
   font-size: 14px;
   line-height: 14px;
@@ -82,11 +82,11 @@ p {
 
 .footnote {
   &.en {
-    font-family: 'segoe';
+    font-family: Segoe;
   }
 
   &.fa {
-    font-family: 'shabnam';
+    font-family: Shabnam;
   }
   font-size: 12px;
   line-height: 12px;
@@ -95,11 +95,11 @@ p {
 
 .caption {
   &.en {
-    font-family: 'segoe';
+    font-family: Segoe;
   }
 
   &.fa {
-    font-family: 'shabnam';
+    font-family: Shabnam;
   }
   font-size: 14px;
   line-height: 14px;
@@ -108,11 +108,11 @@ p {
 
 .caption-small {
   &.en {
-    font-family: 'segoe';
+    font-family: Segoe;
   }
 
   &.fa {
-    font-family: 'shabnam';
+    font-family: Shabnam;
   }
   font-size: 12px;
   line-height: 12px;
@@ -130,12 +130,14 @@ p {
   .mat-flat-button,
   .mat-fab,
   .mat-mini-fab .mat-checkbox-layout,
+  .mat-select,
+  .mat-option,
   ::ng-deep mat-label {
-    font-family: 'segoe';
+    font-family: Segoe;
   }
 
   $custom-typography: mat-typography-config(
-    $font-family: 'segoe',
+    $font-family: Segoe,
   );
 
   @include mat-core($custom-typography);
@@ -152,13 +154,14 @@ p {
   .mat-flat-button,
   .mat-fab,
   .mat-mini-fab .mat-checkbox-layout,
-  ::ng-deep mat-label {
+  .mat-select,
+  .mat-option ::ng-deep mat-label {
     direction: rtl;
-    font-family: 'shabnam';
+    font-family: Shabnam;
   }
 
   $custom-typography: mat-typography-config(
-    $font-family: 'shabnam',
+    $font-family: Shabnam,
   );
 
   @include mat-core($custom-typography);

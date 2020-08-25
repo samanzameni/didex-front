@@ -238,6 +238,7 @@
                 class="card-selector__container"
               >
                 <mat-select
+                  style="font-family: 'OCR A Std';"
                   name="bankAccountId"
                   panelClass="card-selector-panel"
                   [disabled]="bankAccounts.length === 0"
@@ -251,6 +252,7 @@
                     class="credit-card-number"
                     *ngFor="let item of bankAccounts"
                     [value]="item.id"
+                    style="font-family: 'OCR A Std';"
                   >
                     {{ item.cardNumber | ddxCreditCardMask }}
                   </mat-option>

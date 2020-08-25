@@ -1,6 +1,13 @@
+// @font-face {
+//   font-family: OCR-A;
+//   font-style: normal;
+//   font-weight: normal;
+//   src: url('assets/fonts/OCR-A-Regular.ttf') format('truetype');
+// }
+
 @font-face {
-  font-family: OCR-A;
+  font-family: 'OCR A Std';
   font-style: normal;
   font-weight: normal;
-  src: url('assets/fonts/OCR-A-Regular.ttf') format('truetype');
+  src: local('OCR A Std'), url('assets/fonts/OCRAStd.woff') format('woff');
 }

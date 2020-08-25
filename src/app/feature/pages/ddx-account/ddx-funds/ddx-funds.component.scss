@@ -257,6 +257,14 @@
     }
 
     .deposit__fiat-form {
+      mat-option {
+        font-family: 'OCR A Std';
+      }
+
+      .mat-form-field-outline .mat-form-field-outline-thick {
+        font-family: 'OCR A Std';
+      }
+
       mat-label {
         display: none;
       }

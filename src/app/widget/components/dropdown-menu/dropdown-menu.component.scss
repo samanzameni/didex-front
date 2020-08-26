@@ -45,14 +45,15 @@ body {
     .mat-menu-content {
       .sign-out-button {
         margin: 5px 10px;
+        font-family: Shabnam;
         width: 225px;
         height: 30px;
         line-height: 30px;
       }
 
       .mat-menu-item {
-        font-family: Shabnam;
         height: fit-content;
+        font-family: Shabnam;
         margin: 0;
         padding: 10px;
         color: $ddx-light-darker;

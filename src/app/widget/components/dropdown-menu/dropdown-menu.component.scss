@@ -35,6 +35,9 @@ body {
     margin-top: 2px;
     min-height: unset;
 
+    .rtl & {
+      font-family: Shabnam;
+    }
     .mat-divider {
       margin: 4px 0;
     }
@@ -48,6 +51,7 @@ body {
       }
 
       .mat-menu-item {
+        font-family: Shabnam;
         height: fit-content;
         margin: 0;
         padding: 10px;

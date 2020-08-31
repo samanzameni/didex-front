@@ -124,6 +124,19 @@ export class FundsPageComponent implements OnInit, AfterViewInit {
     this._bankAccounts = [];
 
     this._isKycApproved = false;
+
+    iconRegistry.addSvgIcon(
+      'deposit',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/icons/icon_deposit.svg')
+    );
+    iconRegistry.addSvgIcon(
+      'withdraw',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/icons/icon_withdraw.svg')
+    );
+    iconRegistry.addSvgIcon(
+      'transfer',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/icons/icon_transfer.svg')
+    );
   }
 
   ngOnInit(): void {

@@ -50,7 +50,7 @@
     <ng-container matColumnDef="actions">
       <mat-header-cell
         *matHeaderCellDef
-        style="text-align: center; justify-content: center;"
+        style="text-align: center; justify-content: center"
       >
         {{ 'funds.actions' | ddxLocale }}
       </mat-header-cell>
@@ -78,35 +78,11 @@
               (click)="handleClickOnAction(i, 'deposit')"
               title="{{ 'funds.deposit.title' | ddxLocale }}"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="27.776"
-                height="23.756"
-                viewBox="0 0 27.776 23.756"
-              >
-                <g
-                  id="Group_2741"
-                  data-name="Group 2741"
-                  transform="translate(0 0)"
-                >
-                  <g id="Group_2740" data-name="Group 2740">
-                    <path
-                      id="Path_6540"
-                      data-name="Path 6540"
-                      d="M481.15,598.044l-.773.891v-8.677a.927.927,0,1,0-1.853,0v8.675l-.772-.889a.927.927,0,0,0-1.4,1.215l2.334,2.687a1,1,0,0,0,.765.357l.476-.025,2.622-3.019a.927.927,0,0,0-1.4-1.215Z"
-                      transform="translate(-465.562 -589.331)"
-                      fill="#fafafa"
-                    />
-                    <path
-                      id="Path_6541"
-                      data-name="Path 6541"
-                      d="M488.95,596.831H468.28a3.557,3.557,0,0,1-3.553-3.554v-12.03a3.557,3.557,0,0,1,3.553-3.553H473.6a.927.927,0,0,1,0,1.853H468.28a1.7,1.7,0,0,0-1.7,1.7v6.983h24.07v-6.983a1.7,1.7,0,0,0-1.7-1.7H483.22a.927.927,0,0,1,0-1.853h5.731a3.557,3.557,0,0,1,3.553,3.553v12.03A3.558,3.558,0,0,1,488.95,596.831Zm-22.37-6.747v3.193a1.7,1.7,0,0,0,1.7,1.7h20.67a1.7,1.7,0,0,0,1.7-1.7v-3.193Z"
-                      transform="translate(-464.727 -573.074)"
-                      fill="#fafafa"
-                    />
-                  </g>
-                </g>
-              </svg>
+              <mat-icon
+                svgIcon="deposit"
+                aria-hidden="false"
+                aria-label="Deposit SVG icon"
+              ></mat-icon>
             </button>
             <button
               mat-icon-button
@@ -116,31 +92,11 @@
               (click)="handleClickOnAction(i, 'withdraw')"
               title="{{ 'funds.withdraw.title' | ddxLocale }}"
             >
-              <svg
-                id="Group_2742"
-                data-name="Group 2742"
-                xmlns="http://www.w3.org/2000/svg"
-                width="28.062"
-                height="24"
-                viewBox="0 0 28.062 24"
-              >
-                <g id="Group_2739" data-name="Group 2739">
-                  <path
-                    id="Path_6542"
-                    data-name="Path 6542"
-                    d="M445.861,577.694H424.979a3.618,3.618,0,0,0-3.59,3.636v12.307a3.617,3.617,0,0,0,3.59,3.635h5.378a.948.948,0,0,0,0-1.9h-5.378a1.73,1.73,0,0,1-1.718-1.739v-7.144h24.317v7.144a1.73,1.73,0,0,1-1.718,1.739h-5.79a.948.948,0,0,0,0,1.9h5.79a3.617,3.617,0,0,0,3.59-3.635V581.33A3.618,3.618,0,0,0,445.861,577.694Zm-22.6,6.9V581.33a1.731,1.731,0,0,1,1.718-1.74h20.881a1.731,1.731,0,0,1,1.718,1.74V584.6Z"
-                    transform="translate(-421.389 -577.694)"
-                    fill="#fafafa"
-                  />
-                  <path
-                    id="Path_6543"
-                    data-name="Path 6543"
-                    d="M436.686,601.427a.957.957,0,0,1-.715.321l-.457-.023L433,598.834a.887.887,0,0,1,1.339-1.163l.74.852v-8.3a.887.887,0,0,1,1.774,0v8.3l.74-.852a.887.887,0,0,1,1.34,1.163Z"
-                    transform="translate(-421.94 -577.748)"
-                    fill="#fafafa"
-                  />
-                </g>
-              </svg>
+              <mat-icon
+                svgIcon="withdraw"
+                aria-hidden="false"
+                aria-label="Withdraw SVG icon"
+              ></mat-icon>
             </button>
             <button
               mat-icon-button
@@ -151,22 +107,11 @@
               (click)="handleClickOnAction(i, 'transfer')"
               title="{{ 'funds.transfer.title' | ddxLocale }}"
             >
-              <svg
-                id="Group_2743"
-                data-name="Group 2743"
-                xmlns="http://www.w3.org/2000/svg"
-                width="26.81"
-                height="23.79"
-                viewBox="0 0 26.81 23.79"
-              >
-                <path
-                  id="Path_6544"
-                  data-name="Path 6544"
-                  d="M549.048,584.669H547.89v-3.3a3.679,3.679,0,0,0-3.674-3.674H529.584a3.678,3.678,0,0,0-3.673,3.674v10.476a3.678,3.678,0,0,0,3.673,3.674H537.7l-.918.8a.958.958,0,1,0,1.255,1.447l2.779-2.413a1.031,1.031,0,0,0,.369-.789l-.027-.493-3.121-2.71a.958.958,0,0,0-1.255,1.447l.92.8h-8.114a1.759,1.759,0,0,1-1.757-1.758V581.368a1.759,1.759,0,0,1,1.757-1.758h14.632a1.761,1.761,0,0,1,1.758,1.758v3.3H534.417a3.74,3.74,0,0,0-3.674,3.8v2.581a.958.958,0,1,0,1.916,0v-2.581a1.823,1.823,0,0,1,1.758-1.88h14.631a1.823,1.823,0,0,1,1.758,1.88v9.224a1.824,1.824,0,0,1-1.758,1.88H534.417a1.824,1.824,0,0,1-1.758-1.88.958.958,0,1,0-1.916,0,3.74,3.74,0,0,0,3.674,3.8h14.631a3.74,3.74,0,0,0,3.674-3.8v-9.224A3.74,3.74,0,0,0,549.048,584.669Z"
-                  transform="translate(-525.911 -577.694)"
-                  fill="#fafafa"
-                />
-              </svg>
+              <mat-icon
+                svgIcon="transfer"
+                aria-hidden="false"
+                aria-label="Transfer SVG icon"
+              ></mat-icon>
             </button>
           </ng-template>
         </div>
@@ -238,7 +183,7 @@
                 class="card-selector__container"
               >
                 <mat-select
-                  style="font-family: 'OCR A Std';"
+                  style="font-family: 'OCR A Std'"
                   name="bankAccountId"
                   panelClass="card-selector-panel"
                   [disabled]="bankAccounts.length === 0"
@@ -252,7 +197,7 @@
                     class="credit-card-number"
                     *ngFor="let item of bankAccounts"
                     [value]="item.id"
-                    style="font-family: 'OCR A Std';"
+                    style="font-family: 'OCR A Std'"
                   >
                     {{ item.cardNumber | ddxCreditCardMask }}
                   </mat-option>
@@ -305,7 +250,7 @@
                 {{ 'funds.deposit.r2_fiat_tips' | ddxLocale }}
               </li>
             </ul>
-            <div *ngIf="!!allErrors" arrangeStack style="width: 100%;">
+            <div *ngIf="!!allErrors" arrangeStack style="width: 100%">
               <mat-error *ngFor="let error of allErrors">{{ error }}</mat-error>
             </div>
           </ng-template>
@@ -469,7 +414,7 @@
               {{ 'funds.withdraw.withdraw' | ddxLocale }}
             </pro-button>
 
-            <div *ngIf="!!allErrors" arrangeStack style="width: 100%;">
+            <div *ngIf="!!allErrors" arrangeStack style="width: 100%">
               <mat-error *ngFor="let error of allErrors">{{ error }}</mat-error>
             </div>
           </form>
@@ -543,7 +488,7 @@
             >
               {{ 'funds.transfer.transfer' | ddxLocale }}
             </pro-button>
-            <div arrangeStack *ngIf="!!allErrors" style="width: 100%;">
+            <div arrangeStack *ngIf="!!allErrors" style="width: 100%">
               <mat-error *ngFor="let error of allErrors">{{ error }}</mat-error>
             </div>
           </form>

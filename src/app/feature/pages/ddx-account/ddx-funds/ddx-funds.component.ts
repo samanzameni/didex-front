@@ -47,6 +47,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { DialogAddBankAccountComponent } from '@feature/components/ddx-dialog-add-bank-account/ddx-dialog-add-bank-account.component';
 import { catchError } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { DomSanitizer } from '@angular/platform-browser';
+import { MatIconRegistry } from '@angular/material/icon';
 
 @Component({
   selector: 'ddx-funds',
@@ -100,7 +102,9 @@ export class FundsPageComponent implements OnInit, AfterViewInit {
     private bankAccountService: BankAccountRESTService,
     private dialog: MatDialog,
     private router: Router,
-    private directionService: DirectionService
+    private directionService: DirectionService,
+    iconRegistry: MatIconRegistry,
+    sanitizer: DomSanitizer
   ) {
     this.currentActivePane = 'none';
     this.currentTransferType = BalanceTransferType.BankToExchange;

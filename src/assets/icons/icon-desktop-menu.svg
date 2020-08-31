@@ -1,8 +1,20 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 26">
-  <g id="Group_2420" data-name="Group 2420" transform="translate(-1109 -38)">
-    <rect id="Rectangle_1478" data-name="Rectangle 1478" width="11" height="11" rx="1" transform="translate(1124 38)" fill="#fff"/>
-    <rect id="Rectangle_1481" data-name="Rectangle 1481" width="11" height="11" rx="1" transform="translate(1124 53)" fill="#fff"/>
-    <rect id="Rectangle_1479" data-name="Rectangle 1479" width="11" height="11" rx="1" transform="translate(1109 38)" fill="#fff"/>
-    <rect id="Rectangle_1480" data-name="Rectangle 1480" width="11" height="11" rx="1" transform="translate(1109 53)" fill="#fff"/>
+  <g id="Group_3158" data-name="Group 3158" transform="translate(-697 -193.017)">
+    <g id="Rectangle_1478" data-name="Rectangle 1478" transform="translate(711 193.017)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+      <rect width="12" height="12" rx="2" stroke="none"/>
+      <rect x="1" y="1" width="10" height="10" rx="1" fill="none"/>
+    </g>
+    <g id="Rectangle_1481" data-name="Rectangle 1481" transform="translate(711 207.017)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+      <rect width="12" height="12" rx="2" stroke="none"/>
+      <rect x="1" y="1" width="10" height="10" rx="1" fill="none"/>
+    </g>
+    <g id="Rectangle_1479" data-name="Rectangle 1479" transform="translate(697 193.017)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+      <rect width="12" height="12" rx="2" stroke="none"/>
+      <rect x="1" y="1" width="10" height="10" rx="1" fill="none"/>
+    </g>
+    <g id="Rectangle_1480" data-name="Rectangle 1480" transform="translate(697 207.017)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+      <rect width="12" height="12" rx="2" stroke="none"/>
+      <rect x="1" y="1" width="10" height="10" rx="1" fill="none"/>
+    </g>
   </g>
 </svg>

@@ -1,5 +1,7 @@
 @import '../../../../../styles.scss';
 
+$datePickerBackgroundColor: #1f3277;
+
 :host {
   #firstName {
     grid-area: firstName;
@@ -16,15 +18,16 @@
       top: 43px;
       right: -10px;
       z-index: 1000;
-      // background-color: $icm-dark-deep;
+      background-color: $datePickerBackgroundColor;
+      border-radius: 4%;
     }
 
-    ::ng-deep
-      .datepicker-outer-container.theme-dark
-      .datepicker-inner-container
-      .dp-btn.selected {
-      // background: $icm-orange;
-    }
+    // ::ng-deep
+    //   .datepicker-outer-container.theme-dark
+    //   .datepicker-inner-container
+    //   .dp-btn.selected {
+    //   background: $icm-orange;
+    // }
 
     ::ng-deep
       .datepicker-outer-container

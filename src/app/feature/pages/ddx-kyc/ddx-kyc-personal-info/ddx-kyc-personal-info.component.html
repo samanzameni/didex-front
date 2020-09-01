@@ -59,52 +59,72 @@
       </mat-error>
     </mat-form-field>
 
-    <mat-form-field appearance="outline" id="dateOfBirth">
+    <mat-form-field
+      appearance="outline"
+      id="dateOfBirth"
+      *ngIf="isTraderInRegionTwo; else gregorianCalendar"
+    >
       <mat-label
         >{{
           'kyc.personal_information.date_of_birth' | ddxLocale
         }}
-        (MM/DD/YYYY)</mat-label
+        (YYYY/MM/DD)</mat-label
       >
-
-      <ng-container *ngIf="isTraderInRegionTwo" ; else gregorianCalendar>
-        <input
-          type="text"
-          placeholder="01/21/1900"
-          matInput
-          name="dateOfBirth"
-          formControlName="dateOfBirth"
-          #datepickerInput />
-        <ng-persian-datepicker
-          [dateInitValue]="false"
-          [input]="datepickerInput"
-          [timeEnable]="false"
-          [uiHideAfterSelectDate]="true"
-          [dateFormat]="'jYYYY/jM/jD'"
-          [uiTheme]="'dark'"
-        ></ng-persian-datepicker
-      ></ng-container>
-      <ng-template #gregorianCalendar>
-        <input
-          type="text"
-          placeholder="01/21/1900"
-          matInput
-          [matDatepicker]="birthDatepicker"
-          name="dateOfBirth"
-          formControlName="dateOfBirth" />
-        <mat-datepicker-toggle
-          matSuffix
-          [for]="birthDatepicker"
-        ></mat-datepicker-toggle>
-        <mat-datepicker #birthDatepicker></mat-datepicker
-      ></ng-template>
-
+      <input
+        type="text"
+        placeholder="01/21/1900"
+        matInput
+        name="dateOfBirth"
+        formControlName="dateOfBirth"
+        #datepickerInput
+      />
+      <ng-persian-datepicker
+        [dateInitValue]="false"
+        [input]="datepickerInput"
+        [timeEnable]="false"
+        [uiHideAfterSelectDate]="true"
+        [dateFormat]="'jYYYY/jM/jD'"
+        [uiTheme]="'dark'"
+      ></ng-persian-datepicker>
       <mat-error *ngIf="kycFormGroup.controls.dateOfBirth.hasError('required')">
         {{
           'kyc.personal_information.date_of_birth_error_required' | ddxLocale
         }}
       </mat-error>
     </mat-form-field>
+
+    <ng-template #gregorianCalendar>
+      <mat-form-field appearance="outline" id="dateOfBirth">
+        <mat-label
+          >{{
+            'kyc.personal_information.date_of_birth' | ddxLocale
+          }}
+          (MM/DD/YYYY)</mat-label
+        >
+        <input
+          type="text"
+          placeholder="01/21/1900"
+          matInput
+          [matDatepicker]="birthDatepicker"
+          name="dateOfBirth"
+          formControlName="dateOfBirth"
+        />
+        <mat-datepicker-toggle
+          matSuffix
+          [for]="birthDatepicker"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #birthDatepicker></mat-datepicker>
+
+        <mat-error
+          *ngIf="kycFormGroup.controls.dateOfBirth.hasError('required')"
+        >
+          {{
+            'kyc.personal_information.date_of_birth_error_required' | ddxLocale
+          }}
+        </mat-error>
+      </mat-form-field>
+    </ng-template>
+
     <ng-container *ngIf="errors">
       <mat-error
         [ngStyle]="{ visibility: flag ? 'hidden' : 'visible' }"

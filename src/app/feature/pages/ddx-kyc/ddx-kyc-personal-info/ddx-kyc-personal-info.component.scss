@@ -9,6 +9,33 @@
   }
   #dateOfBirth {
     grid-area: dateOfBirth;
+
+    ::ng-deep ng-persian-datepicker .datepicker-outer-container {
+      position: absolute;
+      width: 300px;
+      top: 43px;
+      right: -10px;
+      z-index: 1000;
+      // background-color: $icm-dark-deep;
+    }
+
+    ::ng-deep
+      .datepicker-outer-container.theme-dark
+      .datepicker-inner-container
+      .dp-btn.selected {
+      // background: $icm-orange;
+    }
+
+    ::ng-deep
+      .datepicker-outer-container
+      .datepicker-inner-container
+      .navigation-container
+      .switch-view
+      span {
+      display: flex;
+      justify-content: center;
+      line-height: 2.4;
+    }
   }
   #birthCountry {
     grid-area: birthCountry;

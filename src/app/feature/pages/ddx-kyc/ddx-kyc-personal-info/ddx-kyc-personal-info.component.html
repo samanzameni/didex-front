@@ -66,22 +66,25 @@
         }}
         (MM/DD/YYYY)</mat-label
       >
-      <input
-        type="text"
-        placeholder="01/21/1900"
-        matInput
-        [matDatepicker]="birthDatepicker"
-        name="dateOfBirth"
-        formControlName="dateOfBirth"
-      />
-      <ng-container
-        *ngIf="isTraderInRegionTwo"
-        ;
-        else
-        gregorianCalendar
-      ></ng-container>
-      <ng-template #gregorianCalendar
-        ><mat-datepicker-toggle
+
+      <ng-container *ngIf="isTraderInRegionTwo" ; else gregorianCalendar>
+        <input
+          type="text"
+          placeholder="01/21/1900"
+          matInput
+          [matDatepicker]="birthDatepicker"
+          name="dateOfBirth"
+          formControlName="dateOfBirth"
+      /></ng-container>
+      <ng-template #gregorianCalendar>
+        <input
+          type="text"
+          placeholder="01/21/1900"
+          matInput
+          [matDatepicker]="birthDatepicker"
+          name="dateOfBirth"
+          formControlName="dateOfBirth" />
+        <mat-datepicker-toggle
           matSuffix
           [for]="birthDatepicker"
         ></mat-datepicker-toggle>

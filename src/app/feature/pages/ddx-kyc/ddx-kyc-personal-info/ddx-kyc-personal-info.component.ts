@@ -45,6 +45,7 @@ export class KYCPersonalInfoPageComponent
 
   ngOnInit() {
     const trader = this.currentTrader;
+    let moment = require('moment-jalaali');
 
     this.kycForm = this.formBuilder.group({
       firstName: [
@@ -56,7 +57,11 @@ export class KYCPersonalInfoPageComponent
         [Validators.required, Validators.maxLength(50)],
       ],
       dateOfBirth: [
-        trader.personalInformation
+        trader.personalInformation && this.isTraderInRegionTwo
+          ? moment(trader.personalInformation.dateOfBirth.substr(0, 10)).format(
+              'jYYYY/jM/jD'
+            )
+          : trader.personalInformation && !this.isTraderInRegionTwo
           ? trader.personalInformation.dateOfBirth.substr(0, 10)
           : '',
         [],
@@ -123,7 +128,16 @@ export class KYCPersonalInfoPageComponent
   }
 
   onSubmit(): void {
-    const { dateOfBirth, ...formValue } = this.kycForm.value;
+    let { dateOfBirth, ...formValue } = this.kycForm.value;
+
+    if (this.isTraderInRegionTwo) {
+      var moment = require('moment-jalaali');
+      dateOfBirth = moment(
+        dateOfBirth + '23:59:59',
+        'jYYYY/jM/jD HH:mm'
+      ).format('YYYY-M-D HH:mm:ss');
+    }
+
     const isoBirthdate = new Date(Date.parse(dateOfBirth)).toISOString();
 
     const dataToSend = Object.assign(formValue, { dateOfBirth: isoBirthdate });

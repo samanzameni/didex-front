@@ -16,7 +16,8 @@ import { Observable } from 'rxjs';
     './ddx-kyc-personal-info.component.scss',
   ],
 })
-export class KYCPersonalInfoPageComponent extends KYCPageDirective
+export class KYCPersonalInfoPageComponent
+  extends KYCPageDirective
   implements OnInit {
   private countries: DropdownSelectItem[];
   private formErrors: any;
@@ -140,7 +141,6 @@ export class KYCPersonalInfoPageComponent extends KYCPageDirective
           if (errors.DateOfBirth) {
             this.flag = false; //this flag toggles DateOfBirth error visibility
             this.formErrors.birthday = errors.DateOfBirth;
-            console.log(errors.DateOfBirth);
           }
         }
       }

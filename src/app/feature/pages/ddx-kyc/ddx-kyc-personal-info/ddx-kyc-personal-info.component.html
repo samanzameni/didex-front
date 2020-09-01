@@ -76,10 +76,11 @@
           formControlName="dateOfBirth"
           #datepickerInput />
         <ng-persian-datepicker
+          [dateInitValue]="false"
           [input]="datepickerInput"
           [timeEnable]="false"
           [uiHideAfterSelectDate]="true"
-          [dateFormat]="'jYYYY-jMM-jDD'"
+          [dateFormat]="'jYYYY/jM/jD'"
           [uiTheme]="'dark'"
         ></ng-persian-datepicker
       ></ng-container>

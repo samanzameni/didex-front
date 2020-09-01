@@ -10,7 +10,11 @@
     (ngSubmit)="onSubmit()"
     #form
   >
-    <div arrangeStack class="description">
+    <div
+      arrangeStack
+      class="description"
+      *ngIf="!isTraderInRegionTwo; else regionTwo"
+    >
       <p>{{ 'kyc.identity_proof.description' | ddxLocale }}:</p>
       <ul arrangeStack class="documents">
         <li class="document">
@@ -32,6 +36,34 @@
       </p>
       <p>{{ 'kyc.identity_proof.hints_4' | ddxLocale }}</p>
     </div>
+
+    <ng-template #regionTwo>
+      <div arrangeStack class="description">
+        <p>{{ 'kyc.identity_proof.description-region2' | ddxLocale }}:</p>
+        <ul arrangeStack class="documents">
+          <li class="document">
+            {{ 'kyc.identity_proof.documents_1' | ddxLocale }}
+          </li>
+          <li class="document">
+            {{ 'kyc.identity_proof.documents_2-region2' | ddxLocale }}
+          </li>
+          <li class="document">
+            {{ 'kyc.identity_proof.documents_3-region2' | ddxLocale }}
+          </li>
+          <li class="document">
+            {{ 'kyc.identity_proof.documents_4-region2' | ddxLocale }}
+          </li>
+        </ul>
+        <p>{{ 'kyc.identity_proof.hints_1' | ddxLocale }}</p>
+        <p>
+          {{ 'kyc.identity_proof.hints_2' | ddxLocale }}
+        </p>
+        <p>
+          {{ 'kyc.identity_proof.hints_3-region2' | ddxLocale }}
+        </p>
+        <p>{{ 'kyc.identity_proof.hints_4-region2' | ddxLocale }}</p>
+      </div>
+    </ng-template>
 
     <div arrangeInline class="guide">
       <div arrangeCenter class="image-frame">

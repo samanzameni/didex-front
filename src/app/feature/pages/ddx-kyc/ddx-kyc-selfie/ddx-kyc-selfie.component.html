@@ -34,12 +34,15 @@
           {{ 'kyc.selfie.restricts_6' | ddxLocale }}
         </li>
       </ul>
-      <h4>
-        {{ 'kyc.selfie.paper_note_title' | ddxLocale }}
-      </h4>
-      <p>
-        {{ 'kyc.selfie.paper_note_content' | ddxLocale }}
-      </p>
+      <div *ngIf="!isTraderInRegionTwo; else regionTwo">
+        <h4>
+          {{ 'kyc.selfie.paper_note_title' | ddxLocale }}
+        </h4>
+        <p>
+          {{ 'kyc.selfie.paper_note_content' | ddxLocale }}
+        </p>
+      </div>
+      <ng-template #regionTwo></ng-template>
     </div>
 
     <div class="uploader-section">

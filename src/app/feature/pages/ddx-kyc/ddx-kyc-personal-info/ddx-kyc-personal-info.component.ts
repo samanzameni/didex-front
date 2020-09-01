@@ -102,7 +102,7 @@ export class KYCPersonalInfoPageComponent
   }
 
   hideError() {
-    //this method toggles the dateOfBirth error visibility
+    //this method toggles dateOfBirth error visibility
     this.flag = true;
   }
 

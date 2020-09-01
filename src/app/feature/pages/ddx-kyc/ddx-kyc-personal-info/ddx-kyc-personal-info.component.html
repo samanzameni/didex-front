@@ -72,10 +72,15 @@
           type="text"
           placeholder="01/21/1900"
           matInput
-          [matDatepicker]="birthDatepicker"
           name="dateOfBirth"
           formControlName="dateOfBirth"
-      /></ng-container>
+          #datepickerInput />
+        <ng-persian-datepicker
+          [input]="datepickerInput"
+          [timeEnable]="false"
+          [dateFormat]="'jYYYY-jMM-jDD'"
+        ></ng-persian-datepicker
+      ></ng-container>
       <ng-template #gregorianCalendar>
         <input
           type="text"

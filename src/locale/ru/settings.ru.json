@@ -25,12 +25,17 @@
     "button_newbie": "Подтверждение личности",
 
     "message_sent": "Вы заполнили и отправили свою информацию, и она ожидает утверждения",
-    "button_sent": "Обновить KYC инфо",
+    "button_sent_start-trade": "Start Trade",
+    "button_sent_edit": "Обновить KYC инфо",
 
     "message_approved": "Ваша KYC информация подтверждена",
-    "button_approved": "Обновить KYC инфо",
+    "button_approved_start-trade": "Start Trade",
+    "button_approved_edit": "Обновить KYC инфо",
 
     "message_banned": "Ваша заявка на KYC отменена",
-    "button_banned": "Подтверждение личности"
+    "button_banned": "Подтверждение личности",
+
+    "message_rejected": "Your application for ID Verification is rejected",
+    "button_rejected": "Validate Identity"
   }
 }

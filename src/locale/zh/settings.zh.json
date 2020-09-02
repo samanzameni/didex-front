@@ -47,15 +47,17 @@
     "button_newbie": "验证个人信息",
 
     "message_sent": "您的个人信息已提交，请等待审核",
-    "button_sent": "更新个人信息",
+    "button_sent_start-trade": "Start Trade",
+    "button_sent_edit": "更新个人信息",
 
     "message_approved": "您的个人信息已通过审核",
-    "button_approved": "更新个人信息",
+    "button_approved_start-trade": "Start Trade",
+    "button_approved_edit": "更新个人信息",
 
     "message_banned": "您的个人信息未通过审核",
     "button_banned": "验证个人信息",
 
-    "message_rejected": "",
-    "button_rejected": ""
+    "message_rejected": "Your application for ID Verification is rejected",
+    "button_rejected": "Validate Identity"
   }
 }

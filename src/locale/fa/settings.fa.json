@@ -51,12 +51,17 @@
     "button_newbie": "تأیید هویت",
 
     "message_sent": "شما اطلاعات خود را پر و ارسال کرده اید و منتظر تأیید است",
-    "button_sent": "اطلاعات احراز هویت خود را به روز رسانی کنید.",
+    "button_sent_start-trade": "شروع",
+    "button_sent_edit": "ویرایش",
 
     "message_approved": "اطلاعات احراز هویت شما تأیید شده است.",
-    "button_approved": "اطلاعات احراز هویت خود را به روز رسانی کنید",
+    "button_approved_start-trade": "شروع",
+    "button_approved_edit": "ویرایش",
 
     "message_banned": "در خواست شما برای احراز هویت مقدور نمی باشد .",
-    "button_banned": "تأیید هویت"
+    "button_banned": "تأیید هویت",
+
+    "message_rejected": "درخواست شما برای احراز هویت رد شده است",
+    "button_rejected": "تأیید هویت"
   }
 }

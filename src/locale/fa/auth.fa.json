@@ -33,7 +33,7 @@
   },
 
   "signin": {
-    "title": "ورود به ICM",
+    "title": "ورود",
     "forgot_password": "فراموشی رمز عبور",
     "email": "ایمیل",
     "email_placeholder": "abc@example.com",
@@ -52,7 +52,7 @@
   },
 
   "signup": {
-    "title": "ثبت نام در «بازار ارز ایرانیان»",
+    "title": "ثبت نام در «دیدکس»",
     "email": "ایمیل خود را وارد کنید",
     "email_placeholder": "abc@example.com",
     "email_error_required": "وارد کردن ایمیل الزامی است.",
@@ -66,7 +66,7 @@
     "confirm_password": "تأئید رمز عبور",
     "confirm_password_error_required": "رمز عبور خود را باید تأیید کنید",
     "confirm_password_error_match": "رمزهای عبور شما باید یکسان باشند.",
-    "terms_check": "ایجاد حساب در «بازار ارز ایرانیان» به معنای پذیرفتن سیاست های داخلی،شرایط استفاده و تنظیمات اعلان پیش ‌فرض ما می باشد. ",
+    "terms_check": "ایجاد حساب در «دیدکس» به معنای پذیرفتن سیاست های داخلی،شرایط استفاده و تنظیمات اعلان پیش ‌فرض ما می باشد. ",
     "sign_in": "ورود",
     "recaptcha_message_before": "این سایت توسط ربات reCAPTCHA و گوگل محافظت میشود.",
     "recaptcha_message_privacy": "قوانین حریم خصوصی",

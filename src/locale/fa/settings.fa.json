@@ -36,7 +36,7 @@
     "enable_form_step_2": "وارد کردن کد امنیتی",
     "enable_form_enter_manually": "یا خودتان این کد را وارد کنید",
     "enable_form_code": "کد امنیتی",
-    "enable_form_code_hint": "از نرم‌افزار کدساز",
+    "enable_form_code_hint": "از نرم‌افزار کدساز استفاده کنید:",
     "enable_form_button": "فعال سازی",
     "disable_form_warning": "هشدار: این اقدام ورود دو مرحله ای را برای حساب شما غیر فعال می کند",
     "disable_form_title": "برای غیر فعال سازی، کد امنیتی را از داخل نرم افزار خوانده و اینجا وارد کنید",

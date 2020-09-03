@@ -55,13 +55,18 @@
 
   "identity_proof": {
     "description": "请提供带有照片的以下证件之一:",
+    "description-region2": "请提供带有照片的以下证件之一:",
     "documents_1": "护照（照片页）",
     "documents_2": "驾驶证（正反双面）",
+    "documents_2-region2": "驾驶证（正反双面）",
     "documents_3": "身份证（正反双面）",
+    "documents_3-region2": "身份证（正反双面）",
     "hints_1": "照片或扫描件必须清晰，彩色，并包含整个证件在内",
     "hints_2": "您的全名，出生日期必须同您填写的内容一致.",
     "hints_3": "非英文的证件必须通过认证翻译，否则不予接受.",
+    "hints_3-region2": "非英文的证件必须通过认证翻译，否则不予接受.",
     "hints_4": "文件最大不超过10 Mb.",
+    "hints_4-region2": "文件最大不超过10 Mb.",
     "next": "下一步",
     "back": "返回上一步",
     "or": "或者"

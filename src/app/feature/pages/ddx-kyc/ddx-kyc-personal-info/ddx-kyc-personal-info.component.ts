@@ -1,4 +1,10 @@
-import { Component, OnInit, ElementRef, Renderer2 } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ElementRef,
+  Renderer2,
+  ViewChild,
+} from '@angular/core';
 import { COUNTRIES } from '@core/util/constants';
 import { Router } from '@angular/router';
 import { DropdownSelectItem } from '@widget/models';
@@ -7,6 +13,7 @@ import { KYCPageDirective } from '@feature/templates';
 import { TraderRESTService } from '@core/services/REST';
 import { TraderService, DirectionService, AuthService } from '@core/services';
 import { Observable } from 'rxjs';
+import { NgPersianDatepickerComponent } from 'ng-persian-datepicker';
 
 @Component({
   selector: 'ddx-kyc-personal-info',
@@ -19,6 +26,8 @@ import { Observable } from 'rxjs';
 export class KYCPersonalInfoPageComponent
   extends KYCPageDirective
   implements OnInit {
+  @ViewChild(NgPersianDatepickerComponent) picker: NgPersianDatepickerComponent;
+
   private countries: DropdownSelectItem[];
   private formErrors: any;
   public flag: boolean; //this flag toggles the date of birth error visibility
@@ -125,6 +134,10 @@ export class KYCPersonalInfoPageComponent
 
   get isTraderInRegionTwo(): boolean {
     return this.authService.decodedToken?.region === '2';
+  }
+
+  closePersianDatepicker(): void {
+    this.picker.uiIsVisible = false;
   }
 
   onSubmit(): void {

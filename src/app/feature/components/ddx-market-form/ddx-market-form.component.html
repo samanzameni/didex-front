@@ -36,7 +36,7 @@
         *ngFor="let item of timeInForceDropdownItems"
         [value]="item.value"
       >
-        {{ item.title }}
+        {{ 'homepage.market_form.' + item.title | ddxLocale }}
       </mat-option>
     </mat-select>
   </mat-form-field>

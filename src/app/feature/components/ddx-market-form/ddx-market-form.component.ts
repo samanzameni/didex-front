@@ -69,7 +69,10 @@ export class MarketFormComponent implements OnInit, OnChanges {
 
     this.timeInForceItems = names.map((name) => {
       return {
-        title: name,
+        title: name
+          .split(/\s|_|(?=[A-Z])/)
+          .join('_')
+          .toLowerCase(),
         value: OrderTimeInForce[name],
       };
     });

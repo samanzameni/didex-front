@@ -63,6 +63,8 @@
       appearance="outline"
       id="dateOfBirth"
       *ngIf="isTraderInRegionTwo; else gregorianCalendar"
+      (keydown.tab)="closePersianDatepicker()"
+      (keydown.shift.tab)="closePersianDatepicker()"
     >
       <mat-label
         >{{

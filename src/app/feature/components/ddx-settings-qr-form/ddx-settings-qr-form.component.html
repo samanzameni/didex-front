@@ -35,15 +35,15 @@
           (ngSubmit)="submitEnableForm(enableForm.value)"
           dir="{{ direction$ | async }}"
         >
+          <mat-hint>{{
+            'settings.2fa.enable_form_code_hint' | ddxLocale
+          }}</mat-hint>
           <mat-form-field appearance="outline">
             <mat-label>{{
               'settings.2fa.enable_form_code' | ddxLocale
             }}</mat-label>
             <input matInput type="text" name="code" ngModel required />
           </mat-form-field>
-          <mat-hint>{{
-            'settings.2fa.enable_form_code_hint' | ddxLocale
-          }}</mat-hint>
           <ng-container *ngIf="!!errors && errors.code">
             <mat-error *ngFor="let error of errors.code">{{ error }}</mat-error>
           </ng-container>
@@ -94,7 +94,7 @@
             }}</mat-error>
           </ng-container>
           <pro-button
-            color="warn"
+            color="primary"
             type="submit"
             [disabled]="!disableForm.valid"
             #disableSubmitButton

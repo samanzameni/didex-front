@@ -25,8 +25,9 @@
       }
 
       .settings-page__sections {
+        flex-wrap: wrap;
         align-items: center;
-        justify-content: space-between;
+        justify-content: center;
         padding-bottom: 3px;
 
         .settings-page__section-tab:not(:last-child) {
@@ -152,6 +153,12 @@
   :host {
     width: calc(100% - 10vw);
     margin: 20px auto;
+
+    .container {
+      .settings-page__header {
+        flex-wrap: wrap;
+      }
+    }
   }
 }
 
@@ -192,6 +199,7 @@
 
       .settings-page__sections {
         justify-content: flex-end;
+        flex-wrap: nowrap;
       }
     }
   }

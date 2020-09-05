@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { KYCPageDirective } from '@feature/templates';
 import { FormBuilder, Validators } from '@angular/forms';
 import { TraderRESTService } from '@core/services/REST';
-import { TraderService } from '@core/services';
+import { TraderService, AuthService } from '@core/services';
 
 @Component({
   selector: 'ddx-kyc-identity-proof',
@@ -23,7 +23,8 @@ export class KYCIdentityProofPageComponent extends KYCPageDirective
     protected renderer: Renderer2,
     protected formBuilder: FormBuilder,
     protected traderService: TraderService,
-    private restService: TraderRESTService
+    private restService: TraderRESTService,
+    private authService: AuthService
   ) {
     super(router, el, renderer, formBuilder, traderService);
     this.renderer.addClass(this.el.nativeElement, 'kyc-form');
@@ -56,6 +57,10 @@ export class KYCIdentityProofPageComponent extends KYCPageDirective
     this.kycForm = this.formBuilder.group({
       image: [img, Validators.required],
     });
+  }
+
+  get isTraderInRegionTwo(): boolean {
+    return this.authService.decodedToken?.region === '2';
   }
 
   onSubmit(): void {

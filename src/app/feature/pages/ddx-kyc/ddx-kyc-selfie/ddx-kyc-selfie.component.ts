@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { FormBuilder, Validators } from '@angular/forms';
 import { TraderRESTService } from '@core/services/REST';
 import { KYCPageDirective } from '@feature/templates';
-import { TraderService } from '@core/services';
+import { TraderService, AuthService } from '@core/services';
 
 @Component({
   selector: 'ddx-kyc-selfie',
@@ -22,7 +22,8 @@ export class KYCSelfiePageComponent extends KYCPageDirective implements OnInit {
     protected renderer: Renderer2,
     protected formBuilder: FormBuilder,
     protected traderService: TraderService,
-    private restService: TraderRESTService
+    private restService: TraderRESTService,
+    private authService: AuthService
   ) {
     super(router, el, renderer, formBuilder, traderService);
     this.renderer.addClass(this.el.nativeElement, 'kyc-form');
@@ -55,6 +56,10 @@ export class KYCSelfiePageComponent extends KYCPageDirective implements OnInit {
     this.kycForm = this.formBuilder.group({
       image: [img, Validators.required],
     });
+  }
+
+  get isTraderInRegionTwo(): boolean {
+    return this.authService.decodedToken?.region === '2';
   }
 
   onSubmit(): void {

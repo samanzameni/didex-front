@@ -52,10 +52,12 @@
     "button_newbie": "Verify Identity",
 
     "message_sent": "You have filled and sent your information and it is waiting for approval",
-    "button_sent": "Update ID Info",
+    "button_sent_start-trade": "Start Trade",
+    "button_sent_edit": "Update ID Info",
 
     "message_approved": "Your ID Verification is approved",
-    "button_approved": "Show",
+    "button_approved_start-trade": "Start Trade",
+    "button_approved_edit": "Update ID Info",
 
     "message_banned": "Your application for ID Verification is banned, please contact the support",
     "button_banned": "Validate Identity",

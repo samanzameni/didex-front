@@ -17,8 +17,8 @@
   "market_form": {
     "side_buy": "خرید",
     "side_sell": "فروش",
-    "time_in_force": "زمان لازم ",
-    "time_in_force_tooltip": "GoodTillCancelled: lasts until the order is completed or canceled.\n\nImmediateOrCancel: IOC is an order to buy or sell an currency that executes all or part immediately and cancels any unfilled portion of the order.\n\nFillOrKill: FOK order executes a transaction immediately and completely or not at all. (i.e., no partial execution of the order is allowed)\n\nDay: automatically expires if not executed on the day the order was placed. A day ends at 00:00 UTC time.\n\nGoodTillDate: automatically expires at the specified date and time.",
+    "time_in_force": "نوع معامله",
+    "time_in_force_tooltip": "معتبر تا لغو: در این سفارش تا زمانی که شما دستور به توقف سفارش ندهید، سفارش خرید یا فروش شما در حساب معاملاتی فعال باقی می‌‌ماند و این سفارش تا زمان تکمیل یا لغو آن ادامه دارد.\n\n اجرای فوری یا لغو: اجرای بی‌درنگ یا ابطال (IOC) که طبق آن تمام یا بخشی از سفارش باید به‌ سرعت اجرا شود و در غیر این صورت مابقی سفارش لغو خواهد شد.\n\nاجرای کامل یا لغو: در این سفارشات می بایست تمامی سفارش یکجا و کامل انجام شود و در غیراینصورت سفارش باطل خواهد شد.\n\n روز: اگر در روز ثبت سفارش، معامله انجام نشود، سفارش به طور خودکار منقضی می شود. مبنای روز ساعت صفر بامداد UTC می باشد.\n\nمعتبر تا تاریخ: سفارشی است که اعتبار آن در پایان تاریخی که در زمان ورود سفارش مشخص شده به اتمام می‌رسد و پس از آن به صورت خودکار از سامانه معاملات حذف می‌شود.",
     "post_only": "فقط  سفارش ارسال شود",
     "post_only_tooltip": "فقط  سفارش ارسال شود: نوعی از سفارش است که فقط در لیست سفارش قرار می گیرد و در صورت مطابقت با یک سفارش موجود ، منقضی می شود.در اینجا هزینه دریافت کننده را پرداخت نمی کنید.",
     "balance": "موجودی",

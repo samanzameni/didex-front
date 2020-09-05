@@ -266,7 +266,7 @@
         <div class="kyc-content__container">
           <img src="assets/images/kyc-sent.svg" alt="sent" />
           <p class="settings-page__info">
-            {{ 'kyc.sent.description' | ddxLocale }}
+            {{ 'settings.kyc.message_sent' | ddxLocale }}
           </p>
         </div>
         <div class="actions kyc-buttons__container double-button__container">
@@ -277,7 +277,7 @@
             color="basic"
             type="button"
           >
-            {{ 'kyc.approved.edit_application' | ddxLocale }}
+            {{ 'settings.kyc.button_sent_edit' | ddxLocale }}
           </button>
           <button
             class="kyc-edit__buttons"
@@ -285,7 +285,7 @@
             mat-raised-button
             color="primary"
           >
-            {{ 'kyc.approved.start_trade' | ddxLocale }}
+            {{ 'settings.kyc.button_sent_start-trade' | ddxLocale }}
           </button>
         </div>
       </div>
@@ -306,10 +306,10 @@
             color="basic"
             type="button"
           >
-            {{ 'kyc.approved.edit_application' | ddxLocale }}
+            {{ 'settings.kyc.button_approved_edit' | ddxLocale }}
           </button>
           <pro-button color="primary" routerLink="/" type="submit">
-            {{ 'kyc.approved.start_trade' | ddxLocale }}
+            {{ 'settings.kyc.button_approved_start-trade' | ddxLocale }}
           </pro-button>
         </div>
       </div>
@@ -319,7 +319,7 @@
         <div class="kyc-content__container">
           <img src="assets/images/kyc-banned.svg" alt="banned" />
           <p class="settings-page__info">
-            {{ 'kyc.banned.description' | ddxLocale }}
+            {{ 'settings.kyc.message_banned' | ddxLocale }}
           </p>
         </div>
         <button
@@ -328,7 +328,7 @@
           mat-raised-button
           color="primary"
         >
-          {{ 'kyc.banned.validate_identity_button' | ddxLocale }}
+          {{ 'settings.kyc.button_banned' | ddxLocale }}
         </button>
       </div>
     </ng-container>
@@ -338,7 +338,7 @@
         <div class="kyc-content__container">
           <img src="assets/images/kyc-rejected.svg" alt="rejected" />
           <p class="settings-page__info">
-            {{ 'kyc.rejected.description' | ddxLocale }}
+            {{ 'settings.kyc.message_rejected' | ddxLocale }}
           </p>
         </div>
         <button
@@ -348,7 +348,7 @@
           color="basic"
           type="button"
         >
-          {{ 'kyc.rejected.correct_information' | ddxLocale }}
+          {{ 'settings.kyc.button_rejected' | ddxLocale }}
         </button>
       </div>
     </ng-container>

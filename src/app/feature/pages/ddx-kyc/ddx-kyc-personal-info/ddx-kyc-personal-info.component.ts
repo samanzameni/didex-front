@@ -133,7 +133,7 @@ export class KYCPersonalInfoPageComponent
   }
 
   get isTraderInRegionTwo(): boolean {
-    return this.authService.decodedToken?.region === '2';
+    return this.authService.decodedToken?.region !== '2';
   }
 
   closePersianDatepicker(): void {

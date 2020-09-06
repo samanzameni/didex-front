@@ -93,6 +93,12 @@
     "back": "Back"
   },
 
+  "done": {
+    "description": "You have filled and sent your information and it is pending for approval",
+    "edit_application": "Edit",
+    "submit": "Start Trade"
+  },
+
   "sent": {
     "description": "You have filled and sent your information and it is pending for approval",
     "edit_application": "Edit",

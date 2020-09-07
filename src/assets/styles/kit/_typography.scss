@@ -1,12 +1,5 @@
 .title,
 h1 {
-  &.en {
-    font-family: Segoe;
-  }
-
-  &.fa {
-    font-family: IRANSans;
-  }
   font-size: 26px;
   line-height: 26px;
   font-weight: bolder;
@@ -14,13 +7,6 @@ h1 {
 
 .headline,
 h2 {
-  &.en {
-    font-family: Segoe;
-  }
-
-  &.fa {
-    font-family: IRANSans;
-  }
   font-size: 26px;
   line-height: 26px;
   font-weight: normal;
@@ -28,13 +14,6 @@ h2 {
 
 .subhead,
 h3 {
-  &.en {
-    font-family: Segoe;
-  }
-
-  &.fa {
-    font-family: IRANSans;
-  }
   font-size: 16px;
   line-height: 16px;
   font-weight: normal;
@@ -42,129 +21,57 @@ h3 {
 
 .body,
 p {
-  &.en {
-    font-family: Segoe;
-  }
-
-  &.fa {
-    font-family: IRANSans;
-  }
   font-size: 14px;
   line-height: 14px;
   font-weight: normal;
 }
 
 .callout {
-  &.en {
-    font-family: Segoe;
-  }
-
-  &.fa {
-    font-family: IRANSans;
-  }
   font-size: 16px;
   line-height: 16px;
   font-weight: normal;
 }
 
 .callout-small {
-  &.en {
-    font-family: Segoe;
-  }
-
-  &.fa {
-    font-family: IRANSans;
-  }
   font-size: 14px;
   line-height: 14px;
   font-weight: bold;
 }
 
 .footnote {
-  &.en {
-    font-family: Segoe;
-  }
-
-  &.fa {
-    font-family: IRANSans;
-  }
   font-size: 12px;
   line-height: 12px;
   font-weight: normal;
 }
 
 .caption {
-  &.en {
-    font-family: Segoe;
-  }
-
-  &.fa {
-    font-family: IRANSans;
-  }
   font-size: 14px;
   line-height: 14px;
   font-weight: bold;
 }
 
 .caption-small {
-  &.en {
-    font-family: Segoe;
-  }
-
-  &.fa {
-    font-family: IRANSans;
-  }
   font-size: 12px;
   line-height: 12px;
   font-weight: lighter;
 }
 
-@import '~@angular/material/theming';
-
 .en {
-  mat-label,
-  .mat-button,
-  .mat-raised-button,
-  .mat-icon-button,
-  .mat-stroked-button,
-  .mat-flat-button,
-  .mat-fab,
-  .mat-mini-fab .mat-checkbox-layout,
-  .mat-select,
-  .mat-option,
-  ::ng-deep mat-label {
-    font-family: Segoe;
-  }
+  font-family: Segoe;
 
   $custom-typography: mat-typography-config(
     $font-family: Segoe,
   );
 
   @include mat-core($custom-typography);
-  @include mat-checkbox-typography($custom-typography);
-  @include angular-material-typography($custom-typography);
 }
 
 .fa {
-  mat-label,
-  .mat-button,
-  .mat-raised-button,
-  .mat-icon-button,
-  .mat-stroked-button,
-  .mat-flat-button,
-  .mat-fab,
-  .mat-mini-fab .mat-checkbox-layout,
-  .mat-select,
-  .mat-option ::ng-deep mat-label {
-    direction: rtl;
-    font-family: IRANSans;
-  }
+  font-family: IRANSans;
 
   $custom-typography: mat-typography-config(
     $font-family: IRANSans,
   );
 
   @include mat-core($custom-typography);
-  @include mat-checkbox-typography($custom-typography);
-  @include angular-material-typography($custom-typography);
 }

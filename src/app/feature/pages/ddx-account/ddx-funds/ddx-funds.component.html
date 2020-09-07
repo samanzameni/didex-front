@@ -183,7 +183,7 @@
                 class="card-selector__container"
               >
                 <mat-select
-                  style="font-family: 'OCR A Std'"
+                  style="font-family: 'OCR A Std'; font-size: 14px"
                   name="bankAccountId"
                   panelClass="card-selector-panel"
                   [disabled]="bankAccounts.length === 0"
@@ -197,7 +197,7 @@
                     class="credit-card-number"
                     *ngFor="let item of bankAccounts"
                     [value]="item.id"
-                    style="font-family: 'OCR A Std'"
+                    style="font-family: 'OCR A Std'; font-size: 14px"
                   >
                     {{ item.cardNumber | ddxCreditCardMask }}
                   </mat-option>
@@ -309,6 +309,7 @@
                   class="card-selector__container"
                 >
                   <mat-select
+                    style="font-family: 'OCR A Std'; font-size: 14px"
                     name="bankAccountId"
                     panelClass="card-selector-panel"
                     [disabled]="bankAccounts.length === 0"
@@ -321,6 +322,7 @@
                     required
                   >
                     <mat-option
+                      style="font-family: 'OCR A Std'; font-size: 14px"
                       class="credit-card-number"
                       *ngFor="let item of bankAccounts"
                       [value]="item.id"

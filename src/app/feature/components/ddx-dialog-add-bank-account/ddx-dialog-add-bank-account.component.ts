@@ -33,6 +33,7 @@ export class DialogAddBankAccountComponent {
   ngOnInit(): void {
     this.buildFormGroup();
   }
+
   handleCancel(): void {
     this.dialogRef.close();
   }

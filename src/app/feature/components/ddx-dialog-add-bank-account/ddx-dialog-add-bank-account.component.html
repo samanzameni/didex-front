@@ -21,7 +21,7 @@
     </mat-error>
 
     <mat-error
-      *ngIf="cardNumberFormGroup.controls.cardNumber.hasError('pattern')"
+      *ngIf="cardNumberFormGroup.controls.cardNumber.hasError('minLength')"
     >
       {{ 'funds.deposit.r2_fiat_card_number_error_length' | ddxLocale }}
     </mat-error>
@@ -52,7 +52,11 @@
   <!-- <button mat-button (click)="handleCancel()">
     {{ 'funds.deposit.r2_fiat_cancel' | ddxLocale }}
   </button> -->
-  <button mat-raised-button (click)="handleAssign()">
+  <button
+    [disabled]="!cardNumberFormGroup.valid"
+    mat-raised-button
+    (click)="handleAssign()"
+  >
     {{ 'funds.deposit.r2_fiat_add_card' | ddxLocale }}
   </button>
 </div>

@@ -67,5 +67,12 @@
     "error_message": "خطا!",
     "error_deposit": "در واریز به حساب شما خطایی پیش آمد",
     "go_to_funds_button": "برو به سرمایه"
+  },
+  "fiat-withdraw": {
+    "all_set": "عملیات با موفقیت انجام شد!",
+    "redirection_message": "شما به زودی به صفحه سرمایه هدایت خواهید شد...",
+    "error_message": "خطا!",
+    "error_withdraw": "در برداشت از حساب شما خطایی پیش آمد",
+    "go_to_funds_button": "برو به سرمایه"
   }
 }

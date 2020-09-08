@@ -67,5 +67,12 @@
     "error_message": "Error!",
     "error_deposit": "An error occurred while depositing to your account",
     "go_to_funds_button": "Go to funds"
+  },
+  "fiat-withdraw": {
+    "all_set": "All set!",
+    "redirection_message": "You will be redirected to funds page soon...",
+    "error_message": "Error!",
+    "error_withdraw": "An error occurred while withdrawing from your account",
+    "go_to_funds_button": "Go to funds"
   }
 }

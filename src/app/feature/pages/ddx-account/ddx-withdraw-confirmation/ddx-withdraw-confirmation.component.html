@@ -4,16 +4,16 @@
   </ng-container>
 
   <ng-container *ngSwitchCase="'success'">
-    <h2>All set!</h2>
+    <h2>{{ 'funds.fiat-withdraw.all-set' | ddxLocale }}</h2>
     <mat-hint [ngStyle]="{ 'margin-top': '10px' }">
-      You will be redirected to funds page soon ...
+      {{ 'funds.fiat-withdraw.redirection_message' | ddxLocale }}
     </mat-hint>
   </ng-container>
 
   <ng-container *ngSwitchCase="'failed'">
-    <h2>Error!</h2>
+    <h2>{{ 'funds.fiat-withdraw.error_message' | ddxLocale }}</h2>
     <mat-error [ngStyle]="{ 'margin-top': '10px' }">
-      An error occured while withdrawing from your acount
+      {{ 'funds.fiat-withdraw.go_to_funds_button' | ddxLocale }}
     </mat-error>
   </ng-container>
 </section>

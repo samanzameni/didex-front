@@ -198,6 +198,11 @@
         }}</mat-error
       >
     </mat-form-field>
+    <ng-container *ngIf="errors">
+      <mat-error *ngFor="let error of errors.nationalCode"
+        >{{ error }}
+      </mat-error>
+    </ng-container>
 
     <mat-form-field id="zipCode" appearance="outline">
       <mat-label>{{

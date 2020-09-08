@@ -172,6 +172,10 @@ export class KYCPersonalInfoPageComponent
             this.flag = false; //this flag toggles DateOfBirth error visibility
             this.formErrors.birthday = errors.DateOfBirth;
           }
+
+          if (errors.NationalCode) {
+            this.formErrors.nationalCode = errors.NationalCode;
+          }
         }
       }
     );

@@ -1,4 +1,5 @@
 import { Component, Inject } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { BankAccount } from '@core/models';
@@ -16,8 +17,13 @@ export class DialogAddBankAccountComponent {
   constructor(
     public dialogRef: MatDialogRef<DialogAddBankAccountComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private bankAccountService: BankAccountRESTService
+    private bankAccountService: BankAccountRESTService,
+    protected creditCardForm: FormGroup
   ) {}
+
+  get creditCardFormGroup(): FormGroup {
+    return this.creditCardForm;
+  }
 
   handleCancel(): void {
     this.dialogRef.close();

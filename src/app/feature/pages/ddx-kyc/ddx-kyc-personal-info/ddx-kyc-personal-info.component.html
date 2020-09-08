@@ -11,6 +11,10 @@
     #form="ngForm"
     dir="{{ direction$ | async }}"
   >
+    <div class="stepper-container">
+      <span>{{ 'kyc.steps.step_1' | ddxLocale }}</span>
+      <h3>{{ 'kyc.steps.step_1_caption' | ddxLocale }}</h3>
+    </div>
     <p class="description">
       {{ 'kyc.personal_information.description' | ddxLocale }}
     </p>

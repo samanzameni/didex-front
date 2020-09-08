@@ -1,0 +1,64 @@
+:host{
+
+  .body{
+    background: radial-gradient(circle, rgba(68,84,136,1) 0%, rgba(0,25,75,1) 100%);
+    font-size: 16px;
+    color: white;
+    height: 100vh;
+    //font-family: 'Nunito', serif;
+  }
+  .button {
+    background-color: rgba(68,84,136,1);
+    border-radius: 35px;
+    border: 1px solid white;
+    color: white;
+    padding: 10px 30px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px;
+    cursor: pointer;
+  }
+  .img{
+    width: 90%;
+    height: auto;
+    margin-bottom: 20px;
+  }
+  .center{
+    text-align: center;
+  }
+  .img-mobile{
+    display: none;
+  }
+  .img-desktop{
+    display: block;
+  }
+  .first-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 93vh;
+
+  }
+  .second-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  //@font-face {
+  //  font-family: 'Nunito';
+  //  src: url('font/Nunito sans/NunitoSans-Regular.ttf') format('truetype')
+  //}
+  @media only screen and (max-width: 1000px) {
+    .img-mobile{
+      display: block;
+    }
+    .img-desktop{
+      display: none;
+    }
+  }
+
+}

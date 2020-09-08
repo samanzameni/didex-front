@@ -21,6 +21,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { NativeDateModule, MatNativeDateModule } from '@angular/material/core';
 import { LocalePipeModule } from './locale-pipe.module';
 import { NgPersianDatepickerModule } from 'ng-persian-datepicker';
+import { MatDividerModule } from '@angular/material/divider';
 
 const routes: Routes = [
   {
@@ -74,6 +75,7 @@ const routes: Routes = [
     MatNativeDateModule,
     NativeDateModule,
     NgPersianDatepickerModule,
+    MatDividerModule,
   ],
   exports: [],
   providers: [MatNativeDateModule],

@@ -1,4 +1,4 @@
-<mat-form-field appearance="outline">
+<mat-form-field appearance="outline" dir="{{ direction$ | async }}">
   <mat-label>{{ caption }}</mat-label>
   <input
     type="text"
@@ -18,7 +18,7 @@
     >
       <div class="f32">
         <span class="flag" [ngClass]="option.code.toLowerCase()"></span>
-        <span style="font-size: 14px; line-height: 14px;">{{
+        <span style="font-size: 14px; line-height: 14px">{{
           option.name
         }}</span>
       </div>

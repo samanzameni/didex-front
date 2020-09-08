@@ -42,20 +42,6 @@
 
       text-align: left; // HARDCODED!
       direction: ltr; // HARDCODED!
-
-      //Todo: fix this bit of code
-
-      &.rtl {
-        ::ng-deep .mat-form-field-outline {
-          direction: rtl;
-        }
-
-        &.ltr {
-          ::ng-deep .mat-form-field-outline {
-            direction: ltr;
-          }
-        }
-      }
     }
 
     #submitNumberButtonContainer {

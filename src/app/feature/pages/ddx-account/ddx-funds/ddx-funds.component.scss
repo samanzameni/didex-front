@@ -589,7 +589,7 @@
       .deposit__fiat-form {
         mat-label {
           width: 60px;
-          justify-content: end;
+          justify-content: flex-end;
           margin-inline-end: 5px;
         }
 
@@ -599,7 +599,7 @@
 
         .card-selector__add-button {
           width: 160px;
-          margin: 0 0.25em;
+          margin: 0 10px;
         }
 
         .deposit-amount-container {
@@ -608,7 +608,7 @@
 
         .mat-raised-button {
           &.deposit-button {
-            margin: 0 0.25em;
+            margin: 0 10px;
             width: 130px;
           }
         }

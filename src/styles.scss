@@ -20,6 +20,14 @@ body {
   color: $ddx-light;
 }
 
+.ltr {
+  direction: ltr;
+}
+
+.rtl {
+  direction: rtl;
+}
+
 a,
 a:active {
   color: $ddx-light;

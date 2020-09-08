@@ -11,13 +11,13 @@
     #form="ngForm"
     dir="{{ direction$ | async }}"
   >
-    <div class="stepper-container">
+    <div class="stepper-container" dir="{{ direction$ | async }}">
       <span>{{ 'kyc.steps.step_2' | ddxLocale }}</span>
       <h3>{{ 'kyc.steps.step_2_caption' | ddxLocale }}</h3>
       <mat-divider></mat-divider>
     </div>
 
-    <p class="description">
+    <p class="description" dir="{{ direction$ | async }}">
       {{ 'kyc.phone_verification.description' | ddxLocale }}
     </p>
 
@@ -30,12 +30,11 @@
 
     <mat-form-field
       id="mobileNumber"
-      class="ltr"
-      dir="ltr"
       appearance="outline"
+      dir="ltr"
+      class="ltr"
     >
       <span
-        dir="ltr"
         matPrefix
         *ngIf="
           kycFormControls.countryTelephoneCode.value &&
@@ -52,7 +51,6 @@
         matInput
         name="mobileNumber"
         formControlName="mobileNumber"
-        dir="ltr"
       />
       <mat-error
         *ngIf="kycFormGroup.controls.mobileNumber.hasError('required')"
@@ -100,11 +98,15 @@
       </button>
     </div>
 
-    <div arrangeInline id="timer">
+    <div arrangeInline id="timer" dir="{{ direction$ | async }}">
       <span>{{ countdownTimer }}</span>
     </div>
 
-    <div id="code" [ngClass]="{ hidden: !hasSubmittedNumber }">
+    <div
+      id="code"
+      [ngClass]="{ hidden: !hasSubmittedNumber }"
+      dir="{{ direction$ | async }}"
+    >
       <p class="message">
         {{ 'kyc.phone_verification.verification_message' | ddxLocale }}
       </p>
@@ -136,7 +138,7 @@
       </mat-form-field>
     </div>
 
-    <div class="actions">
+    <div class="actions" dir="{{ direction$ | async }}">
       <a
         routerLink="/user/kyc/personal-info"
         rel="noopener noreferrer"

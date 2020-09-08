@@ -43,8 +43,18 @@
       text-align: left; // HARDCODED!
       direction: ltr; // HARDCODED!
 
-      ::ng-deep .mat-form-field-outline {
-        direction: rtl;
+      //Todo: fix this bit of code
+
+      &.rtl {
+        ::ng-deep .mat-form-field-outline {
+          direction: rtl;
+        }
+
+        &.ltr {
+          ::ng-deep .mat-form-field-outline {
+            direction: ltr;
+          }
+        }
       }
     }
 

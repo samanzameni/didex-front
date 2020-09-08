@@ -27,6 +27,10 @@
 
       text-align: left; // HARDCODED!
       direction: ltr; // HARDCODED!
+
+      ::ng-deep .mat-form-field-outline {
+        direction: rtl;
+      }
     }
 
     #submitNumberButtonContainer {

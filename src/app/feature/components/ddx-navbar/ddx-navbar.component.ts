@@ -122,7 +122,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   }
 
   toggleLocaleSelector() {
-    console.log(this.select.panelOpen);
+    // console.log(this.select.panelOpen);
     this.select.toggle();
   }
 

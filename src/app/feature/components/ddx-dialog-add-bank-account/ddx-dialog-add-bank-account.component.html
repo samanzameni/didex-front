@@ -53,3 +53,9 @@
     {{ 'funds.deposit.r2_fiat_add_card' | ddxLocale }}
   </button>
 </div>
+<div id="credit-card__error-container">
+  <ng-container *ngIf="errors">
+    <mat-error *ngFor="let error of errors.cardNumber">{{ error }} </mat-error>
+    <mat-error *ngFor="let error of errors.iban">{{ error }} </mat-error>
+  </ng-container>
+</div>

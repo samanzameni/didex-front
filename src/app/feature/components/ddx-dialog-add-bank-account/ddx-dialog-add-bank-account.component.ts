@@ -15,13 +15,16 @@ export class DialogAddBankAccountComponent {
   public iban: string;
 
   public cardNumberFormGroup: FormGroup;
+  private formErrors: any;
 
   constructor(
     public dialogRef: MatDialogRef<DialogAddBankAccountComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private bankAccountService: BankAccountRESTService,
     private formBuilder: FormBuilder
-  ) {}
+  ) {
+    this.formErrors = {};
+  }
 
   private buildFormGroup(): void {
     this.cardNumberFormGroup = this.formBuilder.group({
@@ -32,6 +35,10 @@ export class DialogAddBankAccountComponent {
 
   ngOnInit(): void {
     this.buildFormGroup();
+  }
+
+  get errors(): any {
+    return this.formErrors;
   }
 
   handleCancel(): void {
@@ -49,7 +56,19 @@ export class DialogAddBankAccountComponent {
       (response) => {
         this.dialogRef.close(response);
       },
-      (errorResponse) => {}
+      (errorResponse) => {
+        if (errorResponse.status === 400) {
+          const errors = errorResponse.error.errors;
+
+          if (errors.CardNumber) {
+            this.formErrors.cardNumber = errors.CardNumber;
+          }
+
+          if (errors.Iban) {
+            this.formErrors.iban = errors.Iban;
+          }
+        }
+      }
     );
   }
 }

@@ -59,5 +59,13 @@
     "amount": "Amount",
     "transfer": "Transfer",
     "tips": "Please make sure that your computer and browser are secure and your information is protected from being tampered or leaked."
+  },
+
+  "fiat-deposit": {
+    "all_set": "All set!",
+    "redirection_message": "You will be redirected to funds page soon...",
+    "error_message": "Error!",
+    "error_deposit": "An error occurred while depositing to your account",
+    "go_to_funds_button": "Go to funds"
   }
 }

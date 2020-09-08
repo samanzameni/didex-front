@@ -4,19 +4,19 @@
   </ng-container>
 
   <ng-container *ngSwitchCase="'success'">
-    <h2>All set!</h2>
+    <h2>{{ 'funds.fiat-deposit.all_set' | ddxLocale }}</h2>
     <mat-hint [ngStyle]="{ 'margin-top': '10px' }">
-      You will be redirected to funds page soon ...
+      {{ 'funds.fiat-deposit.redirection_message' | ddxLocale }}
     </mat-hint>
   </ng-container>
 
   <ng-container *ngSwitchCase="'failed'">
-    <h2>Error!</h2>
+    <h2>{{ 'funds.fiat-deposit.error_message' | ddxLocale }}</h2>
     <mat-error [ngStyle]="{ 'margin-top': '10px' }">
-      An error occured while depositing to your acount
+      {{ 'funds.fiat-deposit.error_deposit' | ddxLocale }}
     </mat-error>
     <button mat-raised-button color="primary" routerLink="/account/funds">
-      Go to funds
+      {{ 'funds.fiat-deposit.go_to_funds_button' | ddxLocale }}
     </button>
   </ng-container>
 </section>

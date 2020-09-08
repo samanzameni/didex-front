@@ -10,6 +10,11 @@
     (ngSubmit)="onSubmit()"
     #form
   >
+    <div class="stepper-container">
+      <span>{{ 'kyc.steps.step_4' | ddxLocale }}</span>
+      <h3>{{ 'kyc.steps.step_4_caption' | ddxLocale }}</h3>
+      <mat-divider></mat-divider>
+    </div>
     <div arrangeStack class="description">
       <p>
         {{ 'kyc.selfie.description' | ddxLocale }}

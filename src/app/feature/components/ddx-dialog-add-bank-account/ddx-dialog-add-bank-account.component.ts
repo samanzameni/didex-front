@@ -17,21 +17,21 @@ export class DialogAddBankAccountComponent {
   constructor(
     public dialogRef: MatDialogRef<DialogAddBankAccountComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private bankAccountService: BankAccountRESTService,
-    protected creditCardForm: FormGroup,
-    protected formBuilder: FormBuilder
-  ) {}
+    private bankAccountService: BankAccountRESTService
+  ) // protected creditCardForm: FormGroup,
+  // protected formBuilder: FormBuilder
+  {}
 
-  ngOnInit() {
-    this.creditCardForm = this.formBuilder.group({
-      creditCardNumber: ['', [Validators.required, Validators.maxLength(50)]],
-      creditCardIBAN: ['', [Validators.required, Validators.maxLength(50)]],
-    });
-  }
+  // ngOnInit() {
+  //   this.creditCardForm = this.formBuilder.group({
+  //     creditCardNumber: ['', [Validators.required, Validators.maxLength(50)]],
+  //     creditCardIBAN: ['', [Validators.required, Validators.maxLength(50)]],
+  //   });
+  // }
 
-  get creditCardFormGroup(): FormGroup {
-    return this.creditCardForm;
-  }
+  // get creditCardFormGroup(): FormGroup {
+  //   return this.creditCardForm;
+  // }
 
   handleCancel(): void {
     this.dialogRef.close();

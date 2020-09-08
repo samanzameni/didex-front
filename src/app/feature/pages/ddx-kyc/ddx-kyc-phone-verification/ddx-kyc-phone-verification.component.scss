@@ -6,6 +6,7 @@
     grid-template-columns: auto auto;
     row-gap: 15px;
     grid-template-areas:
+      'stepper-container stepper-container'
       'description description'
       'countryTelephoneCode countryTelephoneCode'
       'mobileNumber mobileNumber'
@@ -16,6 +17,20 @@
 
     .mat-error {
       margin-top: 13px;
+    }
+
+    .stepper-container {
+      grid-area: stepper-container;
+      margin-bottom: 15px;
+
+      span {
+        padding: 7px 0;
+      }
+
+      h3 {
+        padding: 7px 0;
+        color: $ddx-accent-lighter;
+      }
     }
 
     #countryTelephoneCode {
@@ -72,6 +87,10 @@
 
 @media screen and (min-width: $break-mobile) {
   :host {
+    .stepper-container {
+      display: none;
+    }
+
     form {
       grid-template-rows: auto max-content auto auto max-content auto;
       grid-template-columns: 1fr 1fr 1fr;

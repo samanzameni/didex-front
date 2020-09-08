@@ -125,6 +125,9 @@ $datePickerBackgroundColor: #1f3277;
 
 @media screen and (min-width: $break-narrow-tablet) {
   :host {
+    .stepper-container {
+      display: none;
+    }
     form {
       grid-template-rows: repeat(6, max-content) auto;
       grid-template-columns: 1fr 1fr;

@@ -11,6 +11,12 @@
     #form="ngForm"
     dir="{{ direction$ | async }}"
   >
+    <div class="stepper-container">
+      <span>{{ 'kyc.steps.step_2' | ddxLocale }}</span>
+      <h3>{{ 'kyc.steps.step_2_caption' | ddxLocale }}</h3>
+      <mat-divider></mat-divider>
+    </div>
+
     <p class="description">
       {{ 'kyc.phone_verification.description' | ddxLocale }}
     </p>

@@ -24,6 +24,9 @@
 
     #mobileNumber {
       grid-area: mobileNumber;
+
+      text-align: left; // HARDCODED!
+      direction: ltr; // HARDCODED!
     }
 
     #submitNumberButtonContainer {

@@ -22,8 +22,14 @@
       [control]="kycFormControls.countryTelephoneCode"
     ></dropdown-autocomplete-countries>
 
-    <mat-form-field id="mobileNumber" appearance="outline">
+    <mat-form-field
+      id="mobileNumber"
+      class="ltr"
+      dir="ltr"
+      appearance="outline"
+    >
       <span
+        dir="ltr"
         matPrefix
         *ngIf="
           kycFormControls.countryTelephoneCode.value &&

@@ -10,7 +10,6 @@
         type="text"
         name="cardNumber"
         formControlName="cardNumber"
-        [(ngModel)]="cardNumber"
       />
     </mat-form-field>
 
@@ -21,7 +20,7 @@
     </mat-error>
 
     <mat-error
-      *ngIf="cardNumberFormGroup.controls.cardNumber.hasError('minLength')"
+      *ngIf="cardNumberFormGroup.controls.cardNumber.hasError('minlength')"
     >
       {{ 'funds.deposit.r2_fiat_card_number_error_length' | ddxLocale }}
     </mat-error>
@@ -30,20 +29,14 @@
       <mat-label>{{
         'funds.deposit.r2_fiat_add_form_iban' | ddxLocale
       }}</mat-label>
-      <input
-        matInput
-        type="text"
-        name="iban"
-        formControlName="iban"
-        [(ngModel)]="iban"
-      />
+      <input matInput type="text" name="iban" formControlName="iban" />
     </mat-form-field>
 
     <mat-error *ngIf="cardNumberFormGroup.controls.iban.hasError('required')">
       {{ 'funds.deposit.r2_fiat_card_iban_error_required' | ddxLocale }}
     </mat-error>
 
-    <mat-error *ngIf="cardNumberFormGroup.controls.iban.hasError('minLength')">
+    <mat-error *ngIf="cardNumberFormGroup.controls.iban.hasError('minlength')">
       {{ 'funds.deposit.r2_fiat_card_iban_error_length' | ddxLocale }}
     </mat-error>
   </form>

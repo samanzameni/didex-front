@@ -46,11 +46,15 @@ export class DialogAddBankAccountComponent {
   }
 
   handleAssign(): void {
-    const dataToSend: BankAccount.AddFormData = {
-      cardNumber: this.cardNumber,
-      iban: this.iban,
+    let { currencyShortName, ...formValue } = this.cardNumberFormGroup.value;
+    const dataToSend = Object.assign(formValue, {
       currencyShortName: this.data.currencyShortName,
-    };
+    });
+    // const dataToSend: BankAccount.AddFormData = {
+    //   cardNumber: this.cardNumber,
+    //   iban: this.iban,
+    //   currencyShortName: this.data.currencyShortName,
+    // };
 
     this.bankAccountService.requestAddBankAccount(dataToSend).subscribe(
       (response) => {

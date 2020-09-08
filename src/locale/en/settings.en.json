@@ -6,6 +6,7 @@
   "tab_kyc": "ID Verification",
 
   "general": {
+    "title": "General Settings",
     "message": "Here, you can change your general account information.",
     "nickname": "Nickname",
     "nickname_placeholder": "Johnny Doe",
@@ -14,6 +15,7 @@
   },
 
   "security": {
+    "title": "Security",
     "message": "Here, you can change your password for improving the security of your account.",
     "old_password": "Old Password",
     "password": "Password",
@@ -48,6 +50,7 @@
   },
 
   "kyc": {
+    "title": "ID Verification",
     "message_newbie": "As a user, you must verify your identity in order to make transactions on DidEx platforms",
     "button_newbie": "Verify Identity",
 

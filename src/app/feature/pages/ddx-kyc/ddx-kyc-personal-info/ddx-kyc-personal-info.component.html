@@ -65,6 +65,7 @@
       *ngIf="isTraderInRegionTwo; else gregorianCalendar"
       (keydown.tab)="closePersianDatepicker()"
       (keydown.shift.tab)="closePersianDatepicker()"
+      (click)="openPersianDatepicker()"
     >
       <mat-label
         >{{

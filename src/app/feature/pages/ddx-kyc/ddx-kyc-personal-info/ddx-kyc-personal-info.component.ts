@@ -139,6 +139,9 @@ export class KYCPersonalInfoPageComponent
   closePersianDatepicker(): void {
     this.picker.uiIsVisible = false;
   }
+  openPersianDatepicker(): void {
+    this.picker.uiIsVisible = true;
+  }
 
   onSubmit(): void {
     let { dateOfBirth, ...formValue } = this.kycForm.value;

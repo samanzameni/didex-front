@@ -31,7 +31,11 @@
     "r2_fiat_add_toast_title": "Bank Account",
     "r2_fiat_add_toast_message": "Successfully added!",
     "r2_fiat_kyc_needed_message": "To work with fiat currencies, first you have to verify your identity",
-    "r2_fiat_kyc_needed_button": "Verify Identity"
+    "r2_fiat_kyc_needed_button": "Verify Identity",
+    "r2_fiat_card_number_error_required": "This field is required",
+    "r2_fiat_card_number_error_length": "Credit card number should be at least 16 digits",
+    "r2_fiat_card_iban_error_required": "This field is required",
+    "r2_fiat_card_iban_error_length": "IBAN should be at least 24 digits"
   },
 
   "withdraw": {

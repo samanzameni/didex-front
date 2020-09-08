@@ -1,19 +1,51 @@
 <h1 mat-dialog-title>{{ 'funds.deposit.r2_fiat_add_card' | ddxLocale }}</h1>
 <div mat-dialog-content>
-  <form autocomplete="off">
+  <form [formGroup]="cardNumberFormGroup" autocomplete="off">
     <mat-form-field appearance="outline">
       <mat-label>{{
         'funds.deposit.r2_fiat_add_form_card_number' | ddxLocale
       }}</mat-label>
-      <input matInput type="text" name="cardNumber" [(ngModel)]="cardNumber" />
+      <input
+        matInput
+        type="text"
+        name="cardNumber"
+        formControlName="cardNumber"
+        [(ngModel)]="cardNumber"
+      />
     </mat-form-field>
+
+    <mat-error
+      *ngIf="cardNumberFormGroup.controls.cardNumber.hasError('required')"
+    >
+      {{ 'funds.deposit.r2_fiat_card_number_error_required' | ddxLocale }}
+    </mat-error>
+
+    <mat-error
+      *ngIf="cardNumberFormGroup.controls.cardNumber.hasError('pattern')"
+    >
+      {{ 'funds.deposit.r2_fiat_card_number_error_length' | ddxLocale }}
+    </mat-error>
 
     <mat-form-field appearance="outline">
       <mat-label>{{
         'funds.deposit.r2_fiat_add_form_iban' | ddxLocale
       }}</mat-label>
-      <input matInput type="text" name="iban" [(ngModel)]="iban" />
+      <input
+        matInput
+        type="text"
+        name="iban"
+        formControlName="iban"
+        [(ngModel)]="iban"
+      />
     </mat-form-field>
+
+    <mat-error *ngIf="cardNumberFormGroup.controls.iban.hasError('required')">
+      {{ 'funds.deposit.r2_fiat_card_iban_error_required' | ddxLocale }}
+    </mat-error>
+
+    <mat-error *ngIf="cardNumberFormGroup.controls.iban.hasError('minLength')">
+      {{ 'funds.deposit.r2_fiat_card_iban_error_length' | ddxLocale }}
+    </mat-error>
   </form>
 </div>
 <div mat-dialog-actions>

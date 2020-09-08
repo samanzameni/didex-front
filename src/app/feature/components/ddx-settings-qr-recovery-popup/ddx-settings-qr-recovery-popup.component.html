@@ -1,15 +1,17 @@
-<h1 mat-dialog-title>Two-Factor authentication enabled</h1>
+<h1 mat-dialog-title>{{ 'settings.2fa-popup.title' | ddxLocale }}</h1>
 <div mat-dialog-content>
   <p>
-    Your account is now safe! The code below is your recovery code. Save it for
-    later use
+    {{ 'settings.2fa-popup.message' | ddxLocale }}
   </p>
 
   <p>
-    Recovery Code: <code>{{ data?.recoveryKey }}</code>
+    {{ 'settings.2fa-popup.recovery_code' | ddxLocale }}
+    <code>{{ data?.recoveryKey }}</code>
   </p>
-  <mat-hint>HINT: This code will never be available to read again</mat-hint>
+  <mat-hint>{{ 'settings.2fa-popup.hint' | ddxLocale }}</mat-hint>
 </div>
 <div mat-dialog-actions>
-  <button mat-button mat-dialog-close>Close</button>
+  <button mat-button mat-dialog-close>
+    {{ 'settings.2fa-popup.hint' | ddxLocale }}
+  </button>
 </div>

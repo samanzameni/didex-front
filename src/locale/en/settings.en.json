@@ -49,6 +49,13 @@
     "qr_no_data": "No QR data available ..."
   },
 
+  "2fa-popup": {
+    "title": "Two-Factor authentication enabled",
+    "message": "Your account is now safe! The code below is your recovery code. Save it for later use",
+    "recovery_code": "Recovery Code:",
+    "hint": "HINT: This code will never be available to read again"
+  },
+
   "kyc": {
     "title": "ID Verification",
     "message_newbie": "As a user, you must verify your identity in order to make transactions on DidEx platforms",

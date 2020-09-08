@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { BankAccount } from '@core/models';
@@ -18,8 +18,16 @@ export class DialogAddBankAccountComponent {
     public dialogRef: MatDialogRef<DialogAddBankAccountComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private bankAccountService: BankAccountRESTService,
-    protected creditCardForm: FormGroup
+    protected creditCardForm: FormGroup,
+    protected formBuilder: FormBuilder
   ) {}
+
+  ngOnInit() {
+    this.creditCardForm = this.formBuilder.group({
+      creditCardNumber: ['', [Validators.required, Validators.maxLength(50)]],
+      creditCardIBAN: ['', [Validators.required, Validators.maxLength(50)]],
+    });
+  }
 
   get creditCardFormGroup(): FormGroup {
     return this.creditCardForm;

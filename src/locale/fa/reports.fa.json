@@ -3,6 +3,7 @@
   "tab_orders": "سفارش‌ها",
   "tab_trades": "معاملات",
   "tab_transactions": "تراکنش‌ها ",
+  "paginator": "تعداد موارد هر صفحه",
 
   "orders": {
     "data_message": "شما سفارش فعالی ندارید",
@@ -31,6 +32,8 @@
     "data_message": "تراکنشی برای شما  ثبت نشده  است",
     "createdAt": "زمان",
     "type": "نوع",
+    "type_option_1": "سرمایه‌گذاری به حساب اصلی",
+    "type_option_2": "حساب اصلی به سرمایه‌گذاری",
     "currencyShortName": "ارز",
     "transactionId": "شناسه",
     "hash": " Hash ",

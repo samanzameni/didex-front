@@ -38,7 +38,7 @@ export class DropdownAutocompleteCountriesComponent
     if (localeService.isOnLocalhost()) {
       this.countriesList = [...IRAN, ...COUNTRIES];
       this.caption = 'Choose';
-    } else if (!localeService.isOnRegionTwo()) {
+    } else if (localeService.isOnRegionTwo()) {
       this.countriesList = IRAN;
       this.caption = 'انتخاب کشور';
     } else {

@@ -14,13 +14,21 @@
     </mat-form-field>
 
     <mat-error
-      *ngIf="cardNumberFormGroup.controls.cardNumber.hasError('required')"
+      *ngIf="
+        cardNumberFormGroup.controls.cardNumber.hasError('required') &&
+        cardNumberFormGroup.controls.cardNumber.dirty &&
+        cardNumberFormGroup.controls.cardNumber.touched
+      "
     >
       {{ 'funds.deposit.r2_fiat_card_number_error_required' | ddxLocale }}
     </mat-error>
 
     <mat-error
-      *ngIf="cardNumberFormGroup.controls.cardNumber.hasError('minlength')"
+      *ngIf="
+        cardNumberFormGroup.controls.cardNumber.hasError('minlength') &&
+        cardNumberFormGroup.controls.cardNumber.dirty &&
+        cardNumberFormGroup.controls.cardNumber.touched
+      "
     >
       {{ 'funds.deposit.r2_fiat_card_number_error_length' | ddxLocale }}
     </mat-error>
@@ -32,11 +40,23 @@
       <input matInput type="text" name="iban" formControlName="iban" />
     </mat-form-field>
 
-    <mat-error *ngIf="cardNumberFormGroup.controls.iban.hasError('required')">
+    <mat-error
+      *ngIf="
+        cardNumberFormGroup.controls.iban.hasError('required') &&
+        cardNumberFormGroup.controls.iban.dirty &&
+        cardNumberFormGroup.controls.iban.touched
+      "
+    >
       {{ 'funds.deposit.r2_fiat_card_iban_error_required' | ddxLocale }}
     </mat-error>
 
-    <mat-error *ngIf="cardNumberFormGroup.controls.iban.hasError('minlength')">
+    <mat-error
+      *ngIf="
+        cardNumberFormGroup.controls.iban.hasError('minlength') &&
+        cardNumberFormGroup.controls.iban.dirty &&
+        cardNumberFormGroup.controls.iban.touched
+      "
+    >
       {{ 'funds.deposit.r2_fiat_card_iban_error_length' | ddxLocale }}
     </mat-error>
   </form>

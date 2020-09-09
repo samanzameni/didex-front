@@ -46,7 +46,8 @@
     "disable_form_warning": "WARNING: This will remove two factor authentication from your account",
     "disable_form_title": "For disabling two factor authentication from your account, enter your authenticator code below and submit",
     "disable_form_button": "Disable",
-    "qr_no_data": "No QR data available ..."
+    "qr_no_data": "No QR data available ...",
+    "error_code": "Wrong code"
   },
 
   "2fa-popup": {

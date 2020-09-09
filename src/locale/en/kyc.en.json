@@ -97,27 +97,5 @@
     "description": "You have filled and sent your information and it is pending for approval",
     "edit_application": "Edit",
     "submit": "Start Trade"
-  },
-
-  "sent": {
-    "description": "You have filled and sent your information and it is pending for approval",
-    "edit_application": "Edit",
-    "submit": "Start"
-  },
-
-  "approved": {
-    "description": "Thank you for your patience, your identity is verified",
-    "edit_application": "Edit",
-    "start_trade": "Start Trade"
-  },
-
-  "banned": {
-    "description": "Verification of your ID is banned, Please wait",
-    "validate_identity_button": "Validate Identity"
-  },
-
-  "rejected": {
-    "description": "Your ID has not been verified, Please check",
-    "correct_information": "Correct information"
   }
 }

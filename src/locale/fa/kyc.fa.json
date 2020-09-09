@@ -48,6 +48,7 @@
     "mobile_number_error_maxlength": " کاراکتر حداکثر 15 کلمه است  ",
     "mobile_number_error_pattern": "فقط اعداد قابل قبول هستند",
     "button_submit": "تایید",
+    "resend_code_button": "ارسال دوباره",
     "verification_message": "کد ارسال شده به تلفن همراه خود را وارد کنید",
     "code_error_required": "پر کردن این قسمت الزامی است",
     "code_error_maxlength": " کاراکتر حداکثر 6 کلمه است",

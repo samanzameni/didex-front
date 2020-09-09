@@ -18,6 +18,7 @@
     "fetching": "در حال آماده سازی",
     "fetching_error": "خطا در آماده سازی کیف پول",
     "copy": "کپی کنید",
+    "copied": "کپی شد!",
     "tips": "لطفا هیچگونه دارایی دیجیتال دیگری جز ارز انتخاب شده را به آدرس کیف پول فوق واریز نکنید.در غیر این صورت شما ممکن است دارایی خود را برای همیشه از دست بدهید.",
     "r2_fiat_deposit": "واریز",
     "r2_fiat_select_card": "انتخاب کارت",
@@ -30,7 +31,11 @@
     "r2_fiat_add_toast_title": "حساب بانکی",
     "r2_fiat_add_toast_message": "با موفقیت اضافه شد!",
     "r2_fiat_kyc_needed_message": "برای کار کردن با ارزهای فیات، ابتدا باید احراز هویت کنید!",
-    "r2_fiat_kyc_needed_button": "احراز هویت"
+    "r2_fiat_kyc_needed_button": "احراز هویت",
+    "r2_fiat_card_number_error_required": "مقدار شماره کارت نمی‌تواند خالی باشد",
+    "r2_fiat_card_number_error_length": "مقدار شماره کارت باید یک عدد ۱۶ رقمی باشد",
+    "r2_fiat_card_iban_error_required": "مقدار شماره شبا نمی‌تواند خالی باشد",
+    "r2_fiat_card_iban_error_length": "شماره شبا حداقل ۲۴ کاراکتر است"
   },
 
   "withdraw": {
@@ -54,5 +59,20 @@
     "amount": "مقدار",
     "transfer": "انتقال",
     "tips": "لطفاً اطمینان حاصل كنید كه رایانه و مرورگر شما ایمن بوده و اطلاعات شما در مقابل دستكاری یا هک شدن محافظت می گردد"
+  },
+
+  "fiat-deposit": {
+    "all_set": "عملیات با موفقیت انجام شد!",
+    "redirection_message": "شما به زودی به صفحه سرمایه هدایت خواهید شد...",
+    "error_message": "خطا!",
+    "error_deposit": "در واریز به حساب شما خطایی پیش آمد",
+    "go_to_funds_button": "برو به سرمایه"
+  },
+  "fiat-withdraw": {
+    "all_set": "عملیات با موفقیت انجام شد!",
+    "redirection_message": "شما به زودی به صفحه سرمایه هدایت خواهید شد...",
+    "error_message": "خطا!",
+    "error_withdraw": "در برداشت از حساب شما خطایی پیش آمد",
+    "go_to_funds_button": "برو به سرمایه"
   }
 }

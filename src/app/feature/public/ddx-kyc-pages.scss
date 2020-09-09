@@ -1,6 +1,6 @@
 @import '../../../styles.scss';
 
-$ddx-kyc-header-height: 80px;
+$ddx-kyc-header-height: 50px;
 
 :host {
   display: flex;
@@ -123,7 +123,7 @@ $ddx-kyc-header-height: 80px;
       }
 
       h2 {
-        line-height: 80px;
+        line-height: 60px;
       }
     }
   }

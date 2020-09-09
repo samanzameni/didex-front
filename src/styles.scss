@@ -1,3 +1,5 @@
+@import '~@angular/material/theming';
+
 @import 'assets/styles/reset';
 @import 'assets/styles/colors';
 @import 'assets/styles/constants';
@@ -16,6 +18,14 @@ body {
   overflow-x: hidden;
   background: $ddx-dark-deep;
   color: $ddx-light;
+}
+
+.ltr {
+  direction: ltr;
+}
+
+.rtl {
+  direction: rtl;
 }
 
 a,

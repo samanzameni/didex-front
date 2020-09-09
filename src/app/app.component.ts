@@ -23,13 +23,14 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.signalrService.startConnection();
-  }
 
-  get direction$(): Observable<Direction> {
-    return this.directionService.direction$;
-  }
+    const body = document.querySelector('body');
+    this.directionService.direction$.subscribe((dir) => {
+      body.setAttribute('dir', dir);
+    });
 
-  get locale$(): Observable<Locale> {
-    return this.localeService.locale$;
+    this.localeService.locale$.subscribe((locale) => {
+      body.classList.value = locale;
+    });
   }
 }

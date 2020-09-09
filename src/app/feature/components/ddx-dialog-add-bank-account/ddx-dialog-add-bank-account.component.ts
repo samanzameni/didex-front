@@ -1,4 +1,5 @@
 import { Component, Inject } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { BankAccount } from '@core/models';
@@ -13,28 +14,65 @@ export class DialogAddBankAccountComponent {
   public cardNumber: string;
   public iban: string;
 
+  public cardNumberFormGroup: FormGroup;
+  private formErrors: any;
+
   constructor(
     public dialogRef: MatDialogRef<DialogAddBankAccountComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private bankAccountService: BankAccountRESTService
-  ) {}
+    private bankAccountService: BankAccountRESTService,
+    private formBuilder: FormBuilder
+  ) {
+    this.formErrors = {};
+  }
+
+  private buildFormGroup(): void {
+    this.cardNumberFormGroup = this.formBuilder.group({
+      cardNumber: ['', [Validators.required, Validators.minLength(16)]],
+      iban: ['', [Validators.required, Validators.minLength(26)]],
+    });
+  }
+
+  ngOnInit(): void {
+    this.buildFormGroup();
+  }
+
+  get errors(): any {
+    return this.formErrors;
+  }
 
   handleCancel(): void {
     this.dialogRef.close();
   }
 
   handleAssign(): void {
-    const dataToSend: BankAccount.AddFormData = {
-      cardNumber: this.cardNumber,
-      iban: this.iban,
+    let { currencyShortName, ...formValue } = this.cardNumberFormGroup.value;
+    const dataToSend = Object.assign(formValue, {
       currencyShortName: this.data.currencyShortName,
-    };
+    });
+    // const dataToSend: BankAccount.AddFormData = {
+    //   cardNumber: this.cardNumber,
+    //   iban: this.iban,
+    //   currencyShortName: this.data.currencyShortName,
+    // };
 
     this.bankAccountService.requestAddBankAccount(dataToSend).subscribe(
       (response) => {
         this.dialogRef.close(response);
       },
-      (errorResponse) => {}
+      (errorResponse) => {
+        if (errorResponse.status === 400) {
+          const errors = errorResponse.error.errors;
+
+          if (errors.CardNumber) {
+            this.formErrors.cardNumber = errors.CardNumber;
+          }
+
+          if (errors.Iban) {
+            this.formErrors.iban = errors.Iban;
+          }
+        }
+      }
     );
   }
 }

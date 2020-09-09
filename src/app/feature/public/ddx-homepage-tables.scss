@@ -90,7 +90,7 @@
 
 @media screen and (min-width: $break-narrow-mobile) {
   :host {
-    min-width: 320px;
+    // min-width: 320px;
 
     .ddx__table {
       overflow-x: hidden;

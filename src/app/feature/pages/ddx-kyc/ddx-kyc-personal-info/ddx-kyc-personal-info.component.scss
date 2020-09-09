@@ -3,6 +3,20 @@
 $datePickerBackgroundColor: #1f3277;
 
 :host {
+  .stepper-container {
+    grid-area: stepper-container;
+    margin-bottom: 15px;
+
+    span {
+      padding: 7px 0;
+    }
+
+    h3 {
+      padding: 7px 0;
+      color: $ddx-accent-lighter;
+    }
+  }
+
   #firstName {
     grid-area: firstName;
   }
@@ -67,6 +81,7 @@ $datePickerBackgroundColor: #1f3277;
     grid-template-columns: 100%;
     row-gap: 5px;
     grid-template-areas:
+      'stepper-container'
       'description'
       'firstName'
       'lastName'
@@ -91,6 +106,7 @@ $datePickerBackgroundColor: #1f3277;
       grid-template-columns: 100%;
       row-gap: 5px;
       grid-template-areas:
+        'stepper-container'
         'description'
         'firstName'
         'lastName'
@@ -103,6 +119,14 @@ $datePickerBackgroundColor: #1f3277;
         'addressLine1'
         'addressLine2'
         'actions';
+    }
+  }
+}
+
+@media screen and (min-width: $break-mobile) {
+  :host {
+    .stepper-container {
+      display: none;
     }
   }
 }

@@ -6,6 +6,7 @@ import { startWith, map } from 'rxjs/operators';
 import { DropdownSelectItem } from '@widget/models';
 import { COUNTRIES } from '@core/util/constants';
 import { CountryData } from '@core/models';
+import { DirectionService, Direction } from '@core/services';
 
 @Component({
   selector: 'dropdown-autocomplete-countries',
@@ -23,7 +24,7 @@ export class DropdownAutocompleteCountriesComponent
 
   filteredOptions: Observable<CountryData[]>;
 
-  constructor() {
+  constructor(private directionService: DirectionService) {
     super();
 
     this.countriesList = COUNTRIES;
@@ -39,6 +40,10 @@ export class DropdownAutocompleteCountriesComponent
     if (!this.caption) {
       this.caption = 'Choose ...';
     }
+  }
+
+  get direction$(): Observable<Direction> {
+    return this.directionService.direction$;
   }
 
   private _filter(selected: string): CountryData[] {

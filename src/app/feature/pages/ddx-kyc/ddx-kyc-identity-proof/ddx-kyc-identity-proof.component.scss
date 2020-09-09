@@ -2,13 +2,28 @@
 
 :host {
   form {
-    grid-template-rows: max-content max-content max-content auto;
+    grid-template-rows: max-content max-content max-content max-content auto;
     grid-template-columns: auto;
     grid-template-areas:
+      'stepper-container'
       'description'
       'guide'
       'uploader'
       'actions';
+
+    .stepper-container {
+      grid-area: stepper-container;
+      margin-bottom: 15px;
+
+      span {
+        padding: 7px 0;
+      }
+
+      h3 {
+        padding: 7px 0;
+        color: $ddx-accent-lighter;
+      }
+    }
 
     div.description {
       p {
@@ -102,6 +117,9 @@
 
 @media screen and (min-width: $break-mobile) {
   :host {
+    .stepper-container {
+      display: none;
+    }
     form {
       grid-template-rows: max-content auto;
       grid-template-columns: 3fr 1fr;

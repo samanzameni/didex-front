@@ -139,6 +139,9 @@ export class KYCPersonalInfoPageComponent
   closePersianDatepicker(): void {
     this.picker.uiIsVisible = false;
   }
+  openPersianDatepicker(): void {
+    this.picker.uiIsVisible = true;
+  }
 
   onSubmit(): void {
     let { dateOfBirth, ...formValue } = this.kycForm.value;
@@ -168,6 +171,10 @@ export class KYCPersonalInfoPageComponent
           if (errors.DateOfBirth) {
             this.flag = false; //this flag toggles DateOfBirth error visibility
             this.formErrors.birthday = errors.DateOfBirth;
+          }
+
+          if (errors.NationalCode) {
+            this.formErrors.nationalCode = errors.NationalCode;
           }
         }
       }

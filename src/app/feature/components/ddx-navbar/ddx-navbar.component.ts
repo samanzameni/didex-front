@@ -5,6 +5,7 @@ import {
   Renderer2,
   AfterViewInit,
   OnInit,
+  ViewChild,
 } from '@angular/core';
 import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
 
@@ -18,6 +19,7 @@ import {
 
 import { DomSanitizer } from '@angular/platform-browser';
 import { MatIconRegistry } from '@angular/material/icon';
+import { MatSelect } from '@angular/material/select';
 
 @Component({
   selector: 'ddx-navbar',
@@ -25,6 +27,8 @@ import { MatIconRegistry } from '@angular/material/icon';
   styleUrls: ['./ddx-navbar.component.scss'],
 })
 export class NavbarComponent implements OnInit, AfterViewInit {
+  @ViewChild('localeSelector') select: MatSelect;
+
   public isHamburgerMenuClicked: boolean = false;
   public innerWidth: any;
 
@@ -115,6 +119,11 @@ export class NavbarComponent implements OnInit, AfterViewInit {
 
   toggleMenu(): void {
     this.isHamburgerMenuClicked = !this.isHamburgerMenuClicked;
+  }
+
+  toggleLocaleSelector() {
+    // console.log(this.select.panelOpen);
+    this.select.toggle();
   }
 
   @HostListener('window:resize', ['$event'])

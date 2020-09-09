@@ -22,7 +22,12 @@
     "confirm_password": "تکرار رمز",
     "confirm_password_error_required": "پسورد را باید تایید کنید",
     "confirm_password_error_match": "پسوردهای شما باید یکسان باشند",
-    "save_button": "ثبت تغییرات"
+    "save_button": "ثبت تغییرات",
+    "password_length_criteria": "رمز عبور شما باید حداقل شامل 8 کاراکتر باشد",
+    "password_lowercase_criteria": "رمز عبور شما باید شامل حروف کوچک باشد",
+    "password_uppercase_criteria": "رمز عبور شما باید شامل حروف بزرگ باشد",
+    "password_number_criteria": "رمز عبور شما باید شامل عدد باشد",
+    "password_sign_criteria": "رمز عبور شما باید شامل علامت باشد"
   },
 
   "2fa": {
@@ -43,6 +48,13 @@
     "disable_form_button": "غیر فعال سازی",
     "qr_no_data": "در حال حاضر اطلاعات کد QR موجود نیست",
     "error_code": "کد امنیتی وارد شده اشتباه است"
+  },
+
+  "2fa-popup": {
+    "title": "ورود دومرحله‌ای فعال شد",
+    "message": "امنیت اکانت شما تامین شد! در ادامه کد بازیابی خود را می‌بینید. آن را ذخیره کنید.",
+    "recovery_code": "کد بازیابی:",
+    "hint": "هشدار: این کد دیگر هیچوقت قابل دسترسی نخواهد بود."
   },
 
   "kyc": {

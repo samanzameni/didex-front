@@ -1,26 +1,61 @@
 <h1 mat-dialog-title>{{ 'funds.deposit.r2_fiat_add_card' | ddxLocale }}</h1>
 <div mat-dialog-content>
-  <form autocomplete="off">
+  <form [formGroup]="cardNumberFormGroup" autocomplete="off">
     <mat-form-field appearance="outline">
       <mat-label>{{
         'funds.deposit.r2_fiat_add_form_card_number' | ddxLocale
       }}</mat-label>
-      <input matInput type="text" name="cardNumber" [(ngModel)]="cardNumber" />
+      <input
+        matInput
+        type="text"
+        name="cardNumber"
+        formControlName="cardNumber"
+      />
     </mat-form-field>
+
+    <mat-error
+      *ngIf="cardNumberFormGroup.controls.cardNumber.hasError('required')"
+    >
+      {{ 'funds.deposit.r2_fiat_card_number_error_required' | ddxLocale }}
+    </mat-error>
+
+    <mat-error
+      *ngIf="cardNumberFormGroup.controls.cardNumber.hasError('minlength')"
+    >
+      {{ 'funds.deposit.r2_fiat_card_number_error_length' | ddxLocale }}
+    </mat-error>
 
     <mat-form-field appearance="outline">
       <mat-label>{{
         'funds.deposit.r2_fiat_add_form_iban' | ddxLocale
       }}</mat-label>
-      <input matInput type="text" name="iban" [(ngModel)]="iban" />
+      <input matInput type="text" name="iban" formControlName="iban" />
     </mat-form-field>
+
+    <mat-error *ngIf="cardNumberFormGroup.controls.iban.hasError('required')">
+      {{ 'funds.deposit.r2_fiat_card_iban_error_required' | ddxLocale }}
+    </mat-error>
+
+    <mat-error *ngIf="cardNumberFormGroup.controls.iban.hasError('minlength')">
+      {{ 'funds.deposit.r2_fiat_card_iban_error_length' | ddxLocale }}
+    </mat-error>
   </form>
 </div>
 <div mat-dialog-actions>
   <!-- <button mat-button (click)="handleCancel()">
     {{ 'funds.deposit.r2_fiat_cancel' | ddxLocale }}
   </button> -->
-  <button mat-raised-button (click)="handleAssign()">
+  <button
+    [disabled]="!cardNumberFormGroup.valid"
+    mat-raised-button
+    (click)="handleAssign()"
+  >
     {{ 'funds.deposit.r2_fiat_add_card' | ddxLocale }}
   </button>
+</div>
+<div id="credit-card__error-container">
+  <ng-container *ngIf="errors">
+    <mat-error *ngFor="let error of errors.cardNumber">{{ error }} </mat-error>
+    <mat-error *ngFor="let error of errors.iban">{{ error }} </mat-error>
+  </ng-container>
 </div>

@@ -114,27 +114,38 @@
     }
 
     .password-hints-container {
+      overflow: hidden;
+
+      display: flex;
+      flex-direction: column;
       margin: 0px 0 10px 0;
 
       li {
         position: relative;
+        display: flex;
         font-size: 10px;
         margin: 0 2px;
-        padding-left: 15px;
+
         transition: cubic-bezier(0.4, 0, 0.2, 1);
 
         &:before {
           content: '\2022';
-          display: flex;
+
           width: 10px;
           height: 10px;
-          position: absolute;
-          top: 3px;
-          left: 0;
+
           color: $ddx-light;
           font-size: 20px;
           align-items: center;
           justify-content: center;
+
+          .ltr & {
+            left: 0;
+          }
+
+          .rtl & {
+            right: 0;
+          }
         }
 
         &.approved {
@@ -144,6 +155,11 @@
             color: $ddx-green;
           }
         }
+      }
+
+      &.show {
+        max-height: 100%;
+        transition: max-height 1s ease-in;
       }
     }
   }

@@ -197,14 +197,15 @@
     </span>
   </mat-form-field>
   <mat-error *ngIf="marketFormGroup.controls.quantity.hasError('required')">
-    {{ 'homepage.market_form.amount_errror_required' | ddxLocale }}
+    {{ 'homepage.market_form.amount_error_required' | ddxLocale }}
   </mat-error>
   <mat-error *ngIf="marketFormGroup.controls.quantity.hasError('min')">
-    {{ 'homepage.market_form.amount_errror_min' | ddxLocale }}
+    {{ 'homepage.market_form.amount_error_min_1' | ddxLocale }}
     {{ activeSymbol.quantityIncrement }}
+    {{ 'homepage.market_form.amount_error_min_2' | ddxLocale }}
   </mat-error>
   <mat-error *ngIf="marketFormGroup.controls.quantity.hasError('max')">
-    {{ 'homepage.market_form.amount_errror_max' | ddxLocale }}
+    {{ 'homepage.market_form.amount_error_max' | ddxLocale }}
     {{ baseBalanceData.available }}
   </mat-error>
   <ng-container *ngIf="errors">
@@ -228,8 +229,9 @@
     {{ 'homepage.market_form.limit_error_required' | ddxLocale }}
   </mat-error>
   <mat-error *ngIf="marketFormGroup.controls.price.hasError('min')">
-    {{ 'homepage.market_form.limit_error_min' | ddxLocale }}
+    {{ 'homepage.market_form.limit_error_min_1' | ddxLocale }}
     {{ activeSymbol.tickSize }}
+    {{ 'homepage.market_form.limit_error_min_2' | ddxLocale }}
   </mat-error>
   <ng-container *ngIf="errors">
     <mat-error *ngFor="let error of errors.limit">{{ error }}</mat-error>

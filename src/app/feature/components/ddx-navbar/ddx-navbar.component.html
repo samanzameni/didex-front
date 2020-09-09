@@ -273,10 +273,12 @@
     <ng-template #desktopMenu>
       <mat-form-field class="locale-selector">
         <mat-select
+          (click)="toggleLocaleSelector()"
           disableOptionCentering
           [value]="currentLocaleModel.locale"
           panelClass="locale-selector-panel"
           (valueChange)="handleLocaleChange($event)"
+          #localeSelector
         >
           <mat-option
             *ngFor="let item of availableLocales"

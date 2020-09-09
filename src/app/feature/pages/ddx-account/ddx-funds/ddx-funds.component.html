@@ -60,7 +60,8 @@
             <button
               mat-raised-button
               color="primary"
-              routerLink="/user/kyc"
+              [routerLink]="isKycNewbie ? '/user/kyc' : '/user/settings'"
+              [queryParams]="isKycNewbie ? {} : { tab: 'kyc' }"
               class="funds__action-verify"
             >
               {{ 'funds.deposit.r2_fiat_kyc_needed_button' | ddxLocale }}

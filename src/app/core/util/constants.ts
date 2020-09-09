@@ -13,20 +13,37 @@ export const CONSTANTS = {
     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxNiIsImVtYWlsIjoibS5oYWRpLmphbXNoaWRpQGdtYWlsLmNvbSIsImp0aSI6IjIzMGU3ZjkwLWY3Y2MtNGNjYS1iMzBjLTExMTFkYmFkYmJhNCIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWVpZGVudGlmaWVyIjoiMTYiLCJyZWdpb24iOiIyIiwibmFtZWlkIjoiTWVoZGlpIE1lbWFycG91cmkiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJ0cmFkZXIiLCJleHAiOjE2MjkyMjY5NDgsImlzcyI6IkRpZGV4IENvcnAiLCJhdWQiOiJEaWRleCBDb3JwIn0.AEyPDPGWMrW_bn1-XmNfhSr6KGeof5FhNwH72DP4OzE',
 };
 
-export const COUNTRIES: CountryData[] = [
-  // {
-  //   code: 'AC',
-  //   emoji: '🇦🇨',
-  //   name: 'Ascension Island',
-  //   phoneCode: '247',
-  //   unicode: 'U+1F1E6 U+1F1E8',
-  // },
+export const IRAN: CountryData[] = [
   {
-    code: 'AD',
-    emoji: '🇦🇩',
-    name: 'Andorra',
-    phoneCode: '376',
-    unicode: 'U+1F1E6 U+1F1E9',
+    code: 'IR',
+    emoji: '🇮🇷',
+    name: 'Iran',
+    phoneCode: '98',
+    unicode: 'U+1F1EE U+1F1F7',
+  },
+];
+
+export const COUNTRIES: CountryData[] = [
+  {
+    code: 'RU',
+    emoji: '🇷🇺',
+    name: 'Russia',
+    phoneCode: '7',
+    unicode: 'U+1F1F7 U+1F1FA',
+  },
+  {
+    code: 'DE',
+    emoji: '🇩🇪',
+    name: 'Germany',
+    phoneCode: '49',
+    unicode: 'U+1F1E9 U+1F1EA',
+  },
+  {
+    code: 'GB',
+    emoji: '🇬🇧',
+    name: 'United Kingdom',
+    phoneCode: '44',
+    unicode: 'U+1F1EC U+1F1E7',
   },
   {
     code: 'AE',
@@ -34,6 +51,20 @@ export const COUNTRIES: CountryData[] = [
     name: 'United Arab Emirates',
     phoneCode: '971',
     unicode: 'U+1F1E6 U+1F1EA',
+  },
+  {
+    code: 'US',
+    emoji: '🇺🇸',
+    name: 'United States',
+    phoneCode: '1',
+    unicode: 'U+1F1FA U+1F1F8',
+  },
+  {
+    code: 'AD',
+    emoji: '🇦🇩',
+    name: 'Andorra',
+    phoneCode: '376',
+    unicode: 'U+1F1E6 U+1F1E9',
   },
   {
     code: 'AF',
@@ -400,13 +431,6 @@ export const COUNTRIES: CountryData[] = [
     unicode: 'U+1F1E8 U+1F1FF',
   },
   {
-    code: 'DE',
-    emoji: '🇩🇪',
-    name: 'Germany',
-    phoneCode: '49',
-    unicode: 'U+1F1E9 U+1F1EA',
-  },
-  {
     code: 'DG',
     emoji: '🇩🇬',
     name: 'Diego Garcia',
@@ -545,13 +569,6 @@ export const COUNTRIES: CountryData[] = [
     name: 'Gabon',
     phoneCode: '241',
     unicode: 'U+1F1EC U+1F1E6',
-  },
-  {
-    code: 'GB',
-    emoji: '🇬🇧',
-    name: 'United Kingdom',
-    phoneCode: '44',
-    unicode: 'U+1F1EC U+1F1E7',
   },
   {
     code: 'GD',
@@ -762,13 +779,6 @@ export const COUNTRIES: CountryData[] = [
     name: 'Iraq',
     phoneCode: '964',
     unicode: 'U+1F1EE U+1F1F6',
-  },
-  {
-    code: 'IR',
-    emoji: '🇮🇷',
-    name: 'Iran',
-    phoneCode: '98',
-    unicode: 'U+1F1EE U+1F1F7',
   },
   {
     code: 'IS',
@@ -1345,13 +1355,6 @@ export const COUNTRIES: CountryData[] = [
     unicode: 'U+1F1F7 U+1F1F8',
   },
   {
-    code: 'RU',
-    emoji: '🇷🇺',
-    name: 'Russia',
-    phoneCode: '7',
-    unicode: 'U+1F1F7 U+1F1FA',
-  },
-  {
     code: 'RW',
     emoji: '🇷🇼',
     name: 'Rwanda',
@@ -1637,13 +1640,6 @@ export const COUNTRIES: CountryData[] = [
     name: 'U.S. Outlying Islands',
     phoneCode: '1',
     unicode: 'U+1F1FA U+1F1F2',
-  },
-  {
-    code: 'US',
-    emoji: '🇺🇸',
-    name: 'United States',
-    phoneCode: '1',
-    unicode: 'U+1F1FA U+1F1F8',
   },
   {
     code: 'UY',

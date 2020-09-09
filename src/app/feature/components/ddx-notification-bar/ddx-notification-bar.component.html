@@ -17,6 +17,7 @@
           mat-stroked-button
           color="primary"
           class="notification__button"
+          *ngIf="!isClickedOnCTA"
           (click)="callCTA(i)"
         >
           {{ notification.buttonText }}

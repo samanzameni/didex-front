@@ -66,6 +66,12 @@ export class NavbarComponent implements OnInit, AfterViewInit {
       'log-out',
       sanitizer.bypassSecurityTrustResourceUrl('assets/icons/icon-log-out.svg')
     );
+    iconRegistry.addSvgIcon(
+      'locale',
+      sanitizer.bypassSecurityTrustResourceUrl(
+        'assets/icons/icon-translate.svg'
+      )
+    );
   }
 
   ngOnInit() {}
@@ -124,6 +130,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   toggleLocaleSelector() {
     // console.log(this.select.panelOpen);
     this.select.toggle();
+    console.log(this.select);
   }
 
   @HostListener('window:resize', ['$event'])

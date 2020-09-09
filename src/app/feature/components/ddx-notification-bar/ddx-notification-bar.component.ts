@@ -11,12 +11,15 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class NotificationBarComponent implements OnInit {
   private notificationsContent: NotificationContent[];
+  private _isClickedOnCTA: boolean;
 
   constructor(
     private authService: AuthService,
     private httpClient: GeneralRESTService,
     private toastr: ToastrService
-  ) {}
+  ) {
+    this._isClickedOnCTA = false;
+  }
 
   ngOnInit(): void {
     if (this.authService.isAuthorized) {
@@ -30,7 +33,12 @@ export class NotificationBarComponent implements OnInit {
     return this.notificationsContent || [];
   }
 
+  get isClickedOnCTA(): boolean {
+    return this._isClickedOnCTA;
+  }
+
   callCTA(index: number): void {
+    this._isClickedOnCTA = true;
     const ntf = this.notificationsContent[index];
     this.httpClient.httpGET(ntf.buttonUrl).subscribe(
       (response) => {

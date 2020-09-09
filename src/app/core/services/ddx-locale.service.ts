@@ -35,7 +35,7 @@ export class LocaleService {
         { locale: 'fa', caption: 'فارسی' },
       ];
 
-      defaultLocale = 'en';
+      defaultLocale = this.storageService.getStoredLocale() || 'en';
     } else if (this.isOnRegionTwo()) {
       this.localeModels = [
         // { locale: 'en', caption: 'English' },
@@ -53,7 +53,7 @@ export class LocaleService {
         // { locale: 'fa', caption: 'فارسی' },
       ];
 
-      defaultLocale = 'en';
+      defaultLocale = this.storageService.getStoredLocale() || 'en';
     }
 
     // const defaultLocale =

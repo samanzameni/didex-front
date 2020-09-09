@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { startWith, map } from 'rxjs/operators';
 import { COUNTRIES, IRAN } from '@core/util/constants';
 import { CountryData } from '@core/models';
-import { AuthService, LocaleService } from '@core/services';
+import { AuthService, Direction, DirectionService, LocaleService } from '@core/services';
 
 @Component({
   selector: 'dropdown-autocomplete-countries',
@@ -25,7 +25,8 @@ export class DropdownAutocompleteCountriesComponent
 
   constructor(
     private authService: AuthService,
-    private localeService: LocaleService
+    private localeService: LocaleService,
+    private directionService: DirectionService
   ) {
     super();
 
@@ -64,6 +65,9 @@ export class DropdownAutocompleteCountriesComponent
 
   get isTraderInRegionTwo(): boolean {
     return this.authService.decodedToken?.region === '2';
+  }
+  get direction$(): Observable<Direction> {
+    return this.directionService.direction$;
   }
 
   getTitleFromValue(value: string): string {

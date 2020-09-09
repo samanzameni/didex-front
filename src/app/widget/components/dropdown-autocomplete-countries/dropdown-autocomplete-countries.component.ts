@@ -5,7 +5,12 @@ import { Observable } from 'rxjs';
 import { startWith, map } from 'rxjs/operators';
 import { COUNTRIES, IRAN } from '@core/util/constants';
 import { CountryData } from '@core/models';
-import { AuthService, LocaleService } from '@core/services';
+import {
+  AuthService,
+  LocaleService,
+  DirectionService,
+  Direction,
+} from '@core/services';
 
 @Component({
   selector: 'dropdown-autocomplete-countries',
@@ -25,7 +30,8 @@ export class DropdownAutocompleteCountriesComponent
 
   constructor(
     private authService: AuthService,
-    private localeService: LocaleService
+    private localeService: LocaleService,
+    private directionService: DirectionService
   ) {
     super();
 
@@ -56,6 +62,10 @@ export class DropdownAutocompleteCountriesComponent
     return this.countriesList.filter((option) =>
       option.name.toLowerCase().includes(filterValue)
     );
+  }
+
+  get direction$(): Observable<Direction> {
+    return this.directionService.direction$;
   }
 
   get isValid(): boolean {

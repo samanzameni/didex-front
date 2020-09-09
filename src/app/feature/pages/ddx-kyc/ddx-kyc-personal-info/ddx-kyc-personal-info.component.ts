@@ -99,7 +99,9 @@ export class KYCPersonalInfoPageComponent
         trader.personalInformation
           ? trader.personalInformation.nationalCode
           : '',
-        this.isTraderInRegionTwo ? [Validators.required] : [],
+        this.isTraderInRegionTwo
+          ? [Validators.required, Validators.minLength(10)]
+          : [],
       ],
       addressLine1: [
         trader.personalInformation

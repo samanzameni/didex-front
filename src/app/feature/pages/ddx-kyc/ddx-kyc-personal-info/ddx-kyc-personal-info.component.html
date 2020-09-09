@@ -191,12 +191,17 @@
         name="nationalCode"
         formControlName="nationalCode"
       />
-      <mat-error
-        *ngIf="kycFormGroup.controls.nationalCode.hasError('required')"
+      <mat-error *ngIf="kycFormGroup.controls.nationalCode.hasError('required')"
         >{{
           'kyc.personal_information.national_code_error_required' | ddxLocale
-        }}</mat-error
-      >
+        }}
+      </mat-error>
+      <mat-error
+        *ngIf="kycFormGroup.controls.nationalCode.hasError('minlength')"
+        >{{
+          'kyc.personal_information.national_code_error_minlength' | ddxLocale
+        }}
+      </mat-error>
     </mat-form-field>
     <ng-container *ngIf="errors">
       <mat-error *ngFor="let error of errors.nationalCode"

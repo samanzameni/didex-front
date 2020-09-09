@@ -21,6 +21,7 @@
     "national_code": "National Code",
     "national_code_placeholder": "0012345678",
     "national_code_error_required": "This field is required.",
+    "national_code_error_minlength": "Min length should be 10.",
     "last_name": "Last Name",
     "last_name_placeholder": "Doe",
     "last_name_error_required": "This field is required.",

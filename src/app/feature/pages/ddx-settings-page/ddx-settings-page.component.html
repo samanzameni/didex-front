@@ -186,7 +186,11 @@
       </mat-form-field>
 
       <mat-error
-        *ngIf="securityFormGroup.controls.confirmPassword.hasError('required')"
+        *ngIf="
+          securityFormGroup.controls.confirmPassword.hasError('required') &&
+          securityFormGroup.controls.confirmPassword.dirty &&
+          securityFormGroup.controls.confirmPassword.touched
+        "
       >
         {{ 'settings.security.confirm_password_error_required' | ddxLocale }}
       </mat-error>

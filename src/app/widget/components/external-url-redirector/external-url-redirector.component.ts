@@ -14,10 +14,9 @@ export class ExternalUrlRedirectorComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.paramSubscription = this.route.queryParams.subscribe((params) => {
-      const url =
-        params.from && params.from !== '/'
-          ? params.redirect_url.concat(`?from=${params.from}`)
-          : params.redirect_url;
+      const url = params.from
+        ? params.redirect_url.concat(`?from=${params.from}`)
+        : params.redirect_url;
 
       this.redirectTo(url);
     });

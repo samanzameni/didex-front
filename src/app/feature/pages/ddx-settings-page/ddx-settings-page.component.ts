@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, NgForm } from '@angular/forms';
 import { DropdownSelectItem } from '@widget/models';
 import { TIMEZONES } from '@core/util/constants';
@@ -24,6 +24,7 @@ export class SettingsPageComponent implements OnInit {
   private securityReactiveFormGroup: FormGroup;
   private isPasswordHidden: boolean;
   private formErrors: any;
+  public arePasswordHintsHidden: boolean = false;
 
   @ViewChild('generalSubmitButton') generalSubmitButton: ProButtonComponent;
   @ViewChild('securitySubmitButton') securitySubmitButton: ProButtonComponent;
@@ -36,7 +37,8 @@ export class SettingsPageComponent implements OnInit {
     private authRestService: AuthRESTService,
     private route: ActivatedRoute,
     private snackbarService: MatSnackBar,
-    private directionService: DirectionService
+    private directionService: DirectionService,
+    private cdref: ChangeDetectorRef
   ) {
     this.isPasswordHidden = true;
     this.activePage = 'general';
@@ -87,6 +89,8 @@ export class SettingsPageComponent implements OnInit {
     if (this.securityFormDirective) {
       this.securityFormDirective.resetForm();
     }
+
+    this.cdref.detectChanges();
   }
 
   private buildGeneralForm(): void {
@@ -172,6 +176,10 @@ export class SettingsPageComponent implements OnInit {
     this.isPasswordHidden = !this.isPasswordHidden;
   }
 
+  hidePasswordHints(): void {
+    this.arePasswordHintsHidden = true;
+  }
+
   activatePage(newPage: string): void {
     this.activePage = newPage;
   }
@@ -229,6 +237,7 @@ export class SettingsPageComponent implements OnInit {
           }
 
           this.resetSecurityForm();
+          this.hidePasswordHints();
 
           this.snackbarService.open('Changes saved!', '', { duration: 1500 });
         },

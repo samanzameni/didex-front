@@ -129,7 +129,10 @@
         }}</mat-icon>
       </mat-form-field>
 
-      <ul arrangeStack class="password-hints-container">
+      <ul
+        [ngClass]="{ show: securityFormGroup.controls.newPassword.dirty }"
+        class="password-hints-container"
+      >
         <li
           [ngClass]="{
             approved: isAtLeastEightCharacters(
@@ -186,7 +189,11 @@
       </mat-form-field>
 
       <mat-error
-        *ngIf="securityFormGroup.controls.confirmPassword.hasError('required')"
+        *ngIf="
+          securityFormGroup.controls.confirmPassword.hasError('required') &&
+          securityFormGroup.controls.confirmPassword.dirty &&
+          securityFormGroup.controls.confirmPassword.touched
+        "
       >
         {{ 'settings.security.confirm_password_error_required' | ddxLocale }}
       </mat-error>

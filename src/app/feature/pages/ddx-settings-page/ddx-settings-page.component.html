@@ -129,7 +129,10 @@
         }}</mat-icon>
       </mat-form-field>
 
-      <ul arrangeStack class="password-hints-container">
+      <ul
+        [ngClass]="{ show: securityFormGroup.controls.newPassword.dirty }"
+        class="password-hints-container"
+      >
         <li
           [ngClass]="{
             approved: isAtLeastEightCharacters(

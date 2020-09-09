@@ -1,0 +1,9 @@
+{
+  "content": {
+    "first_line": "The page is not found"
+  },
+  "button" : {
+    "back" : "Back",
+    "home_page": "Home Page"
+  }
+}

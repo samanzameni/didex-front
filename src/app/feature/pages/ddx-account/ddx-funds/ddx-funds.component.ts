@@ -85,6 +85,7 @@ export class FundsPageComponent implements OnInit, AfterViewInit {
   private _bankAccounts: BankAccount.Model[];
 
   private _isKycApproved: boolean;
+  private _isKycNewbie: boolean;
 
   @ViewChild('withdrawButton') withdrawButton: ElementRef;
   @ViewChild('transferButton') transferButton: ElementRef;
@@ -141,6 +142,7 @@ export class FundsPageComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this._isKycApproved = this.traderService.hasKYCApproved;
+    this._isKycNewbie = this.traderService.isNewbie;
     this.updateData();
   }
 
@@ -299,6 +301,10 @@ export class FundsPageComponent implements OnInit, AfterViewInit {
 
   get isKycApproved(): boolean {
     return this._isKycApproved;
+  }
+
+  get isKycNewbie(): boolean {
+    return this._isKycNewbie;
   }
 
   mapColumnToHeader(columnName: string): string {

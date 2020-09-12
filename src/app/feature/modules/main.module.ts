@@ -81,7 +81,6 @@ const routes: Routes = [
     CommonModule,
     RouterModule.forChild(routes),
     WidgetModule,
-    LocalePipeModule,
     CreditCardMaskPipeModule,
     FormsModule,
     ReactiveFormsModule,

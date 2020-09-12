@@ -41,7 +41,7 @@ import {
 } from '@angular/animations';
 import { ToastrService } from 'ngx-toastr';
 import { TraderService, DirectionService } from '@core/services';
-import { LocalePipe } from '@feature/pipes/ddx-locale.pipe';
+import { LocalePipe } from '@widget/pipes/ddx-locale.pipe';
 import { CreditCardMaskPipe } from '@feature/pipes/ddx-credit-card-mask.pipe';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogAddBankAccountComponent } from '@feature/components/ddx-dialog-add-bank-account/ddx-dialog-add-bank-account.component';

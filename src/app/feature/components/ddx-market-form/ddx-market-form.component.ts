@@ -29,7 +29,7 @@ import { getTickerFromSymbol } from '@core/util/ticker';
 
 import { ToastrService } from 'ngx-toastr';
 import { LocaleService } from '@core/services/ddx-locale.service';
-import { LocalePipe } from '@feature/pipes/ddx-locale.pipe';
+import { LocalePipe } from '@widget/pipes/ddx-locale.pipe';
 
 @Component({
   selector: 'ddx-market-form',

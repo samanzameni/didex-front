@@ -26,7 +26,7 @@ import { DatePipe } from '@angular/common';
 import { MatPaginator } from '@angular/material/paginator';
 import { CONSTANTS } from '@core/util/constants';
 import { MatTableDataSource } from '@angular/material/table';
-import { LocalePipe } from '@feature/pipes/ddx-locale.pipe';
+import { LocalePipe } from '@widget/pipes/ddx-locale.pipe';
 
 @Component({
   selector: 'ddx-reports',

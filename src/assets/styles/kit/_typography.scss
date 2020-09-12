@@ -66,6 +66,26 @@ p {
   @include mat-core($custom-typography);
 }
 
+.ru {
+  font-family: Roboto;
+
+  $custom-typography: mat-typography-config(
+    $font-family: Roboto,
+  );
+
+  @include mat-core($custom-typography);
+}
+
+.zh {
+  font-family: Roboto;
+
+  $custom-typography: mat-typography-config(
+    $font-family: Roboto,
+  );
+
+  @include mat-core($custom-typography);
+}
+
 .fa {
   font-family: IRANSans;
 

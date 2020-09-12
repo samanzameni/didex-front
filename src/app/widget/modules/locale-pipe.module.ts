@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { LocalePipe } from '@feature/pipes/ddx-locale.pipe';
+import { LocalePipe } from '@widget/pipes/ddx-locale.pipe';
 
 @NgModule({
   declarations: [LocalePipe],

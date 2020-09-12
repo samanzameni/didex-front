@@ -19,7 +19,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { NativeDateModule, MatNativeDateModule } from '@angular/material/core';
-import { LocalePipeModule } from './locale-pipe.module';
+import { LocalePipeModule } from '../../widget/modules/locale-pipe.module';
 import { NgPersianDatepickerModule } from 'ng-persian-datepicker';
 import { MatDividerModule } from '@angular/material/divider';
 

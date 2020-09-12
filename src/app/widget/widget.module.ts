@@ -24,7 +24,7 @@ import {
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { LocalePipeModule } from '../feature/modules/locale-pipe.module';
+import { LocalePipeModule } from '@widget/modules/locale-pipe.module';
 
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
@@ -94,6 +94,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     //
     TradingViewChartWrapperComponent,
     ExternalUrlRedirectorComponent,
+    //
+    LocalePipeModule,
   ],
 })
 export class WidgetModule {}

@@ -22,7 +22,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatIconModule } from '@angular/material/icon';
 import { MatPaginatorModule } from '@angular/material/paginator';
-import { LocalePipeModule } from './locale-pipe.module';
+import { LocalePipeModule } from '../../widget/modules/locale-pipe.module';
 import { CreditCardMaskPipeModule } from './credit-card-mask.module';
 import { ToastrModule } from 'ngx-toastr';
 import { MatSelectModule } from '@angular/material/select';

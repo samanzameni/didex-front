@@ -31,7 +31,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { TraderResolver } from '@core/resolvers/trader.resolver';
-import { LocalePipeModule } from './locale-pipe.module';
+import { LocalePipeModule } from '../../widget/modules/locale-pipe.module';
 import { CreditCardMaskPipeModule } from './credit-card-mask.module';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';

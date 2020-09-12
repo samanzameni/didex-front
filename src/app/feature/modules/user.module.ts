@@ -11,7 +11,7 @@ import {
   SettingsQrRecoveryPopupComponent,
 } from '@feature/components';
 import { WidgetModule } from '@widget/widget.module';
-import { LocalePipeModule } from './locale-pipe.module';
+import { LocalePipeModule } from '../../widget/modules/locale-pipe.module';
 
 import { QRCodeModule } from 'angularx-qrcode';
 

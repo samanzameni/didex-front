@@ -62,7 +62,7 @@
         <td class="row-big" *ngIf="tickerData && tickerData.length > 0">
           {{
             getTickerDataFromSymbol(symbolRow)
-              ? getTickerDataFromSymbol(symbolRow).close
+              ? getTickerDataFromSymbol(symbolRow).close.toLocaleString()
               : 0
           }}
         </td>

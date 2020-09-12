@@ -217,7 +217,7 @@ export class SettingsPageComponent implements OnInit {
     return /[a-z]/.test(value);
   }
   hasSpecial(value: string): boolean {
-    return /[-!@$%^&*()_+|~=`{}\[\]:";'<>?,.\/\\]/.test(value);
+    return /[-!$%^&*()_+@|~=`{}\[\]:";'<>?,.\/\\]/.test(value);
   }
   isAtLeastEightCharacters(value: string): boolean {
     return value && value.length >= 8;

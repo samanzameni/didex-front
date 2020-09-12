@@ -1,3 +1,5 @@
+@import '../../../../styles.scss';
+
 :host {
   position: fixed;
   top: 0;
@@ -10,16 +12,38 @@
   justify-content: center;
   align-items: center;
 
-  background-image: url('assets/images/redirection-page-background.svg');
-  background-repeat: no-repeat;
-  background-position: center;
+  background-image: none;
 
   h1 {
-    padding: 15px 0;
+    font-size: 20px;
+    padding: 15px 10px;
   }
 
   .mat-progress-bar {
-    max-width: 355px;
-    margin: 15px 0;
+    max-width: 320px;
+    margin: 15px 10px;
+  }
+}
+
+@media screen and (min-width: $break-mobile) {
+  :host {
+    background-image: url('assets/images/redirection-page-background.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+
+    h1 {
+      font-size: 26px;
+    }
+
+    .mat-progress-bar {
+      max-width: 375px;
+    }
+  }
+}
+
+@media screen and (min-width: $break-narrow-desktop) {
+  :host {
+    background-size: unset;
   }
 }

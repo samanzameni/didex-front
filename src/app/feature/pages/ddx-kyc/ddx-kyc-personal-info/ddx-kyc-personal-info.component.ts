@@ -154,9 +154,14 @@ export class KYCPersonalInfoPageComponent
         dateOfBirth + '23:59:59',
         'jYYYY/jM/jD HH:mm'
       ).format('YYYY-M-D HH:mm:ss');
+
+      // console.log(dateOfBirth);
+      // let str: string = dateOfBirth;
+      // str.replace(' ', 'T');
+      // console.log(str);
     }
 
-    const isoBirthdate = new Date(Date.parse(dateOfBirth)).toISOString();
+    const isoBirthdate = new Date(dateOfBirth).toISOString();
 
     const dataToSend = Object.assign(formValue, { dateOfBirth: isoBirthdate });
     this.setLoadingOn();

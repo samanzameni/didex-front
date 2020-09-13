@@ -147,6 +147,7 @@ export class KYCPersonalInfoPageComponent
 
   onSubmit(): void {
     let { dateOfBirth, ...formValue } = this.kycForm.value;
+    let isoBirthdate;
 
     if (this.isTraderInRegionTwo) {
       var moment = require('moment-jalaali');
@@ -154,14 +155,15 @@ export class KYCPersonalInfoPageComponent
         dateOfBirth + '23:00:00',
         'jYYYY/jM/jD HH:mm'
       ).format('YYYY-MM-DD hh:mm:ss');
+      let formattedDOB: string = dateOfBirth;
+      formattedDOB = formattedDOB.replace(/ /, 'T');
+      isoBirthdate = new Date(formattedDOB).toISOString();
+    } else {
+      isoBirthdate = new Date(Date.parse(dateOfBirth)).toISOString();
     }
 
-    let formattedDOB: string = dateOfBirth;
-    formattedDOB = formattedDOB.replace(/ /g, 'T');
-
-    const isoBirthdate = new Date(formattedDOB).toISOString();
-
     const dataToSend = Object.assign(formValue, { dateOfBirth: isoBirthdate });
+
     this.setLoadingOn();
 
     this.restService.requestUpdatePersonalInfo(dataToSend).subscribe(

@@ -156,10 +156,10 @@ export class KYCPersonalInfoPageComponent
       ).format('YYYY-MM-DD hh:mm:ss');
     }
 
-    let formattedDOF: string = dateOfBirth;
-    formattedDOF = formattedDOF.replace(/ /g, 'T');
+    let formattedDOB: string = dateOfBirth;
+    formattedDOB = formattedDOB.replace(/ /g, 'T');
 
-    const isoBirthdate = new Date(formattedDOF).toISOString();
+    const isoBirthdate = new Date(formattedDOB).toISOString();
 
     const dataToSend = Object.assign(formValue, { dateOfBirth: isoBirthdate });
     this.setLoadingOn();

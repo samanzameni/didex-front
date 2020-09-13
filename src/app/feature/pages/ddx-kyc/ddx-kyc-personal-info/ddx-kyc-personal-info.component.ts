@@ -150,15 +150,16 @@ export class KYCPersonalInfoPageComponent
 
     if (this.isTraderInRegionTwo) {
       var moment = require('moment-jalaali');
-      dateOfBirth = moment(dateOfBirth, 'jYYYY/jM/jD HH:mm').format(
-        'YYYY-M-D HH:mm:ss'
-      );
-
-      console.log(dateOfBirth);
+      dateOfBirth = moment(
+        dateOfBirth + '23:00:00',
+        'jYYYY/jM/jD HH:mm'
+      ).format('YYYY-MM-DD hh:mm:ss');
     }
 
-    const isoBirthdate = new Date(dateOfBirth).toISOString();
-    console.log(isoBirthdate);
+    let formattedDOF: string = dateOfBirth;
+    formattedDOF = formattedDOF.replace(/ /g, 'T');
+
+    const isoBirthdate = new Date(formattedDOF).toISOString();
 
     const dataToSend = Object.assign(formValue, { dateOfBirth: isoBirthdate });
     this.setLoadingOn();

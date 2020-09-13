@@ -38,13 +38,13 @@ export class LocaleService {
       defaultLocale = this.storageService.getStoredLocale() || 'en';
     } else if (this.isOnRegionTwo()) {
       this.localeModels = [
-        // { locale: 'en', caption: 'English' },
-        // { locale: 'zh', caption: '中文' },
-        // { locale: 'ru', caption: 'русский' },
+        { locale: 'en', caption: 'English' },
+        { locale: 'zh', caption: '中文' },
+        { locale: 'ru', caption: 'русский' },
         { locale: 'fa', caption: 'فارسی' },
       ];
 
-      defaultLocale = 'fa';
+      defaultLocale = this.storageService.getStoredLocale() || 'fa';
     } else {
       this.localeModels = [
         { locale: 'en', caption: 'English' },
@@ -53,7 +53,11 @@ export class LocaleService {
         // { locale: 'fa', caption: 'فارسی' },
       ];
 
-      defaultLocale = this.storageService.getStoredLocale() || 'en';
+      defaultLocale =
+        this.storageService.getStoredLocale() &&
+        this.storageService.getStoredLocale() !== 'fa'
+          ? this.storageService.getStoredLocale()
+          : 'en';
     }
 
     // const defaultLocale =

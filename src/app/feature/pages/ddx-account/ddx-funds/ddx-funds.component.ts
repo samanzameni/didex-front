@@ -139,6 +139,10 @@ export class FundsPageComponent implements OnInit, AfterViewInit {
       'transfer',
       sanitizer.bypassSecurityTrustResourceUrl('assets/icons/icon_transfer.svg')
     );
+    iconRegistry.addSvgIcon(
+      'clear',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/icons/icon_clear.svg')
+    );
   }
 
   ngOnInit(): void {

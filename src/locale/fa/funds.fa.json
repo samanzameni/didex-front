@@ -35,7 +35,7 @@
     "r2_fiat_card_number_error_required": "مقدار شماره کارت نمی‌تواند خالی باشد",
     "r2_fiat_card_number_error_length": "مقدار شماره کارت باید یک عدد ۱۶ رقمی باشد",
     "r2_fiat_card_iban_error_required": "مقدار شماره شبا نمی‌تواند خالی باشد",
-    "r2_fiat_card_iban_error_length": "شماره شبا حداقل ۲۴ کاراکتر است"
+    "r2_fiat_card_iban_error_length": "شماره شبا حداقل ۲۶ کاراکتر است"
   },
 
   "withdraw": {

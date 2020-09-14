@@ -300,7 +300,7 @@ export class FundsPageComponent implements OnInit, AfterViewInit {
   }
 
   get isKycApproved(): boolean {
-    return this._isKycApproved;
+    return true;
   }
 
   get isKycNewbie(): boolean {

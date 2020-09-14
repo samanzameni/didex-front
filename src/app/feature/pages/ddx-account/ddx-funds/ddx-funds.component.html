@@ -331,6 +331,12 @@
                       [value]="item.id"
                     >
                       {{ item.cardNumber | ddxCreditCardMask }}
+                      <button
+                        mat-icon-button
+                        (click)="openDeleteBankAccountDialogue(item)"
+                      >
+                        <mat-icon>clear</mat-icon>
+                      </button>
                     </mat-option>
                   </mat-select>
                 </mat-form-field>

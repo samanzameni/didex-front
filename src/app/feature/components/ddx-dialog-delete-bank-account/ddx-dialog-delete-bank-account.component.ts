@@ -24,7 +24,7 @@ export class DialogDeleteBankAccountComponent implements OnInit {
 
     this.bankAccountService.requestDeleteBankAccount(dataToSend).subscribe(
       (response) => {
-        this.dialogRef.close(response);
+        this.dialogRef.close(true);
       },
       (errorResponse) => {
         //TODO

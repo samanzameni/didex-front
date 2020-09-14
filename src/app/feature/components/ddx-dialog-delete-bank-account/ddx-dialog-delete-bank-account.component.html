@@ -1,8 +1,14 @@
-<h1 mat-dialog-title></h1>
+<h1 mat-dialog-title>
+  {{ 'funds.deposit.r2_fiat_delete_dialog_title' | ddxLocale }}
+</h1>
 <div mat-dialog-content>
-  <p>Are You Sure?</p>
+  <p>{{ 'funds.deposit.r2_fiat_delete_dialog_message' | ddxLocale }}</p>
 </div>
 <div mat-dialog-actions>
-  <button mat-button mat-dialog-close>Cancel</button>
-  <button mat-button (click)="deleteBankAccount()">Yes</button>
+  <button mat-button mat-dialog-close>
+    {{ 'funds.deposit.r2_fiat_delete_dialog_cancel_button' | ddxLocale }}
+  </button>
+  <button mat-button (click)="deleteBankAccount()">
+    {{ 'funds.deposit.r2_fiat_delete_dialog_yes_button' | ddxLocale }}
+  </button>
 </div>

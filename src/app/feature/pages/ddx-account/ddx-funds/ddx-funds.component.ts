@@ -422,13 +422,17 @@ export class FundsPageComponent implements OnInit, AfterViewInit {
     );
 
     deleteBankAccountDialogueRef.afterClosed().subscribe((result) => {
-      this._bankAccounts = this._bankAccounts.filter(
-        (bankAccount) => bankAccount.id !== card.id
-      );
-      this.cdRef.detectChanges();
-      this.toastr.success(
-        this.localePipe.transform('funds.deposit.r2_fiat_delete_toast_message')
-      );
+      if (result) {
+        this._bankAccounts = this._bankAccounts.filter(
+          (bankAccount) => bankAccount.id !== card.id
+        );
+        this.cdRef.detectChanges();
+        this.toastr.success(
+          this.localePipe.transform(
+            'funds.deposit.r2_fiat_delete_toast_message'
+          )
+        );
+      }
     });
   }
 

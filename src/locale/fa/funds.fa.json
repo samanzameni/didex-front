@@ -36,7 +36,11 @@
     "r2_fiat_card_number_error_length": "مقدار شماره کارت باید یک عدد ۱۶ رقمی باشد",
     "r2_fiat_card_iban_error_required": "مقدار شماره شبا نمی‌تواند خالی باشد",
     "r2_fiat_card_iban_error_length": "شماره شبا حداقل ۲۶ کاراکتر است",
-    "r2_fiat_delete_toast_message": "کارت پاک شد!"
+    "r2_fiat_delete_toast_message": "کارت حذف شد!",
+    "r2_fiat_delete_dialog_title": "حذف کارت",
+    "r2_fiat_delete_dialog_message": "آیا اطمینان دارید؟",
+    "r2_fiat_delete_dialog_cancel_button": "لغو",
+    "r2_fiat_delete_dialog_yes_button": "بله"
   },
 
   "withdraw": {

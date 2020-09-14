@@ -525,4 +525,6 @@ export class FundsPageComponent implements OnInit, AfterViewInit {
       this.onSubmitFiatWithdraw(index, submittedValue);
     }
   }
+
+  deleteCreditCard() {}
 }

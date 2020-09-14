@@ -184,7 +184,6 @@
                 class="card-selector__container"
               >
                 <mat-select
-                  style="font-family: 'OCR A Std'; font-size: 14px"
                   name="bankAccountId"
                   panelClass="card-selector-panel"
                   [disabled]="bankAccounts.length === 0"
@@ -196,11 +195,17 @@
                 >
                   <mat-option
                     class="credit-card-number"
-                    *ngFor="let item of bankAccounts"
+                    *ngFor="let item of bankAccounts; let i = index"
                     [value]="item.id"
-                    style="font-family: 'OCR A Std'; font-size: 14px"
                   >
                     {{ item.cardNumber | ddxCreditCardMask }}
+                    <button
+                      mat-icon-button
+                      class="notification__close-button"
+                      (click)="deleteCreditCard(i)"
+                    >
+                      <mat-icon>clear</mat-icon>
+                    </button>
                   </mat-option>
                 </mat-select>
               </mat-form-field>
@@ -310,7 +315,6 @@
                   class="card-selector__container"
                 >
                   <mat-select
-                    style="font-family: 'OCR A Std'; font-size: 14px"
                     name="bankAccountId"
                     panelClass="card-selector-panel"
                     [disabled]="bankAccounts.length === 0"
@@ -323,7 +327,6 @@
                     required
                   >
                     <mat-option
-                      style="font-family: 'OCR A Std'; font-size: 14px"
                       class="credit-card-number"
                       *ngFor="let item of bankAccounts"
                       [value]="item.id"

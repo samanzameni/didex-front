@@ -33,8 +33,14 @@ a:active {
   color: $ddx-light;
 }
 
-.credit-card-number {
+::ng-deep .credit-card-number {
   font-family: OCR-A;
+  font-size: 14px;
+
+  .mat-option-text {
+    display: flex;
+    justify-content: space-between;
+  }
 }
 
 .mat-form-field-wrapper {

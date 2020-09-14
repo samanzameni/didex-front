@@ -28,6 +28,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDialogModule } from '@angular/material/dialog';
 import { DialogAddBankAccountComponent } from '@feature/components/ddx-dialog-add-bank-account/ddx-dialog-add-bank-account.component';
+import { DialogDeleteBankAccountComponent } from '@feature/components/ddx-dialog-delete-bank-account/ddx-dialog-delete-bank-account.component';
 
 const routes: Routes = [
   {
@@ -63,9 +64,13 @@ const routes: Routes = [
     ReportsPageComponent,
     WithdrawConfirmationPageComponent,
     DialogAddBankAccountComponent,
+    DialogDeleteBankAccountComponent,
     DepositCallbackHandlerPageComponent,
   ],
-  entryComponents: [DialogAddBankAccountComponent],
+  entryComponents: [
+    DialogAddBankAccountComponent,
+    DialogDeleteBankAccountComponent,
+  ],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),

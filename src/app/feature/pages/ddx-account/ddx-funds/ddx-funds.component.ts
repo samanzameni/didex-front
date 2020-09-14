@@ -45,6 +45,7 @@ import { LocalePipe } from '@widget/pipes/ddx-locale.pipe';
 import { CreditCardMaskPipe } from '@feature/pipes/ddx-credit-card-mask.pipe';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogAddBankAccountComponent } from '@feature/components/ddx-dialog-add-bank-account/ddx-dialog-add-bank-account.component';
+import { DialogDeleteBankAccountComponent } from '@feature/components/ddx-dialog-delete-bank-account/ddx-dialog-delete-bank-account.component';
 import { catchError } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -411,6 +412,10 @@ export class FundsPageComponent implements OnInit, AfterViewInit {
     });
   }
 
+  openDeleteBankAccountDialogue(cardNumber: string): void {
+    const openDeleteBankAccountDialogueRef = this.dialog.open();
+  }
+
   onSubmitFiatDeposit(
     submittedValue: BankAccount.DepositInitiateFormData
   ): void {
@@ -525,6 +530,4 @@ export class FundsPageComponent implements OnInit, AfterViewInit {
       this.onSubmitFiatWithdraw(index, submittedValue);
     }
   }
-
-  deleteCreditCard() {}
 }

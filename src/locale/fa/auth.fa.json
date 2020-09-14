@@ -1,6 +1,6 @@
 ﻿{
   "activate": {
-    "success_all_set": "همه تنظیمات انجام شد",
+    "success_all_set": "تنظیمات شما با موفقیت انجام شد",
     "success_redirect_message": "شما به زودی به صفحه اصلی هدایت میشوید...",
     "error_error": "خطا!",
     "error_message": "هنگام فعالسازی حساب شما خطایی رخ داده است."
@@ -12,7 +12,7 @@
     "email_placeholder": "abc@example.com",
     "email_error_required": "وارد کردن ایمیل الزامی است",
     "email_error_invalid": "آدرس ایمیل شما باید معتبر باشد",
-    "reset_button": "تغییر رمز",
+    "reset_button": "تغییر رمز عبور",
     "reset_message": "راهنمای تغییر رمز عبور به ایمیل شما فرستاده شده است: ",
     "remember_message": "رمز عبور را به یاد می آورید?",
     "sign_in": "ورود"
@@ -43,12 +43,14 @@
     "password_error_required": "وارد کردن رمز عبور الزامی است",
     "sign_in": "ورود",
     "recaptcha_message_before": "این سایت توسط ربات reCAPTCHA و گوگل محافظت میشود",
-    "recaptcha_message_privacy": "قوانین حریم خصوصی",
-    "recaptcha_message_between": "و",
-    "recaptcha_message_terms": "قوانین استفاده",
+    "recaptcha_message_privacy": "از قوانین حریم خصوصی گوگل",
+    "recaptcha_message_between": "استفاده",
+    "recaptcha_message_terms": "می کند",
     "recaptcha_message_after": "پذیرش",
     "not_a_member": "عضو نیستید؟",
-    "sign_up": "ثبت نام"
+    "sign_up": "ثبت نام",
+    "signin-account": "به حساب کاربری خود وارد شوید",
+    "signin-buy-crypto": "در امنیت کامل رمزارز بخرید و در بستری مطمئن معامله کنید."
   },
 
   "signup": {
@@ -66,7 +68,7 @@
     "confirm_password": "تأئید رمز عبور",
     "confirm_password_error_required": "رمز عبور خود را باید تأیید کنید",
     "confirm_password_error_match": "رمزهای عبور شما باید یکسان باشند.",
-    "terms_check": "ایجاد حساب در «دیدکس» به معنای پذیرفتن سیاست های داخلی،شرایط استفاده و تنظیمات اعلان پیش ‌فرض ما می باشد. ",
+    "terms_check": "ایجاد حساب در دیداکس به معنای پذیرفتن سیاست های داخلی،شرایط استفاده و تنظیمات اعلان پیش ‌فرض ما می باشد. ",
     "sign_in": "ورود",
     "recaptcha_message_before": "این سایت توسط ربات reCAPTCHA و گوگل محافظت میشود.",
     "recaptcha_message_privacy": "قوانین حریم خصوصی",
@@ -74,7 +76,13 @@
     "recaptcha_message_terms": "شرایط استفاده",
     "recaptcha_message_after": "پذیرش",
     "already_a_member": "عضو هستید؟",
-    "sign_up": "ثبت نام"
+    "sign_up": "ثبت نام",
+    "next": "مرحله بعد",
+    "get-code": "دریافت کد",
+    "sms-code": "کد پیامکی",
+    "signup-account": "حساب خود را ایجاد کنید",
+    "signup-buy-crypto": "در امنیت کامل رمزارز بخرید و در بستری مطمئن معامله کنید.",
+    "choose_country": "انتخاب کشور"
   },
 
   "success": {
@@ -86,7 +94,7 @@
   "2fa": {
     "title": "شناسایی دو مرحله ای",
     "code": "کد امنیتی",
-    "code_hint": " از نرم‌افزار کدساز استفاده کنید.",
+    "code_hint": "از نرم افزار کدساز استفاده کنید.",
     "code_error_required": "وارد کردن کد الزامی است",
     "sign_in": "ورود"
   }

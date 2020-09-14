@@ -12,6 +12,9 @@ export namespace BankAccount {
     currencyShortName: string;
     cardNumber: string;
   }
+  export interface DeleteFormData {
+    id: number;
+  }
 
   export interface DepositInitiateFormData {
     id: number;

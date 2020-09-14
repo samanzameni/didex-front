@@ -78,6 +78,13 @@ export class SettingsQRFormComponent implements OnInit {
       },
       (errorResponse) => {
         this.enableSubmitButton.setLoadingOff();
+        if (errorResponse.status === 400) {
+          const errors = errorResponse.error.errors;
+
+          if (errors.Code) {
+            this.formErrors.code = errors.Code;
+          }
+        }
       }
     );
   }

@@ -35,7 +35,8 @@
     "r2_fiat_card_number_error_required": "This field is required",
     "r2_fiat_card_number_error_length": "Credit card number should be at least 16 digits",
     "r2_fiat_card_iban_error_required": "This field is required",
-    "r2_fiat_card_iban_error_length": "IBAN should be at least 24 digits"
+    "r2_fiat_card_iban_error_length": "IBAN should be at least 24 digits",
+    "r2_fiat_delete_toast_message": "Card Deleted!"
   },
 
   "withdraw": {

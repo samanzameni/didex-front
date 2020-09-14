@@ -412,26 +412,23 @@ export class FundsPageComponent implements OnInit, AfterViewInit {
     });
   }
 
-  openDeleteBankAccountDialogue(cardNumber: string): void {
+  openDeleteBankAccountDialogue(card: BankAccount.Model): void {
     const deleteBankAccountDialogueRef = this.dialog.open(
       DialogDeleteBankAccountComponent,
       {
-        width: '400px',
-        data: { cardNumber },
+        width: '300px',
+        data: card,
       }
     );
 
     deleteBankAccountDialogueRef.afterClosed().subscribe((result) => {
-      if (result) {
-        this._bankAccounts.filter((value) => value !== result);
-        this.cdRef.detectChanges();
-        this.toastr.success(
-          this.localePipe.transform(
-            'funds.deposit.r2_fiat_delete_toast_message'
-          ),
-          this.localePipe.transform('funds.deposit.r2_fiat_delete_title')
-        );
-      }
+      this._bankAccounts = this._bankAccounts.filter(
+        (bankAccount) => bankAccount.id !== card.id
+      );
+      this.cdRef.detectChanges();
+      this.toastr.success(
+        this.localePipe.transform('funds.deposit.r2_fiat_delete_toast_message')
+      );
     });
   }
 

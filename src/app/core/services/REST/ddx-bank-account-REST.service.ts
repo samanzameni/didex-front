@@ -19,6 +19,14 @@ export class BankAccountRESTService extends AbstractRESTService {
     >;
   }
 
+  public requestDeleteBankAccount(
+    data: BankAccount.DeleteFormData
+  ): Observable<any> {
+    return this.httpDELETE(`api/Banking/bankAccount/${data.id}`) as Observable<
+      any
+    >;
+  }
+
   public requestDepositFiat(
     data: BankAccount.DepositInitiateFormData
   ): Observable<BankAccount.DepositInitiateResponse> {

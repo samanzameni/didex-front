@@ -201,8 +201,7 @@
                     {{ item.cardNumber | ddxCreditCardMask }}
                     <button
                       mat-icon-button
-                      class="notification__close-button"
-                      (click)="openDeleteBankAccountDialogue(i)"
+                      (click)="openDeleteBankAccountDialogue(item)"
                     >
                       <mat-icon>clear</mat-icon>
                     </button>

@@ -145,19 +145,22 @@ export class KYCPersonalInfoPageComponent
     this.picker.uiIsVisible = true;
   }
 
+  private getUTCOffset(date: any) {
+    var moment = require('moment-jalaali');
+    return moment(date).add(moment(date).utcOffset(), 'minutes').utc();
+  }
+
   onSubmit(): void {
     let { dateOfBirth, ...formValue } = this.kycForm.value;
     let isoBirthdate;
 
     if (this.isTraderInRegionTwo) {
       var moment = require('moment-jalaali');
-      dateOfBirth = moment(
-        dateOfBirth + '23:00:00',
-        'jYYYY/jM/jD HH:mm'
-      ).format('YYYY-MM-DD hh:mm:ss');
-      let formattedDOB: string = dateOfBirth;
-      formattedDOB = formattedDOB.replace(/ /, 'T');
-      isoBirthdate = new Date(formattedDOB).toISOString();
+      dateOfBirth = this.getUTCOffset(
+        moment(dateOfBirth, 'jYYYY/jM/jD')
+      ).toISOString();
+
+      isoBirthdate = dateOfBirth;
     } else {
       isoBirthdate = new Date(Date.parse(dateOfBirth)).toISOString();
     }

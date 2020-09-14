@@ -57,10 +57,10 @@ p {
 }
 
 .en {
-  font-family: Segoe;
+  font-family: 'Nunito Sans';
 
   $custom-typography: mat-typography-config(
-    $font-family: Segoe,
+    $font-family: 'Nunito Sans',
   );
 
   @include mat-core($custom-typography);

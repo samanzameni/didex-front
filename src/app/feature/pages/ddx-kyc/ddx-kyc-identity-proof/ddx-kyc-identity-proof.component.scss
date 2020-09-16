@@ -35,8 +35,12 @@
         padding-inline-start: 10px;
         margin-bottom: 5px;
 
+        display: flex;
+
         li.document {
           @extend .body;
+
+          display: flex;
 
           line-height: 18px;
           position: relative;
@@ -44,16 +48,16 @@
           &:before {
             content: '-';
             display: flex;
-            position: absolute;
+            position: relative;
             top: 0;
 
-            .rtl & {
-              right: -10px;
-            }
+            // .rtl & {
+            //   right: -10px;
+            // }
 
-            .ltr & {
-              left: -10px;
-            }
+            // .ltr & {
+            //   left: -10px;
+            // }
           }
         }
       }

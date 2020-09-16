@@ -72,8 +72,8 @@
     "hints_2": "Your full legal name and date of birth entered in the 'Personal information' form must exactly match the information in your document.",
     "hints_3": "Documents in non-latin characters cannot be accepted without certified translation.",
     "hints_3-region2": "Documents in non-latin characters cannot be accepted without certified translation.",
-    "hints_4": "Max size 3 Mb.",
-    "hints_4-region2": "Max size 3 Mb.",
+    "hints_4": "Max size 10 Mb.",
+    "hints_4-region2": "Max size 10 Mb.",
     "next": "Next",
     "back": "Back",
     "or": "Or"

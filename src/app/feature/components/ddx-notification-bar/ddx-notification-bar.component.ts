@@ -45,7 +45,7 @@ export class NotificationBarComponent implements OnInit {
         this.toastr.success('Success', ntf.title);
       },
       (errorResponse) => {
-        this.toastr.error('An error occured', ntf.title);
+        this.toastr.error('An error occurred', ntf.title);
       }
     );
   }

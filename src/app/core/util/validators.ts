@@ -31,7 +31,7 @@ export function isStrong(controlName: string) {
     const hasNumber = /\d/.test(control.value);
     const hasUpper = /[A-Z]/.test(control.value);
     const hasLower = /[a-z]/.test(control.value);
-    const hasSpecial = /[-!$%^&*()_+@|~=`{}\[\]:";'<>?,.\/\\]/.test(
+    const hasSpecial = /[-!#$%^&*()_+@|~=`{}\[\]:";'<>?,.\/\\]/.test(
       control.value
     );
 

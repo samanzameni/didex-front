@@ -113,35 +113,35 @@ $ddx-green: #8ed23f;
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$didex-exchange-primary: mat-palette($mat-ddx-yellow);
-$didex-exchange-accent: mat-palette($mat-ddx-blue);
-$didex-exchange-dark: mat-palette($mat-ddx-dark);
+$didex-trade-primary: mat-palette($mat-ddx-yellow);
+$didex-trade-accent: mat-palette($mat-ddx-blue);
+$didex-trade-dark: mat-palette($mat-ddx-dark);
 
 // The warn palette is optional (defaults to red).
-$didex-exchange-warn: mat-palette($mat-red);
+$didex-trade-warn: mat-palette($mat-red);
 
 // Create the theme object (a Sass map containing all of the palettes).
-$didex-exchange-theme: mat-dark-theme(
-  $didex-exchange-primary,
-  $didex-exchange-accent,
-  $didex-exchange-warn
+$didex-trade-theme: mat-dark-theme(
+  $didex-trade-primary,
+  $didex-trade-accent,
+  $didex-trade-warn
 );
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
-@include angular-material-theme($didex-exchange-theme);
+@include angular-material-theme($didex-trade-theme);
 
 // aliases
-$ddx-yellow: mat-color($didex-exchange-primary);
+$ddx-yellow: mat-color($didex-trade-primary);
 
-$ddx-dark-deep: mat-color($didex-exchange-dark, 800);
-$ddx-dark-main: mat-color($didex-exchange-dark, 600);
-$ddx-dark-lighter: mat-color($didex-exchange-dark, 400);
-$ddx-dark-lightest: mat-color($didex-exchange-dark, 300);
+$ddx-dark-deep: mat-color($didex-trade-dark, 800);
+$ddx-dark-main: mat-color($didex-trade-dark, 600);
+$ddx-dark-lighter: mat-color($didex-trade-dark, 400);
+$ddx-dark-lightest: mat-color($didex-trade-dark, 300);
 
-$ddx-accent-main: mat-color($didex-exchange-accent, 500);
-$ddx-accent-lighter: mat-color($didex-exchange-accent, 600);
+$ddx-accent-main: mat-color($didex-trade-accent, 500);
+$ddx-accent-lighter: mat-color($didex-trade-accent, 600);
 
 $ddx-light: white;
 $ddx-light-darker: #eee;

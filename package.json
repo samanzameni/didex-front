@@ -1,6 +1,6 @@
 {
-  "name": "didex-exchange",
-  "version": "0.0.1",
+  "name": "didex-trade",
+  "version": "1.0.1",
   "scripts": {
     "ng": "ng",
     "start": "ng serve --aot --port 4000 --host 0.0.0.0",

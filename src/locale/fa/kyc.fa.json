@@ -53,8 +53,8 @@
     "resend_code_button": "ارسال دوباره",
     "verification_message": "کد ارسال شده به تلفن همراه خود را وارد کنید",
     "code_error_required": "پر کردن این قسمت الزامی است",
-    "code_error_maxlength": " کاراکتر حداکثر 6 کلمه است",
-    "code_error_minlength": " کاراکتر حداکثر 6 کلمه است",
+    "code_error_maxlength": " کاراکتر حداکثر ۵ کلمه است",
+    "code_error_minlength": " کاراکتر حداکثر ۵ کلمه است",
     "code_error_pattern": "فقط اعداد قابل قبول هستند",
     "next": "مرحله بعد",
     "back": "بازگشت"

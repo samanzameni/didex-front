@@ -52,6 +52,9 @@ export class MarketFormComponent implements OnInit, OnChanges {
 
   @ViewChild('submitButton') submitButton: ProButtonComponent;
 
+  private _hasNoBalance: boolean;
+  private _hasNoTradingBalance: boolean;
+
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService,
@@ -62,6 +65,9 @@ export class MarketFormComponent implements OnInit, OnChanges {
     this.side = 'buy';
     this.activeType = 'limit';
     this.formErrors = {};
+
+    this._hasNoBalance = false;
+    this._hasNoTradingBalance = false;
 
     // Extracting dropdown items from enum
     const keys = Object.keys(OrderTimeInForce);
@@ -112,7 +118,28 @@ export class MarketFormComponent implements OnInit, OnChanges {
     });
   }
 
+  private determineBalanceState(): void {
+    if (this.balanceData && this.balanceData.length > 0) {
+      let totalBalance = new Decimal(0);
+      let totalTradingBalance = new Decimal(0);
+
+      this.balanceData.forEach((balance) => {
+        totalBalance = totalBalance
+          .add(balance.available)
+          .add(balance.reserved);
+        totalTradingBalance = totalTradingBalance.add(balance.reserved);
+      });
+
+      this._hasNoBalance = totalBalance.lessThanOrEqualTo(0);
+      this._hasNoTradingBalance = totalTradingBalance.lessThanOrEqualTo(0);
+    } else {
+      this._hasNoBalance = true;
+      this._hasNoTradingBalance = true;
+    }
+  }
+
   ngOnInit(): void {
+    this.determineBalanceState();
     this.buildFormGroup();
   }
 
@@ -140,6 +167,10 @@ export class MarketFormComponent implements OnInit, OnChanges {
       if (isSymbolChanged || isTypeChanged || isActiveOrderChanged) {
         this.buildFormGroup(isActiveOrderChanged);
       }
+    }
+
+    if (changes && changes.balanceData) {
+      this.determineBalanceState();
     }
   }
 
@@ -328,6 +359,14 @@ export class MarketFormComponent implements OnInit, OnChanges {
 
   get errors(): any {
     return this.formErrors;
+  }
+
+  get hasNoBalance(): boolean {
+    return this._hasNoBalance;
+  }
+
+  get hasNoTradingBalance(): boolean {
+    return this._hasNoTradingBalance;
   }
 
   private getTickerDataFromSymbol(): Ticker {

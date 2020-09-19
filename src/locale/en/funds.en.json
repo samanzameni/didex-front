@@ -20,6 +20,7 @@
     "copy": "Copy",
     "copied": "Copied!",
     "tips": "Please don’t deposit any other digital assets except selected currency to the above address. Otherwise, you may lose your assets permanently.",
+    "transfer_needed_message": "To submit an order, your trading account balance must be higher than 0. Go to the funds page and transfer your balance from main account to trading account.",
     "r2_fiat_deposit": "Deposit",
     "r2_fiat_select_card": "Select card",
     "r2_fiat_add_card": "Add new card",

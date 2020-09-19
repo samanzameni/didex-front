@@ -1,28 +1,14 @@
 <div arrangeInline class="page-header">
   <h2>{{ 'funds.title' | ddxLocale }}</h2>
-
-  <!--
-  <ul arrangeInline class="page-header__items">
-    <li class="page-header__item">
-      <dropdown-select
-        [caption]="'Sort by'"
-        [items]="sortSelectOptions"
-        (valueChange)="onSortValueChange($event)"
-      ></dropdown-select>
-    </li>
-    <li class="page-header__item">
-      <label class="form-control" for="search">
-        <input type="text" name="search" id="search" placeholder=" " />
-        <span class="actual-label">Search</span>
-      </label>
-    </li>
-  </ul>
---></div>
+</div>
 
 <section class="page-content">
   <ul class="funds__alerts">
     <li class="funds__alert-item" *ngIf="!isKycApproved">
       <p>{{ 'funds.deposit.r2_fiat_kyc_needed_message' | ddxLocale }}</p>
+    </li>
+    <li class="funds__alert-item" *ngIf="shouldShowTransferWarning">
+      <p>{{ 'funds.deposit.transfer_needed_message' | ddxLocale }}</p>
     </li>
   </ul>
 
@@ -141,7 +127,6 @@
               <input
                 type="text"
                 name="address"
-                id="address"
                 matInput
                 [value]="
                   walletAddress
@@ -164,11 +149,11 @@
             >
               {{ 'funds.deposit.copy' | ddxLocale }}
             </button>
-            <!-- <ul class="tips">
+            <ul class="tips">
               <li>
                 {{ 'funds.deposit.tips' | ddxLocale }}
               </li>
-            </ul> -->
+            </ul>
           </ng-template>
           <ng-template #fiatDeposit>
             <form
@@ -234,7 +219,6 @@
                 <input
                   type="number"
                   name="amount"
-                  id="amount"
                   matInput
                   min="0"
                   value="0"
@@ -256,11 +240,7 @@
                 {{ 'funds.deposit.r2_fiat_deposit' | ddxLocale }}
               </button>
             </form>
-            <ul class="tips">
-              <li>
-                {{ 'funds.deposit.r2_fiat_tips' | ddxLocale }}
-              </li>
-            </ul>
+
             <div *ngIf="!!allErrors" arrangeStack style="width: 100%">
               <mat-error *ngFor="let error of allErrors">{{ error }}</mat-error>
             </div>
@@ -301,7 +281,6 @@
                 <input
                   type="text"
                   name="address"
-                  id="address"
                   matInput
                   class="address-input"
                   [(ngModel)]="form.value.address"
@@ -374,7 +353,6 @@
               <input
                 type="number"
                 name="amount"
-                id="amount"
                 matInput
                 min="0"
                 value="0"
@@ -392,7 +370,6 @@
               <input
                 type="text"
                 name="code"
-                id="code"
                 matInput
                 [(ngModel)]="form.value.code"
                 required
@@ -488,7 +465,6 @@
               <input
                 type="number"
                 name="amount"
-                id="amount"
                 matInput
                 value="0"
                 min="0"

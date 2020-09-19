@@ -41,7 +41,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { DialogAddBankAccountComponent } from '@feature/components/ddx-dialog-add-bank-account/ddx-dialog-add-bank-account.component';
 import { DialogDeleteBankAccountComponent } from '@feature/components/ddx-dialog-delete-bank-account/ddx-dialog-delete-bank-account.component';
 import { catchError } from 'rxjs/operators';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MatIconRegistry } from '@angular/material/icon';
 
@@ -82,6 +82,8 @@ export class FundsPageComponent implements OnInit, AfterViewInit {
   private _isKycApproved: boolean;
   private _isKycNewbie: boolean;
 
+  private _shouldShowTransferWarning: boolean;
+
   @ViewChild('withdrawButton') withdrawButton: ElementRef;
   @ViewChild('transferButton') transferButton: ElementRef;
 
@@ -98,6 +100,7 @@ export class FundsPageComponent implements OnInit, AfterViewInit {
     private bankAccountService: BankAccountRESTService,
     private dialog: MatDialog,
     private router: Router,
+    private route: ActivatedRoute,
     private directionService: DirectionService,
     iconRegistry: MatIconRegistry,
     sanitizer: DomSanitizer
@@ -143,6 +146,9 @@ export class FundsPageComponent implements OnInit, AfterViewInit {
     this._isKycApproved = this.traderService.hasKYCApproved;
     this._isKycNewbie = this.traderService.isNewbie;
     this.updateData();
+    this.route.queryParams.subscribe((params) => {
+      this._shouldShowTransferWarning = params.transfer;
+    });
   }
 
   ngAfterViewInit(): void {
@@ -292,6 +298,10 @@ export class FundsPageComponent implements OnInit, AfterViewInit {
 
   get isKycNewbie(): boolean {
     return this._isKycNewbie;
+  }
+
+  get shouldShowTransferWarning(): boolean {
+    return this._shouldShowTransferWarning;
   }
 
   mapColumnToHeader(columnName: string): string {

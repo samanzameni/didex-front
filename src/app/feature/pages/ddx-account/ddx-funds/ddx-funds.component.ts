@@ -8,12 +8,6 @@ import {
 } from '@angular/core';
 import { DropdownSelectItem } from '@widget/models';
 import {
-  faHandHoldingUsd,
-  faPiggyBank,
-  faCoins,
-  IconDefinition,
-} from '@fortawesome/free-solid-svg-icons';
-import {
   BankingRESTService,
   PublicRESTService,
   TradingRESTService,
@@ -254,18 +248,6 @@ export class FundsPageComponent implements OnInit, AfterViewInit {
 
   get sortSelectOptions(): DropdownSelectItem[] {
     return this.sortOptions;
-  }
-
-  get depositIcon(): IconDefinition {
-    return faPiggyBank;
-  }
-
-  get withdrawIcon(): IconDefinition {
-    return faHandHoldingUsd;
-  }
-
-  get transferIcon(): IconDefinition {
-    return faCoins;
   }
 
   get tableRows(): any[] {

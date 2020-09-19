@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {
   ArrangeCenterDirective,
   ArrangeInlineDirective,
@@ -12,7 +11,6 @@ import {
   DropdownMenuComponent,
   DropdownSelectComponent,
   ToggleButtonComponent,
-  CheckboxComponent,
   RadioButtonComponent,
   RadioGroupComponent,
   TradingViewChartWrapperComponent,
@@ -50,7 +48,6 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     DropdownSelectComponent,
     ToggleButtonComponent,
     ProButtonComponent,
-    CheckboxComponent,
     RadioButtonComponent,
     RadioGroupComponent,
     ImageUploaderComponent,
@@ -61,7 +58,6 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
   imports: [
     CommonModule,
     RouterModule,
-    FontAwesomeModule,
     FormsModule,
     ReactiveFormsModule,
     LocalePipeModule,
@@ -89,7 +85,6 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     DropdownSelectComponent,
     ToggleButtonComponent,
     ProButtonComponent,
-    CheckboxComponent,
     RadioButtonComponent,
     RadioGroupComponent,
     ImageUploaderComponent,

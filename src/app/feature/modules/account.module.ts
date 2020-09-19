@@ -11,7 +11,6 @@ import {
   DepositCallbackHandlerPageComponent,
 } from '@feature/pages';
 import { AuthGuard } from '@core/guards';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ClipboardModule } from '@angular/cdk/clipboard';
 import { MatButtonModule } from '@angular/material/button';
 import { MatRadioModule } from '@angular/material/radio';
@@ -80,7 +79,6 @@ const routes: Routes = [
     LocalePipeModule,
     CreditCardMaskPipeModule,
     ReactiveFormsModule,
-    FontAwesomeModule,
     //
     ClipboardModule,
     MatButtonModule,

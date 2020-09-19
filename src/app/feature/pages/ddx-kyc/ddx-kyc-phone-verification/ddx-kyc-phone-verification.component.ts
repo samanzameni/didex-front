@@ -24,7 +24,8 @@ import { DropdownSelectItem } from '@widget/models';
     './ddx-kyc-phone-verification.component.scss',
   ],
 })
-export class KYCPhoneVerificationPageComponent extends KYCPageDirective
+export class KYCPhoneVerificationPageComponent
+  extends KYCPageDirective
   implements OnInit {
   private hasSubmittedMobileNumber: boolean;
   private formErrors: any;
@@ -161,6 +162,14 @@ export class KYCPhoneVerificationPageComponent extends KYCPageDirective
 
           if (errors.Code) {
             this.formErrors.code = errors.Code;
+          }
+
+          if (errors.mobileNumber) {
+            this.formErrors.mobileNumber = errors.mobileNumber;
+          }
+
+          if (errors.default) {
+            this.formErrors.default = errors.default;
           }
         }
       }

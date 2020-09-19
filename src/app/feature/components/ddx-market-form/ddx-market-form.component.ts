@@ -174,6 +174,10 @@ export class MarketFormComponent implements OnInit, OnChanges {
     }
   }
 
+  get isAuthorized(): boolean {
+    return this.authService.isAuthorized;
+  }
+
   get marketFormGroup(): FormGroup {
     return this.marketForm;
   }

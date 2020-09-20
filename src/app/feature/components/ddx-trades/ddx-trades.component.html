@@ -14,14 +14,16 @@
     </div>
     <div arrangeStack class="tab-overlay">
       <h3>{{ 'homepage.trades.overlay_auth_message' | ddxLocale }}</h3>
-      <a
+
+      <button
+        mat-raised-button
+        color="primary"
+        class="signin-cta-button"
         routerLink="/external-redirect"
         [queryParams]="{ redirect_url: '/auth/signin', from: '/trade' }"
       >
-        <button mat-raised-button color="primary">
-          {{ 'homepage.trades.overlay_auth_button' | ddxLocale }}
-        </button>
-      </a>
+        {{ 'homepage.trades.overlay_auth_button' | ddxLocale }}
+      </button>
     </div>
   </ng-template>
 

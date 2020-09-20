@@ -4,7 +4,7 @@ import { TimeZone } from '@core/models';
 export const CONSTANTS = {
   SERVER_URL: 'https://api.didex.com/',
   MOCK_SERVER_URL: 'https://devapi.didex.com/',
-  PHONE_VERIFICATION_CODE_LENGTH: 6,
+  PHONE_VERIFICATION_CODE_LENGTH: 5,
   PAGINATION_LIMIT_BIG: 150,
   PAGINATION_LIMIT: 25,
   PAGINATION_LIMIT_SMALL: 10,

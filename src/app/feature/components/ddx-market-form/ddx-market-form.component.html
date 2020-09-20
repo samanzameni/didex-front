@@ -241,100 +241,155 @@
     <mat-error *ngFor="let error of errors.symbol">{{ error }}</mat-error>
   </ng-container>
 
-  <table arrangeCenter class="market__estimations">
-    <tbody arrangeStack>
-      <tr *ngIf="this.activeType === 'limit'" arrangeInline>
-        <td>
-          {{ 'homepage.market_form.total' | ddxLocale }}
-        </td>
-        <td class="market__total-amount">
-          {{ total }}
-          <span matSuffix>
-            {{ activeSymbol.quoteCurrencyShortName }}
-          </span>
-        </td>
-      </tr>
-      <tr arrangeInline>
-        <td arrangeInline>
-          {{ 'homepage.market_form.taker_fee' | ddxLocale }}
-          {{ activeSymbol.takeLiquidityRate * 100 }}%
-          <button
-            mat-icon-button
-            matTooltip="{{
-              'homepage.market_form.taker_fee_tooltip' | ddxLocale
-            }}"
-            matTooltipClass="formatted-tooltip"
-            class="header-tooltip-button"
-            type="button"
-          >
-            <mat-icon>help</mat-icon>
-          </button>
-        </td>
-        <td>
-          {{ takerFee }}
-          {{ activeSymbol.quoteCurrencyShortName }}
-        </td>
-      </tr>
-      <tr *ngIf="this.activeType === 'limit'" arrangeInline>
-        <td arrangeInline>
-          {{ 'homepage.market_form.maker_fee' | ddxLocale }}
-          {{ activeSymbol.provideLiquidityRate * 100 }}%
-          <button
-            mat-icon-button
-            matTooltip="{{
-              'homepage.market_form.maker_fee_tooltip' | ddxLocale
-            }}"
-            matTooltipClass="formatted-tooltip"
-            class="header-tooltip-button"
-            type="button"
-          >
-            <mat-icon>help</mat-icon>
-          </button>
-        </td>
-        <td>
-          {{ makerFee }}
-          {{ activeSymbol.quoteCurrencyShortName }}
-        </td>
-      </tr>
-    </tbody>
-  </table>
-
-  <div
-    arrangeStack
-    arrangeCenter
-    *ngIf="activeType === 'market'"
-    class="market__approximations"
-  >
-    <ng-template
-      [ngIf]="approxPay !== null"
-      ;
-      [ngIfElse]="notAvailableInMarket"
-    >
+  <ng-template [ngIf]="!isAuthorized" [ngIfElse]="authorized">
+    <div arrangeStack arrangeCenter class="market__warnings">
       <p>
-        {{
-          this.side === 'buy'
-            ? ('homepage.market_form.market_approx_pay' | ddxLocale)
-            : ('homepage.market_form.market_approx_get' | ddxLocale)
-        }}
+        {{ 'homepage.market_form.not_authorized_message' | ddxLocale }}
       </p>
-      <strong>{{ approxPay }} {{ activeSymbol.quoteCurrencyShortName }}</strong>
-    </ng-template>
-    <ng-template #notAvailableInMarket>
-      <p>{{ 'homepage.market_form.market_not_available' | ddxLocale }}</p>
-    </ng-template>
-  </div>
+    </div>
 
-  <pro-button
-    color="basic"
-    type="submit"
-    class="market__submit-button"
-    [ngClass]="side + '-button'"
-    #submitButton
-  >
-    {{
-      side === 'buy'
-        ? ('homepage.market_form.side_buy' | ddxLocale)
-        : ('homepage.market_form.side_sell' | ddxLocale)
-    }}
-  </pro-button>
+    <pro-button
+      color="basic"
+      type="button"
+      class="market__submit-button warning-cta-button"
+      routerLink="/external-redirect"
+      [queryParams]="{ redirect_url: '/auth/signin', from: '/trade' }"
+      #submitButton
+    >
+      {{ 'homepage.market_form.not_authorized_signin' | ddxLocale }}
+    </pro-button>
+  </ng-template>
+
+  <ng-template #authorized>
+    <ng-template
+      [ngIf]="hasNoBalance || hasNoTradingBalance"
+      [ngIfElse]="normalActions"
+      #fundsWarnings
+    >
+      <div arrangeStack arrangeCenter class="market__warnings">
+        <ng-template [ngIf]="hasNoBalance" [ngIfElse]="tradingWarning">
+          <p>
+            {{ 'homepage.market_form.no_balance_warning' | ddxLocale }}
+          </p>
+        </ng-template>
+        <ng-template #tradingWarning>
+          <p>
+            {{ 'homepage.market_form.no_trading_balance_warning' | ddxLocale }}
+          </p>
+        </ng-template>
+      </div>
+
+      <pro-button
+        color="basic"
+        type="button"
+        class="market__submit-button warning-cta-button"
+        routerLink="/account/funds"
+        [queryParams]="hasNoBalance ? {} : { transfer: true }"
+        #submitButton
+      >
+        {{ 'homepage.market_form.go_to_funds' | ddxLocale }}
+      </pro-button>
+    </ng-template>
+
+    <ng-template #normalActions>
+      <table arrangeCenter class="market__estimations">
+        <tbody arrangeStack>
+          <tr *ngIf="this.activeType === 'limit'" arrangeInline>
+            <td>
+              {{ 'homepage.market_form.total' | ddxLocale }}
+            </td>
+            <td class="market__total-amount">
+              {{ total }}
+              <span matSuffix>
+                {{ activeSymbol.quoteCurrencyShortName }}
+              </span>
+            </td>
+          </tr>
+          <tr arrangeInline>
+            <td arrangeInline>
+              {{ 'homepage.market_form.taker_fee' | ddxLocale }}
+              {{ activeSymbol.takeLiquidityRate * 100 }}%
+              <button
+                mat-icon-button
+                matTooltip="{{
+                  'homepage.market_form.taker_fee_tooltip' | ddxLocale
+                }}"
+                matTooltipClass="formatted-tooltip"
+                class="header-tooltip-button"
+                type="button"
+              >
+                <mat-icon>help</mat-icon>
+              </button>
+            </td>
+            <td>
+              {{ takerFee }}
+              {{ activeSymbol.quoteCurrencyShortName }}
+            </td>
+          </tr>
+          <tr *ngIf="this.activeType === 'limit'" arrangeInline>
+            <td arrangeInline>
+              {{ 'homepage.market_form.maker_fee' | ddxLocale }}
+              {{ activeSymbol.provideLiquidityRate * 100 }}%
+              <button
+                mat-icon-button
+                matTooltip="{{
+                  'homepage.market_form.maker_fee_tooltip' | ddxLocale
+                }}"
+                matTooltipClass="formatted-tooltip"
+                class="header-tooltip-button"
+                type="button"
+              >
+                <mat-icon>help</mat-icon>
+              </button>
+            </td>
+            <td>
+              {{ makerFee }}
+              {{ activeSymbol.quoteCurrencyShortName }}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div
+        arrangeStack
+        arrangeCenter
+        *ngIf="activeType === 'market'"
+        class="market__approximations"
+      >
+        <ng-template
+          [ngIf]="approxPay !== null"
+          ;
+          [ngIfElse]="notAvailableInMarket"
+        >
+          <p>
+            {{
+              this.side === 'buy'
+                ? ('homepage.market_form.market_approx_pay' | ddxLocale)
+                : ('homepage.market_form.market_approx_get' | ddxLocale)
+            }}
+          </p>
+          <strong
+            >{{ approxPay }} {{ activeSymbol.quoteCurrencyShortName }}</strong
+          >
+        </ng-template>
+        <ng-template #notAvailableInMarket>
+          <p>{{ 'homepage.market_form.market_not_available' | ddxLocale }}</p>
+        </ng-template>
+      </div>
+
+      <pro-button
+        color="basic"
+        type="submit"
+        class="market__submit-button"
+        [ngClass]="side + '-button'"
+        #submitButton
+      >
+        {{
+          side === 'buy'
+            ? ('homepage.market_form.side_buy' | ddxLocale)
+            : ('homepage.market_form.side_sell' | ddxLocale)
+        }}
+      </pro-button>
+    </ng-template>
+  </ng-template>
 </form>

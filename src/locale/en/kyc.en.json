@@ -53,8 +53,8 @@
     "resend_code_button": "Resend code",
     "verification_message": "Enter the validation code from your mobile",
     "code_error_required": "This field is required.",
-    "code_error_maxlength": "Max length should be 6.",
-    "code_error_minlength": "Mix length should be 6.",
+    "code_error_maxlength": "Max length should be 5.",
+    "code_error_minlength": "Mix length should be 5.",
     "code_error_pattern": "Only digits are valid.",
     "next": "Next",
     "back": "Back"

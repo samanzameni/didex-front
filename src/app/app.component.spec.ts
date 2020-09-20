@@ -16,9 +16,9 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'didex-exchange'`, () => {
+  it(`should have as title 'didex-trade'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('didex-exchange');
+    expect(app.title).toEqual('didex-trade');
   });
 });

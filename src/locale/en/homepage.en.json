@@ -49,7 +49,12 @@
     "market_approx_get": "You will approximately get",
     "market_not_available": "Not available in market",
     "toast_order_success_body": "Your order ID",
-    "toast_order_success_title": "Order submitted!"
+    "toast_order_success_title": "Order submitted!",
+    "no_balance_warning": "To submit an order, you need to increase your balance in your Didex account. Go to the funds page and deposit any amount of any currency.",
+    "no_trading_balance_warning": "To submit an order, your trading account balance must be higher than 0. Go to the funds page and transfer your balance from main account to trading account.",
+    "go_to_funds": "Go to funds",
+    "not_authorized_message": "You must sign in to be able to trade.",
+    "not_authorized_signin": "Sign in"
   },
   "order_book": {
     "title": "Order Book",

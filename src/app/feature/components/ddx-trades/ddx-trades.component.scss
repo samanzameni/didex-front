@@ -9,6 +9,27 @@
   flex-direction: column;
   background-color: $ddx-dark-main;
 
+  .signin-cta-button {
+    width: 150px;
+    margin-top: 10px;
+
+    background: transparent;
+    border: 2px solid $ddx-yellow;
+    color: $ddx-yellow;
+
+    &:hover {
+      border-color: $ddx-yellow;
+      background-color: rgba($ddx-yellow, 0.2);
+      color: $ddx-light;
+    }
+
+    &.is-loading {
+      border-color: $ddx-yellow;
+      background-color: rgba($ddx-yellow, 0.2);
+      color: transparent;
+    }
+  }
+
   .trades__header {
     padding: 10px;
 

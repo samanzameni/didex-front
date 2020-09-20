@@ -41,6 +41,15 @@
     }
   }
 
+  &#warningActions {
+    .market__action-title {
+      color: $ddx-yellow;
+    }
+    .market__title-seperator {
+      border-color: $ddx-yellow;
+    }
+  }
+
   table.market__balance,
   table.market__estimations {
     width: 100%;
@@ -107,6 +116,17 @@
       }
     }
 
+    .market__warnings {
+      padding: 40px 0;
+
+      p {
+        @extend .body;
+
+        text-align: justify;
+        line-height: 18px;
+      }
+    }
+
     table.market__estimations {
       width: 100%;
       min-width: 210px;
@@ -133,6 +153,26 @@
 
         background: transparent;
         border: 2px solid $ddx-light;
+      }
+
+      &.warning-cta-button {
+        ::ng-deep button,
+        button {
+          border-color: $ddx-yellow;
+          color: $ddx-yellow;
+
+          &:hover {
+            border-color: $ddx-yellow;
+            background-color: rgba($ddx-yellow, 0.2);
+            color: $ddx-light;
+          }
+
+          &.is-loading {
+            border-color: $ddx-yellow;
+            background-color: rgba($ddx-yellow, 0.2);
+            color: transparent;
+          }
+        }
       }
 
       &.buy-button {

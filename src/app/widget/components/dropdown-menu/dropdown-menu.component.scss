@@ -140,6 +140,12 @@ dropdown-menu {
   }
 }
 
+body[dir='rtl'] {
+  dropdown-menu {
+    direction: rtl;
+  }
+}
+
 @media screen and (min-width: $break-mobile) {
   dropdown-menu {
     margin-left: 0;

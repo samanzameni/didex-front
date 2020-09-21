@@ -279,6 +279,7 @@
   :host {
     dropdown-menu:not(:last-child) {
       margin: 0 45px;
+      // direction: rtl;
     }
 
     dropdown-menu:last-child {

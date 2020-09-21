@@ -14,14 +14,8 @@
   padding: 5px 15px;
 
   dropdown-menu:last-child {
-    margin-inline-start: 38px;
+    margin-left: 15px; // HARDCODED LEFT
   }
-
-  // body[dir='rtl'] {
-  //   dropdown-menu:last-child {
-  //     margin-left: 0;
-  //   }
-  // }
 
   .mat-flat-button {
     padding: 0;
@@ -288,20 +282,7 @@
 @media screen and (min-width: $break-mobile) {
   :host {
     dropdown-menu:not(:last-child) {
-      margin: 0 45px;
-      // direction: rtl;
-    }
-
-    // dropdown-menu:last-child {
-    //   margin-left: 38px;
-    // }
-
-    dropdown-menu:last-child {
-      direction: ltr;
-
-      .rtl & {
-        margin-inline-start: 0;
-      }
+      margin: 0 10px;
     }
 
     .navbar__personal-info-item {

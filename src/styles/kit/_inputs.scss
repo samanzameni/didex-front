@@ -46,7 +46,7 @@ form {
     font-size: 14px;
   }
 
-  input[type='password'] {
-    font-family: Roboto, Tahoma, Geneva, Verdana, sans-serif;
+  .password-input {
+    font-family: Roboto, sans-serif !important;
   }
 }

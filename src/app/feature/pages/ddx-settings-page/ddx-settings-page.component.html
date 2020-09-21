@@ -95,7 +95,7 @@
       #securityForm="ngForm"
       dir="{{ direction$ | async }}"
     >
-      <mat-form-field appearance="outline">
+      <mat-form-field appearance="outline" class="password-input">
         <mat-label>{{
           'settings.security.old_password' | ddxLocale
         }}</mat-label>
@@ -115,7 +115,7 @@
         <mat-error *ngFor="let error of errors.password">{{ error }}</mat-error>
       </ng-container>
 
-      <mat-form-field appearance="outline">
+      <mat-form-field appearance="outline" class="password-input">
         <mat-label>{{ 'settings.security.password' | ddxLocale }}</mat-label>
         <input
           matInput
@@ -172,7 +172,7 @@
         </li>
       </ul>
 
-      <mat-form-field appearance="outline">
+      <mat-form-field appearance="outline" class="password-input">
         <mat-label>
           {{ 'settings.security.confirm_password' | ddxLocale }}
         </mat-label>

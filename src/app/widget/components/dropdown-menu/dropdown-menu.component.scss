@@ -87,7 +87,7 @@ dropdown-menu {
   display: flex;
 
   height: fit-content;
-  margin: 3px 0 3px 20px;
+
   box-sizing: border-box;
 
   button {
@@ -146,8 +146,8 @@ body[dir='rtl'] {
   }
 }
 
-@media screen and (min-width: $break-mobile) {
-  dropdown-menu {
-    margin-left: 0;
-  }
-}
+// @media screen and (min-width: $break-mobile) {
+//   dropdown-menu {
+//     margin-left: 0;
+//   }
+// }

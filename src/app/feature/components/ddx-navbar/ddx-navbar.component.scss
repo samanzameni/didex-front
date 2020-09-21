@@ -13,6 +13,16 @@
   box-sizing: border-box;
   padding: 5px 15px;
 
+  dropdown-menu:last-child {
+    margin-inline-start: 38px;
+  }
+
+  // body[dir='rtl'] {
+  //   dropdown-menu:last-child {
+  //     margin-left: 0;
+  //   }
+  // }
+
   .mat-flat-button {
     padding: 0;
     height: 48px;
@@ -282,8 +292,16 @@
       // direction: rtl;
     }
 
+    // dropdown-menu:last-child {
+    //   margin-left: 38px;
+    // }
+
     dropdown-menu:last-child {
-      margin-left: 38px;
+      direction: ltr;
+
+      .rtl & {
+        margin-inline-start: 0;
+      }
     }
 
     .navbar__personal-info-item {

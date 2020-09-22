@@ -329,14 +329,14 @@
             {{ 'settings.kyc.message_banned' | ddxLocale }}
           </p>
         </div>
-        <button
+        <!-- <button
           class="kyc-buttons__container"
           routerLink="/user/kyc"
           mat-raised-button
           color="primary"
         >
           {{ 'settings.kyc.button_banned' | ddxLocale }}
-        </button>
+        </button> -->
       </div>
     </ng-container>
 
@@ -351,8 +351,8 @@
         <button
           class="back-button kyc-buttons__container"
           routerLink="/user/kyc/personal-info"
-          mat-stroked-button
-          color="basic"
+          mat-raised-button
+          color="primary"
           type="button"
         >
           {{ 'settings.kyc.button_rejected' | ddxLocale }}

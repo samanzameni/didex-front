@@ -1,0 +1,9 @@
+@import '../../../../styles.scss';
+
+:host {
+  .mat-dialog-content {
+    p:nth-child(2) {
+      padding: 10px 0;
+    }
+  }
+}

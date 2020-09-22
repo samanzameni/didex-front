@@ -54,7 +54,8 @@
     "title": "Two-Factor authentication enabled",
     "message": "Your account is now safe! The code below is your recovery code. Save it for later use",
     "recovery_code": "Recovery Code:",
-    "hint": "HINT: This code will never be available to read again"
+    "hint": "HINT: This code will never be available to read again",
+    "button": "close"
   },
 
   "kyc": {

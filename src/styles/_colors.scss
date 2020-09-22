@@ -137,6 +137,10 @@ $ddx-yellow: mat-color($didex-trade-primary);
 
 $ddx-dark-deep: mat-color($didex-trade-dark, 800);
 $ddx-dark-main: mat-color($didex-trade-dark, 600);
+$ddx-dark-medium: mat-color(
+  $didex-trade-dark,
+  500
+); //added for mat-dialogue backgrounds
 $ddx-dark-lighter: mat-color($didex-trade-dark, 400);
 $ddx-dark-lightest: mat-color($didex-trade-dark, 300);
 

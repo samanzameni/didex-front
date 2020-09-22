@@ -71,10 +71,12 @@
     "button_approved_start-trade": "Start Trade",
     "button_approved_edit": "Update ID Info",
 
-    "message_banned": "Your application for ID Verification is banned, please contact the support",
+    "message_banned_part_one": "Your application for ID Verification is banned.",
+    "message_banned_part_two": "Please check your email and contact the support.",
     "button_banned": "Validate Identity",
 
-    "message_rejected": "Your application for ID Verification is rejected",
+    "message_rejected_part_one": "Your application for ID Verification is rejected.",
+    "message_rejected_part_two": "Kindly check your email and edit your information.",
     "button_rejected": "Validate Identity"
   }
 }

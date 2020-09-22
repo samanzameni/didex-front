@@ -69,30 +69,25 @@ export class KYCSelfiePageComponent extends KYCPageDirective implements OnInit {
 
     this.restService.requestUpdateSelfieImage(dataToSend).subscribe(
       (response) => {
-        this.setLoadingOff();
-      },
-      (errorResponse) => {
-        this.setLoadingOff();
-      }
-    );
-
-    this.restService.requestKYCApproval().subscribe(
-      (response) => {
-        this.traderService.updateCurrentTrader().subscribe(
-          (trader) => {
-            this.submitButton.setLoadingOff();
-            this.router.navigateByUrl('/user/kyc/done');
-            // this.router.navigateByUrl('/user/settings?tab=kyc', {
-            //   queryParams: { tab: 'kyc' },
-            // });
+        this.restService.requestKYCApproval().subscribe(
+          (approvalResponse) => {
+            this.traderService.updateCurrentTrader().subscribe(
+              (trader) => {
+                this.submitButton.setLoadingOff();
+                this.router.navigateByUrl('/user/kyc/done');
+              },
+              (error) => {
+                this.submitButton.setLoadingOff();
+              }
+            );
           },
-          (error) => {
+          (errorResponse) => {
             this.submitButton.setLoadingOff();
           }
         );
       },
       (errorResponse) => {
-        this.submitButton.setLoadingOff();
+        this.setLoadingOff();
       }
     );
   }

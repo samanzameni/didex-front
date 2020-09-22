@@ -95,7 +95,6 @@
         [uiHideAfterSelectDate]="true"
         [dateFormat]="'jYYYY/jM/jD'"
         [uiTheme]="'dark'"
-        (dateOnSelect)="closePersianDatepicker()"
       ></ng-persian-datepicker>
       <mat-error *ngIf="kycFormGroup.controls.dateOfBirth.hasError('required')">
         {{

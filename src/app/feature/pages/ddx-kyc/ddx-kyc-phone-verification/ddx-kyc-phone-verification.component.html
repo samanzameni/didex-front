@@ -130,34 +130,35 @@
           name="code"
           formControlName="code"
         />
+
+        <mat-error *ngIf="kycFormGroup.controls.code.hasError('required')">
+          {{ 'kyc.phone_verification.code_error_required' | ddxLocale }}
+        </mat-error>
+        <mat-error *ngIf="kycFormGroup.controls.code.hasError('minlength')">
+          {{ 'kyc.phone_verification.code_error_minlength' | ddxLocale }}
+        </mat-error>
+        <mat-error *ngIf="kycFormGroup.controls.code.hasError('maxlength')">
+          {{ 'kyc.phone_verification.code_error_maxlength' | ddxLocale }}
+        </mat-error>
+        <mat-error *ngIf="kycFormGroup.controls.code.hasError('pattern')">
+          {{ 'kyc.phone_verification.code_error_pattern' | ddxLocale }}
+        </mat-error>
+        <div *ngIf="errors && errors.code" class="error-feedback">
+          <mat-error *ngFor="let error of errors.code">
+            {{ error }}
+          </mat-error>
+        </div>
+        <div *ngIf="errors && errors.mobileNumber" class="error-feedback">
+          <mat-error *ngFor="let error of errors.mobileNumber">
+            {{ error }}
+          </mat-error>
+        </div>
+        <div *ngIf="errors && errors.default" class="error-feedback">
+          <mat-error *ngFor="let error of errors.default">
+            {{ error }}
+          </mat-error>
+        </div>
       </mat-form-field>
-      <mat-error *ngIf="kycFormGroup.controls.code.hasError('required')">
-        {{ 'kyc.phone_verification.code_error_required' | ddxLocale }}
-      </mat-error>
-      <mat-error *ngIf="kycFormGroup.controls.code.hasError('minlength')">
-        {{ 'kyc.phone_verification.code_error_minlength' | ddxLocale }}
-      </mat-error>
-      <mat-error *ngIf="kycFormGroup.controls.code.hasError('maxlength')">
-        {{ 'kyc.phone_verification.code_error_maxlength' | ddxLocale }}
-      </mat-error>
-      <mat-error *ngIf="kycFormGroup.controls.code.hasError('pattern')">
-        {{ 'kyc.phone_verification.code_error_pattern' | ddxLocale }}
-      </mat-error>
-      <div *ngIf="errors && errors.code" class="error-feedback">
-        <mat-error *ngFor="let error of errors.code">
-          {{ error }}
-        </mat-error>
-      </div>
-      <div *ngIf="errors && errors.mobileNumber" class="error-feedback">
-        <mat-error *ngFor="let error of errors.mobileNumber">
-          {{ error }}
-        </mat-error>
-      </div>
-      <div *ngIf="errors && errors.default" class="error-feedback">
-        <mat-error *ngFor="let error of errors.default">
-          {{ error }}
-        </mat-error>
-      </div>
     </div>
 
     <div class="actions" dir="{{ direction$ | async }}">

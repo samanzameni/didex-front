@@ -37,7 +37,7 @@
     "city_error_required": "پر کردن این قسمت الزامی است",
     "city_error_maxlength": " کاراکتر حداکثر 10 کلمه است",
     "address_line_1": "آدرس",
-    "address_line_1_error_required": "پر کردن این قسمت الزامی است",
+    "address_line_error_required": "پر کردن این قسمت الزامی است",
     "address_line_2": "آدرس دوم (اختیاری)",
     "next": "مرحله بعد"
   },
@@ -97,5 +97,9 @@
     "description": "فرم و مدارک احراز هویت شما ارسال گردیده است. نتیجه ی  بررسی به زودی از طریق ایمیل به شما اطلاع داده می شود.",
     "edit_application": "ویرایش درخواست ",
     "submit": "شروع"
+  },
+
+  "dropdown": {
+    "required_error": "پر کردن این قسمت الزامی است."
   }
 }

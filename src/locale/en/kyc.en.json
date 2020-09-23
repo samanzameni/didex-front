@@ -37,7 +37,7 @@
     "city_error_required": "This field is required.",
     "city_error_maxlength": "Max length should be 50.",
     "address_line_1": "Address (Line 1)",
-    "address_line_1_error_required": "This field is required.",
+    "address_line_error_required": "This field is required.",
     "address_line_2": "Address (Line 2)",
     "next": "Next"
   },
@@ -98,5 +98,9 @@
     "description": "You have filled and sent your information and it is pending for approval",
     "edit_application": "Edit",
     "submit": "Start Trade"
+  },
+
+  "dropdown": {
+    "required_error": "This field is required."
   }
 }

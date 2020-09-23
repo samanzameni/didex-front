@@ -25,6 +25,6 @@
     </mat-option>
   </mat-autocomplete>
   <mat-error *ngIf="control.hasError('required')">
-    This field is required.
+    {{ 'kyc.dropdown.required_error' | ddxLocale }}
   </mat-error>
 </mat-form-field>

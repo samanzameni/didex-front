@@ -28,11 +28,12 @@ form {
 
   .mat-form-field-appearance-outline .mat-form-field-suffix {
     top: 0em;
+    margin-inline-start: 3px;
   }
 
   .mat-form-field-appearance-outline .mat-form-field-prefix {
     top: 0em;
-    margin-right: 3px;
+    margin-inline-end: 3px;
   }
 
   .mat-form-field-appearance-outline

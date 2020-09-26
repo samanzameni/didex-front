@@ -47,7 +47,8 @@ form {
     font-size: 14px;
   }
 
-  .password-input {
-    font-family: Roboto, sans-serif !important;
+  input[type='email'] {
+    text-align: left; //HARDCODED
+    direction: ltr; //HARDCODED
   }
 }

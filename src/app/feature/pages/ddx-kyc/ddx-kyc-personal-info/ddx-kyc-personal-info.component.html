@@ -265,7 +265,9 @@
       <pro-button
         color="primary"
         type="submit"
-        [disabled]="!kycFormGroup.valid"
+        [disabled]="
+          !kycFormGroup.valid || kycFormGroup.controls.dateOfBirth.value === 0
+        "
         #submitButton
       >
         {{ 'kyc.personal_information.next' | ddxLocale }}

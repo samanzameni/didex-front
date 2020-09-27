@@ -26,7 +26,7 @@
     "last_name_error_required": "پر کردن این قسمت الزامی است",
     "last_name_error_maxlength": "کاراکتر حداکثر 50 کلمه است",
     "date_of_birth": "تاریخ تولد",
-    "date_of_birth_error_required": "پر کردن این قسمت الزامی است",
+    "date_of_birth_error_required": "پر کردن قسمت تاریخ تولد الزامی است",
     "country_of_birth": "کشور محل تولد ",
     "zip_code": "کدپستی",
     "zip_code_error_required": "پر کردن این قسمت الزامی است",

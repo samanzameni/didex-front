@@ -156,6 +156,7 @@ export class KYCPersonalInfoPageComponent
 
     if (this.isTraderInRegionTwo) {
       var moment = require('moment-jalaali');
+
       dateOfBirth = this.getUTCOffset(
         moment(dateOfBirth, 'jYYYY/jM/jD')
       ).toISOString();

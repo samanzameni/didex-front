@@ -262,12 +262,15 @@
 
   <ng-template #authorized>
     <ng-template
-      [ngIf]="hasNoBalance || hasNoTradingBalance"
+      [ngIf]="hasNoTradingBalance"
       [ngIfElse]="normalActions"
       #fundsWarnings
     >
       <div arrangeStack arrangeCenter class="market__warnings">
-        <ng-template [ngIf]="hasNoBalance" [ngIfElse]="tradingWarning">
+        <ng-template
+          [ngIf]="hasNoBalance && hasNoTradingBalance"
+          [ngIfElse]="tradingWarning"
+        >
           <p>
             {{ 'homepage.market_form.no_balance_warning' | ddxLocale }}
           </p>

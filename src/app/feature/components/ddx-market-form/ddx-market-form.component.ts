@@ -41,6 +41,7 @@ export class MarketFormComponent implements OnInit, OnChanges {
   @Input() activeOrder: OrderClickEventData;
   @Input() tickerData: Ticker[];
   @Input() balanceData: Balance[];
+  @Input() bankingBalanceData: Balance[];
 
   @Input() side: 'buy' | 'sell';
   @Input() activeType: 'market' | 'limit';
@@ -120,21 +121,31 @@ export class MarketFormComponent implements OnInit, OnChanges {
 
   private determineBalanceState(): void {
     if (this.balanceData && this.balanceData.length > 0) {
-      let totalBalance = new Decimal(0);
       let totalTradingBalance = new Decimal(0);
 
       this.balanceData.forEach((balance) => {
+        totalTradingBalance = totalTradingBalance
+          .add(balance.available)
+          .add(balance.reserved);
+      });
+
+      this._hasNoTradingBalance = totalTradingBalance.lessThanOrEqualTo(0);
+    } else {
+      this._hasNoTradingBalance = true;
+    }
+
+    if (this.bankingBalanceData && this.bankingBalanceData.length > 0) {
+      let totalBalance = new Decimal(0);
+
+      this.bankingBalanceData.forEach((balance) => {
         totalBalance = totalBalance
           .add(balance.available)
           .add(balance.reserved);
-        totalTradingBalance = totalTradingBalance.add(balance.reserved);
-      });
 
-      this._hasNoBalance = totalBalance.lessThanOrEqualTo(0);
-      this._hasNoTradingBalance = totalTradingBalance.lessThanOrEqualTo(0);
+        this._hasNoBalance = totalBalance.lessThanOrEqualTo(0);
+      });
     } else {
       this._hasNoBalance = true;
-      this._hasNoTradingBalance = true;
     }
   }
 
@@ -170,6 +181,10 @@ export class MarketFormComponent implements OnInit, OnChanges {
     }
 
     if (changes && changes.balanceData) {
+      this.determineBalanceState();
+    }
+
+    if (changes && changes.bankingBalanceData) {
       this.determineBalanceState();
     }
   }

@@ -19,6 +19,7 @@ import {
   OrderDATAService,
   PrivateTradeDATAService,
   FilledOrderDATAService,
+  BankingDATAService,
 } from '@core/services/DATA';
 import { PublicRESTService } from '@core/services/REST';
 import { TraderService, AuthService, DirectionService } from '@core/services';
@@ -38,6 +39,7 @@ export class HomePageComponent implements OnInit {
   private symbols: TradeSymbol[];
   private ticker: Ticker[];
   private balance: Balance[];
+  private bankingBalance: Balance[];
   private orderBook: OrderBookResponse;
   private order: Order[];
   private trade: Trade[];
@@ -62,6 +64,7 @@ export class HomePageComponent implements OnInit {
     private tradeDataService: TradeDATAService,
     private privateTradeDataService: PrivateTradeDATAService,
     private filledOrderDataService: FilledOrderDATAService,
+    private bankingDataService: BankingDATAService,
     private directionService: DirectionService
   ) {
     this.externalSources = [];
@@ -104,6 +107,11 @@ export class HomePageComponent implements OnInit {
         this.balance = data || [];
       });
       this.balanceDataService.updateData();
+
+      this.bankingDataService.dataStream$.subscribe((data) => {
+        this.bankingBalance = data || [];
+      });
+      this.bankingDataService.updateData();
 
       this.privateTradeDataService.dataStream$.subscribe((data) => {
         this.privateTrade = data || [];
@@ -167,6 +175,10 @@ export class HomePageComponent implements OnInit {
 
   get balanceData(): Balance[] {
     return this.balance || [];
+  }
+
+  get bankingBalanceData(): Balance[] {
+    return this.bankingBalance || [];
   }
 
   get orderBookData(): OrderBookResponse {

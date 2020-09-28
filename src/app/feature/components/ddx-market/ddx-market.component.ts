@@ -35,6 +35,7 @@ export class MarketComponent implements OnInit {
   @Input() activeOrder: OrderClickEventData;
   @Input() tickerData: Ticker[];
   @Input() balanceData: Balance[];
+  @Input() bankingBalanceData: Balance[];
   @Input() orderBookData: OrderBookResponse;
 
   private currentActiveType: string;

@@ -100,7 +100,7 @@ export class KYCPersonalInfoPageComponent
           ? trader.personalInformation.nationalCode
           : '',
         this.isTraderInRegionTwo
-          ? [Validators.required, Validators.minLength(10)]
+          ? [Validators.required, Validators.pattern('^\d{10}$')]
           : [],
       ],
       addressLine1: [
@@ -156,6 +156,7 @@ export class KYCPersonalInfoPageComponent
 
     if (this.isTraderInRegionTwo) {
       var moment = require('moment-jalaali');
+
       dateOfBirth = this.getUTCOffset(
         moment(dateOfBirth, 'jYYYY/jM/jD')
       ).toISOString();

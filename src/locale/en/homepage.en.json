@@ -100,5 +100,10 @@
     "trade_price": "Price",
     "trade_amount": "Amount",
     "trade_total": "Total"
+  },
+
+  "notification_bar": {
+    "success_message": "Success",
+    "error_message": "An error occurred"
   }
 }

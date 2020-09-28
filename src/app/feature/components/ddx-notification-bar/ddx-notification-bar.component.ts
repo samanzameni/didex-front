@@ -3,6 +3,7 @@ import { AuthService } from '@core/services';
 import { NotificationContent } from '@core/models';
 import { GeneralRESTService } from '@core/services/REST';
 import { ToastrService } from 'ngx-toastr';
+import { LocalePipe } from '@widget/pipes/ddx-locale.pipe';
 
 @Component({
   selector: 'ddx-notification-bar',
@@ -16,7 +17,8 @@ export class NotificationBarComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private httpClient: GeneralRESTService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private localePipe: LocalePipe
   ) {
     this._isClickedOnCTA = false;
   }
@@ -42,10 +44,18 @@ export class NotificationBarComponent implements OnInit {
     const ntf = this.notificationsContent[index];
     this.httpClient.httpGET(ntf.buttonUrl).subscribe(
       (response) => {
-        this.toastr.success('Success', ntf.title);
+        this.toastr.success(
+          this.localePipe.transform(
+            'homepage.notification_bar.success_message'
+          ),
+          ntf.title
+        );
       },
       (errorResponse) => {
-        this.toastr.error('An error occurred', ntf.title);
+        this.toastr.error(
+          this.localePipe.transform('homepage.notification_bar.error_message'),
+          ntf.title
+        );
       }
     );
   }

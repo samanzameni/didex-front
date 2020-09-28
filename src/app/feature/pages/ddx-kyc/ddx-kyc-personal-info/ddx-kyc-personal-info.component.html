@@ -96,12 +96,16 @@
         [dateFormat]="'jYYYY/jM/jD'"
         [uiTheme]="'dark'"
       ></ng-persian-datepicker>
-      <mat-error *ngIf="kycFormGroup.controls.dateOfBirth.hasError('required')">
-        {{
-          'kyc.personal_information.date_of_birth_error_required' | ddxLocale
-        }}
-      </mat-error>
     </mat-form-field>
+    <mat-error
+      *ngIf="
+        kycFormGroup.controls.dateOfBirth.hasError('required') ||
+        (kycFormGroup.controls.dateOfBirth.value.length === 0 &&
+          kycFormGroup.controls.dateOfBirth.touched)
+      "
+    >
+      {{ 'kyc.personal_information.date_of_birth_error_required' | ddxLocale }}
+    </mat-error>
 
     <ng-template #gregorianCalendar>
       <mat-form-field appearance="outline" id="dateOfBirth">
@@ -198,9 +202,9 @@
         }}
       </mat-error>
       <mat-error
-        *ngIf="kycFormGroup.controls.nationalCode.hasError('minlength')"
+        *ngIf="kycFormGroup.controls.nationalCode.hasError('pattern')"
         >{{
-          'kyc.personal_information.national_code_error_minlength' | ddxLocale
+          'kyc.personal_information.national_code_error_ten_digits' | ddxLocale
         }}
       </mat-error>
     </mat-form-field>
@@ -266,7 +270,8 @@
         color="primary"
         type="submit"
         [disabled]="
-          !kycFormGroup.valid || kycFormGroup.controls.dateOfBirth.value === 0
+          !kycFormGroup.valid ||
+          kycFormGroup.controls.dateOfBirth.value.length === 0
         "
         #submitButton
       >

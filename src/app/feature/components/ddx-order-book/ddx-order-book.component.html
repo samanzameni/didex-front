@@ -14,49 +14,56 @@
         activeSymbol.quoteCurrencyShortName
       }}
     </h2>
-
+    <!-- 
     <div
       arrangeInline
       arrangeCenter
       *ngIf="!!activeSymbol"
       class="order-book-header__info"
-    >
-      <div
-        arrangeStack
-        arrangeCenter
-        class="info-section"
-        dir="{{ direction$ | async }}"
-      >
-        <h3>
-          {{ 'homepage.order_book.buying' | ddxLocale }}
-          {{ activeSymbol.baseCurrencyShortName }}
-        </h3>
-        <span
-          >{{ 'homepage.order_book.total' | ddxLocale }}: {{ bidsTotal }}
-          {{ activeSymbol.quoteCurrencyShortName }}</span
-        >
-      </div>
+    > -->
 
-      <div
-        arrangeStack
-        arrangeCenter
-        class="info-section"
-        dir="{{ direction$ | async }}"
-      >
-        <h3>
-          {{ 'homepage.order_book.selling' | ddxLocale }}
-          {{ activeSymbol.baseCurrencyShortName }}
-        </h3>
-        <span
-          >{{ 'homepage.order_book.total' | ddxLocale }}: {{ asksTotal }}
-          {{ activeSymbol.baseCurrencyShortName }}</span
-        >
-      </div>
-    </div>
+    <!-- </div> -->
   </div>
 
-  <div arrangeInline class="order-book__tables" *ngIf="!!activeSymbol">
-    <table class="ddx__table">
+  <!-- <div arrangeInline class="order-book__tables" *ngIf="!!activeSymbol"> -->
+  <div class="inner_container">
+    <div
+      arrangeStack
+      arrangeCenter
+      *ngIf="!!activeSymbol"
+      class="info-section"
+      id="buy-title"
+      dir="{{ direction$ | async }}"
+    >
+      <h3>
+        {{ 'homepage.order_book.buying' | ddxLocale }}
+        {{ activeSymbol.baseCurrencyShortName }}
+      </h3>
+      <span
+        >{{ 'homepage.order_book.total' | ddxLocale }}: {{ bidsTotal }}
+        {{ activeSymbol.quoteCurrencyShortName }}</span
+      >
+    </div>
+
+    <div
+      arrangeStack
+      arrangeCenter
+      *ngIf="!!activeSymbol"
+      class="info-section"
+      id="sale-title"
+      dir="{{ direction$ | async }}"
+    >
+      <h3>
+        {{ 'homepage.order_book.selling' | ddxLocale }}
+        {{ activeSymbol.baseCurrencyShortName }}
+      </h3>
+      <span
+        >{{ 'homepage.order_book.total' | ddxLocale }}: {{ asksTotal }}
+        {{ activeSymbol.baseCurrencyShortName }}</span
+      >
+    </div>
+
+    <table *ngIf="!!activeSymbol" id="buy-table" class="ddx__table">
       <thead class="ddx-table__head">
         <tr arrangeInline>
           <!-- <th class="row-index">#</th> -->
@@ -101,9 +108,9 @@
       </tbody>
     </table>
 
-    <hr />
+    <!-- <hr /> -->
 
-    <table class="ddx__table">
+    <table *ngIf="!!activeSymbol" id="sale-table" class="ddx__table">
       <thead class="ddx-table__head">
         <tr arrangeInline>
           <th arrangeInline class="row-big">
@@ -148,4 +155,5 @@
       </tbody>
     </table>
   </div>
+  <!-- </div> -->
 </ng-template>

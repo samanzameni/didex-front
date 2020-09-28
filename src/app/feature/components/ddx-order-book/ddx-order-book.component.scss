@@ -10,6 +10,36 @@
   flex-direction: column;
   background-color: $ddx-dark-main;
 
+  .inner_container {
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: repeat(4, auto);
+    grid-template-areas:
+      'buy-title'
+      'buy-table'
+      'sale-title'
+      'sale-table';
+    gap: 15px;
+    padding: 15px;
+    box-sizing: border-box;
+    max-width: 100%;
+
+    div#buy-title {
+      grid-area: buy-title;
+    }
+    div#sale-title {
+      grid-area: sale-title;
+    }
+    div#buy-table {
+      grid-area: buy-table;
+      max-width: 100%;
+    }
+    div#sale-table {
+      grid-area: buy-table;
+      max-width: 100%;
+    }
+  }
+
   .order-book__header {
     padding: 10px;
 
@@ -55,7 +85,7 @@
   }
 
   .ddx__table {
-    max-width: 50%;
+    // max-width: 50%;
     table-layout: fixed;
 
     thead.ddx-table__head,

@@ -100,5 +100,10 @@
     "trade_price": "قیمت",
     "trade_amount": "مقدار",
     "trade_total": "مقدار کل"
+  },
+
+  "notification_bar": {
+    "success_message": "با موفقیت انجام شد",
+    "error_message": "خطایی رخ داد"
   }
 }

@@ -8,3 +8,4 @@ export * from './ddx-private-trade-DATA.service';
 export * from './ddx-filled-order-DATA.service';
 export * from './ddx-transactions-DATA.service';
 export * from './ddx-bank-account-DATA.service';
+export * from './ddx-banking-DATA.service';

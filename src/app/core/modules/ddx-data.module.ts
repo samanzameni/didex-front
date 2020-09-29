@@ -10,6 +10,7 @@ import {
   FilledOrderDATAService,
   TransactionsDATAService,
   BankAccountDATAService,
+  BankingDATAService,
 } from '@core/services/DATA';
 import { RESTModule } from './ddx-rest.module';
 import { SignalRService } from '@core/services';
@@ -29,6 +30,7 @@ import { SignalRService } from '@core/services';
     FilledOrderDATAService,
     TransactionsDATAService,
     BankAccountDATAService,
+    BankingDATAService,
   ],
 })
 export class DATAModule {}

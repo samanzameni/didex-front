@@ -87,6 +87,7 @@
   .ddx__table {
     // max-width: 50%;
     table-layout: fixed;
+    min-height: 15vh;
 
     thead.ddx-table__head,
     tbody.ddx-table__body {

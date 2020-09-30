@@ -29,12 +29,12 @@
 
     div#buy-title {
       // grid-area: buy-title;
-      width: 100%;
+      // width: 100%;
       order: 1;
     }
     div#sell-title {
       // grid-area: sell-title;
-      width: 100%;
+      // width: 100%;
       order: 3;
     }
     table#buy-table {
@@ -48,6 +48,12 @@
       // max-width: 100%;
       width: 100%;
       order: 4;
+    }
+
+    .info-section {
+      display: flex;
+      justify-content: space-between;
+      padding: 0 18px;
     }
   }
 
@@ -224,6 +230,12 @@
         max-width: 50%;
         order: 4;
       }
+
+      .info-section {
+        // display: flex;
+        // justify-content: space-between;
+        padding: 0;
+      }
     }
 
     .order-book__header {
@@ -242,6 +254,24 @@
           td {
             &.row-index {
               display: initial;
+            }
+          }
+        }
+      }
+
+      &#buy-table {
+        thead.ddx-table__head,
+        tbody.ddx-table__body {
+          tr {
+            // div.row-underlay {
+            //   left: unset;
+            //   right: 0;
+            //   direction: rtl;
+            //   background: rgba($ddx-green, 0.2);
+            // }
+
+            th:last-child {
+              display: flex;
             }
           }
         }

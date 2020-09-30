@@ -11,32 +11,43 @@
   background-color: $ddx-dark-main;
 
   .inner_container {
-    display: grid;
-    grid-template-columns: auto;
-    grid-template-rows: repeat(4, auto);
-    grid-template-areas:
-      'buy-title'
-      'buy-table'
-      'sell-title'
-      'sell-table';
-    gap: 15px;
-    padding: 15px;
+    // display: grid;
+    // grid-template-columns: auto;
+    // grid-template-rows: repeat(4, auto);
+    // grid-template-areas:
+    //   'buy-title'
+    //   'buy-table'
+    //   'sell-title'
+    //   'sell-table';
+    // gap: 15px;
+    // padding: 15px;
+
+    display: flex;
+    flex-direction: column;
     box-sizing: border-box;
     max-width: 100%;
 
     div#buy-title {
-      grid-area: buy-title;
+      // grid-area: buy-title;
+      width: 100%;
+      order: 1;
     }
     div#sell-title {
-      grid-area: sell-title;
+      // grid-area: sell-title;
+      width: 100%;
+      order: 3;
     }
-    div#buy-table {
-      grid-area: buy-table;
-      max-width: 100%;
+    table#buy-table {
+      // grid-area: buy-table;
+      // max-width: 100%;
+      width: 100%;
+      order: 2;
     }
-    div#sell-table {
-      grid-area: buy-table;
-      max-width: 100%;
+    table#sell-table {
+      // grid-area: buy-table;
+      // max-width: 100%;
+      width: 100%;
+      order: 4;
     }
   }
 
@@ -175,21 +186,40 @@
 @media screen and (min-width: $break-mobile) {
   :host {
     .inner_container {
-      grid-template-rows: repeat(2, auto);
-      grid-template-columns: repeat(2, 1fr);
-      grid-template-areas:
-        'buy-title sell-title'
-        'buy-table sell-table';
+      // grid-template-rows: repeat(2, auto);
+      // grid-template-columns: repeat(2, 1fr);
+      // grid-template-areas:
+      //   'buy-title sell-title'
+      // 'buy-table sell-table';
+      flex-direction: row;
+      flex-wrap: wrap;
 
       div#buy-title {
         display: flex;
         flex-direction: column;
         align-items: center;
+        width: 50%;
+        order: 1;
       }
       div#sell-title {
         display: flex;
         flex-direction: column;
         align-items: center;
+        width: 50%;
+        order: 2;
+      }
+
+      table#buy-table {
+        // grid-area: buy-table;
+        // max-width: 100%;
+        max-width: 50%;
+        order: 3;
+      }
+      table#sell-table {
+        // grid-area: buy-table;
+        // max-width: 100%;
+        max-width: 50%;
+        order: 4;
       }
     }
 

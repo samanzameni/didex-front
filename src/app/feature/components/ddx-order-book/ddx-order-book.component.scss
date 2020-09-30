@@ -17,8 +17,8 @@
     grid-template-areas:
       'buy-title'
       'buy-table'
-      'sale-title'
-      'sale-table';
+      'sell-title'
+      'sell-table';
     gap: 15px;
     padding: 15px;
     box-sizing: border-box;
@@ -27,14 +27,14 @@
     div#buy-title {
       grid-area: buy-title;
     }
-    div#sale-title {
+    div#sell-title {
       grid-area: sale-title;
     }
     div#buy-table {
       grid-area: buy-table;
       max-width: 100%;
     }
-    div#sale-table {
+    div#sell-table {
       grid-area: buy-table;
       max-width: 100%;
     }
@@ -177,15 +177,15 @@
     .inner_container {
       grid-template-rows: repeat(2, auto);
       grid-template-areas:
-        'buy-title sale-title'
-        'buy-table sale-table';
+        'buy-title sell-title'
+        'buy-table sell-table';
 
       div#buy-title {
         display: flex;
         flex-direction: column;
         align-items: center;
       }
-      div#sale-title {
+      div#sell-title {
         display: flex;
         flex-direction: column;
         align-items: center;

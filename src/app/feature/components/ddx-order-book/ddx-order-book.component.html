@@ -59,7 +59,11 @@
       >
     </div>
 
-    <table *ngIf="!!activeSymbol" id="buy-table" class="ddx__table">
+    <table
+      *ngIf="!!activeSymbol"
+      id="buy-table"
+      class="ddx__table order-book__tables"
+    >
       <thead class="ddx-table__head">
         <tr arrangeInline>
           <!-- <th class="row-index">#</th> -->
@@ -106,7 +110,11 @@
 
     <!-- <hr /> -->
 
-    <table *ngIf="!!activeSymbol" id="sell-table" class="ddx__table">
+    <table
+      *ngIf="!!activeSymbol"
+      id="sell-table"
+      class="ddx__table order-book__tables"
+    >
       <thead class="ddx-table__head">
         <tr arrangeInline>
           <th arrangeInline class="row-big">

@@ -73,15 +73,56 @@ export class OrderBookComponent implements OnInit {
   }
 
   get bidsTableData(): OrderBookRecord[] {
-    return this.orderBookData
-      ? this.orderBookData.bid.sort(this.bidSorter)
-      : [];
+    // return this.orderBookData
+    //   ? this.orderBookData.bid.sort(this.bidSorter)
+    //   : [];
+
+    return [
+      {
+        id: 13,
+        price: 0.001,
+        volume: 0.001,
+      },
+      {
+        id: 14,
+        price: 0.001,
+        volume: 0.001,
+      },
+      {
+        id: 15,
+        price: 0.001,
+        volume: 0.001,
+      },
+    ];
   }
 
   get asksTableData(): OrderBookRecord[] {
-    return this.orderBookData
-      ? this.orderBookData.ask.sort(this.askSorter)
-      : [];
+    // return this.orderBookData
+    //   ? this.orderBookData.ask.sort(this.askSorter)
+    //   : [];
+
+    return [
+      {
+        id: 12,
+        price: 0.001,
+        volume: 0.001,
+      },
+      {
+        id: 17,
+        price: 0.001,
+        volume: 0.001,
+      },
+      {
+        id: 18,
+        price: 0.001,
+        volume: 0.001,
+      },
+      {
+        id: 19,
+        price: 0.001,
+        volume: 0.001,
+      },
+    ];
   }
 
   get asksTotal(): Decimal {

@@ -28,7 +28,7 @@
       grid-area: buy-title;
     }
     div#sell-title {
-      grid-area: sale-title;
+      grid-area: sell-title;
     }
     div#buy-table {
       grid-area: buy-table;
@@ -119,11 +119,11 @@
       }
     }
 
-    &:first-child {
+    &#buy-table {
       thead.ddx-table__head,
       tbody.ddx-table__body {
         tr {
-          .row-underlay {
+          div.row-underlay {
             left: unset;
             right: 0;
             direction: rtl;
@@ -139,11 +139,11 @@
       }
     }
 
-    &:last-child {
+    &#sell-table {
       thead.ddx-table__head,
       tbody.ddx-table__body {
         tr {
-          .row-underlay {
+          div.row-underlay {
             right: unset;
             left: 0;
             direction: ltr;
@@ -176,6 +176,7 @@
   :host {
     .inner_container {
       grid-template-rows: repeat(2, auto);
+      grid-template-columns: repeat(2, 1fr);
       grid-template-areas:
         'buy-title sell-title'
         'buy-table sell-table';

@@ -4,6 +4,7 @@ import {
   Renderer2,
   ViewChild,
   ElementRef,
+  HostListener
 } from '@angular/core';
 
 @Component({
@@ -23,6 +24,13 @@ export class ProButtonComponent {
     (el.nativeElement as HTMLElement).tabIndex = 0;
   }
 
+ @HostListener('keydown', ['$event'])
+  handleKeyboardEvent(event: KeyboardEvent) {
+    if(event.keyCode === 13 && this.type === 'submit' && !this.disabled) {
+      this.getButtonElement().click();
+    };
+  }
+
   private getButtonElement(): HTMLButtonElement {
     return (
       this.theButton.nativeElement || this.theButton._elementRef.nativeElement
@@ -36,4 +44,5 @@ export class ProButtonComponent {
   public setLoadingOff(): void {
     this.renderer.removeClass(this.getButtonElement(), 'is-loading');
   }
+
 }

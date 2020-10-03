@@ -24,9 +24,9 @@ export class ProButtonComponent {
     (el.nativeElement as HTMLElement).tabIndex = 0;
   }
 
- @HostListener('keydown', ['$event'])
+ @HostListener('keydown.enter', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent) {
-    if(event.keyCode === 13 && this.type === 'submit' && !this.disabled) {
+    if(this.type === 'submit' && !this.disabled) {
       this.getButtonElement().click();
     };
   }

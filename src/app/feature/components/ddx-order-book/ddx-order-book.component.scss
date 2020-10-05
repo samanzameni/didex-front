@@ -10,6 +10,45 @@
   flex-direction: column;
   background-color: $ddx-dark-main;
 
+  .inner_container {
+    // display: grid;
+    // grid-template-columns: auto;
+    // grid-template-rows: repeat(4, auto);
+    // grid-template-areas:
+    //   'buy-title'
+    //   'buy-table'
+    //   'sell-title'
+    //   'sell-table';
+    // gap: 15px;
+    // padding: 15px;
+
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    max-width: 100%;
+
+    div#buy-title {
+      order: 1;
+    }
+    div#sell-title {
+      order: 3;
+    }
+    table#buy-table {
+      width: 100%;
+      order: 2;
+    }
+    table#sell-table {
+      width: 100%;
+      order: 4;
+    }
+
+    .info-section {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 18px;
+    }
+  }
+
   .order-book__header {
     padding: 10px;
 
@@ -40,23 +79,24 @@
     height: 100%;
     box-sizing: border-box;
 
-    hr {
-      position: absolute;
-      width: 0px;
-      height: 95%;
-      background: rgba($color: $ddx-light, $alpha: 0.5);
-      border: 1px solid rgba($color: $ddx-dark-lightest, $alpha: 0.2);
+    // hr {
+    //   position: absolute;
+    //   width: 0px;
+    //   height: 95%;
+    //   background: rgba($color: $ddx-light, $alpha: 0.5);
+    //   border: 1px solid rgba($color: $ddx-dark-lightest, $alpha: 0.2);
 
-      top: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      margin: 0;
-    }
+    //   top: 0;
+    //   left: 50%;
+    //   transform: translateX(-50%);
+    //   margin: 0;
+    // }
   }
 
   .ddx__table {
-    max-width: 50%;
+    // max-width: 50%;
     table-layout: fixed;
+    min-height: 15vh;
 
     thead.ddx-table__head,
     tbody.ddx-table__body {
@@ -88,11 +128,11 @@
       }
     }
 
-    &:first-child {
+    &#buy-table {
       thead.ddx-table__head,
       tbody.ddx-table__body {
         tr {
-          .row-underlay {
+          div.row-underlay {
             left: unset;
             right: 0;
             direction: rtl;
@@ -101,21 +141,21 @@
 
           th,
           td {
-            text-align: right;
+            text-align: left;
             justify-content: flex-end;
           }
         }
       }
     }
 
-    &:last-child {
+    &#sell-table {
       thead.ddx-table__head,
       tbody.ddx-table__body {
         tr {
-          .row-underlay {
-            right: unset;
-            left: 0;
-            direction: ltr;
+          div.row-underlay {
+            left: unset;
+            right: 0;
+            direction: rtl;
             background: rgba($ddx-red, 0.2);
           }
 
@@ -143,6 +183,39 @@
 
 @media screen and (min-width: $break-mobile) {
   :host {
+    .inner_container {
+      flex-direction: row;
+      flex-wrap: wrap;
+
+      div#buy-title {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 50%;
+        order: 1;
+      }
+      div#sell-title {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 50%;
+        order: 2;
+      }
+
+      table#buy-table {
+        max-width: 50%;
+        order: 3;
+      }
+      table#sell-table {
+        max-width: 50%;
+        order: 4;
+      }
+
+      .info-section {
+        padding: 0;
+      }
+    }
+
     .order-book__header {
       padding: 10px;
 
@@ -159,6 +232,37 @@
           td {
             &.row-index {
               display: initial;
+            }
+          }
+        }
+      }
+
+      &#buy-table {
+        thead.ddx-table__head,
+        tbody.ddx-table__body {
+          tr {
+            div.row-underlay {
+              left: unset;
+              right: 0;
+              direction: rtl;
+              background: rgba($ddx-green, 0.2);
+            }
+
+            th:last-child {
+              display: flex;
+            }
+          }
+        }
+      }
+
+      &#sell-table {
+        thead.ddx-table__head,
+        tbody.ddx-table__body {
+          tr {
+            div.row-underlay {
+              right: unset;
+              left: 0;
+              direction: ltr;
             }
           }
         }

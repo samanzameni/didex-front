@@ -49,4 +49,13 @@ export class StorageService {
   public clearStoredSymbol(): void {
     localStorage.removeItem('didexActiveSymbol');
   }
+
+  //
+  public getMarketType(): string {
+    return localStorage.getItem('didexMarketType');
+  }
+
+  public setMarketType(marketType: string) {
+    localStorage.setItem('didexMarketType', marketType);
+  }
 }

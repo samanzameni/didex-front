@@ -22,7 +22,7 @@ import {
   OrderClickEventData,
 } from '@core/models/ddx-order.model';
 import { DropdownSelectItem } from '@widget/models';
-import { AuthService, DirectionService } from '@core/services';
+import { AuthService, DirectionService, StorageService } from '@core/services';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -62,9 +62,10 @@ export class MarketComponent implements OnInit {
     private authService: AuthService,
     private renderer: Renderer2,
     private cdRef: ChangeDetectorRef,
-    private directionService: DirectionService
+    private directionService: DirectionService,
+    protected storageService: StorageService
   ) {
-    this.currentActiveType = 'limit';
+    this.currentActiveType = storageService.getMarketType() || 'limit';
     this.sellFormErrors = {};
 
     // this.buyAmount = 0;
@@ -245,6 +246,7 @@ export class MarketComponent implements OnInit {
 
   activateType(newType: string): void {
     this.currentActiveType = newType;
+    this.storageService.setMarketType(newType);
     this.cdRef.detectChanges();
   }
 

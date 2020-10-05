@@ -4,6 +4,7 @@ import {
   TawkToService,
   DirectionService,
   Direction,
+  HotjarService,
 } from '@core/services';
 import { LocaleService, Locale } from '@core/services/ddx-locale.service';
 import { Observable } from 'rxjs';
@@ -18,6 +19,7 @@ export class AppComponent implements OnInit {
     private signalrService: SignalRService,
     private localeService: LocaleService,
     private tawkToService: TawkToService,
+    private hotjarService: HotjarService,
     private directionService: DirectionService
   ) {}
 

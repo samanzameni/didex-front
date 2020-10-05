@@ -7,6 +7,7 @@ import {
   AuthService,
   TraderService,
   TawkToService,
+  HotjarService,
 } from './services';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -14,6 +15,12 @@ import { HttpClientModule } from '@angular/common/http';
   declarations: [],
   imports: [HttpClientModule, DATAModule, RESTModule, INTERVALModule],
   exports: [],
-  providers: [StorageService, AuthService, TraderService, TawkToService],
+  providers: [
+    StorageService,
+    AuthService,
+    TraderService,
+    TawkToService,
+    HotjarService,
+  ],
 })
 export class CoreModule {}

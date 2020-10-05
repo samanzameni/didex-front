@@ -42,8 +42,8 @@ export class StorageService {
     return localStorage.getItem('didexActiveSymbol');
   }
 
-  public setLastActivatedSymbol(activeSymbolData: TradeSymbol): void {
-    localStorage.setItem('didexActiveSymbol', activeSymbolData.symbol);
+  public setLastActivatedSymbol(activeSymbolData: string): void {
+    localStorage.setItem('didexActiveSymbol', activeSymbolData);
   }
 
   public clearStoredSymbol(): void {

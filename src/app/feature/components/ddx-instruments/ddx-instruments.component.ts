@@ -53,7 +53,6 @@ export class InstrumentsComponent implements OnChanges {
         let lastActiveSymbol =
           this.storageService.getLastActivatedSymbol() || null;
         let index = 0;
-        console.log(this.storageService.getLastActivatedSymbol());
         if (lastActiveSymbol) {
           for (let i = 0; i < this.symbolsData.length; i++) {
             if (lastActiveSymbol === this.symbolsData[i].symbol) {

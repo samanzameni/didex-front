@@ -16,7 +16,7 @@
   [formGroup]="marketFormGroup"
   (ngSubmit)="submitForm()"
 >
-  <span arrangeInline *ngIf="activeType === 'limit'">
+  <span arrangeInline *ngIf="activeType === 'limit' && false">
     {{ 'homepage.market_form.time_in_force' | ddxLocale }}
     <button
       mat-icon-button
@@ -30,7 +30,7 @@
       <mat-icon>help</mat-icon>
     </button>
   </span>
-  <mat-form-field appearance="outline" *ngIf="activeType === 'limit'">
+  <mat-form-field appearance="outline" *ngIf="activeType === 'limit' && false">
     <mat-select formControlName="timeInForce">
       <mat-option
         *ngFor="let item of timeInForceDropdownItems"

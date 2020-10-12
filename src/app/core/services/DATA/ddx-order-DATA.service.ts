@@ -36,49 +36,50 @@ export class OrderDATAService extends AbstractDATAService<Order[]> {
           if (feed.createdAt.endsWith('Z')) {
             feed.createdAt = feed.createdAt.slice(0, feed.createdAt.length - 1);
           }
-          const currentData = this.dataStream$.value;
-          if (currentData) {
-            let tempIndex: number;
-            switch (feed.status) {
-              case OrderStatus.New:
-                currentData.unshift(feed);
-                break;
-              case OrderStatus.PartiallyFilled:
-                tempIndex = -1;
-                currentData.forEach((record, index) => {
-                  if (record.id === feed.id) {
-                    tempIndex = index;
-                    return;
-                  }
-                });
-
-                if (tempIndex >= 0) {
-                  // UPDATE
-                  currentData[tempIndex] = feed;
-                } else {
-                  // ADD
-                  currentData.unshift(feed);
-                }
-                break;
-              case OrderStatus.Filled:
-              case OrderStatus.Canceled:
-                tempIndex = -1;
-                currentData.forEach((record, index) => {
-                  if (record.id === feed.id) {
-                    tempIndex = index;
-                    return;
-                  }
-                });
-
-                if (tempIndex >= 0) {
-                  // DELETING
-                  currentData.splice(tempIndex, 1);
-                }
-                break;
-            }
-
-            this.dataStream$.next(currentData);
+          let currentData = this.dataStream$.value;
+          if (!currentData) {
+            currentData = [];
           }
+          let tempIndex: number;
+          switch (feed.status) {
+            case OrderStatus.New:
+              currentData.unshift(feed);
+              break;
+            case OrderStatus.PartiallyFilled:
+              tempIndex = -1;
+              currentData.forEach((record, index) => {
+                if (record.id === feed.id) {
+                  tempIndex = index;
+                  return;
+                }
+              });
+
+              if (tempIndex >= 0) {
+                // UPDATE
+                currentData[tempIndex] = feed;
+              } else {
+                // ADD
+                currentData.unshift(feed);
+              }
+              break;
+            case OrderStatus.Filled:
+            case OrderStatus.Canceled:
+              tempIndex = -1;
+              currentData.forEach((record, index) => {
+                if (record.id === feed.id) {
+                  tempIndex = index;
+                  return;
+                }
+              });
+
+              if (tempIndex >= 0) {
+                // DELETING
+                currentData.splice(tempIndex, 1);
+              }
+              break;
+          }
+
+          this.dataStream$.next(currentData);
         }
       );
     }

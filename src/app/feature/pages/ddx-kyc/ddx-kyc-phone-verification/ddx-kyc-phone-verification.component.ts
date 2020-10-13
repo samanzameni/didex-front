@@ -13,7 +13,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { TraderRESTService } from '@core/services/REST';
 import { CONSTANTS, COUNTRIES } from '@core/util/constants';
 import { secondsToTime } from '@core/util/time';
-import { TraderService, DirectionService } from '@core/services';
+import { TraderService, DirectionService, AuthService } from '@core/services';
 import { DropdownSelectItem } from '@widget/models';
 
 @Component({
@@ -43,7 +43,8 @@ export class KYCPhoneVerificationPageComponent
     protected formBuilder: FormBuilder,
     protected traderService: TraderService,
     private restService: TraderRESTService,
-    private directionService: DirectionService
+    private directionService: DirectionService,
+    private authService: AuthService
   ) {
     super(router, el, renderer, formBuilder, traderService);
     this.renderer.addClass(this.el.nativeElement, 'kyc-form');
@@ -61,7 +62,11 @@ export class KYCPhoneVerificationPageComponent
 
     this.kycForm = this.formBuilder.group({
       countryTelephoneCode: [
-        trader.mobileNumber ? trader.mobileNumber.countryTelephoneCode : '',
+        trader.mobileNumber && this.isTraderInRegionTwo
+          ? 98
+          : trader.mobileNumber && !this.isTraderInRegionTwo
+          ? trader.mobileNumber.countryTelephoneCode
+          : '',
         [
           Validators.required,
           Validators.maxLength(4),
@@ -94,6 +99,10 @@ export class KYCPhoneVerificationPageComponent
 
   get countriesList(): DropdownSelectItem[] {
     return this.countries;
+  }
+
+  get isTraderInRegionTwo(): boolean {
+    return this.authService.decodedToken?.region === '2';
   }
 
   get hasSubmittedNumber(): boolean {

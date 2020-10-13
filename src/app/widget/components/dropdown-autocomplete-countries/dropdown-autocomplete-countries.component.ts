@@ -81,13 +81,17 @@ export class DropdownAutocompleteCountriesComponent
       return '';
     }
 
-    const result = this.countriesList.find(
-      (item) => item[this.desiredValueKey] === value
-    );
-    if (!result) {
-      return '';
-    }
+    if (this.isTraderInRegionTwo) {
+      return 'Iran';
+    } else {
+      const result = this.countriesList.find(
+        (item) => item[this.desiredValueKey] === value
+      );
+      if (!result) {
+        return '';
+      }
 
-    return result.name;
+      return result.name;
+    }
   }
 }

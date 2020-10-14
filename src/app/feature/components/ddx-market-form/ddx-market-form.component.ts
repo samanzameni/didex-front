@@ -180,11 +180,7 @@ export class MarketFormComponent implements OnInit, OnChanges {
       }
     }
 
-    if (changes && changes.balanceData) {
-      this.determineBalanceState();
-    }
-
-    if (changes && changes.bankingBalanceData) {
+    if (changes && (changes.balanceData || changes.bankingBalanceData)) {
       this.determineBalanceState();
     }
   }

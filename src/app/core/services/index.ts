@@ -6,3 +6,4 @@ export * from './ddx-tawkto.service';
 export * from './ddx-direction.service';
 export * from './ddx-locale.service';
 export * from './ddx-hotjar.service';
+export * from './ddx-connectivity.service';

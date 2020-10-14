@@ -3,12 +3,16 @@ import * as signalR from '@microsoft/signalr';
 import { environment } from '@environments/environment';
 import { CONSTANTS } from '@core/util/constants';
 import { StorageService } from './ddx-storage.service';
+import { ConnectivityService } from './ddx-connectivity.service';
 
 @Injectable()
 export class SignalRService {
   private hubConnection: signalR.HubConnection;
 
-  constructor(private storageService: StorageService) {}
+  constructor(
+    private storageService: StorageService,
+    private connectivityService: ConnectivityService
+  ) {}
 
   public startConnection(): void {
     const baseURL = environment.production
@@ -31,10 +35,22 @@ export class SignalRService {
 
     this.hubConnection
       .start()
-      .then(() => console.log('---DidEx Connection started'))
-      .catch(err =>
+      .then(() => {
+        console.log('---DidEx Connection started');
+      })
+      .catch((err) =>
         console.log('---DidEx Error while starting connection: ' + err)
       );
+
+    this.hubConnection.onreconnecting(() => {
+      console.log('---Didex Connection reconnecting ...');
+      this.connectivityService.changeSignalrStatus('offline');
+    });
+
+    this.hubConnection.onreconnected(() => {
+      console.log('---DidEx Connection reconnected');
+      this.connectivityService.changeSignalrStatus('online');
+    });
   }
 
   public resetConnection(): void {
@@ -42,7 +58,7 @@ export class SignalRService {
       this.hubConnection
         .stop()
         .then(() => console.log('---DidEx Connection stopped'))
-        .catch(err =>
+        .catch((err) =>
           console.log('---DidEx Error while stopping connection: ' + err)
         );
     }

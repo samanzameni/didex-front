@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, OnDestroy } from '@angular/core';
 import {
   TradeSymbol,
   Ticker,
@@ -22,15 +22,20 @@ import {
   BankingDATAService,
 } from '@core/services/DATA';
 import { PublicRESTService } from '@core/services/REST';
-import { TraderService, AuthService, DirectionService } from '@core/services';
-import { Observable } from 'rxjs';
+import {
+  TraderService,
+  AuthService,
+  DirectionService,
+  ConnectivityService,
+} from '@core/services';
+import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'ddx-home-page',
   templateUrl: './ddx-home-page.component.html',
   styleUrls: ['./ddx-home-page.component.scss'],
 })
-export class HomePageComponent implements OnInit {
+export class HomePageComponent implements OnInit, OnDestroy {
   private currentActiveSymbol: TradeSymbol;
   private currentActiveOrder: OrderClickEventData;
 
@@ -51,6 +56,8 @@ export class HomePageComponent implements OnInit {
   private filledAndCanceledPageNumber: number;
   private tradesPageNumber: number;
 
+  private refresherSubscription: Subscription;
+
   constructor(
     private cdRef: ChangeDetectorRef,
     private traderService: TraderService,
@@ -65,7 +72,8 @@ export class HomePageComponent implements OnInit {
     private privateTradeDataService: PrivateTradeDATAService,
     private filledOrderDataService: FilledOrderDATAService,
     private bankingDataService: BankingDATAService,
-    private directionService: DirectionService
+    private directionService: DirectionService,
+    private connectivityService: ConnectivityService
   ) {
     this.externalSources = [];
     publicService.requestSymbolSources().subscribe((response) => {
@@ -78,7 +86,25 @@ export class HomePageComponent implements OnInit {
     this.tradesPageNumber = 1;
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
+    this.subsribeToDataServices();
+
+    this.refresherSubscription = this.connectivityService.refresherSignal$.subscribe(
+      (shouldRefresh) => {
+        if (shouldRefresh) {
+          this.subsribeToDataServices();
+        }
+      }
+    );
+  }
+
+  ngOnDestroy(): void {
+    if (this.refresherSubscription) {
+      this.refresherSubscription.unsubscribe();
+    }
+  }
+
+  private subsribeToDataServices(): void {
     this.symbolDataService.dataStream$.subscribe((data) => {
       this.symbols = data || [];
     });

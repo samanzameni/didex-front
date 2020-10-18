@@ -104,7 +104,8 @@ export class MarketFormComponent implements OnInit, OnChanges {
         [],
       ],
       quantity: [
-        initQuantityValue,
+         // initQuantityValue,
+        10000,
         [
           Validators.required,
           Validators.min(this.activeSymbol.quantityIncrement),

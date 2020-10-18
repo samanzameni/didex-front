@@ -182,7 +182,6 @@
       </tbody>
     </ng-template>
   </table>
-
   <mat-form-field appearance="outline">
     <mat-label>{{ 'homepage.market_form.amount' | ddxLocale }}</mat-label>
     <input
@@ -192,6 +191,7 @@
       [step]="activeSymbol.quantityIncrement"
       formControlName="quantity"
     />
+<!--    <input-mask-price formControlName="quantity"></input-mask-price>-->
     <span matSuffix>
       {{ activeSymbol.baseCurrencyShortName }}
     </span>

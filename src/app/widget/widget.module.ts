@@ -17,7 +17,7 @@ import {
   ImageUploaderComponent,
   ProButtonComponent,
   DropdownAutocompleteCountriesComponent,
-  ExternalUrlRedirectorComponent,
+  ExternalUrlRedirectorComponent, InputMaskPriceComponent,
 } from './components';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -34,6 +34,9 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+
+
+
 
 @NgModule({
   declarations: [
@@ -54,6 +57,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     //
     TradingViewChartWrapperComponent,
     ExternalUrlRedirectorComponent,
+    InputMaskPriceComponent,
   ],
   imports: [
     CommonModule,
@@ -93,6 +97,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     ExternalUrlRedirectorComponent,
     //
     LocalePipeModule,
+    InputMaskPriceComponent,
   ],
 })
 export class WidgetModule {}

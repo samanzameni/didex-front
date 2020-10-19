@@ -41,5 +41,18 @@
     "fee": "کارمزد",
     "address": "آدرس کیف پول",
     "status": "وضعیت"
+  },
+
+  "transaction_type": {
+    "crypto_deposit": "واریز ارز",
+    "crypto_withdraw": "برداشت ارز",
+    "bank_to_exchange": "حساب اصلی به حساب معاملاتی",
+    "exchange_to_bank": "حساب معاملاتی به حساب اصلی",
+    "bank_to_invest": "حساب اصلی به سرمایه‌گذاری",
+    "invest_to_bank": "سرمایه‌گذاری به حساب اصلی",
+    "interest": "سود",
+    "reward": "ریوارد",
+    "fiat_deposit": "واریز ریالی",
+    "fiat_withdraw": "برداشت ریالی"
   }
 }

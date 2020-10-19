@@ -41,5 +41,18 @@
     "fee": "Fee",
     "address": "Address",
     "status": "Status"
+  },
+
+  "transaction_type": {
+    "crypto_deposit": "CryptoDeposit",
+    "crypto_withdraw": "CryptoWithdraw",
+    "bank_to_exchange": "BankToExchange",
+    "exchange_to_bank": "ExchangeToBank",
+    "bank_to_invest": "BankToInvest",
+    "invest_to_bank": "InvestToBank",
+    "interest": "Interest",
+    "reward": "Reward",
+    "fiat_deposit": "FiatDeposit",
+    "fiat_withdraw": "FiatWithdraw"
   }
 }

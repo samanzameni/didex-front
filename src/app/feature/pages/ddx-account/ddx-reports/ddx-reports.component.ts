@@ -41,6 +41,8 @@ export class ReportsPageComponent implements OnInit, AfterViewInit {
   private trades: any[];
   private transactions: any[];
 
+  private transactionTypeItems: any[];
+
   private currentActivePane: string;
 
   private ordersDataSource: MatTableDataSource<any>;
@@ -57,7 +59,23 @@ export class ReportsPageComponent implements OnInit, AfterViewInit {
     private transactionsDataService: TransactionsDATAService,
     private datePipe: DatePipe,
     private localePipe: LocalePipe
-  ) {}
+  ) {
+    // Extracting dropdown items from enum
+    const keys = Object.keys(TransactionType);
+    const names = keys.slice(keys.length / 2);
+
+    this.transactionTypeItems = names.map((name) => {
+      return {
+        title: name
+          .split(/\s|_|(?=[A-Z])/)
+          .join('_')
+          .toLowerCase(),
+        value: TransactionType[name],
+      };
+    });
+
+    console.log(this.transactionTypeItems);
+  }
 
   ngOnInit(): void {
     this.activatePane('orders');
@@ -205,6 +223,10 @@ export class ReportsPageComponent implements OnInit, AfterViewInit {
       'address',
       'status',
     ];
+  }
+
+  get transactionTypeColumnItems(): any[] {
+    return this.transactionTypeItems;
   }
 
   getTransactionHeaderFromColumn(column: string): string {

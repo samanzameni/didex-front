@@ -14,7 +14,7 @@
     padding: 10px;
 
     .instruments-header__title {
-      margin: 15px 0;
+      margin: 0 0 15px 0;
     }
 
     .instruments-header__controls {
@@ -36,6 +36,9 @@
           margin-right: 3px;
           display: flex;
           min-width: unset;
+          padding: 3px 6px;
+          height: 24px;
+          line-height: 9px;
 
           color: $ddx-light-darker;
           border-color: $ddx-light-darker;

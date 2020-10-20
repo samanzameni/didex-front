@@ -58,6 +58,7 @@ export class MarketComponent implements OnInit {
   private sellFormErrors: any;
 
   private orderTypeItems: any[];
+  private orderSideItems: any[];
 
   constructor(
     private orderService: OrderRESTService,
@@ -81,6 +82,20 @@ export class MarketComponent implements OnInit {
           .join('_')
           .toLowerCase(),
         value: OrderType[name],
+      };
+    });
+
+    // Extracting orderSide items from enum
+    const orderSideKeys = Object.keys(OrderSide);
+    const orderSideNames = orderSideKeys.slice(orderSideKeys.length / 2);
+
+    this.orderSideItems = orderSideNames.map((name) => {
+      return {
+        title: name
+          .split(/\s|_|(?=[A-Z])/)
+          .join('_')
+          .toLowerCase(),
+        value: OrderSide[name],
       };
     });
   }
@@ -169,6 +184,10 @@ export class MarketComponent implements OnInit {
 
   get orderTypeEnumItems(): any[] {
     return this.orderTypeItems;
+  }
+
+  get orderSideEnumItems(): any[] {
+    return this.orderSideItems;
   }
 
   get timeInForceDropdownItems(): DropdownSelectItem[] {

@@ -32,7 +32,7 @@ export class TradesComponent implements OnInit {
 
   private currentActivePane: string;
   private cancelingOrderIDs: string[];
-  private orderTypeItems: any[];
+  private orderStatusItems: any[];
 
   constructor(
     private restService: OrderRESTService,
@@ -46,16 +46,16 @@ export class TradesComponent implements OnInit {
     this.loadTradesNextPage = new EventEmitter();
 
     // Extracting orderType items from enum
-    const orderTypeKeys = Object.keys(OrderType);
-    const orderTypeNames = orderTypeKeys.slice(orderTypeKeys.length / 2);
+    const orderStatusKeys = Object.keys(OrderStatus);
+    const orderStatusNames = orderStatusKeys.slice(orderStatusKeys.length / 2);
 
-    this.orderTypeItems = orderTypeNames.map((name) => {
+    this.orderStatusItems = orderStatusNames.map((name) => {
       return {
         title: name
           .split(/\s|_|(?=[A-Z])/)
           .join('_')
           .toLowerCase(),
-        value: OrderType[name],
+        value: OrderStatus[name],
       };
     });
   }
@@ -86,8 +86,8 @@ export class TradesComponent implements OnInit {
     return this.cancelingOrderIDs;
   }
 
-  get orderTypeEnumItems(): any[] {
-    return this.orderTypeItems;
+  get orderStatusEnumItems(): any[] {
+    return this.orderStatusItems;
   }
 
   getTotalPrice(order: Order): Decimal {

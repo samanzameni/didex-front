@@ -5,6 +5,7 @@ import {
   OrderStatus,
   OrderSide,
   Trade,
+  OrderType,
 } from '@core/models';
 import Decimal from 'decimal.js';
 import { OrderRESTService } from '@core/services/REST';
@@ -31,6 +32,7 @@ export class TradesComponent implements OnInit {
 
   private currentActivePane: string;
   private cancelingOrderIDs: string[];
+  private orderTypeItems: any[];
 
   constructor(
     private restService: OrderRESTService,
@@ -42,6 +44,20 @@ export class TradesComponent implements OnInit {
     this.loadActiveOrdersNextPage = new EventEmitter();
     this.loadFilledOrdersNextPage = new EventEmitter();
     this.loadTradesNextPage = new EventEmitter();
+
+    // Extracting orderType items from enum
+    const orderTypeKeys = Object.keys(OrderType);
+    const orderTypeNames = orderTypeKeys.slice(orderTypeKeys.length / 2);
+
+    this.orderTypeItems = orderTypeNames.map((name) => {
+      return {
+        title: name
+          .split(/\s|_|(?=[A-Z])/)
+          .join('_')
+          .toLowerCase(),
+        value: OrderType[name],
+      };
+    });
   }
 
   ngOnInit(): void {}
@@ -68,6 +84,10 @@ export class TradesComponent implements OnInit {
 
   get cancelingIDs(): string[] {
     return this.cancelingOrderIDs;
+  }
+
+  get orderTypeEnumItems(): any[] {
+    return this.orderTypeItems;
   }
 
   getTotalPrice(order: Order): Decimal {

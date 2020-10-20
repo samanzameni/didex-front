@@ -114,5 +114,10 @@
     "cancelled": "Cancelled",
     "expired": "Expired",
     "suspended": "Suspended"
+  },
+
+  "order_side": {
+    "buy": "Buy",
+    "sell": "Sell"
   }
 }

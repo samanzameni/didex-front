@@ -114,5 +114,10 @@
     "cancelled": "لغو شده",
     "expired": "منقضی شده",
     "suspended": "تعلیق شده"
+  },
+
+  "order_side": {
+    "buy": "خرید",
+    "sell": "فروش"
   }
 }

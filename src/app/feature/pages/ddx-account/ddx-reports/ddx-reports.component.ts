@@ -42,6 +42,7 @@ export class ReportsPageComponent implements OnInit, AfterViewInit {
   private transactions: any[];
 
   private transactionTypeItems: any[];
+  private transactionStatusItems: any[];
 
   private currentActivePane: string;
 
@@ -60,11 +61,13 @@ export class ReportsPageComponent implements OnInit, AfterViewInit {
     private datePipe: DatePipe,
     private localePipe: LocalePipe
   ) {
-    // Extracting dropdown items from enum
-    const keys = Object.keys(TransactionType);
-    const names = keys.slice(keys.length / 2);
+    // Extracting transactiontype items from enum
+    const transactionTypeKeys = Object.keys(TransactionType);
+    const transactionTypeNames = transactionTypeKeys.slice(
+      transactionTypeKeys.length / 2
+    );
 
-    this.transactionTypeItems = names.map((name) => {
+    this.transactionTypeItems = transactionTypeNames.map((name) => {
       return {
         title: name
           .split(/\s|_|(?=[A-Z])/)
@@ -74,7 +77,21 @@ export class ReportsPageComponent implements OnInit, AfterViewInit {
       };
     });
 
-    console.log(this.transactionTypeItems);
+    // Extracting transactionstatus items from enum
+    const transactionStatusKeys = Object.keys(TransactionStatus);
+    const transactionStatusNames = transactionStatusKeys.slice(
+      transactionStatusKeys.length / 2
+    );
+
+    this.transactionStatusItems = transactionStatusNames.map((name) => {
+      return {
+        title: name
+          .split(/\s|_|(?=[A-Z])/)
+          .join('_')
+          .toLowerCase(),
+        value: TransactionStatus[name],
+      };
+    });
   }
 
   ngOnInit(): void {

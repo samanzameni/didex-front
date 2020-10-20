@@ -57,6 +57,8 @@ export class MarketComponent implements OnInit {
   private buyFormErrors: any;
   private sellFormErrors: any;
 
+  private orderTypeItems: any[];
+
   constructor(
     private orderService: OrderRESTService,
     private authService: AuthService,
@@ -68,10 +70,19 @@ export class MarketComponent implements OnInit {
     this.currentActiveType = storageService.getMarketType() || 'limit';
     this.sellFormErrors = {};
 
-    // this.buyAmount = 0;
-    // this.buyLimit = 0;
-    // this.sellAmount = 0;
-    // this.sellLimit = 0;
+    // Extracting orderType items from enum
+    const orderTypeKeys = Object.keys(OrderType);
+    const orderTypeNames = orderTypeKeys.slice(orderTypeKeys.length / 2);
+
+    this.orderTypeItems = orderTypeNames.map((name) => {
+      return {
+        title: name
+          .split(/\s|_|(?=[A-Z])/)
+          .join('_')
+          .toLowerCase(),
+        value: OrderType[name],
+      };
+    });
   }
 
   ngOnInit() {}
@@ -154,6 +165,10 @@ export class MarketComponent implements OnInit {
     }
 
     return null;
+  }
+
+  get orderTypeEnumItems(): any[] {
+    return this.orderTypeItems;
   }
 
   get timeInForceDropdownItems(): DropdownSelectItem[] {

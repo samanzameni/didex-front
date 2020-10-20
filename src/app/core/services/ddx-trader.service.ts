@@ -9,7 +9,29 @@ export class TraderService {
   private trader: Trader;
   private traderKYCImages: TraderKycImage[];
 
-  constructor(private restService: TraderRESTService) {}
+  private traderStatusItems: any[];
+
+  constructor(private restService: TraderRESTService) {
+    // Extracting traderstatus items from enum
+    const traderStatusKeys = Object.keys(TraderStatus);
+    const traderStatusNames = traderStatusKeys.slice(
+      traderStatusKeys.length / 2
+    );
+
+    this.traderStatusItems = traderStatusNames.map((name) => {
+      return {
+        title: name
+          .split(/\s|_|(?=[A-Z])/)
+          .join('_')
+          .toLowerCase(),
+        value: TraderStatus[name],
+      };
+    });
+  }
+
+  get traderStatusEnumItems(): any[] {
+    return this.traderStatusItems;
+  }
 
   get currentTrader(): Trader {
     return this.trader;

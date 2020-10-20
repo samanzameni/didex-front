@@ -245,6 +245,7 @@ export class ReportsPageComponent implements OnInit, AfterViewInit {
   get transactionTypeColumnItems(): any[] {
     return this.transactionTypeItems;
   }
+
   get transactionStatusColumnItems(): any[] {
     return this.transactionStatusItems;
   }

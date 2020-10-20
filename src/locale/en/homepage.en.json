@@ -105,5 +105,14 @@
   "notification_bar": {
     "success_message": "Success",
     "error_message": "An error occurred"
+  },
+
+  "order_status": {
+    "new": "New",
+    "partially_filled": "PartiallyFilled",
+    "filled": "Filled",
+    "cancelled": "Cancelled",
+    "expired": "Expired",
+    "suspended": "Suspended"
   }
 }

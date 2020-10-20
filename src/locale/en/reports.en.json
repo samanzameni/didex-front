@@ -54,5 +54,12 @@
     "reward": "Reward",
     "fiat_deposit": "FiatDeposit",
     "fiat_withdraw": "FiatWithdraw"
+  },
+
+  "transaction_status": {
+    "created": "created",
+    "pending": "pending",
+    "failed": "failed",
+    "success": "success"
   }
 }

@@ -54,5 +54,12 @@
     "reward": "ریوارد",
     "fiat_deposit": "واریز ریالی",
     "fiat_withdraw": "برداشت ریالی"
+  },
+
+  "transaction_status": {
+    "created": "ثبت شد",
+    "pending": "معلق",
+    "failed": "ناموفق",
+    "success": "موفق"
   }
 }

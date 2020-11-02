@@ -15,8 +15,9 @@
       <thead arrangeStack class="ddx-table__head">
         <tr arrangeInline *ngIf="!!activeSymbol">
           <th class="row-big">
-            <!-- {{ 'homepage.time_and_sales.time' | ddxLocale }} -->
-            Time ({{ traderTimezoneTitleAbbr }})
+            {{ 'homepage.time_and_sales.time' | ddxLocale }} ({{
+              traderTimezoneTitleAbbr
+            }})
           </th>
           <th class="row-small">
             {{ 'homepage.time_and_sales.price' | ddxLocale }} ({{

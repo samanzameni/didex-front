@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { TradeSymbol, Trade, OrderSide } from '@core/models';
 import { TraderService } from '@core/services';
+import { TIMEZONES } from '@core/util/constants';
 
 @Component({
   selector: 'ddx-time-and-sales',
@@ -16,11 +17,20 @@ export class TimeAndSalesComponent implements OnInit {
 
   @Output() loadNextPage: EventEmitter<any>;
 
+  private timezoneAbbr: string = '';
+
   constructor(private traderService: TraderService) {
     this.loadNextPage = new EventEmitter();
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    TIMEZONES.forEach((timezone) => {
+      if (timezone.text.includes(this.traderTimezone)) {
+        this.timezoneAbbr = timezone.abbr;
+        return;
+      }
+    });
+  }
 
   getPriceCellCSSClass(row: Trade): string {
     return row.side === OrderSide.Buy ? 'green' : 'red';
@@ -37,10 +47,8 @@ export class TimeAndSalesComponent implements OnInit {
     );
   }
 
-  get traderTimezoneTitle() {
-    return this.traderService.currentTrader.generalInformation.timeZone.slice(
-      12
-    );
+  get traderTimezoneTitleAbbr(): string {
+    return this.timezoneAbbr;
   }
 
   onScroll(): void {

@@ -37,6 +37,12 @@ export class TimeAndSalesComponent implements OnInit {
     );
   }
 
+  get traderTimezoneTitle() {
+    return this.traderService.currentTrader.generalInformation.timeZone.slice(
+      12
+    );
+  }
+
   onScroll(): void {
     this.loadNextPage.emit(null);
   }

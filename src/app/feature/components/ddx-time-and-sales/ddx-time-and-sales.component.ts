@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { TradeSymbol, Trade, OrderSide } from '@core/models';
+import { TraderService } from '@core/services';
 
 @Component({
   selector: 'ddx-time-and-sales',
@@ -15,7 +16,7 @@ export class TimeAndSalesComponent implements OnInit {
 
   @Output() loadNextPage: EventEmitter<any>;
 
-  constructor() {
+  constructor(private traderService: TraderService) {
     this.loadNextPage = new EventEmitter();
   }
 
@@ -27,6 +28,13 @@ export class TimeAndSalesComponent implements OnInit {
 
   get tableData(): Trade[] {
     return this.tradeData || [];
+  }
+
+  get traderTimezone() {
+    return this.traderService.currentTrader.generalInformation.timeZone.slice(
+      4,
+      10
+    );
   }
 
   onScroll(): void {

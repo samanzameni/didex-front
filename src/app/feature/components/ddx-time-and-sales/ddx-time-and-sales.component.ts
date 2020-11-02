@@ -17,19 +17,21 @@ export class TimeAndSalesComponent implements OnInit {
 
   @Output() loadNextPage: EventEmitter<any>;
 
-  private timezoneAbbr: string = '';
+  private timezoneAbbr: string = 'UTC';
 
   constructor(private traderService: TraderService) {
     this.loadNextPage = new EventEmitter();
   }
 
   ngOnInit(): void {
-    TIMEZONES.forEach((timezone) => {
-      if (timezone.text.includes(this.traderTimezone)) {
-        this.timezoneAbbr = timezone.abbr;
-        return;
-      }
-    });
+    if (this.traderTimezone) {
+      TIMEZONES.forEach((timezone) => {
+        if (timezone.text.includes(this.traderTimezone)) {
+          this.timezoneAbbr = timezone.abbr;
+          return;
+        }
+      });
+    }
   }
 
   getPriceCellCSSClass(row: Trade): string {

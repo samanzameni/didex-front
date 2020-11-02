@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { TradeSymbol, Trade, OrderSide } from '@core/models';
+import { AuthService } from '@core/services';
 
 @Component({
   selector: 'ddx-time-and-sales',
@@ -15,7 +16,7 @@ export class TimeAndSalesComponent implements OnInit {
 
   @Output() loadNextPage: EventEmitter<any>;
 
-  constructor() {
+  constructor(private authService: AuthService) {
     this.loadNextPage = new EventEmitter();
   }
 
@@ -27,6 +28,10 @@ export class TimeAndSalesComponent implements OnInit {
 
   get tableData(): Trade[] {
     return this.tradeData || [];
+  }
+
+  get isTraderInRegionTwo(): boolean {
+    return this.authService.decodedToken?.region === '2';
   }
 
   onScroll(): void {

@@ -66,12 +66,14 @@ export class TradesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    TIMEZONES.forEach((timezone) => {
-      if (timezone.text.includes(this.traderTimezone)) {
-        this.timezoneAbbr = timezone.abbr;
-        return;
-      }
-    });
+    if (this.traderTimezoneText) {
+      TIMEZONES.forEach((timezone) => {
+        if (timezone.text.includes(this.traderTimezoneText)) {
+          this.timezoneAbbr = timezone.abbr;
+          return;
+        }
+      });
+    }
   }
 
   get activePane(): string {
@@ -102,11 +104,15 @@ export class TradesComponent implements OnInit {
     return this.orderStatusItems;
   }
 
-  get traderTimezone() {
+  get traderTimezoneOffset() {
     return this.traderService.currentTrader.generalInformation.timeZone.slice(
       4,
       10
     );
+  }
+
+  get traderTimezoneText() {
+    return this.traderService.currentTrader.generalInformation.timeZone;
   }
 
   get traderTimezoneTitleAbbr(): string {

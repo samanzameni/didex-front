@@ -116,7 +116,7 @@
           >
             <tr arrangeInline *ngFor="let item of activeOrders; let i = index">
               <td class="row-big">
-                {{ item.createdAt | date: 'short':traderTimezone }}
+                {{ item.createdAt | date: 'short':traderTimezoneOffset }}
               </td>
               <td class="row-small" title="{{ item.id }}">{{ item.id }}</td>
               <td
@@ -204,7 +204,7 @@
           >
             <tr arrangeInline *ngFor="let item of filledOrders; let i = index">
               <td class="row-big">
-                {{ item.createdAt | date: 'short':traderTimezone }}
+                {{ item.createdAt | date: 'short':traderTimezoneOffset }}
               </td>
               <td class="row-small" title="{{ item.id }}">{{ item.id }}</td>
               <td
@@ -269,7 +269,7 @@
           >
             <tr arrangeInline *ngFor="let item of privateTrades; let i = index">
               <td class="row-big">
-                {{ item.timeStamp | date: 'short':traderTimezone }}
+                {{ item.timeStamp | date: 'short':traderTimezoneOffset }}
               </td>
               <td class="row-small" title="{{ item.id }}">{{ item.id }}</td>
               <td

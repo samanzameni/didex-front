@@ -101,9 +101,9 @@ export class ReportsPageComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     this.activatePane('orders');
 
-    if (this.traderTimezone) {
+    if (this.traderTimezoneOffset) {
       TIMEZONES.forEach((timezone) => {
-        if (timezone.text.includes(this.traderTimezone)) {
+        if (timezone.text.includes(this.traderTimezoneText)) {
           this.timezoneAbbr = timezone.abbr;
           return;
         }
@@ -118,8 +118,9 @@ export class ReportsPageComponent implements OnInit, AfterViewInit {
         mapped.createdAt = this.datePipe.transform(
           order.createdAt,
           'short',
-          this.traderTimezone
+          this.traderTimezoneOffset
         );
+        // mapped.createdAt = order.createdAt;
         mapped.side = OrderSide[order.side];
         mapped.execAmount = `${order.executedQuantity}/${order.quantity}`;
         mapped.total = this.getTotalPrice(order);
@@ -136,7 +137,7 @@ export class ReportsPageComponent implements OnInit, AfterViewInit {
         t.timeStamp = this.datePipe.transform(
           trade.timeStamp,
           'short',
-          this.traderTimezone
+          this.traderTimezoneOffset
         );
         t.side = OrderSide[trade.side];
         return t;
@@ -152,7 +153,7 @@ export class ReportsPageComponent implements OnInit, AfterViewInit {
         t.createdAt = this.datePipe.transform(
           transaction.createdAt,
           'short',
-          this.traderTimezone
+          this.traderTimezoneOffset
         );
         t.type = TransactionType[transaction.type];
         t.status = TransactionStatus[transaction.status];
@@ -319,11 +320,15 @@ export class ReportsPageComponent implements OnInit, AfterViewInit {
     return this.currentActivePane;
   }
 
-  get traderTimezone() {
+  get traderTimezoneOffset() {
     return this.traderService.currentTrader.generalInformation.timeZone.slice(
       4,
       10
     );
+  }
+
+  get traderTimezoneText() {
+    return this.traderService.currentTrader.generalInformation.timeZone;
   }
 
   get traderTimezoneTitleAbbr(): string {

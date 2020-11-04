@@ -24,9 +24,10 @@ import {
 import Decimal from 'decimal.js';
 import { DatePipe } from '@angular/common';
 import { MatPaginator } from '@angular/material/paginator';
-import { CONSTANTS } from '@core/util/constants';
+import { CONSTANTS, TIMEZONES } from '@core/util/constants';
 import { MatTableDataSource } from '@angular/material/table';
 import { LocalePipe } from '@widget/pipes/ddx-locale.pipe';
+import { TraderService } from '@core/services';
 
 @Component({
   selector: 'ddx-reports',
@@ -52,6 +53,8 @@ export class ReportsPageComponent implements OnInit, AfterViewInit {
 
   private transactionsDataSource: MatTableDataSource<any>;
 
+  private timezoneAbbr: string = 'UTC';
+
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
   constructor(
@@ -59,7 +62,8 @@ export class ReportsPageComponent implements OnInit, AfterViewInit {
     private tradeDataService: PrivateTradeDATAService,
     private transactionsDataService: TransactionsDATAService,
     private datePipe: DatePipe,
-    private localePipe: LocalePipe
+    private localePipe: LocalePipe,
+    private traderService: TraderService
   ) {
     // Extracting transactiontype items from enum
     const transactionTypeKeys = Object.keys(TransactionType);
@@ -96,13 +100,27 @@ export class ReportsPageComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.activatePane('orders');
+
+    if (this.traderTimezoneText) {
+      TIMEZONES.forEach((timezone) => {
+        if (timezone.text.includes(this.traderTimezoneText)) {
+          this.timezoneAbbr = timezone.abbr;
+          return;
+        }
+      });
+    }
   }
 
   ngAfterViewInit(): void {
     this.orderDataService.dataStream$.subscribe((data) => {
       this.orders = (data || []).map((order) => {
         const mapped: any = { ...order };
-        mapped.createdAt = this.datePipe.transform(order.createdAt, 'short');
+        mapped.createdAt = this.datePipe.transform(
+          order.createdAt,
+          'short',
+          this.traderTimezoneOffset
+        );
+        // mapped.createdAt = order.createdAt;
         mapped.side = OrderSide[order.side];
         mapped.execAmount = `${order.executedQuantity}/${order.quantity}`;
         mapped.total = this.getTotalPrice(order);
@@ -116,7 +134,11 @@ export class ReportsPageComponent implements OnInit, AfterViewInit {
     this.tradeDataService.dataStream$.subscribe((data) => {
       this.trades = (data || []).map((trade) => {
         const t: any = { ...trade };
-        t.timeStamp = this.datePipe.transform(trade.timeStamp, 'short');
+        t.timeStamp = this.datePipe.transform(
+          trade.timeStamp,
+          'short',
+          this.traderTimezoneOffset
+        );
         t.side = OrderSide[trade.side];
         return t;
       });
@@ -128,7 +150,11 @@ export class ReportsPageComponent implements OnInit, AfterViewInit {
     this.transactionsDataService.dataStream$.subscribe((data) => {
       this.transactions = (data || []).map((transaction) => {
         const t: any = { ...transaction };
-        t.createdAt = this.datePipe.transform(transaction.createdAt, 'short');
+        t.createdAt = this.datePipe.transform(
+          transaction.createdAt,
+          'short',
+          this.traderTimezoneOffset
+        );
         t.type = TransactionType[transaction.type];
         t.status = TransactionStatus[transaction.status];
         return t;
@@ -166,7 +192,12 @@ export class ReportsPageComponent implements OnInit, AfterViewInit {
   getOrderHeaderFromColumn(column: string): string {
     switch (column) {
       case 'createdAt':
-        return this.localePipe.transform('reports.orders.createdAt');
+        return (
+          this.localePipe.transform('reports.orders.createdAt') +
+          ' (' +
+          this.traderTimezoneTitleAbbr +
+          ')'
+        );
       case 'marketSymbol':
         return this.localePipe.transform('reports.orders.marketSymbol');
       case 'id':
@@ -204,7 +235,12 @@ export class ReportsPageComponent implements OnInit, AfterViewInit {
   getTradeHeaderFromColumn(column: string): string {
     switch (column) {
       case 'timeStamp':
-        return this.localePipe.transform('reports.trades.timeStamp');
+        return (
+          this.localePipe.transform('reports.trades.timeStamp') +
+          ' (' +
+          this.traderTimezoneTitleAbbr +
+          ')'
+        );
       case 'marketSymbol':
         return this.localePipe.transform('reports.trades.marketSymbol');
       case 'id':
@@ -253,7 +289,12 @@ export class ReportsPageComponent implements OnInit, AfterViewInit {
   getTransactionHeaderFromColumn(column: string): string {
     switch (column) {
       case 'createdAt':
-        return this.localePipe.transform('reports.transactions.createdAt');
+        return (
+          this.localePipe.transform('reports.transactions.createdAt') +
+          ' (' +
+          this.traderTimezoneTitleAbbr +
+          ')'
+        );
       case 'type':
         return this.localePipe.transform('reports.transactions.type');
       case 'currencyShortName':
@@ -277,6 +318,21 @@ export class ReportsPageComponent implements OnInit, AfterViewInit {
 
   get activePane(): string {
     return this.currentActivePane;
+  }
+
+  get traderTimezoneOffset() {
+    return this.traderService.currentTrader.generalInformation.timeZone.slice(
+      4,
+      10
+    );
+  }
+
+  get traderTimezoneText() {
+    return this.traderService.currentTrader.generalInformation.timeZone;
+  }
+
+  get traderTimezoneTitleAbbr(): string {
+    return this.timezoneAbbr;
   }
 
   activatePane(newPane: string): void {

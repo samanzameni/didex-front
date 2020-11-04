@@ -71,7 +71,7 @@
   },
   "time_and_sales": {
     "title": "Time & Sales",
-    "time": "Time (UTC)",
+    "time": "Time",
     "price": "Price",
     "amount": "Amount"
   },

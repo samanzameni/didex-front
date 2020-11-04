@@ -10,6 +10,8 @@ import {
 import Decimal from 'decimal.js';
 import { OrderRESTService } from '@core/services/REST';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { TIMEZONES } from '@core/util/constants';
+import { TraderService } from '@core/services';
 
 @Component({
   selector: 'ddx-trades',
@@ -34,9 +36,12 @@ export class TradesComponent implements OnInit {
   private cancelingOrderIDs: string[];
   private orderStatusItems: any[];
 
+  private timezoneAbbr: string = 'UTC';
+
   constructor(
     private restService: OrderRESTService,
-    private snackbarService: MatSnackBar
+    private snackbarService: MatSnackBar,
+    private traderService: TraderService
   ) {
     this.currentActivePane = 'active';
     this.cancelingOrderIDs = [];
@@ -60,7 +65,16 @@ export class TradesComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if (this.traderTimezoneText) {
+      TIMEZONES.forEach((timezone) => {
+        if (timezone.text.includes(this.traderTimezoneText)) {
+          this.timezoneAbbr = timezone.abbr;
+          return;
+        }
+      });
+    }
+  }
 
   get activePane(): string {
     return this.currentActivePane;
@@ -88,6 +102,21 @@ export class TradesComponent implements OnInit {
 
   get orderStatusEnumItems(): any[] {
     return this.orderStatusItems;
+  }
+
+  get traderTimezoneOffset() {
+    return this.traderService.currentTrader.generalInformation.timeZone.slice(
+      4,
+      10
+    );
+  }
+
+  get traderTimezoneText() {
+    return this.traderService.currentTrader.generalInformation.timeZone;
+  }
+
+  get traderTimezoneTitleAbbr(): string {
+    return this.timezoneAbbr;
   }
 
   getTotalPrice(order: Order): Decimal {

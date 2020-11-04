@@ -15,7 +15,9 @@
       <thead arrangeStack class="ddx-table__head">
         <tr arrangeInline *ngIf="!!activeSymbol">
           <th class="row-big">
-            {{ 'homepage.time_and_sales.time' | ddxLocale }}
+            {{ 'homepage.time_and_sales.time' | ddxLocale }} ({{
+              traderTimezoneTitleAbbr
+            }})
           </th>
           <th class="row-small">
             {{ 'homepage.time_and_sales.price' | ddxLocale }} ({{
@@ -38,7 +40,9 @@
         class="ddx-table__body"
       >
         <tr arrangeInline *ngFor="let row of tableData; let i = index">
-          <td class="row-big">{{ row.timeStamp | date: 'short' }}</td>
+          <td class="row-big">
+            {{ row.timeStamp | date: 'short':traderTimezoneOffset }}
+          </td>
           <td
             class="row-small"
             [ngClass]="getPriceCellCSSClass(row)"

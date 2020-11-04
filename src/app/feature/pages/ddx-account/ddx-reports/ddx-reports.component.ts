@@ -24,7 +24,7 @@ import {
 import Decimal from 'decimal.js';
 import { DatePipe } from '@angular/common';
 import { MatPaginator } from '@angular/material/paginator';
-import { CONSTANTS } from '@core/util/constants';
+import { CONSTANTS, TIMEZONES } from '@core/util/constants';
 import { MatTableDataSource } from '@angular/material/table';
 import { LocalePipe } from '@widget/pipes/ddx-locale.pipe';
 import { TraderService } from '@core/services';
@@ -100,12 +100,22 @@ export class ReportsPageComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.activatePane('orders');
+
+    if (this.traderTimezone) {
+      TIMEZONES.forEach((timezone) => {
+        if (timezone.text.includes(this.traderTimezone)) {
+          this.timezoneAbbr = timezone.abbr;
+          return;
+        }
+      });
+    }
   }
 
   ngAfterViewInit(): void {
     this.orderDataService.dataStream$.subscribe((data) => {
       this.orders = (data || []).map((order) => {
         const mapped: any = { ...order };
+        console.log(this.traderTimezone);
         mapped.createdAt = this.datePipe.transform(
           order.createdAt,
           'short',

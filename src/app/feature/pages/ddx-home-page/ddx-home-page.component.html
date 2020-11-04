@@ -1,3 +1,6 @@
+<section class="notification-section">
+  <ddx-notification-bar *ngIf="isAuthorized"></ddx-notification-bar>
+</section>
 <section class="chart-section">
   <tv-chart-wrapper
     [activeSymbol]="activeSymbol"

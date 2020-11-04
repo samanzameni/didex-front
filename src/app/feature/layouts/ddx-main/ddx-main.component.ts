@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { StorageService } from '@core/services';
+// import { StorageService } from '@core/services';
 
 @Component({
   selector: 'ddx-main',
@@ -7,14 +7,14 @@ import { StorageService } from '@core/services';
   styleUrls: ['./ddx-main.component.scss'],
 })
 export class MainLayoutComponent implements OnInit {
-  private isUserAuthorized: boolean;
-  constructor(private storageService: StorageService) {
-    this.isUserAuthorized = !!this.storageService.getUserAccessToken();
+  // private isUserAuthorized: boolean;
+  constructor() {
+    // this.isUserAuthorized = !!this.storageService.getUserAccessToken();
   }
 
   ngOnInit() {}
 
-  get isAuthorized(): boolean {
-    return this.isUserAuthorized;
-  }
+  // get isAuthorized(): boolean {
+  //   return this.isUserAuthorized;
+  // }
 }

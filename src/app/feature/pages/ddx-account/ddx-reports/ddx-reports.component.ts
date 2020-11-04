@@ -101,7 +101,7 @@ export class ReportsPageComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     this.activatePane('orders');
 
-    if (this.traderTimezoneOffset) {
+    if (this.traderTimezoneText) {
       TIMEZONES.forEach((timezone) => {
         if (timezone.text.includes(this.traderTimezoneText)) {
           this.timezoneAbbr = timezone.abbr;

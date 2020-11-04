@@ -24,9 +24,9 @@ export class TimeAndSalesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (this.traderTimezone) {
+    if (this.traderTimezoneText) {
       TIMEZONES.forEach((timezone) => {
-        if (timezone.text.includes(this.traderTimezone)) {
+        if (timezone.text.includes(this.traderTimezoneText)) {
           this.timezoneAbbr = timezone.abbr;
           return;
         }
@@ -42,11 +42,15 @@ export class TimeAndSalesComponent implements OnInit {
     return this.tradeData || [];
   }
 
-  get traderTimezone() {
+  get traderTimezoneOffset() {
     return this.traderService.currentTrader.generalInformation.timeZone.slice(
       4,
       10
     );
+  }
+
+  get traderTimezoneText() {
+    return this.traderService.currentTrader.generalInformation.timeZone;
   }
 
   get traderTimezoneTitleAbbr(): string {

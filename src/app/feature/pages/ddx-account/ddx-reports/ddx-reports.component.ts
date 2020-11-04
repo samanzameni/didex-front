@@ -115,7 +115,6 @@ export class ReportsPageComponent implements OnInit, AfterViewInit {
     this.orderDataService.dataStream$.subscribe((data) => {
       this.orders = (data || []).map((order) => {
         const mapped: any = { ...order };
-        console.log(this.traderTimezone);
         mapped.createdAt = this.datePipe.transform(
           order.createdAt,
           'short',

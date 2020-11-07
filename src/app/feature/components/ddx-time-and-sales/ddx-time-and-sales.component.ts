@@ -24,7 +24,7 @@ export class TimeAndSalesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (this.traderTimezoneText) {
+    if (this.traderService.currentTrader && this.traderTimezoneText) {
       TIMEZONES.forEach((timezone) => {
         if (timezone.text.includes(this.traderTimezoneText)) {
           this.timezoneAbbr = timezone.abbr;

@@ -103,12 +103,17 @@ export class OrderBookDATAService extends AbstractDATAService<
                 });
 
                 if (index >= 0) {
-                  // DELETING
-                  arrayToUpdate[index].volume = new Decimal(
-                    arrayToUpdate[index].volume
-                  )
-                    .minus(freshRecord.volume)
-                    .toNumber();
+                  if (arrayToUpdate[index].volume <= freshRecord.volume) {
+                    // DELETE
+                    arrayToUpdate.splice(index, 1);
+                  } else {
+                    // UPDATE
+                    arrayToUpdate[index].volume = new Decimal(
+                      arrayToUpdate[index].volume
+                    )
+                      .minus(freshRecord.volume)
+                      .toNumber();
+                  }
                 }
                 break;
             }

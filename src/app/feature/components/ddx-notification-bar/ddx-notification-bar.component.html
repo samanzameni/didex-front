@@ -1,6 +1,6 @@
 <div
   *ngFor="let notification of notifications; let i = index"
-  class="notification__container"
+  class="notification__container {{ getNotificationTypeClass(notification) }}"
 >
   <button
     mat-icon-button

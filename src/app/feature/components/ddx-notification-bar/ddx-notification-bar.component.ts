@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '@core/services';
-import { NotificationContent } from '@core/models';
+import { NotificationContent, NotificationType } from '@core/models';
 import { GeneralRESTService } from '@core/services/REST';
 import { ToastrService } from 'ngx-toastr';
 import { LocalePipe } from '@widget/pipes/ddx-locale.pipe';
@@ -37,6 +37,17 @@ export class NotificationBarComponent implements OnInit {
 
   get isClickedOnCTA(): boolean {
     return this._isClickedOnCTA;
+  }
+
+  getNotificationTypeClass(content: NotificationContent): string {
+    switch (content.type) {
+      case NotificationType.Good:
+        return 'good';
+      case NotificationType.Warning:
+        return 'meh';
+      case NotificationType.ImmediateAction:
+        return 'bad';
+    }
   }
 
   callCTA(index: number): void {

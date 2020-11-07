@@ -21,8 +21,22 @@
     padding: 5px;
     box-sizing: border-box;
     border-radius: 3px;
-    border: 1px solid $ddx-red;
-    background-color: rgba($ddx-red, 0.25);
+    border: 1px solid transparent;
+
+    &.good {
+      border-color: $ddx-green;
+      background-color: rgba($ddx-green, 0.25);
+    }
+
+    &.meh {
+      border-color: $ddx-yellow;
+      background-color: rgba($ddx-yellow, 0.25);
+    }
+
+    &.bad {
+      border-color: $ddx-red;
+      background-color: rgba($ddx-red, 0.25);
+    }
 
     &:last-child {
       margin-bottom: 0;

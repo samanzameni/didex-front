@@ -43,9 +43,11 @@ export class TimeAndSalesComponent implements OnInit {
   }
 
   get traderTimezoneOffset() {
-    return this.traderService.currentTrader.generalInformation.timeZone.slice(
-      4,
-      10
+    return (
+      this.traderService.currentTrader.generalInformation.timeZone.slice(
+        4,
+        10
+      ) || '+0000'
     );
   }
 

@@ -44,7 +44,7 @@ export class OrderBookDATAService extends AbstractDATAService<
             const arrayToUpdate =
               feed.side === OrderSide.Buy ? currentData.bid : currentData.ask;
 
-            let index: number;
+            let tempIndex: number;
             const freshRecord = {
               id: feed.id,
               price: feed.price,
@@ -52,40 +52,20 @@ export class OrderBookDATAService extends AbstractDATAService<
             };
             switch (feed.status) {
               case OrderStatus.New:
-                // checking if order with this price already exists or not
-                index = -1;
-                arrayToUpdate.forEach((record, i) => {
-                  if (record.price === freshRecord.price) {
-                    index = i;
-                    return;
-                  }
-                });
-
-                if (index > -1) {
-                  // UPDATE
-                  arrayToUpdate[index].volume = new Decimal(
-                    arrayToUpdate[index].volume
-                  )
-                    .add(freshRecord.volume)
-                    .toNumber();
-                } else {
-                  // ADD
-                  arrayToUpdate.push(freshRecord);
-                }
+                arrayToUpdate.push(freshRecord);
                 break;
               case OrderStatus.PartiallyFilled:
-                // checking if order with this price already exists or not
-                index = -1;
-                arrayToUpdate.forEach((record, i) => {
-                  if (record.price === freshRecord.price) {
-                    index = i;
+                tempIndex = -1;
+                arrayToUpdate.forEach((record, index) => {
+                  if (record.id === feed.id) {
+                    tempIndex = index;
                     return;
                   }
                 });
 
-                if (index >= 0) {
+                if (tempIndex >= 0) {
                   // UPDATE
-                  arrayToUpdate[index] = freshRecord;
+                  arrayToUpdate[tempIndex] = freshRecord;
                 } else {
                   // ADD
                   arrayToUpdate.push(freshRecord);
@@ -93,27 +73,17 @@ export class OrderBookDATAService extends AbstractDATAService<
                 break;
               case OrderStatus.Filled:
               case OrderStatus.Canceled:
-                // checking if order with this price already exists or not
-                index = -1;
-                arrayToUpdate.forEach((record, i) => {
-                  if (record.price === freshRecord.price) {
-                    index = i;
+                tempIndex = -1;
+                arrayToUpdate.forEach((record, index) => {
+                  if (record.id === feed.id) {
+                    tempIndex = index;
                     return;
                   }
                 });
 
-                if (index >= 0) {
-                  if (arrayToUpdate[index].volume <= freshRecord.volume) {
-                    // DELETE
-                    arrayToUpdate.splice(index, 1);
-                  } else {
-                    // UPDATE
-                    arrayToUpdate[index].volume = new Decimal(
-                      arrayToUpdate[index].volume
-                    )
-                      .minus(freshRecord.volume)
-                      .toNumber();
-                  }
+                if (tempIndex >= 0) {
+                  // DELETING
+                  arrayToUpdate.splice(tempIndex, 1);
                 }
                 break;
             }

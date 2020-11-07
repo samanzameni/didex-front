@@ -9,6 +9,7 @@ import {
   OrderStatus,
 } from '@core/models';
 import { SignalRService } from '../ddx-signalr.service';
+import Decimal from 'decimal.js';
 
 @Injectable()
 export class OrderBookDATAService extends AbstractDATAService<
@@ -43,7 +44,7 @@ export class OrderBookDATAService extends AbstractDATAService<
             const arrayToUpdate =
               feed.side === OrderSide.Buy ? currentData.bid : currentData.ask;
 
-            let tempIndex: number;
+            let index: number;
             const freshRecord = {
               id: feed.id,
               price: feed.price,
@@ -51,20 +52,40 @@ export class OrderBookDATAService extends AbstractDATAService<
             };
             switch (feed.status) {
               case OrderStatus.New:
-                arrayToUpdate.push(freshRecord);
-                break;
-              case OrderStatus.PartiallyFilled:
-                tempIndex = -1;
-                arrayToUpdate.forEach((record, index) => {
-                  if (record.id === feed.id) {
-                    tempIndex = index;
+                // checking if order with this price already exists or not
+                index = -1;
+                arrayToUpdate.forEach((record, i) => {
+                  if (record.price === freshRecord.price) {
+                    index = i;
                     return;
                   }
                 });
 
-                if (tempIndex >= 0) {
+                if (index > -1) {
                   // UPDATE
-                  arrayToUpdate[tempIndex] = freshRecord;
+                  arrayToUpdate[index].volume = new Decimal(
+                    arrayToUpdate[index].volume
+                  )
+                    .add(freshRecord.volume)
+                    .toNumber();
+                } else {
+                  // ADD
+                  arrayToUpdate.push(freshRecord);
+                }
+                break;
+              case OrderStatus.PartiallyFilled:
+                // checking if order with this price already exists or not
+                index = -1;
+                arrayToUpdate.forEach((record, i) => {
+                  if (record.price === freshRecord.price) {
+                    index = i;
+                    return;
+                  }
+                });
+
+                if (index >= 0) {
+                  // UPDATE
+                  arrayToUpdate[index] = freshRecord;
                 } else {
                   // ADD
                   arrayToUpdate.push(freshRecord);
@@ -72,17 +93,22 @@ export class OrderBookDATAService extends AbstractDATAService<
                 break;
               case OrderStatus.Filled:
               case OrderStatus.Canceled:
-                tempIndex = -1;
-                arrayToUpdate.forEach((record, index) => {
-                  if (record.id === feed.id) {
-                    tempIndex = index;
+                // checking if order with this price already exists or not
+                index = -1;
+                arrayToUpdate.forEach((record, i) => {
+                  if (record.price === freshRecord.price) {
+                    index = i;
                     return;
                   }
                 });
 
-                if (tempIndex >= 0) {
+                if (index >= 0) {
                   // DELETING
-                  arrayToUpdate.splice(tempIndex, 1);
+                  arrayToUpdate[index].volume = new Decimal(
+                    arrayToUpdate[index].volume
+                  )
+                    .minus(freshRecord.volume)
+                    .toNumber();
                 }
                 break;
             }

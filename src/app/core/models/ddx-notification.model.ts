@@ -5,4 +5,11 @@ export interface NotificationContent {
   buttonUrl: string;
   buttonText: string;
   call: boolean;
+  type: NotificationType;
+}
+
+export enum NotificationType {
+  Good = 1,
+  Warning = 2,
+  ImmediateAction = 3,
 }

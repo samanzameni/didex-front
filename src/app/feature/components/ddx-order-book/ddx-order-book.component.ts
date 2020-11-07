@@ -74,55 +74,42 @@ export class OrderBookComponent implements OnInit {
 
   get bidsTableData(): OrderBookRecord[] {
     return this.orderBookData
-      ? this.orderBookData.bid.sort(this.bidSorter)
+      ? this.mergeTableData(this.orderBookData.bid, false)
       : [];
-
-    // return [
-    //   {
-    //     id: 13,
-    //     price: 0.001,
-    //     volume: 0.001,
-    //   },
-    //   {
-    //     id: 14,
-    //     price: 0.001,
-    //     volume: 0.001,
-    //   },
-    //   {
-    //     id: 15,
-    //     price: 0.001,
-    //     volume: 0.001,
-    //   },
-    // ];
   }
 
   get asksTableData(): OrderBookRecord[] {
     return this.orderBookData
-      ? this.orderBookData.ask.sort(this.askSorter)
+      ? this.mergeTableData(this.orderBookData.ask)
       : [];
+  }
 
-    // return [
-    //   {
-    //     id: 12,
-    //     price: 0.001,
-    //     volume: 0.001,
-    //   },
-    //   {
-    //     id: 17,
-    //     price: 0.001,
-    //     volume: 0.001,
-    //   },
-    //   {
-    //     id: 18,
-    //     price: 0.001,
-    //     volume: 0.001,
-    //   },
-    //   {
-    //     id: 19,
-    //     price: 0.001,
-    //     volume: 0.001,
-    //   },
-    // ];
+  private mergeTableData(
+    originalRecords: OrderBookRecord[],
+    isAsk: boolean = true
+  ): OrderBookRecord[] {
+    const mergedRecords: OrderBookRecord[] = [];
+
+    let shouldPush: boolean;
+    for (const record of originalRecords) {
+      shouldPush = true;
+      for (const alreadyInRecord of mergedRecords) {
+        if (record.price === alreadyInRecord.price) {
+          shouldPush = false;
+          alreadyInRecord.volume = new Decimal(alreadyInRecord.volume)
+            .add(record.price)
+            .toNumber();
+          break;
+        }
+      }
+
+      if (shouldPush) {
+        mergedRecords.push({ ...record });
+      }
+    }
+
+    const sorter = isAsk ? this.askSorter : this.bidSorter;
+    return mergedRecords.sort(sorter);
   }
 
   get asksTotal(): Decimal {

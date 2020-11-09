@@ -11,7 +11,7 @@ export class ConvertToTimezonePipe implements PipeTransform {
   transform(timestamp: string): string {
     return moment
       .tz(timestamp, this.traderTimezoneText)
-      .format('YYYY/MM/DD, HH:MM A');
+      .format('YYYY/MM/DD, HH:mm A');
   }
 
   get traderTimezoneText() {

@@ -19,7 +19,6 @@ export class TimeAndSalesComponent implements OnInit {
   @Output() loadNextPage: EventEmitter<any>;
 
   private timezoneAbbr: string = 'UTC';
-  private convertedTimezones: string[];
 
   constructor(private traderService: TraderService) {
     this.loadNextPage = new EventEmitter();
@@ -54,9 +53,5 @@ export class TimeAndSalesComponent implements OnInit {
 
   onScroll(): void {
     this.loadNextPage.emit(null);
-    var a = moment
-      .tz(this.tableData[2].timeStamp, 'Asia/Singapore')
-      .format('YYYY/MM/DD, HH:MM A');
-    console.log(a);
   }
 }

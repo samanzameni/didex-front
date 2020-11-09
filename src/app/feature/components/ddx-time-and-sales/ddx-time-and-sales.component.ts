@@ -24,7 +24,16 @@ export class TimeAndSalesComponent implements OnInit {
     this.loadNextPage = new EventEmitter();
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if (this.traderService.currentTrader && this.traderTimezoneText) {
+      TIMEZONES.forEach((timezone) => {
+        if (timezone.ianaTimeZoneId.includes(this.traderTimezoneText)) {
+          this.timezoneAbbr = timezone.abbreviation;
+          return;
+        }
+      });
+    }
+  }
 
   getPriceCellCSSClass(row: Trade): string {
     return row.side === OrderSide.Buy ? 'green' : 'red';
@@ -32,15 +41,6 @@ export class TimeAndSalesComponent implements OnInit {
 
   get tableData(): Trade[] {
     return this.tradeData || [];
-  }
-
-  get traderTimezoneOffset() {
-    return (
-      this.traderService.currentTrader.generalInformation.timeZone.slice(
-        4,
-        10
-      ) || '+0000'
-    );
   }
 
   get traderTimezoneText() {

@@ -83,6 +83,7 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     WidgetModule,
     CreditCardMaskPipeModule,
+    ConvertToTimezonePipeModule,
     FormsModule,
     ReactiveFormsModule,
     InfiniteScrollModule,

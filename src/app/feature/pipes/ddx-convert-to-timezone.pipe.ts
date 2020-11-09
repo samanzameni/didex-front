@@ -15,6 +15,7 @@ export class ConvertToTimezonePipe implements PipeTransform {
   }
 
   get traderTimezoneText() {
+    console.log(this.traderService.currentTrader.generalInformation.timeZone);
     return this.traderService.currentTrader.generalInformation.timeZone;
   }
 }

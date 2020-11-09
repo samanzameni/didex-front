@@ -19,20 +19,47 @@ export class TimeAndSalesComponent implements OnInit {
   @Output() loadNextPage: EventEmitter<any>;
 
   private timezoneAbbr: string = 'UTC';
+  private convertedTimezones: string[];
 
   constructor(private traderService: TraderService) {
     this.loadNextPage = new EventEmitter();
   }
 
   ngOnInit(): void {
-    if (this.traderService.currentTrader && this.traderTimezoneText) {
-      TIMEZONES.forEach((timezone) => {
-        if (timezone.ianaTimeZoneId.includes(this.traderTimezoneText)) {
-          this.timezoneAbbr = timezone.abbreviation;
-          return;
-        }
-      });
+    // if (this.traderService.currentTrader && this.traderTimezoneText) {
+    //   TIMEZONES.forEach((timezone) => {
+    //     if (timezone.ianaTimeZoneId.includes(this.traderTimezoneText)) {
+    //       this.timezoneAbbr = timezone.abbreviation;
+    //       return;
+    //     }
+    //   });
+    // }
+
+    // var convertedTime = moment
+    //   .tz(this.tableData[2].timeStamp, this.traderTimezoneText)
+    //   .format('YYYY/MM/DD, HH:MM A');
+    // console.log(convertedTime);
+
+    // this.traderTimezoneText;
+
+    // if (this.traderTimezoneText) {
+    //   this.tableData.forEach((tradedata) => {
+    //     if (tradedata.timeStamp.includes(this.traderTimezoneText)) {
+    //       this.convertedTimezones = moment
+    //         .tz(tradedata.timeStamp, this.traderTimezoneText)
+    //         .format('YYYY/MM/DD, HH:MM A');
+    //     }
+    //   });
+    // }
+    if (this.traderTimezoneText) {
+      for (let i = 0; i < this.tradeData.length; i++) {
+        this.convertedTimezones[i] = moment
+          .tz(this.tradeData[i].timeStamp, this.traderTimezoneText)
+          .format('YYYY/MM/DD, HH:MM A');
+      }
     }
+
+    console.log(this.convertedTimezones);
   }
 
   getPriceCellCSSClass(row: Trade): string {
@@ -44,7 +71,7 @@ export class TimeAndSalesComponent implements OnInit {
   }
 
   get traderTimezoneOffset() {
-    console.log(this.traderService.currentTrader.generalInformation.timeZone);
+    // console.log(this.traderService.currentTrader.generalInformation.timeZone);
     return (
       this.traderService.currentTrader.generalInformation.timeZone.slice(
         4,
@@ -54,7 +81,7 @@ export class TimeAndSalesComponent implements OnInit {
   }
 
   get traderTimezoneText() {
-    console.log(moment.tz(this.tableData[0].timeStamp, 'Asia/Taipei'));
+    // console.log(this.traderService.currentTrader.generalInformation.timeZone);
 
     return this.traderService.currentTrader.generalInformation.timeZone;
   }
@@ -65,11 +92,11 @@ export class TimeAndSalesComponent implements OnInit {
 
   onScroll(): void {
     this.loadNextPage.emit(null);
-    console.log(this.tableData[2].timeStamp);
+    // console.log(this.tableData[2].timeStamp);
     var a = moment
       .tz(this.tableData[2].timeStamp, 'Asia/Singapore')
       .format('YYYY/MM/DD, HH:MM A');
     console.log(a);
-    console.log(moment.tz(this.tableData[1].timeStamp, 'Asia/Taipei'));
+    // console.log(moment.tz(this.tableData[1].timeStamp, 'Asia/Taipei'));
   }
 }

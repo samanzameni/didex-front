@@ -36,7 +36,7 @@ export class TradesComponent implements OnInit {
   private cancelingOrderIDs: string[];
   private orderStatusItems: any[];
 
-  private timezoneAbbr: string = 'UTC';
+  private timezoneAbbr: string = '';
 
   constructor(
     private restService: OrderRESTService,
@@ -102,15 +102,6 @@ export class TradesComponent implements OnInit {
 
   get orderStatusEnumItems(): any[] {
     return this.orderStatusItems;
-  }
-
-  get traderTimezoneOffset() {
-    return (
-      this.traderService.currentTrader.generalInformation.timeZone.slice(
-        4,
-        10
-      ) || '+0000'
-    );
   }
 
   get traderTimezoneText() {

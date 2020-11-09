@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { TradeSymbol, Trade, OrderSide } from '@core/models';
 import { TraderService } from '@core/services';
 import { TIMEZONES } from '@core/util/constants';
+import * as moment from 'moment-timezone';
 
 @Component({
   selector: 'ddx-time-and-sales',
@@ -26,8 +27,8 @@ export class TimeAndSalesComponent implements OnInit {
   ngOnInit(): void {
     if (this.traderService.currentTrader && this.traderTimezoneText) {
       TIMEZONES.forEach((timezone) => {
-        if (timezone.text.includes(this.traderTimezoneText)) {
-          this.timezoneAbbr = timezone.abbr;
+        if (timezone.ianaTimeZoneId.includes(this.traderTimezoneText)) {
+          this.timezoneAbbr = timezone.abbreviation;
           return;
         }
       });
@@ -43,6 +44,7 @@ export class TimeAndSalesComponent implements OnInit {
   }
 
   get traderTimezoneOffset() {
+    console.log(this.traderService.currentTrader.generalInformation.timeZone);
     return (
       this.traderService.currentTrader.generalInformation.timeZone.slice(
         4,
@@ -52,6 +54,8 @@ export class TimeAndSalesComponent implements OnInit {
   }
 
   get traderTimezoneText() {
+    console.log(moment.tz(this.tableData[0].timeStamp, 'Asia/Taipei'));
+
     return this.traderService.currentTrader.generalInformation.timeZone;
   }
 
@@ -61,5 +65,11 @@ export class TimeAndSalesComponent implements OnInit {
 
   onScroll(): void {
     this.loadNextPage.emit(null);
+    console.log(this.tableData[2].timeStamp);
+    var a = moment
+      .tz(this.tableData[2].timeStamp, 'Asia/Singapore')
+      .format('YYYY/MM/DD, HH:MM A');
+    console.log(a);
+    console.log(moment.tz(this.tableData[1].timeStamp, 'Asia/Taipei'));
   }
 }

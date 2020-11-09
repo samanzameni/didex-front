@@ -103,8 +103,8 @@ export class ReportsPageComponent implements OnInit, AfterViewInit {
 
     if (this.traderService.currentTrader && this.traderTimezoneText) {
       TIMEZONES.forEach((timezone) => {
-        if (timezone.text.includes(this.traderTimezoneText)) {
-          this.timezoneAbbr = timezone.abbr;
+        if (timezone.ianaTimeZoneId.includes(this.traderTimezoneText)) {
+          this.timezoneAbbr = timezone.abbreviation;
           return;
         }
       });

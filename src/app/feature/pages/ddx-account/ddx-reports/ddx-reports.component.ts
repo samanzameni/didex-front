@@ -27,6 +27,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { CONSTANTS, TIMEZONES } from '@core/util/constants';
 import { MatTableDataSource } from '@angular/material/table';
 import { LocalePipe } from '@widget/pipes/ddx-locale.pipe';
+import { ConvertToTimezonePipe } from '@feature/pipes/ddx-convert-to-timezone.pipe';
 import { TraderService } from '@core/services';
 
 @Component({
@@ -53,7 +54,7 @@ export class ReportsPageComponent implements OnInit, AfterViewInit {
 
   private transactionsDataSource: MatTableDataSource<any>;
 
-  private timezoneAbbr: string = 'UTC';
+  private timezoneAbbr: string = '';
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
@@ -62,6 +63,7 @@ export class ReportsPageComponent implements OnInit, AfterViewInit {
     private tradeDataService: PrivateTradeDATAService,
     private transactionsDataService: TransactionsDATAService,
     private datePipe: DatePipe,
+    private convertToTimezonePipe: ConvertToTimezonePipe,
     private localePipe: LocalePipe,
     private traderService: TraderService
   ) {
@@ -115,10 +117,8 @@ export class ReportsPageComponent implements OnInit, AfterViewInit {
     this.orderDataService.dataStream$.subscribe((data) => {
       this.orders = (data || []).map((order) => {
         const mapped: any = { ...order };
-        mapped.createdAt = this.datePipe.transform(
-          order.createdAt,
-          'short',
-          this.traderTimezoneOffset
+        mapped.createdAt = this.convertToTimezonePipe.transform(
+          order.createdAt
         );
         // mapped.createdAt = order.createdAt;
         mapped.side = OrderSide[order.side];
@@ -134,11 +134,7 @@ export class ReportsPageComponent implements OnInit, AfterViewInit {
     this.tradeDataService.dataStream$.subscribe((data) => {
       this.trades = (data || []).map((trade) => {
         const t: any = { ...trade };
-        t.timeStamp = this.datePipe.transform(
-          trade.timeStamp,
-          'short',
-          this.traderTimezoneOffset
-        );
+        t.timeStamp = this.convertToTimezonePipe.transform(trade.timeStamp);
         t.side = OrderSide[trade.side];
         return t;
       });
@@ -150,10 +146,8 @@ export class ReportsPageComponent implements OnInit, AfterViewInit {
     this.transactionsDataService.dataStream$.subscribe((data) => {
       this.transactions = (data || []).map((transaction) => {
         const t: any = { ...transaction };
-        t.createdAt = this.datePipe.transform(
-          transaction.createdAt,
-          'short',
-          this.traderTimezoneOffset
+        t.createdAt = this.convertToTimezonePipe.transform(
+          transaction.createdAt
         );
         t.type = TransactionType[transaction.type];
         t.status = TransactionStatus[transaction.status];

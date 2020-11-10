@@ -44,7 +44,7 @@ export class SettingsPageComponent implements OnInit {
     this.activePage = 'general';
     this.timezonesMapped = TIMEZONES.map((timezone) => {
       return {
-        title: timezone.ianaTimeZoneId + ' (' + timezone.genericName + ')',
+        title: `${timezone.ianaTimeZoneId} (UTC${timezone.utcOffset})`,
         value: timezone.ianaTimeZoneId,
       } as DropdownSelectItem;
     });

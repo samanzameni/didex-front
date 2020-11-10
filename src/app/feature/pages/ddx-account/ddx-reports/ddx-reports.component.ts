@@ -188,9 +188,7 @@ export class ReportsPageComponent implements OnInit, AfterViewInit {
       case 'createdAt':
         return (
           this.localePipe.transform('reports.orders.createdAt') +
-          ' (' +
-          this.traderTimezoneTitleAbbr +
-          ')'
+          this.traderTimezoneTitleAbbr
         );
       case 'marketSymbol':
         return this.localePipe.transform('reports.orders.marketSymbol');
@@ -231,9 +229,7 @@ export class ReportsPageComponent implements OnInit, AfterViewInit {
       case 'timeStamp':
         return (
           this.localePipe.transform('reports.trades.timeStamp') +
-          ' (' +
-          this.traderTimezoneTitleAbbr +
-          ')'
+          this.traderTimezoneTitleAbbr
         );
       case 'marketSymbol':
         return this.localePipe.transform('reports.trades.marketSymbol');
@@ -285,9 +281,7 @@ export class ReportsPageComponent implements OnInit, AfterViewInit {
       case 'createdAt':
         return (
           this.localePipe.transform('reports.transactions.createdAt') +
-          ' (' +
-          this.traderTimezoneTitleAbbr +
-          ')'
+          this.traderTimezoneTitleAbbr
         );
       case 'type':
         return this.localePipe.transform('reports.transactions.type');
@@ -314,21 +308,14 @@ export class ReportsPageComponent implements OnInit, AfterViewInit {
     return this.currentActivePane;
   }
 
-  get traderTimezoneOffset() {
-    return (
-      this.traderService.currentTrader.generalInformation.timeZone.slice(
-        4,
-        10
-      ) || '+0000'
-    );
-  }
-
   get traderTimezoneText() {
     return this.traderService.currentTrader.generalInformation.timeZone;
   }
 
   get traderTimezoneTitleAbbr(): string {
-    return this.timezoneAbbr;
+    if (this.timezoneAbbr === '' || this.timezoneAbbr === undefined) {
+      return '';
+    } else return ' (' + this.timezoneAbbr + ')';
   }
 
   activatePane(newPane: string): void {

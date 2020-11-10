@@ -109,7 +109,9 @@ export class TradesComponent implements OnInit {
   }
 
   get traderTimezoneTitleAbbr(): string {
-    return this.timezoneAbbr;
+    if (this.timezoneAbbr === '' || this.timezoneAbbr === undefined) {
+      return '';
+    } else return ' (' + this.timezoneAbbr + ')';
   }
 
   getTotalPrice(order: Order): Decimal {

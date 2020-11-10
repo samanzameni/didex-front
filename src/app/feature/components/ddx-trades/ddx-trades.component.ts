@@ -36,7 +36,7 @@ export class TradesComponent implements OnInit {
   private cancelingOrderIDs: string[];
   private orderStatusItems: any[];
 
-  private timezoneAbbr: string = '';
+  private timezoneAbbr: string = 'UTC';
 
   constructor(
     private restService: OrderRESTService,

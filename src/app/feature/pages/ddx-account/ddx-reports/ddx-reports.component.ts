@@ -54,7 +54,7 @@ export class ReportsPageComponent implements OnInit, AfterViewInit {
 
   private transactionsDataSource: MatTableDataSource<any>;
 
-  private timezoneAbbr: string = '';
+  private timezoneAbbr: string = 'UTC';
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 

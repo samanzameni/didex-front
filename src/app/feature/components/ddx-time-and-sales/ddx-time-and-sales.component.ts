@@ -18,7 +18,7 @@ export class TimeAndSalesComponent implements OnInit {
 
   @Output() loadNextPage: EventEmitter<any>;
 
-  private timezoneAbbr: string = '';
+  private timezoneAbbr: string = 'UTC';
 
   constructor(private traderService: TraderService) {
     this.loadNextPage = new EventEmitter();

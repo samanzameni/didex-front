@@ -48,7 +48,9 @@ export class TimeAndSalesComponent implements OnInit {
   }
 
   get traderTimezoneTitleAbbr(): string {
-    return this.timezoneAbbr;
+    if (this.timezoneAbbr === '' || this.timezoneAbbr === undefined) {
+      return '';
+    } else return ' (' + this.timezoneAbbr + ')';
   }
 
   onScroll(): void {

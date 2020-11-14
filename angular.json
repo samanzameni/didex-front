@@ -20,7 +20,8 @@
             "allowedCommonJsDependencies": [
               "jwt-decode",
               "decimal.js",
-              "qrcode"
+              "qrcode",
+              "moment-timezone"
             ],
             "outputPath": "dist/didex-trade",
             "index": "src/index.html",

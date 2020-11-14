@@ -63,7 +63,7 @@ export class KYCPhoneVerificationPageComponent
     this.kycForm = this.formBuilder.group({
       countryTelephoneCode: [
         trader.mobileNumber && this.isTraderInRegionTwo
-          ? 98
+          ? '98'
           : trader.mobileNumber && !this.isTraderInRegionTwo
           ? trader.mobileNumber.countryTelephoneCode
           : '',

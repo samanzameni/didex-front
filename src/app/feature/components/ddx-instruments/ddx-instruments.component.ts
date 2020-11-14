@@ -7,6 +7,7 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { TradeSymbol, Ticker } from '@core/models';
+import { StorageService } from '@core/services';
 import { getTickerFromSymbol } from '@core/util/ticker';
 
 @Component({
@@ -29,7 +30,7 @@ export class InstrumentsComponent implements OnChanges {
   @Output() quoteCurrencyChange: EventEmitter<string>;
   @Output() symbolChange: EventEmitter<TradeSymbol>;
 
-  constructor() {
+  constructor(protected storageService: StorageService) {
     this.baseCurrencyChange = new EventEmitter();
     this.quoteCurrencyChange = new EventEmitter();
     this.symbolChange = new EventEmitter();
@@ -49,11 +50,27 @@ export class InstrumentsComponent implements OnChanges {
           changes.symbolsData.previousValue
         )
       ) {
-        this.currentActiveBaseCurrency = this.symbolsData[0].baseCurrencyShortName;
-        this.currentActiveQuoteCurrency = this.symbolsData[0].quoteCurrencyShortName;
+        let lastActiveSymbol =
+          this.storageService.getLastActivatedSymbol() || null;
+        let index = 0;
+        if (lastActiveSymbol) {
+          for (let i = 0; i < this.symbolsData.length; i++) {
+            if (lastActiveSymbol === this.symbolsData[i].symbol) {
+              index = i;
+              break;
+            }
+          }
+        }
+
+        this.currentActiveBaseCurrency = this.symbolsData[
+          index
+        ].baseCurrencyShortName;
+        this.currentActiveQuoteCurrency = this.symbolsData[
+          index
+        ].quoteCurrencyShortName;
         this.activateBaseCurrency(this.currentActiveBaseCurrency);
         this.activateQuoteCurrency(this.currentActiveQuoteCurrency);
-        this.activateSymbol(this.symbolsData[0]);
+        this.activateSymbol(this.symbolsData[index]);
       }
     }
   }
@@ -159,6 +176,7 @@ export class InstrumentsComponent implements OnChanges {
 
   activateSymbol(newSymbol: TradeSymbol): void {
     this.currentActiveSymbol = newSymbol;
+    this.storageService.setLastActivatedSymbol(`${newSymbol.symbol}`);
     this.symbolChange.emit(newSymbol);
   }
 }

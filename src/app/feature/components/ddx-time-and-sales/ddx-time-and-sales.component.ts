@@ -1,5 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { TradeSymbol, Trade, OrderSide } from '@core/models';
+import { TraderService } from '@core/services';
+import { TIMEZONES } from '@core/util/constants';
+import * as moment from 'moment-timezone';
 
 @Component({
   selector: 'ddx-time-and-sales',
@@ -15,11 +18,22 @@ export class TimeAndSalesComponent implements OnInit {
 
   @Output() loadNextPage: EventEmitter<any>;
 
-  constructor() {
+  private timezoneAbbr: string = 'UTC';
+
+  constructor(private traderService: TraderService) {
     this.loadNextPage = new EventEmitter();
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if (this.traderService.currentTrader && this.traderTimezoneText) {
+      TIMEZONES.forEach((timezone) => {
+        if (timezone.ianaTimeZoneId.includes(this.traderTimezoneText)) {
+          this.timezoneAbbr = timezone.abbreviation;
+          return;
+        }
+      });
+    }
+  }
 
   getPriceCellCSSClass(row: Trade): string {
     return row.side === OrderSide.Buy ? 'green' : 'red';
@@ -27,6 +41,16 @@ export class TimeAndSalesComponent implements OnInit {
 
   get tableData(): Trade[] {
     return this.tradeData || [];
+  }
+
+  get traderTimezoneText() {
+    return this.traderService.currentTrader.generalInformation.timeZone;
+  }
+
+  get traderTimezoneTitleAbbr(): string {
+    if (this.timezoneAbbr === '' || this.timezoneAbbr === undefined) {
+      return '';
+    } else return ' (' + this.timezoneAbbr + ')';
   }
 
   onScroll(): void {

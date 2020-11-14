@@ -49,7 +49,7 @@ export class MarketFormComponent implements OnInit, OnChanges {
 
   private marketForm: FormGroup;
   private formErrors: any;
-  private timeInForceItems: DropdownSelectItem[];
+  private orderTimeInForceItems: DropdownSelectItem[];
 
   @ViewChild('submitButton') submitButton: ProButtonComponent;
 
@@ -74,7 +74,7 @@ export class MarketFormComponent implements OnInit, OnChanges {
     const keys = Object.keys(OrderTimeInForce);
     const names = keys.slice(keys.length / 2);
 
-    this.timeInForceItems = names.map((name) => {
+    this.orderTimeInForceItems = names.map((name) => {
       return {
         title: name
           .split(/\s|_|(?=[A-Z])/)
@@ -250,7 +250,7 @@ export class MarketFormComponent implements OnInit, OnChanges {
   }
 
   get timeInForceDropdownItems(): DropdownSelectItem[] {
-    return this.timeInForceItems;
+    return this.orderTimeInForceItems;
   }
 
   get bestBid(): Decimal {

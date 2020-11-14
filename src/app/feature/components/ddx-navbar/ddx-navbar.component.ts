@@ -128,9 +128,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   }
 
   toggleLocaleSelector() {
-    // console.log(this.select.panelOpen);
     this.select.toggle();
-    console.log(this.select);
   }
 
   @HostListener('window:resize', ['$event'])

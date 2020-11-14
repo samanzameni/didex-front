@@ -22,7 +22,7 @@ import {
   OrderClickEventData,
 } from '@core/models/ddx-order.model';
 import { DropdownSelectItem } from '@widget/models';
-import { AuthService, DirectionService } from '@core/services';
+import { AuthService, DirectionService, StorageService } from '@core/services';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -57,20 +57,47 @@ export class MarketComponent implements OnInit {
   private buyFormErrors: any;
   private sellFormErrors: any;
 
+  private orderTypeItems: any[];
+  private orderSideItems: any[];
+
   constructor(
     private orderService: OrderRESTService,
     private authService: AuthService,
     private renderer: Renderer2,
     private cdRef: ChangeDetectorRef,
-    private directionService: DirectionService
+    private directionService: DirectionService,
+    protected storageService: StorageService
   ) {
-    this.currentActiveType = 'limit';
+    this.currentActiveType = storageService.getMarketType() || 'limit';
     this.sellFormErrors = {};
 
-    // this.buyAmount = 0;
-    // this.buyLimit = 0;
-    // this.sellAmount = 0;
-    // this.sellLimit = 0;
+    // Extracting orderType items from enum
+    const orderTypeKeys = Object.keys(OrderType);
+    const orderTypeNames = orderTypeKeys.slice(orderTypeKeys.length / 2);
+
+    this.orderTypeItems = orderTypeNames.map((name) => {
+      return {
+        title: name
+          .split(/\s|_|(?=[A-Z])/)
+          .join('_')
+          .toLowerCase(),
+        value: OrderType[name],
+      };
+    });
+
+    // Extracting orderSide items from enum
+    const orderSideKeys = Object.keys(OrderSide);
+    const orderSideNames = orderSideKeys.slice(orderSideKeys.length / 2);
+
+    this.orderSideItems = orderSideNames.map((name) => {
+      return {
+        title: name
+          .split(/\s|_|(?=[A-Z])/)
+          .join('_')
+          .toLowerCase(),
+        value: OrderSide[name],
+      };
+    });
   }
 
   ngOnInit() {}
@@ -153,6 +180,14 @@ export class MarketComponent implements OnInit {
     }
 
     return null;
+  }
+
+  get orderTypeEnumItems(): any[] {
+    return this.orderTypeItems;
+  }
+
+  get orderSideEnumItems(): any[] {
+    return this.orderSideItems;
   }
 
   get timeInForceDropdownItems(): DropdownSelectItem[] {
@@ -245,6 +280,7 @@ export class MarketComponent implements OnInit {
 
   activateType(newType: string): void {
     this.currentActiveType = newType;
+    this.storageService.setMarketType(newType);
     this.cdRef.detectChanges();
   }
 

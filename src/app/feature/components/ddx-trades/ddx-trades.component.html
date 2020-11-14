@@ -81,6 +81,7 @@
             <tr arrangeInline>
               <th class="row-big">
                 {{ 'homepage.trades.active_time' | ddxLocale }}
+                {{ traderTimezoneTitleAbbr }}
               </th>
               <th class="row-small">
                 {{ 'homepage.trades.active_id' | ddxLocale }}
@@ -114,7 +115,9 @@
             class="ddx-table__body"
           >
             <tr arrangeInline *ngFor="let item of activeOrders; let i = index">
-              <td class="row-big">{{ item.createdAt | date: 'short' }}</td>
+              <td class="row-big">
+                {{ item.createdAt | ddxConvertToTimezone }}
+              </td>
               <td class="row-small" title="{{ item.id }}">{{ item.id }}</td>
               <td
                 class="row-big"
@@ -169,6 +172,7 @@
             <tr arrangeInline>
               <th class="row-big">
                 {{ 'homepage.trades.filled_time' | ddxLocale }}
+                {{ traderTimezoneTitleAbbr }}
               </th>
               <th class="row-small">
                 {{ 'homepage.trades.filled_id' | ddxLocale }}
@@ -199,7 +203,9 @@
             class="ddx-table__body"
           >
             <tr arrangeInline *ngFor="let item of filledOrders; let i = index">
-              <td class="row-big">{{ item.createdAt | date: 'short' }}</td>
+              <td class="row-big">
+                {{ item.createdAt | ddxConvertToTimezone }}
+              </td>
               <td class="row-small" title="{{ item.id }}">{{ item.id }}</td>
               <td
                 class="row-big"
@@ -231,6 +237,7 @@
             <tr arrangeInline>
               <th class="row-big">
                 {{ 'homepage.trades.trade_time' | ddxLocale }}
+                {{ traderTimezoneTitleAbbr }}
               </th>
               <th class="row-small">
                 {{ 'homepage.trades.trade_id' | ddxLocale }}
@@ -261,7 +268,9 @@
             class="ddx-table__body"
           >
             <tr arrangeInline *ngFor="let item of privateTrades; let i = index">
-              <td class="row-big">{{ item.timeStamp | date: 'short' }}</td>
+              <td class="row-big">
+                {{ item.timeStamp | ddxConvertToTimezone }}
+              </td>
               <td class="row-small" title="{{ item.id }}">{{ item.id }}</td>
               <td
                 class="row-big"

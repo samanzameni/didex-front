@@ -5,10 +5,13 @@ import {
   OrderStatus,
   OrderSide,
   Trade,
+  OrderType,
 } from '@core/models';
 import Decimal from 'decimal.js';
 import { OrderRESTService } from '@core/services/REST';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { TIMEZONES } from '@core/util/constants';
+import { TraderService } from '@core/services';
 
 @Component({
   selector: 'ddx-trades',
@@ -31,10 +34,14 @@ export class TradesComponent implements OnInit {
 
   private currentActivePane: string;
   private cancelingOrderIDs: string[];
+  private orderStatusItems: any[];
+
+  private timezoneAbbr: string = 'UTC';
 
   constructor(
     private restService: OrderRESTService,
-    private snackbarService: MatSnackBar
+    private snackbarService: MatSnackBar,
+    private traderService: TraderService
   ) {
     this.currentActivePane = 'active';
     this.cancelingOrderIDs = [];
@@ -42,9 +49,32 @@ export class TradesComponent implements OnInit {
     this.loadActiveOrdersNextPage = new EventEmitter();
     this.loadFilledOrdersNextPage = new EventEmitter();
     this.loadTradesNextPage = new EventEmitter();
+
+    // Extracting orderType items from enum
+    const orderStatusKeys = Object.keys(OrderStatus);
+    const orderStatusNames = orderStatusKeys.slice(orderStatusKeys.length / 2);
+
+    this.orderStatusItems = orderStatusNames.map((name) => {
+      return {
+        title: name
+          .split(/\s|_|(?=[A-Z])/)
+          .join('_')
+          .toLowerCase(),
+        value: OrderStatus[name],
+      };
+    });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if (this.traderService.currentTrader && this.traderTimezoneText) {
+      TIMEZONES.forEach((timezone) => {
+        if (timezone.ianaTimeZoneId.includes(this.traderTimezoneText)) {
+          this.timezoneAbbr = timezone.abbreviation;
+          return;
+        }
+      });
+    }
+  }
 
   get activePane(): string {
     return this.currentActivePane;
@@ -68,6 +98,20 @@ export class TradesComponent implements OnInit {
 
   get cancelingIDs(): string[] {
     return this.cancelingOrderIDs;
+  }
+
+  get orderStatusEnumItems(): any[] {
+    return this.orderStatusItems;
+  }
+
+  get traderTimezoneText() {
+    return this.traderService.currentTrader.generalInformation.timeZone;
+  }
+
+  get traderTimezoneTitleAbbr(): string {
+    if (this.timezoneAbbr === '' || this.timezoneAbbr === undefined) {
+      return '';
+    } else return ' (' + this.timezoneAbbr + ')';
   }
 
   getTotalPrice(order: Order): Decimal {

@@ -33,6 +33,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { TraderResolver } from '@core/resolvers/trader.resolver';
 import { LocalePipeModule } from '../../widget/modules/locale-pipe.module';
 import { CreditCardMaskPipeModule } from './credit-card-mask.module';
+import { ConvertToTimezonePipeModule } from './convert-to-timezone.module';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatExpansionModule } from '@angular/material/expansion';
@@ -82,6 +83,7 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     WidgetModule,
     CreditCardMaskPipeModule,
+    ConvertToTimezonePipeModule,
     FormsModule,
     ReactiveFormsModule,
     InfiniteScrollModule,

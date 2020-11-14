@@ -105,5 +105,19 @@
   "notification_bar": {
     "success_message": "با موفقیت انجام شد",
     "error_message": "خطایی رخ داد"
+  },
+
+  "order_status": {
+    "new": "جدید",
+    "partially_filled": "نیمه پر شده",
+    "filled": "تکمیل شده",
+    "cancelled": "لغو شده",
+    "expired": "منقضی شده",
+    "suspended": "تعلیق شده"
+  },
+
+  "order_side": {
+    "buy": "خرید",
+    "sell": "فروش"
   }
 }

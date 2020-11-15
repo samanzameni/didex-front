@@ -76,7 +76,8 @@ export class KYCPersonalInfoPageComponent
         [],
       ],
       birthCountryCode: [
-        trader.personalInformation && this.isTraderInRegionTwo
+        // trader.personalInformation && this.isTraderInRegionTwo
+        this.isTraderInRegionTwo
           ? 'IR'
           : trader.personalInformation && !this.isTraderInRegionTwo
           ? trader.personalInformation.birthCountryCode
@@ -88,7 +89,8 @@ export class KYCPersonalInfoPageComponent
         [Validators.required, Validators.maxLength(10)],
       ],
       countryCode: [
-        trader.personalInformation && this.isTraderInRegionTwo
+        // trader.personalInformation && this.isTraderInRegionTwo
+        this.isTraderInRegionTwo
           ? 'IR'
           : trader.personalInformation && !this.isTraderInRegionTwo
           ? trader.personalInformation.countryCode
